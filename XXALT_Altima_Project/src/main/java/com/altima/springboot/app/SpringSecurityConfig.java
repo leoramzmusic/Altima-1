@@ -18,6 +18,20 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Autowired
 	private LoginSuccessHandler successHandler;
+	
+	
+	  @Override protected void configure(HttpSecurity http) throws Exception {
+	  
+	  http.authorizeRequests().antMatchers("/**").permitAll()
+	  .antMatchers("/index/**").hasAnyRole("ADMIN")
+	  .antMatchers("/catalogos/**").hasAnyRole("ADMIN")
+	  .anyRequest().authenticated() .and() .formLogin()
+	  .successHandler(successHandler) .loginPage("/login") .permitAll() .and()
+	  .logout().permitAll() .and()
+	  .exceptionHandling().accessDeniedPage("/error_403");
+	  
+	  }
+	 
 
 	@Autowired
 	public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception

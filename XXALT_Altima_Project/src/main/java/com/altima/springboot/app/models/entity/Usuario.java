@@ -13,7 +13,7 @@ import javax.validation.constraints.NotBlank;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "xxalt_usuario")
+@Table(name = "xxalt_hr_usuario")
 
 public class Usuario  implements Serializable{
 

@@ -14,7 +14,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 
 @Entity
-@Table(name = "xxalt_rol")
+@Table(name = "xxalt_hr_rol")
 
 public class Rol implements Serializable {
 
@@ -33,6 +33,14 @@ public class Rol implements Serializable {
 	@NotBlank
 	private String idText;
 	
+	@Column(name="nombre")
+	@NotBlank
+	private String nombre;
+	
+	@Column(name="id_usuario")
+	@NotBlank
+	private String idUsuario;
+	
 	@Column(name="creado_por")
 	@NotBlank
 	private String creadoPor;
@@ -50,6 +58,30 @@ public class Rol implements Serializable {
 	private String ultimaFechaModificacion;
 
 	
+
+	public String getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(String idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+	public Long getIdRol() {
+		return idRol;
+	}
+
+	public void setIdRol(Long idRol) {
+		this.idRol = idRol;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
 	public String getIdText() {
 		return idText;
@@ -102,7 +134,10 @@ public class Rol implements Serializable {
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
+		result = prime * result + ((idRol == null) ? 0 : idRol.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
+		result = prime * result + ((idUsuario == null) ? 0 : idUsuario.hashCode());
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
 		return result;
 	}
@@ -131,10 +166,25 @@ public class Rol implements Serializable {
 				return false;
 		} else if (!fechaCreacion.equals(other.fechaCreacion))
 			return false;
+		if (idRol == null) {
+			if (other.idRol != null)
+				return false;
+		} else if (!idRol.equals(other.idRol))
+			return false;
 		if (idText == null) {
 			if (other.idText != null)
 				return false;
 		} else if (!idText.equals(other.idText))
+			return false;
+		if (idUsuario == null) {
+			if (other.idUsuario != null)
+				return false;
+		} else if (!idUsuario.equals(other.idUsuario))
+			return false;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
 			return false;
 		if (ultimaFechaModificacion == null) {
 			if (other.ultimaFechaModificacion != null)
@@ -143,4 +193,5 @@ public class Rol implements Serializable {
 			return false;
 		return true;
 	}
+
 }
