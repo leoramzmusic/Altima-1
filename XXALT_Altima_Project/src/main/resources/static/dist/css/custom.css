@@ -1,0 +1,27 @@
+.modal-marcas {
+    max-width: 60% !important;
+}
+.modal-colores {
+    max-width: 50% !important;
+}
+.modal-material {
+    max-width: 98% !important;
+}
+.modal-trazo {
+    max-width: 70% !important;
+}
+.modal-forro {
+    max-width: 80% !important;
+}
+.modal-tela {
+    max-width: 98% !important;
+}
+.modal-prendas {
+    max-width: 70% !important;
+}
+.modal-genero {
+    max-width: 70% !important;
+}
+.tdcenter {
+    text-align: center;
+}

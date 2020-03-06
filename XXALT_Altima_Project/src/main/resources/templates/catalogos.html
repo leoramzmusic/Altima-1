@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Catal&oacute;gos | Altima</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="dist/img/favicon.ico">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="dist/css/custom.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <!-- Datatables Plugin-->
+    <link rel="stylesheet" href="dist/css/jquery.dataTables.min.css">
+    <!-- Datatables Plugin-->
+    <link rel="stylesheet" href="dist/css/dataTables.bootstrap4.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition sidebar-mini">
+    <!-- Site wrapper -->
+    <div class="wrapper">
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+                </li>
+            </ul>
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <!-- Messages Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="far fa-comments"></i>
+                        <span class="badge badge-danger navbar-badge">3</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                 Brad Diesel
+                                 <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                              </h3>
+                                    <p class="text-sm">Call me whenever you can...</p>
+                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                 John Pierce
+                                 <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                              </h3>
+                                    <p class="text-sm">I got your message bro</p>
+                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                 Nora Silvester
+                                 <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                              </h3>
+                                    <p class="text-sm">The subject goes here</p>
+                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="modal" data-target="#modalLogin" href="">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+        <!-- Cerrar Sesion Modal -->
+        <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Cerrar sesi&oacute;n</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ¿Deseas cerrar sesi&oacute;n?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary">Confirmar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="index3.html" class="brand-link">
+                <img src="dist/img/AltimaLogo.png" alt="Altima Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">Altima</span>
+            </a>
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="info">
+                        <a href="#" class="d-block" style="margin-top: -10px;margin-bottom: -10px;">Benito Camelo<small><br>Administrador</small></a>
+                    </div>
+                </div>
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+                        with font-awesome or any other icon font library -->
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Dashboard
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="catalogos.html" class="nav-link">
+                                <i class="nav-icon fas fa-clipboard-list"></i>
+                                <p>
+                                    Cat&oacute;logos
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Cat&oacute;logos</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                                <li class="breadcrumb-item active">Cat&oacute;logos</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <!-- Small boxes (Stat box) -->
+                    <div class="row">
+                        <div class="col-lg-4 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-warning">
+                                <div class="inner">
+                                    <h3>Marcas</h3>
+                                    <button data-toggle="modal" data-target="#detalleMarcas" class="btn btn-link" style="color: #1f2d3d!important; padding-left: 1px;"><i class="fas fa-info-circle"></i> Detalle</button>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-ios-pricetags-outline"></i>
+                                </div>
+                                <a class="small-box-footer">
+                                    <button onclick="agregarMarca()" class="btn btn-link" style="color: #1f2d3d!important">Agregar <i class="fas fa-plus-circle"></i></button>
+                                </a>
+                            </div>
+                            <!-- Modal Marcas Tabla -->
+                            <div class="modal fade" id="detalleMarcas" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-marcas" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-warning">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Listado de marcas <button onclick="agregarMarca()" class="btn btn-dark popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Agregar" style="border-radius: 35%;color:#ffc107!important"><i class="fas fa-plus fa-sm"></i></button></h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="table tablexd table-striped table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>C&oacute;digo</th>
+                                                        <th>Nombre</th>
+                                                        <th>Estatus</th>
+                                                        <th>Cambios</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>MAE123</td>
+                                                        <td>Calvin Klein</td>
+                                                        <td>Activado</td>
+                                                        <td style="text-align: center;">
+                                                            <button class="btn btn-info popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="<strong>Creado por:</strong> Jose Luis Manuel Jajaja<br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020" style="border-radius: 35%;"><i class="fas fa-info-circle"></i></button>&nbsp;
+                                                        </td>
+                                                        <td class="tdcenter">
+                                                            <button class="btn btn-warning popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Editar" style="border-radius: 35%;"><i class="fas fa-pen fa-sm"></i></button>&nbsp;
+                                                            <button onclick="bajarMarca()" class="btn btn-danger popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Dar de baja" style="border-radius: 35%;"><i class="fas fa-ban fa-sm"></i></button>&nbsp;
+                                                            <button onclick="reactivarMarca()" class="btn btn-success popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Reactivar" style="border-radius:35%;"><i class="fas fa-check fa-sm"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-4 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-danger">
+                                <div class="inner">
+                                    <h3>Colores</h3>
+                                    <button data-toggle="modal" data-target="#detalleColores" class="btn btn-link" style="color: #ffffff!important;padding-left: 1px;"><i class="fas fa-info-circle"></i> Detalle</button>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-ios-color-filter-outline"></i>
+                                </div>
+                                <a class="small-box-footer">
+                                    <button onclick="agregarColor()" class="btn btn-link" style="color: #ffffff!important">Agregar <i class="fas fa-plus-circle"></i></button>
+                                </a>
+                            </div>
+                            <!-- Modal Marcas Tabla -->
+                            <div class="modal fade" id="detalleColores" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-colores" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-danger">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Listado de colores <button onclick="agregarColor()" class="btn btn-light popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Agregar" style="border-radius: 35%;color: #dc3545!important;"><i class="fas fa-plus fa-sm"></i></button></h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="table tablexd table-striped table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>C&oacute;digo</th>
+                                                        <th>Nombre</th>
+                                                        <th>Estatus</th>
+                                                        <th>Cambios</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>CIEM123</td>
+                                                        <td>Rojo</td>
+                                                        <td>Activo</td>
+                                                        <td style="text-align: center;">
+                                                            <button class="btn btn-info popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="<strong>Creado por:</strong> Jose Luis Manuel Jajaja<br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020" style="border-radius: 35%;"><i class="fas fa-info-circle"></i></button>&nbsp;
+                                                        </td>
+                                                        <td class="tdcenter">
+                                                            <button class="btn btn-warning popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Editar" style="border-radius: 35%;"><i class="fas fa-pen fa-sm"></i></button>&nbsp;
+                                                            <button onclick="bajarColor()" class="btn btn-danger popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Dar de baja" style="border-radius: 35%;"><i class="fas fa-ban fa-sm"></i></button>&nbsp;
+                                                            <button onclick="reactivarColor()" class="btn btn-success popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Reactivar" style="border-radius:35%;"><i class="fas fa-check fa-sm"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-4 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-warning">
+                                <div class="inner">
+                                    <h3>Materiales</h3>
+                                    <button data-toggle="modal" data-target="#detalleMateriales" class="btn btn-link" style="color: #1f2d3d!important; padding-left: 1px;"><i class="fas fa-info-circle"></i> Detalle</button>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-ios-paper-outline"></i>
+                                </div>
+                                <a class="small-box-footer">
+                                    <button onclick="agregarMaterial()" class="btn btn-link" style="color: #1f2d3d!important">Agregar <i class="fas fa-plus-circle"></i></button>
+                                </a>
+                            </div>
+                            <!-- Modal Materiales Tabla -->
+                            <div class="modal fade" id="detalleMateriales" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-material" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-warning">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Listado de materiales <button onclick="agregarMaterial()" class="btn btn-dark popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Agregar" style="border-radius: 35%;color:#ffc107!important"><i class="fas fa-plus fa-sm"></i></button></h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="table tablexd table-striped table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>C&oacute;digo</th>
+                                                        <th>Descripci&oacute;n de material</th>
+                                                        <th>Estatus</th>
+                                                        <th>Tamaño</th>
+                                                        <th>Clasificaci&oacute;n</th>
+                                                        <th>Unidad de medida</th>
+                                                        <th>Modelo</th>
+                                                        <th>Procesos</th>
+                                                        <th>Marca</th>
+                                                        <th>Cambios</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>OEMS532</td>
+                                                        <td>Material con esto y el otro y no se que</td>
+                                                        <td>Activado</td>
+                                                        <td>Tamaño camioneta</td>
+                                                        <td>No se</td>
+                                                        <td>Metros</td>
+                                                        <td>Modelo chido</td>
+                                                        <td>Proceso chido</td>
+                                                        <td>Patito</td>
+                                                        <td style="text-align: center;">
+                                                            <button class="btn btn-info popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="<strong>Creado por:</strong> Jose Luis Manuel Jajaja<br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020" style="border-radius: 35%;"><i class="fas fa-info-circle"></i></button>&nbsp;
+                                                        </td>
+                                                        <td class="tdcenter">
+                                                            <button class="btn btn-warning popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Editar" style="border-radius: 35%;"><i class="fas fa-pen fa-sm"></i></button>&nbsp;
+                                                            <button onclick="bajarMaterial()" class="btn btn-danger popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Dar de baja" style="border-radius: 35%;"><i class="fas fa-ban fa-sm"></i></button>&nbsp;
+                                                            <button onclick="reactivarMaterial()" class="btn btn-success popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Reactivar" style="border-radius:35%;"><i class="fas fa-check fa-sm"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-4 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-success">
+                                <div class="inner">
+                                    <h3>Pzas. Trazo</h3>
+                                    <button data-toggle="modal" data-target="#detalleTrazo" class="btn btn-link" style="color: #ffffff!important; padding-left: 1px;"><i class="fas fa-info-circle"></i> Detalle</button>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-ios-body-outline"></i>
+                                </div>
+                                <a class="small-box-footer">
+                                    <button onclick="agregarTrazo()" class="btn btn-link" style="color: #ffffff!important">Agregar <i class="fas fa-plus-circle"></i></button>
+                                </a>
+                            </div>
+                            <!-- Modal Piezas de trazo Tabla -->
+                            <div class="modal fade" id="detalleTrazo" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-trazo" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-success">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Piezas de trazo <button onclick="agregarTrazo()" class="btn btn-light popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Agregar" style="border-radius: 35%;color: #28a745!important;"><i class="fas fa-plus fa-sm"></i></button></h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="table tablexd table-striped table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>C&oacute;digo</th>
+                                                        <th>Descripci&oacute;n de pieza de trazo</th>
+                                                        <th>Estatus</th>
+                                                        <th>Cambios</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>UIERO2903</td>
+                                                        <td>Pieza de trazo muy chingona o no</td>
+                                                        <td>Baja</td>
+                                                        <td style="text-align: center;">
+                                                            <button class="btn btn-info popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="<strong>Creado por:</strong> Jose Luis Manuel Jajaja<br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020" style="border-radius: 35%;"><i class="fas fa-info-circle"></i></button>&nbsp;
+                                                        </td>
+                                                        <td class="tdcenter">
+                                                            <button class="btn btn-warning popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Editar" style="border-radius: 35%;"><i class="fas fa-pen fa-sm"></i></button>&nbsp;
+                                                            <button onclick="bajarTrazo()" class="btn btn-danger popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Dar de baja" style="border-radius: 35%;"><i class="fas fa-ban fa-sm"></i></button>&nbsp;
+                                                            <button onclick="reactivarTrazo()" class="btn btn-success popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Reactivar" style="border-radius:35%;"><i class="fas fa-check fa-sm"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-4 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-light">
+                                <div class="inner">
+                                    <h3>Forros</h3>
+                                    <button data-toggle="modal" data-target="#detalleForro" class="btn btn-link" style="color: #1f2d3d!important; padding-left: 1px;"><i class="fas fa-info-circle"></i> Detalle</button>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-funnel"></i>
+                                </div>
+                                <a class="small-box-footer">
+                                    <button onclick="agregarForro()" class="btn btn-link" style="color: #1f2d3d!important">Agregar <i class="fas fa-plus-circle"></i></button>
+                                </a>
+                            </div>
+                            <!-- Modal Forro Tabla -->
+                            <div class="modal fade" id="detalleForro" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-forro" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-light">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Lista de forros <button onclick="agregarForro()" class="btn btn-dark popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Agregar" style="border-radius: 35%;color:#f8f9fa!important"><i class="fas fa-plus fa-sm"></i></button></h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="table tablexd table-striped table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>C&oacute;digo</th>
+                                                        <th>Descripci&oacute;n del forro</th>
+                                                        <th>Composici&oacute;n</th>
+                                                        <th>Estatus</th>
+                                                        <th>Cambios</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>AJNEG23421</td>
+                                                        <td>Manejo de que dijiste como?</td>
+                                                        <td>100% vegano</td>
+                                                        <td>Activo</td>
+                                                        <td style="text-align: center;">
+                                                            <button class="btn btn-info popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="<strong>Creado por:</strong> Jose Luis Manuel Jajaja<br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020" style="border-radius: 35%;"><i class="fas fa-info-circle"></i></button>&nbsp;
+                                                        </td>
+                                                        <td class="tdcenter">
+                                                            <button class="btn btn-warning popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Editar" style="border-radius: 35%;"><i class="fas fa-pen fa-sm"></i></button>&nbsp;
+                                                            <button onclick="bajarForro()" class="btn btn-danger popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Dar de baja" style="border-radius: 35%;"><i class="fas fa-ban fa-sm"></i></button>&nbsp;
+                                                            <button onclick="reactivarForro()" class="btn btn-success popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Reactivar" style="border-radius:35%;"><i class="fas fa-check fa-sm"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-4 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-success">
+                                <div class="inner">
+                                    <h3>Telas</h3>
+                                    <button data-toggle="modal" data-target="#detalleTela" class="btn btn-link" style="color: #ffffff!important; padding-left: 1px;"><i class="fas fa-info-circle"></i> Detalle</button>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-soup-can-outline"></i>
+                                </div>
+                                <a class="small-box-footer">
+                                    <button onclick="agregarTela()" class="btn btn-link" style="color: #ffffff!important">Agregar <i class="fas fa-plus-circle"></i></button>
+                                </a>
+                            </div>
+                            <!-- Modal Tela Tabla -->
+                            <div class="modal fade" id="detalleTela" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-tela" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-success">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Lista de telas <button onclick="agregarTela()" class="btn btn-light popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Agregar" style="border-radius: 35%;color: #28a745!important;"><i class="fas fa-plus fa-sm"></i></button></h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="table tablexd table-striped table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>C&oacute;digo</th>
+                                                        <th>Descrip&oacute;n tela</th>
+                                                        <th>L&iacute;nea</th>
+                                                        <th>Forro</th>
+                                                        <th>Composici&oacute;n</th> 
+                                                        <th>Familia de composici&oacute;n</th>
+                                                        <th>Hilo</th>
+                                                        <th>Cierre</th>
+                                                        <th>Cambios</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>CWER234</td>
+                                                        <td>Corte chingon si o no xd</td>
+                                                        <td>No se que madres es</td>
+                                                        <td style="text-align: center;">
+                                                            <button class="btn btn-info popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="<strong>Forro: </strong>Forro chingon<br /><strong>Descripci&oacute;n del forro: </strong>Forro en forma de pikachu<hr><strong>Forro: </strong>Forro chingon<br /><strong>Descripci&oacute;n del forro: </strong>Forro en forma de pikachu" style="border-radius: 35%;"><i class="fas fa-info-circle"></i></button>&nbsp;
+                                                        </td>
+                                                        <td>Gorrito de pikachu chingon</td>
+                                                        <td>Familia pokemon xdxdxd</td>
+                                                        <td style="text-align: center;">
+                                                            <button class="btn btn-info popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="<strong>Hilo: </strong>Forro chingon<hr><strong>Hilo: </strong>Forro chingon<hr><strong>Hilo: </strong>Forro chingon" style="border-radius: 35%;"><i class="fas fa-info-circle"></i></button>&nbsp;
+                                                        </td>
+                                                        <td>Cierre de oro, a verdad xd</td>
+                                                        <td style="text-align: center;">
+                                                            <button class="btn btn-info popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="<strong>Creado por:</strong> Jose Luis Manuel Jajaja<br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020" style="border-radius: 35%;"><i class="fas fa-info-circle"></i></button>&nbsp;
+                                                        </td>
+                                                        <td class="tdcenter">
+                                                            <button class="btn btn-warning popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Editar" style="border-radius: 35%;"><i class="fas fa-pen fa-sm"></i></button>&nbsp;
+                                                            <button onclick="bajarTela()" class="btn btn-danger popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Dar de baja" style="border-radius: 35%;"><i class="fas fa-ban fa-sm"></i></button>&nbsp;
+                                                            <button onclick="reactivarTela()" class="btn btn-success popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Reactivar" style="border-radius:35%;"><i class="fas fa-check fa-sm"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-4 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-info">
+                                <div class="inner">
+                                    <h3>Fam. Prendas</h3>
+                                    <button data-toggle="modal" data-target="#detallePrenda" class="btn btn-link" style="color: #ffffff!important; padding-left: 1px;"><i class="fas fa-info-circle"></i> Detalle</button>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-network"></i>
+                                </div>
+                                <a class="small-box-footer">
+                                    <button onclick="agregarPrenda()" class="btn btn-link" style="color: #ffffff!important">Agregar <i class="fas fa-plus-circle"></i></button>
+                                </a>
+                            </div>
+                            <!-- Modal Familia de prendas Tabla -->
+                            <div class="modal fade" id="detallePrenda" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-prendas" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-info">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Familia de prendas <button onclick="agregarPrenda()" class="btn btn-light popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Agregar" style="border-radius: 35%;color: #17a2b8!important"><i class="fas fa-plus fa-sm"></i></button></h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="table tablexd table-striped table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>C&oacute;digo</th>
+                                                        <th>Familia de prendas</th>
+                                                        <th>Descripci&oacute;n</th>
+                                                        <th>Cambios</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>OMWEKF2342</td>
+                                                        <td>Familia peluche</td>
+                                                        <td>De peluche</td>
+                                                        <td style="text-align: center;">
+                                                            <button class="btn btn-info popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="<strong>Creado por:</strong> Jose Luis Manuel Jajaja<br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020" style="border-radius: 35%;"><i class="fas fa-info-circle"></i></button>&nbsp;
+                                                        </td>
+                                                        <td class="tdcenter">
+                                                            <button class="btn btn-warning popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Editar" style="border-radius: 35%;"><i class="fas fa-pen fa-sm"></i></button>&nbsp;
+                                                            <button onclick="bajarPrenda()" class="btn btn-danger popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Dar de baja" style="border-radius: 35%;"><i class="fas fa-ban fa-sm"></i></button>&nbsp;
+                                                            <button onclick="reactivarPrenda()" class="btn btn-success popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Reactivar" style="border-radius:35%;"><i class="fas fa-check fa-sm"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-4 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-danger">
+                                <div class="inner">
+                                    <h3>Fam. G&eacute;nero</h3>
+                                    <button data-toggle="modal" data-target="#detalleGenero" class="btn btn-link" style="color: #ffffff!important; padding-left: 1px;"><i class="fas fa-info-circle"></i> Detalle</button>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-easel"></i>
+                                </div>
+                                <a class="small-box-footer">
+                                    <button onclick="agregarGenero()" class="btn btn-link" style="color: #ffffff!important">Agregar <i class="fas fa-plus-circle"></i></button>
+                                </a>
+                            </div>
+                            <!-- Modal Marcas Tabla -->
+                            <div class="modal fade" id="detalleGenero" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-genero" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-danger">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Familia de g&eacute;nero <button onclick="agregarGenero()" class="btn btn-light popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Agregar" style="border-radius: 35%;color: #dc3545!important;"><i class="fas fa-plus fa-sm"></i></button></h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="table tablexd table-striped table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>C&oacute;digo</th>
+                                                        <th>Descripci&oacute;n</th>
+                                                        <th>Estatus</th>
+                                                        <th>Cambios</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>JN534</td>
+                                                        <td>Ya me canse cdcdd jajajaxd</td>
+                                                        <td>Baja</td>
+                                                        <td style="text-align: center;">
+                                                            <button class="btn btn-info popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="<strong>Creado por:</strong> Jose Luis Manuel Jajaja<br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020" style="border-radius: 35%;"><i class="fas fa-info-circle"></i></button>&nbsp;
+                                                        </td>
+                                                        <td class="tdcenter">
+                                                            <button class="btn btn-warning popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Editar" style="border-radius: 35%;"><i class="fas fa-pen fa-sm"></i></button>&nbsp;
+                                                            <button onclick="bajarGenero()" class="btn btn-danger popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Dar de baja" style="border-radius: 35%;"><i class="fas fa-ban fa-sm"></i></button>&nbsp;
+                                                            <button onclick="reactivarGenero()" class="btn btn-success popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Reactivar" style="border-radius:35%;"><i class="fas fa-check fa-sm"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-4 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-info">
+                                <div class="inner">
+                                    <h3>Mant. de prendas</h3>
+                                    <button data-toggle="modal" data-target="#detalleMantenimiento" class="btn btn-link" style="color: #ffffff!important; padding-left: 1px;"><i class="fas fa-info-circle"></i> Detalle</button>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-levels"></i>
+                                </div>
+                                <a class="small-box-footer">
+                                    <button onclick="agregarMantenimiento()" class="btn btn-link" style="color: #ffffff!important">Agregar <i class="fas fa-plus-circle"></i></button>
+                                </a>
+                            </div>
+                            <!-- Modal Familia de prendas Tabla -->
+                            <div class="modal fade" id="detalleMantenimiento" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-marcas" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-info">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Mantenimiento de prendas <button onclick="agregarMantenimiento()" class="btn btn-light popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Agregar" style="border-radius: 35%;color: #17a2b8!important"><i class="fas fa-plus fa-sm"></i></button></h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="table tablexd table-striped table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Nombre</th>
+                                                        <th>Estatus</th>
+                                                        <th>Creado por</th>
+                                                        <th>Fecha de creaci&oacute;n</th>
+                                                        <th>Modificado por</th>
+                                                        <th>Fecha de modificaci&oacute;n</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Calvin Klein</td>
+                                                        <td>Baja</td>
+                                                        <td>Jose Manuel Morales</td>
+                                                        <td>01/01/2020</td>
+                                                        <td>Miguel Fuentes</td>
+                                                        <td>04/04/2020</td>
+                                                        <td class="tdcenter">
+                                                            <button class="btn btn-warning popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Editar" style="border-radius: 35%;"><i class="fas fa-pen fa-sm"></i></button>&nbsp;
+                                                            <button onclick="bajarMantenimiento()" class="btn btn-danger popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Dar de baja" style="border-radius: 35%;"><i class="fas fa-ban fa-sm"></i></button>&nbsp;
+                                                            <button onclick="reactivarMantenimiento()" class="btn btn-success popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Reactivar" style="border-radius:35%;"><i class="fas fa-check fa-sm"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- Main row -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <div class="float-right d-none d-sm-block">
+                <b>Version</b> 2.0
+            </div>
+            <strong>Copyright &copy; 2020-2022 <a href="https://www.uniformes-altima.com.mx/">Altima Uniformes</a>.</strong> Todos los derechos reservados.
+        </footer>
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Popover-->
+    <script>
+        $(function() {
+            $('.popoverxd').popover({
+                container: 'body',
+                trigger: 'hover'
+            })
+        })
+    </script>
+    <!-- Datatables Plugin-->
+    <script src="dist/js/jquery.dataTables.min.js"></script>
+    <!-- Bootstrap Datatables Plugin-->
+    <script src="dist/js/dataTables.bootstrap4.min.js"></script>
+    <!-- Script de la tabla -->
+    <script>
+        $(document).ready(function() {
+            $('table.tablexd').DataTable({
+                "ordering": false,
+                "pageLength": 5,
+                "lengthMenu": [
+                    [5, 10, 25, 50, 100],
+                    [5, 10, 25, 50, 100]
+                ],
+                "language": {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla =(",
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    },
+                    "buttons": {
+                        "copy": "Copiar",
+                        "colvis": "Visibilidad"
+                    }
+                }
+            });
+            
+        });
+        $('.list_view input[type="checkbox"]').on('change', function(e) {
+        // Get the column API object
+        var col = table.column($(this).attr('data-target'));
+        // Toggle the visibility
+        col.visible(!col.visible());
+        });
+    </script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
+    <!-- SweetAlert -->
+    <script src="dist/js/sweetalert.js"></script>
+    <!-- Funcionalidad-->
+    <script src="dist/js/Catalogo.js"></script>
+</body>
+</html>
