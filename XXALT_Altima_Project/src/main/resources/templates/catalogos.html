@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="dist/css/jquery.dataTables.min.css">
     <!-- Datatables Plugin-->
     <link rel="stylesheet" href="dist/css/dataTables.bootstrap4.min.css">
+    <!-- Ekko Lightbox -->
+    <link rel="stylesheet" href="plugins/ekko-lightbox/ekko-lightbox.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -684,43 +686,201 @@
                             </div>
                             <!-- Modal Familia de prendas Tabla -->
                             <div class="modal fade" id="detalleMantenimiento" tabindex="-1" role="dialog" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-marcas" role="document">
+                                <div class="modal-dialog modal-dialog-centered modal-mantenimiento" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header bg-info">
-                                            <h5 class="modal-title" id="exampleModalLongTitle">Mantenimiento de prendas <button onclick="agregarMantenimiento()" class="btn btn-light popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Agregar" style="border-radius: 35%;color: #17a2b8!important"><i class="fas fa-plus fa-sm"></i></button></h5>
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Mantenimiento de prendas</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <table class="table tablexd table-striped table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Nombre</th>
-                                                        <th>Estatus</th>
-                                                        <th>Creado por</th>
-                                                        <th>Fecha de creaci&oacute;n</th>
-                                                        <th>Modificado por</th>
-                                                        <th>Fecha de modificaci&oacute;n</th>
-                                                        <th></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Calvin Klein</td>
-                                                        <td>Baja</td>
-                                                        <td>Jose Manuel Morales</td>
-                                                        <td>01/01/2020</td>
-                                                        <td>Miguel Fuentes</td>
-                                                        <td>04/04/2020</td>
-                                                        <td class="tdcenter">
-                                                            <button class="btn btn-warning popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Editar" style="border-radius: 35%;"><i class="fas fa-pen fa-sm"></i></button>&nbsp;
-                                                            <button onclick="bajarMantenimiento()" class="btn btn-danger popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Dar de baja" style="border-radius: 35%;"><i class="fas fa-ban fa-sm"></i></button>&nbsp;
-                                                            <button onclick="reactivarMantenimiento()" class="btn btn-success popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Reactivar" style="border-radius:35%;"><i class="fas fa-check fa-sm"></i></button>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                  <div class="form-group">
+                                                    <label>No. prenda</label>
+                                                    <input class="form-control" rows="3" placeholder="CH9192">
+                                                  </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Tipo de prenda</label>
+                                                        <select class="form-control">
+                                                          <option>option 1</option>
+                                                          <option>option 2</option>
+                                                          <option>option 3</option>
+                                                          <option>option 4</option>
+                                                          <option>option 5</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                            <section class="container py-4" style="margin-top: -22px;">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <ul id="tabs" class="nav nav-tabs">
+                                                            <li class="nav-item"><a href="" data-target="#datos" data-toggle="tab" class="nav-link small text-uppercase active">Datos generales</a></li>
+                                                            <li class="nav-item"><a href="" data-target="#confeccion" data-toggle="tab" class="nav-link small text-uppercase">Datos confecci&oacute;n</a></li>
+                                                            <li class="nav-item"><a href="" data-target="#materiales" data-toggle="tab" class="nav-link small text-uppercase">Lista de materiales</a></li>
+                                                            <li class="nav-item"><a href="" data-target="#piezas" data-toggle="tab" class="nav-link small text-uppercase">Piezas de patronaje</a></li>
+                                                        </ul>
+                                                        <br>
+                                                        <div id="tabsContent" class="tab-content">
+                                                            <div id="datos" class="tab-pane fade  active show">
+                                                                <div class="row">
+                                                                        <div class="col-sm-3">
+                                                                            <div class="form-group">
+                                                                              <label style="font-size:15px;">Descripci&oacute;n de la prenda</label>
+                                                                              <input class="form-control" rows="3" placeholder="CH9192" >
+                                                                            </div>
+                                                                          </div>
+                                                                          <div class="col-sm-3">
+                                                                              <div class="form-group">
+                                                                                  <label style="font-size:15px;">Nota especial</label>
+                                                                                  <input class="form-control" rows="3" placeholder="CH9192">
+                                                                              </div>
+                                                                          </div>
+                                                                          <div class="col-sm-3">
+                                                                              <div class="form-group">
+                                                                                  <label style="font-size:15px;">Modelo boton</label>
+                                                                                  <input class="form-control" rows="3" placeholder="CH9192">
+                                                                              </div>
+                                                                        </div>
+                                                                        <div class="col-sm-3">
+                                                                            <div class="form-group">
+                                                                              <label style="font-size:15px;">Tela usada(m)</label>
+                                                                              <input class="form-control" rows="3" placeholder="CH9192">
+                                                                            </div>
+                                                                          </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                      <div class="col-sm-3">
+                                                                        <div class="form-group">
+                                                                            <label style="font-size:15px;">Forro usado(m)</label>
+                                                                            <input class="form-control" rows="3" placeholder="CH9192">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-3">
+                                                                        <div class="form-group">
+                                                                            <label style="font-size:15px;">Ruta</label>
+                                                                            <input class="form-control" rows="3" placeholder="CH9192">
+                                                                        </div>
+                                                                  </div>
+                                                                      <div class="col-sm-3">
+                                                                          <div class="form-group">
+                                                                              <label style="font-size:15px;">Fecha desactivaci&oacute;n</label>
+                                                                              <select class="form-control">
+                                                                                  <option value="1">1</option>
+                                                                                  <option value="1">2</option>
+                                                                              </select>
+                                                                          </div>
+                                                                    </div>
+                                                                    <div class="col-sm-3">
+                                                                        <div class="form-group">
+                                                                            <label style="font-size:15px;">Prenda producci&oacute;n</label>
+                                                                            <select class="form-control">
+                                                                                <option value="1">1</option>
+                                                                                <option value="1">2</option>
+                                                                            </select>
+                                                                        </div>
+                                                                  </div>
+                                                                  <div class="col-sm-12">
+                                                                    <div class="form-group">
+                                                                        <label>Detalle de la prenda</label>
+                                                                        <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-5">
+                                                                        <label style="font-size:15px;">FRENTE</label>
+                                                                        <img src="https://cnnespanol2.files.wordpress.com/2019/12/s_64a163f16ecbb099e52f2f8271f73cbbfcfc9034be4d646f7375e4db1ca6f3d7_1573501883482_ap_19001106049831-1.jpg?quality=100&strip=info&w=940&h=530&crop=1" class="img-fluid mb-2" alt="white sample"/>
+                                                                    </div>
+                                                                    <div class="col-sm-5">
+                                                                        <label style="font-size:15px;">ESPALDA/TRASERO</label>
+                                                                        <img src="https://cnnespanol2.files.wordpress.com/2019/12/s_64a163f16ecbb099e52f2f8271f73cbbfcfc9034be4d646f7375e4db1ca6f3d7_1573501883482_ap_19001106049831-1.jpg?quality=100&strip=info&w=940&h=530&crop=1" class="img-fluid mb-2" alt="white sample"/>
+                                                                    </div>
+                                                                    <div class="col-sm-2">
+                                                                        <div class="form-group" style="margin-top: 140px;">
+                                                                            <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                                                                <input type="checkbox" class="custom-control-input" id="customSwitch3">
+                                                                                <label class="custom-control-label" for="customSwitch3">Lleva combinaci&oacute;n</label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                                                                <input type="checkbox" class="custom-control-input" id="customSwitch3">
+                                                                                <label class="custom-control-label" for="customSwitch3">Imprimir ticket</label>
+                                                                            </div>
+                                                                        </div>
+                                                                      </div>
+                                                                </div>
+                                                            </div>
+                                                            <div id="confeccion" class="tab-pane fade">
+                                                                <div class="row">
+                                                                    <div class="form-group col-sm-6">
+                                                                        <label>Detalle de la confecci&oacute;n</label>
+                                                                        <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                                                    </div>
+                                                                    <div class="form-group col-sm-6">
+                                                                        <label>Marcadores</label>
+                                                                        <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div id="materiales" class="tab-pane fade">
+                                                                <table class="table tablexd table-striped table-bordered">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>No. material</th>
+                                                                            <th>Clave AMP</th>
+                                                                            <th>Descripci&oacute;n material</th>
+                                                                            <th>Clasificaci&oacute;n</th>
+                                                                            <th>Tama&ntilde;o</th>
+                                                                            <th>Modelo</th>
+                                                                            <th>Descripci&oacute;n proceso</th>
+                                                                            <th>Cantidad</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>1</td>
+                                                                            <td>JB43</td>
+                                                                            <td>BJAJAJAJ XD</td>
+                                                                            <td>No apta para menores de 10 años xd</td>
+                                                                            <td>Como la mia</td>
+                                                                            <td>de la hora pico</td>
+                                                                            <td>Proceso chingon</td>
+                                                                            <td>Muchas wey</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div id="piezas" class="tab-pane fade">
+                                                                <table class="table tablexd table-striped table-bordered">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>No. pieza</th>
+                                                                            <th>Descripci&oacute;n pieza</th>
+                                                                            <th>Cantidad tela</th>
+                                                                            <th>Cantidad forro</th>
+                                                                            <th>Cantidad entretela</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>1</td>
+                                                                            <td>JSKBCSKJKBS</td>
+                                                                            <td>Medias wey</td>
+                                                                            <td>Pocas wey</td>
+                                                                            <td>Muchas wey</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
                                         </div>
                                     </div>
                                 </div>
@@ -821,5 +981,26 @@
     <script src="dist/js/sweetalert.js"></script>
     <!-- Funcionalidad-->
     <script src="dist/js/Catalogo.js"></script>
+    <!-- Ekko Lightbox -->
+    <script src="plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
+    <!-- Filterizr-->
+    <script src="plugins/filterizr/jquery.filterizr.min.js"></script>
+    <!-- Page specific script -->
+    <script>
+    $(function () {
+        $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+        event.preventDefault();
+        $(this).ekkoLightbox({
+            alwaysShowClose: true
+        });
+        });
+
+        $('.filter-container').filterizr({gutterPixels: 3});
+        $('.btn[data-filter]').on('click', function() {
+        $('.btn[data-filter]').removeClass('active');
+        $(this).addClass('active');
+        });
+    })
+    </script>
 </body>
 </html>
