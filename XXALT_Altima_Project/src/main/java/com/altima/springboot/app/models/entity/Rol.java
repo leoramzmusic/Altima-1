@@ -8,13 +8,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.GenericGenerator;
 
 
 @Entity
-@Table(name = "alt_hr_rol")
+@Table(name = "alt_hr_rol", uniqueConstraints= {@UniqueConstraint(columnNames= {"id_usuario", "nombre_rol"})})
 
 public class Rol implements Serializable {
 
@@ -33,9 +34,9 @@ public class Rol implements Serializable {
 	@NotBlank
 	private String idText;
 	
-	@Column(name="nombre")
+	@Column(name="nombre_rol")
 	@NotBlank
-	private String nombre;
+	private String nombreRol;
 	
 	@Column(name="id_usuario")
 	@NotBlank
@@ -73,14 +74,6 @@ public class Rol implements Serializable {
 
 	public void setIdRol(Long idRol) {
 		this.idRol = idRol;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 
 	public String getIdText() {
@@ -127,6 +120,14 @@ public class Rol implements Serializable {
 		return serialVersionUID;
 	}
 
+	public String getNombreRol() {
+		return nombreRol;
+	}
+
+	public void setNombreRol(String nombreRol) {
+		this.nombreRol = nombreRol;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -137,7 +138,7 @@ public class Rol implements Serializable {
 		result = prime * result + ((idRol == null) ? 0 : idRol.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
 		result = prime * result + ((idUsuario == null) ? 0 : idUsuario.hashCode());
-		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		result = prime * result + ((nombreRol == null) ? 0 : nombreRol.hashCode());
 		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
 		return result;
 	}
@@ -181,10 +182,10 @@ public class Rol implements Serializable {
 				return false;
 		} else if (!idUsuario.equals(other.idUsuario))
 			return false;
-		if (nombre == null) {
-			if (other.nombre != null)
+		if (nombreRol == null) {
+			if (other.nombreRol != null)
 				return false;
-		} else if (!nombre.equals(other.nombre))
+		} else if (!nombreRol.equals(other.nombreRol))
 			return false;
 		if (ultimaFechaModificacion == null) {
 			if (other.ultimaFechaModificacion != null)
@@ -193,5 +194,6 @@ public class Rol implements Serializable {
 			return false;
 		return true;
 	}
+
 
 }
