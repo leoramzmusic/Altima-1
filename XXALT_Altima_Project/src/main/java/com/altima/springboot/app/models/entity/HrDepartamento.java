@@ -1,6 +1,7 @@
 package com.altima.springboot.app.models.entity;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,28 +14,32 @@ import javax.validation.constraints.NotBlank;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "alt_hr_usuario")
+@Table(name = "alt_hr_departamento")
 
-public class Usuario  implements Serializable{
+public class HrDepartamento implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	@Id
+	@Column(name="id_departamento")
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
-	@Column(name="id_usuario")
-	@NotBlank
-	private Long idUsuario;
+	private Long idDepartamento;
 	
-	@Column(name="id_rol")
+	@Column(name="id_area")
 	@NotBlank
-	private Long idRol;
+	private Long idArea;
 	
 	@Column(name="id_text")
 	@NotBlank
 	private String idText;
+	
+	@Column(name="nombre_departamento")
+	@NotBlank
+	private String nombreDepartamento;
 	
 	@Column(name="creado_por")
 	@NotBlank
@@ -52,32 +57,21 @@ public class Usuario  implements Serializable{
 	@NotBlank
 	private String ultimaFechaModificacion;
 
-	public Long getIdUsuario() {
-		return idUsuario;
-	}
 	
-	//@ManyToMany(fetch = FetchType.LAZY) //campo que une dos tablas por medio de los ID
-			//@JoinTable(name=""
-				//,joinColumns=@JoinColumn(name="")
-				//,inverseJoinColumns=@JoinColumn(name=""))
-			//private Set<Rol> rol;
-			
-			
-			
-			//public Set<Rol> getRol() {
-				//return rol;
-		
-
-	public void setIdUsuario(Long idUsuario) {
-		this.idUsuario = idUsuario;
+	public Long getIdDepartamento() {
+		return idDepartamento;
 	}
 
-	public Long getIdRol() {
-		return idRol;
+	public void setIdDepartamento(Long idDepartamento) {
+		this.idDepartamento = idDepartamento;
 	}
 
-	public void setIdRol(Long idRol) {
-		this.idRol = idRol;
+	public Long getIdArea() {
+		return idArea;
+	}
+
+	public void setIdArea(Long idArea) {
+		this.idArea = idArea;
 	}
 
 	public String getIdText() {
@@ -86,6 +80,14 @@ public class Usuario  implements Serializable{
 
 	public void setIdText(String idText) {
 		this.idText = idText;
+	}
+
+	public String getNombreDepartamento() {
+		return nombreDepartamento;
+	}
+
+	public void setNombreDepartamento(String nombreDepartamento) {
+		this.nombreDepartamento = nombreDepartamento;
 	}
 
 	public String getCreadoPor() {
@@ -131,9 +133,10 @@ public class Usuario  implements Serializable{
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
-		result = prime * result + ((idRol == null) ? 0 : idRol.hashCode());
+		result = prime * result + ((idArea == null) ? 0 : idArea.hashCode());
+		result = prime * result + ((idDepartamento == null) ? 0 : idDepartamento.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
-		result = prime * result + ((idUsuario == null) ? 0 : idUsuario.hashCode());
+		result = prime * result + ((nombreDepartamento == null) ? 0 : nombreDepartamento.hashCode());
 		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
 		return result;
 	}
@@ -146,7 +149,7 @@ public class Usuario  implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
+		HrDepartamento other = (HrDepartamento) obj;
 		if (actualizadoPor == null) {
 			if (other.actualizadoPor != null)
 				return false;
@@ -162,20 +165,25 @@ public class Usuario  implements Serializable{
 				return false;
 		} else if (!fechaCreacion.equals(other.fechaCreacion))
 			return false;
-		if (idRol == null) {
-			if (other.idRol != null)
+		if (idArea == null) {
+			if (other.idArea != null)
 				return false;
-		} else if (!idRol.equals(other.idRol))
+		} else if (!idArea.equals(other.idArea))
+			return false;
+		if (idDepartamento == null) {
+			if (other.idDepartamento != null)
+				return false;
+		} else if (!idDepartamento.equals(other.idDepartamento))
 			return false;
 		if (idText == null) {
 			if (other.idText != null)
 				return false;
 		} else if (!idText.equals(other.idText))
 			return false;
-		if (idUsuario == null) {
-			if (other.idUsuario != null)
+		if (nombreDepartamento == null) {
+			if (other.nombreDepartamento != null)
 				return false;
-		} else if (!idUsuario.equals(other.idUsuario))
+		} else if (!nombreDepartamento.equals(other.nombreDepartamento))
 			return false;
 		if (ultimaFechaModificacion == null) {
 			if (other.ultimaFechaModificacion != null)

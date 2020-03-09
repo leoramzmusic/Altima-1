@@ -13,24 +13,19 @@ import javax.validation.constraints.NotBlank;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "alt_hr_usuario")
-
-public class Usuario  implements Serializable{
+@Table(name = "alt_disenio_talla")
+public class DisenioTalla implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	@Id
+	@Column(name="id_talla")
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
-	@Column(name="id_usuario")
-	@NotBlank
-	private Long idUsuario;
-	
-	@Column(name="id_rol")
-	@NotBlank
-	private Long idRol;
+	private Long idTalla;
 	
 	@Column(name="id_text")
 	@NotBlank
@@ -51,33 +46,25 @@ public class Usuario  implements Serializable{
 	@Column(name="ultima_fecha_modificacion")
 	@NotBlank
 	private String ultimaFechaModificacion;
-
-	public Long getIdUsuario() {
-		return idUsuario;
-	}
 	
-	//@ManyToMany(fetch = FetchType.LAZY) //campo que une dos tablas por medio de los ID
-			//@JoinTable(name=""
-				//,joinColumns=@JoinColumn(name="")
-				//,inverseJoinColumns=@JoinColumn(name=""))
-			//private Set<Rol> rol;
-			
-			
-			
-			//public Set<Rol> getRol() {
-				//return rol;
-		
+	@Column(name="talla")
+	@NotBlank
+	private String talla;
+	
+	@Column(name="estatus")
+	@NotBlank
+	private String estatus;
+	
+	@Column(name="genero_de lookup")
+	@NotBlank
+	private String generoDeLookup;
 
-	public void setIdUsuario(Long idUsuario) {
-		this.idUsuario = idUsuario;
+	public Long getIdTalla() {
+		return idTalla;
 	}
 
-	public Long getIdRol() {
-		return idRol;
-	}
-
-	public void setIdRol(Long idRol) {
-		this.idRol = idRol;
+	public void setIdTalla(Long idTalla) {
+		this.idTalla = idTalla;
 	}
 
 	public String getIdText() {
@@ -120,6 +107,30 @@ public class Usuario  implements Serializable{
 		this.ultimaFechaModificacion = ultimaFechaModificacion;
 	}
 
+	public String getTalla() {
+		return talla;
+	}
+
+	public void setTalla(String talla) {
+		this.talla = talla;
+	}
+
+	public String getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
+	}
+
+	public String getGeneroDeLookup() {
+		return generoDeLookup;
+	}
+
+	public void setGeneroDeLookup(String generoDeLookup) {
+		this.generoDeLookup = generoDeLookup;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -130,10 +141,12 @@ public class Usuario  implements Serializable{
 		int result = 1;
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
+		result = prime * result + ((estatus == null) ? 0 : estatus.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
-		result = prime * result + ((idRol == null) ? 0 : idRol.hashCode());
+		result = prime * result + ((generoDeLookup == null) ? 0 : generoDeLookup.hashCode());
+		result = prime * result + ((idTalla == null) ? 0 : idTalla.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
-		result = prime * result + ((idUsuario == null) ? 0 : idUsuario.hashCode());
+		result = prime * result + ((talla == null) ? 0 : talla.hashCode());
 		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
 		return result;
 	}
@@ -146,7 +159,7 @@ public class Usuario  implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
+		DisenioTalla other = (DisenioTalla) obj;
 		if (actualizadoPor == null) {
 			if (other.actualizadoPor != null)
 				return false;
@@ -157,25 +170,35 @@ public class Usuario  implements Serializable{
 				return false;
 		} else if (!creadoPor.equals(other.creadoPor))
 			return false;
+		if (estatus == null) {
+			if (other.estatus != null)
+				return false;
+		} else if (!estatus.equals(other.estatus))
+			return false;
 		if (fechaCreacion == null) {
 			if (other.fechaCreacion != null)
 				return false;
 		} else if (!fechaCreacion.equals(other.fechaCreacion))
 			return false;
-		if (idRol == null) {
-			if (other.idRol != null)
+		if (generoDeLookup == null) {
+			if (other.generoDeLookup != null)
 				return false;
-		} else if (!idRol.equals(other.idRol))
+		} else if (!generoDeLookup.equals(other.generoDeLookup))
+			return false;
+		if (idTalla == null) {
+			if (other.idTalla != null)
+				return false;
+		} else if (!idTalla.equals(other.idTalla))
 			return false;
 		if (idText == null) {
 			if (other.idText != null)
 				return false;
 		} else if (!idText.equals(other.idText))
 			return false;
-		if (idUsuario == null) {
-			if (other.idUsuario != null)
+		if (talla == null) {
+			if (other.talla != null)
 				return false;
-		} else if (!idUsuario.equals(other.idUsuario))
+		} else if (!talla.equals(other.talla))
 			return false;
 		if (ultimaFechaModificacion == null) {
 			if (other.ultimaFechaModificacion != null)

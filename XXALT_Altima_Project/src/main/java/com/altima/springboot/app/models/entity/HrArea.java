@@ -1,6 +1,7 @@
 package com.altima.springboot.app.models.entity;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,28 +14,32 @@ import javax.validation.constraints.NotBlank;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "alt_hr_usuario")
+@Table(name = "alt_hr_area")
 
-public class Usuario  implements Serializable{
+public class HrArea implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
 	@Id
+	@Column(name="id_area")
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
-	@Column(name="id_usuario")
-	@NotBlank
-	private Long idUsuario;
+	private Long idArea;
 	
-	@Column(name="id_rol")
+	@Column(name="id_sucursal")
 	@NotBlank
-	private Long idRol;
+	private Long idSucursal;
 	
 	@Column(name="id_text")
 	@NotBlank
 	private String idText;
+	
+	@Column(name="nombre_area")
+	@NotBlank
+	private String nombreArea;
 	
 	@Column(name="creado_por")
 	@NotBlank
@@ -52,32 +57,21 @@ public class Usuario  implements Serializable{
 	@NotBlank
 	private String ultimaFechaModificacion;
 
-	public Long getIdUsuario() {
-		return idUsuario;
-	}
 	
-	//@ManyToMany(fetch = FetchType.LAZY) //campo que une dos tablas por medio de los ID
-			//@JoinTable(name=""
-				//,joinColumns=@JoinColumn(name="")
-				//,inverseJoinColumns=@JoinColumn(name=""))
-			//private Set<Rol> rol;
-			
-			
-			
-			//public Set<Rol> getRol() {
-				//return rol;
-		
-
-	public void setIdUsuario(Long idUsuario) {
-		this.idUsuario = idUsuario;
+	public Long getIdArea() {
+		return idArea;
 	}
 
-	public Long getIdRol() {
-		return idRol;
+	public void setIdArea(Long idArea) {
+		this.idArea = idArea;
 	}
 
-	public void setIdRol(Long idRol) {
-		this.idRol = idRol;
+	public Long getIdSucursal() {
+		return idSucursal;
+	}
+
+	public void setIdSucursal(Long idSucursal) {
+		this.idSucursal = idSucursal;
 	}
 
 	public String getIdText() {
@@ -86,6 +80,14 @@ public class Usuario  implements Serializable{
 
 	public void setIdText(String idText) {
 		this.idText = idText;
+	}
+
+	public String getNombreArea() {
+		return nombreArea;
+	}
+
+	public void setNombreArea(String nombreArea) {
+		this.nombreArea = nombreArea;
 	}
 
 	public String getCreadoPor() {
@@ -131,9 +133,10 @@ public class Usuario  implements Serializable{
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
-		result = prime * result + ((idRol == null) ? 0 : idRol.hashCode());
+		result = prime * result + ((idArea == null) ? 0 : idArea.hashCode());
+		result = prime * result + ((idSucursal == null) ? 0 : idSucursal.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
-		result = prime * result + ((idUsuario == null) ? 0 : idUsuario.hashCode());
+		result = prime * result + ((nombreArea == null) ? 0 : nombreArea.hashCode());
 		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
 		return result;
 	}
@@ -146,7 +149,7 @@ public class Usuario  implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
+		HrArea other = (HrArea) obj;
 		if (actualizadoPor == null) {
 			if (other.actualizadoPor != null)
 				return false;
@@ -162,20 +165,25 @@ public class Usuario  implements Serializable{
 				return false;
 		} else if (!fechaCreacion.equals(other.fechaCreacion))
 			return false;
-		if (idRol == null) {
-			if (other.idRol != null)
+		if (idArea == null) {
+			if (other.idArea != null)
 				return false;
-		} else if (!idRol.equals(other.idRol))
+		} else if (!idArea.equals(other.idArea))
+			return false;
+		if (idSucursal == null) {
+			if (other.idSucursal != null)
+				return false;
+		} else if (!idSucursal.equals(other.idSucursal))
 			return false;
 		if (idText == null) {
 			if (other.idText != null)
 				return false;
 		} else if (!idText.equals(other.idText))
 			return false;
-		if (idUsuario == null) {
-			if (other.idUsuario != null)
+		if (nombreArea == null) {
+			if (other.nombreArea != null)
 				return false;
-		} else if (!idUsuario.equals(other.idUsuario))
+		} else if (!nombreArea.equals(other.nombreArea))
 			return false;
 		if (ultimaFechaModificacion == null) {
 			if (other.ultimaFechaModificacion != null)
@@ -184,4 +192,5 @@ public class Usuario  implements Serializable{
 			return false;
 		return true;
 	}
+	
 }

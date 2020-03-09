@@ -13,28 +13,27 @@ import javax.validation.constraints.NotBlank;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "alt_hr_usuario")
-
-public class Usuario  implements Serializable{
+@Table(name = "alt_hr_unidad_negocio")
+public class HrUnidadNegocio implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	@Id
+	@Column(name="id_unidad_negocio")
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
-	@Column(name="id_usuario")
-	@NotBlank
-	private Long idUsuario;
-	
-	@Column(name="id_rol")
-	@NotBlank
-	private Long idRol;
-	
+	private Long idPruebaCostura;
+
 	@Column(name="id_text")
 	@NotBlank
 	private String idText;
+	
+	@Column(name="nombre_unidad_negocio")
+	@NotBlank
+	private String nombreUnidadNegocio;
 	
 	@Column(name="creado_por")
 	@NotBlank
@@ -52,32 +51,12 @@ public class Usuario  implements Serializable{
 	@NotBlank
 	private String ultimaFechaModificacion;
 
-	public Long getIdUsuario() {
-		return idUsuario;
-	}
-	
-	//@ManyToMany(fetch = FetchType.LAZY) //campo que une dos tablas por medio de los ID
-			//@JoinTable(name=""
-				//,joinColumns=@JoinColumn(name="")
-				//,inverseJoinColumns=@JoinColumn(name=""))
-			//private Set<Rol> rol;
-			
-			
-			
-			//public Set<Rol> getRol() {
-				//return rol;
-		
-
-	public void setIdUsuario(Long idUsuario) {
-		this.idUsuario = idUsuario;
+	public Long getIdPruebaCostura() {
+		return idPruebaCostura;
 	}
 
-	public Long getIdRol() {
-		return idRol;
-	}
-
-	public void setIdRol(Long idRol) {
-		this.idRol = idRol;
+	public void setIdPruebaCostura(Long idPruebaCostura) {
+		this.idPruebaCostura = idPruebaCostura;
 	}
 
 	public String getIdText() {
@@ -86,6 +65,14 @@ public class Usuario  implements Serializable{
 
 	public void setIdText(String idText) {
 		this.idText = idText;
+	}
+
+	public String getNombreUnidadNegocio() {
+		return nombreUnidadNegocio;
+	}
+
+	public void setNombreUnidadNegocio(String nombreUnidadNegocio) {
+		this.nombreUnidadNegocio = nombreUnidadNegocio;
 	}
 
 	public String getCreadoPor() {
@@ -131,9 +118,9 @@ public class Usuario  implements Serializable{
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
-		result = prime * result + ((idRol == null) ? 0 : idRol.hashCode());
+		result = prime * result + ((idPruebaCostura == null) ? 0 : idPruebaCostura.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
-		result = prime * result + ((idUsuario == null) ? 0 : idUsuario.hashCode());
+		result = prime * result + ((nombreUnidadNegocio == null) ? 0 : nombreUnidadNegocio.hashCode());
 		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
 		return result;
 	}
@@ -146,7 +133,7 @@ public class Usuario  implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
+		HrUnidadNegocio other = (HrUnidadNegocio) obj;
 		if (actualizadoPor == null) {
 			if (other.actualizadoPor != null)
 				return false;
@@ -162,20 +149,20 @@ public class Usuario  implements Serializable{
 				return false;
 		} else if (!fechaCreacion.equals(other.fechaCreacion))
 			return false;
-		if (idRol == null) {
-			if (other.idRol != null)
+		if (idPruebaCostura == null) {
+			if (other.idPruebaCostura != null)
 				return false;
-		} else if (!idRol.equals(other.idRol))
+		} else if (!idPruebaCostura.equals(other.idPruebaCostura))
 			return false;
 		if (idText == null) {
 			if (other.idText != null)
 				return false;
 		} else if (!idText.equals(other.idText))
 			return false;
-		if (idUsuario == null) {
-			if (other.idUsuario != null)
+		if (nombreUnidadNegocio == null) {
+			if (other.nombreUnidadNegocio != null)
 				return false;
-		} else if (!idUsuario.equals(other.idUsuario))
+		} else if (!nombreUnidadNegocio.equals(other.nombreUnidadNegocio))
 			return false;
 		if (ultimaFechaModificacion == null) {
 			if (other.ultimaFechaModificacion != null)

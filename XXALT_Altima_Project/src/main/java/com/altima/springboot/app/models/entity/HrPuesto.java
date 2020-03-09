@@ -13,28 +13,43 @@ import javax.validation.constraints.NotBlank;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "alt_hr_usuario")
-
-public class Usuario  implements Serializable{
+@Table(name = "alt_hr_puesto")
+public class HrPuesto implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	@Id
+	@Column(name="id_puesto")
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
-	@Column(name="id_usuario")
+	private Long idPuesto;
+
+	@Column(name="id_departamento")
 	@NotBlank
-	private Long idUsuario;
-	
-	@Column(name="id_rol")
-	@NotBlank
-	private Long idRol;
+	private Long idDepartamento;
 	
 	@Column(name="id_text")
 	@NotBlank
 	private String idText;
+	
+	@Column(name="nombre_puesto")
+	@NotBlank
+	private String nombrePuesto;
+	
+	@Column(name="tiempo_extra")
+	@NotBlank
+	private String tiempoExtra;
+	
+	@Column(name="estatus")
+	@NotBlank
+	private String estatus;
+	
+	@Column(name="total_plazas")
+	@NotBlank
+	private String totalPlazas;
 	
 	@Column(name="creado_por")
 	@NotBlank
@@ -52,32 +67,20 @@ public class Usuario  implements Serializable{
 	@NotBlank
 	private String ultimaFechaModificacion;
 
-	public Long getIdUsuario() {
-		return idUsuario;
-	}
-	
-	//@ManyToMany(fetch = FetchType.LAZY) //campo que une dos tablas por medio de los ID
-			//@JoinTable(name=""
-				//,joinColumns=@JoinColumn(name="")
-				//,inverseJoinColumns=@JoinColumn(name=""))
-			//private Set<Rol> rol;
-			
-			
-			
-			//public Set<Rol> getRol() {
-				//return rol;
-		
-
-	public void setIdUsuario(Long idUsuario) {
-		this.idUsuario = idUsuario;
+	public Long getIdPuesto() {
+		return idPuesto;
 	}
 
-	public Long getIdRol() {
-		return idRol;
+	public void setIdPuesto(Long idPuesto) {
+		this.idPuesto = idPuesto;
 	}
 
-	public void setIdRol(Long idRol) {
-		this.idRol = idRol;
+	public Long getIdDepartamento() {
+		return idDepartamento;
+	}
+
+	public void setIdDepartamento(Long idDepartamento) {
+		this.idDepartamento = idDepartamento;
 	}
 
 	public String getIdText() {
@@ -86,6 +89,38 @@ public class Usuario  implements Serializable{
 
 	public void setIdText(String idText) {
 		this.idText = idText;
+	}
+
+	public String getNombrePuesto() {
+		return nombrePuesto;
+	}
+
+	public void setNombrePuesto(String nombrePuesto) {
+		this.nombrePuesto = nombrePuesto;
+	}
+
+	public String getTiempoExtra() {
+		return tiempoExtra;
+	}
+
+	public void setTiempoExtra(String tiempoExtra) {
+		this.tiempoExtra = tiempoExtra;
+	}
+
+	public String getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
+	}
+
+	public String getTotalPlazas() {
+		return totalPlazas;
+	}
+
+	public void setTotalPlazas(String totalPlazas) {
+		this.totalPlazas = totalPlazas;
 	}
 
 	public String getCreadoPor() {
@@ -130,10 +165,14 @@ public class Usuario  implements Serializable{
 		int result = 1;
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
+		result = prime * result + ((estatus == null) ? 0 : estatus.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
-		result = prime * result + ((idRol == null) ? 0 : idRol.hashCode());
+		result = prime * result + ((idDepartamento == null) ? 0 : idDepartamento.hashCode());
+		result = prime * result + ((idPuesto == null) ? 0 : idPuesto.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
-		result = prime * result + ((idUsuario == null) ? 0 : idUsuario.hashCode());
+		result = prime * result + ((nombrePuesto == null) ? 0 : nombrePuesto.hashCode());
+		result = prime * result + ((tiempoExtra == null) ? 0 : tiempoExtra.hashCode());
+		result = prime * result + ((totalPlazas == null) ? 0 : totalPlazas.hashCode());
 		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
 		return result;
 	}
@@ -146,7 +185,7 @@ public class Usuario  implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
+		HrPuesto other = (HrPuesto) obj;
 		if (actualizadoPor == null) {
 			if (other.actualizadoPor != null)
 				return false;
@@ -157,25 +196,45 @@ public class Usuario  implements Serializable{
 				return false;
 		} else if (!creadoPor.equals(other.creadoPor))
 			return false;
+		if (estatus == null) {
+			if (other.estatus != null)
+				return false;
+		} else if (!estatus.equals(other.estatus))
+			return false;
 		if (fechaCreacion == null) {
 			if (other.fechaCreacion != null)
 				return false;
 		} else if (!fechaCreacion.equals(other.fechaCreacion))
 			return false;
-		if (idRol == null) {
-			if (other.idRol != null)
+		if (idDepartamento == null) {
+			if (other.idDepartamento != null)
 				return false;
-		} else if (!idRol.equals(other.idRol))
+		} else if (!idDepartamento.equals(other.idDepartamento))
+			return false;
+		if (idPuesto == null) {
+			if (other.idPuesto != null)
+				return false;
+		} else if (!idPuesto.equals(other.idPuesto))
 			return false;
 		if (idText == null) {
 			if (other.idText != null)
 				return false;
 		} else if (!idText.equals(other.idText))
 			return false;
-		if (idUsuario == null) {
-			if (other.idUsuario != null)
+		if (nombrePuesto == null) {
+			if (other.nombrePuesto != null)
 				return false;
-		} else if (!idUsuario.equals(other.idUsuario))
+		} else if (!nombrePuesto.equals(other.nombrePuesto))
+			return false;
+		if (tiempoExtra == null) {
+			if (other.tiempoExtra != null)
+				return false;
+		} else if (!tiempoExtra.equals(other.tiempoExtra))
+			return false;
+		if (totalPlazas == null) {
+			if (other.totalPlazas != null)
+				return false;
+		} else if (!totalPlazas.equals(other.totalPlazas))
 			return false;
 		if (ultimaFechaModificacion == null) {
 			if (other.ultimaFechaModificacion != null)

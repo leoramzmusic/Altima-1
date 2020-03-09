@@ -13,25 +13,24 @@ import javax.validation.constraints.NotBlank;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "alt_hr_usuario")
-
-public class Usuario  implements Serializable{
+@Table(name = "alt_hr_empleado_usuario")
+public class HrEmpleadoUsuario implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	@Id
+	@Column(name="id_empleado")
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
+	private Long idEmpleado;
+	
 	@Column(name="id_usuario")
 	@NotBlank
 	private Long idUsuario;
-	
-	@Column(name="id_rol")
-	@NotBlank
-	private Long idRol;
-	
+
 	@Column(name="id_text")
 	@NotBlank
 	private String idText;
@@ -52,32 +51,20 @@ public class Usuario  implements Serializable{
 	@NotBlank
 	private String ultimaFechaModificacion;
 
+	public Long getIdEmpleado() {
+		return idEmpleado;
+	}
+
+	public void setIdEmpleado(Long idEmpleado) {
+		this.idEmpleado = idEmpleado;
+	}
+
 	public Long getIdUsuario() {
 		return idUsuario;
 	}
-	
-	//@ManyToMany(fetch = FetchType.LAZY) //campo que une dos tablas por medio de los ID
-			//@JoinTable(name=""
-				//,joinColumns=@JoinColumn(name="")
-				//,inverseJoinColumns=@JoinColumn(name=""))
-			//private Set<Rol> rol;
-			
-			
-			
-			//public Set<Rol> getRol() {
-				//return rol;
-		
 
 	public void setIdUsuario(Long idUsuario) {
 		this.idUsuario = idUsuario;
-	}
-
-	public Long getIdRol() {
-		return idRol;
-	}
-
-	public void setIdRol(Long idRol) {
-		this.idRol = idRol;
 	}
 
 	public String getIdText() {
@@ -131,7 +118,7 @@ public class Usuario  implements Serializable{
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
-		result = prime * result + ((idRol == null) ? 0 : idRol.hashCode());
+		result = prime * result + ((idEmpleado == null) ? 0 : idEmpleado.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
 		result = prime * result + ((idUsuario == null) ? 0 : idUsuario.hashCode());
 		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
@@ -146,7 +133,7 @@ public class Usuario  implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
+		HrEmpleadoUsuario other = (HrEmpleadoUsuario) obj;
 		if (actualizadoPor == null) {
 			if (other.actualizadoPor != null)
 				return false;
@@ -162,10 +149,10 @@ public class Usuario  implements Serializable{
 				return false;
 		} else if (!fechaCreacion.equals(other.fechaCreacion))
 			return false;
-		if (idRol == null) {
-			if (other.idRol != null)
+		if (idEmpleado == null) {
+			if (other.idEmpleado != null)
 				return false;
-		} else if (!idRol.equals(other.idRol))
+		} else if (!idEmpleado.equals(other.idEmpleado))
 			return false;
 		if (idText == null) {
 			if (other.idText != null)

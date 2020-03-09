@@ -13,24 +13,31 @@ import javax.validation.constraints.NotBlank;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "alt_hr_usuario")
-
-public class Usuario  implements Serializable{
+@Table(name = "alt_disenio_muestrario")
+public class DisenioMuestrario  implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
 	@Id
+	@Column(name="id_muestrario")
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
-	@Column(name="id_usuario")
-	@NotBlank
-	private Long idUsuario;
+	private Long idMuestrario;
 	
-	@Column(name="id_rol")
+	@Column(name="id_prenda")
 	@NotBlank
-	private Long idRol;
+	private Long idPrenda;
+	
+	@Column(name="id_tela")
+	@NotBlank
+	private Long idTela;
+	
+	@Column(name="id_detalles_muestrario")
+	@NotBlank
+	private Long idDetallesMuestrario;
 	
 	@Column(name="id_text")
 	@NotBlank
@@ -52,32 +59,36 @@ public class Usuario  implements Serializable{
 	@NotBlank
 	private String ultimaFechaModificacion;
 
-	public Long getIdUsuario() {
-		return idUsuario;
-	}
-	
-	//@ManyToMany(fetch = FetchType.LAZY) //campo que une dos tablas por medio de los ID
-			//@JoinTable(name=""
-				//,joinColumns=@JoinColumn(name="")
-				//,inverseJoinColumns=@JoinColumn(name=""))
-			//private Set<Rol> rol;
-			
-			
-			
-			//public Set<Rol> getRol() {
-				//return rol;
-		
-
-	public void setIdUsuario(Long idUsuario) {
-		this.idUsuario = idUsuario;
+	public Long getIdMuestrario() {
+		return idMuestrario;
 	}
 
-	public Long getIdRol() {
-		return idRol;
+	public void setIdMuestrario(Long idMuestrario) {
+		this.idMuestrario = idMuestrario;
 	}
 
-	public void setIdRol(Long idRol) {
-		this.idRol = idRol;
+	public Long getIdPrenda() {
+		return idPrenda;
+	}
+
+	public void setIdPrenda(Long idPrenda) {
+		this.idPrenda = idPrenda;
+	}
+
+	public Long getIdTela() {
+		return idTela;
+	}
+
+	public void setIdTela(Long idTela) {
+		this.idTela = idTela;
+	}
+
+	public Long getIdDetallesMuestrario() {
+		return idDetallesMuestrario;
+	}
+
+	public void setIdDetallesMuestrario(Long idDetallesMuestrario) {
+		this.idDetallesMuestrario = idDetallesMuestrario;
 	}
 
 	public String getIdText() {
@@ -131,9 +142,11 @@ public class Usuario  implements Serializable{
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
-		result = prime * result + ((idRol == null) ? 0 : idRol.hashCode());
+		result = prime * result + ((idDetallesMuestrario == null) ? 0 : idDetallesMuestrario.hashCode());
+		result = prime * result + ((idMuestrario == null) ? 0 : idMuestrario.hashCode());
+		result = prime * result + ((idPrenda == null) ? 0 : idPrenda.hashCode());
+		result = prime * result + ((idTela == null) ? 0 : idTela.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
-		result = prime * result + ((idUsuario == null) ? 0 : idUsuario.hashCode());
 		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
 		return result;
 	}
@@ -146,7 +159,7 @@ public class Usuario  implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
+		DisenioMuestrario other = (DisenioMuestrario) obj;
 		if (actualizadoPor == null) {
 			if (other.actualizadoPor != null)
 				return false;
@@ -162,20 +175,30 @@ public class Usuario  implements Serializable{
 				return false;
 		} else if (!fechaCreacion.equals(other.fechaCreacion))
 			return false;
-		if (idRol == null) {
-			if (other.idRol != null)
+		if (idDetallesMuestrario == null) {
+			if (other.idDetallesMuestrario != null)
 				return false;
-		} else if (!idRol.equals(other.idRol))
+		} else if (!idDetallesMuestrario.equals(other.idDetallesMuestrario))
+			return false;
+		if (idMuestrario == null) {
+			if (other.idMuestrario != null)
+				return false;
+		} else if (!idMuestrario.equals(other.idMuestrario))
+			return false;
+		if (idPrenda == null) {
+			if (other.idPrenda != null)
+				return false;
+		} else if (!idPrenda.equals(other.idPrenda))
+			return false;
+		if (idTela == null) {
+			if (other.idTela != null)
+				return false;
+		} else if (!idTela.equals(other.idTela))
 			return false;
 		if (idText == null) {
 			if (other.idText != null)
 				return false;
 		} else if (!idText.equals(other.idText))
-			return false;
-		if (idUsuario == null) {
-			if (other.idUsuario != null)
-				return false;
-		} else if (!idUsuario.equals(other.idUsuario))
 			return false;
 		if (ultimaFechaModificacion == null) {
 			if (other.ultimaFechaModificacion != null)

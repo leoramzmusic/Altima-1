@@ -13,24 +13,23 @@ import javax.validation.constraints.NotBlank;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "alt_hr_usuario")
-
-public class Usuario  implements Serializable{
+@Table(name = "alt_disenio_proceso")
+public class DisenioProceso implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	@Id
+	@Column(name="id_proceso")
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
-	@Column(name="id_usuario")
-	@NotBlank
-	private Long idUsuario;
+	private Long idProceso;
 	
-	@Column(name="id_rol")
+	@Column(name="id_prenda")
 	@NotBlank
-	private Long idRol;
+	private Long idPrenda;
 	
 	@Column(name="id_text")
 	@NotBlank
@@ -51,33 +50,33 @@ public class Usuario  implements Serializable{
 	@Column(name="ultima_fecha_modificacion")
 	@NotBlank
 	private String ultimaFechaModificacion;
-
-	public Long getIdUsuario() {
-		return idUsuario;
-	}
 	
-	//@ManyToMany(fetch = FetchType.LAZY) //campo que une dos tablas por medio de los ID
-			//@JoinTable(name=""
-				//,joinColumns=@JoinColumn(name="")
-				//,inverseJoinColumns=@JoinColumn(name=""))
-			//private Set<Rol> rol;
-			
-			
-			
-			//public Set<Rol> getRol() {
-				//return rol;
-		
+	@Column(name="clave_proceso")
+	@NotBlank
+	private String clave_Proceso;
+	
+	@Column(name="descripcion_proceso")
+	@NotBlank
+	private String descripcionProceso;
+	
+	@Column(name="origen_proceso")
+	@NotBlank
+	private String origenProceso;
 
-	public void setIdUsuario(Long idUsuario) {
-		this.idUsuario = idUsuario;
+	public Long getIdProceso() {
+		return idProceso;
 	}
 
-	public Long getIdRol() {
-		return idRol;
+	public void setIdProceso(Long idProceso) {
+		this.idProceso = idProceso;
 	}
 
-	public void setIdRol(Long idRol) {
-		this.idRol = idRol;
+	public Long getIdPrenda() {
+		return idPrenda;
+	}
+
+	public void setIdPrenda(Long idPrenda) {
+		this.idPrenda = idPrenda;
 	}
 
 	public String getIdText() {
@@ -120,6 +119,30 @@ public class Usuario  implements Serializable{
 		this.ultimaFechaModificacion = ultimaFechaModificacion;
 	}
 
+	public String getClave_Proceso() {
+		return clave_Proceso;
+	}
+
+	public void setClave_Proceso(String clave_Proceso) {
+		this.clave_Proceso = clave_Proceso;
+	}
+
+	public String getDescripcionProceso() {
+		return descripcionProceso;
+	}
+
+	public void setDescripcionProceso(String descripcionProceso) {
+		this.descripcionProceso = descripcionProceso;
+	}
+
+	public String getOrigenProceso() {
+		return origenProceso;
+	}
+
+	public void setOrigenProceso(String origenProceso) {
+		this.origenProceso = origenProceso;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -129,11 +152,14 @@ public class Usuario  implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
+		result = prime * result + ((clave_Proceso == null) ? 0 : clave_Proceso.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
+		result = prime * result + ((descripcionProceso == null) ? 0 : descripcionProceso.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
-		result = prime * result + ((idRol == null) ? 0 : idRol.hashCode());
+		result = prime * result + ((idPrenda == null) ? 0 : idPrenda.hashCode());
+		result = prime * result + ((idProceso == null) ? 0 : idProceso.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
-		result = prime * result + ((idUsuario == null) ? 0 : idUsuario.hashCode());
+		result = prime * result + ((origenProceso == null) ? 0 : origenProceso.hashCode());
 		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
 		return result;
 	}
@@ -146,36 +172,51 @@ public class Usuario  implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
+		DisenioProceso other = (DisenioProceso) obj;
 		if (actualizadoPor == null) {
 			if (other.actualizadoPor != null)
 				return false;
 		} else if (!actualizadoPor.equals(other.actualizadoPor))
+			return false;
+		if (clave_Proceso == null) {
+			if (other.clave_Proceso != null)
+				return false;
+		} else if (!clave_Proceso.equals(other.clave_Proceso))
 			return false;
 		if (creadoPor == null) {
 			if (other.creadoPor != null)
 				return false;
 		} else if (!creadoPor.equals(other.creadoPor))
 			return false;
+		if (descripcionProceso == null) {
+			if (other.descripcionProceso != null)
+				return false;
+		} else if (!descripcionProceso.equals(other.descripcionProceso))
+			return false;
 		if (fechaCreacion == null) {
 			if (other.fechaCreacion != null)
 				return false;
 		} else if (!fechaCreacion.equals(other.fechaCreacion))
 			return false;
-		if (idRol == null) {
-			if (other.idRol != null)
+		if (idPrenda == null) {
+			if (other.idPrenda != null)
 				return false;
-		} else if (!idRol.equals(other.idRol))
+		} else if (!idPrenda.equals(other.idPrenda))
+			return false;
+		if (idProceso == null) {
+			if (other.idProceso != null)
+				return false;
+		} else if (!idProceso.equals(other.idProceso))
 			return false;
 		if (idText == null) {
 			if (other.idText != null)
 				return false;
 		} else if (!idText.equals(other.idText))
 			return false;
-		if (idUsuario == null) {
-			if (other.idUsuario != null)
+		if (origenProceso == null) {
+			if (other.origenProceso != null)
 				return false;
-		} else if (!idUsuario.equals(other.idUsuario))
+		} else if (!origenProceso.equals(other.origenProceso))
 			return false;
 		if (ultimaFechaModificacion == null) {
 			if (other.ultimaFechaModificacion != null)
@@ -184,4 +225,5 @@ public class Usuario  implements Serializable{
 			return false;
 		return true;
 	}
+
 }

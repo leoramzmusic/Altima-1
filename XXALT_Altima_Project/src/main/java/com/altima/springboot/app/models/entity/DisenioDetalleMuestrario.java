@@ -1,6 +1,7 @@
 package com.altima.springboot.app.models.entity;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,24 +14,20 @@ import javax.validation.constraints.NotBlank;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "alt_hr_usuario")
+@Table(name = "alt_disenio_detalle_muestrario")
 
-public class Usuario  implements Serializable{
+public class DisenioDetalleMuestrario implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
 	@Id
+	@Column(name="id_detalles_muestrario")
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
-	@Column(name="id_usuario")
-	@NotBlank
-	private Long idUsuario;
-	
-	@Column(name="id_rol")
-	@NotBlank
-	private Long idRol;
+	private Long idDetallesMuestrario;
 	
 	@Column(name="id_text")
 	@NotBlank
@@ -48,36 +45,17 @@ public class Usuario  implements Serializable{
 	@NotBlank
 	private String fechaCreacion;
 	
-	@Column(name="ultima_fecha_modificacion")
+	@Column(name="ultima_fecha_creacion")
 	@NotBlank
-	private String ultimaFechaModificacion;
+	private String ultimaFechaCreacion;
 
-	public Long getIdUsuario() {
-		return idUsuario;
-	}
 	
-	//@ManyToMany(fetch = FetchType.LAZY) //campo que une dos tablas por medio de los ID
-			//@JoinTable(name=""
-				//,joinColumns=@JoinColumn(name="")
-				//,inverseJoinColumns=@JoinColumn(name=""))
-			//private Set<Rol> rol;
-			
-			
-			
-			//public Set<Rol> getRol() {
-				//return rol;
-		
-
-	public void setIdUsuario(Long idUsuario) {
-		this.idUsuario = idUsuario;
+	public Long getIdDetallesMuestrario() {
+		return idDetallesMuestrario;
 	}
 
-	public Long getIdRol() {
-		return idRol;
-	}
-
-	public void setIdRol(Long idRol) {
-		this.idRol = idRol;
+	public void setIdDetallesMuestrario(Long idDetallesMuestrario) {
+		this.idDetallesMuestrario = idDetallesMuestrario;
 	}
 
 	public String getIdText() {
@@ -85,7 +63,7 @@ public class Usuario  implements Serializable{
 	}
 
 	public void setIdText(String idText) {
-		this.idText = idText;
+		idText = idText;
 	}
 
 	public String getCreadoPor() {
@@ -112,12 +90,12 @@ public class Usuario  implements Serializable{
 		this.fechaCreacion = fechaCreacion;
 	}
 
-	public String getUltimaFechaModificacion() {
-		return ultimaFechaModificacion;
+	public String getUltimaFechaCreacion() {
+		return ultimaFechaCreacion;
 	}
 
-	public void setUltimaFechaModificacion(String ultimaFechaModificacion) {
-		this.ultimaFechaModificacion = ultimaFechaModificacion;
+	public void setUltimaFechaCreacion(String ultimaFechaCreacion) {
+		this.ultimaFechaCreacion = ultimaFechaCreacion;
 	}
 
 	public static long getSerialversionuid() {
@@ -131,10 +109,9 @@ public class Usuario  implements Serializable{
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
-		result = prime * result + ((idRol == null) ? 0 : idRol.hashCode());
+		result = prime * result + ((idDetallesMuestrario == null) ? 0 : idDetallesMuestrario.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
-		result = prime * result + ((idUsuario == null) ? 0 : idUsuario.hashCode());
-		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
+		result = prime * result + ((ultimaFechaCreacion == null) ? 0 : ultimaFechaCreacion.hashCode());
 		return result;
 	}
 
@@ -146,7 +123,7 @@ public class Usuario  implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
+		DisenioDetalleMuestrario other = (DisenioDetalleMuestrario) obj;
 		if (actualizadoPor == null) {
 			if (other.actualizadoPor != null)
 				return false;
@@ -162,25 +139,20 @@ public class Usuario  implements Serializable{
 				return false;
 		} else if (!fechaCreacion.equals(other.fechaCreacion))
 			return false;
-		if (idRol == null) {
-			if (other.idRol != null)
+		if (idDetallesMuestrario == null) {
+			if (other.idDetallesMuestrario != null)
 				return false;
-		} else if (!idRol.equals(other.idRol))
+		} else if (!idDetallesMuestrario.equals(other.idDetallesMuestrario))
 			return false;
 		if (idText == null) {
 			if (other.idText != null)
 				return false;
 		} else if (!idText.equals(other.idText))
 			return false;
-		if (idUsuario == null) {
-			if (other.idUsuario != null)
+		if (ultimaFechaCreacion == null) {
+			if (other.ultimaFechaCreacion != null)
 				return false;
-		} else if (!idUsuario.equals(other.idUsuario))
-			return false;
-		if (ultimaFechaModificacion == null) {
-			if (other.ultimaFechaModificacion != null)
-				return false;
-		} else if (!ultimaFechaModificacion.equals(other.ultimaFechaModificacion))
+		} else if (!ultimaFechaCreacion.equals(other.ultimaFechaCreacion))
 			return false;
 		return true;
 	}

@@ -13,9 +13,8 @@ import javax.validation.constraints.NotBlank;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "alt_almacen")
-
-public class Almacen implements Serializable {
+@Table(name = "alt_disenio_material_tela")
+public class DisenioMaterialTela implements Serializable{
 
 	/**
 	 * 
@@ -23,22 +22,33 @@ public class Almacen implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="id_almacen")
+	@Column(name="id_material")
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
-	private Long idAlmacen;
+	private Long idMaterial;
+	
+	@Column(name="id_tela")
+	@NotBlank
+	private Long idTela;
 	
 	@Column(name="id_text")
 	@NotBlank
 	private String idText;
-	
 
-	public Long getIdAlmacen() {
-		return idAlmacen;
+	public Long getIdMaterial() {
+		return idMaterial;
 	}
 
-	public void setIdAlmacen(Long idAlmacen) {
-		this.idAlmacen = idAlmacen;
+	public void setIdMaterial(Long idMaterial) {
+		this.idMaterial = idMaterial;
+	}
+
+	public Long getIdTela() {
+		return idTela;
+	}
+
+	public void setIdTela(Long idTela) {
+		this.idTela = idTela;
 	}
 
 	public String getIdText() {
@@ -52,13 +62,13 @@ public class Almacen implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((idAlmacen == null) ? 0 : idAlmacen.hashCode());
+		result = prime * result + ((idMaterial == null) ? 0 : idMaterial.hashCode());
+		result = prime * result + ((idTela == null) ? 0 : idTela.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
 		return result;
 	}
@@ -71,11 +81,16 @@ public class Almacen implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Almacen other = (Almacen) obj;
-		if (idAlmacen == null) {
-			if (other.idAlmacen != null)
+		DisenioMaterialTela other = (DisenioMaterialTela) obj;
+		if (idMaterial == null) {
+			if (other.idMaterial != null)
 				return false;
-		} else if (!idAlmacen.equals(other.idAlmacen))
+		} else if (!idMaterial.equals(other.idMaterial))
+			return false;
+		if (idTela == null) {
+			if (other.idTela != null)
+				return false;
+		} else if (!idTela.equals(other.idTela))
 			return false;
 		if (idText == null) {
 			if (other.idText != null)
@@ -84,8 +99,4 @@ public class Almacen implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-	
-
 }

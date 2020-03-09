@@ -13,28 +13,27 @@ import javax.validation.constraints.NotBlank;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "alt_hr_usuario")
-
-public class Usuario  implements Serializable{
+@Table(name = "alt_disenio_familia_prenda")
+public class DisenioFamiliaPrenda implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	@Id
+	@Column(name="id_familia_prenda")
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
-	@Column(name="id_usuario")
-	@NotBlank
-	private Long idUsuario;
-	
-	@Column(name="id_rol")
-	@NotBlank
-	private Long idRol;
+	private Long idFamiliaPrenda;
 	
 	@Column(name="id_text")
 	@NotBlank
 	private String idText;
+	
+	@Column(name="id_lookup")
+	@NotBlank
+	private String idLookup;
 	
 	@Column(name="creado_por")
 	@NotBlank
@@ -51,33 +50,25 @@ public class Usuario  implements Serializable{
 	@Column(name="ultima_fecha_modificacion")
 	@NotBlank
 	private String ultimaFechaModificacion;
-
-	public Long getIdUsuario() {
-		return idUsuario;
-	}
 	
-	//@ManyToMany(fetch = FetchType.LAZY) //campo que une dos tablas por medio de los ID
-			//@JoinTable(name=""
-				//,joinColumns=@JoinColumn(name="")
-				//,inverseJoinColumns=@JoinColumn(name=""))
-			//private Set<Rol> rol;
-			
-			
-			
-			//public Set<Rol> getRol() {
-				//return rol;
-		
+	@Column(name="tipo_prenda")
+	@NotBlank
+	private String tipoPrenda;
+	
+	@Column(name="descripcion")
+	@NotBlank
+	private String descripcion;
+	
+	@Column(name="familia_genero_id")
+	@NotBlank
+	private Long idFamiliaGenero;
 
-	public void setIdUsuario(Long idUsuario) {
-		this.idUsuario = idUsuario;
+	public Long getIdFamiliaPrenda() {
+		return idFamiliaPrenda;
 	}
 
-	public Long getIdRol() {
-		return idRol;
-	}
-
-	public void setIdRol(Long idRol) {
-		this.idRol = idRol;
+	public void setIdFamiliaPrenda(Long idFamiliaPrenda) {
+		this.idFamiliaPrenda = idFamiliaPrenda;
 	}
 
 	public String getIdText() {
@@ -86,6 +77,14 @@ public class Usuario  implements Serializable{
 
 	public void setIdText(String idText) {
 		this.idText = idText;
+	}
+
+	public String getIdLookup() {
+		return idLookup;
+	}
+
+	public void setIdLookup(String idLookup) {
+		this.idLookup = idLookup;
 	}
 
 	public String getCreadoPor() {
@@ -120,6 +119,30 @@ public class Usuario  implements Serializable{
 		this.ultimaFechaModificacion = ultimaFechaModificacion;
 	}
 
+	public String getTipoPrenda() {
+		return tipoPrenda;
+	}
+
+	public void setTipoPrenda(String tipoPrenda) {
+		this.tipoPrenda = tipoPrenda;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public Long getIdFamiliaGenero() {
+		return idFamiliaGenero;
+	}
+
+	public void setIdFamiliaGenero(Long idFamiliaGenero) {
+		this.idFamiliaGenero = idFamiliaGenero;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -130,10 +153,13 @@ public class Usuario  implements Serializable{
 		int result = 1;
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
+		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
-		result = prime * result + ((idRol == null) ? 0 : idRol.hashCode());
+		result = prime * result + ((idFamiliaGenero == null) ? 0 : idFamiliaGenero.hashCode());
+		result = prime * result + ((idFamiliaPrenda == null) ? 0 : idFamiliaPrenda.hashCode());
+		result = prime * result + ((idLookup == null) ? 0 : idLookup.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
-		result = prime * result + ((idUsuario == null) ? 0 : idUsuario.hashCode());
+		result = prime * result + ((tipoPrenda == null) ? 0 : tipoPrenda.hashCode());
 		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
 		return result;
 	}
@@ -146,7 +172,7 @@ public class Usuario  implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
+		DisenioFamiliaPrenda other = (DisenioFamiliaPrenda) obj;
 		if (actualizadoPor == null) {
 			if (other.actualizadoPor != null)
 				return false;
@@ -157,25 +183,40 @@ public class Usuario  implements Serializable{
 				return false;
 		} else if (!creadoPor.equals(other.creadoPor))
 			return false;
+		if (descripcion == null) {
+			if (other.descripcion != null)
+				return false;
+		} else if (!descripcion.equals(other.descripcion))
+			return false;
 		if (fechaCreacion == null) {
 			if (other.fechaCreacion != null)
 				return false;
 		} else if (!fechaCreacion.equals(other.fechaCreacion))
 			return false;
-		if (idRol == null) {
-			if (other.idRol != null)
+		if (idFamiliaGenero == null) {
+			if (other.idFamiliaGenero != null)
 				return false;
-		} else if (!idRol.equals(other.idRol))
+		} else if (!idFamiliaGenero.equals(other.idFamiliaGenero))
+			return false;
+		if (idFamiliaPrenda == null) {
+			if (other.idFamiliaPrenda != null)
+				return false;
+		} else if (!idFamiliaPrenda.equals(other.idFamiliaPrenda))
+			return false;
+		if (idLookup == null) {
+			if (other.idLookup != null)
+				return false;
+		} else if (!idLookup.equals(other.idLookup))
 			return false;
 		if (idText == null) {
 			if (other.idText != null)
 				return false;
 		} else if (!idText.equals(other.idText))
 			return false;
-		if (idUsuario == null) {
-			if (other.idUsuario != null)
+		if (tipoPrenda == null) {
+			if (other.tipoPrenda != null)
 				return false;
-		} else if (!idUsuario.equals(other.idUsuario))
+		} else if (!tipoPrenda.equals(other.tipoPrenda))
 			return false;
 		if (ultimaFechaModificacion == null) {
 			if (other.ultimaFechaModificacion != null)

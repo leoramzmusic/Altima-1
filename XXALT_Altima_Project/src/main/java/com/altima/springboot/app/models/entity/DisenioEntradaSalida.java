@@ -13,9 +13,8 @@ import javax.validation.constraints.NotBlank;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "alt_almacen")
-
-public class Almacen implements Serializable {
+@Table(name = "alt_disenio_entrada_salida")
+public class DisenioEntradaSalida implements Serializable{
 
 	/**
 	 * 
@@ -23,22 +22,33 @@ public class Almacen implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="id_almacen")
+	@Column(name="id_entrada_salida")
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
-	private Long idAlmacen;
+	private Long idEntradaSalida;
+
+	@Column(name="id_muestrario")
+	@NotBlank
+	private Long idMuestrario;
 	
 	@Column(name="id_text")
 	@NotBlank
 	private String idText;
-	
 
-	public Long getIdAlmacen() {
-		return idAlmacen;
+	public Long getIdEntradaSalida() {
+		return idEntradaSalida;
 	}
 
-	public void setIdAlmacen(Long idAlmacen) {
-		this.idAlmacen = idAlmacen;
+	public void setIdEntradaSalida(Long idEntradaSalida) {
+		this.idEntradaSalida = idEntradaSalida;
+	}
+
+	public Long getIdMuestrario() {
+		return idMuestrario;
+	}
+
+	public void setIdMuestrario(Long idMuestrario) {
+		this.idMuestrario = idMuestrario;
 	}
 
 	public String getIdText() {
@@ -52,13 +62,13 @@ public class Almacen implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((idAlmacen == null) ? 0 : idAlmacen.hashCode());
+		result = prime * result + ((idEntradaSalida == null) ? 0 : idEntradaSalida.hashCode());
+		result = prime * result + ((idMuestrario == null) ? 0 : idMuestrario.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
 		return result;
 	}
@@ -71,11 +81,16 @@ public class Almacen implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Almacen other = (Almacen) obj;
-		if (idAlmacen == null) {
-			if (other.idAlmacen != null)
+		DisenioEntradaSalida other = (DisenioEntradaSalida) obj;
+		if (idEntradaSalida == null) {
+			if (other.idEntradaSalida != null)
 				return false;
-		} else if (!idAlmacen.equals(other.idAlmacen))
+		} else if (!idEntradaSalida.equals(other.idEntradaSalida))
+			return false;
+		if (idMuestrario == null) {
+			if (other.idMuestrario != null)
+				return false;
+		} else if (!idMuestrario.equals(other.idMuestrario))
 			return false;
 		if (idText == null) {
 			if (other.idText != null)
@@ -84,8 +99,4 @@ public class Almacen implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-	
-
 }

@@ -12,30 +12,44 @@ import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.GenericGenerator;
 
+
 @Entity
-@Table(name = "alt_hr_usuario")
+@Table(name = "alt_hr_persona")
+public class HrPersona implements Serializable{
 
-public class Usuario  implements Serializable{
-
+	
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	@Id
+	@Column(name="id_persona")
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
-	@Column(name="id_usuario")
-	@NotBlank
-	private Long idUsuario;
+	private Long idPersona;
 	
-	@Column(name="id_rol")
+	@Column(name="id_direccion")
 	@NotBlank
-	private Long idRol;
+	private Long idDireccion;
 	
 	@Column(name="id_text")
 	@NotBlank
 	private String idText;
 	
+	@Column(name="nombre_persona")
+	@NotBlank
+	private String nombrePersona;
+	
+	@Column(name="apellido_materno")
+	@NotBlank
+	private String apellidoMaterno;
+	
+	@Column(name="apellido_paterno")
+	@NotBlank
+	private String apellidoPaterno;
+
 	@Column(name="creado_por")
 	@NotBlank
 	private String creadoPor;
@@ -52,32 +66,20 @@ public class Usuario  implements Serializable{
 	@NotBlank
 	private String ultimaFechaModificacion;
 
-	public Long getIdUsuario() {
-		return idUsuario;
-	}
-	
-	//@ManyToMany(fetch = FetchType.LAZY) //campo que une dos tablas por medio de los ID
-			//@JoinTable(name=""
-				//,joinColumns=@JoinColumn(name="")
-				//,inverseJoinColumns=@JoinColumn(name=""))
-			//private Set<Rol> rol;
-			
-			
-			
-			//public Set<Rol> getRol() {
-				//return rol;
-		
-
-	public void setIdUsuario(Long idUsuario) {
-		this.idUsuario = idUsuario;
+	public Long getIdPersona() {
+		return idPersona;
 	}
 
-	public Long getIdRol() {
-		return idRol;
+	public void setIdPersona(Long idPersona) {
+		this.idPersona = idPersona;
 	}
 
-	public void setIdRol(Long idRol) {
-		this.idRol = idRol;
+	public Long getIdDireccion() {
+		return idDireccion;
+	}
+
+	public void setIdDireccion(Long idDireccion) {
+		this.idDireccion = idDireccion;
 	}
 
 	public String getIdText() {
@@ -86,6 +88,30 @@ public class Usuario  implements Serializable{
 
 	public void setIdText(String idText) {
 		this.idText = idText;
+	}
+
+	public String getNombrePersona() {
+		return nombrePersona;
+	}
+
+	public void setNombrePersona(String nombrePersona) {
+		this.nombrePersona = nombrePersona;
+	}
+
+	public String getApellidoMaterno() {
+		return apellidoMaterno;
+	}
+
+	public void setApellidoMaterno(String apellidoMaterno) {
+		this.apellidoMaterno = apellidoMaterno;
+	}
+
+	public String getApellidoPaterno() {
+		return apellidoPaterno;
+	}
+
+	public void setApellidoPaterno(String apellidoPaterno) {
+		this.apellidoPaterno = apellidoPaterno;
 	}
 
 	public String getCreadoPor() {
@@ -129,11 +155,14 @@ public class Usuario  implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
+		result = prime * result + ((apellidoMaterno == null) ? 0 : apellidoMaterno.hashCode());
+		result = prime * result + ((apellidoPaterno == null) ? 0 : apellidoPaterno.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
-		result = prime * result + ((idRol == null) ? 0 : idRol.hashCode());
+		result = prime * result + ((idDireccion == null) ? 0 : idDireccion.hashCode());
+		result = prime * result + ((idPersona == null) ? 0 : idPersona.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
-		result = prime * result + ((idUsuario == null) ? 0 : idUsuario.hashCode());
+		result = prime * result + ((nombrePersona == null) ? 0 : nombrePersona.hashCode());
 		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
 		return result;
 	}
@@ -146,11 +175,21 @@ public class Usuario  implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
+		HrPersona other = (HrPersona) obj;
 		if (actualizadoPor == null) {
 			if (other.actualizadoPor != null)
 				return false;
 		} else if (!actualizadoPor.equals(other.actualizadoPor))
+			return false;
+		if (apellidoMaterno == null) {
+			if (other.apellidoMaterno != null)
+				return false;
+		} else if (!apellidoMaterno.equals(other.apellidoMaterno))
+			return false;
+		if (apellidoPaterno == null) {
+			if (other.apellidoPaterno != null)
+				return false;
+		} else if (!apellidoPaterno.equals(other.apellidoPaterno))
 			return false;
 		if (creadoPor == null) {
 			if (other.creadoPor != null)
@@ -162,20 +201,25 @@ public class Usuario  implements Serializable{
 				return false;
 		} else if (!fechaCreacion.equals(other.fechaCreacion))
 			return false;
-		if (idRol == null) {
-			if (other.idRol != null)
+		if (idDireccion == null) {
+			if (other.idDireccion != null)
 				return false;
-		} else if (!idRol.equals(other.idRol))
+		} else if (!idDireccion.equals(other.idDireccion))
+			return false;
+		if (idPersona == null) {
+			if (other.idPersona != null)
+				return false;
+		} else if (!idPersona.equals(other.idPersona))
 			return false;
 		if (idText == null) {
 			if (other.idText != null)
 				return false;
 		} else if (!idText.equals(other.idText))
 			return false;
-		if (idUsuario == null) {
-			if (other.idUsuario != null)
+		if (nombrePersona == null) {
+			if (other.nombrePersona != null)
 				return false;
-		} else if (!idUsuario.equals(other.idUsuario))
+		} else if (!nombrePersona.equals(other.nombrePersona))
 			return false;
 		if (ultimaFechaModificacion == null) {
 			if (other.ultimaFechaModificacion != null)
@@ -184,4 +228,6 @@ public class Usuario  implements Serializable{
 			return false;
 		return true;
 	}
+	
+	
 }

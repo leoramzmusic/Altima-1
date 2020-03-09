@@ -14,7 +14,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 
 @Entity
-@Table(name = "xxalt_hr_rol")
+@Table(name = "alt_hr_rol")
 
 public class Rol implements Serializable {
 
