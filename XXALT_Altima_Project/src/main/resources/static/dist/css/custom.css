@@ -22,6 +22,15 @@
 .modal-genero {
     max-width: 70% !important;
 }
+.modal-mantenimiento {
+    max-width: 83% !important;
+}
 .tdcenter {
     text-align: center;
 }
+.hidden {
+    display: none;
+  }
+.swal-wide{
+    width:60% !important;
+}  
