@@ -10,6 +10,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class LoginController {
+	
+	/*Hola*/
 
 	@GetMapping("/login")
 	public String login(@RequestParam(value="error", required=false) String error,
