@@ -30,13 +30,22 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a th:href="${'catalogos'}" class="nav-link" id="navCatalogo">
-              <i class="nav-icon fas fa-clipboard-list"></i>
+          <li class="nav-item has-treeview" id="menuDiseno">
+            <a class="nav-link" id="navDiseno">
+              <i class="nav-icon flaticon-005-dress" style="margin-right: -3px;margin-left: 6px;"></i>
               <p>
-                Cat&oacute;logos
+                Dise&ntilde;o
+                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a th:href="${'catalogos'}" class="nav-link" id="navDiseno1">
+                  <i class="nav-icon fas fa-user"></i>
+                  <p>Cat&aacute;logos</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item">
             <a th:href="${'expediente'}" class="nav-link" id="navExpediente">
@@ -71,7 +80,7 @@
           </li>
           <li class="nav-item has-treeview" id="menuMuestrario">
             <a class="nav-link" id="navMuestrario">
-              <i class="nav-icon fas fa-swatchbook"></i>
+              <i class="nav-icon flaticon-006-dummy" style="margin-right: -3px;margin-left: 6px;"></i>
               <p>
                 Muestrario
                 <i class="fas fa-angle-left right"></i>
@@ -80,7 +89,7 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a th:href="${'muestras'}" class="nav-link" id="navMuestrario1">
-                  <i class="nav-icon fas fa-tape"></i>
+                  <i class="nav-icon flaticon-007-dummy-1"></i>
                   <p>Muestras Pedido</p>
                 </a>
               </li>
@@ -88,7 +97,7 @@
           </li>
           <li class="nav-item has-treeview" id="menuProduccion">
             <a class="nav-link" id="navProduccion">
-              <i class="nav-icon fas fa-bezier-curve"></i>
+              <i class="nav-icon flaticon-026-sewing-machine"></i>
               <p>
                	Producci&oacute;n
                 <i class="fas fa-angle-left right"></i>
