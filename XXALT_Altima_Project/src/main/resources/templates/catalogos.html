@@ -67,12 +67,10 @@
                       	<div th:insert="catalogos-marcas" class="col-lg-6 col-6"></div>
                       	<!-- COLORES -->
                       	<div th:insert="catalogos-colores" class="col-lg-6 col-6"></div>
-                      	<!-- COMPOSICION -->
-                      	<div th:insert="catalogos-composicion" class="col-lg-4 col-6"></div>
                       	<!-- PZAS. TRAZO -->
-                      	<div th:insert="catalogos-trazo" class="col-lg-4 col-6"></div>
+                      	<div th:insert="catalogos-trazo" class="col-lg-6 col-6"></div>
                       	<!-- FAM. PRENDAS -->
-                      	<div th:insert="catalogos-prendas" class="col-lg-4 col-6"></div>
+                      	<div th:insert="catalogos-prendas" class="col-lg-6 col-6"></div>
                       	<!-- FAM. GENERO -->
                       	<div th:insert="catalogos-genero" class="col-lg-6 col-6"></div>
                       	<!-- FAM. COMPOSICION -->
@@ -115,29 +113,8 @@
     <script src="dist/js/sweetalert.js"></script>
     <!-- Funcionalidad-->
     <script src="dist/js/TablasCatalogo.js"></script>
-    <!-- Ekko Lightbox -->
-    <script src="plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
-    <!-- Filterizr-->
-    <script src="plugins/filterizr/jquery.filterizr.min.js"></script>
-    <!-- Page specific script -->
-    <script>
-        $(function() {
-            $(document).on('click', '[data-toggle="lightbox"]', function(event) {
-                event.preventDefault();
-                $(this).ekkoLightbox({
-                    alwaysShowClose: true
-                });
-            });
-
-            $('.filter-container').filterizr({
-                gutterPixels: 3
-            });
-            $('.btn[data-filter]').on('click', function() {
-                $('.btn[data-filter]').removeClass('active');
-                $(this).addClass('active');
-            });
-        })
-    </script>
+    <!-- Funcionalidad-->
+    <script src="dist/js/Catalogo.js"></script>
     <script>
 		function changeClassById() {
 			document.getElementById("menuDiseno").className = "nav-item has-treeview menu-open";
