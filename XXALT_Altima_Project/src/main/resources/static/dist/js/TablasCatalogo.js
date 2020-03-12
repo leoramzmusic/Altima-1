@@ -1,5 +1,5 @@
 $(document).ready(function() {
-   var table = $('#telastabla').DataTable({
+   var table = $('.tablaCatalogo').DataTable({
         "ordering": false,
         "pageLength": 5,
         "lengthMenu": [
