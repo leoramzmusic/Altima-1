@@ -62,7 +62,15 @@
                                     <h3 class="card-title">Nuevo cliente</h3>
                                 </div>
                                 <div class="card-body">
-                                    <form class="row">
+                                	<div class="form-group">
+                                        <label for="status">Tipo de persona</label>
+                                        <select class="form-control" id="status" name="status" onChange="showForm(this.value);">
+                                            <option value="selecciona">Selecciona uno...</option>
+                                            <option value="moral">Persona moral</option>
+                                            <option value="fisica">Persona f&iacute;sica</option>
+                                        </select>
+                                    </div>
+                                    <form class="row" style="display: none;" id="moral">
                                         <div class="form-group col-sm-6">
                                             <label for="clienteEmpresa">Nombre de la empresa</label>
                                             <input type="text" class="form-control" id="clienteEmpresa" placeholder="Altima Uniformes">
@@ -119,6 +127,67 @@
                                             <button type="button" class="btn btn-primary next-step float-right">Agregar</button>
                                         </div>
                                     </form>
+                                    <form class="row" style="display: none;" id="fisica">
+                                        <div class="form-group col-sm-4">
+                                            <label for="nombrePersona">Nombre(s)</label>
+                                            <input type="text" class="form-control" id="nombrePersona" placeholder="Marco">
+                                        </div>
+                                        <div class="form-group col-sm-4">
+                                            <label for="apPaternoPersona">Apellido Paterno</label>
+                                            <input type="text" class="form-control" id="apPaternoPersona" placeholder="Antonio">
+                                        </div>
+                                        <div class="form-group col-sm-4">
+                                            <label for="apMaternoPersona">Apellido Materno</label>
+                                            <input type="text" class="form-control" id="apMaternoPersona" placeholder="Solis">
+                                        </div>
+                                        <div class="form-group col-sm-2">
+                                            <label for="rfcEmpresa">R.F.C.</label>
+                                            <input type="text" class="form-control" id="rfcEmpresa" placeholder="IHB123124HF3">
+                                        </div>
+                                        <div class="form-group col-sm-8">
+                                            <label for="direccionEmpresa">Direcci&oacute;n</label>
+                                            <input type="text" class="form-control" id="direccionEmpresa" placeholder="Av. 1ro de Mayo No. 126">
+                                        </div>
+                                        <div class="form-group col-sm-1">
+                                            <label for="direccionExt">No. Ext.</label>
+                                            <input type="text" class="form-control" id="direccionExt" placeholder="63">
+                                        </div>
+                                        <div class="form-group col-sm-1">
+                                            <label for="direccionInt">No. Int.</label>
+                                            <input type="text" class="form-control" id="direccionInt" placeholder="12">
+                                        </div>
+                                        <div class="form-group col-sm-3">
+                                            <label for="coloniaEmpresa">Colonia</label>
+                                            <input type="text" class="form-control" id="coloniaEmpresa" placeholder="8 de Agosto">
+                                        </div>
+                                        <div class="form-group col-sm-3">
+                                            <label for="estadoEmpresa">Estado</label>
+                                            <select id="estado" name="estado" class="form-control"></select>
+                                        </div>
+                                        <div class="form-group col-sm-3">
+                                            <label for="municipioEmpresa">Municipio</label>
+                                            <select id="municipio" name="municipio" class="form-control"></select>
+                                        </div>
+                                        <div class="form-group col-sm-3">
+                                            <label for="delegacionEmpresa">Delegaci&oacute;n</label>
+                                            <input type="text" class="form-control" id="delegacionEmpresa" placeholder="El Marques">
+                                        </div>
+                                        <div class="form-group col-sm-4">
+                                            <label for="cpEmpresa">C&oacute;digo postal</label>
+                                            <input type="text" class="form-control" id="cpEmpresa" placeholder="90688">
+                                        </div>
+                                        <div class="form-group col-sm-4">
+                                            <label for="telefonoEmpresa">Tel&eacute;fono</label>
+                                            <input type="text" class="form-control" id="telefonoEmpresa" placeholder="52-72-96-26">
+                                        </div>
+                                        <div class="form-group col-sm-4">
+                                            <label for="correoEmpresa">Correo</label>
+                                            <input type="email" class="form-control" id="correoEmpresa" placeholder="altima@correo.com">
+                                        </div>
+                                        <div class="form-group col-sm-12">
+                                            <button type="button" class="btn btn-primary next-step float-right">Siguiente</button>
+                                        </div>
+                                    </form>
                                 </div>
                                 <!-- /.card-body -->
                             </div>
@@ -152,6 +221,24 @@
                 trigger: 'hover'
             })
         })
+    </script>
+    <script type="text/javascript">
+        function showForm(id) {
+            if (id == "selecciona") {
+                $("#fisica").hide();
+                $("#moral").hide();
+            }
+
+            if (id == "fisica") {
+                $("#fisica").show();
+                $("#moral").hide();
+            }
+
+            if (id == "moral") {
+                $("#fisica").hide();
+                $("#moral").show();
+            }
+        }
     </script>
     <script type="text/javascript" src="dist/js/municipios.js"></script>
     <script type="text/javascript" src="dist/js/select_estados.js"></script>
