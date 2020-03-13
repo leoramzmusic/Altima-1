@@ -34,3 +34,11 @@
 .swal-wide{
     width:60% !important;
 }  
+pointer {
+  cursor: pointer;
+}
+
+img.placeholder {
+  width: 100%;
+  height: 100%;
+}

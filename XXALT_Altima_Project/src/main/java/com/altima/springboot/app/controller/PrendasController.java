@@ -16,5 +16,10 @@ public class PrendasController {
 		return "detalle-prenda";
 	}
 	
+	@GetMapping("agregar-prenda") 
+	public String addClothes() {
+		return "agregar-prenda";
+	}
+	
 
 }
