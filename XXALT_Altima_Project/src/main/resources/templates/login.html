@@ -3,14 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>AdminLTE 3 | Log in</title>
+<title>Altima | Inicio de sesi&oacute;n</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Font Awesome -->
 <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="dist/css/custom.css">
 <!-- Ionicons -->
-<link rel="stylesheet"
-	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!-- overlayScrollbars -->
 <link rel="stylesheet" type="text/css" href="dist/css/adminlte.min.css">
 <!-- Google Font: Source Sans Pro -->
@@ -18,55 +19,40 @@
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
 	rel="stylesheet">
 </head>
-<style>
-    .loginestilo{    
-    -ms-flex-align: center;
-    align-items: center;
-    background-image: url(dist/img/fondo.jpg);
-    background-repeat: no-repeat;
-    background-size: 100%;  
-    display: -ms-flexbox;
-    display: flex;
-    height: 100vh;
-    -ms-flex-pack: center;
-    justify-content: center;}
-    }
-</style>
 <body class="hold-transition login-page">
+	<div id="particles-js"></div>
 	<div class="login-box">
-		<div class="login-logo">
-			<a href="../../index2.html"><b>Altima</b></a>
-		</div>
 		<!-- /.login-logo -->
 		<div class="card">
 			<div class="card-body login-card-body">
-				<p class="login-box-msg">Sign in to start your session</p>
-
 				<form th:action="@{/login}" method="post">
 					<div class="input-group mb-3">
+			          <img class="center" src="dist/img/AltimaLogin.jpg" alt="Avatar" style="border-radius: 50%;max-width: 45%;">
+			        </div>
+			        <div class="login-logo">
+			            <a><b>Altima</b> Uniformes</a>
+			        </div>
+					<div class="input-group mb-3">
 						<input type="text" name="username" id="username"
-							placeholder="UserName" autofocus required class="form-control">
+							placeholder="Usuario" autofocus required class="form-control">
 						<div class="input-group-append">
-							<div class="input-group-text">
-								<span class="fas fa-envelope"></span>
-							</div>
-						</div>
+				            <div class="input-group-text">
+				              <span class="fas fa-user"></span>
+				            </div>
+				          </div>
 					</div>
 					<div class="input-group mb-3">
 						<input type="password" name="password" id="password"
-							class="form-control" placeholder="Password" required>
+							class="form-control" placeholder="Contrase&ntilde;a" required>
 						<div class="input-group-append">
-							<div class="input-group-text">
-								<span class="fas fa-lock"></span>
-							</div>
-						</div>
+				          <div class="input-group-text">
+				            <span class="fas fa-lock"></span>
+				          </div>
+				        </div>
 					</div>
 					<div class="row">
-						<div class="col-8"></div>
-						<!-- /.col -->
-						<div class="col-4">
-							<button type="submit" class="btn btn-primary btn-block">Sign
-								In</button>
+						<div class="col-12">
+							<button type="submit" class="btn btn-primary btn-block">Iniciar sesi&oacute;n <i class="fas fa-sign-in-alt"></i></button>
 						</div>
 						<!-- /.col -->
 					</div>
@@ -76,12 +62,21 @@
 				<!-- /.social-auth-links -->
 			</div>
 			<!-- /.login-card-body -->
-				<div th:if="${param.error}" class="alert alert-danger" role="alert">
-					<label th:text="${error}"></label>
-				</div>
-				<div th:if="${param.logout}" class="alert alert-success"
-					role="alert"><label>Has cerrado sesi&oacute;n con &eacute;xito.</label>
-				</div>
+				<div class="row">
+				<div class="alert alert-danger alert-dismissible col-md-10 center" th:if="${param.error}">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h5><i class="icon fas fa-ban"></i> Error</h5>
+                  <a th:text="${error}"></a>
+                </div>
+                </div>
+				
+				<div class="row">
+				<div class="alert alert-success alert-dismissible col-md-10 center" th:if="${param.logout}">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h5><i class="icon fas fa-check"></i> &Eacute;xito</h5>
+                  <a>Se cerr&oacute; sesi&oacute;n correctamente</a>
+                </div>
+                </div>
 		</div>
 		
 	</div>
@@ -95,6 +90,8 @@
 	<script src="dist/js/adminlte.min.js"></script>
 	<!-- AdminLTE for demo purposes -->
 	<script src="dist/js/demo.js"></script>
-
+	<!-- Particles -->
+	<script src="dist/js/particles.min.js"></script>
+	<script src="dist/js/particlesConfig.js"></script>
 </body>
 </html>
