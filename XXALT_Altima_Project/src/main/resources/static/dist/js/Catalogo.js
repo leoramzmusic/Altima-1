@@ -1,3 +1,9 @@
+ 
+//Habilitar form de SweetAlert2
+$('#detalleMarcas').on('shown.bs.modal', function() {
+     $(document).off('focusin.modal');
+ });
+
 //Agregar Marca
 function agregarMarca() {
     Swal.fire({
@@ -128,6 +134,10 @@ function editarMarca() {
       }
     })
   }
+//Habilitar form de SweetAlert2
+  $('#detalleColores').on('shown.bs.modal', function() {
+       $(document).off('focusin.modal');
+   });
 //Agregar Color
   function agregarColor() {
     Swal.fire({
@@ -258,6 +268,10 @@ function editarMarca() {
       }
     })
   }
+//Habilitar form de SweetAlert2
+  $('#detalleTrazo').on('shown.bs.modal', function() {
+       $(document).off('focusin.modal');
+   });
   
   //Agregar Pieza de Trazo
   function agregarTrazo() {
@@ -389,6 +403,10 @@ function editarMarca() {
       }
     })
   }
+//Habilitar form de SweetAlert2
+  $('#detallePrenda').on('shown.bs.modal', function() {
+       $(document).off('focusin.modal');
+   });
   //Agregar Familia de prendas
   function agregarPrenda() {
     Swal.fire({
@@ -529,6 +547,10 @@ function editarMarca() {
       }
     })
   }
+//Habilitar form de SweetAlert2
+  $('#detalleGenero').on('shown.bs.modal', function() {
+       $(document).off('focusin.modal');
+   });
   //Agregar familia de genero
   function agregarGenero() {
     Swal.fire({
@@ -659,6 +681,10 @@ function editarMarca() {
       }
     })
   }
+//Habilitar form de SweetAlert2
+  $('#detalleMantenimiento').on('shown.bs.modal', function() {
+       $(document).off('focusin.modal');
+   });
   //Agregar composicion
   function agregarComposicion() {
     Swal.fire({

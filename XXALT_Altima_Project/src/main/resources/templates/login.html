@@ -63,7 +63,7 @@
 				<!-- /.social-auth-links -->
 			</div>
 			<!-- /.login-card-body -->
-				<div class="row">
+				<div class="row errorDiv">
 				<div class="alert alert-danger alert-dismissible col-md-10 center" th:if="${param.error}">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                   <h5><i class="icon fas fa-ban"></i> Error</h5>
@@ -71,7 +71,7 @@
                 </div>
                 </div>
 				
-				<div class="row">
+				<div class="row successDiv">
 				<div class="alert alert-success alert-dismissible col-md-10 center" th:if="${param.logout}">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                   <h5><i class="icon fas fa-check"></i> &Eacute;xito</h5>
@@ -94,5 +94,17 @@
 	<!-- Particles -->
 	<script src="dist/js/particles.min.js"></script>
 	<script src="dist/js/particlesConfig.js"></script>
+	<script>
+	$(document).ready(function() {
+	    setTimeout(function() {
+	        $(".errorDiv").fadeOut(1500);
+	    },3000);
+	    
+	    setTimeout(function() {
+	        $(".successDiv").fadeOut(1500);
+	    },3000);
+	 
+	});
+	</script>
 </body>
 </html>
