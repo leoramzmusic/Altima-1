@@ -49,11 +49,19 @@ public class CatalogoServiceImpl implements ICatalogoService {
 		return repository.findById(id).orElse(null);
 	}
 	
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
-	public List<DisenioLookup> findAllMarcas() {
-		return em.createNativeQuery("select * from alt_disenio_lookup where tipo_lookup='Marca'").getResultList();
+	public List<DisenioLookup> findAllMarca() {
+		return em.createQuery("from DisenioLookup where tipo_lookup='Marca'").getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<DisenioLookup> findAllColor() {
+		return em.createQuery("from DisenioLookup where tipo_lookup='Color'").getResultList();
 	}
 
 }
