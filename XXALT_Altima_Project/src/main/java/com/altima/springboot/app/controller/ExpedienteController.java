@@ -21,8 +21,4 @@ public class ExpedienteController {
 		return "detalle-expediente";
 	}
 	
-	@GetMapping("/expediente-produccion") 
-	public String produccionExpediente() {
-		return "expediente-produccion";
-	}
 }
