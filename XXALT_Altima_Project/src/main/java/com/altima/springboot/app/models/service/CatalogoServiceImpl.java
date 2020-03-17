@@ -2,6 +2,9 @@ package com.altima.springboot.app.models.service;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +15,9 @@ import com.altima.springboot.app.repository.CatalogoRepository;
 
 @Service
 public class CatalogoServiceImpl implements ICatalogoService {
+	@PersistenceContext
+	private EntityManager em;
+	
 	@Autowired
 	private CatalogoRepository repository;
 	@Override
@@ -41,6 +47,13 @@ public class CatalogoServiceImpl implements ICatalogoService {
 	public DisenioLookup findOne(Long id) {
 		// TODO Auto-generated method stub
 		return repository.findById(id).orElse(null);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<DisenioLookup> findAllMarcas() {
+		return em.createNativeQuery("select * from alt_disenio_lookup where tipo_lookup='Marca'").getResultList();
 	}
 
 }

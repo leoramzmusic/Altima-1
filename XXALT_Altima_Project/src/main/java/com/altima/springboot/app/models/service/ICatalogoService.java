@@ -14,4 +14,6 @@ public interface ICatalogoService {
 
 	DisenioLookup findOne(Long id);
 
+	List<DisenioLookup> findAllMarcas();
+
 }
