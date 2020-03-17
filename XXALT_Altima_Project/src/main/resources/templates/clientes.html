@@ -73,20 +73,21 @@
                                     <h3 class="card-title">Listado de clientes</h3>
                                 </div>
                                 <div class="card-body">
-                                    <table class="table tablexd table-striped">
+                                   <table class="table tablexd table-striped">
                                         <thead>
                                             <tr>
-                                                <th>No. pedido</th>
+                                                <th>No. Cliente</th>
                                                 <th>Cliente</th>
-                                                <th>Fecha de entrega</th>
+                                                <th>Teléfono</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>MAE123</td>
-                                                <td>Star Wars</td>
-                                                <td>05/01/2020</td>
-                                            </tr>
+                                            <tr th:each="cliente: ${clientes}">
+                                                <td><a th:href="@{/editar-cliente/}+ ${cliente.idCliente}" th:text="${cliente.CidText}"></a>  </td>
+                                                <td th:text="${cliente.Nombre}"></td>
+                                                <td th:text="${cliente.Telefono}"></td>
+                                                
+                                            </tr>     
                                         </tbody>
                                     </table>
                                 </div>
