@@ -2,183 +2,21 @@ function showMaterial(id) {
 	if (id == "selecciona") {
 		$("#telaForm").hide();
         $("#forroForm").hide();
-        $("#botonForm").hide();
-        $("#entretelaForm").hide();
-        $("#cierreForm").hide();
-        $("#accesorioForm").hide();
-        $("#resorteForm").hide();
-        $("#etiquetaForm").hide();
-        $("#guataForm").hide();
-        $("#brocheForm").hide();
-        $("#hebillaForm").hide();
-        $("#biesForm").hide();
+        $("#materialForm").hide();
        }
 	if (id == "tela") {
 		$("#telaForm").show();
         $("#forroForm").hide();
-        $("#botonForm").hide();
-        $("#entretelaForm").hide();
-        $("#cierreForm").hide();
-        $("#accesorioForm").hide();
-        $("#resorteForm").hide();
-        $("#etiquetaForm").hide();
-        $("#guataForm").hide();
-        $("#brocheForm").hide();
-        $("#hebillaForm").hide();
-        $("#biesForm").hide();
+        $("#materialForm").hide();
        }
 	if (id == "forro") {
 		$("#telaForm").hide();
         $("#forroForm").show();
-        $("#botonForm").hide();
-        $("#entretelaForm").hide();
-        $("#cierreForm").hide();
-        $("#accesorioForm").hide();
-        $("#resorteForm").hide();
-        $("#etiquetaForm").hide();
-        $("#guataForm").hide();
-        $("#brocheForm").hide();
-        $("#hebillaForm").hide();
-        $("#biesForm").hide();
+        $("#materialForm").hide();
        }
-	if (id == "boton") {
+	if (id == "material") {
 		$("#telaForm").hide();
         $("#forroForm").hide();
-        $("#botonForm").show();
-        $("#entretelaForm").hide();
-        $("#cierreForm").hide();
-        $("#accesorioForm").hide();
-        $("#resorteForm").hide();
-        $("#etiquetaForm").hide();
-        $("#guataForm").hide();
-        $("#brocheForm").hide();
-        $("#hebillaForm").hide();
-        $("#biesForm").hide();
-       }
-	if (id == "entretela") {
-		$("#telaForm").hide();
-        $("#forroForm").hide();
-        $("#botonForm").hide();
-        $("#entretelaForm").show();
-        $("#cierreForm").hide();
-        $("#accesorioForm").hide();
-        $("#resorteForm").hide();
-        $("#etiquetaForm").hide();
-        $("#guataForm").hide();
-        $("#brocheForm").hide();
-        $("#hebillaForm").hide();
-        $("#biesForm").hide();
-       }
-	if (id == "cierre") {
-		$("#telaForm").hide();
-        $("#forroForm").hide();
-        $("#botonForm").hide();
-        $("#entretelaForm").hide();
-        $("#cierreForm").show();
-        $("#accesorioForm").hide();
-        $("#resorteForm").hide();
-        $("#etiquetaForm").hide();
-        $("#guataForm").hide();
-        $("#brocheForm").hide();
-        $("#hebillaForm").hide();
-        $("#biesForm").hide();
-       }
-	if (id == "accesorio") {
-		$("#telaForm").hide();
-        $("#forroForm").hide();
-        $("#botonForm").hide();
-        $("#entretelaForm").hide();
-        $("#cierreForm").hide();
-        $("#accesorioForm").show();
-        $("#resorteForm").hide();
-        $("#etiquetaForm").hide();
-        $("#guataForm").hide();
-        $("#brocheForm").hide();
-        $("#hebillaForm").hide();
-        $("#biesForm").hide();
-       }
-	if (id == "resorte") {
-		$("#telaForm").hide();
-        $("#forroForm").hide();
-        $("#botonForm").hide();
-        $("#entretelaForm").hide();
-        $("#cierreForm").hide();
-        $("#accesorioForm").hide();
-        $("#resorteForm").show();
-        $("#etiquetaForm").hide();
-        $("#guataForm").hide();
-        $("#brocheForm").hide();
-        $("#hebillaForm").hide();
-        $("#biesForm").hide();
-       }
-	if (id == "etiqueta") {
-		$("#telaForm").hide();
-        $("#forroForm").hide();
-        $("#botonForm").hide();
-        $("#entretelaForm").hide();
-        $("#cierreForm").hide();
-        $("#accesorioForm").hide();
-        $("#resorteForm").hide();
-        $("#etiquetaForm").show();
-        $("#guataForm").hide();
-        $("#brocheForm").hide();
-        $("#hebillaForm").hide();
-        $("#biesForm").hide();
-       }
-	if (id == "guata") {
-		$("#telaForm").hide();
-        $("#forroForm").hide();
-        $("#botonForm").hide();
-        $("#entretelaForm").hide();
-        $("#cierreForm").hide();
-        $("#accesorioForm").hide();
-        $("#resorteForm").hide();
-        $("#etiquetaForm").hide();
-        $("#guataForm").show();
-        $("#brocheForm").hide();
-        $("#hebillaForm").hide();
-        $("#biesForm").hide();
-       }
-	if (id == "broche") {
-		$("#telaForm").hide();
-        $("#forroForm").hide();
-        $("#botonForm").hide();
-        $("#entretelaForm").hide();
-        $("#cierreForm").hide();
-        $("#accesorioForm").hide();
-        $("#resorteForm").hide();
-        $("#etiquetaForm").hide();
-        $("#guataForm").hide();
-        $("#brocheForm").show();
-        $("#hebillaForm").hide();
-        $("#biesForm").hide();
-       }
-	if (id == "hebilla") {
-		$("#telaForm").hide();
-        $("#forroForm").hide();
-        $("#botonForm").hide();
-        $("#entretelaForm").hide();
-        $("#cierreForm").hide();
-        $("#accesorioForm").hide();
-        $("#resorteForm").hide();
-        $("#etiquetaForm").hide();
-        $("#guataForm").hide();
-        $("#brocheForm").hide();
-        $("#hebillaForm").show();
-        $("#biesForm").hide();
-       }
-	if (id == "bies") {
-		$("#telaForm").hide();
-        $("#forroForm").hide();
-        $("#botonForm").hide();
-        $("#entretelaForm").hide();
-        $("#cierreForm").hide();
-        $("#accesorioForm").hide();
-        $("#resorteForm").hide();
-        $("#etiquetaForm").hide();
-        $("#guataForm").hide();
-        $("#brocheForm").hide();
-        $("#hebillaForm").hide();
-        $("#biesForm").show();
+        $("#materialForm").show();
        }
 }

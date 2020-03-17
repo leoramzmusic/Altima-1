@@ -1,0 +1,58 @@
+<form class="row" style="display: none;" id="materialForm">
+    <div class="form-group col-md-12">
+        <label for="status">Material a agregar</label>
+        <select class="form-control" id="materialTipo">
+            <option value="entretela">Entretela</option>
+            <option value="cierre">Cierre</option>
+            <option value="accesorio">Accesorio</option>
+            <option value="resorte">Resorte</option>
+            <option value="etiqueta">Etiqueta</option>
+            <option value="guata">Guata</option>
+            <option value="broche">Broche</option>
+            <option value="hebilla">Hebilla</option>
+            <option value="bies">Bies</option>
+        </select>
+    </div>
+    <div class="form-group col-sm-4">
+        <label>Descripci&oacute;n</label>
+        <input type="text" class="form-control" id="materialDescripcion" placeholder="material tela principal">
+    </div>
+    <div class="form-group col-sm-4">
+        <label>Unidad medida</label>
+        <input type="text" class="form-control" id="materialUnidad" placeholder="Pieza">
+    </div>
+    <div class="form-group col-sm-4">
+        <label>Modelo</label>
+        <input type="text" class="form-control" id="materialModelo" placeholder="Abrigo">
+    </div>
+    <div class="form-group col-sm-3">
+        <label>Clave proceso</label>
+        <select multiple class="form-control" id="materialProceso">
+            <option>Trazo</option>
+            <option>Confeccion</option>
+        </select>
+    </div>
+    <div class="form-group col-sm-3">
+        <label>Precio Unitario</label>
+        <input type="number" class="form-control" id="materialPrecio" placeholder="100.00">
+    </div>
+    <div class="form-group col-sm-3">
+        <label>Tama&ntilde;o</label>
+        <input type="number" class="form-control" id="materialTamano" placeholder="100">
+    </div>
+    <div class="form-group col-sm-3">
+        <label for="status">Marcas</label>
+        <select multiple class="form-control" id="materialMarcas">
+            <option>MAR01 Nike</option>
+            <option>MAR02 Adidas</option>
+            <option>MAR03 Joma</option>
+            <option>MAR04 I don't know</option>
+            <option>MAR05 Palomitas acmen</option>
+            <option>MAR06 Nike 2 xd</option>
+        </select>
+    </div>
+    <input type="hidden" class="form-control" id="materialEstatus" value="2">
+    <div class="form-group col-sm-12">
+        <button type="button" class="btn btn-primary next-step float-right">Agregar</button>
+    </div>
+</form>
