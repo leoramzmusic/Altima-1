@@ -36,9 +36,9 @@ public class JpaUserDetailsService implements UserDetailsService{
         Usuario usuario = repository.findBynombreUsuario(username);
         
         if(usuario == null) {
-        	x="Usuario no encontrado";
-        	logger.error("Usuario no encontrado");
-        	throw new UsernameNotFoundException("Usuario no encontrado");
+        	x="Error en el Login: no existe el usuario '" + username + "' en el sistema!";
+        	logger.error("Error en el Login: no existe el usuario '" + username + "' en el sistema!");
+        	throw new UsernameNotFoundException("Username: " + username + " no existe en el sistema!");
         }
         
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
@@ -48,14 +48,14 @@ public class JpaUserDetailsService implements UserDetailsService{
         	authorities.add(new SimpleGrantedAuthority(role.getNombreRol()));
         }
         if(usuario.getEstatus().equals("0")||usuario.getEstatus()==null) {
-        	x="Usuario desactivado";
-        	logger.error("Usuario desactivado");
-        	throw new UsernameNotFoundException("Usuario desactivado");
+        	x="Error el usuario:'" + username + "' esta desactivado!";
+        	logger.error("Error el usuario:'" + username + "' esta desactivado!");
+        	throw new UsernameNotFoundException("Error en el Login: usuario '" + username + "' desactivado!");
         }
         if(authorities.isEmpty()) {
-        	x="Acceso denegado";
-        	logger.error("Acceso denegado");
-        	throw new UsernameNotFoundException("Acceso denegado");
+        	x="Error en el Login: Usuario '" + username + "' no tiene roles asignados!";
+        	logger.error("Error en el Login: Usuario '" + username + "' no tiene roles asignados!");
+        	throw new UsernameNotFoundException("Error en el Login: usuario '" + username + "' no tiene roles asignados!");
         }
         x=null;
 		return new User(usuario.getNombreUsuario(), usuario.getContraseña(), authorities);
