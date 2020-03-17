@@ -25,7 +25,7 @@ public class LoginController {
 			System.out.println("++++++"+jpaUserDetailsService.getX()+"++++++");
 			if(jpaUserDetailsService.getX()==null) {
 				System.out.println("entra alv");
-				model.addAttribute("error","Usuario ó contraseña incorrectos");
+				model.addAttribute("error","El usuario o la contraseña son incorrectos");
 			}
 			else model.addAttribute("error", jpaUserDetailsService.getX());
 		}
