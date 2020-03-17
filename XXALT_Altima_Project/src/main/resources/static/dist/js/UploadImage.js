@@ -123,3 +123,67 @@ function uploadPreview(input) {
 	    uploadPreview($('#mainImage'));
 	  }
 	});
+	
+
+	//TELA IMAGEN
+	function uploadPreviewTela(input) {
+		  if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+
+		    reader.onload = function(e) {
+		      if (e.target.result.trim().length == 0) {
+		        $('#serviceImageTela').attr('src', 'http://catawbabrewing.com/wp-content/themes/catawba/images/placeholder.png');
+		      } else {
+		        $('#serviceImageTela').attr('src', e.target.result);
+		      }
+		    }
+
+		    reader.readAsDataURL(input.files[0]);
+		  }
+		}
+
+		function uploadPreviewExtTela(input) {
+		  if (input.trim().length == 0) {
+		    var previewSrc = '{{CSS_URL}}/images/placeholder.jpg';
+		  } else {
+		    var previewSrc = input;
+		  }
+
+		  $('#serviceImageTela').attr('src', previewSrc);
+		}
+
+		function resetUploadPreviewTela() {
+		  if (!$('#previousImageTela').val()) {
+		    $('#serviceImageTela').attr('src', 'http://catawbabrewing.com/wp-content/themes/catawba/images/placeholder.png');
+		  } else {
+		    $('#serviceImageTela').attr('src', '{{PROD_IMG}}/'.$('#previousImageTela').val());
+		  }
+		}
+
+		$("#mainImageTela").change(function() {
+		  uploadPreviewTela(this);
+		});
+
+		$('[name="mainImgExtTela"]').on('change', function() {
+		  uploadPreviewExtTela(this.value);
+		});
+
+		$('#clearUploadTela').on('click', function() {
+		  $('#mainImageTela').val('');
+
+		  if ($('#imgExtTela').val().trim().length == 0) {
+		    resetUploadPreviewTela();
+		  } else {
+		    uploadPreviewExtTela($('#imgExt').val());
+		  }
+		});
+
+		$('#clearUploadExtTela').on('click', function() {
+		  $('#imgExtTela').val('');
+
+		  if (!$('#mainImageTela').val()) {
+		    resetUploadPreviewTela();
+		  } else {
+		    uploadPreviewTela($('#mainImageTela'));
+		  }
+		});

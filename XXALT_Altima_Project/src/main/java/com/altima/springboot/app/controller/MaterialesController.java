@@ -15,5 +15,10 @@ public class MaterialesController {
 	public String infoMaterials() {
 		return "detalle-material";
 	}
+	
+	@GetMapping("agregar-material") 
+	public String addMaterials() {
+		return "agregar-material";
+	}
 
 }

@@ -1,0 +1,95 @@
+<form class="row" style="display: none;" id="telaForm">
+    <div class="form-group col-md-4">
+        <label for="status">Forro</label>
+        <select multiple class="form-control" id="telaForro">
+            <option value="selecciona">Selecciona uno...</option>
+            <option>FR001 Forro perron</option>
+            <option>FR002 Forro chido</option>
+            <option>FR003 Forro feo</option>
+            <option>FR004 Forro podrido</option>
+            <option>FR005 Podrido cafe de forro</option>
+            <option>FR006 Forro nice</option>
+            <option>FR007 Forro pa llorar</option>
+        </select>
+    </div>
+    <div class="form-group col-sm-4">
+        <label for="razonEmpresa">Composici&oacute;n</label>
+        <input type="text" class="form-control" id="telaComposicion" placeholder="100% algod&oacute;n">
+    </div>
+    <div class="form-group col-md-4">
+        <label for="status">Familia de composici&oacute;n</label>
+        <select multiple class="form-control" id="telaFamcomposicion">
+            <option value="selecciona">Selecciona uno...</option>
+            <option>COM01 100% Vegano</option>
+            <option>COM02 1% Maldad 99% Aire caliente</option>
+            <option>COM03 100% de lagrimas</option>
+            <option>COM04 99.9% bacterias </option>
+            <option>COM05 50% helado</option>
+            <option>COM06 100% todo se derrumbo dentro de mi</option>
+        </select>
+    </div>
+    <div class="form-group col-sm-4">
+        <label for="rfcEmpresa">Ancho(m)</label>
+        <input type="number" class="form-control" id="telaAncho" placeholder="1.2">
+    </div>
+    <div class="form-group col-sm-4">
+        <label for="direccionEmpresa">Consumo promedio(m)</label>
+        <input type="number" class="form-control" id="telaPromedio" placeholder="100.6">
+    </div>
+    <div class="form-group col-sm-4">
+        <label for="direccionExt">Existencia(m)</label>
+        <input type="number" class="form-control" id="telaStock" placeholder="63">
+    </div>
+    <div class="form-group col-sm-6">
+        <label for="status">Colores</label>
+        <select multiple class="form-control" id="telaColores">
+            <option value="selecciona">Selecciona uno...</option>
+            <option>COL01 Rojo</option>
+            <option>COL02 Negro</option>
+            <option>COL03 Blanco me sacas</option>
+            <option>COL04 Azul</option>
+            <option>COL05 Amarillo</option>
+            <option>COL06 Verde Morado</option>
+        </select>
+    </div>
+    <div class="form-group col-sm-6">
+        <label for="status">Marcas</label>
+        <select multiple class="form-control" id="telaMarcas">
+            <option value="selecciona">Selecciona uno...</option>
+            <option>MAR01 Nike</option>
+            <option>MAR02 Adidas</option>
+            <option>MAR03 Joma</option>
+            <option>MAR04 I don't know</option>
+            <option>MAR05 Palomitas acmen</option>
+            <option>MAR06 Nike 2 xd</option>
+        </select>
+    </div>
+    <div class="form-group col-sm-12">
+        <label for="coloniaEmpresa">Indicaciones</label>
+        <textarea class="form-control" id="telaIndicaciones" placeholder="Especificar" rows="3"></textarea>
+    </div>
+    <div class="col-sm-12">
+        <div class="form-group p-3 border p-2 rounded m-3">
+            <div class="row">
+                <div class="col-sm-3 text-center pt-2 border-right">
+                    <label for="mainImageTela"><img src="dist/img/preview.png" alt="Placeholder" id="serviceImageTela" class="placeholder img-thumbnail" aria-describedby="imagePreviewHelp" /></label>
+                    <small id="imagePreviewHelpTela" class="form-text text-muted">Previsualizaci&oacute;n de la imagen</small>
+                </div>
+                <div class="col">
+                    <label for="mainImageTela">Tela</label>
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control border p-1" id="mainImageTela" name="mainImage" />
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-danger text-danger pointer" id="clearUploadTela"><i class="fas fa-times"></i></span>
+                        </div>
+                    </div>
+                    <small id="imageHelpTela" class="form-text text-muted">Selecciona la foto que desea subir.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" class="form-control" id="telaEstatus" value="1">
+    <div class="form-group col-sm-12">
+        <button type="button" class="btn btn-primary next-step float-right">Agregar</button>
+    </div>
+</form>
