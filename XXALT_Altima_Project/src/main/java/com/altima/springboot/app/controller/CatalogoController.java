@@ -35,7 +35,7 @@ public class CatalogoController {
 
 	@RequestMapping(value = { "/catalogos", "/catalogos-marcas" }, method = RequestMethod.GET)
 	public String catalogo(Model model, RedirectAttributes flash) {
-		model.addAttribute("marcas", catalogo.findAllMarcas());
+		model.addAttribute("marcas", catalogo.findAllMarca());
 		return "/catalogos";
 	}
 
