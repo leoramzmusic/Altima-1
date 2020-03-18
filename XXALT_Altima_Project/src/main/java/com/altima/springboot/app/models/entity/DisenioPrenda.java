@@ -71,22 +71,6 @@ public class DisenioPrenda implements Serializable{
 	@NotBlank
 	private String notaEspecial;
 	
-	@Column(name="POLLOC")
-	@NotBlank
-	private String POLOC;
-	
-	@Column(name="otraLOC")
-	@NotBlank
-	private String otraLOC;
-	
-	@Column(name="polFor")
-	@NotBlank
-	private String polFor;
-	
-	@Column(name="otraFor")
-	@NotBlank
-	private String otraFor;
-	
 	@Column(name="detalle_confeccion")
 	@NotBlank
 	private String detalleConfeccion;
@@ -115,26 +99,30 @@ public class DisenioPrenda implements Serializable{
 	@NotBlank
 	private String dibujoEspalda;
 	
-	@Column(name="PoLocN")
+	@Column(name="precio_local_actual")
 	@NotBlank
-	private String poLocN;
+	private String precioLocalActual;
 	
-	@Column(name="otraLocN")
+	@Column(name="precio_local_anterior")
 	@NotBlank
-	private String otraLocN;
+	private String precioLocalAnterior;
 	
-	@Column(name="PolForN")
+	@Column(name="precio_foraneo_actual")
 	@NotBlank
-	private String polForN;
+	private String precioForaneoActual;
 	
-	@Column(name="otraForN")
+	@Column(name="precio_foraneo_anterior")
 	@NotBlank
-	private String otraForN;
+	private String precioForaneoAnterior;
 	
-	@Column(name="CveRuta")
+	@Column(name="cve_ruta")
 	@NotBlank
 	private String cveRuta;
 	
+	@Column(name="cve_prenda")
+	@NotBlank
+	private String cvePrenda;
+
 	@Column(name="tipo_largo")
 	@NotBlank
 	private String tipoLargo;
@@ -196,7 +184,13 @@ public class DisenioPrenda implements Serializable{
 	private Long idLookup3;
 	
 	
+	public String getCvePrenda() {
+		return cvePrenda;
+	}
 
+	public void setCvePrenda(String cvePrenda) {
+		this.cvePrenda = cvePrenda;
+	}
 	public Long getIdFamiliaPrenda() {
 		return idFamiliaPrenda;
 	}
@@ -293,38 +287,6 @@ public class DisenioPrenda implements Serializable{
 		this.notaEspecial = notaEspecial;
 	}
 
-	public String getPOLOC() {
-		return POLOC;
-	}
-
-	public void setPOLOC(String pOLOC) {
-		POLOC = pOLOC;
-	}
-
-	public String getOtraLOC() {
-		return otraLOC;
-	}
-
-	public void setOtraLOC(String otraLOC) {
-		this.otraLOC = otraLOC;
-	}
-
-	public String getPolFor() {
-		return polFor;
-	}
-
-	public void setPolFor(String polFor) {
-		this.polFor = polFor;
-	}
-
-	public String getOtraFor() {
-		return otraFor;
-	}
-
-	public void setOtraFor(String otraFor) {
-		this.otraFor = otraFor;
-	}
-
 	public String getDetalleConfeccion() {
 		return detalleConfeccion;
 	}
@@ -379,38 +341,6 @@ public class DisenioPrenda implements Serializable{
 
 	public void setDibujoEspalda(String dibujoEspalda) {
 		this.dibujoEspalda = dibujoEspalda;
-	}
-
-	public String getPoLocN() {
-		return poLocN;
-	}
-
-	public void setPoLocN(String poLocN) {
-		this.poLocN = poLocN;
-	}
-
-	public String getOtraLocN() {
-		return otraLocN;
-	}
-
-	public void setOtraLocN(String otraLocN) {
-		this.otraLocN = otraLocN;
-	}
-
-	public String getPolForN() {
-		return polForN;
-	}
-
-	public void setPolForN(String polForN) {
-		this.polForN = polForN;
-	}
-
-	public String getOtraForN() {
-		return otraForN;
-	}
-
-	public void setOtraForN(String otraForN) {
-		this.otraForN = otraForN;
 	}
 
 	public String getCveRuta() {
@@ -545,18 +475,49 @@ public class DisenioPrenda implements Serializable{
 		return serialVersionUID;
 	}
 
+	public String getPrecioLocalActual() {
+		return precioLocalActual;
+	}
+
+	public void setPrecioLocalActual(String precioLocalActual) {
+		this.precioLocalActual = precioLocalActual;
+	}
+
+	public String getPrecioLocalAnterior() {
+		return precioLocalAnterior;
+	}
+
+	public void setPrecioLocalAnterior(String precioLocalAnterior) {
+		this.precioLocalAnterior = precioLocalAnterior;
+	}
+
+	public String getPrecioForaneoActual() {
+		return precioForaneoActual;
+	}
+
+	public void setPrecioForaneoActual(String precioForaneoActual) {
+		this.precioForaneoActual = precioForaneoActual;
+	}
+
+	public String getPrecioForaneoAnterior() {
+		return precioForaneoAnterior;
+	}
+
+	public void setPrecioForaneoAnterior(String precioForaneoAnterior) {
+		this.precioForaneoAnterior = precioForaneoAnterior;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		
-		result = prime * result + ((POLOC == null) ? 0 : POLOC.hashCode());
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
 		result = prime * result + ((categoria == null) ? 0 : categoria.hashCode());
 		result = prime * result + ((combinacion == null) ? 0 : combinacion.hashCode());
 		result = prime * result + ((consumoForro == null) ? 0 : consumoForro.hashCode());
 		result = prime * result + ((consumoTela == null) ? 0 : consumoTela.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
+		result = prime * result + ((cvePrenda == null) ? 0 : cvePrenda.hashCode());
 		result = prime * result + ((cveRuta == null) ? 0 : cveRuta.hashCode());
 		result = prime * result + ((descripcionPrenda == null) ? 0 : descripcionPrenda.hashCode());
 		result = prime * result + ((detalleConfeccion == null) ? 0 : detalleConfeccion.hashCode());
@@ -567,6 +528,7 @@ public class DisenioPrenda implements Serializable{
 		result = prime * result + ((especificacion == null) ? 0 : especificacion.hashCode());
 		result = prime * result + ((estatusRecepcionMuestra == null) ? 0 : estatusRecepcionMuestra.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
+		result = prime * result + ((idFamiliaPrenda == null) ? 0 : idFamiliaPrenda.hashCode());
 		result = prime * result + ((idLookup == null) ? 0 : idLookup.hashCode());
 		result = prime * result + ((idLookup2 == null) ? 0 : idLookup2.hashCode());
 		result = prime * result + ((idLookup3 == null) ? 0 : idLookup3.hashCode());
@@ -578,14 +540,11 @@ public class DisenioPrenda implements Serializable{
 		result = prime * result + ((mostrar == null) ? 0 : mostrar.hashCode());
 		result = prime * result + ((notaEspecial == null) ? 0 : notaEspecial.hashCode());
 		result = prime * result + ((numeroPrenda == null) ? 0 : numeroPrenda.hashCode());
-		result = prime * result + ((otraFor == null) ? 0 : otraFor.hashCode());
-		result = prime * result + ((otraForN == null) ? 0 : otraForN.hashCode());
-		result = prime * result + ((otraLOC == null) ? 0 : otraLOC.hashCode());
-		result = prime * result + ((otraLocN == null) ? 0 : otraLocN.hashCode());
-		result = prime * result + ((poLocN == null) ? 0 : poLocN.hashCode());
-		result = prime * result + ((polFor == null) ? 0 : polFor.hashCode());
-		result = prime * result + ((polForN == null) ? 0 : polForN.hashCode());
 		result = prime * result + ((precio == null) ? 0 : precio.hashCode());
+		result = prime * result + ((precioForaneoActual == null) ? 0 : precioForaneoActual.hashCode());
+		result = prime * result + ((precioForaneoAnterior == null) ? 0 : precioForaneoAnterior.hashCode());
+		result = prime * result + ((precioLocalActual == null) ? 0 : precioLocalActual.hashCode());
+		result = prime * result + ((precioLocalAnterior == null) ? 0 : precioLocalAnterior.hashCode());
 		result = prime * result + ((precioMmuestra == null) ? 0 : precioMmuestra.hashCode());
 		result = prime * result + ((precioMprod == null) ? 0 : precioMprod.hashCode());
 		result = prime * result + ((tipoLargo == null) ? 0 : tipoLargo.hashCode());
@@ -604,11 +563,6 @@ public class DisenioPrenda implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		DisenioPrenda other = (DisenioPrenda) obj;
-		if (POLOC == null) {
-			if (other.POLOC != null)
-				return false;
-		} else if (!POLOC.equals(other.POLOC))
-			return false;
 		if (actualizadoPor == null) {
 			if (other.actualizadoPor != null)
 				return false;
@@ -638,6 +592,11 @@ public class DisenioPrenda implements Serializable{
 			if (other.creadoPor != null)
 				return false;
 		} else if (!creadoPor.equals(other.creadoPor))
+			return false;
+		if (cvePrenda == null) {
+			if (other.cvePrenda != null)
+				return false;
+		} else if (!cvePrenda.equals(other.cvePrenda))
 			return false;
 		if (cveRuta == null) {
 			if (other.cveRuta != null)
@@ -688,6 +647,11 @@ public class DisenioPrenda implements Serializable{
 			if (other.fechaCreacion != null)
 				return false;
 		} else if (!fechaCreacion.equals(other.fechaCreacion))
+			return false;
+		if (idFamiliaPrenda == null) {
+			if (other.idFamiliaPrenda != null)
+				return false;
+		} else if (!idFamiliaPrenda.equals(other.idFamiliaPrenda))
 			return false;
 		if (idLookup == null) {
 			if (other.idLookup != null)
@@ -744,45 +708,30 @@ public class DisenioPrenda implements Serializable{
 				return false;
 		} else if (!numeroPrenda.equals(other.numeroPrenda))
 			return false;
-		if (otraFor == null) {
-			if (other.otraFor != null)
-				return false;
-		} else if (!otraFor.equals(other.otraFor))
-			return false;
-		if (otraForN == null) {
-			if (other.otraForN != null)
-				return false;
-		} else if (!otraForN.equals(other.otraForN))
-			return false;
-		if (otraLOC == null) {
-			if (other.otraLOC != null)
-				return false;
-		} else if (!otraLOC.equals(other.otraLOC))
-			return false;
-		if (otraLocN == null) {
-			if (other.otraLocN != null)
-				return false;
-		} else if (!otraLocN.equals(other.otraLocN))
-			return false;
-		if (poLocN == null) {
-			if (other.poLocN != null)
-				return false;
-		} else if (!poLocN.equals(other.poLocN))
-			return false;
-		if (polFor == null) {
-			if (other.polFor != null)
-				return false;
-		} else if (!polFor.equals(other.polFor))
-			return false;
-		if (polForN == null) {
-			if (other.polForN != null)
-				return false;
-		} else if (!polForN.equals(other.polForN))
-			return false;
 		if (precio == null) {
 			if (other.precio != null)
 				return false;
 		} else if (!precio.equals(other.precio))
+			return false;
+		if (precioForaneoActual == null) {
+			if (other.precioForaneoActual != null)
+				return false;
+		} else if (!precioForaneoActual.equals(other.precioForaneoActual))
+			return false;
+		if (precioForaneoAnterior == null) {
+			if (other.precioForaneoAnterior != null)
+				return false;
+		} else if (!precioForaneoAnterior.equals(other.precioForaneoAnterior))
+			return false;
+		if (precioLocalActual == null) {
+			if (other.precioLocalActual != null)
+				return false;
+		} else if (!precioLocalActual.equals(other.precioLocalActual))
+			return false;
+		if (precioLocalAnterior == null) {
+			if (other.precioLocalAnterior != null)
+				return false;
+		} else if (!precioLocalAnterior.equals(other.precioLocalAnterior))
 			return false;
 		if (precioMmuestra == null) {
 			if (other.precioMmuestra != null)
@@ -816,5 +765,7 @@ public class DisenioPrenda implements Serializable{
 			return false;
 		return true;
 	}
+
+
 }
 
