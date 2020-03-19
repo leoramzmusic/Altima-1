@@ -48,6 +48,12 @@ public class ComercialCliente implements Serializable {
 	@DateTimeFormat(pattern="yyyy-mm-dd")
 	private Date CultimaFechaModificacion;
 	
+	@Column(name="apellido_paterno")
+	private String ApellidoPaterno;
+	
+	@Column(name="apellido_materno")
+	private String ApellidoMaterno;
+	
 	@Column(name="nombre")
 	private String Nombre;
 	
@@ -69,6 +75,9 @@ public class ComercialCliente implements Serializable {
 	@Column(name="observacion")
 	@NotBlank
 	private String Observacion;
+	
+	@Column(name="tipo_cliente")
+	private String TipoCliente;
 	
 	@Column(name="id_direccion")
 	private Long IdDireccion;
@@ -190,9 +199,36 @@ public class ComercialCliente implements Serializable {
 	}
 	
 	
+	public String getApellidoPaterno() {
+		return ApellidoPaterno;
+	}
+
+	public void setApellidoPaterno(String apellidoPaterno) {
+		ApellidoPaterno = apellidoPaterno;
+	}
+
+	
+
+	public String getApellidoMaterno() {
+		return ApellidoMaterno;
+	}
+
+	public void setApellidoMaterno(String apellidoMaterno) {
+		ApellidoMaterno = apellidoMaterno;
+	}
+
+	public String getTipoCliente() {
+		return TipoCliente;
+	}
+
+	public void setTipoCliente(String tipoCliente) {
+		TipoCliente = tipoCliente;
+	}
+
 	@PrePersist
 	public void prePersist() {
 		CfechaCreacion=new Date();  
 	}
+
 	
 }
