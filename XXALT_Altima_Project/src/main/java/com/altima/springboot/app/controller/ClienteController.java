@@ -38,6 +38,7 @@ public class ClienteController {
 		HrDireccion  direccion = new HrDireccion ();
 		model.put("cliente",cliente);
 		model.put("direccion", direccion);
+		model.put("subtitulo", "Nuevo Cliente");
 		return "agregar-cliente";
 	}
 	
@@ -81,7 +82,7 @@ public class ClienteController {
 		model.put("cliente",cliente);
 		model.put("direccion", direccion);
 		model.put("estatus", Integer.parseInt(cliente.getTipoCliente()) );
-		
+		model.put("subtitulo", "Editar Cliente");
 		return"agregar-cliente";   
 	}
 	
