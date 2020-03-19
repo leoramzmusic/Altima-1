@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Rutas | Altima</title>
+    <title>Solicitudes | Altima</title>
     <link rel="icon" type="image/png" sizes="32x32" href="dist/img/favicon.ico">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,13 +19,6 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
-    <!-- Datatables Plugin-->
-    <link rel="stylesheet" href="dist/css/jquery.dataTables.min.css">
-    <!-- Datatables Plugin-->
-    <link rel="stylesheet" href="dist/css/dataTables.bootstrap4.min.css">
-    <!-- Select2 -->
-    <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
-    <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
     <!-- select2 -->
   	<link href="dist/css/select2.min.css" rel="stylesheet" />
 	<!-- select2-bootstrap4-theme -->
@@ -52,61 +45,19 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Rutas <button data-target="#agregarRuta" class="bt btn-primary popoverxd" data-container="body" data-toggle="modal" data-placement="right" data-content="Agregar" style="border-radius: 100%;"><i class="fas fa-plus fa-sm"></i></button></h1>
-                        	<div th:insert="modal-ruta"></div>
+                            <h1>Solicitudes <a th:href="${'generar-solicitud'}"><button class="bt btn-primary popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Agregar" style="border-radius: 100%;"><i class="fas fa-plus fa-sm"></i></button></a></h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
                                 <li class="breadcrumb-item active">Dise&ntilde;o</li>
-                                <li class="breadcrumb-item active">Rutas</li>
+                                <li class="breadcrumb-item active">Solicitudes</li>
                             </ol>
                         </div>
                     </div>
                 </div>
                 <!-- /.container-fluid -->
             </section>
-
-            <!-- Main content -->
-            <section class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12">
-                            <!-- Default box -->
-                            <div class="card">
-                                <div class="card-header bg-dark">
-                                    <h3 class="card-title">Listado de rutas</h3>
-                                </div>
-                                <div class="card-body">
-                                    <table class="table tablexd table-striped table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th>Clave</th>
-                                                <th>Nombre</th>
-                                                <th>Descripci&oacute;n</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>WERWEFWE</td>
-                                                <td>MAE123</td>
-                                                <td>SDASDA21</td>
-                                                <td class="tdcenter">
-                                                    <a data-target="#agregarRuta" data-toggle="modal" class="btn btn-warning popoverxd" data-container="body" data-placement="top" data-content="Editar" style="border-radius: 35%;"><i class="fas fa-pen fa-sm"></i></a>&nbsp;
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- /.card-body -->
-                            </div>
-                            <!-- /.card -->
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
 
@@ -122,33 +73,7 @@
     <script src="dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
-    <!-- Select2 -->
-    <script src="plugins/select2/js/select2.full.min.js"></script>
-    <!-- SweetAlert -->
-    <script src="dist/js/sweetalert.js"></script>
-    <!-- Funcionalidad-->
-    <script src="dist/js/Muestras.js"></script>
-    <!-- Datatables Plugin-->
-    <script src="dist/js/jquery.dataTables.min.js"></script>
-    <script src="dist/js/dataTables.buttons.min.js"></script>
-    <script src="dist/js/buttons.colVis.min.js"></script>
-    <!-- Bootstrap Datatables Plugin-->
-    <script src="dist/js/dataTables.bootstrap4.min.js"></script>
-    <!-- select2 -->
-	<script src="dist/js/select2.min.js"></script>
-	<script>
-	$(function () {
-		  $('select').each(function () {
-		    $(this).select2({
-		      theme: 'bootstrap4',
-		      width: 'style',
-		      placeholder: $(this).attr('placeholder'),
-		      allowClear: Boolean($(this).data('allow-clear')),
-		    });
-		  });
-		});
-	</script>
-    <!-- Popover-->
+     <!-- Popover-->
     <script>
         $(function() {
             $('.popoverxd').popover({
@@ -156,48 +81,6 @@
                 trigger: 'hover'
             })
         })
-    </script>
-    <!-- Script de la tabla -->
-    <script>
-        $(document).ready(function() {
-            $('table.tablexd').DataTable({
-                "ordering": false,
-                "pageLength": 5,
-                "lengthMenu": [
-                    [5, 10, 25, 50, 100],
-                    [5, 10, 25, 50, 100]
-                ],
-                "language": {
-                    "sProcessing": "Procesando...",
-                    "sLengthMenu": "Mostrar _MENU_ registros",
-                    "sZeroRecords": "No se encontraron resultados",
-                    "sEmptyTable": "Ningún dato disponible en esta tabla =(",
-                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                    "sInfoPostFix": "",
-                    "sSearch": "Buscar:",
-                    "sUrl": "",
-                    "sInfoThousands": ",",
-                    "sLoadingRecords": "Cargando...",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                    },
-                    "buttons": {
-                        "copy": "Copiar",
-                        "colvis": "Visibilidad"
-                    }
-                }
-            });
-
-        });
     </script>
     <script>
 		function changeClassById() {

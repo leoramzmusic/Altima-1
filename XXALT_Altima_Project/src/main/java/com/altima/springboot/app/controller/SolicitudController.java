@@ -10,5 +10,10 @@ public class SolicitudController {
 	public String listForms() {
 		return "solicitudes";
 	}
+	
+	@GetMapping("/generar-solicitud") 
+	public String generateForms() {
+		return "generar-solicitud";
+	}
 
 }
