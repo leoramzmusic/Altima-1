@@ -5,13 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.altima.springboot.app.models.entity.ComercialCliente;
-import com.altima.springboot.app.repository.ComercialClienteRepositoty;
+import com.altima.springboot.app.repository.ComercialClienteRepository;
 
 @Service
 public class ComercialClienteServiceImpl  implements IComercialClienteService{
 	
 	@Autowired
-	private ComercialClienteRepositoty repository;
+	private ComercialClienteRepository repository;
 	@Override
 	@Transactional(readOnly=true)
 	public List<ComercialCliente> findAll() {
