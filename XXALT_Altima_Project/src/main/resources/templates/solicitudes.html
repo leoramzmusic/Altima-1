@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Agregar Expediente | Altima</title>
+    <title>Rutas | Altima</title>
     <link rel="icon" type="image/png" sizes="32x32" href="dist/img/favicon.ico">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,6 +23,9 @@
     <link rel="stylesheet" href="dist/css/jquery.dataTables.min.css">
     <!-- Datatables Plugin-->
     <link rel="stylesheet" href="dist/css/dataTables.bootstrap4.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
     <!-- select2 -->
   	<link href="dist/css/select2.min.css" rel="stylesheet" />
 	<!-- select2-bootstrap4-theme -->
@@ -29,6 +33,7 @@
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
+
 <body class="hold-transition sidebar-mini layout-fixed">
     <!-- Site wrapper -->
     <div class="wrapper">
@@ -47,18 +52,21 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Expediente</h1>
+                            <h1>Rutas <button data-target="#agregarRuta" class="bt btn-primary popoverxd" data-container="body" data-toggle="modal" data-placement="right" data-content="Agregar" style="border-radius: 100%;"><i class="fas fa-plus fa-sm"></i></button></h1>
+                        	<div th:insert="modal-ruta"></div>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Expediente</li>
+                                <li class="breadcrumb-item active">Dise&ntilde;o</li>
+                                <li class="breadcrumb-item active">Rutas</li>
                             </ol>
                         </div>
                     </div>
                 </div>
                 <!-- /.container-fluid -->
             </section>
+
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
@@ -67,10 +75,29 @@
                             <!-- Default box -->
                             <div class="card">
                                 <div class="card-header bg-dark">
-                                    <h3 class="card-title">Nuevo expediente</h3>
+                                    <h3 class="card-title">Listado de rutas</h3>
                                 </div>
                                 <div class="card-body">
-	                              	
+                                    <table class="table tablexd table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Clave</th>
+                                                <th>Nombre</th>
+                                                <th>Descripci&oacute;n</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>WERWEFWE</td>
+                                                <td>MAE123</td>
+                                                <td>SDASDA21</td>
+                                                <td class="tdcenter">
+                                                    <a data-target="#agregarRuta" data-toggle="modal" class="btn btn-warning popoverxd" data-container="body" data-placement="top" data-content="Editar" style="border-radius: 35%;"><i class="fas fa-pen fa-sm"></i></a>&nbsp;
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                                 <!-- /.card-body -->
                             </div>
@@ -82,9 +109,11 @@
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
+
         <div th:insert="navegacion-footer"></div>
     </div>
     <!-- ./wrapper -->
+
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
@@ -93,8 +122,8 @@
     <script src="dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
-    <!-- select2 -->
-	<script src="dist/js/select2.min.js"></script>
+    <!-- Select2 -->
+    <script src="plugins/select2/js/select2.full.min.js"></script>
     <!-- SweetAlert -->
     <script src="dist/js/sweetalert.js"></script>
     <!-- Funcionalidad-->
@@ -105,17 +134,19 @@
     <script src="dist/js/buttons.colVis.min.js"></script>
     <!-- Bootstrap Datatables Plugin-->
     <script src="dist/js/dataTables.bootstrap4.min.js"></script>
-    <script>
-		$(function () {
-			  $('select').each(function () {
-			    $(this).select2({
-			      theme: 'bootstrap4',
-			      width: 'style',
-			      placeholder: $(this).attr('placeholder'),
-			      allowClear: Boolean($(this).data('allow-clear')),
-			    });
-			  });
-			});
+    <!-- select2 -->
+	<script src="dist/js/select2.min.js"></script>
+	<script>
+	$(function () {
+		  $('select').each(function () {
+		    $(this).select2({
+		      theme: 'bootstrap4',
+		      width: 'style',
+		      placeholder: $(this).attr('placeholder'),
+		      allowClear: Boolean($(this).data('allow-clear')),
+		    });
+		  });
+		});
 	</script>
     <!-- Popover-->
     <script>
@@ -168,5 +199,14 @@
 
         });
     </script>
+    <script>
+		function changeClassById() {
+			document.getElementById("menuDiseno").className = "nav-item has-treeview menu-open";
+			document.getElementById("navDiseno").className = "nav-link active";
+			document.getElementById("navDiseno4").className = "nav-link active";
+		}
+		window.onload = changeClassById();
+	</script>
 </body>
+
 </html>
