@@ -28,10 +28,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/dist/**", "/css/**", "/js/**", "/plugins/**", "/images/**", "/listar","/guardarcatalogo/**","/catalogos", "/catalogos-marcas","/editarcatalogo/**").permitAll()
+		http.authorizeRequests().antMatchers("/dist/**", "/css/**", "/js/**", "/plugins/**", "/images/**", "/listar").permitAll()
 		/*.antMatchers("/ver/**").hasAnyRole("USER")*/
-		/*.antMatchers("/uploads/**").hasAnyRole("USER")*/
-		/*.antMatchers("/form/**").hasAnyRole("ADMIN")*/
+		.antMatchers("/guardarcatalogo/**","/catalogos", "/catalogos-marcas","/editarcatalogo/**","/prendas/**").hasAnyRole("DISENIO","ADMIN")
 		/*.antMatchers("/eliminar/**").hasAnyRole("ADMIN")*/
 		/*.antMatchers("/factura/**").hasAnyRole("ADMIN")*/
 		.anyRequest().authenticated()
@@ -41,10 +40,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 		        .loginPage("/login")
 		    .permitAll()
 		.and()
-		.logout().permitAll()
-		.and()
-		.exceptionHandling().accessDeniedPage("/error_403");
-
+		.logout().permitAll();
 	}
 
 	@Autowired

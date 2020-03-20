@@ -44,8 +44,8 @@ public class JpaUserDetailsService implements UserDetailsService{
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
         
         for(Rol role: usuario.getRoles()) {
-        	logger.info("Role: ".concat(role.getNombreRol()));
-        	authorities.add(new SimpleGrantedAuthority(role.getNombreRol()));
+        	logger.info("Role: ".concat(role.getDescripcionRol()));
+        	authorities.add(new SimpleGrantedAuthority(role.getDescripcionRol()));
         }
         if(usuario.getEstatus().equals("0")||usuario.getEstatus()==null) {
         	x="Usuario no activo";
@@ -65,23 +65,5 @@ public class JpaUserDetailsService implements UserDetailsService{
 		
 		return x;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

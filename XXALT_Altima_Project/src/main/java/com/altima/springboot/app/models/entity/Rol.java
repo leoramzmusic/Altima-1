@@ -34,6 +34,10 @@ public class Rol implements Serializable {
 	@NotBlank
 	private String idText;
 	
+	@Column(name="descripcion_rol")
+	@NotBlank
+	private String descripcionRol;
+	
 	@Column(name="nombre_rol")
 	@NotBlank
 	private String nombreRol;
@@ -58,7 +62,13 @@ public class Rol implements Serializable {
 	@NotBlank
 	private String ultimaFechaModificacion;
 
-	
+	public String getDescripcionRol() {
+		return descripcionRol;
+	}
+
+	public void setDescripcionRol(String descripcionRol) {
+		this.descripcionRol = descripcionRol;
+	}
 
 	public String getIdUsuario() {
 		return idUsuario;
