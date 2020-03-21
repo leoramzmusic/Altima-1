@@ -926,22 +926,12 @@ swal(
   // Agregar composicion
   function agregarCuidado() {
     Swal.fire({
-        title: 'Agregar composici&oacute;n',
+        title: 'Agregar instrucci&oacute;n de cuidado',
         html:'<div class="row">'+
         '<div class="form-group col-sm-12">'+
-          '<label>Nombre de la composici&oacute;n</label>'+
-          '<input type="text" class="form-control" id="composicionAgregar" placeholder="Algod&oacute;n">'+
+          '<label>Nombre de la instrucci&oacute;n</label>'+
+          '<input type="text" class="form-control" id="instruccionAgregar" placeholder="Lavar en seco">'+
         '</div>'+
-        '<div class="form-group col-sm-12">'+
-	       '<label for="composicionCuidado">Instrucciones de cuidado</label>'+
-	       '<select class="form-control" id="composicionCuidado">'+
-        	 '<option>1</option>'+
-	         '<option>2</option>'+
-	         '<option>3</option>'+
-	         '<option>4</option>'+
-	         '<option>5</option>'+
-	       '</select>'+
-	    '</div>'+
         '</div>',
         inputAttributes: {
           autocapitalize: 'off'
@@ -979,22 +969,12 @@ swal(
 // Editar composicion
   function editarCuidado() {
       Swal.fire({
-          title: 'Editar composici&oacute;n',
+          title: 'Editar instrucci&oacute;n de cuidado',
           html:'<div class="row">'+
           '<div class="form-group col-sm-12">'+
-            '<label>Nombre de la composici&oacute;n</label>'+
-            '<input type="text" class="form-control" id="composicionEditar" placeholder="Algod&oacute;n">'+
+            '<label>Nombre de la instrucci&oacute;n</label>'+
+            '<input type="text" class="form-control" id="instruccionEditar" placeholder="Lavar en seco">'+
           '</div>'+
-          '<div class="form-group col-sm-12">'+
-	       '<label for="composicionCuidado">Instrucciones de cuidado</label>'+
-	       '<select class="form-control" id="composicionCuidado">'+
-       	 '<option>1</option>'+
-	         '<option>2</option>'+
-	         '<option>3</option>'+
-	         '<option>4</option>'+
-	         '<option>5</option>'+
-	       '</select>'+
-	    '</div>'+
        '</div>',
           inputAttributes: {
             autocapitalize: 'off'
@@ -1032,7 +1012,7 @@ swal(
   // Dar de baja composicion
   function bajarCuidado(){
     Swal.fire({
-      title: '¿Deseas dar de baja la composici&oacute;n?',
+      title: '¿Deseas dar de baja la instrucci&oacute;n de cuidado?',
       icon: 'warning',
       showCancelButton: true,
       cancelButtonColor: '#6C757D',
@@ -1054,7 +1034,7 @@ swal(
   // Reactivar composicion
   function reactivarCuidado(){
     Swal.fire({
-      title: '¿Deseas reactivar la composici&oacute;n?',
+      title: '¿Deseas reactivar la instrucci&oacute;n de cuidado?',
       icon: 'warning',
       showCancelButton: true,
       cancelButtonColor: '#6C757D',
