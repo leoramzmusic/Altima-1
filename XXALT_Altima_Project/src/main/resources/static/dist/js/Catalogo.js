@@ -778,6 +778,16 @@ swal(
           '<label>Nombre de la composici&oacute;n</label>'+
           '<input type="text" class="form-control" id="composicionAgregar" placeholder="Algod&oacute;n">'+
         '</div>'+
+        '<div class="form-group col-sm-12">'+
+	       '<label for="composicionCuidado">Instrucciones de cuidado</label>'+
+	       '<select class="form-control" id="composicionCuidado">'+
+        	 '<option>1</option>'+
+	         '<option>2</option>'+
+	         '<option>3</option>'+
+	         '<option>4</option>'+
+	         '<option>5</option>'+
+	       '</select>'+
+	    '</div>'+
         '</div>',
         inputAttributes: {
           autocapitalize: 'off'
@@ -821,7 +831,17 @@ swal(
             '<label>Nombre de la composici&oacute;n</label>'+
             '<input type="text" class="form-control" id="composicionEditar" placeholder="Algod&oacute;n">'+
           '</div>'+
-          '</div>',
+          '<div class="form-group col-sm-12">'+
+	       '<label for="composicionCuidado">Instrucciones de cuidado</label>'+
+	       '<select class="form-control" id="composicionCuidado">'+
+       	 '<option>1</option>'+
+	         '<option>2</option>'+
+	         '<option>3</option>'+
+	         '<option>4</option>'+
+	         '<option>5</option>'+
+	       '</select>'+
+	    '</div>'+
+       '</div>',
           inputAttributes: {
             autocapitalize: 'off'
           },
@@ -887,6 +907,160 @@ swal(
       cancelButtonText: 'Cancelar',
       confirmButtonText: 'Activar',
       confirmButtonColor:'#FFC107',
+    }).then((result) => {
+      if (result.value) {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Reactivada correctamente',
+          showConfirmButton: false,
+          timer: 1250
+        })
+      }
+    })
+  }
+//Habilitar form de SweetAlert2
+  $('#detalleCuidado').on('shown.bs.modal', function() {
+       $(document).off('focusin.modal');
+   });
+  // Agregar composicion
+  function agregarCuidado() {
+    Swal.fire({
+        title: 'Agregar composici&oacute;n',
+        html:'<div class="row">'+
+        '<div class="form-group col-sm-12">'+
+          '<label>Nombre de la composici&oacute;n</label>'+
+          '<input type="text" class="form-control" id="composicionAgregar" placeholder="Algod&oacute;n">'+
+        '</div>'+
+        '<div class="form-group col-sm-12">'+
+	       '<label for="composicionCuidado">Instrucciones de cuidado</label>'+
+	       '<select class="form-control" id="composicionCuidado">'+
+        	 '<option>1</option>'+
+	         '<option>2</option>'+
+	         '<option>3</option>'+
+	         '<option>4</option>'+
+	         '<option>5</option>'+
+	       '</select>'+
+	    '</div>'+
+        '</div>',
+        inputAttributes: {
+          autocapitalize: 'off'
+        },
+        showCancelButton: true,
+        cancelButtonColor: '#6C757D',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Agregar',
+        confirmButtonColor:'#343A40',
+        showLoaderOnConfirm: true,
+        preConfirm: (login) => {
+          return fetch(`//api.github.com/users/${login}`)
+            .then(response => {
+              if (!response.ok) {
+                throw new Error(response.statusText)
+              }
+              return response.json()
+            })
+            .catch(error => {
+              Swal.showValidationMessage(
+                `Error: ${error}`
+              )
+            })
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+      }).then((result) => {
+        if (result.value) {
+          Swal.fire({
+            title: `${result.value.login}'s avatar`,
+            imageUrl: result.value.avatar_url
+          })
+        }
+      })
+  }
+// Editar composicion
+  function editarCuidado() {
+      Swal.fire({
+          title: 'Editar composici&oacute;n',
+          html:'<div class="row">'+
+          '<div class="form-group col-sm-12">'+
+            '<label>Nombre de la composici&oacute;n</label>'+
+            '<input type="text" class="form-control" id="composicionEditar" placeholder="Algod&oacute;n">'+
+          '</div>'+
+          '<div class="form-group col-sm-12">'+
+	       '<label for="composicionCuidado">Instrucciones de cuidado</label>'+
+	       '<select class="form-control" id="composicionCuidado">'+
+       	 '<option>1</option>'+
+	         '<option>2</option>'+
+	         '<option>3</option>'+
+	         '<option>4</option>'+
+	         '<option>5</option>'+
+	       '</select>'+
+	    '</div>'+
+       '</div>',
+          inputAttributes: {
+            autocapitalize: 'off'
+          },
+          showCancelButton: true,
+          cancelButtonColor: '#6C757D',
+          cancelButtonText: 'Cancelar',
+          confirmButtonText: 'Actualizar',
+          confirmButtonColor:'#343A40',
+          showLoaderOnConfirm: true,
+          preConfirm: (login) => {
+            return fetch(`//api.github.com/users/${login}`)
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error(response.statusText)
+                }
+                return response.json()
+              })
+              .catch(error => {
+                Swal.showValidationMessage(
+                  `Error: ${error}`
+                )
+              })
+          },
+          allowOutsideClick: () => !Swal.isLoading()
+        }).then((result) => {
+          if (result.value) {
+            Swal.fire({
+              title: `${result.value.login}'s avatar`,
+              imageUrl: result.value.avatar_url
+            })
+          }
+        })
+    }
+  // Dar de baja composicion
+  function bajarCuidado(){
+    Swal.fire({
+      title: '¿Deseas dar de baja la composici&oacute;n?',
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonColor: '#6C757D',
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Dar de baja',
+      confirmButtonColor:'#343A40',
+    }).then((result) => {
+      if (result.value) {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Dada de baja correctamente',
+          showConfirmButton: false,
+          timer: 1250
+        })
+      }
+    })
+  }
+  // Reactivar composicion
+  function reactivarCuidado(){
+    Swal.fire({
+      title: '¿Deseas reactivar la composici&oacute;n?',
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonColor: '#6C757D',
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Activar',
+      confirmButtonColor:'#343A40',
     }).then((result) => {
       if (result.value) {
         Swal.fire({
