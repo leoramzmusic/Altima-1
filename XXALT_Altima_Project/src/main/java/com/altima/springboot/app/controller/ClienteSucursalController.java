@@ -2,18 +2,15 @@ package com.altima.springboot.app.controller;
 
 import java.util.Date;
 import java.util.Map;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.altima.springboot.app.models.entity.ComercialCliente;
 import com.altima.springboot.app.models.entity.ComercialClienteSucursal;
 import com.altima.springboot.app.models.entity.HrDireccion;
@@ -55,7 +52,7 @@ public class ClienteSucursalController {
 	}
 	
 	@GetMapping("/guardar-sucursal")
-	public String guardarCliente(ComercialClienteSucursal sucursal , HrDireccion direccion) {
+	public String guardarCliente(ComercialClienteSucursal sucursal , HrDireccion direccion,RedirectAttributes redirectAttrs) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
 		if (sucursal.getIdClienteSucursal()== null && direccion.getIdDireccion()== null) {
@@ -69,7 +66,9 @@ public class ClienteSucursalController {
 			sucursal.setSIdText("SUC"+sucursal.getNoSucursal());
 			sucursal.setSCreadoPor(auth.getName());
 			sucursal.setIdDireccion(direccion.getIdDireccion());
-			
+			redirectAttrs
+            .addFlashAttribute("title", "Sucursal guardada correctamente")
+            .addFlashAttribute("icon", "success");
 			SucursalService.save(sucursal);
 		}
 		else {	
@@ -77,7 +76,9 @@ public class ClienteSucursalController {
 			direccion.setUltimaFechaModificacion(new Date());
 			sucursal.setSActualizadoPor(auth.getName());
 			sucursal.setSUltimaFechaModificacion(new Date ());
-			
+			redirectAttrs
+            .addFlashAttribute("title", "Sucursal editada correctamente")
+            .addFlashAttribute("icon", "success");
 			DireccionService.save(direccion);
 			SucursalService.save(sucursal);   
 		}

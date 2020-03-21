@@ -30,7 +30,7 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed" >
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Navbar -->
@@ -88,9 +88,10 @@
                                                 <td><a th:href="@{/editar-cliente/}+ ${cliente.idCliente}" th:text="${cliente.CidText}"></a>  </td>
                                                 <td th:text="${cliente.Nombre}"></td>
                                                 <td th:text="${cliente.Telefono}"></td>
-                                                <td th:text="${cliente.TipoCliente}"></td>
+                                                <td th:if="${cliente.TipoCliente == '1'}" th:text="Moral"></td>
+                                                 <td th:if="${cliente.TipoCliente == '2'}" th:text="Fisica"></td>
                                                 <td> <a th:href="@{/sucursales/}+ ${cliente.idCliente}" ><button class="btn btn-link" style="color: #1f2d3d!important; padding-left: 1px;"><i class="fas fa-info-circle"></i> Detalles</button></a> </td>
-                                                
+                                               
                                             </tr>     
                                         </tbody>
                                     </table>
@@ -190,7 +191,16 @@
 		window.onload = changeClassById();
 	</script>
 
-	
+	<script th:if="${icon != null}" th:inline="javascript">
+		Swal.fire({
+	    	  position: 'center',
+	          icon: /*[[${icon}]]*/,
+	          title: /*[[${title}]]*/,
+	          showConfirmButton: false,
+	          timer: 1250
+	    });
+	</script>
+
 </body>
 
 </html>

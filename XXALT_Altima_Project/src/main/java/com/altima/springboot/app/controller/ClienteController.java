@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.altima.springboot.app.models.entity.ComercialCliente;
 import com.altima.springboot.app.models.entity.HrDireccion;
@@ -43,7 +42,7 @@ public class ClienteController {
 	}
 	
 	@PostMapping("/guardar-cliente")
-	public String guardarCliente(ComercialCliente cliente , HrDireccion direccion) {
+	public String guardarCliente(ComercialCliente cliente , HrDireccion direccion, RedirectAttributes redirectAttrs) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
 		if (cliente.getIdCliente() == null && direccion.getIdDireccion()== null) {
@@ -58,13 +57,18 @@ public class ClienteController {
 			cliente.setCcreadoPor(auth.getName());
 			cliente.setIdDireccion(direccion.getIdDireccion() );
 			ClienteService.save(cliente);
+			redirectAttrs
+            .addFlashAttribute("title", "Cliente guardado correctamente")
+            .addFlashAttribute("icon", "success");
 		}
 		else {
 			direccion.setActualizadoPor(auth.getName());
 			direccion.setUltimaFechaModificacion(new Date());
 			cliente.setCactualizadoPor(auth.getName());
 			cliente.setCultimaFechaModificacion(new Date());
-			
+			redirectAttrs
+            .addFlashAttribute("title", "Cliente editado correctamente")
+            .addFlashAttribute("icon", "success");
 			
 			DireccionService.save(direccion);
 			ClienteService.save(cliente);   

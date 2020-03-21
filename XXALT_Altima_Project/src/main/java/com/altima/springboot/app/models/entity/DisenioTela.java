@@ -16,9 +16,6 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "alt_disenio_tela")
 public class DisenioTela implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -86,7 +83,35 @@ public class DisenioTela implements Serializable{
 	@Column(name="indicaciones")
 	@NotBlank
 	private String indicaciones;
+	
+	@Column(name="consumo")
+	private String consumo;
+	
+	@Column(name="costo_por_tela")
+	private String costoPorTela;
+	
+	@Column(name="id_prenda")
+	private Long idPrenda;
+	
+	@Column(name="id_color")
+	private Long idColor;
+	
+	@Column(name="id_proveedor")
+	private Long idProveedor;
 
+	@Column(name="indicacion")
+	private String indicacion;
+	
+	@Column(name="foto")
+	private String foto;
+	
+	@Column(name="tipo")
+	private String tipo;
+	
+	@Column(name="descripcion")
+	private String descripcion;
+	
+	
 	public Long getIdTela() {
 		return idTela;
 	}
@@ -213,6 +238,78 @@ public class DisenioTela implements Serializable{
 
 	public void setIndicaciones(String indicaciones) {
 		this.indicaciones = indicaciones;
+	}
+
+	public String getConsumo() {
+		return consumo;
+	}
+
+	public void setConsumo(String consumo) {
+		this.consumo = consumo;
+	}
+
+	public String getCostoPorTela() {
+		return costoPorTela;
+	}
+
+	public void setCostoPorTela(String costoPorTela) {
+		this.costoPorTela = costoPorTela;
+	}
+
+	public Long getIdPrenda() {
+		return idPrenda;
+	}
+
+	public void setIdPrenda(Long idPrenda) {
+		this.idPrenda = idPrenda;
+	}
+
+	public Long getIdColor() {
+		return idColor;
+	}
+
+	public void setIdColor(Long idColor) {
+		this.idColor = idColor;
+	}
+
+	public Long getIdProveedor() {
+		return idProveedor;
+	}
+
+	public void setIdProveedor(Long idProveedor) {
+		this.idProveedor = idProveedor;
+	}
+
+	public String getIndicacion() {
+		return indicacion;
+	}
+
+	public void setIndicacion(String indicacion) {
+		this.indicacion = indicacion;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	public static long getSerialversionuid() {
