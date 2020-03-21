@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Expediente | Altima</title>
+    <title>Control de producci&oacute;n de muestras | Altima</title>
     <link rel="icon" type="image/png" sizes="32x32" href="dist/img/favicon.ico">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -79,6 +79,7 @@
                                                 <th>No. pedido</th>
                                                 <th>Fecha de recepci&oacute;n</th>
                                                 <th>Observaciones</th>
+                                                <th>Proceso actual</th>
                                                 <th>Proceso</th>
                                                 <th></th>
                                             </tr>
@@ -87,12 +88,14 @@
                                             <tr>
                                                 <td><a th:href="${''}">MAE123</a></td>
                                                 <td>05/01/2020</td>
-                                                <th>Nota de observaciones</th>
+                                                <td>Nota de observaciones</td>
+                                                <td>Corte</td>
                                                 <td class="tdcenter">
-                                                    <a class="btn btn-warning popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Ver m&aacute;s detalles" style="border-radius: 35%;"><i class="fas fa-info"></i></a>&nbsp;
+                                                    <a data-target="#detalles-proceso" class="btn btn-warning popoverxd rounded-circle" data-container="body" data-toggle="modal" data-placement="top" data-content="Detalles"><i class="fas fa-info-circle fa-sm"></i></a>
+                                                    <div th:insert="control-procesos"></div>
                                                 </td>
                                                 <td class="tdcenter">
-                                                    <a class="btn btn-warning popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Ver m&aacute;s detalles" style="border-radius: 35%;"><i class="fas fa-info"></i></a>&nbsp;
+                                                    <a class="btn btn-warning popoverxd rounded-circle" data-container="body" data-toggle="popover" data-placement="top" data-content="Editar"><i class="fas fa-pen fa-sm"></i></a>&nbsp;
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -191,6 +194,41 @@
 			document.getElementById("navDiseno5").className = "nav-link active";
 		}
 		window.onload = changeClassById();
+	</script>
+	<script>
+	$(document).ready(function(){
+
+		$(".tabs").click(function(){
+
+		$(".tabs").removeClass("active");
+		$(".tabs h6").removeClass("font-weight-bold");
+		$(".tabs h6").addClass("text-muted");
+		$(this).children("h6").removeClass("text-muted");
+		$(this).children("h6").addClass("font-weight-bold");
+		$(this).addClass("active");
+
+		current_fs = $(".active");
+
+		next_fs = $(this).attr('id');
+		next_fs = "#" + next_fs + "1";
+
+		$("fieldset").removeClass("show");
+		$(next_fs).addClass("show");
+
+		current_fs.animate({}, {
+		step: function() {
+		current_fs.css({
+		'display': 'none',
+		'position': 'relative'
+		});
+		next_fs.css({
+		'display': 'block'
+		});
+		}
+		});
+		});
+
+		});
 	</script>
 </body>
 
