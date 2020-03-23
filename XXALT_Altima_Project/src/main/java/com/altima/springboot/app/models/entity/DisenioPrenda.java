@@ -55,9 +55,9 @@ public class DisenioPrenda implements Serializable{
 	@NotBlank
 	private String numeroPrenda;
 	
-	@Column(name="descripcion_prenda")
+	@Column(name="nombre_prenda")
 	@NotBlank
-	private String descripcionPrenda;
+	private String nombrePrenda;
 	
 	@Column(name="tipo_prenda")
 	@NotBlank
@@ -256,11 +256,11 @@ public class DisenioPrenda implements Serializable{
 	}
 
 	public String getDescripcionPrenda() {
-		return descripcionPrenda;
+		return nombrePrenda;
 	}
 
 	public void setDescripcionPrenda(String descripcionPrenda) {
-		this.descripcionPrenda = descripcionPrenda;
+		this.nombrePrenda = descripcionPrenda;
 	}
 
 	public String getTipoPrenda() {
@@ -519,7 +519,7 @@ public class DisenioPrenda implements Serializable{
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((cvePrenda == null) ? 0 : cvePrenda.hashCode());
 		result = prime * result + ((cveRuta == null) ? 0 : cveRuta.hashCode());
-		result = prime * result + ((descripcionPrenda == null) ? 0 : descripcionPrenda.hashCode());
+		result = prime * result + ((nombrePrenda == null) ? 0 : nombrePrenda.hashCode());
 		result = prime * result + ((detalleConfeccion == null) ? 0 : detalleConfeccion.hashCode());
 		result = prime * result + ((detallePrenda == null) ? 0 : detallePrenda.hashCode());
 		result = prime * result + ((devolucion == null) ? 0 : devolucion.hashCode());
@@ -603,10 +603,10 @@ public class DisenioPrenda implements Serializable{
 				return false;
 		} else if (!cveRuta.equals(other.cveRuta))
 			return false;
-		if (descripcionPrenda == null) {
-			if (other.descripcionPrenda != null)
+		if (nombrePrenda == null) {
+			if (other.nombrePrenda != null)
 				return false;
-		} else if (!descripcionPrenda.equals(other.descripcionPrenda))
+		} else if (!nombrePrenda.equals(other.nombrePrenda))
 			return false;
 		if (detalleConfeccion == null) {
 			if (other.detalleConfeccion != null)
