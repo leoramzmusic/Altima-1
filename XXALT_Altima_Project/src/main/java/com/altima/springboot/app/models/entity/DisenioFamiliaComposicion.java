@@ -25,7 +25,7 @@ public class DisenioFamiliaComposicion implements Serializable {
 	@Column(name="id_familia_composicion")
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
-	private Long idEntradaSalida;
+	private Long idFamiliaComposicion;
 	
 	@Column(name="id_text")
 	@NotBlank
@@ -47,21 +47,21 @@ public class DisenioFamiliaComposicion implements Serializable {
 	@NotBlank
 	private String ultimaFechaModificacion;
 	
-	@Column(name="descripcion")
+	@Column(name="descripcion_familia_composicion")
 	@NotBlank
-	private String descripcion;
+	private String descripcionFamiliaComposicion;
 	
 	@Column(name="nombre_familia_composicion")
 	@NotBlank
-	private String nombre_familia_composicion;
+	private String nombreFamiliaComposicion;
 	
 
 	public Long getIdEntradaSalida() {
-		return idEntradaSalida;
+		return idFamiliaComposicion;
 	}
 
 	public void setIdEntradaSalida(Long idEntradaSalida) {
-		this.idEntradaSalida = idEntradaSalida;
+		this.idFamiliaComposicion = idEntradaSalida;
 	}
 
 	public String getIdText() {
@@ -86,11 +86,11 @@ public class DisenioFamiliaComposicion implements Serializable {
 	
 
 	public String getNombre_familia_composicion() {
-		return nombre_familia_composicion;
+		return nombreFamiliaComposicion;
 	}
 
-	public void setNombre_familia_composicion(String nombre_familia_composicion) {
-		this.nombre_familia_composicion = nombre_familia_composicion;
+	public void setNombre_familia_composicion(String nombreFamiliaComposicion) {
+		this.nombreFamiliaComposicion = nombreFamiliaComposicion;
 	}
 
 	public void setActualizadoPor(String actualizadoPor) {
@@ -114,11 +114,11 @@ public class DisenioFamiliaComposicion implements Serializable {
 	}
 
 	public String getDescripcion() {
-		return descripcion;
+		return descripcionFamiliaComposicion;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setDescripcion(String descripcionFamiliaComposicion) {
+		this.descripcionFamiliaComposicion = descripcionFamiliaComposicion;
 	}
 
 	public static long getSerialversionuid() {
@@ -130,11 +130,11 @@ public class DisenioFamiliaComposicion implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
-		result = prime * result + ((nombre_familia_composicion == null) ? 0 : nombre_familia_composicion.hashCode());
+		result = prime * result + ((nombreFamiliaComposicion == null) ? 0 : nombreFamiliaComposicion.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
-		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
+		result = prime * result + ((descripcionFamiliaComposicion == null) ? 0 : descripcionFamiliaComposicion.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
-		result = prime * result + ((idEntradaSalida == null) ? 0 : idEntradaSalida.hashCode());
+		result = prime * result + ((idFamiliaComposicion == null) ? 0 : idFamiliaComposicion.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
 		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
 		return result;
@@ -159,20 +159,20 @@ public class DisenioFamiliaComposicion implements Serializable {
 				return false;
 		} else if (!creadoPor.equals(other.creadoPor))
 			return false;
-		if (descripcion == null) {
-			if (other.descripcion != null)
+		if (descripcionFamiliaComposicion == null) {
+			if (other.descripcionFamiliaComposicion != null)
 				return false;
-		} else if (!descripcion.equals(other.descripcion))
+		} else if (!descripcionFamiliaComposicion.equals(other.descripcionFamiliaComposicion))
 			return false;
 		if (fechaCreacion == null) {
 			if (other.fechaCreacion != null)
 				return false;
 		} else if (!fechaCreacion.equals(other.fechaCreacion))
 			return false;
-		if (idEntradaSalida == null) {
-			if (other.idEntradaSalida != null)
+		if (idFamiliaComposicion == null) {
+			if (other.idFamiliaComposicion != null)
 				return false;
-		} else if (!idEntradaSalida.equals(other.idEntradaSalida))
+		} else if (!idFamiliaComposicion.equals(other.idFamiliaComposicion))
 			return false;
 		if (idText == null) {
 			if (other.idText != null)

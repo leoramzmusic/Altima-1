@@ -55,109 +55,134 @@ public class DisenioFamiliaPrenda implements Serializable{
 	@NotBlank
 	private String tipoPrenda;
 	
-	public String getNombre_familia_composicion() {
-		return nombre_familia_composicion;
-	}
-
-	public void setNombre_familia_composicion(String nombre_familia_composicion) {
-		this.nombre_familia_composicion = nombre_familia_composicion;
-	}
-
-	@Column(name="descripcion")
+	@Column(name="nombre_familia_prenda")
 	@NotBlank
-	private String descripcion;
+	private String nombreFamiliaPrenda;
 	
-	@Column(name="nombre_familia_composicion")
+	@Column(name="descripcion_familia_prenda")
 	@NotBlank
-	private String nombre_familia_composicion;
+	private String descripcionFamiliaPrenda;
 	
-	@Column(name="familia_genero_id")
+	
+	@Column(name="id_familia_genero")
 	@NotBlank
 	private Long idFamiliaGenero;
+
 
 	public Long getIdFamiliaPrenda() {
 		return idFamiliaPrenda;
 	}
 
+
 	public void setIdFamiliaPrenda(Long idFamiliaPrenda) {
 		this.idFamiliaPrenda = idFamiliaPrenda;
 	}
+
 
 	public String getIdText() {
 		return idText;
 	}
 
+
 	public void setIdText(String idText) {
 		this.idText = idText;
 	}
+
 
 	public String getIdLookup() {
 		return idLookup;
 	}
 
+
 	public void setIdLookup(String idLookup) {
 		this.idLookup = idLookup;
 	}
+
 
 	public String getCreadoPor() {
 		return creadoPor;
 	}
 
+
 	public void setCreadoPor(String creadoPor) {
 		this.creadoPor = creadoPor;
 	}
+
 
 	public String getActualizadoPor() {
 		return actualizadoPor;
 	}
 
+
 	public void setActualizadoPor(String actualizadoPor) {
 		this.actualizadoPor = actualizadoPor;
 	}
+
 
 	public String getFechaCreacion() {
 		return fechaCreacion;
 	}
 
+
 	public void setFechaCreacion(String fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
+
 
 	public String getUltimaFechaModificacion() {
 		return ultimaFechaModificacion;
 	}
 
+
 	public void setUltimaFechaModificacion(String ultimaFechaModificacion) {
 		this.ultimaFechaModificacion = ultimaFechaModificacion;
 	}
+
 
 	public String getTipoPrenda() {
 		return tipoPrenda;
 	}
 
+
 	public void setTipoPrenda(String tipoPrenda) {
 		this.tipoPrenda = tipoPrenda;
 	}
 
-	public String getDescripcion() {
-		return descripcion;
+
+	public String getNombreFamiliaPrenda() {
+		return nombreFamiliaPrenda;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+
+	public void setNombreFamiliaPrenda(String nombreFamiliaPrenda) {
+		this.nombreFamiliaPrenda = nombreFamiliaPrenda;
 	}
+
+
+	public String getDescripcionFamiliaPrenda() {
+		return descripcionFamiliaPrenda;
+	}
+
+
+	public void setDescripcionFamiliaPrenda(String descripcionFamiliaPrenda) {
+		this.descripcionFamiliaPrenda = descripcionFamiliaPrenda;
+	}
+
 
 	public Long getIdFamiliaGenero() {
 		return idFamiliaGenero;
 	}
 
+
 	public void setIdFamiliaGenero(Long idFamiliaGenero) {
 		this.idFamiliaGenero = idFamiliaGenero;
 	}
 
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
 
 	@Override
 	public int hashCode() {
@@ -165,16 +190,18 @@ public class DisenioFamiliaPrenda implements Serializable{
 		int result = 1;
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
-		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
+		result = prime * result + ((descripcionFamiliaPrenda == null) ? 0 : descripcionFamiliaPrenda.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
 		result = prime * result + ((idFamiliaGenero == null) ? 0 : idFamiliaGenero.hashCode());
 		result = prime * result + ((idFamiliaPrenda == null) ? 0 : idFamiliaPrenda.hashCode());
 		result = prime * result + ((idLookup == null) ? 0 : idLookup.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
+		result = prime * result + ((nombreFamiliaPrenda == null) ? 0 : nombreFamiliaPrenda.hashCode());
 		result = prime * result + ((tipoPrenda == null) ? 0 : tipoPrenda.hashCode());
 		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -195,10 +222,10 @@ public class DisenioFamiliaPrenda implements Serializable{
 				return false;
 		} else if (!creadoPor.equals(other.creadoPor))
 			return false;
-		if (descripcion == null) {
-			if (other.descripcion != null)
+		if (descripcionFamiliaPrenda == null) {
+			if (other.descripcionFamiliaPrenda != null)
 				return false;
-		} else if (!descripcion.equals(other.descripcion))
+		} else if (!descripcionFamiliaPrenda.equals(other.descripcionFamiliaPrenda))
 			return false;
 		if (fechaCreacion == null) {
 			if (other.fechaCreacion != null)
@@ -224,6 +251,11 @@ public class DisenioFamiliaPrenda implements Serializable{
 			if (other.idText != null)
 				return false;
 		} else if (!idText.equals(other.idText))
+			return false;
+		if (nombreFamiliaPrenda == null) {
+			if (other.nombreFamiliaPrenda != null)
+				return false;
+		} else if (!nombreFamiliaPrenda.equals(other.nombreFamiliaPrenda))
 			return false;
 		if (tipoPrenda == null) {
 			if (other.tipoPrenda != null)

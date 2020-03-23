@@ -24,10 +24,10 @@ public class DisenioDetalleMuestrario implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="id_detalles_muestrario")
+	@Column(name="id_detalle_muestrario")
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
-	private Long idDetallesMuestrario;
+	private Long idDetalleMuestrario;
 	
 	@Column(name="id_text")
 	@NotBlank
@@ -51,11 +51,11 @@ public class DisenioDetalleMuestrario implements Serializable{
 
 	
 	public Long getIdDetallesMuestrario() {
-		return idDetallesMuestrario;
+		return idDetalleMuestrario;
 	}
 
 	public void setIdDetallesMuestrario(Long idDetallesMuestrario) {
-		this.idDetallesMuestrario = idDetallesMuestrario;
+		this.idDetalleMuestrario = idDetallesMuestrario;
 	}
 
 	public String getIdText() {
@@ -109,7 +109,7 @@ public class DisenioDetalleMuestrario implements Serializable{
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
-		result = prime * result + ((idDetallesMuestrario == null) ? 0 : idDetallesMuestrario.hashCode());
+		result = prime * result + ((idDetalleMuestrario == null) ? 0 : idDetalleMuestrario.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
 		result = prime * result + ((ultimaFechaCreacion == null) ? 0 : ultimaFechaCreacion.hashCode());
 		return result;
@@ -139,10 +139,10 @@ public class DisenioDetalleMuestrario implements Serializable{
 				return false;
 		} else if (!fechaCreacion.equals(other.fechaCreacion))
 			return false;
-		if (idDetallesMuestrario == null) {
-			if (other.idDetallesMuestrario != null)
+		if (idDetalleMuestrario == null) {
+			if (other.idDetalleMuestrario != null)
 				return false;
-		} else if (!idDetallesMuestrario.equals(other.idDetallesMuestrario))
+		} else if (!idDetalleMuestrario.equals(other.idDetalleMuestrario))
 			return false;
 		if (idText == null) {
 			if (other.idText != null)
