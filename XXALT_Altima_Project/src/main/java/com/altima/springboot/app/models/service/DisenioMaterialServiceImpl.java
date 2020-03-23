@@ -101,7 +101,7 @@ public class DisenioMaterialServiceImpl implements IDisenioMaterialService {
 	public List<Object[]> disenioMaterial() {
 		
 		List<Object[]> mv;
-		mv= em.createNativeQuery("{call  materiales}").getResultList(); 
+		mv= em.createNativeQuery("{call  alt_pr_materiales}").getResultList(); 
 		return  mv;
 			}
 	
