@@ -55,9 +55,21 @@ public class DisenioFamiliaPrenda implements Serializable{
 	@NotBlank
 	private String tipoPrenda;
 	
+	public String getNombre_familia_composicion() {
+		return nombre_familia_composicion;
+	}
+
+	public void setNombre_familia_composicion(String nombre_familia_composicion) {
+		this.nombre_familia_composicion = nombre_familia_composicion;
+	}
+
 	@Column(name="descripcion")
 	@NotBlank
 	private String descripcion;
+	
+	@Column(name="nombre_familia_composicion")
+	@NotBlank
+	private String nombre_familia_composicion;
 	
 	@Column(name="familia_genero_id")
 	@NotBlank

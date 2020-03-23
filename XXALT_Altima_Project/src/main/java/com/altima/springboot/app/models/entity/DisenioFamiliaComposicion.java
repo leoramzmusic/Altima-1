@@ -51,6 +51,10 @@ public class DisenioFamiliaComposicion implements Serializable {
 	@NotBlank
 	private String descripcion;
 	
+	@Column(name="nombre_familia_composicion")
+	@NotBlank
+	private String nombre_familia_composicion;
+	
 
 	public Long getIdEntradaSalida() {
 		return idEntradaSalida;
@@ -78,6 +82,15 @@ public class DisenioFamiliaComposicion implements Serializable {
 
 	public String getActualizadoPor() {
 		return actualizadoPor;
+	}
+	
+
+	public String getNombre_familia_composicion() {
+		return nombre_familia_composicion;
+	}
+
+	public void setNombre_familia_composicion(String nombre_familia_composicion) {
+		this.nombre_familia_composicion = nombre_familia_composicion;
 	}
 
 	public void setActualizadoPor(String actualizadoPor) {
@@ -117,6 +130,7 @@ public class DisenioFamiliaComposicion implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
+		result = prime * result + ((nombre_familia_composicion == null) ? 0 : nombre_familia_composicion.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());

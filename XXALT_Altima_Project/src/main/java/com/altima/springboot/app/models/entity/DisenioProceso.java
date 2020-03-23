@@ -59,6 +59,12 @@ public class DisenioProceso implements Serializable{
 	@NotBlank
 	private String descripcionProceso;
 	
+	@Column(name="nombre_proceso")
+	@NotBlank
+	private String nombreProceso;
+	
+	
+
 	@Column(name="origen_proceso")
 	@NotBlank
 	private String origenProceso;
@@ -69,6 +75,14 @@ public class DisenioProceso implements Serializable{
 
 	public void setIdProceso(Long idProceso) {
 		this.idProceso = idProceso;
+	}
+	
+	public String getNombreProceso() {
+		return nombreProceso;
+	}
+
+	public void setNombreProceso(String nombreProceso) {
+		this.nombreProceso = nombreProceso;
 	}
 
 	public Long getIdPrenda() {

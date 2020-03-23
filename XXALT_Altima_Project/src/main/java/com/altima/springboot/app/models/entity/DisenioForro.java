@@ -55,6 +55,18 @@ public class DisenioForro implements Serializable{
 	@NotBlank
 	private String descripcionForro;
 	
+	@Column(name="nombre_forro")
+	@NotBlank
+	private String nombreForro;
+	
+	public String getNombreForro() {
+		return nombreForro;
+	}
+
+	public void setNombreForro(String nombreForro) {
+		this.nombreForro = nombreForro;
+	}
+
 	@Column(name="composicion_forro")
 	@NotBlank
 	private String composicionForro;
