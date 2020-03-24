@@ -15,4 +15,9 @@ public class CalidadController {
 	public String addCalidad() {
 		return "calidad-nueva-prueba";
 	}
+	
+	@GetMapping("detalle-calidad") 
+	public String infoCalidad() {
+		return "detalle-calidad";
+	}
 }
