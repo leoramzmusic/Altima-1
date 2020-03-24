@@ -59,14 +59,6 @@ public class DisenioForro implements Serializable{
 	@NotBlank
 	private String nombreForro;
 	
-	public String getNombreForro() {
-		return nombreForro;
-	}
-
-	public void setNombreForro(String nombreForro) {
-		this.nombreForro = nombreForro;
-	}
-
 	@Column(name="composicion_forro")
 	@NotBlank
 	private String composicionForro;
@@ -74,6 +66,10 @@ public class DisenioForro implements Serializable{
 	@Column(name="ancho_forro")
 	@NotBlank
 	private String anchoForro;
+	
+	@Column(name="id_unidad_medida")
+	@NotBlank
+	private Long idUnidadMedida;
 	
 	@Column(name="consumo_promedio_forro")
 	@NotBlank
@@ -147,6 +143,14 @@ public class DisenioForro implements Serializable{
 		this.descripcionForro = descripcionForro;
 	}
 
+	public String getNombreForro() {
+		return nombreForro;
+	}
+
+	public void setNombreForro(String nombreForro) {
+		this.nombreForro = nombreForro;
+	}
+
 	public String getComposicionForro() {
 		return composicionForro;
 	}
@@ -161,6 +165,14 @@ public class DisenioForro implements Serializable{
 
 	public void setAnchoForro(String anchoForro) {
 		this.anchoForro = anchoForro;
+	}
+
+	public Long getIdUnidadMedida() {
+		return idUnidadMedida;
+	}
+
+	public void setIdUnidadMedida(Long idUnidadMedida) {
+		this.idUnidadMedida = idUnidadMedida;
 	}
 
 	public String getConsumoPromedioForro() {
@@ -198,6 +210,8 @@ public class DisenioForro implements Serializable{
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
 		result = prime * result + ((idForro == null) ? 0 : idForro.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
+		result = prime * result + ((idUnidadMedida == null) ? 0 : idUnidadMedida.hashCode());
+		result = prime * result + ((nombreForro == null) ? 0 : nombreForro.hashCode());
 		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
 		return result;
 	}
@@ -266,6 +280,16 @@ public class DisenioForro implements Serializable{
 				return false;
 		} else if (!idText.equals(other.idText))
 			return false;
+		if (idUnidadMedida == null) {
+			if (other.idUnidadMedida != null)
+				return false;
+		} else if (!idUnidadMedida.equals(other.idUnidadMedida))
+			return false;
+		if (nombreForro == null) {
+			if (other.nombreForro != null)
+				return false;
+		} else if (!nombreForro.equals(other.nombreForro))
+			return false;
 		if (ultimaFechaModificacion == null) {
 			if (other.ultimaFechaModificacion != null)
 				return false;
@@ -273,6 +297,7 @@ public class DisenioForro implements Serializable{
 			return false;
 		return true;
 	}
+	
 	
 	
 	
