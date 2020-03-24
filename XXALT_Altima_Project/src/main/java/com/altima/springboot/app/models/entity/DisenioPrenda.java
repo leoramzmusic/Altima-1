@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -28,165 +28,163 @@ public class DisenioPrenda implements Serializable{
 	private Long idPrenda;
 	
 	@Column(name="id_familia_prenda")
-	@NotBlank
+	//@NotBlank
 	private Long idFamiliaPrenda;
 	
 	@Column(name="id_text")
-	@NotBlank
+	//@NotBlank
 	private String idText;
 	
 	@Column(name="creado_por")
-	@NotBlank
+	//@NotBlank
 	private String creadoPor;
 	
 	@Column(name="actualizado_por")
-	@NotBlank
+	//@NotBlank
 	private String actualizadoPor;
 	
 	@Column(name="fecha_creacion")
-	@NotBlank
+	//@NotBlank
 	private String fechaCreacion;
 	
 	@Column(name="ultima_fecha_modificacion")
-	@NotBlank
+	//@NotBlank
 	private String ultimaFechaModificacion;
 	
 	@Column(name="numero_prenda")
-	@NotBlank
+	//@NotBlank
 	private String numeroPrenda;
 	
 	@Column(name="nombre_prenda")
-	@NotBlank
+	//@NotBlank
 	private String nombrePrenda;
 	
 	@Column(name="descripcion_prenda")
-	@NotBlank
+	//@NotBlank
 	private String descripcionPrenda;
 	
 	@Column(name="tipo_prenda")
-	@NotBlank
+	//@NotBlank
 	private String tipoPrenda;
 	
-	
-
 	@Column(name="detalle_prenda")
-	@NotBlank
+	//@NotBlank
 	private String detallePrenda;
 	
 	@Column(name="nota_especial")
-	@NotBlank
+	//@NotBlank
 	private String notaEspecial;
 	
 	@Column(name="detalle_confeccion")
-	@NotBlank
+	//@NotBlank
 	private String detalleConfeccion;
 	
 	@Column(name="marcadores")
-	@NotBlank
+	//@NotBlank
 	private String marcadores;
 	
 	@Column(name="consumo_tela")
-	@NotBlank
+	//@NotBlank
 	private String consumoTela;
 	
 	@Column(name="consumo_forro")
-	@NotBlank
+	//@NotBlank
 	private String consumoForro;
 	
 	@Column(name="precio")
-	@NotBlank
+	//@NotBlank
 	private String precio;
 	
 	@Column(name="dibujo_frente")
-	@NotBlank
+	//@NotBlank
 	private String dibujoFrente;
 	
 	@Column(name="dibujo_espalda")
-	@NotBlank
+	//@NotBlank
 	private String dibujoEspalda;
 	
 	@Column(name="precio_local_actual")
-	@NotBlank
+	//@NotBlank
 	private String precioLocalActual;
 	
 	@Column(name="precio_local_anterior")
-	@NotBlank
+	//@NotBlank
 	private String precioLocalAnterior;
 	
 	@Column(name="precio_foraneo_actual")
-	@NotBlank
+	//@NotBlank
 	private String precioForaneoActual;
 	
 	@Column(name="precio_foraneo_anterior")
-	@NotBlank
+	//@NotBlank
 	private String precioForaneoAnterior;
 	
 	@Column(name="cve_ruta")
-	@NotBlank
+	//@NotBlank
 	private String cveRuta;
 	
 	@Column(name="cve_prenda")
-	@NotBlank
+	//@NotBlank
 	private String cvePrenda;
 
 	@Column(name="tipo_largo")
-	@NotBlank
+	//@NotBlank
 	private String tipoLargo;
 	
 	@Column(name="especificacion")
-	@NotBlank
+	//@NotBlank
 	private String especificacion;
 	
 	@Column(name="imprimir_etiquetas")
-	@NotBlank
+	//@NotBlank
 	private String imprimirEtiquetas;
 	
 	@Column(name="modelo_boton")
-	@NotBlank
+	//@NotBlank
 	private String modeloBoton;
 	
 	@Column(name="estatus_recepcion_muestra")
-	@NotBlank
+	//@NotBlank
 	private String estatusRecepcionMuestra;
 	
 	@Column(name="devolucion")
-	@NotBlank
+	//@NotBlank
 	private String devolucion;
 	
 	@Column(name="precio_m_prod")
-	@NotBlank
+	//@NotBlank
 	private String precioMprod;
 	
 	@Column(name="precio_m_muestra")
-	@NotBlank
+	//@NotBlank
 	private String precioMmuestra;
 
 	@Column(name="categoria")
-	@NotBlank
+	//@NotBlank
 	private String categoria;
 	
 	@Column(name="combinacion")
-	@NotBlank
+	//@NotBlank
 	private String combinacion;
 	
 	@Column(name="total_prendas")
-	@NotBlank
+	//@NotBlank
 	private String totalPrendas;
 	
 	@Column(name="mostrar")
-	@NotBlank
+	//@NotBlank
 	private String mostrar;
 	
 	@Column(name="id_lookup")
-	@NotBlank
+	//@NotBlank
 	private Long idLookup;
 	
 	@Column(name="id_lookup2")
-	@NotBlank
+	//@NotBlank
 	private Long idLookup2;
 	
 	@Column(name="id_lookup3")
-	@NotBlank
+	//@NotBlank
 	private Long idLookup3;
 	
 	

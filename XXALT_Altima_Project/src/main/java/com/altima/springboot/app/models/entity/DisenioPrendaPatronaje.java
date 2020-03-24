@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -27,23 +27,18 @@ public class DisenioPrendaPatronaje implements Serializable{
 	private Long idPrendaPatronaje;
 	
 	@Column(name="id_prenda")
-	@NotBlank
 	private Long idPrenda;
 	
 	@Column(name="id_patronaje")
-	@NotBlank
 	private String idPatronaje;
 	
 	@Column(name="cantidad_tela")
-	@NotBlank
 	private String cantidadTela;
 	
 	@Column(name="cantidad_forro")
-	@NotBlank
 	private String cantidadForro;
 	
 	@Column(name="cantidad_entretela")
-	@NotBlank
 	private String cantidadEntretela;
 
 	public Long getIdPrendaPatronaje() {

@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -28,44 +28,44 @@ public class DisenioFamiliaPrenda implements Serializable{
 	private Long idFamiliaPrenda;
 	
 	@Column(name="id_text")
-	@NotBlank
+	//@NotBlank
 	private String idText;
 	
 	@Column(name="id_lookup")
-	@NotBlank
+	//@NotBlank
 	private String idLookup;
 	
 	@Column(name="creado_por")
-	@NotBlank
+	//@NotBlank
 	private String creadoPor;
 	
 	@Column(name="actualizado_por")
-	@NotBlank
+	//@NotBlank
 	private String actualizadoPor;
 	
 	@Column(name="fecha_creacion")
-	@NotBlank
+	//@NotBlank
 	private String fechaCreacion;
 	
 	@Column(name="ultima_fecha_modificacion")
-	@NotBlank
+	//@NotBlank
 	private String ultimaFechaModificacion;
 	
 	@Column(name="tipo_prenda")
-	@NotBlank
+	//@NotBlank
 	private String tipoPrenda;
 	
 	@Column(name="nombre_familia_prenda")
-	@NotBlank
+	//@NotBlank
 	private String nombreFamiliaPrenda;
 	
 	@Column(name="descripcion_familia_prenda")
-	@NotBlank
+	//@NotBlank
 	private String descripcionFamiliaPrenda;
 	
 	
 	@Column(name="id_familia_genero")
-	@NotBlank
+	//@NotBlank
 	private Long idFamiliaGenero;
 
 
