@@ -116,6 +116,7 @@ public List<DisenioRuta> listarRutas() {
 public List<DisenioLookup> listarProcesos() {
 	
 	List<DisenioLookup> listaProcesos = disenioLookup.findByTipoLookup("Proceso");
+	id=null;
 	return listaProcesos;
 }
 
