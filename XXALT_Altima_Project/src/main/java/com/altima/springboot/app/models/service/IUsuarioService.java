@@ -7,6 +7,8 @@ import com.altima.springboot.app.models.entity.Usuario;
 public interface IUsuarioService {
 
 	public List<Usuario> findAll();
+	
+	public List<Object[]> findUserRol();
 
 	public void save(Usuario usuario);
 

@@ -27,7 +27,7 @@ public class Rol implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
 	@Column(name="id_rol")
-	@NotBlank
+	
 	private Long idRol;
 	
 	@Column(name="id_text")
@@ -43,23 +43,23 @@ public class Rol implements Serializable {
 	private String nombreRol;
 	
 	@Column(name="id_usuario")
-	@NotBlank
-	private String idUsuario;
+	
+	private Long idUsuario;
 	
 	@Column(name="creado_por")
 	@NotBlank
 	private String creadoPor;
 	
 	@Column(name="actualizado_por")
-	@NotBlank
+	
 	private String actualizadoPor;
 	
 	@Column(name="fecha_creacion")
-	@NotBlank
+	
 	private String fechaCreacion;
 	
 	@Column(name="ultima_fecha_modificacion")
-	@NotBlank
+	
 	private String ultimaFechaModificacion;
 
 	public String getDescripcionRol() {
@@ -70,11 +70,11 @@ public class Rol implements Serializable {
 		this.descripcionRol = descripcionRol;
 	}
 
-	public String getIdUsuario() {
+	public Long getIdUsuario() {
 		return idUsuario;
 	}
 
-	public void setIdUsuario(String idUsuario) {
+	public void setIdUsuario(Long idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 

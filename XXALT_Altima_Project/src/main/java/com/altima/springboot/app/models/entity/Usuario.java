@@ -31,12 +31,11 @@ public class Usuario  implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
 	@Column(name="id_usuario")
-	@NotBlank
 	private Long idUsuario;
 	
 	
 	@Column(name="id_text")
-	@NotBlank
+	
 	private String idText;
 	
 	@Column(name="nombre_usuario")
@@ -45,19 +44,19 @@ public class Usuario  implements Serializable{
 	
 	
 	@Column(name="creado_por")
-	@NotBlank
+	
 	private String creadoPor;
 	
 	@Column(name="actualizado_por")
-	@NotBlank
+	
 	private String actualizadoPor;
 	
 	@Column(name="fecha_creacion")
-	@NotBlank
+	
 	private String fechaCreacion;
 	
 	@Column(name="ultima_fecha_modificacion")
-	@NotBlank
+	
 	private String ultimaFechaModificacion;
 	
 	@Column(name="contraseña")
