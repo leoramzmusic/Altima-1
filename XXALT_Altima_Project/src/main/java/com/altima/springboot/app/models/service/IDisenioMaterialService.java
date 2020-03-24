@@ -33,6 +33,8 @@ public interface IDisenioMaterialService {
 	
 	Object findUno(Long id);
 	
+	List<DisenioMaterial> findAllForCreate();
+	
 	
 	
 

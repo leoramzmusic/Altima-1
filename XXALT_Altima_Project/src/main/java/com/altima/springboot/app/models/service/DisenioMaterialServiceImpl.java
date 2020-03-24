@@ -127,6 +127,13 @@ public class DisenioMaterialServiceImpl implements IDisenioMaterialService {
 		return em.createNativeQuery("call alt_pr_onematerial(" + id +");").getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<DisenioMaterial> findAllForCreate() {
+		// TODO Auto-generated method stub
+		return em.createNativeQuery("SELECT dm.id_material as ID, dm.nombre_material as Nombre FROM alt_disenio_material dm;").getResultList();
+	}
+
 	
 	
 

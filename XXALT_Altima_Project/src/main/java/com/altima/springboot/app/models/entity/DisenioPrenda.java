@@ -28,165 +28,125 @@ public class DisenioPrenda implements Serializable{
 	private Long idPrenda;
 	
 	@Column(name="id_familia_prenda")
-	@NotBlank
 	private Long idFamiliaPrenda;
 	
 	@Column(name="id_text")
-	@NotBlank
 	private String idText;
 	
 	@Column(name="creado_por")
-	@NotBlank
 	private String creadoPor;
 	
 	@Column(name="actualizado_por")
-	@NotBlank
 	private String actualizadoPor;
 	
 	@Column(name="fecha_creacion")
-	@NotBlank
 	private String fechaCreacion;
 	
 	@Column(name="ultima_fecha_modificacion")
-	@NotBlank
 	private String ultimaFechaModificacion;
 	
 	@Column(name="numero_prenda")
-	@NotBlank
 	private String numeroPrenda;
 	
 	@Column(name="nombre_prenda")
-	@NotBlank
 	private String nombrePrenda;
 	
 	@Column(name="descripcion_prenda")
-	@NotBlank
 	private String descripcionPrenda;
 	
 	@Column(name="tipo_prenda")
-	@NotBlank
 	private String tipoPrenda;
 	
 	
 
 	@Column(name="detalle_prenda")
-	@NotBlank
 	private String detallePrenda;
 	
 	@Column(name="nota_especial")
-	@NotBlank
 	private String notaEspecial;
 	
 	@Column(name="detalle_confeccion")
-	@NotBlank
 	private String detalleConfeccion;
 	
 	@Column(name="marcadores")
-	@NotBlank
 	private String marcadores;
 	
 	@Column(name="consumo_tela")
-	@NotBlank
 	private String consumoTela;
 	
 	@Column(name="consumo_forro")
-	@NotBlank
 	private String consumoForro;
 	
 	@Column(name="precio")
-	@NotBlank
 	private String precio;
 	
 	@Column(name="dibujo_frente")
-	@NotBlank
 	private String dibujoFrente;
 	
 	@Column(name="dibujo_espalda")
-	@NotBlank
 	private String dibujoEspalda;
 	
 	@Column(name="precio_local_actual")
-	@NotBlank
 	private String precioLocalActual;
 	
 	@Column(name="precio_local_anterior")
-	@NotBlank
 	private String precioLocalAnterior;
 	
 	@Column(name="precio_foraneo_actual")
-	@NotBlank
 	private String precioForaneoActual;
 	
 	@Column(name="precio_foraneo_anterior")
-	@NotBlank
 	private String precioForaneoAnterior;
 	
 	@Column(name="cve_ruta")
-	@NotBlank
 	private String cveRuta;
 	
 	@Column(name="cve_prenda")
-	@NotBlank
 	private String cvePrenda;
 
 	@Column(name="tipo_largo")
-	@NotBlank
 	private String tipoLargo;
 	
 	@Column(name="especificacion")
-	@NotBlank
 	private String especificacion;
 	
 	@Column(name="imprimir_etiquetas")
-	@NotBlank
 	private String imprimirEtiquetas;
 	
 	@Column(name="modelo_boton")
-	@NotBlank
 	private String modeloBoton;
 	
 	@Column(name="estatus_recepcion_muestra")
-	@NotBlank
 	private String estatusRecepcionMuestra;
 	
 	@Column(name="devolucion")
-	@NotBlank
 	private String devolucion;
 	
 	@Column(name="precio_m_prod")
-	@NotBlank
 	private String precioMprod;
 	
 	@Column(name="precio_m_muestra")
-	@NotBlank
 	private String precioMmuestra;
 
 	@Column(name="categoria")
-	@NotBlank
 	private String categoria;
 	
 	@Column(name="combinacion")
-	@NotBlank
 	private String combinacion;
 	
 	@Column(name="total_prendas")
-	@NotBlank
 	private String totalPrendas;
 	
 	@Column(name="mostrar")
-	@NotBlank
 	private String mostrar;
 	
 	@Column(name="id_lookup")
-	@NotBlank
 	private Long idLookup;
 	
 	@Column(name="id_lookup2")
-	@NotBlank
 	private Long idLookup2;
 	
 	@Column(name="id_lookup3")
-	@NotBlank
 	private Long idLookup3;
 	
 	

@@ -41,7 +41,7 @@ public class PrendasController {
 		DisenioPrenda disenio = new DisenioPrenda();
 		
 		model.addAttribute("familias", disenioFamiliaPrendaService.findAll());
-		model.addAttribute("materiales", disenioMaterialService.findAll());
+		model.addAttribute("materiales", disenioMaterialService.findAllForCreate());
 		model.addAttribute("patronajes", disenioMaterialService.findLookUps());
 		m.put("disenio", disenio);
 		return "agregar-prenda";
