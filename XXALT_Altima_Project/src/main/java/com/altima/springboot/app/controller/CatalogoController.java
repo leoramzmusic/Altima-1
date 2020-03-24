@@ -15,7 +15,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -44,12 +43,7 @@ public class CatalogoController {
 
 		return catalogo.findAllMarca();
 	}
-	
-	@GetMapping("/catalogo") 
-	public String agregarExpediente() {
-		return "catalogo";
-	}
-	
+
 	@RequestMapping(value = { "/catalogos", "/catalogos-marcas" }, method = RequestMethod.GET)
 	public String catalogo(Model model, RedirectAttributes flash) {
 		model.addAttribute("marcas", catalogo.findAllMarca());
@@ -83,6 +77,7 @@ public class CatalogoController {
 			marca.setTipoLookup("Marca");
 			marca.setCreadoPor(auth.getName());
 			marca.setFechaCreacion(date);
+			marca.SetEstatus(1);
 			catalogo.save(marca);
 			marca.setIdText("MAR00" + (marca.getIdLookup() + 10));
 			catalogo.save(marca);
@@ -95,6 +90,7 @@ public class CatalogoController {
 			color.setTipoLookup("Color");
 			color.setCreadoPor(auth.getName());
 			color.setFechaCreacion(date);
+			color.SetEstatus(1);
 			catalogo.save(color);
 			color.setIdText("COL00" + (color.getIdLookup() + 10));
 			catalogo.save(color);
@@ -107,6 +103,7 @@ public class CatalogoController {
 			piezatrazo.setTipoLookup("Pieza Trazo");
 			piezatrazo.setCreadoPor(auth.getName());
 			piezatrazo.setFechaCreacion(date);
+			piezatrazo.SetEstatus(1);
 			catalogo.save(piezatrazo);
 			piezatrazo.setIdText("PZTR00" + (piezatrazo.getIdLookup() + 10));
 			catalogo.save(piezatrazo);
@@ -120,6 +117,7 @@ public class CatalogoController {
 			familiaprenda.setTipoLookup("Familia Prenda");
 			familiaprenda.setCreadoPor(auth.getName());
 			familiaprenda.setFechaCreacion(date);
+			familiaprenda.SetEstatus(1);
 			catalogo.save(familiaprenda);
 			familiaprenda.setIdText("FAMPR00" + (familiaprenda.getIdLookup() + 10));
 			catalogo.save(familiaprenda);
@@ -132,6 +130,7 @@ public class CatalogoController {
 			familiagenero.setTipoLookup("Familia Genero");
 			familiagenero.setCreadoPor(auth.getName());
 			familiagenero.setFechaCreacion(date);
+			familiagenero.SetEstatus(1);
 			catalogo.save(familiagenero);
 			familiagenero.setIdText("FAMGE00" + (familiagenero.getIdLookup() + 10));
 			catalogo.save(familiagenero);
@@ -144,6 +143,7 @@ public class CatalogoController {
 			familiacomposicion.setTipoLookup("Familia Composicion");
 			familiacomposicion.setCreadoPor(auth.getName());
 			familiacomposicion.setFechaCreacion(date);
+			familiacomposicion.SetEstatus(1);
 			catalogo.save(familiacomposicion);
 			familiacomposicion.setIdText("FAMCOMP00" + (familiacomposicion.getIdLookup() + 10));
 			catalogo.save(familiacomposicion);
@@ -156,6 +156,7 @@ public class CatalogoController {
 			instruccioncuidado.setTipoLookup("Instruccion Cuidado");
 			instruccioncuidado.setCreadoPor(auth.getName());
 			instruccioncuidado.setFechaCreacion(date);
+			instruccioncuidado.SetEstatus(1);
 			catalogo.save(instruccioncuidado);
 			instruccioncuidado.setIdText("INSTRCU00" + (instruccioncuidado.getIdLookup() + 10));
 			catalogo.save(instruccioncuidado);
