@@ -81,6 +81,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Folio</th>
+                                                <th>Clave Tela</th>
                                                 <th>Pruebas</th>
                                                 <th>Estatus</th>
                                                 <th>Detalles</th>
@@ -90,12 +91,13 @@
                                         <tbody>
                                             <tr>
                                                 <td>PRU2423</td>
+                                                <td>PRU2423</td>
                                                 <td class="tdcenter">
                                                     <a class="btn btn-info popoverxd text-white" data-container="body" data-placement="top" data-html="true" data-content="<strong>Prueba de encogimiento: </strong>En proceso<br><strong>Prueba de lavado y pilling: </strong>En proceso<br><strong>Prueba de costura: </strong>Terminada<br><strong>Prueba de contaminaci&oacute;n: </strong>En proceso" style="border-radius: 35%;"><i class="fas fa-info fa-sm"></i></a>&nbsp;
                                                 </td>
                                                 <td>En proceso</td>
                                                 <td class="tdcenter">
-                                                    <a class="btn btn-info text-white"><i class="fas fa-info-circle"></i> Ver m&aacute;s detalles</a>&nbsp;
+                                                    <a th:href="${'detalle-calidad'}" class="btn btn-info text-white"><i class="fas fa-info-circle"></i> Ver m&aacute;s detalles</a>&nbsp;
                                             	</td>
                                                 <td class="tdcenter">
                                                     <a class="btn btn-warning popoverxd" data-container="body" data-placement="top" data-content="Editar" style="border-radius: 35%;"><i class="fas fa-pen fa-sm"></i></a>&nbsp;
