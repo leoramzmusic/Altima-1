@@ -107,7 +107,25 @@ public class DisenioMaterialServiceImpl implements IDisenioMaterialService {
 	
 	
 	
-	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<DisenioLookup> findLookUps() {
+		// TODO Auto-generated method stub
+		return em.createNativeQuery("SELECT * FROM alt_disenio_lookup WHERE tipo_lookup = 'PiezasTrazo' AND estatus = 1;").getResultList();
+	}
+
+	@Override
+	public Object findLookUp(Long id) {
+		// TODO Auto-generated method stubString
+		return (Object) em.createNativeQuery("SELECT * FROM alt_disenio_lookup WHERE tipo_lookup = 'PiezasTrazo' AND id_lookup = " + id).getSingleResult();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Object findUno(Long id) {
+		// TODO Auto-generated method stub
+		return em.createNativeQuery("call alt_pr_onematerial(" + id +");").getResultList();
+	}
 
 	
 	
