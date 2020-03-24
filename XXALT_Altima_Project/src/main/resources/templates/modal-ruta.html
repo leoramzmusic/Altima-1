@@ -1,45 +1,44 @@
 <!-- Modal -->
-<div class="modal fade" id="agregarRuta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ruta</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      
-      <form>
-      
-      <div class="modal-body">
-       	 <div class="form-group col-sm-12">
-		    <label>Nombre</label>
-		    <input type="text" class="form-control" id="nombreRuta" aria-describedby="emailHelp" placeholder="Ruta">
-		  </div>
-		  <div class="form-group col-sm-12">
-		    <label>Descripci&oacute;n</label>
-		    <textarea class="form-control" id="descripcionRuta" placeholder="Especificar" rows="3"></textarea>
-		  </div>
-		  <div class="form-group col-sm-12">
-	        <label for="status">Proceso</label>
-	        <select multiple class="form-control" id="procesoRuta">
-	            <option>MAR01 Nike</option>
-	            <option>MAR02 Adidas</option>
-	            <option>MAR03 Joma</option>
-	            <option>MAR04 I don't know</option>
-	            <option>MAR05 Palomitas acmen</option>
-	            <option>MAR06 Nike 2 xd</option>
-	        </select>
-	    </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
-      </div>
-      
-      </form>
-      
-      
-    </div>
-  </div>
+<div class="modal fade" id="agregarRuta" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Ruta</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form>
+				<div class="modal-body">
+					<div class="form-group col-sm-12">
+						<label>Nombre</label> <input type="text" class="form-control"
+							id="nombreRuta" aria-describedby="emailHelp" placeholder="Ruta">
+					</div>
+					<div class="form-group col-sm-12">
+						<label>Descripci&oacute;n</label>
+						<textarea class="form-control" id="descripcionRuta"
+							placeholder="Especificar" rows="3"></textarea>
+					</div>
+					<div id="ponerSelect">
+						<div class="form-group col-sm-12" id="borrar">
+							<label for="status">Proceso</label> 
+							<select multiple name="nombre[]"
+								class="form-control" id="procesoRuta">
+								<option th:each="lookup:${lookups}" class="opcionruta"
+									th:value="${lookup.idLookup}" th:text="${lookup.nombre}" />
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger mr-auto"
+						data-dismiss="modal" id="action1" onclick="vaciarModal()">Cerrar</button>
+					<button type="button" class="btn btn-primary"
+						onclick="crear_datos()">Guardar</button>
+				</div>
+			</form>
+		</div>
+	</div>
 </div>
