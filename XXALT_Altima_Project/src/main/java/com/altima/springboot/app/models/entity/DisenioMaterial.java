@@ -63,9 +63,9 @@ public class DisenioMaterial implements Serializable{
 
 	private String descripcionMaterial;
 	
-	@Column(name="unidad_medida")
+	@Column(name="id_unidad_medida")
 
-	private String unidadMedida;
+	private String idUnidadMedida;
 	
 	@Column(name="modelo")
 	
@@ -88,14 +88,26 @@ public class DisenioMaterial implements Serializable{
 	private String tamanio;
 	
 
-	@Column(name="marcas")
+	@Column(name="id_marca")
 	
-	private String marcas;
+	private String idMarca;
 	
-    @Column(name="clasificacion")
+    @Column(name="id_clasificacion")
 	
-	private String  clasificacion ;
+	private String  idClasificacion ;
+    
+    @Column(name="nombre_material")
 	
+   	private String  nombreMaterial ;
+	
+
+	public String getNombreMaterial() {
+		return nombreMaterial;
+	}
+
+	public void setNombreMaterial(String nombreMaterial) {
+		this.nombreMaterial = nombreMaterial;
+	}
 
 	@Column(name="modelo_proveedor")
 	
@@ -185,13 +197,6 @@ public class DisenioMaterial implements Serializable{
 		this.descripcionMaterial = descripcionMaterial;
 	}
 
-	public String getUnidadMedida() {
-		return unidadMedida;
-	}
-
-	public void setUnidadMedida(String unidadMedida) {
-		this.unidadMedida = unidadMedida;
-	}
 
 	public String getModelo() {
 		return modelo;
@@ -233,25 +238,34 @@ public class DisenioMaterial implements Serializable{
 		this.tamanio = tamanio;
 	}
 	
-	
-	public String getMarcas() {
-		return marcas;
-	}
 
-	public void setMarcas(String marcas) {
-		this.marcas = marcas;
-	}
 	
 
-	public String getClasificacion() {
-		return clasificacion;
+
+
+	public String getIdUnidadMedida() {
+		return idUnidadMedida;
 	}
 
-	public void setClasificacion(String clasificacion) {
-		this.clasificacion = clasificacion;
+	public void setIdUnidadMedida(String idUnidadMedida) {
+		this.idUnidadMedida = idUnidadMedida;
 	}
 
+	public String getIdMarca() {
+		return idMarca;
+	}
 
+	public void setIdMarca(String idMarca) {
+		this.idMarca = idMarca;
+	}
+
+	public String getIdClasificacion() {
+		return idClasificacion;
+	}
+
+	public void setIdClasificacion(String idClasificacion) {
+		this.idClasificacion = idClasificacion;
+	}
 
 	public String getModeloProveedor() {
 		return modeloProveedor;
@@ -294,7 +308,7 @@ public class DisenioMaterial implements Serializable{
 		result = prime * result + ((precioUnitario == null) ? 0 : precioUnitario.hashCode());
 		result = prime * result + ((tamanio == null) ? 0 : tamanio.hashCode());
 		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
-		result = prime * result + ((unidadMedida == null) ? 0 : unidadMedida.hashCode());
+		result = prime * result + ((idUnidadMedida == null) ? 0 : idUnidadMedida.hashCode());
 		return result;
 	}
 
@@ -392,10 +406,10 @@ public class DisenioMaterial implements Serializable{
 				return false;
 		} else if (!ultimaFechaModificacion.equals(other.ultimaFechaModificacion))
 			return false;
-		if (unidadMedida == null) {
-			if (other.unidadMedida != null)
+		if (idUnidadMedida == null) {
+			if (other.idUnidadMedida != null)
 				return false;
-		} else if (!unidadMedida.equals(other.unidadMedida))
+		} else if (!idUnidadMedida.equals(other.idUnidadMedida))
 			return false;
 		return true;
 	}

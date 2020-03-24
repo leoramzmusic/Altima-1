@@ -57,14 +57,14 @@ public class MaterialesController {
 	public String agregarMaterial(Model model) {
 		
 		DisenioMaterial material = new DisenioMaterial();
-		List<DisenioLookup> listLookupsMat = disenioMaterialService.findListaLookupMat();	
+	
 		List<DisenioLookup> listLookupsMed = disenioMaterialService.findListaLookupMed();
 		List<DisenioLookup> listLookupsMar = disenioMaterialService.findListaMarcas();
 		List<DisenioLookup> listLookupsClasificacion = disenioMaterialService.findListaClasificacion();	
 		List<DisenioProceso> listClaveProceso = disenioProcesoService.findListClaveProceso();
 		
 		model.addAttribute("material", material);
-		model.addAttribute("listLookupsMat", listLookupsMat);
+
 		model.addAttribute("listLookupsMed", listLookupsMed);
 		model.addAttribute("listLookupsMar", listLookupsMar);
 		model.addAttribute("listLookupsClasificacion", listLookupsClasificacion);
@@ -85,6 +85,8 @@ public class MaterialesController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
 		System.out.println(auth.getName() + "aqui esta el mero mero");
+		
+		material.setCreadoPor(auth.getName());
 		disenioMaterialService.save(material);
 		
 		material.setIdText("MAE" + (material.getIdMaterial() + 1000));
