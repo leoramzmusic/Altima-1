@@ -1,7 +1,9 @@
 package com.altima.springboot.app.controller;
 
+import java.io.Console;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,10 +18,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.altima.springboot.app.models.entity.DisenioLookup;
 import com.altima.springboot.app.models.service.ICatalogoService;
+//import com.google.gson.Gson;
 
 @CrossOrigin(origins = { "*" })
 @Controller
@@ -33,17 +37,40 @@ public class CatalogoController {
 	@Autowired
 	ICatalogoService catalogo;
 
+	@RequestMapping(value = "/orders", method = RequestMethod.POST)
+	@ResponseBody
+	public List<DisenioLookup> accountSummary() {
+
+		return catalogo.findAllMarca();
+	}
+
 	@RequestMapping(value = { "/catalogos", "/catalogos-marcas" }, method = RequestMethod.GET)
 	public String catalogo(Model model, RedirectAttributes flash) {
 		model.addAttribute("marcas", catalogo.findAllMarca());
+		//Gson gson = new Gson();
+		// convert your list to json
+		//String marca = gson.toJson(catalogo.findAllMarca());
+		// print your generated json
+		//System.out.println("{" + "\"marca\": " + marca + "}");
+		//model.addAttribute("colores22", marca);
+		//model.addAttribute("marca", "{" + "\"marca\": " + marca + "}");
+		model.addAttribute("colores", catalogo.findAllColor());
+		model.addAttribute("pzastrazo", catalogo.findAllPzasTrazo());
+		model.addAttribute("famprendas", catalogo.findAllFamPrendas());
+		model.addAttribute("famgenero", catalogo.findAllFamGenero());
+		model.addAttribute("famcomposicion", catalogo.findAllFamComposicion());
+		model.addAttribute("instrcuidado", catalogo.findAllInstrCuidado());
 		return "/catalogos";
 	}
 
 	@PostMapping("/guardarcatalogo")
-	public String guardacatalogo(String Marca, String Descripcion, String Color, HttpServletRequest request) {
+	public String guardacatalogo(String Marca, String Descripcion, String Color, String PiezaTrazo,
+			String FamiliaPrenda, String FamiliaGenero, String FamiliaComposicion, String InstruccionCuidado,
+			HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
 		if (Marca != null) {
+			System.out.println("entra");
 			DisenioLookup marca = new DisenioLookup();
 			marca.setIdText("MAR004");
 			marca.setNombre(Marca);
@@ -51,7 +78,7 @@ public class CatalogoController {
 			marca.setCreadoPor(auth.getName());
 			marca.setFechaCreacion(date);
 			catalogo.save(marca);
-			marca.setIdText("MAR00" + (marca.getIdLookup()+10));
+			marca.setIdText("MAR00" + (marca.getIdLookup() + 10));
 			catalogo.save(marca);
 			return "redirect:catalogos";
 		}
@@ -63,8 +90,69 @@ public class CatalogoController {
 			color.setCreadoPor(auth.getName());
 			color.setFechaCreacion(date);
 			catalogo.save(color);
-			color.setIdText("COL00" + (color.getIdLookup()+10));
+			color.setIdText("COL00" + (color.getIdLookup() + 10));
 			catalogo.save(color);
+			return "/catalogos";
+		}
+		if (PiezaTrazo != null) {
+			DisenioLookup piezatrazo = new DisenioLookup();
+			piezatrazo.setIdText("COL004");
+			piezatrazo.setNombre(PiezaTrazo);
+			piezatrazo.setTipoLookup("Pieza Trazo");
+			piezatrazo.setCreadoPor(auth.getName());
+			piezatrazo.setFechaCreacion(date);
+			catalogo.save(piezatrazo);
+			piezatrazo.setIdText("PZTR00" + (piezatrazo.getIdLookup() + 10));
+			catalogo.save(piezatrazo);
+			return "/catalogos";
+		}
+		if (FamiliaPrenda != null) {
+			DisenioLookup familiaprenda = new DisenioLookup();
+			familiaprenda.setIdText("Fam004");
+			familiaprenda.setNombre(FamiliaPrenda);
+			familiaprenda.setDescripcion(Descripcion);
+			familiaprenda.setTipoLookup("Familia Prenda");
+			familiaprenda.setCreadoPor(auth.getName());
+			familiaprenda.setFechaCreacion(date);
+			catalogo.save(familiaprenda);
+			familiaprenda.setIdText("FAMPR00" + (familiaprenda.getIdLookup() + 10));
+			catalogo.save(familiaprenda);
+			return "/catalogos";
+		}
+		if (FamiliaGenero != null) {
+			DisenioLookup familiagenero = new DisenioLookup();
+			familiagenero.setIdText("Fam004");
+			familiagenero.setNombre(FamiliaGenero);
+			familiagenero.setTipoLookup("Familia Genero");
+			familiagenero.setCreadoPor(auth.getName());
+			familiagenero.setFechaCreacion(date);
+			catalogo.save(familiagenero);
+			familiagenero.setIdText("FAMGE00" + (familiagenero.getIdLookup() + 10));
+			catalogo.save(familiagenero);
+			return "/catalogos";
+		}
+		if (FamiliaComposicion != null) {
+			DisenioLookup familiacomposicion = new DisenioLookup();
+			familiacomposicion.setIdText("Fam004");
+			familiacomposicion.setNombre(FamiliaComposicion);
+			familiacomposicion.setTipoLookup("Familia Composicion");
+			familiacomposicion.setCreadoPor(auth.getName());
+			familiacomposicion.setFechaCreacion(date);
+			catalogo.save(familiacomposicion);
+			familiacomposicion.setIdText("FAMCOMP00" + (familiacomposicion.getIdLookup() + 10));
+			catalogo.save(familiacomposicion);
+			return "/catalogos";
+		}
+		if (InstruccionCuidado != null) {
+			DisenioLookup instruccioncuidado = new DisenioLookup();
+			instruccioncuidado.setIdText("Fam004");
+			instruccioncuidado.setNombre(InstruccionCuidado);
+			instruccioncuidado.setTipoLookup("Instruccion Cuidado");
+			instruccioncuidado.setCreadoPor(auth.getName());
+			instruccioncuidado.setFechaCreacion(date);
+			catalogo.save(instruccioncuidado);
+			instruccioncuidado.setIdText("INSTRCU00" + (instruccioncuidado.getIdLookup() + 10));
+			catalogo.save(instruccioncuidado);
 			return "/catalogos";
 		}
 		return "redirect:catalogos";
@@ -72,17 +160,73 @@ public class CatalogoController {
 	}
 
 	@PostMapping("/editarcatalogo")
-	public String editacatalogo(Model model, final Long idLookup, String Marca) {
+	public String editacatalogo(Model model, final Long idLookup, String Marca, String Color, String PiezaTrazo,
+			String FamiliaPrenda, String Descripcion, String FamiliaGenero, String FamiliaComposicion,
+			String InstruccionCuidado) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		DisenioLookup marca = null;
-		if (idLookup > 0) {
+		DisenioLookup color = null;
+		DisenioLookup piezatrazo = null;
+		DisenioLookup familiaprenda = null;
+		DisenioLookup familiagenero = null;
+		DisenioLookup familiacomposicion = null;
+		DisenioLookup instruccioncuidado = null;
+		if (Marca != null && idLookup > 0) {
 			marca = catalogo.findOne(idLookup);
 			marca.setNombre(Marca);
 			marca.setUltimaFechaModificacion(date);
 			marca.setActualizadoPor(auth.getName());
 			catalogo.save(marca);
 			return "redirect:catalogos";
-
+		}
+		if (Color != null && idLookup > 0) {
+			color = catalogo.findOne(idLookup);
+			color.setNombre(Color);
+			color.setUltimaFechaModificacion(date);
+			color.setActualizadoPor(auth.getName());
+			catalogo.save(color);
+			return "redirect:catalogos";
+		}
+		if (PiezaTrazo != null && idLookup > 0) {
+			piezatrazo = catalogo.findOne(idLookup);
+			piezatrazo.setNombre(PiezaTrazo);
+			piezatrazo.setUltimaFechaModificacion(date);
+			piezatrazo.setActualizadoPor(auth.getName());
+			catalogo.save(piezatrazo);
+			return "redirect:catalogos";
+		}
+		if (FamiliaPrenda != null && idLookup > 0) {
+			familiaprenda = catalogo.findOne(idLookup);
+			familiaprenda.setNombre(FamiliaPrenda);
+			familiaprenda.setDescripcion(Descripcion);
+			familiaprenda.setUltimaFechaModificacion(date);
+			familiaprenda.setActualizadoPor(auth.getName());
+			catalogo.save(familiaprenda);
+			return "redirect:catalogos";
+		}
+		if (FamiliaGenero != null && idLookup > 0) {
+			familiagenero = catalogo.findOne(idLookup);
+			familiagenero.setNombre(FamiliaGenero);
+			familiagenero.setUltimaFechaModificacion(date);
+			familiagenero.setActualizadoPor(auth.getName());
+			catalogo.save(familiagenero);
+			return "redirect:catalogos";
+		}
+		if (FamiliaComposicion != null && idLookup > 0) {
+			familiacomposicion = catalogo.findOne(idLookup);
+			familiacomposicion.setNombre(FamiliaComposicion);
+			familiacomposicion.setUltimaFechaModificacion(date);
+			familiacomposicion.setActualizadoPor(auth.getName());
+			catalogo.save(familiacomposicion);
+			return "redirect:catalogos";
+		}
+		if (InstruccionCuidado != null && idLookup > 0) {
+			instruccioncuidado = catalogo.findOne(idLookup);
+			instruccioncuidado.setNombre(InstruccionCuidado);
+			instruccioncuidado.setUltimaFechaModificacion(date);
+			instruccioncuidado.setActualizadoPor(auth.getName());
+			catalogo.save(instruccioncuidado);
+			return "redirect:catalogos";
 		}
 		return "redirect:catalogos";
 	}
