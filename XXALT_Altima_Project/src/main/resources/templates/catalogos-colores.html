@@ -1,4 +1,5 @@
 <!-- small box -->
+<html xmlns:th="http://www.thymeleaf.org">
 <div class="small-box bg-danger">
     <div class="inner">
         <h3>Colores</h3>
@@ -27,23 +28,22 @@
                         <tr>
                             <th>C&oacute;digo</th>
                             <th>Nombre</th>
-                            <th>Estatus</th>
                             <th>Cambios</th>
                             <th></th>
+                          
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>CIEM123</td>
-                            <td>Rojo</td>
-                            <td>Activo</td>
+                        <tr th:each="color: ${colores}">
+                            <td th:text="${color.idText}"></td>
+                            <td th:text="${color.nombre}"></td>
                             <td style="text-align: center;">
                                 <button class="btn btn-info popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="<strong>Creado por:</strong> Jose Luis Manuel Jajaja<br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020" style="border-radius: 35%;"><i class="fas fa-info-circle"></i></button>&nbsp;
                             </td>
                             <td class="tdcenter">
-                                <button onclick="editarColor()" class="btn btn-warning popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Editar" style="border-radius: 35%;"><i class="fas fa-pen fa-sm"></i></button>&nbsp;
+                                <button th:id="${color.idLookup}" th:value="${color.nombre}" class="btn btn-warning popoverxd edit_data_color" data-container="body" data-toggle="popover" data-placement="top" data-content="Editar" style="border-radius: 35%;"><i class="fas fa-pen fa-sm"></i></button>&nbsp;
                                 <button onclick="bajarColor()" class="btn btn-danger popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Dar de baja" style="border-radius: 35%;"><i class="fas fa-ban fa-sm"></i></button>&nbsp;
-                                <button onclick="reactivarColor()" class="btn btn-success popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Reactivar" style="border-radius:35%;"><i class="fas fa-check fa-sm"></i></button>
+                            <!--     <button onclick="reactivarColor()" class="btn btn-success popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Reactivar" style="border-radius:35%;"><i class="fas fa-check fa-sm"></i></button>--->
                             </td>
                         </tr>
                     </tbody>
@@ -52,3 +52,4 @@
         </div>
     </div>
 </div>
+</html>
