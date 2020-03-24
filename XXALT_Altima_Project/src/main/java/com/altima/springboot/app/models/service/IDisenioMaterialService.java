@@ -2,7 +2,9 @@ package com.altima.springboot.app.models.service;
 
 import java.util.List;
 
+import com.altima.springboot.app.models.entity.DisenioLookup;
 import com.altima.springboot.app.models.entity.DisenioMaterial;
+
 
 public interface IDisenioMaterialService {
 
@@ -13,5 +15,21 @@ public interface IDisenioMaterialService {
 	void delete(Long id);
 
 	DisenioMaterial findOne(Long id);
+	
+	List<DisenioLookup> findListaLookupMat();
+	
+	List<DisenioLookup> findListaLookupMed();
+	
+	List<DisenioLookup> findListaMarcas();
+	
+	List<DisenioLookup> findListaClasificacion();
+	
+	
+	public List <Object []> disenioMaterial ();
+	
+	
+	
+
 
 }
+

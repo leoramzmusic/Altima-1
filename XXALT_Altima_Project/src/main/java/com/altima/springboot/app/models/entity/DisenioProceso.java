@@ -53,18 +53,12 @@ public class DisenioProceso implements Serializable{
 	
 	@Column(name="clave_proceso")
 	@NotBlank
-	private String clave_Proceso;
+	private String claveProceso;
 	
 	@Column(name="descripcion_proceso")
 	@NotBlank
 	private String descripcionProceso;
 	
-	@Column(name="nombre_proceso")
-	@NotBlank
-	private String nombreProceso;
-	
-	
-
 	@Column(name="origen_proceso")
 	@NotBlank
 	private String origenProceso;
@@ -75,14 +69,6 @@ public class DisenioProceso implements Serializable{
 
 	public void setIdProceso(Long idProceso) {
 		this.idProceso = idProceso;
-	}
-	
-	public String getNombreProceso() {
-		return nombreProceso;
-	}
-
-	public void setNombreProceso(String nombreProceso) {
-		this.nombreProceso = nombreProceso;
 	}
 
 	public Long getIdPrenda() {
@@ -134,11 +120,11 @@ public class DisenioProceso implements Serializable{
 	}
 
 	public String getClave_Proceso() {
-		return clave_Proceso;
+		return claveProceso;
 	}
 
 	public void setClave_Proceso(String clave_Proceso) {
-		this.clave_Proceso = clave_Proceso;
+		this.claveProceso = clave_Proceso;
 	}
 
 	public String getDescripcionProceso() {
@@ -166,7 +152,7 @@ public class DisenioProceso implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
-		result = prime * result + ((clave_Proceso == null) ? 0 : clave_Proceso.hashCode());
+		result = prime * result + ((claveProceso == null) ? 0 : claveProceso.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((descripcionProceso == null) ? 0 : descripcionProceso.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
@@ -192,10 +178,10 @@ public class DisenioProceso implements Serializable{
 				return false;
 		} else if (!actualizadoPor.equals(other.actualizadoPor))
 			return false;
-		if (clave_Proceso == null) {
-			if (other.clave_Proceso != null)
+		if (claveProceso == null) {
+			if (other.claveProceso != null)
 				return false;
-		} else if (!clave_Proceso.equals(other.clave_Proceso))
+		} else if (!claveProceso.equals(other.claveProceso))
 			return false;
 		if (creadoPor == null) {
 			if (other.creadoPor != null)

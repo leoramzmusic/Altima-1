@@ -28,77 +28,93 @@ public class DisenioMaterial implements Serializable{
 	private Long idMaterial;
 	
 	@Column(name="id_lookup")
-	@NotBlank
+	
 	private Long idLookup;
 	
 	@Column(name="id_lookup2")
-	@NotBlank
+
 	private Long idLookup2;
 	
 	@Column(name="id_proceso")
-	@NotBlank
+	
 	private Long idProceso;
 
 	@Column(name="id_text")
-	@NotBlank
+	
 	private String idText;
 	
 	@Column(name="creado_por")
-	@NotBlank
+
 	private String creadoPor;
 	
 	@Column(name="actualizado_por")
-	@NotBlank
+	
 	private String actualizadoPor;
 	
 	@Column(name="fecha_creacion")
-	@NotBlank
+	
 	private String fechaCreacion;
 	
 	@Column(name="ultima_fecha_modificacion")
-	@NotBlank
+	
 	private String ultimaFechaModificacion;
 
 	@Column(name="descripcion_material")
-	@NotBlank
+
 	private String descripcionMaterial;
 	
-	@Column(name="nombre_material")
-	@NotBlank
-	private String nombreMaterial;
-	
-	@Column(name="unidad_medida")
-	@NotBlank
-	private String unidadMedida;
-	
-	
+	@Column(name="id_unidad_medida")
 
+	private String idUnidadMedida;
+	
 	@Column(name="modelo")
-	@NotBlank
+	
 	private String modelo;
 	
 	@Column(name="precio_unitario")
-	@NotBlank
+
 	private String precioUnitario;
 	
 	@Column(name="explosion")
-	@NotBlank
+
 	private String explosion;
 	
 	@Column(name="incluir_en_patronaje")
-	@NotBlank
+	
 	private String incluirEnPatronaje;
 	
 	@Column(name="tamanio")
-	@NotBlank
+	
 	private String tamanio;
 	
+
+	@Column(name="id_marca")
+	
+	private String idMarca;
+	
+    @Column(name="id_clasificacion")
+	
+	private String  idClasificacion ;
+    
+    @Column(name="nombre_material")
+	
+   	private String  nombreMaterial ;
+	
+
+	public String getNombreMaterial() {
+		return nombreMaterial;
+	}
+
+	public void setNombreMaterial(String nombreMaterial) {
+		this.nombreMaterial = nombreMaterial;
+	}
+
 	@Column(name="modelo_proveedor")
-	@NotBlank
+	
 	private String modeloProveedor;
 	
 	@Column(name="id_almacen")
-	@NotBlank
+
 	private Long idAlmacen;
 
 	public Long getIdMaterial() {
@@ -173,14 +189,6 @@ public class DisenioMaterial implements Serializable{
 		this.ultimaFechaModificacion = ultimaFechaModificacion;
 	}
 
-	public String getNombreMaterial() {
-		return nombreMaterial;
-	}
-
-	public void setNombreMaterial(String nombreMaterial) {
-		this.nombreMaterial = nombreMaterial;
-	}
-	
 	public String getDescripcionMaterial() {
 		return descripcionMaterial;
 	}
@@ -189,13 +197,6 @@ public class DisenioMaterial implements Serializable{
 		this.descripcionMaterial = descripcionMaterial;
 	}
 
-	public String getUnidadMedida() {
-		return unidadMedida;
-	}
-
-	public void setUnidadMedida(String unidadMedida) {
-		this.unidadMedida = unidadMedida;
-	}
 
 	public String getModelo() {
 		return modelo;
@@ -236,6 +237,35 @@ public class DisenioMaterial implements Serializable{
 	public void setTamanio(String tamanio) {
 		this.tamanio = tamanio;
 	}
+	
+
+	
+
+
+
+	public String getIdUnidadMedida() {
+		return idUnidadMedida;
+	}
+
+	public void setIdUnidadMedida(String idUnidadMedida) {
+		this.idUnidadMedida = idUnidadMedida;
+	}
+
+	public String getIdMarca() {
+		return idMarca;
+	}
+
+	public void setIdMarca(String idMarca) {
+		this.idMarca = idMarca;
+	}
+
+	public String getIdClasificacion() {
+		return idClasificacion;
+	}
+
+	public void setIdClasificacion(String idClasificacion) {
+		this.idClasificacion = idClasificacion;
+	}
 
 	public String getModeloProveedor() {
 		return modeloProveedor;
@@ -261,7 +291,24 @@ public class DisenioMaterial implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((nombreMaterial == null) ? 0 : nombreMaterial.hashCode());
+		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
+		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
+		result = prime * result + ((descripcionMaterial == null) ? 0 : descripcionMaterial.hashCode());
+		result = prime * result + ((explosion == null) ? 0 : explosion.hashCode());
+		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
+		result = prime * result + ((idAlmacen == null) ? 0 : idAlmacen.hashCode());
+		result = prime * result + ((idLookup == null) ? 0 : idLookup.hashCode());
+		result = prime * result + ((idLookup2 == null) ? 0 : idLookup2.hashCode());
+		result = prime * result + ((idMaterial == null) ? 0 : idMaterial.hashCode());
+		result = prime * result + ((idProceso == null) ? 0 : idProceso.hashCode());
+		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
+		result = prime * result + ((incluirEnPatronaje == null) ? 0 : incluirEnPatronaje.hashCode());
+		result = prime * result + ((modelo == null) ? 0 : modelo.hashCode());
+		result = prime * result + ((modeloProveedor == null) ? 0 : modeloProveedor.hashCode());
+		result = prime * result + ((precioUnitario == null) ? 0 : precioUnitario.hashCode());
+		result = prime * result + ((tamanio == null) ? 0 : tamanio.hashCode());
+		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
+		result = prime * result + ((idUnidadMedida == null) ? 0 : idUnidadMedida.hashCode());
 		return result;
 	}
 
@@ -274,10 +321,95 @@ public class DisenioMaterial implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		DisenioMaterial other = (DisenioMaterial) obj;
-		if (nombreMaterial == null) {
-			if (other.nombreMaterial != null)
+		if (actualizadoPor == null) {
+			if (other.actualizadoPor != null)
 				return false;
-		} else if (!nombreMaterial.equals(other.nombreMaterial))
+		} else if (!actualizadoPor.equals(other.actualizadoPor))
+			return false;
+		if (creadoPor == null) {
+			if (other.creadoPor != null)
+				return false;
+		} else if (!creadoPor.equals(other.creadoPor))
+			return false;
+		if (descripcionMaterial == null) {
+			if (other.descripcionMaterial != null)
+				return false;
+		} else if (!descripcionMaterial.equals(other.descripcionMaterial))
+			return false;
+		if (explosion == null) {
+			if (other.explosion != null)
+				return false;
+		} else if (!explosion.equals(other.explosion))
+			return false;
+		if (fechaCreacion == null) {
+			if (other.fechaCreacion != null)
+				return false;
+		} else if (!fechaCreacion.equals(other.fechaCreacion))
+			return false;
+		if (idAlmacen == null) {
+			if (other.idAlmacen != null)
+				return false;
+		} else if (!idAlmacen.equals(other.idAlmacen))
+			return false;
+		if (idLookup == null) {
+			if (other.idLookup != null)
+				return false;
+		} else if (!idLookup.equals(other.idLookup))
+			return false;
+		if (idLookup2 == null) {
+			if (other.idLookup2 != null)
+				return false;
+		} else if (!idLookup2.equals(other.idLookup2))
+			return false;
+		if (idMaterial == null) {
+			if (other.idMaterial != null)
+				return false;
+		} else if (!idMaterial.equals(other.idMaterial))
+			return false;
+		if (idProceso == null) {
+			if (other.idProceso != null)
+				return false;
+		} else if (!idProceso.equals(other.idProceso))
+			return false;
+		if (idText == null) {
+			if (other.idText != null)
+				return false;
+		} else if (!idText.equals(other.idText))
+			return false;
+		if (incluirEnPatronaje == null) {
+			if (other.incluirEnPatronaje != null)
+				return false;
+		} else if (!incluirEnPatronaje.equals(other.incluirEnPatronaje))
+			return false;
+		if (modelo == null) {
+			if (other.modelo != null)
+				return false;
+		} else if (!modelo.equals(other.modelo))
+			return false;
+		if (modeloProveedor == null) {
+			if (other.modeloProveedor != null)
+				return false;
+		} else if (!modeloProveedor.equals(other.modeloProveedor))
+			return false;
+		if (precioUnitario == null) {
+			if (other.precioUnitario != null)
+				return false;
+		} else if (!precioUnitario.equals(other.precioUnitario))
+			return false;
+		if (tamanio == null) {
+			if (other.tamanio != null)
+				return false;
+		} else if (!tamanio.equals(other.tamanio))
+			return false;
+		if (ultimaFechaModificacion == null) {
+			if (other.ultimaFechaModificacion != null)
+				return false;
+		} else if (!ultimaFechaModificacion.equals(other.ultimaFechaModificacion))
+			return false;
+		if (idUnidadMedida == null) {
+			if (other.idUnidadMedida != null)
+				return false;
+		} else if (!idUnidadMedida.equals(other.idUnidadMedida))
 			return false;
 		return true;
 	}

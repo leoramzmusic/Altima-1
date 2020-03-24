@@ -75,20 +75,19 @@
                                                 <th>C&oacute;digo</th>
                                                 <th>Descripci&oacute;n</th>
                                                 <th>Clasificaci&oacute;n</th>
-                                                <th>Cantidad</th>
+                                        
                                                 <th>Unidad de medida</th>
-                                                <th>Proveedor</th>
-                                                <th></th>
+                                             
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>MAE123</td>
-                                                <td>Star Wars</td>
-                                                <td>Blusa</td>
-                                                <td>Activo</td>
-                                                <td>Activo</td>
-                                                <td>Activo</td>
+                                            <tr  th:each="mt:${listarMateriales}" >
+                                                <td th:text="${mt[1]}" ></td>
+                                                <td th:text="${mt[2]}" ></td>
+                                                <td th:text="${mt[3]}" ></td>
+                                                <td th:text="${mt[4]}" ></td>
+                                               
+                                            
                                                 <td class="tdcenter">
                                                     <a th:href="${'detalle-material'}" class="btn btn-warning popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Ver m&aacute;s detalles" style="border-radius: 35%;"><i class="fas fa-info"></i></a>&nbsp;
                                                 </td>

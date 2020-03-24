@@ -2,6 +2,8 @@ package com.altima.springboot.app.models.service;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +15,9 @@ import com.altima.springboot.app.repository.DisenioRutaRepository;
 public class DisenioRutaServiceImpl implements IDisenioRutaService {
 	@Autowired
 	private DisenioRutaRepository repository;
+	@Autowired
+	private EntityManager em;
+	
 	@Override
 	@Transactional(readOnly=true)
 	public List<DisenioRuta> findAll() {
@@ -24,7 +29,12 @@ public class DisenioRutaServiceImpl implements IDisenioRutaService {
 	@Transactional
 	public void save(DisenioRuta disenioruta) {
 		// TODO Auto-generated method stub
-		repository.save(disenioruta);
+		if(disenioruta.getIdRuta()!=null &&  disenioruta.getIdRuta()>0) {
+			em.merge(disenioruta);
+		}
+		else {
+			em.persist(disenioruta);
+		}
 
 	}
 

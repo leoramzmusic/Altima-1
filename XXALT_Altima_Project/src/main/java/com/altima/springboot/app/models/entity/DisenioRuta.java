@@ -31,6 +31,10 @@ public class DisenioRuta implements Serializable{
 	@NotBlank
 	private String idText;
 	
+	@Column(name="nombre_ruta")
+	@NotBlank
+	private String nombreRuta;
+	
 	@Column(name="creado_por")
 	@NotBlank
 	private String creadoPor;
@@ -46,6 +50,14 @@ public class DisenioRuta implements Serializable{
 	@Column(name="ultima_fecha_modificacion")
 	@NotBlank
 	private String ultimaFechaModificacion;
+	
+	@Column(name="clave_ruta")
+	@NotBlank
+	private String claveRuta;
+
+	@Column(name="descripcion_ruta")
+	@NotBlank
+	private String descripcionRuta;
 
 	public Long getIdRuta() {
 		return idRuta;
@@ -61,6 +73,14 @@ public class DisenioRuta implements Serializable{
 
 	public void setIdText(String idText) {
 		this.idText = idText;
+	}
+	
+	public String getNombreRuta() {
+		return nombreRuta;
+	}
+
+	public void setNombreRuta(String nombreRuta) {
+		this.nombreRuta = nombreRuta;
 	}
 
 	public String getCreadoPor() {
@@ -93,6 +113,22 @@ public class DisenioRuta implements Serializable{
 
 	public void setUltimaFechaModificacion(String ultimaFechaModificacion) {
 		this.ultimaFechaModificacion = ultimaFechaModificacion;
+	}
+	
+	public String getClaveRuta() {
+		return claveRuta;
+	}
+
+	public void setClaveRuta(String claveRuta) {
+		this.claveRuta = claveRuta;
+	}
+	
+	public String getDescripcionRuta() {
+		return descripcionRuta;
+	}
+
+	public void setDescripcionRuta(String descripcionRuta) {
+		this.descripcionRuta = descripcionRuta;
 	}
 
 	public static long getSerialversionuid() {
