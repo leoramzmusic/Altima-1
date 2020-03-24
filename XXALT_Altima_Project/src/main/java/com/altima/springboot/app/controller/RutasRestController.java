@@ -1,9 +1,16 @@
 package com.altima.springboot.app.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,20 +41,29 @@ public class RutasRestController {
 	public DisenioRuta crear(@RequestParam(name = "nombre") String nombreRuta, 
 						@RequestParam(name = "descripcion") String descripcionRuta, 
 						@RequestParam(name = "procesos") String procesos)  {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		DisenioRuta rutas = new DisenioRuta();
 		DisenioRutaProceso procesoRuta = new DisenioRutaProceso();
-			
+		Calendar cal = Calendar.getInstance();
+        Date date=cal.getTime();
+        LocalDate localDate = LocalDate.now();
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        String formattedDate=localDate + " "+ dateFormat.format(date);
 		if(id==null) {
 			
 			System.out.println(id);
+			System.out.println(formattedDate);
 			rutas.setNombreRuta(nombreRuta);
 			rutas.setDescripcionRuta(descripcionRuta);
-			rutas.setActualizadoPor("c");
-			rutas.setCreadoPor("d");
-			rutas.setFechaCreacion("2020-03-18");
-			rutas.setUltimaFechaModificacion("2020-03-18");
-			rutas.setClaveRuta("RUT0021");
-			rutas.setIdText("RUT0021");
+			rutas.setActualizadoPor(auth.getName());
+			rutas.setCreadoPor(auth.getName());
+			rutas.setFechaCreacion(formattedDate);
+			rutas.setUltimaFechaModificacion(formattedDate);
+			rutas.setClaveRuta("c");
+			rutas.setIdText("c");
+			disenioruta.save(rutas);
+			rutas.setClaveRuta("CLA" + rutas.getNombreRuta().charAt(0) +(rutas.getIdRuta()+1000000));
+			rutas.setIdText("RUT0" + (rutas.getIdRuta()+1000000));
 			disenioruta.save(rutas);
 			
 	        String[] palabras = procesos.split(",");
