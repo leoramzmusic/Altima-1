@@ -157,7 +157,7 @@ public class AgregarPrendaRestController
 			JSONObject material = materiales.getJSONObject(i);
 			DisenioMaterialPrenda mdp = new DisenioMaterialPrenda();
 			mdp.setIdMaterial(Long.valueOf(material.get("id").toString()));
-			mdp.setIdMaterialPrenda(Long.valueOf( dp.getIdPrenda()));
+			mdp.setIdPrenda(Long.valueOf( dp.getIdPrenda()));
 			mdp.setCreadoPor(auth.getName());
 			mdp.setActualizadoPor(auth.getName());
 			materialPrendaService.save(mdp);
