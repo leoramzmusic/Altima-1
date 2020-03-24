@@ -104,8 +104,9 @@ public List<DisenioLookup> listarProcesos() {
 }
 
 @RequestMapping(value="/editarRuta", method=RequestMethod.POST)
-public List<Object> editarRuta(@RequestParam(name = "idRuta") Long idruta, List<Object> ruta) {
+public List<Object> editarRuta(@RequestParam(name = "idRuta") Long idruta) {
 	id = idruta;
+	List<Object> ruta = new ArrayList<>();
 	DisenioRuta rut = disenioruta.findOne(idruta);
 	ruta.add(rut);
 	ruta.addAll(disenioRutaProceso.findByRuta(idruta));
