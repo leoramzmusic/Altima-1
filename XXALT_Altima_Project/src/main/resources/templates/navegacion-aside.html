@@ -22,7 +22,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item">
+          <li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')}">
             <a th:href="${'/'}" class="nav-link" id="navDashboard">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -30,7 +30,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview" id="menuDiseno">
+          <li class="nav-item has-treeview" id="menuDiseno" th:if="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')} or (${#authorization.expression('hasRole(''ROLE_DISENIO'')')})">
             <a class="nav-link" id="navDiseno">
               <i class="nav-icon flaticon-005-dress" style="margin-right: -3px;margin-left: 6px;"></i>
               <p>
@@ -77,7 +77,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview" th:if="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')}">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-clipboard"></i>
               <p>
@@ -104,7 +104,7 @@
             </ul>
           </li>
           
-          <li class="nav-item has-treeview" id="menuMuestrario">
+          <li class="nav-item has-treeview" id="menuMuestrario" th:if="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')} or (${#authorization.expression('hasRole(''ROLE_DISENIO'')')})">
             <a class="nav-link" id="navMuestrario">
               <i class="nav-icon flaticon-006-dummy" style="margin-right: -3px;margin-left: 6px;"></i>
               <p>
@@ -231,13 +231,13 @@
           </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview" th:if="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')}">
             <a th:href="${'rutas'}" class="nav-link" id="navRutas">
             	<i class="nav-icon fas fa-truck"></i>
             	<p>Log&iacute;stica</p>
           	</a>
           </li>
-          <li class="nav-item has-treeview" id="menuProduccion">
+          <li class="nav-item has-treeview" id="menuProduccion" th:if="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')}">
             <a class="nav-link" id="navProduccion">
               <i class="nav-icon flaticon-026-sewing-machine"></i>
               <p>
@@ -344,7 +344,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview" id="menuMuestrario">
+          <li class="nav-item has-treeview" id="menuMuestrario" th:if="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')}">
             <a class="nav-link" id="navMuestrario">
               <i class="nav-icon far fa-comment-dots"></i>
               <p>
