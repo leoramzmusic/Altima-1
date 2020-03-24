@@ -212,7 +212,7 @@ swal(
 	        cancelButtonColor: '#6C757D',
 	        cancelButtonText: 'Cancelar',
 	        confirmButtonText: 'Agregar',
-	        confirmButtonColor:'#FFC107'
+	        confirmButtonColor:'#dc3545'
 	        }).then(function (Color,Descripcion,response) {
 	    	  if (document.getElementById("color").value) {
 	    		
