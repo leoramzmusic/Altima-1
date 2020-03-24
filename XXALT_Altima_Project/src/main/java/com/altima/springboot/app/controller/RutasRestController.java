@@ -116,7 +116,6 @@ public List<DisenioRuta> listarRutas() {
 public List<DisenioLookup> listarProcesos() {
 	
 	List<DisenioLookup> listaProcesos = disenioLookup.findByTipoLookup("Proceso");
-	id=null;
 	return listaProcesos;
 }
 
@@ -130,4 +129,10 @@ public List<Object> editarRuta(@RequestParam(name = "idRuta") Long idruta) {
 	
 	return ruta;
 }
+
+@RequestMapping("/borrarRegistro")
+public void borrarCache() {
+	id=null;
+}
+
 }
