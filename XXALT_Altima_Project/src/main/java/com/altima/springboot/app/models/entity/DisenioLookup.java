@@ -52,7 +52,7 @@ public class DisenioLookup implements Serializable{
 	private String ultimaFechaModificacion;
 	
 	@Column(name="estatus")
-	private int Estatus;
+	private Integer Estatus;
 
 	public Long getIdLookup() {
 		return idLookup;
@@ -126,11 +126,11 @@ public class DisenioLookup implements Serializable{
 		this.ultimaFechaModificacion = ultimaFechaModificacion;
 	}
 	
-	public int getEstatus() {
+	public Integer getEstatus() {
 		return Estatus;
 	}
 
-	public void SetEstatus(int Estatus) {
+	public void SetEstatus(Integer Estatus) {
 		this.Estatus = Estatus;
 	}
 
