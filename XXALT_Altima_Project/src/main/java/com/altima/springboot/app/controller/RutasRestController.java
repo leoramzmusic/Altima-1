@@ -62,8 +62,8 @@ public class RutasRestController {
 			rutas.setClaveRuta("c");
 			rutas.setIdText("c");
 			disenioruta.save(rutas);
-			rutas.setClaveRuta("CLA" + rutas.getNombreRuta().charAt(0) +(rutas.getIdRuta()+1000000));
-			rutas.setIdText("RUT0" + (rutas.getIdRuta()+1000000));
+			rutas.setClaveRuta("CLA" +(rutas.getIdRuta()+100000));
+			rutas.setIdText("RUT0" + (rutas.getIdRuta()+100000));
 			disenioruta.save(rutas);
 			
 	        String[] palabras = procesos.split(",");
