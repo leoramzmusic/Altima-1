@@ -18,4 +18,14 @@ public interface ICatalogoService {
 
 	List<DisenioLookup> findAllMarca();
 
+	List<DisenioLookup> findAllPzasTrazo();
+
+	List<DisenioLookup> findAllFamPrendas();
+
+	List<DisenioLookup> findAllFamGenero();
+
+	List<DisenioLookup> findAllFamComposicion();
+
+	List<DisenioLookup> findAllInstrCuidado();
+
 }
