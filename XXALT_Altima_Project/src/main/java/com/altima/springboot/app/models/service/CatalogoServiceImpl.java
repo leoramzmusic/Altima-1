@@ -63,5 +63,40 @@ public class CatalogoServiceImpl implements ICatalogoService {
 	public List<DisenioLookup> findAllColor() {
 		return em.createQuery("from DisenioLookup where tipo_lookup='Color'").getResultList();
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<DisenioLookup> findAllPzasTrazo() {
+		return em.createQuery("from DisenioLookup where tipo_lookup='Pieza Trazo'").getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<DisenioLookup> findAllFamPrendas() {
+		return em.createQuery("from DisenioLookup where tipo_lookup='Familia Prenda'").getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<DisenioLookup> findAllFamGenero() {
+		return em.createQuery("from DisenioLookup where tipo_lookup='Familia Genero'").getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<DisenioLookup> findAllFamComposicion() {
+		return em.createQuery("from DisenioLookup where tipo_lookup='Familia Composicion'").getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<DisenioLookup> findAllInstrCuidado(){
+		return em.createQuery("from DisenioLookup where tipo_lookup='Instruccion Cuidado'").getResultList();
+	}
 
 }
