@@ -181,7 +181,7 @@ function vaciarModal(){
 	
 	$.ajax({	  
 		type: "POST",
-	    url: "/listarProcesos",
+	    url: "/borrarRegistro",
 	    data: {
 	    	"_csrf": $('#token').val()
 	    },
