@@ -100,8 +100,9 @@
 														class="flaticon-019-pattern-1"></i>&nbsp;Piezas de
 														patronaje</a></li>
 											</ul>
-											<form th:action="@{/prendas}" method="post"
-												th:object="${disenio}">
+											<!-- <form th:action="@{/prendas}" method="post"
+												th:object="${disenio}">-->
+												<div th:object="${disenio}">
 												<div class="tab-content py-2">
 													<div class="tab-pane active" role="tabpanel" id="step1">
 														<div class="row">
@@ -109,38 +110,41 @@
 																<div class="form-group">
 																	<label>Tipo de prenda</label> <select
 																		placeholder="Elige una prenda"
-																		th:field="*{marcadores}">
+																		th:field="*{marcadores}" id="TipoPrenda">
 																		<option value=""></option>
-																		<option th:each="familia: ${familias}"
-																			th:value="${familia.idFamiliaPrenda}"
-																			th:text="${familia.tipoPrenda}"></option>
+																		<option th:each="familia: ${familias}" th:value="${familia.idFamiliaPrenda}" th:text="${familia.tipoPrenda}"></option>
 																	</select>
+																</div>
+															</div>
+															<div class="col-sm-3">
+																<div class="form-group">
+																	<label style="font-size: 15px;">Nombre de la prenda</label> <input type="text" class="form-control" placeholder="Blusa" th:field="*{nombrePrenda}" id="NombrePrenda">
 																</div>
 															</div>
 															<div class="col-sm-3">
 																<div class="form-group">
 																	<label style="font-size: 15px;">Descripci&oacute;n
 																		de la prenda</label> <input type="text" class="form-control"
-																		placeholder="CH9192" th:field="*{descripcionPrenda}">
+																		placeholder="CH9192" th:field="*{descripcionPrenda}" id="DescripcionPrenda">
 																</div>
 															</div>
 															<div class="col-sm-3">
 																<div class="form-group">
 																	<label style="font-size: 15px;">Nota especial</label> <input
-																		type="text" class="form-control" placeholder="CH9192" th:field="*{notaEspecial}">
+																		type="text" class="form-control" placeholder="CH9192"  th:field="*{notaEspecial}" id="NotaEspecial">
 																</div>
 															</div>
 															<div class="col-sm-3">
 																<div class="form-group">
 																	<label style="font-size: 15px;">Ruta</label> <input
-																		type="text" class="form-control" placeholder="CH9192">
+																		type="text" class="form-control" placeholder="CH9192" id="Ruta">
 																</div>
 															</div>
 															<div class="col-sm-10">
 																<div class="form-group">
 																	<label>Detalle de la prenda</label>
 																	<textarea class="form-control" rows="3"
-																		placeholder="Enter ..."></textarea>
+																		placeholder="Enter ..." id="DetallePrenda"></textarea>
 																</div>
 															</div>
 															<div class="col-sm-2" style="font-size: 15px;">
@@ -164,6 +168,11 @@
 																</div>
 															</div>
 														</div>
+														
+														<form th:action="@{/prendas}" method="POST" enctype="multipart/form-data" th:object="${disenio}" ><!-- Abre form de la imagen -->
+														<input type="hidden" name="_csrf" id="token"  th:value="${_csrf.token}"/>
+														
+														
 														<div class="row">
 															<div class="col-sm-12">
 																<div class="form-group p-3 border p-2 rounded m-3">
@@ -180,7 +189,7 @@
 																			<label for="mainImage1">Imagen frontal</label>
 																			<div class="input-group mb-3">
 																				<input type="file" class="form-control border p-1"
-																					id="mainImage1" name="mainImage1" />
+																					id="file" name="mainImage1" />
 																				<div class="input-group-append">
 																					<span
 																						class="input-group-text bg-danger text-danger pointer"
@@ -214,7 +223,7 @@
 																			<label for="mainImage">Imagen espalda/trasero</label>
 																			<div class="input-group mb-3">
 																				<input type="file" class="form-control border p-1"
-																					id="mainImage" name="mainImage" />
+																					id="file2" name="mainImage" />
 																				<div class="input-group-append">
 																					<span
 																						class="input-group-text bg-danger text-danger pointer"
@@ -234,10 +243,11 @@
 																</div>
 															</div>
 															<div class="form-group col-sm-12">
-																<button type="button"
-																	class="btn btn-primary next-step float-right">Siguiente</button>
+																<button type="button" class="btn btn-primary next-step float-right">Siguiente</button>
+																<button type="submit" id="FormImagenes"></button>
 															</div>
 														</div>
+														</form><!-- Cierra form de la imagen -->
 													</div>
 													<div class="tab-pane" role="tabpanel" id="step2">
 														<div class="row">
@@ -245,25 +255,20 @@
 																<div class="form-group">
 																	<label>Detalle de la confecci&oacute;n</label>
 																	<textarea class="form-control" rows="6" th:field="*{detalleConfeccion}"
-																		placeholder="Especificar"></textarea>
+																		placeholder="Especificar" id="DetalleConfeccion"></textarea>
 																</div>
 															</div>
 															<div class="col-sm-6">
 																<div class="form-group">
 																	<label>Marcadores</label>
 																	<textarea class="form-control" rows="6" th:field="*{marcadores}"
-																		placeholder="Especificar"></textarea>
+																		placeholder="Especificar"  id="Marcadores"></textarea>
 																</div>
 															</div>
 														</div>
-														<ul class="float-right">
+														<ul class="float-right">	
 															<li class="list-inline-item">
-																<button type="button"
-																	class="btn btn-outline-primary prev-step">Anterior</button>
-															</li>
-															<li class="list-inline-item">
-																<button type="button" class="btn btn-primary next-step">Guardar
-																	y continuar</button>
+																<button type="button" class="btn btn-primary next-step">Siguiente</button>
 															</li>
 														</ul>
 													</div>
@@ -271,27 +276,18 @@
 														<div class="row">
 															<div class="col-sm-10">
 																<div class="form-group">
-																	<label>Lista de materiales</label> <select
-																		placeholder="Elige una prenda">
-																		<option></option>
-																		<optgroup label="Abrigo">
-																			<option>Abrigo de cuero</option>
-																			<option>Abrigo sintetico</option>
-																			<option>Abrigo de lagrimas como bob esponja
-																				xdxd</option>
-																		</optgroup>
-																		<optgroup label="Saco">
-																			<option>Saco de cuadros</option>
-																			<option>Saco liso</option>
-																			<option>Saco de rayas</option>
-																		</optgroup>
+																	<label>Lista de materiales</label>
+																	<select placeholder="Elige una prenda" id="ListaDeMateriales">
+																		<option value=""></option>
+																			<option th:each="materiales : ${materiales}" th:value="${materiales[0]}" th:text="${materiales[1]}"></option>
 																	</select>
 																</div>
 															</div>
 															<div class="col-sm-2">
 																<label>&nbsp;</label>
 																<div class="form-group">
-																	<button class="btn btn-primary btn-block">
+																<!-- añadir a clas btn-block -->
+																	<button class="btn btn-primary" onclick="AgregarElementoListaMateriales()">
 																		<i class="fas fa-plus fa-sm"></i> Agregar
 																	</button>
 																</div>
@@ -311,37 +307,16 @@
 																			<th scope="col"></th>
 																		</tr>
 																	</thead>
-																	<tbody>
-																		<tr>
-																			<td>1</td>
-																			<th scope="row">Mark</th>
-																			<td>Otto</td>
-																			<td>@mdo</td>
-																			<td>Otto</td>
-																			<td>@mdo</td>
-																			<td>Otto</td>
-																			<td>@mdo</td>
-																			<td class="tdcenter"><a href=""
-																				class="btn btn-danger rounded-circle"><i
-																					class="fas fa-minus fa-sm"></i></a></td>
-																		</tr>
+																	<tbody id="CuerpoTablaMateriales">
 																	</tbody>
 																</table>
 															</div>
 														</div>
 														<ul class="float-right">
 															<li class="list-inline-item">
+															<!--añadir a la clase btn-info-full next-step -->
 																<button type="button"
-																	class="btn btn-outline-primary prev-step">Anterior</button>
-															</li>
-															<li class="list-inline-item">
-																<button type="button"
-																	class="btn btn-outline-primary next-step">Saltar</button>
-															</li>
-															<li class="list-inline-item">
-																<button type="button"
-																	class="btn btn-primary btn-info-full next-step">Guardar
-																	y continuar</button>
+																	class="btn btn-outline-primary next-step">Siguiente</button>
 															</li>
 														</ul>
 													</div>
@@ -350,19 +325,9 @@
 															<div class="col-sm-12">
 																<div class="form-group">
 																	<label>Lista de piezas de patronaje</label> <select
-																		placeholder="Elige una prenda">
+																		placeholder="Elige una prenda" id="ListaPatronaje">
 																		<option></option>
-																		<optgroup label="Abrigo">
-																			<option>Abrigo de cuero</option>
-																			<option>Abrigo sintetico</option>
-																			<option>Abrigo de lagrimas como bob esponja
-																				xdxd</option>
-																		</optgroup>
-																		<optgroup label="Saco">
-																			<option>Saco de cuadros</option>
-																			<option>Saco liso</option>
-																			<option>Saco de rayas</option>
-																		</optgroup>
+																		<option th:each="patronajes : ${patronajes}" th:value="${patronajes[0]}" th:text="${patronajes[2]}"></option>
 																	</select>
 																</div>
 															</div>
@@ -370,27 +335,27 @@
 																<label>Cantidad de tela</label>
 																<div class="form-group">
 																	<input type="text" class="form-control"
-																		placeholder="CH9192">
+																		placeholder="CH9192" id="CantidadTela">
 																</div>
 															</div>
 															<div class="col-sm-3">
 																<label>Cantidad de forro</label>
 																<div class="form-group">
 																	<input type="text" class="form-control"
-																		placeholder="CH9192">
+																		placeholder="CH9192"  id="CantidadForro">
 																</div>
 															</div>
 															<div class="col-sm-3">
 																<label>Cantidad de entretela</label>
 																<div class="form-group">
 																	<input type="text" class="form-control"
-																		placeholder="CH9192">
+																		placeholder="CH9192"  id="CantidadEntretela">
 																</div>
 															</div>
 															<div class="col-sm-3">
 																<label>&nbsp;</label>
 																<div class="form-group">
-																	<button class="btn btn-primary btn-block">
+																	<button class="btn btn-primary btn-block" onclick="AgregarElementoListaPatronaje()">
 																		<i class="fas fa-plus fa-sm"></i> Agregar
 																	</button>
 																</div>
@@ -404,20 +369,10 @@
 																			<th scope="col">Cantidad de tela</th>
 																			<th scope="col">Cantidad de forro</th>
 																			<th scope="col">Cantidad de entretela</th>
-																			<th scope="col"></th>
+																			<th scope="col">Quitar</th>
 																		</tr>
 																	</thead>
-																	<tbody>
-																		<tr>
-																			<th scope="row">Mark</th>
-																			<td>Otto</td>
-																			<td>@mdo</td>
-																			<td>Otto</td>
-																			<td>@mdo</td>
-																			<td class="tdcenter"><a href=""
-																				class="btn btn-danger rounded-circle"><i
-																					class="fas fa-minus fa-sm"></i></a></td>
-																		</tr>
+																	<tbody id="CuerpoPatronaje">
 																	</tbody>
 																</table>
 															</div>
@@ -425,15 +380,7 @@
 														<ul class="float-right">
 															<li class="list-inline-item">
 																<button type="button"
-																	class="btn btn-outline-primary prev-step">Anterior</button>
-															</li>
-															<li class="list-inline-item">
-																<button type="button"
-																	class="btn btn-outline-primary next-step">Saltar</button>
-															</li>
-															<li class="list-inline-item">
-																<button type="button"
-																	class="btn btn-primary btn-info-full next-step">Guardar</button>
+																	class="btn btn-primary btn-info-full next-step" onclick="Guardar()">Guardar</button>
 															</li>
 														</ul>
 													</div>
@@ -476,6 +423,8 @@
 	<script src="dist/js/UploadImage.js"></script>
 	<!-- select2 -->
 	<script src="dist/js/select2.min.js"></script>
+	<!-- Script para guardar Prenda -->
+	<script src="dist/js/AgregarPrenda.js"></script>
 	<script>
 		function changeClassById() {
 			document.getElementById("menuDiseno").className = "nav-item has-treeview menu-open";
@@ -530,6 +479,14 @@
 				});
 			});
 		});
+	</script>
+	<script>
+	
+		//Objetoa ser llenado para almacenar
+		objeto_prenda = {};
+		objeto_materiales = [];
+		objeto_patronaje = [];
+	
 	</script>
 </body>
 
