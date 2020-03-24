@@ -3,148 +3,102 @@
 $('#detalleMarcas').on('shown.bs.modal', function() {
      $(document).off('focusin.modal');
  });
+// //////////////////////7
+
+
 
 // Agregar Marca
 function agregarMarca() {
-    Swal.fire({
-        title: 'Agregar marca',
-        html:'<div class="row">'+
-        '<div class="form-group col-sm-12">'+
-          '<label for="pedidonom">Nombre de la marca</label>'+
-          '<input type="text" class="swal2-input" id="marca" placeholder="Parisina">'+
-        '</div>'+
-        '</div>',
-        inputAttributes: {
-          autocapitalize: 'off'
-        },
-        showCancelButton: true,
-        cancelButtonColor: '#6C757D',
-        cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Agregar',
-        confirmButtonColor:'#FFC107'
-        }).then(function (Marca,Descripcion,response) {
-    	  if (document.getElementById("marca").value) {
-    		
-    		  var Marca=document.getElementById("marca").value;
-    		 // var Descripcion=document.getElementById("descripcion").value;
-    		  }
-    	  else {
-    	         
-    		  Swal.fire({
-                  title: ` ingrese datos antes de enviar`
-                 
-                })
-    		  throw new Error(response.statusText)
-    	      }
-        $.ajax({
-        type: "POST",
-        url: "/guardarcatalogo",
-        data: { 
-        	 "_csrf": $('#token').val(),
-        	'Marca': Marca
-        	// ,'Descripcion':Descripcion
-        },
-        	
-        cache: false,
-        success: function(response) {
-        	 Swal.fire({
-                 title: ` Datos enviados correctamente`
-                
-               })
-        },
-        failure: function (response) {
-        	 Swal.fire({
-                 title: ` fallo`
-                
-               })
-        }
-    });
-        window.setTimeout(function(){location.reload()}, 2000);
-}, 
-function (dismiss) {
-  if (dismiss === "cancel") {
-    swal(
-      "Cancelled",
-        "Canceled Note",
-      "error"
-    )
-  }
-})
+	 Swal.fire({
+	      title: 'Agregar marca',
+		    html:'<div class="row">'+
+	        '<div class="form-group col-sm-12">'+
+	          '<label for="pedidonom">Nombre de la marca</label>'+
+	          '<input type="text" class="swal2-input" id="marca" placeholder="Parisina">'+
+	        '</div>'+
+	        '</div>',
+	      showCancelButton: true,
+	      cancelButtonColor: '#6C757D',
+	      cancelButtonText: 'Cancelar',
+	      confirmButtonText: 'Agregar',
+	      confirmButtonColor:'#FFC107',
+	    }).then((result) => {
+	      if (result.value && document.getElementById("marca").value) {
+			    var Marca=document.getElementById("marca").value;
+	    	  console.log(result.value);
+	    	  console.log("hola");
+			   $.ajax({
+	        type: "POST",
+	        url: "/guardarcatalogo",
+	        data: { 
+	        	 "_csrf": $('#token').val(),
+	        	'Marca': Marca
+	        	// ,'Descripcion':Descripcion
+	        }
+	       
+	    })
+	    .done(function( data ) {
+	    	
+	    	 tablaUsuarios.ajax.reload(null, false);
+  });
+	    
+	        Swal.fire({
+	          position: 'center',
+	          icon: 'success',
+	          title: 'Insertado correctamente',
+	          showConfirmButton: false,
+	          timer: 1250
+	        })
+	        // /window.setTimeout(function(){location.reload()}, 2000);
+	      }
+	    })
   }
 // Editar Marca
 $(document).on('click', '.edit_data', function () {
 	  var marca_id = $(this).attr("id");  
 		var marca_nombre=$(this).attr("value"); 
-  Swal.fire({
-      title: 'Editar marca',
-      html:'<div class="row">'+
-      '<div class="form-group col-sm-12">'+
-        '<label for="pedidonom">Nombre del color</label>'+
-        '<input type="text" class="form-control" id="marca" value='+marca_nombre+' placeholder="Rojo">'+
-        '<input type="hidden" value='+marca_id+'>'+
-      '</div>'+
-      '</div>',
-      inputAttributes: {
-        autocapitalize: 'off'
-      },
-      showCancelButton: true,
-      cancelButtonColor: '#6C757D',
-      cancelButtonText: 'Cancelar',
-      confirmButtonText: 'Actualizar',
-      confirmButtonColor:'#DC3545',
-  }).then(function (Marca,response) {
-	  if (document.getElementById("marca").value) {
-		
-		  var Marca=document.getElementById("marca").value;
-		 // var Descripcion=document.getElementById("descripcion").value;
-		  }
-	  else {
-	         
-		  Swal.fire({
-              title: ` ingrese datos antes de enviar`
-             
-            })
-		  throw new Error(response.statusText)
-	      }
-	  if(document.getElementById("marca").value){
-    $.ajax({
-    type: "POST",
-    url: "/editarcatalogo",
-    data: { 
-    	 "_csrf": $('#token').val(),
-    	'Marca': Marca,
-    	'idLookup': marca_id
-    	// ,'Descripcion':Descripcion
+Swal.fire({
+    title: 'Editar marca',
+    html:'<div class="row">'+
+    '<div class="form-group col-sm-12">'+
+      '<label for="pedidonom">Nombre de la marca</label>'+
+      '<input type="text" class="form-control" id="marca" value=" '+marca_nombre+' " placeholder="Rojo">'+
+      '<input type="hidden" value=" '+marca_id+' ">'+
+    '</div>'+
+    '</div>',
+    inputAttributes: {
+      autocapitalize: 'off'
     },
-    	
-    cache: false,
-    success: function(response) {
-    	 Swal.fire({
-             title: ` Datos enviados correctamente`
-            	
-           })
-    },
-    failure: function (response) {
-    	 Swal.fire({
-             title: ` fallo`
-            
-           })
+    showCancelButton: true,
+    cancelButtonColor: '#6C757D',
+    cancelButtonText: 'Cancelar',
+    confirmButtonText: 'Actualizar',
+    confirmButtonColor:'#DC3545',
+}).then((result) => {
+    if (result.value && document.getElementById("marca").value) {
+		    var Marca=document.getElementById("marca").value;
+  	  console.log(result.value);
+		   $.ajax({
+      type: "POST",
+      url: "/editarcatalogo",
+      data: { 
+      	 "_csrf": $('#token').val(),
+  	'Marca': Marca,
+  	'idLookup': marca_id
+      	// ,'Descripcion':Descripcion
+      }
+     
+  });
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'editado correctamente',
+        showConfirmButton: false,
+        timer: 1250
+      })
+		 window.setTimeout(function(){location.reload()}, 2000);
     }
-});
-    window.setTimeout(function(){location.reload()}, 2000);
-    // /window.location.href("/catalogos");
-    // /window.location.reload();
-	  }
-}, 
-function (dismiss) {
-if (dismiss === "cancel") {
-swal(
-  "Cancelled",
-    "Canceled Note",
-  "error"
-)
-}
-})
+  })
 }
 )
   // Dar de baja marca
@@ -197,117 +151,92 @@ swal(
    });
 // Agregar Color
   function agregarColor() {
-	    Swal.fire({
-	        title: 'Agregar color',
-	        html:'<div class="row">'+
-	        '<div class="form-group col-sm-12">'+
-	          '<label for="pedidonom">Nombre del color</label>'+
-	          '<input type="text" class="swal2-input" id="color" placeholder="Rojo">'+
-	        '</div>'+
-	        '</div>',
-	        inputAttributes: {
-	          autocapitalize: 'off'
-	        },
-	        showCancelButton: true,
-	        cancelButtonColor: '#6C757D',
-	        cancelButtonText: 'Cancelar',
-	        confirmButtonText: 'Agregar',
-	        confirmButtonColor:'#dc3545'
-	        }).then(function (Color,Descripcion,response) {
-	    	  if (document.getElementById("color").value) {
-	    		
-	    		  var Color=document.getElementById("color").value;
-	    		 // var Descripcion=document.getElementById("descripcion").value;
-	    		  }
-	    	  else {
-	    	         
-	    		  Swal.fire({
-	                  title: ` ingrese datos antes de enviar`
-	                 
-	                })
-	    		  throw new Error(response.statusText)
-	    	      }
-	        $.ajax({
-	        type: "POST",
-	        url: "/guardarcatalogo",
-	        data: { 
-	        	 "_csrf": $('#token').val(),
-	        	'Color': Color
-	        	// ,'Descripcion':Descripcion
-	        },
-	        	
-	        cache: false,
-	        success: function(response) {
-	        	 Swal.fire({
-	                 title: ` Datos enviados correctamente`
-	                
-	               })
-	        },
-	        failure: function (response) {
-	        	 Swal.fire({
-	                 title: ` fallo`
-	                
-	               })
-	        }
-	    });
-	        window.setTimeout(function(){location.reload()}, 2000);
-	}, 
-	function (dismiss) {
-	  if (dismiss === "cancel") {
-	    swal(
-	      "Cancelled",
-	        "Canceled Note",
-	      "error"
-	    )
+		 Swal.fire({
+		      title: 'Agregar color',
+			    html:'<div class="row">'+
+		        '<div class="form-group col-sm-12">'+
+		          '<label for="pedidonom">Nombre del color</label>'+
+		          '<input type="text" class="swal2-input" id="color" placeholder="Rojo">'+
+		        '</div>'+
+		        '</div>',
+		      showCancelButton: true,
+		      cancelButtonColor: '#6C757D',
+		      cancelButtonText: 'Cancelar',
+		      confirmButtonText: 'Agregar',
+		      confirmButtonColor:'#FFC107',
+		    }).then((result) => {
+		      if (result.value && document.getElementById("color").value) {
+				    var Color=document.getElementById("color").value;
+		    	  console.log(result.value);
+				   $.ajax({
+		        type: "POST",
+		        url: "/guardarcatalogo",
+		        data: { 
+		        	 "_csrf": $('#token').val(),
+		        	'Color': Color
+		        	// ,'Descripcion':Descripcion
+		        }
+		       
+		    });
+		        Swal.fire({
+		          position: 'center',
+		          icon: 'success',
+		          title: 'Insertado correctamente',
+		          showConfirmButton: false,
+		          timer: 1250
+		        })
+		        window.setTimeout(function(){location.reload()}, 2000);
+		      }
+		    })
 	  }
-	})
-	  }
-// Editar Color
-  $(document).on('click', '.edit_data222', function () {
-	  var marca_id = $(this).attr("id");  
-		var marca_nombre=$(this).attr("value"); 
-      Swal.fire({
-          title: 'Editar color',
-          html:'<div class="row">'+
-          '<div class="form-group col-sm-12">'+
-            '<label for="pedidonom">Nombre del color</label>'+
-            '<input type="text" class="form-control" value='+marca_nombre+' placeholder="Rojo">'+
-            '<input type="hidden" value='+marca_id+'>'+
-          '</div>'+
-          '</div>',
-          inputAttributes: {
-            autocapitalize: 'off'
-          },
-          showCancelButton: true,
-          cancelButtonColor: '#6C757D',
-          cancelButtonText: 'Cancelar',
-          confirmButtonText: 'Actualizar',
-          confirmButtonColor:'#DC3545',
-          showLoaderOnConfirm: true,
-          preConfirm: (login) => {
-            return fetch(`//api.github.com/users/${login}`)
-              .then(response => {
-                if (!response.ok) {
-                  throw new Error(response.statusText)
-                }
-                return response.json()
-              })
-              .catch(error => {
-                Swal.showValidationMessage(
-                  `Error: ${error}`
-                )
-              })
-          },
-          allowOutsideClick: () => !Swal.isLoading()
-        }).then((result) => {
-          if (result.value) {
-            Swal.fire({
-              title: `${result.value.login}'s avatar`,
-              imageUrl: result.value.avatar_url
-            })
-          }
-        })
-    })
+	// Editar color
+	$(document).on('click', '.edit_data_color', function () {
+		  var color_id = $(this).attr("id");  
+			var color_nombre=$(this).attr("value"); 
+	Swal.fire({
+	    title: 'Editar color',
+	    html:'<div class="row">'+
+	    '<div class="form-group col-sm-12">'+
+	      '<label for="pedidonom">Nombre del color</label>'+
+	      '<input type="text" class="form-control" id="color" value=" '+color_nombre+' " placeholder="Rojo">'+
+	      '<input type="hidden" value=" '+color_id+' ">'+
+	    '</div>'+
+	    '</div>',
+	    inputAttributes: {
+	      autocapitalize: 'off'
+	    },
+	    showCancelButton: true,
+	    cancelButtonColor: '#6C757D',
+	    cancelButtonText: 'Cancelar',
+	    confirmButtonText: 'Actualizar',
+	    confirmButtonColor:'#DC3545',
+	}).then((result) => {
+	    if (result.value && document.getElementById("color").value) {
+			    var Color=document.getElementById("color").value;
+	  	  console.log(result.value);
+			   $.ajax({
+	      type: "POST",
+	      url: "/editarcatalogo",
+	      data: { 
+	      	 "_csrf": $('#token').val(),
+	  	'Color': Color,
+	  	'idLookup': color_id
+	      	// ,'Descripcion':Descripcion
+	      }
+	     
+	  });
+	      Swal.fire({
+	        position: 'center',
+	        icon: 'success',
+	        title: 'editado correctamente',
+	        showConfirmButton: false,
+	        timer: 1250
+	      })
+			 window.setTimeout(function(){location.reload()}, 2000);
+	    }
+	  })
+	}
+	)
   // Dar de baja color
   function bajarColor(){
     Swal.fire({
@@ -320,6 +249,7 @@ swal(
       confirmButtonColor:'#DC3545',
     }).then((result) => {
       if (result.value) {
+    	  console.log(result.value);
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -359,90 +289,93 @@ swal(
   
   // Agregar Pieza de Trazo
   function agregarTrazo() {
-    Swal.fire({
-        title: 'Agregar pieza de trazo',
-        html:'<div class="row">'+
-        '<div class="form-group col-sm-12">'+
-          '<label for="pedidonom">Nombre de la pieza trazo</label>'+
-          '<input type="text" class="form-control" id="trazoAgregar" placeholder="Cuello">'+
-        '</div>'+
-        '</div>',
-        inputAttributes: {
-          autocapitalize: 'off'
-        },
-        showCancelButton: true,
-        cancelButtonColor: '#6C757D',
-        cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Agregar',
-        confirmButtonColor:'#28A745',
-        showLoaderOnConfirm: true,
-        preConfirm: (login) => {
-          return fetch(`//api.github.com/users/${login}`)
-            .then(response => {
-              if (!response.ok) {
-                throw new Error(response.statusText)
-              }
-              return response.json()
-            })
-            .catch(error => {
-              Swal.showValidationMessage(
-                `Error: ${error}`
-              )
-            })
-        },
-        allowOutsideClick: () => !Swal.isLoading()
-      }).then((result) => {
-        if (result.value) {
-          Swal.fire({
-            title: `${result.value.login}'s avatar`,
-            imageUrl: result.value.avatar_url
-          })
-        }
-      })
-  }
-// _ar pieza trazo
-  function editarTrazo() {
-      Swal.fire({
-          title: 'Editar pieza trazo',
-          html:'<div class="row">'+
-          '<div class="form-group col-sm-12">'+
-            '<label for="pedidonom">Nombre de la pieza trazo</label>'+
-            '<input type="text" class="form-control" id="trazoEditar" placeholder="Cuello">'+
-          '</div>'+
-          '</div>',
-          inputAttributes: {
-            autocapitalize: 'off'
-          },
-          showCancelButton: true,
-          cancelButtonColor: '#6C757D',
-          cancelButtonText: 'Cancelar',
-          confirmButtonText: 'Actualizar',
-          confirmButtonColor:'#28A745',
-          showLoaderOnConfirm: true,
-          preConfirm: (login) => {
-            return fetch(`//api.github.com/users/${login}`)
-              .then(response => {
-                if (!response.ok) {
-                  throw new Error(response.statusText)
-                }
-                return response.json()
-              })
-              .catch(error => {
-                Swal.showValidationMessage(
-                  `Error: ${error}`
-                )
-              })
-          },
-          allowOutsideClick: () => !Swal.isLoading()
-        }).then((result) => {
-          if (result.value) {
-            Swal.fire({
-              title: `${result.value.login}'s avatar`,
-              imageUrl: result.value.avatar_url
-            })
-          }
-        })
-    }
+		 Swal.fire({
+		      title: 'Agregar trazo',
+			    html:'<div class="row">'+
+		        '<div class="form-group col-sm-12">'+
+		          '<label for="pedidonom">Nombre pieza trazo</label>'+
+		          '<input type="text" class="swal2-input" id="trazo" placeholder="Cuello">'+
+		        '</div>'+
+		        '</div>',
+		      showCancelButton: true,
+		      cancelButtonColor: '#6C757D',
+		      cancelButtonText: 'Cancelar',
+		      confirmButtonText: 'Agregar',
+		      confirmButtonColor:'#28A745',
+		    }).then((result) => {
+		      if (result.value && document.getElementById("trazo").value) {
+				    var Trazo=document.getElementById("trazo").value;
+		    	  console.log(result.value);
+				   $.ajax({
+		        type: "POST",
+		        url: "/guardarcatalogo",
+		        data: { 
+		        	 "_csrf": $('#token').val(),
+		        	'PiezaTrazo': Trazo
+		        	// ,'Descripcion':Descripcion
+		        }
+		       
+		    });
+		        Swal.fire({
+		          position: 'center',
+		          icon: 'success',
+		          title: 'Insertado correctamente',
+		          showConfirmButton: false,
+		          timer: 1250
+		        })
+		        window.setTimeout(function(){location.reload()}, 2000);
+		      }
+		    })
+	  }
+	// Editar Trazo
+	$(document).on('click', '.edit_data_trazo', function () {
+		  var trazo_id = $(this).attr("id");  
+			var trazo_nombre=$(this).attr("value");
+		console.log($('#token').val());
+	Swal.fire({
+	    title: 'Editar pieza trazo',
+	    html:'<div class="row">'+
+	    '<div class="form-group col-sm-12">'+
+	      '<label for="pedidonom">Nombre pieza trazo</label>'+
+	      '<input type="text" class="form-control" id="trazo" value=" '+trazo_nombre+' " placeholder="Rojo">'+
+	      '<input type="hidden" value=" '+trazo_id+' ">'+
+	    '</div>'+
+	    '</div>',
+	    inputAttributes: {
+	      autocapitalize: 'off'
+	    },
+	    showCancelButton: true,
+	    cancelButtonColor: '#6C757D',
+	    cancelButtonText: 'Cancelar',
+	    confirmButtonText: 'Actualizar',
+	    confirmButtonColor:'#28A745',
+	}).then((result) => {
+	    if (result.value && document.getElementById("trazo").value) {
+			    var Trazo=document.getElementById("trazo").value;
+	  	  console.log(result.value);
+			   $.ajax({
+	      type: "POST",
+	      url: "/editarcatalogo",
+	      data: { 
+	      	 "_csrf": $('#token').val(),
+	  	'PiezaTrazo': Trazo,
+	  	'idLookup': trazo_id
+	      	// ,'Descripcion':Descripcion
+	      }
+	     
+	  });
+	      Swal.fire({
+	        position: 'center',
+	        icon: 'success',
+	        title: 'editado correctamente',
+	        showConfirmButton: false,
+	        timer: 1250
+	      })
+			 window.setTimeout(function(){location.reload()}, 2000);
+	    }
+	  })
+	}
+	)
   // Dar de baja pieza de trazo
   function bajarTrazo(){
     Swal.fire({
@@ -493,100 +426,106 @@ swal(
    });
   // Agregar Familia de prendas
   function agregarPrenda() {
-    Swal.fire({
-        title: 'Agregar familia de prenda',
-        html:'<div class="row">'+
-        '<div class="form-group col-sm-12">'+
-          '<label for="pedidonom">Nombre de la familia de prendas</label>'+
-          '<input type="text" class="form-control" id="prendaAgregarNombre" placeholder="Abrigos">'+
-        '</div>'+
-        '</div>'+
-        '<div class="form-group col-sm-12">'+
-        '<label for="pedidonom">Descripcion</label>'+
-        '<textarea class="form-control" id="prendaAgregarDescripcion" placeholder="Especificar" rows="3"></textarea>'+
-      '</div>'+
-      '</div>',
-        inputAttributes: {
-          autocapitalize: 'off'
-        },
-        showCancelButton: true,
-        cancelButtonColor: '#6C757D',
-        cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Agregar',
-        confirmButtonColor:'#17A2B8',
-        showLoaderOnConfirm: true,
-        preConfirm: (login) => {
-          return fetch(`//api.github.com/users/${login}`)
-            .then(response => {
-              if (!response.ok) {
-                throw new Error(response.statusText)
-              }
-              return response.json()
-            })
-            .catch(error => {
-              Swal.showValidationMessage(
-                `Error: ${error}`
-              )
-            })
-        },
-        allowOutsideClick: () => !Swal.isLoading()
-      }).then((result) => {
-        if (result.value) {
-          Swal.fire({
-            title: `${result.value.login}'s avatar`,
-            imageUrl: result.value.avatar_url
-          })
-        }
-      })
-  }
-// Editar familia de prendas
-  function editarPrenda() {
-      Swal.fire({
-          title: 'Editar familia de prendas',
-          html:'<div class="row">'+
-          '<div class="form-group col-sm-12">'+
-            '<label for="pedidonom">Nombre de la familia de prendas</label>'+
-            '<input type="text" class="form-control" id="prendaEditarNombre" placeholder="Abrigos">'+
-          '</div>'+
-          '</div>'+
-          '<div class="form-group col-sm-12">'+
-          '<label for="pedidonom">Descripcion</label>'+
-          '<textarea class="form-control" id="prendaEditarDescripcion" placeholder="Especificar" rows="3"></textarea>'+
-        '</div>'+
-        '</div>',
-          inputAttributes: {
-            autocapitalize: 'off'
-          },
-          showCancelButton: true,
-          cancelButtonColor: '#6C757D',
-          cancelButtonText: 'Cancelar',
-          confirmButtonText: 'Actualizar',
-          confirmButtonColor:'#17A2B8',
-          showLoaderOnConfirm: true,
-          preConfirm: (login) => {
-            return fetch(`//api.github.com/users/${login}`)
-              .then(response => {
-                if (!response.ok) {
-                  throw new Error(response.statusText)
-                }
-                return response.json()
-              })
-              .catch(error => {
-                Swal.showValidationMessage(
-                  `Error: ${error}`
-                )
-              })
-          },
-          allowOutsideClick: () => !Swal.isLoading()
-        }).then((result) => {
-          if (result.value) {
-            Swal.fire({
-              title: `${result.value.login}'s avatar`,
-              imageUrl: result.value.avatar_url
-            })
-          }
-        })
-    }
+		 Swal.fire({
+		      title: 'Agregar familia prenda',
+			    html:'<div class="row">'+
+		        '<div class="form-group col-sm-12">'+
+		          '<label for="pedidonom">Nombre de la familia prendas</label>'+
+		          '<input type="text" class="swal2-input" id="familia" placeholder="Parisina">'+
+		        '</div>'+
+		        '<div class="form-group col-sm-12">'+
+		          '<label for="pedidonom">Descripcion</label>'+
+		          '<input type="text" class="swal2-input" id="descripcion" placeholder="Parisina">'+
+		        '</div>'+
+		        '</div>',
+		      showCancelButton: true,
+		      cancelButtonColor: '#6C757D',
+		      cancelButtonText: 'Cancelar',
+		      confirmButtonText: 'Agregar',
+		      confirmButtonColor:'#17a2b8',
+		    }).then((result) => {
+		      if (result.value && document.getElementById("familia").value && document.getElementById("descripcion").value) {
+				    var FamiliaPrenda=document.getElementById("familia").value;
+				    var Descripcion=document.getElementById("descripcion").value;
+		    	  console.log(result.value);
+				   $.ajax({
+		        type: "POST",
+		        url: "/guardarcatalogo",
+		        data: { 
+		        	 "_csrf": $('#token').val(),
+		        	'FamiliaPrenda': FamiliaPrenda,
+		        	'Descripcion' :Descripcion
+		        	
+		        	// ,'Descripcion':Descripcion
+		        }
+		       
+		    });
+		        Swal.fire({
+		          position: 'center',
+		          icon: 'success',
+		          title: 'Insertado correctamente',
+		          showConfirmButton: false,
+		          timer: 1250
+		        })
+		        window.setTimeout(function(){location.reload()}, 2000);
+		      }
+		    })
+	  }
+  
+	// Editar Prenda
+  
+  
+  function editarPrenda(e) {
+		 var descr=e.getAttribute("descripcion");
+		
+		console.log(descr);
+		 Swal.fire({
+		      title: 'Editar prenda',
+			   html:'<div class="row">'+
+			        '<div class="form-group col-sm-12">'+
+			          '<label for="pedidonom">Nombre de la familia prendas</label>'+
+			          '<input type="text" value=" '+e.getAttribute("nombre")+' " class="swal2-input" id="nombre" placeholder="Parisina">'+
+			        '</div>'+
+			        '<div class="form-group col-sm-12">'+
+			          '<label for="pedidonom">Descripcion</label>'+
+			          '<input type="text" class="swal2-input" id="descripcion" placeholder="Parisina" value=" '+e.getAttribute("descripcion")+' "> '+
+			          '<input type="hidden" value=" '+e.getAttribute("idlookup")+' " class="swal2-input" id="idlookup" placeholder="Parisina">'+
+			        '</div>'+
+			        '</div>',
+		      showCancelButton: true,
+		      cancelButtonColor: '#6C757D',
+		      cancelButtonText: 'Cancelar',
+		      confirmButtonText: 'Actualizar',
+		      confirmButtonColor:'#FFC107',
+		    }).then((result) => {
+		      if (result.value && document.getElementById("nombre").value && document.getElementById("descripcion").value && document.getElementById("idlookup").value) {
+				    var FamiliaPrenda=document.getElementById("nombre").value;
+				    var Descripcion=document.getElementById("descripcion").value;
+				    var idLookup=document.getElementById("idlookup").value;
+		    	  console.log(result.value);
+				   $.ajax({
+		        type: "POST",
+		        url: "/editarcatalogo",
+		        data: { 
+		        	 "_csrf": $('#token').val(),
+		        	'FamiliaPrenda': FamiliaPrenda,
+		        	'Descripcion' :Descripcion,
+		        	'idLookup' :idLookup
+		        	// ,'Descripcion':Descripcion
+		        }
+		       
+		    });
+		        Swal.fire({
+		          position: 'center',
+		          icon: 'success',
+		          title: 'editado correctamente',
+		          showConfirmButton: false,
+		          timer: 1250
+		        })
+		        window.setTimeout(function(){location.reload()}, 2000);
+		      }
+		    })
+	  }
   // Dar de baja prenda
   function bajarPrenda(){
     Swal.fire({
@@ -637,90 +576,99 @@ swal(
    });
   // Agregar familia de genero
   function agregarGenero() {
-    Swal.fire({
-        title: 'Agregar familia de g&eacute;nero',
-        html:'<div class="row">'+
-        '<div class="form-group col-sm-12">'+
-          '<label>Nombre de la familia de g&eacute;nero</label>'+
-          '<input type="text" class="form-control" id="generoAgregar" placeholder="Unisex">'+
-        '</div>'+
-        '</div>',
-        inputAttributes: {
-          autocapitalize: 'off'
-        },
-        showCancelButton: true,
-        cancelButtonColor: '#6C757D',
-        cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Agregar',
-        confirmButtonColor:'#DC3545',
-        showLoaderOnConfirm: true,
-        preConfirm: (login) => {
-          return fetch(`//api.github.com/users/${login}`)
-            .then(response => {
-              if (!response.ok) {
-                throw new Error(response.statusText)
-              }
-              return response.json()
-            })
-            .catch(error => {
-              Swal.showValidationMessage(
-                `Error: ${error}`
-              )
-            })
-        },
-        allowOutsideClick: () => !Swal.isLoading()
-      }).then((result) => {
-        if (result.value) {
-          Swal.fire({
-            title: `${result.value.login}'s avatar`,
-            imageUrl: result.value.avatar_url
-          })
-        }
-      })
-  }
-// Editar familia de genero
-  function editarGenero() {
-      Swal.fire({
-          title: 'Editar familia de g&eacute;nero',
-          html:'<div class="row">'+
-          '<div class="form-group col-sm-12">'+
-            '<label>Nombre de la familia de g&eacute;nero</label>'+
-            '<input type="text" class="form-control" id="generoEditar" placeholder="Unisex">'+
-          '</div>'+
-          '</div>',
-          inputAttributes: {
-            autocapitalize: 'off'
-          },
-          showCancelButton: true,
-          cancelButtonColor: '#6C757D',
-          cancelButtonText: 'Cancelar',
-          confirmButtonText: 'Actualizar',
-          confirmButtonColor:'#DC3545',
-          showLoaderOnConfirm: true,
-          preConfirm: (login) => {
-            return fetch(`//api.github.com/users/${login}`)
-              .then(response => {
-                if (!response.ok) {
-                  throw new Error(response.statusText)
-                }
-                return response.json()
-              })
-              .catch(error => {
-                Swal.showValidationMessage(
-                  `Error: ${error}`
-                )
-              })
-          },
-          allowOutsideClick: () => !Swal.isLoading()
-        }).then((result) => {
-          if (result.value) {
-            Swal.fire({
-              title: `${result.value.login}'s avatar`,
-              imageUrl: result.value.avatar_url
-            })
-          }
-        })
-    }
+		 Swal.fire({
+		      title: 'Agregar genero',
+			    html:'<div class="row">'+
+		        '<div class="form-group col-sm-12">'+
+		          '<label for="pedidonom">Nombre del genero</label>'+
+		          '<input type="text" class="swal2-input" id="genero" placeholder="masculino">'+
+		        '</div>'+
+		        '</div>',
+		      showCancelButton: true,
+		      cancelButtonColor: '#6C757D',
+		      cancelButtonText: 'Cancelar',
+		      confirmButtonText: 'Agregar',
+		      confirmButtonColor:'#17a2b8',
+		    }).then((result) => {
+		      if (result.value && document.getElementById("genero").value) {
+				    var Genero=document.getElementById("genero").value;
+			
+		    	  console.log(result.value);
+				   $.ajax({
+		        type: "POST",
+		        url: "/guardarcatalogo",
+		        data: { 
+		        	 "_csrf": $('#token').val(),
+		        	'FamiliaGenero': Genero
+		        	
+		        	// ,'Descripcion':Descripcion
+		        }
+		       
+		    });
+		        Swal.fire({
+		          position: 'center',
+		          icon: 'success',
+		          title: 'Insertado correctamente',
+		          showConfirmButton: false,
+		          timer: 1250
+		        })
+		        window.setTimeout(function(){location.reload()}, 2000);
+		      }
+		    })
+	  }
+
+	// Editar genero
+
+
+function editarGenero(e) {
+		 var descr=e.getAttribute("descripcion");
+		
+		console.log(descr);
+		 Swal.fire({
+		      title: 'Editar genero',
+			   html:'<div class="row">'+
+			        '<div class="form-group col-sm-12">'+
+			          '<label for="pedidonom">Nombre de genero</label>'+
+			          '<input type="text" value=" '+e.getAttribute("nombre")+' " class="swal2-input" id="nombre" placeholder="Parisina">'+
+			        '</div>'+
+			        '<div class="form-group col-sm-12">'+
+			        
+			          '<input type="hidden" value=" '+e.getAttribute("idlookup")+' " class="swal2-input" id="idlookup" placeholder="Parisina">'+
+			        '</div>'+
+			        '</div>',
+		      showCancelButton: true,
+		      cancelButtonColor: '#6C757D',
+		      cancelButtonText: 'Cancelar',
+		      confirmButtonText: 'Actualizar',
+		      confirmButtonColor:'#FFC107',
+		    }).then((result) => {
+		      if (result.value && document.getElementById("nombre").value  && document.getElementById("idlookup").value) {
+				    var FamiliaGenero=document.getElementById("nombre").value;
+				   
+				    var idLookup=document.getElementById("idlookup").value;
+		    	  console.log(result.value);
+				   $.ajax({
+		        type: "POST",
+		        url: "/editarcatalogo",
+		        data: { 
+		        	 "_csrf": $('#token').val(),
+		        	'FamiliaGenero': FamiliaGenero,
+		        	'idLookup' :idLookup
+		        	// ,'Descripcion':Descripcion
+		        }
+		       
+		    });
+		        Swal.fire({
+		          position: 'center',
+		          icon: 'success',
+		          title: 'editado correctamente',
+		          showConfirmButton: false,
+		          timer: 1250
+		        })
+		        window.setTimeout(function(){location.reload()}, 2000);
+		      }
+		    })
+	  }
   // Dar de baja familia de genero
   function bajarGenero(){
     Swal.fire({
@@ -771,285 +719,283 @@ swal(
    });
   // Agregar composicion
   function agregarComposicion() {
-    Swal.fire({
-        title: 'Agregar composici&oacute;n',
-        html:'<div class="row">'+
-        '<div class="form-group col-sm-12">'+
-          '<label>Nombre de la composici&oacute;n</label>'+
-          '<input type="text" class="form-control" id="composicionAgregar" placeholder="Algod&oacute;n">'+
-        '</div>'+
-        '<div class="form-group col-sm-12">'+
-	       '<label for="composicionCuidado">Instrucciones de cuidado</label>'+
-	       '<select class="form-control" id="composicionCuidado">'+
-        	 '<option>1</option>'+
-	         '<option>2</option>'+
-	         '<option>3</option>'+
-	         '<option>4</option>'+
-	         '<option>5</option>'+
-	       '</select>'+
-	    '</div>'+
-        '</div>',
-        inputAttributes: {
-          autocapitalize: 'off'
-        },
-        showCancelButton: true,
-        cancelButtonColor: '#6C757D',
-        cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Agregar',
-        confirmButtonColor:'#FFC107',
-        showLoaderOnConfirm: true,
-        preConfirm: (login) => {
-          return fetch(`//api.github.com/users/${login}`)
-            .then(response => {
-              if (!response.ok) {
-                throw new Error(response.statusText)
-              }
-              return response.json()
-            })
-            .catch(error => {
-              Swal.showValidationMessage(
-                `Error: ${error}`
-              )
-            })
-        },
-        allowOutsideClick: () => !Swal.isLoading()
-      }).then((result) => {
-        if (result.value) {
-          Swal.fire({
-            title: `${result.value.login}'s avatar`,
-            imageUrl: result.value.avatar_url
-          })
-        }
-      })
-  }
-// Editar composicion
-  function editarComposicion() {
-      Swal.fire({
-          title: 'Editar composici&oacute;n',
-          html:'<div class="row">'+
-          '<div class="form-group col-sm-12">'+
-            '<label>Nombre de la composici&oacute;n</label>'+
-            '<input type="text" class="form-control" id="composicionEditar" placeholder="Algod&oacute;n">'+
-          '</div>'+
-          '<div class="form-group col-sm-12">'+
-	       '<label for="composicionCuidado">Instrucciones de cuidado</label>'+
-	       '<select class="form-control" id="composicionCuidado">'+
-       	 '<option>1</option>'+
-	         '<option>2</option>'+
-	         '<option>3</option>'+
-	         '<option>4</option>'+
-	         '<option>5</option>'+
-	       '</select>'+
-	    '</div>'+
-       '</div>',
-          inputAttributes: {
-            autocapitalize: 'off'
-          },
-          showCancelButton: true,
-          cancelButtonColor: '#6C757D',
-          cancelButtonText: 'Cancelar',
-          confirmButtonText: 'Actualizar',
-          confirmButtonColor:'#FFC107',
-          showLoaderOnConfirm: true,
-          preConfirm: (login) => {
-            return fetch(`//api.github.com/users/${login}`)
-              .then(response => {
-                if (!response.ok) {
-                  throw new Error(response.statusText)
-                }
-                return response.json()
-              })
-              .catch(error => {
-                Swal.showValidationMessage(
-                  `Error: ${error}`
-                )
-              })
-          },
-          allowOutsideClick: () => !Swal.isLoading()
-        }).then((result) => {
-          if (result.value) {
-            Swal.fire({
-              title: `${result.value.login}'s avatar`,
-              imageUrl: result.value.avatar_url
-            })
-          }
-        })
-    }
-  // Dar de baja composicion
-  function bajarComposicion(){
-    Swal.fire({
-      title: '¿Deseas dar de baja la composici&oacute;n?',
-      icon: 'warning',
-      showCancelButton: true,
-      cancelButtonColor: '#6C757D',
-      cancelButtonText: 'Cancelar',
-      confirmButtonText: 'Dar de baja',
-      confirmButtonColor:'#FFC107',
-    }).then((result) => {
-      if (result.value) {
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Dada de baja correctamente',
-          showConfirmButton: false,
-          timer: 1250
-        })
-      }
-    })
-  }
-  // Reactivar composicion
-  function reactivarComposicion(){
-    Swal.fire({
-      title: '¿Deseas reactivar la composici&oacute;n?',
-      icon: 'warning',
-      showCancelButton: true,
-      cancelButtonColor: '#6C757D',
-      cancelButtonText: 'Cancelar',
-      confirmButtonText: 'Activar',
-      confirmButtonColor:'#FFC107',
-    }).then((result) => {
-      if (result.value) {
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Reactivada correctamente',
-          showConfirmButton: false,
-          timer: 1250
-        })
-      }
-    })
-  }
-//Habilitar form de SweetAlert2
-  $('#detalleCuidado').on('shown.bs.modal', function() {
-       $(document).off('focusin.modal');
-   });
-  // Agregar composicion
-  function agregarCuidado() {
-    Swal.fire({
-        title: 'Agregar instrucci&oacute;n de cuidado',
-        html:'<div class="row">'+
-        '<div class="form-group col-sm-12">'+
-          '<label>Nombre de la instrucci&oacute;n</label>'+
-          '<input type="text" class="form-control" id="instruccionAgregar" placeholder="Lavar en seco">'+
-        '</div>'+
-        '</div>',
-        inputAttributes: {
-          autocapitalize: 'off'
-        },
-        showCancelButton: true,
-        cancelButtonColor: '#6C757D',
-        cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Agregar',
-        confirmButtonColor:'#343A40',
-        showLoaderOnConfirm: true,
-        preConfirm: (login) => {
-          return fetch(`//api.github.com/users/${login}`)
-            .then(response => {
-              if (!response.ok) {
-                throw new Error(response.statusText)
-              }
-              return response.json()
-            })
-            .catch(error => {
-              Swal.showValidationMessage(
-                `Error: ${error}`
-              )
-            })
-        },
-        allowOutsideClick: () => !Swal.isLoading()
-      }).then((result) => {
-        if (result.value) {
-          Swal.fire({
-            title: `${result.value.login}'s avatar`,
-            imageUrl: result.value.avatar_url
-          })
-        }
-      })
-  }
-// Editar composicion
-  function editarCuidado() {
-      Swal.fire({
-          title: 'Editar instrucci&oacute;n de cuidado',
-          html:'<div class="row">'+
-          '<div class="form-group col-sm-12">'+
-            '<label>Nombre de la instrucci&oacute;n</label>'+
-            '<input type="text" class="form-control" id="instruccionEditar" placeholder="Lavar en seco">'+
-          '</div>'+
-       '</div>',
-          inputAttributes: {
-            autocapitalize: 'off'
-          },
-          showCancelButton: true,
-          cancelButtonColor: '#6C757D',
-          cancelButtonText: 'Cancelar',
-          confirmButtonText: 'Actualizar',
-          confirmButtonColor:'#343A40',
-          showLoaderOnConfirm: true,
-          preConfirm: (login) => {
-            return fetch(`//api.github.com/users/${login}`)
-              .then(response => {
-                if (!response.ok) {
-                  throw new Error(response.statusText)
-                }
-                return response.json()
-              })
-              .catch(error => {
-                Swal.showValidationMessage(
-                  `Error: ${error}`
-                )
-              })
-          },
-          allowOutsideClick: () => !Swal.isLoading()
-        }).then((result) => {
-          if (result.value) {
-            Swal.fire({
-              title: `${result.value.login}'s avatar`,
-              imageUrl: result.value.avatar_url
-            })
-          }
-        })
-    }
-  // Dar de baja composicion
-  function bajarCuidado(){
-    Swal.fire({
-      title: '¿Deseas dar de baja la instrucci&oacute;n de cuidado?',
-      icon: 'warning',
-      showCancelButton: true,
-      cancelButtonColor: '#6C757D',
-      cancelButtonText: 'Cancelar',
-      confirmButtonText: 'Dar de baja',
-      confirmButtonColor:'#343A40',
-    }).then((result) => {
-      if (result.value) {
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Dada de baja correctamente',
-          showConfirmButton: false,
-          timer: 1250
-        })
-      }
-    })
-  }
-  // Reactivar composicion
-  function reactivarCuidado(){
-    Swal.fire({
-      title: '¿Deseas reactivar la instrucci&oacute;n de cuidado?',
-      icon: 'warning',
-      showCancelButton: true,
-      cancelButtonColor: '#6C757D',
-      cancelButtonText: 'Cancelar',
-      confirmButtonText: 'Activar',
-      confirmButtonColor:'#343A40',
-    }).then((result) => {
-      if (result.value) {
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Reactivada correctamente',
-          showConfirmButton: false,
-          timer: 1250
-        })
-      }
-    })
-  }
+		 Swal.fire({
+		      title: 'Agregar composición',
+			    html:'<div class="row">'+
+		        '<div class="form-group col-sm-12">'+
+		          '<label for="pedidonom">Nombre de composición</label>'+
+		          '<input type="text" class="swal2-input" id="composicion" placeholder="100% algodon">'+
+		        '</div>'+
+		        '</div>',
+		      showCancelButton: true,
+		      cancelButtonColor: '#6C757D',
+		      cancelButtonText: 'Cancelar',
+		      confirmButtonText: 'Agregar',
+		      confirmButtonColor:'#17a2b8',
+		    }).then((result) => {
+		      if (result.value && document.getElementById("composicion").value) {
+				    var Composicion=document.getElementById("composicion").value;
+			
+		    	  console.log(result.value);
+				   $.ajax({
+		        type: "POST",
+		        url: "/guardarcatalogo",
+		        data: { 
+		        	 "_csrf": $('#token').val(),
+		        	'FamiliaComposicion': Composicion
+		        	
+		        	// ,'Descripcion':Descripcion
+		        }
+		       
+		    });
+		        Swal.fire({
+		          position: 'center',
+		          icon: 'success',
+		          title: 'Insertado correctamente',
+		          showConfirmButton: false,
+		          timer: 1250
+		        })
+		        window.setTimeout(function(){location.reload()}, 2000);
+		      }
+		    })
+	  }
+
+	// Editar genero
+
+
+function editarComposicion(e) {
+		 var descr=e.getAttribute("descripcion");
+		
+		console.log(descr);
+		 Swal.fire({
+		      title: 'Editar Composición',
+			   html:'<div class="row">'+
+			        '<div class="form-group col-sm-12">'+
+			          '<label for="pedidonom">Nombre composicón</label>'+
+			          '<input type="text" value=" '+e.getAttribute("nombre")+' " class="swal2-input" id="nombre" placeholder="Parisina">'+
+			        '</div>'+
+			        '<div class="form-group col-sm-12">'+
+			          
+			          '<input type="hidden" value=" '+e.getAttribute("idlookup")+' " class="swal2-input" id="idlookup" placeholder="Parisina">'+
+			        '</div>'+
+			        '</div>',
+		      showCancelButton: true,
+		      cancelButtonColor: '#6C757D',
+		      cancelButtonText: 'Cancelar',
+		      confirmButtonText: 'Actualizar',
+		      confirmButtonColor:'#FFC107',
+		    }).then((result) => {
+		      if (result.value && document.getElementById("nombre").value  && document.getElementById("idlookup").value) {
+				    var FamiliaComposicion=document.getElementById("nombre").value;
+				   
+				    var idLookup=document.getElementById("idlookup").value;
+		    	  console.log(result.value);
+				   $.ajax({
+		        type: "POST",
+		        url: "/editarcatalogo",
+		        data: { 
+		        	 "_csrf": $('#token').val(),
+		        	'FamiliaComposicion': FamiliaComposicion,
+		        	'idLookup' :idLookup
+		        	// ,'Descripcion':Descripcion
+		        }
+		       
+		    });
+		        Swal.fire({
+		          position: 'center',
+		          icon: 'success',
+		          title: 'editado correctamente',
+		          showConfirmButton: false,
+		          timer: 1250
+		        })
+		        window.setTimeout(function(){location.reload()}, 2000);
+		      }
+		    })
+	  }
+// Dar de baja familia de genero
+function bajarComposicion(){
+ Swal.fire({
+   title: '¿Deseas dar de baja la familia de g&eacute;nero',
+   icon: 'warning',
+   showCancelButton: true,
+   cancelButtonColor: '#6C757D',
+   cancelButtonText: 'Cancelar',
+   confirmButtonText: 'Dar de baja',
+   confirmButtonColor:'#DC3545',
+ }).then((result) => {
+   if (result.value) {
+     Swal.fire({
+       position: 'center',
+       icon: 'success',
+       title: 'Dada de baja correctamente',
+       showConfirmButton: false,
+       timer: 1250
+     })
+   }
+ })
+}
+// Reactivar familia de genero
+function reactivarComposicion(){
+ Swal.fire({
+   title: '¿Deseas reactivar la familia de g&eacute;nero?',
+   icon: 'warning',
+   showCancelButton: true,
+   cancelButtonColor: '#6C757D',
+   cancelButtonText: 'Cancelar',
+   confirmButtonText: 'Activar',
+   confirmButtonColor:'#DC3545',
+ }).then((result) => {
+   if (result.value) {
+     Swal.fire({
+       position: 'center',
+       icon: 'success',
+       title: 'Reactivada correctamente',
+       showConfirmButton: false,
+       timer: 1250
+     })
+   }
+ })
+}
+  // ////////////////////////
+// Habilitar form de SweetAlert2
+$('#detalleCuidado').on('shown.bs.modal', function() {
+     $(document).off('focusin.modal');
+ });
+function agregarCuidado() {
+	 Swal.fire({
+	      title: 'Agregar instrucción de cuidado',
+		    html:'<div class="row">'+
+	        '<div class="form-group col-sm-12">'+
+	          '<label for="pedidonom">Nombre instrucción de cuidado</label>'+
+	          '<input type="text" class="swal2-input" id="cuidado" placeholder="lavar a mano">'+
+	        '</div>'+
+	        '</div>',
+	      showCancelButton: true,
+	      cancelButtonColor: '#6C757D',
+	      cancelButtonText: 'Cancelar',
+	      confirmButtonText: 'Agregar',
+	      confirmButtonColor:'#17a2b8',
+	    }).then((result) => {
+	      if (result.value && document.getElementById("cuidado").value) {
+			    var Cuidado=document.getElementById("cuidado").value;
+		
+	    	  console.log(result.value);
+			   $.ajax({
+	        type: "POST",
+	        url: "/guardarcatalogo",
+	        data: { 
+	        	 "_csrf": $('#token').val(),
+	        	'InstruccionCuidado': Cuidado
+	        	
+	        	// ,'Descripcion':Descripcion
+	        }
+	       
+	    });
+	        Swal.fire({
+	          position: 'center',
+	          icon: 'success',
+	          title: 'Insertado correctamente',
+	          showConfirmButton: false,
+	          timer: 1250
+	        })
+	        window.setTimeout(function(){location.reload()}, 2000);
+	      }
+	    })
+ }
+
+// Editar genero
+
+
+function editarCuidado(e) {
+	 var descr=e.getAttribute("descripcion");
+	
+	console.log(descr);
+	 Swal.fire({
+	      title: 'Editar instruccion de cuidado',
+		   html:'<div class="row">'+
+		        '<div class="form-group col-sm-12">'+
+		          '<label for="pedidonom">Nombre instrucción de cuidado</label>'+
+		          '<input type="text" value=" '+e.getAttribute("nombre")+' " class="swal2-input" id="nombre" placeholder="Parisina">'+
+		        '</div>'+
+		        '<div class="form-group col-sm-12">'+
+		         
+		          '<input type="hidden" value=" '+e.getAttribute("idlookup")+' " class="swal2-input" id="idlookup" placeholder="Parisina">'+
+		        '</div>'+
+		        '</div>',
+	      showCancelButton: true,
+	      cancelButtonColor: '#6C757D',
+	      cancelButtonText: 'Cancelar',
+	      confirmButtonText: 'Actualizar',
+	      confirmButtonColor:'#FFC107',
+	    }).then((result) => {
+	      if (result.value && document.getElementById("nombre").value  && document.getElementById("idlookup").value) {
+			    var InstruccionCuidado=document.getElementById("nombre").value;
+			   
+			    var idLookup=document.getElementById("idlookup").value;
+	    	  console.log(result.value);
+			   $.ajax({
+	        type: "POST",
+	        url: "/editarcatalogo",
+	        data: { 
+	        	 "_csrf": $('#token').val(),
+	        	'InstruccionCuidado': InstruccionCuidado,
+	        	'idLookup' :idLookup
+	        	// ,'Descripcion':Descripcion
+	        }
+	       
+	    });
+	        Swal.fire({
+	          position: 'center',
+	          icon: 'success',
+	          title: 'editado correctamente',
+	          showConfirmButton: false,
+	          timer: 1250
+	        })
+	        window.setTimeout(function(){location.reload()}, 2000);
+	      }
+	    })
+ }
+// Dar de baja familia de genero
+function bajarCuidado(){
+Swal.fire({
+ title: '¿Deseas dar de baja la familia de g&eacute;nero',
+ icon: 'warning',
+ showCancelButton: true,
+ cancelButtonColor: '#6C757D',
+ cancelButtonText: 'Cancelar',
+ confirmButtonText: 'Dar de baja',
+ confirmButtonColor:'#DC3545',
+}).then((result) => {
+ if (result.value) {
+   Swal.fire({
+     position: 'center',
+     icon: 'success',
+     title: 'Dada de baja correctamente',
+     showConfirmButton: false,
+     timer: 1250
+   })
+ }
+})
+}
+// Reactivar familia de genero
+function reactivarCuidado(){
+Swal.fire({
+ title: '¿Deseas reactivar la familia de g&eacute;nero?',
+ icon: 'warning',
+ showCancelButton: true,
+ cancelButtonColor: '#6C757D',
+ cancelButtonText: 'Cancelar',
+ confirmButtonText: 'Activar',
+ confirmButtonColor:'#DC3545',
+}).then((result) => {
+ if (result.value) {
+   Swal.fire({
+     position: 'center',
+     icon: 'success',
+     title: 'Reactivada correctamente',
+     showConfirmButton: false,
+     timer: 1250
+   })
+ }
+})
+}
