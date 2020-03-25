@@ -138,7 +138,7 @@ public class AgregarPrendaRestController
 		dp.setIdLookup(Long.valueOf(prenda.get("idLookup").toString()));
 		dp.setIdLookup2(Long.valueOf(prenda.get("idLookup2").toString()));
 		dp.setIdLookup3(Long.valueOf(prenda.get("idLookup3").toString()));
-		dp.setEstatus(0L);
+		dp.setEstatus(1L);
 		
 		return dp;
 	}
