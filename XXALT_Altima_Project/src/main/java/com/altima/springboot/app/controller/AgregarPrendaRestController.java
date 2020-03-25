@@ -147,6 +147,8 @@ public class AgregarPrendaRestController
 	public void guardarFinal( @RequestParam(name = "objeto_materiales") String objeto_materiales, @RequestParam(name = "objeto_patronaje") String objeto_patronaje) throws NoSuchFieldException, SecurityException
 	{
 		prendaService.save(dp);
+		dp.setIdText("PRE" + (10000 + dp.getIdPrenda()));
+		prendaService.save(dp);
 		
 		//Coso del auth
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
