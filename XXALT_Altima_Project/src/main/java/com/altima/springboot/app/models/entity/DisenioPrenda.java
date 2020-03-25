@@ -149,7 +149,18 @@ public class DisenioPrenda implements Serializable{
 	@Column(name="id_lookup3")
 	private Long idLookup3;
 	
+	@Column(name="estatus")
+	private Long estatus;
 	
+	
+	public Long getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(Long estatus) {
+		this.estatus = estatus;
+	}
+
 	public String getCvePrenda() {
 		return cvePrenda;
 	}

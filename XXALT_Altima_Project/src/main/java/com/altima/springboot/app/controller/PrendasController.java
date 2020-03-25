@@ -12,6 +12,7 @@ import com.altima.springboot.app.models.entity.DisenioPrenda;
 import com.altima.springboot.app.models.service.IDisenioFamiliaPrendaService;
 import com.altima.springboot.app.models.service.IDisenioMaterialService;
 import com.altima.springboot.app.models.service.IDisenioPrendaService;
+import com.altima.springboot.app.models.service.IDisenioRutaService;
 
 @Controller
 public class PrendasController {
@@ -21,6 +22,8 @@ public class PrendasController {
 	IDisenioFamiliaPrendaService disenioFamiliaPrendaService;
 	@Autowired
 	IDisenioMaterialService disenioMaterialService;
+	@Autowired
+	IDisenioRutaService disenioRutaService;
 	
 	@GetMapping("prendas") 
 	public String listClothes(Model model, Map<String, Object> m) {
@@ -43,6 +46,7 @@ public class PrendasController {
 		model.addAttribute("familias", disenioFamiliaPrendaService.findAll());
 		model.addAttribute("materiales", disenioMaterialService.findAllForCreate());
 		model.addAttribute("patronajes", disenioMaterialService.findLookUps());
+		model.addAttribute("rutas", disenioRutaService.findAll());
 		m.put("disenio", disenio);
 		return "agregar-prenda";
 	}
