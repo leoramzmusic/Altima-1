@@ -200,4 +200,18 @@ function vaciarModal(){
 }
 
 
+function ValidarPrimerPestana()
+{
+	if($('#nombreRuta').val() != "" && $('#descripcionRuta').val() != "" && $('#procesoRuta').val() != "")
+	{
+		$('#AlertaPestana').css('display', 'none');
+		$('#action2').click();
+	}
+	else
+	{
+		$('#AlertaPestana').css('display', 'block');
+	}
+}
+
+
 

@@ -13,8 +13,9 @@
 			<form>
 				<div class="modal-body">
 					<div class="form-group col-sm-12">
-						<label>Nombre</label> <input type="text" class="form-control"
-							id="nombreRuta" aria-describedby="emailHelp" placeholder="Ruta">
+						<label>Nombre</label> <input type="text" required
+							class="form-control" id="nombreRuta" aria-describedby="emailHelp"
+							placeholder="Ruta">
 					</div>
 					<div class="form-group col-sm-12">
 						<label>Descripci&oacute;n</label>
@@ -23,9 +24,8 @@
 					</div>
 					<div id="ponerSelect">
 						<div class="form-group col-sm-12" id="borrar">
-							<label for="status">Proceso</label> 
-							<select multiple name="nombre[]"
-								class="form-control" id="procesoRuta">
+							<label for="status">Proceso</label> <select multiple
+								name="nombre[]" required class="form-control" id="procesoRuta">
 								<option th:each="lookup:${lookups}" class="opcionruta"
 									th:value="${lookup.idLookup}" th:text="${lookup.nombre}" />
 							</select>
@@ -36,9 +36,17 @@
 					<button type="button" class="btn btn-danger mr-auto"
 						data-dismiss="modal" id="action1" onclick="vaciarModal()">Cerrar</button>
 					<button type="button" class="btn btn-primary"
-						onclick="crear_datos()">Guardar</button>
+						onclick="ValidarPrimerPestana()">Guardar</button>
+					<button type="button" class="btn btn-primary" id="action2"
+						onclick="crear_datos()" style="display: none">Guardar</button>
 				</div>
-			</form>
+				<div class="form-group col-sm-12" id="AlertaPestana"
+					style="display: none; color: red;">
+					<div class="float-right">
+						<label>Debes llenar todos los campos correctamente.</label>
+					</div>
+				</div>
+			</form> 
 		</div>
 	</div>
 </div>

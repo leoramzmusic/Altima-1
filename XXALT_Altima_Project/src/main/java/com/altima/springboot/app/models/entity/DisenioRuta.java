@@ -58,6 +58,12 @@ public class DisenioRuta implements Serializable{
 	@Column(name="descripcion_ruta")
 	@NotBlank
 	private String descripcionRuta;
+	
+	@Column(name="estatus")
+	private Integer Estatus;
+	
+	
+	
 
 	public Long getIdRuta() {
 		return idRuta;
@@ -129,6 +135,14 @@ public class DisenioRuta implements Serializable{
 
 	public void setDescripcionRuta(String descripcionRuta) {
 		this.descripcionRuta = descripcionRuta;
+	}
+	
+	public Integer getEstatus() {
+		return Estatus;
+	}
+
+	public void setEstatus(Integer estatus) {
+		Estatus = estatus;
 	}
 
 	public static long getSerialversionuid() {
