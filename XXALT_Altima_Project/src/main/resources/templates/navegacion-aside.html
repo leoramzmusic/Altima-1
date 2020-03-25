@@ -103,7 +103,6 @@
               </li>
             </ul>
           </li>
-          
           <li class="nav-item has-treeview" id="menuMuestrario" th:if="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')} or (${#authorization.expression('hasRole(''ROLE_DISENIO'')')})">
             <a class="nav-link" id="navMuestrario">
               <i class="nav-icon flaticon-006-dummy" style="margin-right: -3px;margin-left: 6px;"></i>
@@ -114,9 +113,27 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a th:href="${'muestras'}" class="nav-link" id="navMuestrario1">
+                <a th:href="${''}" class="nav-link" id="navMuestrario1">
+                  <i class="nav-icon fas fa-store"></i>
+                  <p>Inventario</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="${''}" class="nav-link" id="navMuestrario2">
                   <i class="nav-icon flaticon-007-dummy-1"></i>
-                  <p>Muestras Pedido</p>
+                  <p>Entradas y salidas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="${''}" class="nav-link" id="navMuestrario2">
+                  <i class="nav-icon flaticon-007-dummy-1"></i>
+                  <p>Cat&aacute;logo</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="${'solicitudes'}" class="nav-link" id="navDiseno6">
+                  <i class="nav-icon fas fa-mail-bulk"></i>
+                  <p>Mensajer&iacute;a</p>
                 </a>
               </li>
             </ul>
@@ -130,16 +147,34 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
+            <li class="nav-item">
                 <a th:href="${'clientes'}" class="nav-link" id="navVenta1">
+                  <i class="nav-icon fas fa-user"></i>
+                  <p>Agenda</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="${'clientes'}" class="nav-link" id="navVenta2">
                   <i class="nav-icon fas fa-user"></i>
                   <p>Clientes</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a th:href="${'prospectos'}" class="nav-link">
+                <a th:href="${'prospectos'}" class="nav-link" id="navVenta3">
                   <i class="nav-icon fas fa-vote-yea"></i>
-                  <p>Prospectos</p>
+                  <p>Seguimientos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="${'clientes'}" class="nav-link" id="navVenta4">
+                  <i class="nav-icon fas fa-user"></i>
+                  <p>Carga de pedidos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="${'solicitudes'}" class="nav-link" id="navDiseno6">
+                  <i class="nav-icon fas fa-mail-bulk"></i>
+                  <p>Mensajer&iacute;a</p>
                 </a>
               </li>
             </ul>
@@ -171,9 +206,15 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a th:href="${''}" class="nav-link" id="navMuestrario1">
-                  <i class="nav-icon far fa-circle"></i>
-                  <p>Ejemplo</p>
+                <a th:href="${'clientes'}" class="nav-link" id="navVenta1">
+                  <i class="nav-icon fas fa-user"></i>
+                  <p>Agenda</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="${'solicitudes'}" class="nav-link" id="navDiseno6">
+                  <i class="nav-icon fas fa-mail-bulk"></i>
+                  <p>Mensajer&iacute;a</p>
                 </a>
               </li>
             </ul>
@@ -207,7 +248,31 @@
               <li class="nav-item">
                 <a th:href="${''}" class="nav-link" id="navMuestrario1">
                   <i class="nav-icon far fa-circle"></i>
-                  <p>Ejemplo</p>
+                  <p>Agenda</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="${''}" class="nav-link" id="navMuestrario1">
+                  <i class="nav-icon far fa-circle"></i>
+                  <p>Cotizaciones</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="${''}" class="nav-link" id="navMuestrario1">
+                  <i class="nav-icon far fa-circle"></i>
+                  <p>Clientes</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="${''}" class="nav-link" id="navMuestrario1">
+                  <i class="nav-icon far fa-circle"></i>
+                  <p>Asignaciones</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="${'solicitudes'}" class="nav-link" id="navDiseno6">
+                  <i class="nav-icon fas fa-mail-bulk"></i>
+                  <p>Mensajer&iacute;a</p>
                 </a>
               </li>
             </ul>
@@ -224,7 +289,31 @@
               <li class="nav-item">
                 <a th:href="${''}" class="nav-link" id="navMuestrario1">
                   <i class="nav-icon far fa-circle"></i>
-                  <p>Ejemplo</p>
+                  <p>Prospectos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="${''}" class="nav-link" id="navMuestrario1">
+                  <i class="nav-icon far fa-circle"></i>
+                  <p>Seguimientos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="${''}" class="nav-link" id="navMuestrario1">
+                  <i class="nav-icon far fa-circle"></i>
+                  <p>Linea Express</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="${''}" class="nav-link" id="navMuestrario1">
+                  <i class="nav-icon far fa-circle"></i>
+                  <p>Registro de llamadas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="${'solicitudes'}" class="nav-link" id="navDiseno6">
+                  <i class="nav-icon fas fa-mail-bulk"></i>
+                  <p>Mensajer&iacute;a</p>
                 </a>
               </li>
             </ul>
@@ -259,7 +348,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a th:href="${''}" class="nav-link" id="navProduccion3">
+                <a th:href="${'muestras'}" class="nav-link" id="navProduccion3">
                   <i class="nav-icon flaticon-028-sew"></i>
                   <p>Pedidos de muestra</p>
                 </a>
@@ -360,6 +449,12 @@
                 </a>
               </li>
             </ul>
+          </li>
+          <li class="nav-item has-treeview" th:if="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')}">
+            <a th:href="${'administracion_usuarios'}" class="nav-link" id="navUsuario">
+            	<i class="nav-icon fas fa-users"></i>
+            	<p>Usuarios</p>
+          	</a>
           </li>
         </ul>
       </nav>
