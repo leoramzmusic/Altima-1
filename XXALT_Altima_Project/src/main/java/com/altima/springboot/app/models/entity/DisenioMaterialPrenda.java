@@ -43,9 +43,8 @@ public class DisenioMaterialPrenda implements Serializable{
 	
 	@Column(name="actualizado_por")
 	//@NotBlank
-	
-	
 	private String actualizadoPor;
+	
 
 	public Long getIdMaterialPrenda() {
 		return idMaterialPrenda;
