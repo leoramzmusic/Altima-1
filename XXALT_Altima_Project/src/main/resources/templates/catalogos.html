@@ -64,7 +64,7 @@
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
                     	<!-- MARCAS -->
-                      <!--  	<div th:insert="catalogos-marcas" class="col-lg-6 col-6"></div>  --->
+                      	<div th:insert="catalogos-marcas" class="col-lg-6 col-6"></div>  
                       	<!-- COLORES -->
                       	<div th:insert="catalogos-colores" class="col-lg-6 col-6"></div>
                       	<!-- PZAS. TRAZO -->
@@ -124,10 +124,10 @@
 		}
 		window.onload = changeClassById();
 	</script>
-	<script>
+	<!-- <script>
 	$(document).ready(function() {
-
-	    
+		
+	   
 		tablaUsuarios = $('#dt_cliente').DataTable({  
 			destroy: true,
 		    "ajax":{            
@@ -136,6 +136,7 @@
 		        "data":{"_csrf": $('#token').val()}, //enviamos opcion 4 para que haga un SELECT
 		        "dataSrc":""
 		    },
+		    
 		    "columns":[
 		        {"data": "idText"},
 		        {"data": "nombre"},
@@ -190,9 +191,36 @@
 	        // Toggle the visibility
 	        column.visible( ! column.visible() );
 	    } );
+	   
 
+
+		     
 		});    
 	</script>
+	<!--  -->
+<script>
+	$(document).ready(function() {
+		
+	   
+		$.getJSON("/orders", function (data){
+			var employeedata= '';
+			$.each(data, function(key, value){
+				employeedata += '<tr>';
+					employeedata += '<td>'+value.nombre+'</td>';
+						employeedata += '<td>'+value.nombre+'</td>';
+							employeedata += '<td>'+value.nombre+'</td>';
+								employeedata += '<td>'+value.nombre+'</td>';
+									employeedata += '</tr>'
+				
+			});
+			$('#dt_cliente2').append(employeedata);
+		});
+
+
+		     
+		});    
+	</script>
+	
 </body>
 
 </html>
