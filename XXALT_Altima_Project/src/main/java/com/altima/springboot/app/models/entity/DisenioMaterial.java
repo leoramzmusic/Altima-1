@@ -27,14 +27,6 @@ public class DisenioMaterial implements Serializable{
 	@GenericGenerator(name="native",strategy="native")
 	private Long idMaterial;
 	
-	@Column(name="id_lookup")
-	
-	private Long idLookup;
-	
-	@Column(name="id_lookup2")
-
-	private Long idLookup2;
-	
 	@Column(name="id_proceso")
 	
 	private Long idProceso;
@@ -99,15 +91,7 @@ public class DisenioMaterial implements Serializable{
     @Column(name="nombre_material")
 	
    	private String  nombreMaterial ;
-	
-
-	public String getNombreMaterial() {
-		return nombreMaterial;
-	}
-
-	public void setNombreMaterial(String nombreMaterial) {
-		this.nombreMaterial = nombreMaterial;
-	}
+    
 
 	@Column(name="modelo_proveedor")
 	
@@ -116,6 +100,18 @@ public class DisenioMaterial implements Serializable{
 	@Column(name="id_almacen")
 
 	private Long idAlmacen;
+	
+	@Column(name="estatus")
+
+	private String estatus;
+	
+	@Column(name="id_tipo_material")
+
+	private Long idTipoMaterial;
+	
+	@Column(name="id_color")
+
+	private Long idColor;
 
 	public Long getIdMaterial() {
 		return idMaterial;
@@ -123,22 +119,6 @@ public class DisenioMaterial implements Serializable{
 
 	public void setIdMaterial(Long idMaterial) {
 		this.idMaterial = idMaterial;
-	}
-
-	public Long getIdLookup() {
-		return idLookup;
-	}
-
-	public void setIdLookup(Long idLookup) {
-		this.idLookup = idLookup;
-	}
-
-	public Long getIdLookup2() {
-		return idLookup2;
-	}
-
-	public void setIdLookup2(Long idLookup2) {
-		this.idLookup2 = idLookup2;
 	}
 
 	public Long getIdProceso() {
@@ -197,6 +177,13 @@ public class DisenioMaterial implements Serializable{
 		this.descripcionMaterial = descripcionMaterial;
 	}
 
+	public String getIdUnidadMedida() {
+		return idUnidadMedida;
+	}
+
+	public void setIdUnidadMedida(String idUnidadMedida) {
+		this.idUnidadMedida = idUnidadMedida;
+	}
 
 	public String getModelo() {
 		return modelo;
@@ -237,19 +224,6 @@ public class DisenioMaterial implements Serializable{
 	public void setTamanio(String tamanio) {
 		this.tamanio = tamanio;
 	}
-	
-
-	
-
-
-
-	public String getIdUnidadMedida() {
-		return idUnidadMedida;
-	}
-
-	public void setIdUnidadMedida(String idUnidadMedida) {
-		this.idUnidadMedida = idUnidadMedida;
-	}
 
 	public String getIdMarca() {
 		return idMarca;
@@ -265,6 +239,14 @@ public class DisenioMaterial implements Serializable{
 
 	public void setIdClasificacion(String idClasificacion) {
 		this.idClasificacion = idClasificacion;
+	}
+
+	public String getNombreMaterial() {
+		return nombreMaterial;
+	}
+
+	public void setNombreMaterial(String nombreMaterial) {
+		this.nombreMaterial = nombreMaterial;
 	}
 
 	public String getModeloProveedor() {
@@ -283,6 +265,30 @@ public class DisenioMaterial implements Serializable{
 		this.idAlmacen = idAlmacen;
 	}
 
+	public String getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
+	}
+
+	public Long getIdTipoMaterial() {
+		return idTipoMaterial;
+	}
+
+	public void setIdTipoMaterial(Long idTipoMaterial) {
+		this.idTipoMaterial = idTipoMaterial;
+	}
+
+	public Long getIdColor() {
+		return idColor;
+	}
+
+	public void setIdColor(Long idColor) {
+		this.idColor = idColor;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -294,21 +300,25 @@ public class DisenioMaterial implements Serializable{
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((descripcionMaterial == null) ? 0 : descripcionMaterial.hashCode());
+		result = prime * result + ((estatus == null) ? 0 : estatus.hashCode());
 		result = prime * result + ((explosion == null) ? 0 : explosion.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
 		result = prime * result + ((idAlmacen == null) ? 0 : idAlmacen.hashCode());
-		result = prime * result + ((idLookup == null) ? 0 : idLookup.hashCode());
-		result = prime * result + ((idLookup2 == null) ? 0 : idLookup2.hashCode());
+		result = prime * result + ((idClasificacion == null) ? 0 : idClasificacion.hashCode());
+		result = prime * result + ((idColor == null) ? 0 : idColor.hashCode());
+		result = prime * result + ((idMarca == null) ? 0 : idMarca.hashCode());
 		result = prime * result + ((idMaterial == null) ? 0 : idMaterial.hashCode());
 		result = prime * result + ((idProceso == null) ? 0 : idProceso.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
+		result = prime * result + ((idTipoMaterial == null) ? 0 : idTipoMaterial.hashCode());
+		result = prime * result + ((idUnidadMedida == null) ? 0 : idUnidadMedida.hashCode());
 		result = prime * result + ((incluirEnPatronaje == null) ? 0 : incluirEnPatronaje.hashCode());
 		result = prime * result + ((modelo == null) ? 0 : modelo.hashCode());
 		result = prime * result + ((modeloProveedor == null) ? 0 : modeloProveedor.hashCode());
+		result = prime * result + ((nombreMaterial == null) ? 0 : nombreMaterial.hashCode());
 		result = prime * result + ((precioUnitario == null) ? 0 : precioUnitario.hashCode());
 		result = prime * result + ((tamanio == null) ? 0 : tamanio.hashCode());
 		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
-		result = prime * result + ((idUnidadMedida == null) ? 0 : idUnidadMedida.hashCode());
 		return result;
 	}
 
@@ -336,6 +346,11 @@ public class DisenioMaterial implements Serializable{
 				return false;
 		} else if (!descripcionMaterial.equals(other.descripcionMaterial))
 			return false;
+		if (estatus == null) {
+			if (other.estatus != null)
+				return false;
+		} else if (!estatus.equals(other.estatus))
+			return false;
 		if (explosion == null) {
 			if (other.explosion != null)
 				return false;
@@ -351,15 +366,20 @@ public class DisenioMaterial implements Serializable{
 				return false;
 		} else if (!idAlmacen.equals(other.idAlmacen))
 			return false;
-		if (idLookup == null) {
-			if (other.idLookup != null)
+		if (idClasificacion == null) {
+			if (other.idClasificacion != null)
 				return false;
-		} else if (!idLookup.equals(other.idLookup))
+		} else if (!idClasificacion.equals(other.idClasificacion))
 			return false;
-		if (idLookup2 == null) {
-			if (other.idLookup2 != null)
+		if (idColor == null) {
+			if (other.idColor != null)
 				return false;
-		} else if (!idLookup2.equals(other.idLookup2))
+		} else if (!idColor.equals(other.idColor))
+			return false;
+		if (idMarca == null) {
+			if (other.idMarca != null)
+				return false;
+		} else if (!idMarca.equals(other.idMarca))
 			return false;
 		if (idMaterial == null) {
 			if (other.idMaterial != null)
@@ -376,6 +396,16 @@ public class DisenioMaterial implements Serializable{
 				return false;
 		} else if (!idText.equals(other.idText))
 			return false;
+		if (idTipoMaterial == null) {
+			if (other.idTipoMaterial != null)
+				return false;
+		} else if (!idTipoMaterial.equals(other.idTipoMaterial))
+			return false;
+		if (idUnidadMedida == null) {
+			if (other.idUnidadMedida != null)
+				return false;
+		} else if (!idUnidadMedida.equals(other.idUnidadMedida))
+			return false;
 		if (incluirEnPatronaje == null) {
 			if (other.incluirEnPatronaje != null)
 				return false;
@@ -390,6 +420,11 @@ public class DisenioMaterial implements Serializable{
 			if (other.modeloProveedor != null)
 				return false;
 		} else if (!modeloProveedor.equals(other.modeloProveedor))
+			return false;
+		if (nombreMaterial == null) {
+			if (other.nombreMaterial != null)
+				return false;
+		} else if (!nombreMaterial.equals(other.nombreMaterial))
 			return false;
 		if (precioUnitario == null) {
 			if (other.precioUnitario != null)
@@ -406,11 +441,7 @@ public class DisenioMaterial implements Serializable{
 				return false;
 		} else if (!ultimaFechaModificacion.equals(other.ultimaFechaModificacion))
 			return false;
-		if (idUnidadMedida == null) {
-			if (other.idUnidadMedida != null)
-				return false;
-		} else if (!idUnidadMedida.equals(other.idUnidadMedida))
-			return false;
 		return true;
 	}
+	
 }
