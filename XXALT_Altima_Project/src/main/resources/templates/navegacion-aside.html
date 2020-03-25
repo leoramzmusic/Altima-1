@@ -58,7 +58,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a th:href="${'catalogo'}" class="nav-link" id="navDiseno4">
+                <a th:href="${'catalogos'}" class="nav-link" id="navDiseno4">
                   <i class="nav-icon fas fa-user"></i>
                   <p>Cat&aacute;logos</p>
                 </a>
@@ -117,6 +117,12 @@
                 <a th:href="${'muestras'}" class="nav-link" id="navMuestrario1">
                   <i class="nav-icon flaticon-007-dummy-1"></i>
                   <p>Muestras Pedido</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="${''}" class="nav-link" id="navMuestrario1">
+                  <i class="nav-icon flaticon-007-dummy-1"></i>
+                  <p>Catalogo digital</p>
                 </a>
               </li>
             </ul>
@@ -360,6 +366,12 @@
                 </a>
               </li>
             </ul>
+          </li>
+          <li class="nav-item has-treeview" th:if="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')}">
+            <a th:href="${'administracion_usuarios'}" class="nav-link" id="navUsuario">
+            	<i class="nav-icon fas fa-users"></i>
+            	<p>Usuarios</p>
+          	</a>
           </li>
         </ul>
       </nav>
