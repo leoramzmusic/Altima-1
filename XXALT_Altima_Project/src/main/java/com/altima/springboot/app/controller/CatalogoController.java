@@ -38,7 +38,7 @@ public class CatalogoController {
 	@Autowired
 	ICatalogoService catalogo;
 
-	@RequestMapping(value = "/orders", method = RequestMethod.POST)
+	@RequestMapping(value = "/orders", method = RequestMethod.GET)
 	@ResponseBody
 	public List<DisenioLookup> accountSummary() {
 
