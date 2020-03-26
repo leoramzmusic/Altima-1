@@ -43,7 +43,14 @@ public class DisenioFamiliaComposicionForro implements Serializable{
 	
 	@Column(name="ultima_fecha_modificacion")
 	private String ultimaFechaModificacion;
+	
+	@Column(name="composicion")
+	private String composicion;
+	
+	
+	
 
+	
 	public Long getIdFamiliaComposicionForro() {
 		return idFamiliaComposicionForro;
 	}
@@ -99,6 +106,15 @@ public class DisenioFamiliaComposicionForro implements Serializable{
 	public void setUltimaFechaModificacion(String ultimaFechaModificacion) {
 		this.ultimaFechaModificacion = ultimaFechaModificacion;
 	}
+	
+	public String getComposicion() {
+		return composicion;
+	}
+
+	public void setComposicion(String composicion) {
+		this.composicion = composicion;
+	}
+
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
