@@ -39,12 +39,12 @@
 						a = [
 						"<tr>" +
 						"<td>" + data[i].idText + "</td>",
-						"<td>" + data[i].nombre + "</td>",
+						"<td>" + data[i].nombreLookup + "</td>",
 						"<td style='text-align: center;'>"+
                         "<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button>&nbsp;"+
                     "</td>",
 						" <td style='text-align: center;''>"+
-						" <button id='"+data[i].idLookup+"' value='"+data[i].nombre+"' class='btn btn-warning popoverxd edit_data' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
+						" <button id='"+data[i].idLookup+"' value='"+data[i].nombreLookup+"' class='btn btn-warning popoverxd edit_data' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
                       "<button onclick='bajarMarca()' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
                       "<button onclick='reactivarMarca()' class='btn btn-success popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Reactivar' style='border-radius:35%;'><i class='fas fa-check fa-sm'></i></button>"+
 						"</td>"+
@@ -123,12 +123,12 @@
 						a = [
 						"<tr>" +
 						"<td>" + data[i].idText + "</td>",
-						"<td>" + data[i].nombre + "</td>",
+						"<td>" + data[i].nombreLookup + "</td>",
 						"<td style='text-align: center;'>"+
                      "<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button>&nbsp;"+
                  "</td>",
 						" <td style='text-align: center;''>"+
-						" <button id='"+data[i].idLookup+"' value='"+data[i].nombre+"' class='btn btn-warning popoverxd edit_data_color' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
+						" <button id='"+data[i].idLookup+"' value='"+data[i].nombreLookup+"' class='btn btn-warning popoverxd edit_data_color' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
                    "<button onclick='bajarMarca()' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
                    "<button onclick='reactivarMarca()' class='btn btn-success popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Reactivar' style='border-radius:35%;'><i class='fas fa-check fa-sm'></i></button>"+
 						"</td>"+
@@ -207,12 +207,12 @@
 						a = [
 						"<tr>" +
 						"<td>" + data[i].idText + "</td>",
-						"<td>" + data[i].nombre + "</td>",
+						"<td>" + data[i].nombreLookup + "</td>",
 						"<td style='text-align: center;'>"+
                      "<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button>&nbsp;"+
                  "</td>",
 						" <td style='text-align: center;''>"+
-						" <button id='"+data[i].idLookup+"' value='"+data[i].nombre+"' class='btn btn-warning popoverxd edit_data_trazo' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
+						" <button id='"+data[i].idLookup+"' value='"+data[i].nombreLookup+"' class='btn btn-warning popoverxd edit_data_trazo' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
                    "<button onclick='bajarMarca()' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
                    "<button onclick='reactivarMarca()' class='btn btn-success popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Reactivar' style='border-radius:35%;'><i class='fas fa-check fa-sm'></i></button>"+
 						"</td>"+
@@ -291,12 +291,12 @@
 						a = [
 						"<tr>" +
 						"<td>" + data[i].idText + "</td>",
-						"<td>" + data[i].nombre + "</td>",
+						"<td>" + data[i].nombreLookup + "</td>",
 						"<td style='text-align: center;'>"+
                   "<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button>&nbsp;"+
               "</td>",
 						" <td style='text-align: center;''>"+
-				"<button onclick='editarPrenda(this);' idlookup='"+ data[i].idLookup+"' nombre='"+ data[i].nombre+"' descripcion='"+ data[i].descripcion+"' class='btn btn-warning popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
+				"<button onclick='editarPrenda(this);' idlookup='"+ data[i].idLookup+"' nombre='"+ data[i].nombreLookup+"' descripcion='"+ data[i].descripcion+"' class='btn btn-warning popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
                 "<button onclick='bajarMarca()' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
                 "<button onclick='reactivarMarca()' class='btn btn-success popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Reactivar' style='border-radius:35%;'><i class='fas fa-check fa-sm'></i></button>"+
 						"</td>"+
@@ -375,12 +375,12 @@
 						a = [
 						"<tr>" +
 						"<td>" + data[i].idText + "</td>",
-						"<td>" + data[i].nombre + "</td>",
+						"<td>" + data[i].nombreLookup + "</td>",
 						"<td style='text-align: center;'>"+
                "<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button>&nbsp;"+
            "</td>",
 						" <td style='text-align: center;''>"+
-				"<button onclick='editarGenero(this);' idlookup='"+ data[i].idLookup+"' nombre='"+ data[i].nombre+"'  class='btn btn-warning popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
+				"<button onclick='editarGenero(this);' idlookup='"+ data[i].idLookup+"' nombre='"+ data[i].nombreLookup+"'  class='btn btn-warning popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
              "<button onclick='bajarMarca()' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
              "<button onclick='reactivarMarca()' class='btn btn-success popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Reactivar' style='border-radius:35%;'><i class='fas fa-check fa-sm'></i></button>"+
 						"</td>"+
@@ -459,12 +459,12 @@
 						a = [
 						"<tr>" +
 						"<td>" + data[i].idText + "</td>",
-						"<td>" + data[i].nombre + "</td>",
+						"<td>" + data[i].nombreLookup + "</td>",
 						"<td style='text-align: center;'>"+
             "<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button>&nbsp;"+
         "</td>",
 						" <td style='text-align: center;''>"+
-				"<button onclick='editarComposicion(this);' idlookup='"+ data[i].idLookup+"' nombre='"+ data[i].nombre+"'  class='btn btn-warning popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
+				"<button onclick='editarComposicion(this);' idlookup='"+ data[i].idLookup+"' nombre='"+ data[i].nombreLookup+"'  class='btn btn-warning popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
           "<button onclick='bajarMarca()' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
           "<button onclick='reactivarMarca()' class='btn btn-success popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Reactivar' style='border-radius:35%;'><i class='fas fa-check fa-sm'></i></button>"+
 						"</td>"+
@@ -543,12 +543,12 @@
 						a = [
 						"<tr>" +
 						"<td>" + data[i].idText + "</td>",
-						"<td>" + data[i].nombre + "</td>",
+						"<td>" + data[i].nombreLookup + "</td>",
 						"<td style='text-align: center;'>"+
          "<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button>&nbsp;"+
      "</td>",
 						" <td style='text-align: center;''>"+
-				"<button onclick='editarCuidado(this);' idlookup='"+ data[i].idLookup+"' nombre='"+ data[i].nombre+"'  class='btn btn-warning popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
+				"<button onclick='editarCuidado(this);' idlookup='"+ data[i].idLookup+"' nombre='"+ data[i].nombreLookup+"'  class='btn btn-warning popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
        "<button onclick='bajarMarca()' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
        "<button onclick='reactivarMarca()' class='btn btn-success popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Reactivar' style='border-radius:35%;'><i class='fas fa-check fa-sm'></i></button>"+
 						"</td>"+
