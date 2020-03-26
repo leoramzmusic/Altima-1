@@ -1,3 +1,605 @@
+ $(document).ready(function() {
+
+	listarMarcas();
+	listarColores();
+	listarTrazos();
+	listarPrendas();
+	listarGeneros();
+	listarComposiciones();
+	listarCuidados();
+	
+	
+	
+
+
+});
+ function listarMarcas() {
+		
+		$.ajax({
+		    method: "GET",
+		    url: "/marcas",
+		    success: (data) => {
+		    	$('#quitar').remove();
+		    	$('#contenedorTabla').append("<div class='modal-body' id='quitar'>" +
+		    			"<table class='table tablexd table-striped table-bordered' id='idtable'>" +
+	                                        "<thead>" +
+	                                            "<tr>" +
+	                                                "<th>Clave</th>" +
+	                                                "<th>Nombre</th>" + 
+	                                               
+	                                                "<th>Cambios</th>" +
+	                                                "<th></th>" +
+	                                            "</tr>" +
+	                                        "</thead>" +
+	                                    "</table>" + "</div>");
+		        var a;
+		        var b = [];
+		        for (i in data){
+		        	
+						a = [
+						"<tr>" +
+						"<td>" + data[i].idText + "</td>",
+						"<td>" + data[i].nombre + "</td>",
+						"<td style='text-align: center;'>"+
+                        "<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button>&nbsp;"+
+                    "</td>",
+						" <td style='text-align: center;''>"+
+						" <button id='"+data[i].idLookup+"' value='"+data[i].nombre+"' class='btn btn-warning popoverxd edit_data' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
+                      "<button onclick='bajarMarca()' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
+                      "<button onclick='reactivarMarca()' class='btn btn-success popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Reactivar' style='border-radius:35%;'><i class='fas fa-check fa-sm'></i></button>"+
+						"</td>"+
+						
+						"<tr>"
+						];
+						b.push(a);
+		        }	        
+			    var tabla = $('#idtable').DataTable({
+	            	"data":b,
+	                "ordering": true,
+	                "pageLength": 5,
+	                "lengthMenu": [
+	                    [5, 10, 25, 50, 100],
+	                    [5, 10, 25, 50, 100]
+	                ],
+	                "language": {
+	                    "sProcessing": "Procesando...",
+	                    "sLengthMenu": "Mostrar _MENU_ registros",
+	                    "sZeroRecords": "No se encontraron resultados",
+	                    "sEmptyTable": "Ningún dato disponible en esta tabla =(",
+	                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+	                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+	                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+	                    "sInfoPostFix": "",
+	                    "sSearch": "Buscar:",
+	                    "sUrl": "",
+	                    "sInfoThousands": ",",
+	                    "sLoadingRecords": "Cargando...",
+	                    "oPaginate": {
+	                        "sFirst": "Primero",
+	                        "sLast": "Último",
+	                        "sNext": "Siguiente",
+	                        "sPrevious": "Anterior"
+	                    },
+	                    "oAria": {
+	                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+	                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+	                    },
+	                    "buttons": {
+	                        "copy": "Copiar",
+	                        "colvis": "Visibilidad"
+	                    }
+	                }
+	            });
+		    },
+		    error: (e) => {
+		        // location.reload();
+		    }
+	}
+	)}
+ ///////////////////////////////
+ function listarColores() {
+		
+		$.ajax({
+		    method: "GET",
+		    url: "/colores",
+		    success: (data) => {
+		    	$('#quitar2').remove();
+		    	$('#contenedorTabla2').append("<div class='modal-body' id='quitar2'>" +
+		    			"<table class='table tablexd table-striped table-bordered' id='idtable2'>" +
+	                                        "<thead>" +
+	                                            "<tr>" +
+	                                                "<th>Clave</th>" +
+	                                                "<th>Nombre</th>" + 
+	                                               
+	                                                "<th>Cambios</th>" +
+	                                                "<th></th>" +
+	                                            "</tr>" +
+	                                        "</thead>" +
+	                                    "</table>" + "</div>");
+		        var a;
+		        var b = [];
+		        for (i in data){
+		        	
+						a = [
+						"<tr>" +
+						"<td>" + data[i].idText + "</td>",
+						"<td>" + data[i].nombre + "</td>",
+						"<td style='text-align: center;'>"+
+                     "<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button>&nbsp;"+
+                 "</td>",
+						" <td style='text-align: center;''>"+
+						" <button id='"+data[i].idLookup+"' value='"+data[i].nombre+"' class='btn btn-warning popoverxd edit_data_color' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
+                   "<button onclick='bajarMarca()' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
+                   "<button onclick='reactivarMarca()' class='btn btn-success popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Reactivar' style='border-radius:35%;'><i class='fas fa-check fa-sm'></i></button>"+
+						"</td>"+
+						
+						"<tr>"
+						];
+						b.push(a);
+		        }	        
+			    var tabla = $('#idtable2').DataTable({
+	            	"data":b,
+	                "ordering": true,
+	                "pageLength": 5,
+	                "lengthMenu": [
+	                    [5, 10, 25, 50, 100],
+	                    [5, 10, 25, 50, 100]
+	                ],
+	                "language": {
+	                    "sProcessing": "Procesando...",
+	                    "sLengthMenu": "Mostrar _MENU_ registros",
+	                    "sZeroRecords": "No se encontraron resultados",
+	                    "sEmptyTable": "Ningún dato disponible en esta tabla =(",
+	                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+	                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+	                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+	                    "sInfoPostFix": "",
+	                    "sSearch": "Buscar:",
+	                    "sUrl": "",
+	                    "sInfoThousands": ",",
+	                    "sLoadingRecords": "Cargando...",
+	                    "oPaginate": {
+	                        "sFirst": "Primero",
+	                        "sLast": "Último",
+	                        "sNext": "Siguiente",
+	                        "sPrevious": "Anterior"
+	                    },
+	                    "oAria": {
+	                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+	                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+	                    },
+	                    "buttons": {
+	                        "copy": "Copiar",
+	                        "colvis": "Visibilidad"
+	                    }
+	                }
+	            });
+		    },
+		    error: (e) => {
+		        // location.reload();
+		    }
+	}
+	)}
+ //////////////////////////////
+ function listarTrazos() {
+		
+		$.ajax({
+		    method: "GET",
+		    url: "/trazos",
+		    success: (data) => {
+		    	$('#quitar3').remove();
+		    	$('#contenedorTabla3').append("<div class='modal-body' id='quitar3'>" +
+		    			"<table class='table tablexd table-striped table-bordered' id='idtable3'>" +
+	                                        "<thead>" +
+	                                            "<tr>" +
+	                                                "<th>Clave</th>" +
+	                                                "<th>Nombre</th>" + 
+	                                               
+	                                                "<th>Cambios</th>" +
+	                                                "<th></th>" +
+	                                            "</tr>" +
+	                                        "</thead>" +
+	                                    "</table>" + "</div>");
+		        var a;
+		        var b = [];
+		        for (i in data){
+		        	
+						a = [
+						"<tr>" +
+						"<td>" + data[i].idText + "</td>",
+						"<td>" + data[i].nombre + "</td>",
+						"<td style='text-align: center;'>"+
+                     "<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button>&nbsp;"+
+                 "</td>",
+						" <td style='text-align: center;''>"+
+						" <button id='"+data[i].idLookup+"' value='"+data[i].nombre+"' class='btn btn-warning popoverxd edit_data_trazo' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
+                   "<button onclick='bajarMarca()' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
+                   "<button onclick='reactivarMarca()' class='btn btn-success popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Reactivar' style='border-radius:35%;'><i class='fas fa-check fa-sm'></i></button>"+
+						"</td>"+
+						
+						"<tr>"
+						];
+						b.push(a);
+		        }	        
+			    var tabla = $('#idtable3').DataTable({
+	            	"data":b,
+	                "ordering": true,
+	                "pageLength": 5,
+	                "lengthMenu": [
+	                    [5, 10, 25, 50, 100],
+	                    [5, 10, 25, 50, 100]
+	                ],
+	                "language": {
+	                    "sProcessing": "Procesando...",
+	                    "sLengthMenu": "Mostrar _MENU_ registros",
+	                    "sZeroRecords": "No se encontraron resultados",
+	                    "sEmptyTable": "Ningún dato disponible en esta tabla =(",
+	                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+	                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+	                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+	                    "sInfoPostFix": "",
+	                    "sSearch": "Buscar:",
+	                    "sUrl": "",
+	                    "sInfoThousands": ",",
+	                    "sLoadingRecords": "Cargando...",
+	                    "oPaginate": {
+	                        "sFirst": "Primero",
+	                        "sLast": "Último",
+	                        "sNext": "Siguiente",
+	                        "sPrevious": "Anterior"
+	                    },
+	                    "oAria": {
+	                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+	                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+	                    },
+	                    "buttons": {
+	                        "copy": "Copiar",
+	                        "colvis": "Visibilidad"
+	                    }
+	                }
+	            });
+		    },
+		    error: (e) => {
+		        // location.reload();
+		    }
+	}
+	)}
+ //////////////////////////////////
+ function listarPrendas() {
+		
+		$.ajax({
+		    method: "GET",
+		    url: "/prendaslook",
+		    success: (data) => {
+		    	$('#quitar4').remove();
+		    	$('#contenedorTabla4').append("<div class='modal-body' id='quitar4'>" +
+		    			"<table class='table tablexd table-striped table-bordered' id='idtable4'>" +
+	                                        "<thead>" +
+	                                            "<tr>" +
+	                                                "<th>Clave</th>" +
+	                                                "<th>Nombre</th>" + 
+	                                               
+	                                                "<th>Cambios</th>" +
+	                                                "<th></th>" +
+	                                            "</tr>" +
+	                                        "</thead>" +
+	                                    "</table>" + "</div>");
+		        var a;
+		        var b = [];
+		        for (i in data){
+		        	
+						a = [
+						"<tr>" +
+						"<td>" + data[i].idText + "</td>",
+						"<td>" + data[i].nombre + "</td>",
+						"<td style='text-align: center;'>"+
+                  "<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button>&nbsp;"+
+              "</td>",
+						" <td style='text-align: center;''>"+
+				"<button onclick='editarPrenda(this);' idlookup='"+ data[i].idLookup+"' nombre='"+ data[i].nombre+"' descripcion='"+ data[i].descripcion+"' class='btn btn-warning popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
+                "<button onclick='bajarMarca()' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
+                "<button onclick='reactivarMarca()' class='btn btn-success popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Reactivar' style='border-radius:35%;'><i class='fas fa-check fa-sm'></i></button>"+
+						"</td>"+
+						
+						"<tr>"
+						];
+						b.push(a);
+		        }	        
+			    var tabla = $('#idtable4').DataTable({
+	            	"data":b,
+	                "ordering": true,
+	                "pageLength": 5,
+	                "lengthMenu": [
+	                    [5, 10, 25, 50, 100],
+	                    [5, 10, 25, 50, 100]
+	                ],
+	                "language": {
+	                    "sProcessing": "Procesando...",
+	                    "sLengthMenu": "Mostrar _MENU_ registros",
+	                    "sZeroRecords": "No se encontraron resultados",
+	                    "sEmptyTable": "Ningún dato disponible en esta tabla =(",
+	                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+	                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+	                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+	                    "sInfoPostFix": "",
+	                    "sSearch": "Buscar:",
+	                    "sUrl": "",
+	                    "sInfoThousands": ",",
+	                    "sLoadingRecords": "Cargando...",
+	                    "oPaginate": {
+	                        "sFirst": "Primero",
+	                        "sLast": "Último",
+	                        "sNext": "Siguiente",
+	                        "sPrevious": "Anterior"
+	                    },
+	                    "oAria": {
+	                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+	                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+	                    },
+	                    "buttons": {
+	                        "copy": "Copiar",
+	                        "colvis": "Visibilidad"
+	                    }
+	                }
+	            });
+		    },
+		    error: (e) => {
+		        // location.reload();
+		    }
+	}
+	)}
+ //////////////////////////
+ function listarGeneros() {
+		
+		$.ajax({
+		    method: "GET",
+		    url: "/generos",
+		    success: (data) => {
+		    	$('#quitar5').remove();
+		    	$('#contenedorTabla5').append("<div class='modal-body' id='quitar5'>" +
+		    			"<table class='table tablexd table-striped table-bordered' id='idtable5'>" +
+	                                        "<thead>" +
+	                                            "<tr>" +
+	                                                "<th>Clave</th>" +
+	                                                "<th>Nombre</th>" + 
+	                                               
+	                                                "<th>Cambios</th>" +
+	                                                "<th></th>" +
+	                                            "</tr>" +
+	                                        "</thead>" +
+	                                    "</table>" + "</div>");
+		        var a;
+		        var b = [];
+		        for (i in data){
+		        	
+						a = [
+						"<tr>" +
+						"<td>" + data[i].idText + "</td>",
+						"<td>" + data[i].nombre + "</td>",
+						"<td style='text-align: center;'>"+
+               "<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button>&nbsp;"+
+           "</td>",
+						" <td style='text-align: center;''>"+
+				"<button onclick='editarGenero(this);' idlookup='"+ data[i].idLookup+"' nombre='"+ data[i].nombre+"'  class='btn btn-warning popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
+             "<button onclick='bajarMarca()' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
+             "<button onclick='reactivarMarca()' class='btn btn-success popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Reactivar' style='border-radius:35%;'><i class='fas fa-check fa-sm'></i></button>"+
+						"</td>"+
+						
+						"<tr>"
+						];
+						b.push(a);
+		        }	        
+			    var tabla = $('#idtable5').DataTable({
+	            	"data":b,
+	                "ordering": true,
+	                "pageLength": 5,
+	                "lengthMenu": [
+	                    [5, 10, 25, 50, 100],
+	                    [5, 10, 25, 50, 100]
+	                ],
+	                "language": {
+	                    "sProcessing": "Procesando...",
+	                    "sLengthMenu": "Mostrar _MENU_ registros",
+	                    "sZeroRecords": "No se encontraron resultados",
+	                    "sEmptyTable": "Ningún dato disponible en esta tabla =(",
+	                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+	                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+	                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+	                    "sInfoPostFix": "",
+	                    "sSearch": "Buscar:",
+	                    "sUrl": "",
+	                    "sInfoThousands": ",",
+	                    "sLoadingRecords": "Cargando...",
+	                    "oPaginate": {
+	                        "sFirst": "Primero",
+	                        "sLast": "Último",
+	                        "sNext": "Siguiente",
+	                        "sPrevious": "Anterior"
+	                    },
+	                    "oAria": {
+	                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+	                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+	                    },
+	                    "buttons": {
+	                        "copy": "Copiar",
+	                        "colvis": "Visibilidad"
+	                    }
+	                }
+	            });
+		    },
+		    error: (e) => {
+		        // location.reload();
+		    }
+	}
+	)}
+ ///////////////////////////////
+ function listarComposiciones() {
+		
+		$.ajax({
+		    method: "GET",
+		    url: "/composiciones",
+		    success: (data) => {
+		    	$('#quitar6').remove();
+		    	$('#contenedorTabla6').append("<div class='modal-body' id='quitar6'>" +
+		    			"<table class='table tablexd table-striped table-bordered' id='idtable6'>" +
+	                                        "<thead>" +
+	                                            "<tr>" +
+	                                                "<th>Clave</th>" +
+	                                                "<th>Nombre</th>" + 
+	                                               
+	                                                "<th>Cambios</th>" +
+	                                                "<th></th>" +
+	                                            "</tr>" +
+	                                        "</thead>" +
+	                                    "</table>" + "</div>");
+		        var a;
+		        var b = [];
+		        for (i in data){
+		        	
+						a = [
+						"<tr>" +
+						"<td>" + data[i].idText + "</td>",
+						"<td>" + data[i].nombre + "</td>",
+						"<td style='text-align: center;'>"+
+            "<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button>&nbsp;"+
+        "</td>",
+						" <td style='text-align: center;''>"+
+				"<button onclick='editarComposicion(this);' idlookup='"+ data[i].idLookup+"' nombre='"+ data[i].nombre+"'  class='btn btn-warning popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
+          "<button onclick='bajarMarca()' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
+          "<button onclick='reactivarMarca()' class='btn btn-success popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Reactivar' style='border-radius:35%;'><i class='fas fa-check fa-sm'></i></button>"+
+						"</td>"+
+						
+						"<tr>"
+						];
+						b.push(a);
+		        }	        
+			    var tabla = $('#idtable6').DataTable({
+	            	"data":b,
+	                "ordering": true,
+	                "pageLength": 5,
+	                "lengthMenu": [
+	                    [5, 10, 25, 50, 100],
+	                    [5, 10, 25, 50, 100]
+	                ],
+	                "language": {
+	                    "sProcessing": "Procesando...",
+	                    "sLengthMenu": "Mostrar _MENU_ registros",
+	                    "sZeroRecords": "No se encontraron resultados",
+	                    "sEmptyTable": "Ningún dato disponible en esta tabla =(",
+	                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+	                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+	                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+	                    "sInfoPostFix": "",
+	                    "sSearch": "Buscar:",
+	                    "sUrl": "",
+	                    "sInfoThousands": ",",
+	                    "sLoadingRecords": "Cargando...",
+	                    "oPaginate": {
+	                        "sFirst": "Primero",
+	                        "sLast": "Último",
+	                        "sNext": "Siguiente",
+	                        "sPrevious": "Anterior"
+	                    },
+	                    "oAria": {
+	                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+	                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+	                    },
+	                    "buttons": {
+	                        "copy": "Copiar",
+	                        "colvis": "Visibilidad"
+	                    }
+	                }
+	            });
+		    },
+		    error: (e) => {
+		        // location.reload();
+		    }
+	}
+	)}
+ //////////////////
+ function listarCuidados() {
+		
+		$.ajax({
+		    method: "GET",
+		    url: "/cuidados",
+		    success: (data) => {
+		    	$('#quitar7').remove();
+		    	$('#contenedorTabla7').append("<div class='modal-body' id='quitar7'>" +
+		    			"<table class='table tablexd table-striped table-bordered' id='idtable7'>" +
+	                                        "<thead>" +
+	                                            "<tr>" +
+	                                                "<th>Clave</th>" +
+	                                                "<th>Nombre</th>" + 
+	                                               
+	                                                "<th>Cambios</th>" +
+	                                                "<th></th>" +
+	                                            "</tr>" +
+	                                        "</thead>" +
+	                                    "</table>" + "</div>");
+		        var a;
+		        var b = [];
+		        for (i in data){
+		        	
+						a = [
+						"<tr>" +
+						"<td>" + data[i].idText + "</td>",
+						"<td>" + data[i].nombre + "</td>",
+						"<td style='text-align: center;'>"+
+         "<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button>&nbsp;"+
+     "</td>",
+						" <td style='text-align: center;''>"+
+				"<button onclick='editarCuidado(this);' idlookup='"+ data[i].idLookup+"' nombre='"+ data[i].nombre+"'  class='btn btn-warning popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
+       "<button onclick='bajarMarca()' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
+       "<button onclick='reactivarMarca()' class='btn btn-success popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Reactivar' style='border-radius:35%;'><i class='fas fa-check fa-sm'></i></button>"+
+						"</td>"+
+						
+						"<tr>"
+						];
+						b.push(a);
+		        }	        
+			    var tabla = $('#idtable7').DataTable({
+	            	"data":b,
+	                "ordering": true,
+	                "pageLength": 5,
+	                "lengthMenu": [
+	                    [5, 10, 25, 50, 100],
+	                    [5, 10, 25, 50, 100]
+	                ],
+	                "language": {
+	                    "sProcessing": "Procesando...",
+	                    "sLengthMenu": "Mostrar _MENU_ registros",
+	                    "sZeroRecords": "No se encontraron resultados",
+	                    "sEmptyTable": "Ningún dato disponible en esta tabla =(",
+	                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+	                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+	                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+	                    "sInfoPostFix": "",
+	                    "sSearch": "Buscar:",
+	                    "sUrl": "",
+	                    "sInfoThousands": ",",
+	                    "sLoadingRecords": "Cargando...",
+	                    "oPaginate": {
+	                        "sFirst": "Primero",
+	                        "sLast": "Último",
+	                        "sNext": "Siguiente",
+	                        "sPrevious": "Anterior"
+	                    },
+	                    "oAria": {
+	                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+	                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+	                    },
+	                    "buttons": {
+	                        "copy": "Copiar",
+	                        "colvis": "Visibilidad"
+	                    }
+	                }
+	            });
+		    },
+		    error: (e) => {
+		        // location.reload();
+		    }
+	}
+	)}
  
 //Habilitar form de SweetAlert2
 $('#detalleMarcas').on('shown.bs.modal', function() {
@@ -39,7 +641,7 @@ function agregarMarca() {
 	    })
 	    .done(function( data ) {
 	    	
-	    	 tablaUsuarios.ajax.reload(null, false);
+	    	listarRutas();
   });
 	    
 	        Swal.fire({
@@ -88,6 +690,9 @@ Swal.fire({
       	// ,'Descripcion':Descripcion
       }
      
+  }).done(function(data){
+	  console.log("color")
+	  listarMarcas();
   });
       Swal.fire({
         position: 'center',
@@ -96,7 +701,7 @@ Swal.fire({
         showConfirmButton: false,
         timer: 1250
       })
-		 window.setTimeout(function(){location.reload()}, 2000);
+     
     }
   })
 }
@@ -224,6 +829,8 @@ Swal.fire({
 	      	// ,'Descripcion':Descripcion
 	      }
 	     
+	  }).done(function(data){
+		  listarColores();
 	  });
 	      Swal.fire({
 	        position: 'center',
@@ -232,7 +839,7 @@ Swal.fire({
 	        showConfirmButton: false,
 	        timer: 1250
 	      })
-			 window.setTimeout(function(){location.reload()}, 2000);
+			
 	    }
 	  })
 	}
@@ -315,6 +922,8 @@ Swal.fire({
 		        	// ,'Descripcion':Descripcion
 		        }
 		       
+		    }).done(function(data){
+		    	listarTrazos();
 		    });
 		        Swal.fire({
 		          position: 'center',
@@ -323,7 +932,7 @@ Swal.fire({
 		          showConfirmButton: false,
 		          timer: 1250
 		        })
-		        window.setTimeout(function(){location.reload()}, 2000);
+		        
 		      }
 		    })
 	  }
@@ -363,6 +972,8 @@ Swal.fire({
 	      	// ,'Descripcion':Descripcion
 	      }
 	     
+	  }).done(function(data){
+		  listarTrazos();
 	  });
 	      Swal.fire({
 	        position: 'center',
@@ -371,7 +982,7 @@ Swal.fire({
 	        showConfirmButton: false,
 	        timer: 1250
 	      })
-			 window.setTimeout(function(){location.reload()}, 2000);
+			
 	    }
 	  })
 	}
@@ -459,6 +1070,8 @@ Swal.fire({
 		        	// ,'Descripcion':Descripcion
 		        }
 		       
+		    }).done(function(data){
+		    	listarPrendas();
 		    });
 		        Swal.fire({
 		          position: 'center',
@@ -467,7 +1080,7 @@ Swal.fire({
 		          showConfirmButton: false,
 		          timer: 1250
 		        })
-		        window.setTimeout(function(){location.reload()}, 2000);
+		       
 		      }
 		    })
 	  }
@@ -514,6 +1127,8 @@ Swal.fire({
 		        	// ,'Descripcion':Descripcion
 		        }
 		       
+		    }).done(function(data){
+		    	listarPrendas();
 		    });
 		        Swal.fire({
 		          position: 'center',
@@ -522,7 +1137,7 @@ Swal.fire({
 		          showConfirmButton: false,
 		          timer: 1250
 		        })
-		        window.setTimeout(function(){location.reload()}, 2000);
+		      
 		      }
 		    })
 	  }
@@ -604,6 +1219,8 @@ Swal.fire({
 		        	// ,'Descripcion':Descripcion
 		        }
 		       
+		    }).done(function(data){
+		    	listarGeneros();
 		    });
 		        Swal.fire({
 		          position: 'center',
@@ -612,7 +1229,7 @@ Swal.fire({
 		          showConfirmButton: false,
 		          timer: 1250
 		        })
-		        window.setTimeout(function(){location.reload()}, 2000);
+		       
 		      }
 		    })
 	  }
@@ -657,6 +1274,8 @@ function editarGenero(e) {
 		        	// ,'Descripcion':Descripcion
 		        }
 		       
+		    }).done(function(data){
+		    	listarGeneros();
 		    });
 		        Swal.fire({
 		          position: 'center',
@@ -665,7 +1284,7 @@ function editarGenero(e) {
 		          showConfirmButton: false,
 		          timer: 1250
 		        })
-		        window.setTimeout(function(){location.reload()}, 2000);
+		        //window.setTimeout(function(){location.reload()}, 2000);
 		      }
 		    })
 	  }
@@ -747,6 +1366,8 @@ function editarGenero(e) {
 		        	// ,'Descripcion':Descripcion
 		        }
 		       
+		    }).done(function(data){
+		    	listarComposiciones();
 		    });
 		        Swal.fire({
 		          position: 'center',
@@ -755,7 +1376,7 @@ function editarGenero(e) {
 		          showConfirmButton: false,
 		          timer: 1250
 		        })
-		        window.setTimeout(function(){location.reload()}, 2000);
+		       
 		      }
 		    })
 	  }
@@ -800,6 +1421,8 @@ function editarComposicion(e) {
 		        	// ,'Descripcion':Descripcion
 		        }
 		       
+		    }).done(function(data){
+		    	listarComposiciones();
 		    });
 		        Swal.fire({
 		          position: 'center',
@@ -808,7 +1431,7 @@ function editarComposicion(e) {
 		          showConfirmButton: false,
 		          timer: 1250
 		        })
-		        window.setTimeout(function(){location.reload()}, 2000);
+		       
 		      }
 		    })
 	  }
@@ -890,6 +1513,8 @@ function agregarCuidado() {
 	        	// ,'Descripcion':Descripcion
 	        }
 	       
+	    }).done(function(data){
+	    	listarCuidados();
 	    });
 	        Swal.fire({
 	          position: 'center',
@@ -898,7 +1523,7 @@ function agregarCuidado() {
 	          showConfirmButton: false,
 	          timer: 1250
 	        })
-	        window.setTimeout(function(){location.reload()}, 2000);
+	      //  window.setTimeout(function(){location.reload()}, 2000);
 	      }
 	    })
  }
@@ -943,6 +1568,8 @@ function editarCuidado(e) {
 	        	// ,'Descripcion':Descripcion
 	        }
 	       
+	    }).done(function(data){
+	    	listarCuidados();
 	    });
 	        Swal.fire({
 	          position: 'center',
@@ -951,7 +1578,7 @@ function editarCuidado(e) {
 	          showConfirmButton: false,
 	          timer: 1250
 	        })
-	        window.setTimeout(function(){location.reload()}, 2000);
+	        
 	      }
 	    })
  }
