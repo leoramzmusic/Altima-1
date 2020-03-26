@@ -28,14 +28,28 @@ public class DisenioFamiliaComposicionTela implements Serializable {
 	private Long idFamiliaComposicionTela;
 	
 	@Column(name="id_familia_composicion")
-	@NotBlank
-	private String idFamiliaComposicion;
+	private Long idFamiliaComposicion;
 	
 	@Column(name="id_tela")
-	@NotBlank
-	private String idTela;
+	private Long idTela;
 	
+	@Column(name="estatus")
+	private Integer estatus;
 	
+	@Column(name="composicion")
+	private String composicion;
+	
+	@Column(name="creado_por")
+	private String creadoPor;
+	
+	@Column(name="actualizado_por")
+	private String actualizadoPor;
+	
+	@Column(name="fecha_creacion")
+	private String fechaCreacion;
+	
+	@Column(name="ultima_fecha_modificacion")
+	private String ultimaFechaModificacion;
 
 	public Long getIdFamiliaComposicionTela() {
 		return idFamiliaComposicionTela;
@@ -45,60 +59,77 @@ public class DisenioFamiliaComposicionTela implements Serializable {
 		this.idFamiliaComposicionTela = idFamiliaComposicionTela;
 	}
 
-	public String getIdFamiliaComposicion() {
+	public Long getIdFamiliaComposicion() {
 		return idFamiliaComposicion;
 	}
 
-	public void setIdFamiliaComposicion(String idFamiliaComposicion) {
+	public void setIdFamiliaComposicion(Long idFamiliaComposicion) {
 		this.idFamiliaComposicion = idFamiliaComposicion;
 	}
 
-	public String getIdTela() {
+	public Long getIdTela() {
 		return idTela;
 	}
 
-	public void setIdTela(String idTela) {
+	public void setIdTela(Long idTela) {
 		this.idTela = idTela;
+	}
+
+	public Integer getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(Integer estatus) {
+		this.estatus = estatus;
+	}
+
+	public String getComposicion() {
+		return composicion;
+	}
+
+	public void setComposicion(String composicion) {
+		this.composicion = composicion;
+	}
+
+	public String getCreadoPor() {
+		return creadoPor;
+	}
+
+	public void setCreadoPor(String creadoPor) {
+		this.creadoPor = creadoPor;
+	}
+
+	public String getActualizadoPor() {
+		return actualizadoPor;
+	}
+
+	public void setActualizadoPor(String actualizadoPor) {
+		this.actualizadoPor = actualizadoPor;
+	}
+
+	public String getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(String fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+
+	public String getUltimaFechaModificacion() {
+		return ultimaFechaModificacion;
+	}
+
+	public void setUltimaFechaModificacion(String ultimaFechaModificacion) {
+		this.ultimaFechaModificacion = ultimaFechaModificacion;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+	
+	
+	
+	
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((idFamiliaComposicion == null) ? 0 : idFamiliaComposicion.hashCode());
-		result = prime * result + ((idFamiliaComposicionTela == null) ? 0 : idFamiliaComposicionTela.hashCode());
-		result = prime * result + ((idTela == null) ? 0 : idTela.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		DisenioFamiliaComposicionTela other = (DisenioFamiliaComposicionTela) obj;
-		if (idFamiliaComposicion == null) {
-			if (other.idFamiliaComposicion != null)
-				return false;
-		} else if (!idFamiliaComposicion.equals(other.idFamiliaComposicion))
-			return false;
-		if (idFamiliaComposicionTela == null) {
-			if (other.idFamiliaComposicionTela != null)
-				return false;
-		} else if (!idFamiliaComposicionTela.equals(other.idFamiliaComposicionTela))
-			return false;
-		if (idTela == null) {
-			if (other.idTela != null)
-				return false;
-		} else if (!idTela.equals(other.idTela))
-			return false;
-		return true;
-	}
 }

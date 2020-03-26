@@ -54,14 +54,13 @@ public class DisenioFamiliaComposicion implements Serializable {
 	@Column(name="nombre_familia_composicion")
 	@NotBlank
 	private String nombreFamiliaComposicion;
-	
 
-	public Long getIdEntradaSalida() {
+	public Long getIdFamiliaComposicion() {
 		return idFamiliaComposicion;
 	}
 
-	public void setIdEntradaSalida(Long idEntradaSalida) {
-		this.idFamiliaComposicion = idEntradaSalida;
+	public void setIdFamiliaComposicion(Long idFamiliaComposicion) {
+		this.idFamiliaComposicion = idFamiliaComposicion;
 	}
 
 	public String getIdText() {
@@ -82,15 +81,6 @@ public class DisenioFamiliaComposicion implements Serializable {
 
 	public String getActualizadoPor() {
 		return actualizadoPor;
-	}
-	
-
-	public String getNombre_familia_composicion() {
-		return nombreFamiliaComposicion;
-	}
-
-	public void setNombre_familia_composicion(String nombreFamiliaComposicion) {
-		this.nombreFamiliaComposicion = nombreFamiliaComposicion;
 	}
 
 	public void setActualizadoPor(String actualizadoPor) {
@@ -113,77 +103,25 @@ public class DisenioFamiliaComposicion implements Serializable {
 		this.ultimaFechaModificacion = ultimaFechaModificacion;
 	}
 
-	public String getDescripcion() {
+	public String getDescripcionFamiliaComposicion() {
 		return descripcionFamiliaComposicion;
 	}
 
-	public void setDescripcion(String descripcionFamiliaComposicion) {
+	public void setDescripcionFamiliaComposicion(String descripcionFamiliaComposicion) {
 		this.descripcionFamiliaComposicion = descripcionFamiliaComposicion;
+	}
+
+	public String getNombreFamiliaComposicion() {
+		return nombreFamiliaComposicion;
+	}
+
+	public void setNombreFamiliaComposicion(String nombreFamiliaComposicion) {
+		this.nombreFamiliaComposicion = nombreFamiliaComposicion;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
-		result = prime * result + ((nombreFamiliaComposicion == null) ? 0 : nombreFamiliaComposicion.hashCode());
-		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
-		result = prime * result + ((descripcionFamiliaComposicion == null) ? 0 : descripcionFamiliaComposicion.hashCode());
-		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
-		result = prime * result + ((idFamiliaComposicion == null) ? 0 : idFamiliaComposicion.hashCode());
-		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
-		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		DisenioFamiliaComposicion other = (DisenioFamiliaComposicion) obj;
-		if (actualizadoPor == null) {
-			if (other.actualizadoPor != null)
-				return false;
-		} else if (!actualizadoPor.equals(other.actualizadoPor))
-			return false;
-		if (creadoPor == null) {
-			if (other.creadoPor != null)
-				return false;
-		} else if (!creadoPor.equals(other.creadoPor))
-			return false;
-		if (descripcionFamiliaComposicion == null) {
-			if (other.descripcionFamiliaComposicion != null)
-				return false;
-		} else if (!descripcionFamiliaComposicion.equals(other.descripcionFamiliaComposicion))
-			return false;
-		if (fechaCreacion == null) {
-			if (other.fechaCreacion != null)
-				return false;
-		} else if (!fechaCreacion.equals(other.fechaCreacion))
-			return false;
-		if (idFamiliaComposicion == null) {
-			if (other.idFamiliaComposicion != null)
-				return false;
-		} else if (!idFamiliaComposicion.equals(other.idFamiliaComposicion))
-			return false;
-		if (idText == null) {
-			if (other.idText != null)
-				return false;
-		} else if (!idText.equals(other.idText))
-			return false;
-		if (ultimaFechaModificacion == null) {
-			if (other.ultimaFechaModificacion != null)
-				return false;
-		} else if (!ultimaFechaModificacion.equals(other.ultimaFechaModificacion))
-			return false;
-		return true;
-	}
 }

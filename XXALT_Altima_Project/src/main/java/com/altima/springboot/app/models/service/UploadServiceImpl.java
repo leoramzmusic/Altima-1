@@ -17,7 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class UploadServiceImpl implements IUploadService {
 	private final static String folderPrendas = "uploads/prendas";
-
+	
+	private final static String folderTelas = "uploads/telas";
 	@Override
 	public Resource load(String filename) throws MalformedURLException {
 		Path pathFoto = getPath(filename);
@@ -30,6 +31,7 @@ public class UploadServiceImpl implements IUploadService {
 
 		return recurso;
 	}
+	
 
 	@Override
 	public String[] copy(MultipartFile file, MultipartFile file2) throws IOException {
@@ -64,5 +66,44 @@ public class UploadServiceImpl implements IUploadService {
 		return Paths.get(folderPrendas).resolve(filename).toAbsolutePath();
 
 	}
+	
+	public Path getPathTela(String filename) {
+		return Paths.get(folderTelas).resolve(filename).toAbsolutePath();
+
+	}
+	
+	@Override
+	public Resource loadTela(String filename) throws MalformedURLException {
+		Path pathFoto = getPathTela(filename);
+		Resource recurso = null;
+
+		recurso = new UrlResource(pathFoto.toUri());
+		if (!recurso.exists() && !recurso.isReadable()) {
+			throw new RuntimeException("Error: No se puede cargar la imagen " + pathFoto.toString());
+		}
+
+		return recurso;
+	}
+	
+	@Override
+	public String copyTela(MultipartFile file) throws IOException {
+		String uniqueFilename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+		Path rootPath = getPathTela(uniqueFilename);
+		Files.copy(file.getInputStream(), rootPath);
+		return uniqueFilename;
+	}
+	
+	@Override
+	public boolean deleteTela(String filename) {
+		Path rootPath = getPathTela(filename);
+		File archivo = rootPath.toFile();
+
+		if (archivo.exists() && archivo.canRead()) {
+			if (archivo.delete()) {
+			}
+		}
+		return true;
+	}
+	
 
 }

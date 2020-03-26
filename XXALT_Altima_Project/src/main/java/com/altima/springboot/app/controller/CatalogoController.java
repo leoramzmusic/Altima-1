@@ -230,4 +230,10 @@ public class CatalogoController {
 		}
 		return "redirect:catalogos";
 	}
+	
+	@PostMapping("/save")
+	public String save (String[] name,HttpServletRequest request) {
+		System.out.println("hola ");
+		return null;
+	}
 }

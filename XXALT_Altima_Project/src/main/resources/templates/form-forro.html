@@ -1,29 +1,39 @@
-<form class="row" style="display: none;" id="forroForm">
+<form class="row" style="display: none;" th:object="${forro}" id="forroForm" th:action="@{guardar-forro}" method="post">
+	<div class="form-group col-sm-6">
+        <label for="razonEmpresa">Nombre</label>
+        <input type="text" th:field="*{nombreForro}" class="form-control" id="forroDescripcion" placeholder="Forro Hueso 01">
+    </div>
+	
 	<div class="form-group col-sm-6">
         <label for="razonEmpresa">Descripci&oacute;n</label>
-        <input type="text" class="form-control" id="forroDescripcion" placeholder="Forro Hueso 01">
+        <input type="text" th:field="*{descripcionForro}"  class="form-control" id="forroDescripcion" placeholder="Forro Hueso 01">
     </div>
     <div class="form-group col-sm-6">
         <label for="razonEmpresa">Composici&oacute;n</label>
-        <input type="text" class="form-control" id="forroComposicion" placeholder="100% algod&oacute;n">
+        <input type="text" th:field="*{composicionForro}"  class="form-control" id="forroComposicion" placeholder="100% algod&oacute;n">
     </div>
     <div class="form-group col-md-6">
         <label for="status">Familia de composici&oacute;n</label>
-        <select multiple class="form-control" id="forroFamcomposicion">
-            <option>COM01 100% Vegano</option>
-            <option>COM02 1% Maldad 99% Aire caliente</option>
-            <option>COM03 100% de lagrimas</option>
-            <option>COM04 99.9% bacterias </option>
-            <option>COM05 50% helado</option>
-            <option>COM06 100% todo se derrumbo dentro de mi</option>
+        <select th:field="*{idFamilaComposicion}"  class="form-control" id="forroFamcomposicion">
+           
+           <option th:each="lisFam:${lisFam}"
+			th:value="${lisFam.idFamiliaComposicion}" th:text="${lisFam.nombreFamiliaComposicion}"></option>
+			
         </select>
     </div>
     <div class="form-group col-sm-6">
         <label for="rfcEmpresa">Ancho(m)</label>
-        <input type="number" class="form-control" id="telaAncho" placeholder="1.2">
+        <input th:field="*{anchoForro}"  type="number" class="form-control" id="telaAncho" placeholder="1.2">
     </div>
     <input type="hidden" class="form-control" id="forroEstatus" value="2">
     <div class="form-group col-sm-12">
-        <button type="button" class="btn btn-primary next-step float-right">Agregar</button>
+        <input type="submit" class="btn btn-primary next-step float-right" value="Guardar">
     </div>
+    
+   
+    
+    
+    
+    
+    
 </form>

@@ -2,15 +2,25 @@ package com.altima.springboot.app.models.service;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.altima.springboot.app.models.entity.DisenioFamiliaComposicion;
+import com.altima.springboot.app.models.entity.DisenioLookup;
+import com.altima.springboot.app.models.entity.DisenioPrenda;
 import com.altima.springboot.app.models.entity.DisenioTela;
 import com.altima.springboot.app.repository.DisenioTelaRepository;
 
 
 @Service
 public class DisenioTelaServiceImpl implements IDisenioTelaService {
+	@PersistenceContext
+	private EntityManager em;
+	
 	@Autowired
 	private DisenioTelaRepository repository;
 	@Override
@@ -19,7 +29,39 @@ public class DisenioTelaServiceImpl implements IDisenioTelaService {
 		// TODO Auto-generated method stub
 		return (List<DisenioTela>) repository.findAll();
 	}
-
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<DisenioLookup> findAllBotones() {
+		// TODO Auto-generated method stub
+		return em.createQuery("from DisenioLookup where tipo_lookup = 'Boton'").getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<DisenioLookup> findAllColores() {
+		// TODO Auto-generated method stub
+		return em.createQuery("from DisenioLookup where tipo_lookup = 'Color'").getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<DisenioPrenda> findAllPrenda() {
+		// TODO Auto-generated method stub
+		return em.createQuery("from DisenioPrenda").getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<DisenioFamiliaComposicion> findAllFamComposicion(){
+		// TODO Auto-generated method stub
+		return em.createQuery("from DisenioFamiliaComposicion").getResultList();
+	}
+	
 	@Override
 	@Transactional
 	public void save(DisenioTela diseniotela) {

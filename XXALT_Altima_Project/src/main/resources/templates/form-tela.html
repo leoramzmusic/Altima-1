@@ -1,143 +1,109 @@
-<form class="row" style="display: none;" id="telaForm">
+<form class="row" style="display: none;" id="telaForm" name="telaForm" th:method="post" th:action="@{/guardar-tela}" enctype="multipart/form-data">
     <div class="form-group col-sm-5">
         <label for="razonEmpresa">Composici&oacute;n</label>
-        <input type="text" class="form-control" id="telaComposicion" placeholder="100% algod&oacute;n">
+        <input type="text" id="telaComposicion" class="form-control"  placeholder="100% algod&oacute;n">
     </div>
     <div class="form-group col-md-6">
         <label for="status">Familia de composici&oacute;n</label>
-        <select class="form-control" id="telaFamcomposicion">
-            <option>COM01 100% Vegano</option>
-            <option>COM02 1% Maldad 99% Aire caliente</option>
-            <option>COM03 100% de lagrimas</option>
-            <option>COM04 99.9% bacterias </option>
-            <option>COM05 50% helado</option>
-            <option>COM06 100% todo se derrumbo dentro de mi</option>
+        <select id="telaFamcomposicion" class="form-control" >
+            <option th:each="lisFam:${lisFam}"
+			th:value="${lisFam.idFamiliaComposicion}" th:text="${lisFam.nombreFamiliaComposicion}"></option>
         </select>
     </div>
      <div class="form-group col-sm-1">
      <label for="status">Agregar</label>
-        <button class="btn btn-primary rounded-circle"><i class="fas fa-plus"></i></button>
+        <button id="adicionar" onclick="guardar()" class="btn btn-success" type="button">Adicionar a la tabla</button>
+        
     </div>
      <div class="form-group col-sm-12">
-        <table class="table table-striped">
-        	<tbody>
-	        	<tr>
-	        		<td class="col-md-10">Lavado en seco</td>
-	        		<td class="col-md-2"><a class="btn btn-danger rounded-circle" style="color:#fff;"><i class="fas fa-minus"></i></a></td>
-        		</tr>
-        	</tbody>
+        <table id="mytable" class="table table-striped">
+        	<tr>
+    			<th>Tela Composicion</th>
+    			<th style="display:none;">Famila Composicion</th>
+    			<th>Famila Composicion</th>
+    			<th>Eliminar</th>
+
+  			</tr>
         </table>
     </div>
     <div class="form-group col-sm-4">
         <label for="rfcEmpresa">Ancho(m)</label>
-        <input type="number" class="form-control" id="telaAncho" placeholder="1.2">
+        <input type="number" class="form-control" th:field="*{tela.ancho}" placeholder="1.2">
     </div>
     <div class="form-group col-sm-4">
         <label for="rfcEmpresa">Costo por metro</label>
-        <input type="number" class="form-control" id="telaAncho" placeholder="1.2">
+        <input type="number" class="form-control" th:field="*{tela.costoPorMetro}" placeholder="1.2">
     </div>
     <div class="form-group col-sm-4">
         <label for="status">Prenda</label>
-        <select class="form-control" id="telaColores">
-            <option>COL01 Rojo</option>
-            <option>COL02 Negro</option>
-            <option>COL03 Blanco me sacas</option>
-            <option>COL04 Azul</option>
-            <option>COL05 Amarillo</option>
-            <option>COL06 Verde Morado</option>
+        <select class="form-control" th:field="*{tela.idPrenda}">
+             <option th:each="listPrendas: ${listPrendas}"
+			th:value="${listPrendas.idPrenda}" th:text="${listPrendas.nombrePrenda}"></option>
         </select>
     </div>
     <div class="form-group col-sm-6">
         <label for="status">Color</label>
-        <select class="form-control" id="telaColores">
-            <option>COL01 Rojo</option>
-            <option>COL02 Negro</option>
-            <option>COL03 Blanco me sacas</option>
-            <option>COL04 Azul</option>
-            <option>COL05 Amarillo</option>
-            <option>COL06 Verde Morado</option>
+        <select class="form-control" th:field="*{tela.idColor}">
+            <option th:each="listColor: ${listColor}"
+			th:value="${listColor.idLookup}" th:text="${listColor.nombre}"></option>
         </select>
     </div>
     <div class="form-group col-sm-6">
         <label for="status">Proveedor</label>
-        <select class="form-control" id="telaMarcas">
-            <option>MAR01 Nike</option>
-            <option>MAR02 Adidas</option>
-            <option>MAR03 Joma</option>
-            <option>MAR04 I don't know</option>
-            <option>MAR05 Palomitas acmen</option>
-            <option>MAR06 Nike 2 xd</option>
+        <select class="form-control"  th:field="*{tela.idProveedor}">
+            <option value ="1">MAR01 Nike</option>
+            <option value ="2">MAR02 Adidas</option>
+            <option value ="3">MAR03 Joma</option>
+            <option value ="4">MAR04 I don't know</option>
+            <option value ="5">MAR05 Palomitas acmen</option>
+            <option value ="6">MAR06 Nike 2 xd</option>
         </select>
     </div>
     <div class="form-group col-sm-4">
         <label for="status">Forro principal</label>
-        <select class="form-control" id="telaColores">
-            <option>COL01 Rojo</option>
-            <option>COL02 Negro</option>
-            <option>COL03 Blanco me sacas</option>
-            <option>COL04 Azul</option>
-            <option>COL05 Amarillo</option>
-            <option>COL06 Verde Morado</option>
+        <select name="f1" class="form-control" >
+            <option th:each="listForro: ${listForro}"
+			th:value="${listForro.idForro}" th:text="${listForro.nombreForro}"></option>
         </select>
     </div>
     <div class="form-group col-sm-4">
         <label for="status">Forro secundario</label>
-        <select class="form-control" id="telaMarcas">
-            <option>MAR01 Nike</option>
-            <option>MAR02 Adidas</option>
-            <option>MAR03 Joma</option>
-            <option>MAR04 I don't know</option>
-            <option>MAR05 Palomitas acmen</option>
-            <option>MAR06 Nike 2 xd</option>
+        <select name="f2"  class="form-control">
+            <option th:each="listForro: ${listForro}"
+			th:value="${listForro.idForro}" th:text="${listForro.nombreForro}"></option>
         </select>
     </div>
     <div class="form-group col-sm-4">
-        <label for="status">Forro secundario</label>
-        <select class="form-control" id="telaColores">
-            <option>COL01 Rojo</option>
-            <option>COL02 Negro</option>
-            <option>COL03 Blanco me sacas</option>
-            <option>COL04 Azul</option>
-            <option>COL05 Amarillo</option>
-            <option>COL06 Verde Morado</option>
+        <label for="status">Forro terciario</label>
+        <select name="f3"  class="form-control" >
+             <option th:each="listForro: ${listForro}"
+			th:value="${listForro.idForro}" th:text="${listForro.nombreForro}"></option>
         </select>
     </div>
     <div class="form-group col-sm-4">
         <label for="status">Boton principal</label>
-        <select class="form-control" id="telaColores">
-            <option>COL01 Rojo</option>
-            <option>COL02 Negro</option>
-            <option>COL03 Blanco me sacas</option>
-            <option>COL04 Azul</option>
-            <option>COL05 Amarillo</option>
-            <option>COL06 Verde Morado</option>
+        <select name="b1"  class="form-control" >
+            <option th:each="listBoton: ${listBoton}"
+			th:value="${listBoton.idLookup}" th:text="${listBoton.nombre}"></option>
         </select>
     </div>
     <div class="form-group col-sm-4">
         <label for="status">Boton secundario</label>
-        <select class="form-control" id="telaMarcas">
-            <option>MAR01 Nike</option>
-            <option>MAR02 Adidas</option>
-            <option>MAR03 Joma</option>
-            <option>MAR04 I don't know</option>
-            <option>MAR05 Palomitas acmen</option>
-            <option>MAR06 Nike 2 xd</option>
+        <select name="b2" class="form-control" >
+           <option th:each="listBoton: ${listBoton}"
+			th:value="${listBoton.idLookup}" th:text="${listBoton.nombre}"></option>
         </select>
     </div>
     <div class="form-group col-sm-4">
-        <label for="status">Boton secundario</label>
-        <select class="form-control" id="telaColores">
-            <option>COL01 Rojo</option>
-            <option>COL02 Negro</option>
-            <option>COL03 Blanco me sacas</option>
-            <option>COL04 Azul</option>
-            <option>COL05 Amarillo</option>
-            <option>COL06 Verde Morado</option>
+        <label for="status">Boton terciario</label>
+        <select name="b3" class="form-control" >
+            <option th:each="listBoton: ${listBoton}"
+			th:value="${listBoton.idLookup}" th:text="${listBoton.nombre}"></option>
         </select>
     </div>
     <div class="form-group col-sm-12">
         <label for="coloniaEmpresa">Indicaciones</label>
-        <textarea class="form-control" id="telaIndicaciones" placeholder="Especificar" rows="3"></textarea>
+        <textarea class="form-control" th:field="*{tela.indicacion}" placeholder="Especificar" rows="3"></textarea>
     </div>
     <div class="col-sm-12">
         <div class="form-group p-3 border p-2 rounded m-3">
@@ -149,7 +115,7 @@
                 <div class="col">
                     <label for="mainImageTela">Tela</label>
                     <div class="input-group mb-3">
-                        <input type="file" class="form-control border p-1" id="mainImageTela" name="mainImage" />
+                        <input type="file" name="imagenTela" class="form-control border p-1" id="mainImageTela"  />
                         <div class="input-group-append">
                             <span class="input-group-text bg-danger text-danger pointer" id="clearUploadTela"><i class="fas fa-times"></i></span>
                         </div>
@@ -159,8 +125,74 @@
             </div>
         </div>
     </div>
-    <input type="hidden" class="form-control" id="telaEstatus" value="2">
+    <input type="hidden" class="form-control"  id="telaEstatus" value="2">
     <div class="form-group col-sm-12">
-        <button type="button" class="btn btn-primary next-step float-right">Agregar</button>
+       <button onclick="arreglo()" class="btn btn-success" type="button">Adicionar a la tabla</button>
+        
+         
     </div>
+    <input  type="hidden" th:field="*{tela.creadoPor}">
+    <input  type="hidden" th:field="*{tela.actualizadoPor}">
+    <input  type="hidden" th:field="*{tela.fechaCreacion}">
+    <input  type="hidden" th:field="*{tela.ultimaFechaModificacion}">
+    
+    <input name="txtTabla" type="hidden" id="txtTabla" value="">
+    <input name="txtTabla2" type="hidden" id="txtTabla2" value="">
+    
 </form>
+<html xmlns:th="http://www.thymeleaf.org">
+<script>
+function guardar(){
+	   
+    var telaComposicion = document.getElementById("telaComposicion").value;
+    var telaFamcomposicion = document.getElementById("telaFamcomposicion").value;    
+    var nombre = $( "#telaFamcomposicion option:selected" ).text()   
+    var i = 1; //contador para asignar id al boton que borrara la fila
+   
+    var fila = '<tr id="row' + i + '"><td>' + telaComposicion + '</td> <td style="display:none;">' + telaFamcomposicion + '</td> <td >' + nombre + '</td>  <td><button type="button" name="remove" id="' + i + '" onclick="eliminar(this)" class="btn btn-danger btn_remove">Quitar</button></td>   </tr>'; //esto seria lo que contendria la fila
+    i++;
+    $('#mytable tr:first').after(fila);
+    $("#adicionados").text(""); //esta instruccion limpia el div adicioandos para que no se vayan acumulando
+    var nFilas = $("#mytable tr").length;
+    $("#adicionados").append(nFilas - 1);
+    //le resto 1 para no contar la fila del header
+    document.getElementById("telaComposicion").value ="";
+    document.getElementById("telaFamcomposicion").value = "";
+   
+    
+    
+    
+    
+}
+function eliminar(t) {
+	
+	  var td = t.parentNode;
+    var tr = td.parentNode;
+    var table = tr.parentNode;
+    table.removeChild(tr);
+	 
+	}
+	
+function arreglo() {
+	valores=new Array();
+	var compo="";
+	var idfam="" ;
+	$('#mytable tr').each(function () {
+		compo=$(this).find('td').eq(0).html()+","+compo;
+		
+		idfam= $(this).find('td').eq(1).html()+","+idfam;
+	      
+	  
+	  document.getElementById("txtTabla").value = cuotaNo;
+	  document.getElementById("txtTabla2").value = interes;
+	  
+	  
+	  
+	 });
+	document.telaForm.submit()
+	}
+
+	
+</script>
+
+
