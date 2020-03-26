@@ -62,6 +62,10 @@ public class DisenioProceso implements Serializable{
 	@Column(name="origen_proceso")
 	@NotBlank
 	private String origenProceso;
+	
+	@Column(name="estatus")
+	@NotBlank
+	private String estatus;
 
 	public Long getIdProceso() {
 		return idProceso;
@@ -119,12 +123,12 @@ public class DisenioProceso implements Serializable{
 		this.ultimaFechaModificacion = ultimaFechaModificacion;
 	}
 
-	public String getClave_Proceso() {
+	public String getClaveProceso() {
 		return claveProceso;
 	}
 
-	public void setClave_Proceso(String clave_Proceso) {
-		this.claveProceso = clave_Proceso;
+	public void setClaveProceso(String claveProceso) {
+		this.claveProceso = claveProceso;
 	}
 
 	public String getDescripcionProceso() {
@@ -143,6 +147,14 @@ public class DisenioProceso implements Serializable{
 		this.origenProceso = origenProceso;
 	}
 
+	public String getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -155,6 +167,7 @@ public class DisenioProceso implements Serializable{
 		result = prime * result + ((claveProceso == null) ? 0 : claveProceso.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((descripcionProceso == null) ? 0 : descripcionProceso.hashCode());
+		result = prime * result + ((estatus == null) ? 0 : estatus.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
 		result = prime * result + ((idPrenda == null) ? 0 : idPrenda.hashCode());
 		result = prime * result + ((idProceso == null) ? 0 : idProceso.hashCode());
@@ -193,6 +206,11 @@ public class DisenioProceso implements Serializable{
 				return false;
 		} else if (!descripcionProceso.equals(other.descripcionProceso))
 			return false;
+		if (estatus == null) {
+			if (other.estatus != null)
+				return false;
+		} else if (!estatus.equals(other.estatus))
+			return false;
 		if (fechaCreacion == null) {
 			if (other.fechaCreacion != null)
 				return false;
@@ -226,4 +244,7 @@ public class DisenioProceso implements Serializable{
 		return true;
 	}
 
+	
+
 }
+

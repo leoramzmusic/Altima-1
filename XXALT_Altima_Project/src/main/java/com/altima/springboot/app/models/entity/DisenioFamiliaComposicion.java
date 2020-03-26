@@ -54,6 +54,10 @@ public class DisenioFamiliaComposicion implements Serializable {
 	@Column(name="nombre_familia_composicion")
 	@NotBlank
 	private String nombreFamiliaComposicion;
+	
+	@Column(name="estatus")
+	@NotBlank
+	private String estatus;
 
 	public Long getIdFamiliaComposicion() {
 		return idFamiliaComposicion;
@@ -119,9 +123,89 @@ public class DisenioFamiliaComposicion implements Serializable {
 		this.nombreFamiliaComposicion = nombreFamiliaComposicion;
 	}
 
+	public String getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
+		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
+		result = prime * result
+				+ ((descripcionFamiliaComposicion == null) ? 0 : descripcionFamiliaComposicion.hashCode());
+		result = prime * result + ((estatus == null) ? 0 : estatus.hashCode());
+		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
+		result = prime * result + ((idFamiliaComposicion == null) ? 0 : idFamiliaComposicion.hashCode());
+		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
+		result = prime * result + ((nombreFamiliaComposicion == null) ? 0 : nombreFamiliaComposicion.hashCode());
+		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DisenioFamiliaComposicion other = (DisenioFamiliaComposicion) obj;
+		if (actualizadoPor == null) {
+			if (other.actualizadoPor != null)
+				return false;
+		} else if (!actualizadoPor.equals(other.actualizadoPor))
+			return false;
+		if (creadoPor == null) {
+			if (other.creadoPor != null)
+				return false;
+		} else if (!creadoPor.equals(other.creadoPor))
+			return false;
+		if (descripcionFamiliaComposicion == null) {
+			if (other.descripcionFamiliaComposicion != null)
+				return false;
+		} else if (!descripcionFamiliaComposicion.equals(other.descripcionFamiliaComposicion))
+			return false;
+		if (estatus == null) {
+			if (other.estatus != null)
+				return false;
+		} else if (!estatus.equals(other.estatus))
+			return false;
+		if (fechaCreacion == null) {
+			if (other.fechaCreacion != null)
+				return false;
+		} else if (!fechaCreacion.equals(other.fechaCreacion))
+			return false;
+		if (idFamiliaComposicion == null) {
+			if (other.idFamiliaComposicion != null)
+				return false;
+		} else if (!idFamiliaComposicion.equals(other.idFamiliaComposicion))
+			return false;
+		if (idText == null) {
+			if (other.idText != null)
+				return false;
+		} else if (!idText.equals(other.idText))
+			return false;
+		if (nombreFamiliaComposicion == null) {
+			if (other.nombreFamiliaComposicion != null)
+				return false;
+		} else if (!nombreFamiliaComposicion.equals(other.nombreFamiliaComposicion))
+			return false;
+		if (ultimaFechaModificacion == null) {
+			if (other.ultimaFechaModificacion != null)
+				return false;
+		} else if (!ultimaFechaModificacion.equals(other.ultimaFechaModificacion))
+			return false;
+		return true;
+	}
 }

@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -31,10 +31,10 @@ public class DisenioLookup implements Serializable{
 	private String idText;
 	
 	@Column(name="nombre_lookup")
-	private String nombre;
+	private String nombreLookup;
 	
 	@Column(name="descripcion_lookup")
-	private String descripcion;
+	private String descripcionLookup;
 	
 	@Column(name="tipo_lookup")
 	private String tipoLookup;
@@ -53,6 +53,15 @@ public class DisenioLookup implements Serializable{
 	
 	@Column(name="estatus")
 	private Integer Estatus;
+	
+	@Column(name="atributo_1")
+	private String atributo1;
+	
+	@Column(name="atributo_2")
+	private String atributo2;
+
+	@Column(name="atributo_3")
+	private String atributo3;
 
 	public Long getIdLookup() {
 		return idLookup;
@@ -70,20 +79,20 @@ public class DisenioLookup implements Serializable{
 		this.idText = idText;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getNombreLookup() {
+		return nombreLookup;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombreLookup(String nombreLookup) {
+		this.nombreLookup = nombreLookup;
 	}
 
-	public String getDescripcion() {
-		return descripcion;
+	public String getDescripcionLookup() {
+		return descripcionLookup;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setDescripcionLookup(String descripcionLookup) {
+		this.descripcionLookup = descripcionLookup;
 	}
 
 	public String getTipoLookup() {
@@ -125,13 +134,37 @@ public class DisenioLookup implements Serializable{
 	public void setUltimaFechaModificacion(String ultimaFechaModificacion) {
 		this.ultimaFechaModificacion = ultimaFechaModificacion;
 	}
-	
-	public int getEstatus() {
+
+	public Integer getEstatus() {
 		return Estatus;
 	}
 
-	public void SetEstatus(int Estatus) {
-		this.Estatus = Estatus;
+	public void setEstatus(Integer estatus) {
+		Estatus = estatus;
+	}
+
+	public String getAtributo1() {
+		return atributo1;
+	}
+
+	public void setAtributo1(String atributo1) {
+		this.atributo1 = atributo1;
+	}
+
+	public String getAtributo2() {
+		return atributo2;
+	}
+
+	public void setAtributo2(String atributo2) {
+		this.atributo2 = atributo2;
+	}
+
+	public String getAtributo3() {
+		return atributo3;
+	}
+
+	public void setAtributo3(String atributo3) {
+		this.atributo3 = atributo3;
 	}
 
 	public static long getSerialversionuid() {
@@ -142,14 +175,17 @@ public class DisenioLookup implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((Estatus == null) ? 0 : Estatus.hashCode());
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
+		result = prime * result + ((atributo1 == null) ? 0 : atributo1.hashCode());
+		result = prime * result + ((atributo2 == null) ? 0 : atributo2.hashCode());
+		result = prime * result + ((atributo3 == null) ? 0 : atributo3.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
-		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
+		result = prime * result + ((descripcionLookup == null) ? 0 : descripcionLookup.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
 		result = prime * result + ((idLookup == null) ? 0 : idLookup.hashCode());
-		result = prime * result + ((Estatus == null) ? 0 : Estatus.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
-		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		result = prime * result + ((nombreLookup == null) ? 0 : nombreLookup.hashCode());
 		result = prime * result + ((tipoLookup == null) ? 0 : tipoLookup.hashCode());
 		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
 		return result;
@@ -164,20 +200,40 @@ public class DisenioLookup implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		DisenioLookup other = (DisenioLookup) obj;
+		if (Estatus == null) {
+			if (other.Estatus != null)
+				return false;
+		} else if (!Estatus.equals(other.Estatus))
+			return false;
 		if (actualizadoPor == null) {
 			if (other.actualizadoPor != null)
 				return false;
 		} else if (!actualizadoPor.equals(other.actualizadoPor))
+			return false;
+		if (atributo1 == null) {
+			if (other.atributo1 != null)
+				return false;
+		} else if (!atributo1.equals(other.atributo1))
+			return false;
+		if (atributo2 == null) {
+			if (other.atributo2 != null)
+				return false;
+		} else if (!atributo2.equals(other.atributo2))
+			return false;
+		if (atributo3 == null) {
+			if (other.atributo3 != null)
+				return false;
+		} else if (!atributo3.equals(other.atributo3))
 			return false;
 		if (creadoPor == null) {
 			if (other.creadoPor != null)
 				return false;
 		} else if (!creadoPor.equals(other.creadoPor))
 			return false;
-		if (descripcion == null) {
-			if (other.descripcion != null)
+		if (descripcionLookup == null) {
+			if (other.descripcionLookup != null)
 				return false;
-		} else if (!descripcion.equals(other.descripcion))
+		} else if (!descripcionLookup.equals(other.descripcionLookup))
 			return false;
 		if (fechaCreacion == null) {
 			if (other.fechaCreacion != null)
@@ -194,10 +250,10 @@ public class DisenioLookup implements Serializable{
 				return false;
 		} else if (!idText.equals(other.idText))
 			return false;
-		if (nombre == null) {
-			if (other.nombre != null)
+		if (nombreLookup == null) {
+			if (other.nombreLookup != null)
 				return false;
-		} else if (!nombre.equals(other.nombre))
+		} else if (!nombreLookup.equals(other.nombreLookup))
 			return false;
 		if (tipoLookup == null) {
 			if (other.tipoLookup != null)
@@ -209,11 +265,6 @@ public class DisenioLookup implements Serializable{
 				return false;
 		} else if (!ultimaFechaModificacion.equals(other.ultimaFechaModificacion))
 			return false;
-		if (Estatus == null) {
-			if (other.Estatus != null)
-				return false;
-		} else if (!Estatus.equals(other.Estatus))
-			return false;
 		return true;
-	}
+	}	
 }

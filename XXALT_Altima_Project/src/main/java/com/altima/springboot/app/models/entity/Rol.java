@@ -57,6 +57,10 @@ public class Rol implements Serializable {
 	
 	@Column(name="ultima_fecha_modificacion")
 	private String ultimaFechaModificacion;
+	
+	@Column(name="estatus")
+	@NotBlank
+	private String estatus;
 
 	@ManyToMany(fetch = FetchType.LAZY,
             mappedBy = "roles")
@@ -132,6 +136,14 @@ public class Rol implements Serializable {
 
 	public void setUsuario(Set<Usuario> usuario) {
 		this.usuario = usuario;
+	}
+
+	public String getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
 	}
 
 

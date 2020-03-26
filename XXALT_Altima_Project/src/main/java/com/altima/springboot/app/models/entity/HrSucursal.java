@@ -54,6 +54,10 @@ public class HrSucursal implements Serializable{
 	@Column(name="ultima_fecha_modificacion")
 	@NotBlank
 	private String ultimaFechaModificacion;
+	
+	@Column(name="estatus")
+	@NotBlank
+	private String estatus;
 
 	public Long getIdSucursal() {
 		return idSucursal;
@@ -119,6 +123,14 @@ public class HrSucursal implements Serializable{
 		this.ultimaFechaModificacion = ultimaFechaModificacion;
 	}
 
+	public String getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -129,6 +141,7 @@ public class HrSucursal implements Serializable{
 		int result = 1;
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
+		result = prime * result + ((estatus == null) ? 0 : estatus.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
 		result = prime * result + ((idDireccion == null) ? 0 : idDireccion.hashCode());
 		result = prime * result + ((idSucursal == null) ? 0 : idSucursal.hashCode());
@@ -156,6 +169,11 @@ public class HrSucursal implements Serializable{
 			if (other.creadoPor != null)
 				return false;
 		} else if (!creadoPor.equals(other.creadoPor))
+			return false;
+		if (estatus == null) {
+			if (other.estatus != null)
+				return false;
+		} else if (!estatus.equals(other.estatus))
 			return false;
 		if (fechaCreacion == null) {
 			if (other.fechaCreacion != null)
@@ -189,4 +207,6 @@ public class HrSucursal implements Serializable{
 			return false;
 		return true;
 	}
+
+	
 }

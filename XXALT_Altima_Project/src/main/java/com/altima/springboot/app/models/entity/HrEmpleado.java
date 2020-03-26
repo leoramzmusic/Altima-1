@@ -79,8 +79,11 @@ public class HrEmpleado implements Serializable {
 	@Column(name="ultima_fecha_modificacion")
 	@NotBlank
 	private String ultimaFechaModificacion;
-
 	
+	@Column(name="estatus")
+	@NotBlank
+	private String estatus;
+
 	public Long getIdEmpleado() {
 		return idEmpleado;
 	}
@@ -193,6 +196,14 @@ public class HrEmpleado implements Serializable {
 		this.ultimaFechaModificacion = ultimaFechaModificacion;
 	}
 
+	public String getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -201,8 +212,11 @@ public class HrEmpleado implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((NSS == null) ? 0 : NSS.hashCode());
+		result = prime * result + ((RFC == null) ? 0 : RFC.hashCode());
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
+		result = prime * result + ((estatus == null) ? 0 : estatus.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
 		result = prime * result + ((fechaIngreso == null) ? 0 : fechaIngreso.hashCode());
 		result = prime * result + ((fotografia == null) ? 0 : fotografia.hashCode());
@@ -211,8 +225,6 @@ public class HrEmpleado implements Serializable {
 		result = prime * result + ((idPersona == null) ? 0 : idPersona.hashCode());
 		result = prime * result + ((idPuesto == null) ? 0 : idPuesto.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
-		result = prime * result + ((NSS == null) ? 0 : NSS.hashCode());
-		result = prime * result + ((RFC == null) ? 0 : RFC.hashCode());
 		result = prime * result + ((sueldo == null) ? 0 : sueldo.hashCode());
 		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
 		return result;
@@ -227,6 +239,16 @@ public class HrEmpleado implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		HrEmpleado other = (HrEmpleado) obj;
+		if (NSS == null) {
+			if (other.NSS != null)
+				return false;
+		} else if (!NSS.equals(other.NSS))
+			return false;
+		if (RFC == null) {
+			if (other.RFC != null)
+				return false;
+		} else if (!RFC.equals(other.RFC))
+			return false;
 		if (actualizadoPor == null) {
 			if (other.actualizadoPor != null)
 				return false;
@@ -236,6 +258,11 @@ public class HrEmpleado implements Serializable {
 			if (other.creadoPor != null)
 				return false;
 		} else if (!creadoPor.equals(other.creadoPor))
+			return false;
+		if (estatus == null) {
+			if (other.estatus != null)
+				return false;
+		} else if (!estatus.equals(other.estatus))
 			return false;
 		if (fechaCreacion == null) {
 			if (other.fechaCreacion != null)
@@ -277,16 +304,6 @@ public class HrEmpleado implements Serializable {
 				return false;
 		} else if (!idText.equals(other.idText))
 			return false;
-		if (NSS == null) {
-			if (other.NSS != null)
-				return false;
-		} else if (!NSS.equals(other.NSS))
-			return false;
-		if (RFC == null) {
-			if (other.RFC != null)
-				return false;
-		} else if (!RFC.equals(other.RFC))
-			return false;
 		if (sueldo == null) {
 			if (other.sueldo != null)
 				return false;
@@ -299,6 +316,9 @@ public class HrEmpleado implements Serializable {
 			return false;
 		return true;
 	}
+
+	
+	
 	
 	
 

@@ -50,6 +50,10 @@ public class DisenioPruebaCostura implements Serializable{
 	@Column(name="ultima_fecha_modificacion")
 	@NotBlank
 	private String ultimaFechaModificacion;
+	
+	@Column(name="estatus")
+	@NotBlank
+	private String estatus;
 
 	public Long getIdPruebaCostura() {
 		return idPruebaCostura;
@@ -107,6 +111,14 @@ public class DisenioPruebaCostura implements Serializable{
 		this.ultimaFechaModificacion = ultimaFechaModificacion;
 	}
 
+	public String getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -117,6 +129,7 @@ public class DisenioPruebaCostura implements Serializable{
 		int result = 1;
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
+		result = prime * result + ((estatus == null) ? 0 : estatus.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
 		result = prime * result + ((idCalidad == null) ? 0 : idCalidad.hashCode());
 		result = prime * result + ((idPruebaCostura == null) ? 0 : idPruebaCostura.hashCode());
@@ -143,6 +156,11 @@ public class DisenioPruebaCostura implements Serializable{
 			if (other.creadoPor != null)
 				return false;
 		} else if (!creadoPor.equals(other.creadoPor))
+			return false;
+		if (estatus == null) {
+			if (other.estatus != null)
+				return false;
+		} else if (!estatus.equals(other.estatus))
 			return false;
 		if (fechaCreacion == null) {
 			if (other.fechaCreacion != null)
@@ -171,4 +189,7 @@ public class DisenioPruebaCostura implements Serializable{
 			return false;
 		return true;
 	}
+	
+	
+
 }

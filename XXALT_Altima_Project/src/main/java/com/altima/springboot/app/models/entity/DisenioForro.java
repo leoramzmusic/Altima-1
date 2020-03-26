@@ -28,60 +28,64 @@ public class DisenioForro implements Serializable{
 	private Long idForro;
 	
 	@Column(name="id_text")
-	
+	@NotBlank
 	private String idText;
 	
 	@Column(name="creado_por")
-	
+	@NotBlank
 	private String creadoPor;
 	
 	@Column(name="actualizado_por")
-	
+	@NotBlank
 	private String actualizadoPor;
 	
 	@Column(name="fecha_creacion")
-	
+	@NotBlank
 	private String fechaCreacion;
 	
 	@Column(name="ultima_fecha_modificacion")
-
+	@NotBlank
 	private String ultimaFechaModificacion;
 	
 	@Column(name="clave_forro")
-	
+	@NotBlank
 	private String claveForro;
 	
 	@Column(name="descripcion_forro")
-
+	@NotBlank
 	private String descripcionForro;
 	
 	@Column(name="nombre_forro")
-	
+	@NotBlank
 	private String nombreForro;
 	
 	@Column(name="composicion_forro")
-	
+	@NotBlank
 	private String composicionForro;
 	
 	@Column(name="ancho_forro")
-	
+	@NotBlank
 	private String anchoForro;
 	
 	@Column(name="id_unidad_medida")
-
+	@NotBlank
 	private Long idUnidadMedida;
 	
 	@Column(name="consumo_promedio_forro")
-	
+	@NotBlank
 	private String consumoPromedioForro;
 	
 	@Column(name="existencia_forro")
-	
+	@NotBlank
 	private String existenciaForro;
 	
 	@Column(name="id_familia_composicion")
+	@NotBlank
+	private Long idFamiliaComposicion;
 	
-	private String idFamilaComposicion;
+	@Column(name="estatus")
+	@NotBlank
+	private String estatus;
 
 	public Long getIdForro() {
 		return idForro;
@@ -195,16 +199,24 @@ public class DisenioForro implements Serializable{
 		this.existenciaForro = existenciaForro;
 	}
 
+	public Long getIdFamiliaComposicion() {
+		return idFamiliaComposicion;
+	}
+
+	public void setIdFamiliaComposicion(Long idFamiliaComposicion) {
+		this.idFamiliaComposicion = idFamiliaComposicion;
+	}
+
+	public String getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
-	}
-
-	public String getIdFamilaComposicion() {
-		return idFamilaComposicion;
-	}
-
-	public void setIdFamilaComposicion(String idFamilaComposicion) {
-		this.idFamilaComposicion = idFamilaComposicion;
 	}
 
 	@Override
@@ -218,8 +230,10 @@ public class DisenioForro implements Serializable{
 		result = prime * result + ((consumoPromedioForro == null) ? 0 : consumoPromedioForro.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((descripcionForro == null) ? 0 : descripcionForro.hashCode());
+		result = prime * result + ((estatus == null) ? 0 : estatus.hashCode());
 		result = prime * result + ((existenciaForro == null) ? 0 : existenciaForro.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
+		result = prime * result + ((idFamiliaComposicion == null) ? 0 : idFamiliaComposicion.hashCode());
 		result = prime * result + ((idForro == null) ? 0 : idForro.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
 		result = prime * result + ((idUnidadMedida == null) ? 0 : idUnidadMedida.hashCode());
@@ -272,6 +286,11 @@ public class DisenioForro implements Serializable{
 				return false;
 		} else if (!descripcionForro.equals(other.descripcionForro))
 			return false;
+		if (estatus == null) {
+			if (other.estatus != null)
+				return false;
+		} else if (!estatus.equals(other.estatus))
+			return false;
 		if (existenciaForro == null) {
 			if (other.existenciaForro != null)
 				return false;
@@ -281,6 +300,11 @@ public class DisenioForro implements Serializable{
 			if (other.fechaCreacion != null)
 				return false;
 		} else if (!fechaCreacion.equals(other.fechaCreacion))
+			return false;
+		if (idFamiliaComposicion == null) {
+			if (other.idFamiliaComposicion != null)
+				return false;
+		} else if (!idFamiliaComposicion.equals(other.idFamiliaComposicion))
 			return false;
 		if (idForro == null) {
 			if (other.idForro != null)
@@ -308,10 +332,5 @@ public class DisenioForro implements Serializable{
 		} else if (!ultimaFechaModificacion.equals(other.ultimaFechaModificacion))
 			return false;
 		return true;
-	}
-	
-	
-	
-	
-	
+	}	
 }

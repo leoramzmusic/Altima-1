@@ -81,6 +81,9 @@ public class ComercialCliente implements Serializable {
 	
 	@Column(name="id_direccion")
 	private Long IdDireccion;
+	
+	@Column(name="estatus")
+	private String estatus;
 
 	public Long getIdCliente() {
 		return idCliente;
@@ -89,7 +92,7 @@ public class ComercialCliente implements Serializable {
 	public void setIdCliente(Long idCliente) {
 		this.idCliente = idCliente;
 	}
-	
+
 	public String getCidText() {
 		return CidText;
 	}
@@ -128,6 +131,22 @@ public class ComercialCliente implements Serializable {
 
 	public void setCultimaFechaModificacion(Date cultimaFechaModificacion) {
 		CultimaFechaModificacion = cultimaFechaModificacion;
+	}
+
+	public String getApellidoPaterno() {
+		return ApellidoPaterno;
+	}
+
+	public void setApellidoPaterno(String apellidoPaterno) {
+		ApellidoPaterno = apellidoPaterno;
+	}
+
+	public String getApellidoMaterno() {
+		return ApellidoMaterno;
+	}
+
+	public void setApellidoMaterno(String apellidoMaterno) {
+		ApellidoMaterno = apellidoMaterno;
 	}
 
 	public String getNombre() {
@@ -184,37 +203,6 @@ public class ComercialCliente implements Serializable {
 
 	public void setObservacion(String observacion) {
 		Observacion = observacion;
-	}   
-
-	public Long getIdDireccion() {
-		return IdDireccion;
-	}
-
-	public void setIdDireccion(Long idDireccion) {
-		IdDireccion = idDireccion;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
-	
-	public String getApellidoPaterno() {
-		return ApellidoPaterno;
-	}
-
-	public void setApellidoPaterno(String apellidoPaterno) {
-		ApellidoPaterno = apellidoPaterno;
-	}
-
-	
-
-	public String getApellidoMaterno() {
-		return ApellidoMaterno;
-	}
-
-	public void setApellidoMaterno(String apellidoMaterno) {
-		ApellidoMaterno = apellidoMaterno;
 	}
 
 	public String getTipoCliente() {
@@ -225,10 +213,151 @@ public class ComercialCliente implements Serializable {
 		TipoCliente = tipoCliente;
 	}
 
-	@PrePersist
-	public void prePersist() {
-		CfechaCreacion=new Date();  
+	public Long getIdDireccion() {
+		return IdDireccion;
 	}
 
+	public void setIdDireccion(Long idDireccion) {
+		IdDireccion = idDireccion;
+	}
+
+	public String getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((ApellidoMaterno == null) ? 0 : ApellidoMaterno.hashCode());
+		result = prime * result + ((ApellidoPaterno == null) ? 0 : ApellidoPaterno.hashCode());
+		result = prime * result + ((CactualizadoPor == null) ? 0 : CactualizadoPor.hashCode());
+		result = prime * result + ((CcreadoPor == null) ? 0 : CcreadoPor.hashCode());
+		result = prime * result + ((CfechaCreacion == null) ? 0 : CfechaCreacion.hashCode());
+		result = prime * result + ((CidText == null) ? 0 : CidText.hashCode());
+		result = prime * result + ((Correo == null) ? 0 : Correo.hashCode());
+		result = prime * result + ((CultimaFechaModificacion == null) ? 0 : CultimaFechaModificacion.hashCode());
+		result = prime * result + ((IdDireccion == null) ? 0 : IdDireccion.hashCode());
+		result = prime * result + ((Nombre == null) ? 0 : Nombre.hashCode());
+		result = prime * result + ((Observacion == null) ? 0 : Observacion.hashCode());
+		result = prime * result + ((PaginaWeb == null) ? 0 : PaginaWeb.hashCode());
+		result = prime * result + ((RazonSocial == null) ? 0 : RazonSocial.hashCode());
+		result = prime * result + ((Rfc == null) ? 0 : Rfc.hashCode());
+		result = prime * result + ((Telefono == null) ? 0 : Telefono.hashCode());
+		result = prime * result + ((TipoCliente == null) ? 0 : TipoCliente.hashCode());
+		result = prime * result + ((estatus == null) ? 0 : estatus.hashCode());
+		result = prime * result + ((idCliente == null) ? 0 : idCliente.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ComercialCliente other = (ComercialCliente) obj;
+		if (ApellidoMaterno == null) {
+			if (other.ApellidoMaterno != null)
+				return false;
+		} else if (!ApellidoMaterno.equals(other.ApellidoMaterno))
+			return false;
+		if (ApellidoPaterno == null) {
+			if (other.ApellidoPaterno != null)
+				return false;
+		} else if (!ApellidoPaterno.equals(other.ApellidoPaterno))
+			return false;
+		if (CactualizadoPor == null) {
+			if (other.CactualizadoPor != null)
+				return false;
+		} else if (!CactualizadoPor.equals(other.CactualizadoPor))
+			return false;
+		if (CcreadoPor == null) {
+			if (other.CcreadoPor != null)
+				return false;
+		} else if (!CcreadoPor.equals(other.CcreadoPor))
+			return false;
+		if (CfechaCreacion == null) {
+			if (other.CfechaCreacion != null)
+				return false;
+		} else if (!CfechaCreacion.equals(other.CfechaCreacion))
+			return false;
+		if (CidText == null) {
+			if (other.CidText != null)
+				return false;
+		} else if (!CidText.equals(other.CidText))
+			return false;
+		if (Correo == null) {
+			if (other.Correo != null)
+				return false;
+		} else if (!Correo.equals(other.Correo))
+			return false;
+		if (CultimaFechaModificacion == null) {
+			if (other.CultimaFechaModificacion != null)
+				return false;
+		} else if (!CultimaFechaModificacion.equals(other.CultimaFechaModificacion))
+			return false;
+		if (IdDireccion == null) {
+			if (other.IdDireccion != null)
+				return false;
+		} else if (!IdDireccion.equals(other.IdDireccion))
+			return false;
+		if (Nombre == null) {
+			if (other.Nombre != null)
+				return false;
+		} else if (!Nombre.equals(other.Nombre))
+			return false;
+		if (Observacion == null) {
+			if (other.Observacion != null)
+				return false;
+		} else if (!Observacion.equals(other.Observacion))
+			return false;
+		if (PaginaWeb == null) {
+			if (other.PaginaWeb != null)
+				return false;
+		} else if (!PaginaWeb.equals(other.PaginaWeb))
+			return false;
+		if (RazonSocial == null) {
+			if (other.RazonSocial != null)
+				return false;
+		} else if (!RazonSocial.equals(other.RazonSocial))
+			return false;
+		if (Rfc == null) {
+			if (other.Rfc != null)
+				return false;
+		} else if (!Rfc.equals(other.Rfc))
+			return false;
+		if (Telefono == null) {
+			if (other.Telefono != null)
+				return false;
+		} else if (!Telefono.equals(other.Telefono))
+			return false;
+		if (TipoCliente == null) {
+			if (other.TipoCliente != null)
+				return false;
+		} else if (!TipoCliente.equals(other.TipoCliente))
+			return false;
+		if (estatus == null) {
+			if (other.estatus != null)
+				return false;
+		} else if (!estatus.equals(other.estatus))
+			return false;
+		if (idCliente == null) {
+			if (other.idCliente != null)
+				return false;
+		} else if (!idCliente.equals(other.idCliente))
+			return false;
+		return true;
+	}
 	
 }

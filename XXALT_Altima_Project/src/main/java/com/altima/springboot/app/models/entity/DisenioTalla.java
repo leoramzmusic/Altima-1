@@ -55,9 +55,9 @@ public class DisenioTalla implements Serializable {
 	@NotBlank
 	private String estatus;
 	
-	@Column(name="genero_de lookup")
+	@Column(name="id_familia_genero")
 	@NotBlank
-	private String generoDeLookup;
+	private String idFamiliaGenero;
 
 	public Long getIdTalla() {
 		return idTalla;
@@ -124,11 +124,11 @@ public class DisenioTalla implements Serializable {
 	}
 
 	public String getGeneroDeLookup() {
-		return generoDeLookup;
+		return idFamiliaGenero;
 	}
 
 	public void setGeneroDeLookup(String generoDeLookup) {
-		this.generoDeLookup = generoDeLookup;
+		this.idFamiliaGenero = generoDeLookup;
 	}
 
 	public static long getSerialversionuid() {
@@ -143,7 +143,7 @@ public class DisenioTalla implements Serializable {
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((estatus == null) ? 0 : estatus.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
-		result = prime * result + ((generoDeLookup == null) ? 0 : generoDeLookup.hashCode());
+		result = prime * result + ((idFamiliaGenero == null) ? 0 : idFamiliaGenero.hashCode());
 		result = prime * result + ((idTalla == null) ? 0 : idTalla.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
 		result = prime * result + ((talla == null) ? 0 : talla.hashCode());
@@ -180,10 +180,10 @@ public class DisenioTalla implements Serializable {
 				return false;
 		} else if (!fechaCreacion.equals(other.fechaCreacion))
 			return false;
-		if (generoDeLookup == null) {
-			if (other.generoDeLookup != null)
+		if (idFamiliaGenero == null) {
+			if (other.idFamiliaGenero != null)
 				return false;
-		} else if (!generoDeLookup.equals(other.generoDeLookup))
+		} else if (!idFamiliaGenero.equals(other.idFamiliaGenero))
 			return false;
 		if (idTalla == null) {
 			if (other.idTalla != null)

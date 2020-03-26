@@ -31,13 +31,17 @@ public class HrSolicitud implements Serializable{
 	@NotBlank
 	private String idText;
 	
-	@Column(name="creado_por")
+	@Column(name="id_usuario_emisor")
 	@NotBlank
-	private String creadoPor;
+	private String idUsuarioEmisor;
 	
-	@Column(name="actualizado_por")
+	@Column(name="id_usuario_receptor")
 	@NotBlank
-	private String actualizadoPor;
+	private String idUsuarioReceptor;
+	
+	@Column(name="mensaje")
+	@NotBlank
+	private String mensaje;
 	
 	@Column(name="fecha_creacion")
 	@NotBlank
@@ -46,6 +50,10 @@ public class HrSolicitud implements Serializable{
 	@Column(name="ultima_fecha_modificacion")
 	@NotBlank
 	private String ultimaFechaModificacion;
+	
+	@Column(name="estatus")
+	@NotBlank
+	private String estatus;
 
 	public Long getIdSolicitud() {
 		return idSolicitud;
@@ -63,20 +71,28 @@ public class HrSolicitud implements Serializable{
 		this.idText = idText;
 	}
 
-	public String getCreadoPor() {
-		return creadoPor;
+	public String getIdUsuarioEmisor() {
+		return idUsuarioEmisor;
 	}
 
-	public void setCreadoPor(String creadoPor) {
-		this.creadoPor = creadoPor;
+	public void setIdUsuarioEmisor(String idUsuarioEmisor) {
+		this.idUsuarioEmisor = idUsuarioEmisor;
 	}
 
-	public String getActualizadoPor() {
-		return actualizadoPor;
+	public String getIdUsuarioReceptor() {
+		return idUsuarioReceptor;
 	}
 
-	public void setActualizadoPor(String actualizadoPor) {
-		this.actualizadoPor = actualizadoPor;
+	public void setIdUsuarioReceptor(String idUsuarioReceptor) {
+		this.idUsuarioReceptor = idUsuarioReceptor;
+	}
+
+	public String getMensaje() {
+		return mensaje;
+	}
+
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
 	}
 
 	public String getFechaCreacion() {
@@ -95,6 +111,14 @@ public class HrSolicitud implements Serializable{
 		this.ultimaFechaModificacion = ultimaFechaModificacion;
 	}
 
+	public String getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -103,11 +127,13 @@ public class HrSolicitud implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
-		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
+		result = prime * result + ((estatus == null) ? 0 : estatus.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
 		result = prime * result + ((idSolicitud == null) ? 0 : idSolicitud.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
+		result = prime * result + ((idUsuarioEmisor == null) ? 0 : idUsuarioEmisor.hashCode());
+		result = prime * result + ((idUsuarioReceptor == null) ? 0 : idUsuarioReceptor.hashCode());
+		result = prime * result + ((mensaje == null) ? 0 : mensaje.hashCode());
 		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
 		return result;
 	}
@@ -121,15 +147,10 @@ public class HrSolicitud implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		HrSolicitud other = (HrSolicitud) obj;
-		if (actualizadoPor == null) {
-			if (other.actualizadoPor != null)
+		if (estatus == null) {
+			if (other.estatus != null)
 				return false;
-		} else if (!actualizadoPor.equals(other.actualizadoPor))
-			return false;
-		if (creadoPor == null) {
-			if (other.creadoPor != null)
-				return false;
-		} else if (!creadoPor.equals(other.creadoPor))
+		} else if (!estatus.equals(other.estatus))
 			return false;
 		if (fechaCreacion == null) {
 			if (other.fechaCreacion != null)
@@ -146,6 +167,21 @@ public class HrSolicitud implements Serializable{
 				return false;
 		} else if (!idText.equals(other.idText))
 			return false;
+		if (idUsuarioEmisor == null) {
+			if (other.idUsuarioEmisor != null)
+				return false;
+		} else if (!idUsuarioEmisor.equals(other.idUsuarioEmisor))
+			return false;
+		if (idUsuarioReceptor == null) {
+			if (other.idUsuarioReceptor != null)
+				return false;
+		} else if (!idUsuarioReceptor.equals(other.idUsuarioReceptor))
+			return false;
+		if (mensaje == null) {
+			if (other.mensaje != null)
+				return false;
+		} else if (!mensaje.equals(other.mensaje))
+			return false;
 		if (ultimaFechaModificacion == null) {
 			if (other.ultimaFechaModificacion != null)
 				return false;
@@ -153,4 +189,6 @@ public class HrSolicitud implements Serializable{
 			return false;
 		return true;
 	}
+
+	
 }

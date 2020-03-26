@@ -25,7 +25,7 @@ public class HrUnidadNegocio implements Serializable{
 	@Column(name="id_unidad_negocio")
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
-	private Long idPruebaCostura;
+	private Long idUnidadNegocio;
 
 	@Column(name="id_text")
 	@NotBlank
@@ -50,13 +50,17 @@ public class HrUnidadNegocio implements Serializable{
 	@Column(name="ultima_fecha_modificacion")
 	@NotBlank
 	private String ultimaFechaModificacion;
+	
+	@Column(name="estatus")
+	@NotBlank
+	private String estatus;
 
 	public Long getIdPruebaCostura() {
-		return idPruebaCostura;
+		return idUnidadNegocio;
 	}
 
 	public void setIdPruebaCostura(Long idPruebaCostura) {
-		this.idPruebaCostura = idPruebaCostura;
+		this.idUnidadNegocio = idPruebaCostura;
 	}
 
 	public String getIdText() {
@@ -118,7 +122,7 @@ public class HrUnidadNegocio implements Serializable{
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
-		result = prime * result + ((idPruebaCostura == null) ? 0 : idPruebaCostura.hashCode());
+		result = prime * result + ((idUnidadNegocio == null) ? 0 : idUnidadNegocio.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
 		result = prime * result + ((nombreUnidadNegocio == null) ? 0 : nombreUnidadNegocio.hashCode());
 		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
@@ -149,10 +153,10 @@ public class HrUnidadNegocio implements Serializable{
 				return false;
 		} else if (!fechaCreacion.equals(other.fechaCreacion))
 			return false;
-		if (idPruebaCostura == null) {
-			if (other.idPruebaCostura != null)
+		if (idUnidadNegocio == null) {
+			if (other.idUnidadNegocio != null)
 				return false;
-		} else if (!idPruebaCostura.equals(other.idPruebaCostura))
+		} else if (!idUnidadNegocio.equals(other.idUnidadNegocio))
 			return false;
 		if (idText == null) {
 			if (other.idText != null)

@@ -143,6 +143,15 @@ public class DisenioPrenda implements Serializable{
 	@Column(name="combinacion")
 	private String combinacion;
 	
+	@Column(name="total_prendas")
+	private String totalPrendas;
+	
+	@Column(name="mostrar")
+	private String mostrar;
+	
+	@Column(name="estatus")
+	private Long estatus;
+
 	public Long getIdPrenda() {
 		return idPrenda;
 	}
@@ -467,15 +476,6 @@ public class DisenioPrenda implements Serializable{
 		return serialVersionUID;
 	}
 
-	@Column(name="total_prendas")
-	private String totalPrendas;
-	
-	@Column(name="mostrar")
-	private String mostrar;
-	
-	@Column(name="estatus")
-	private Long estatus;
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -733,6 +733,7 @@ public class DisenioPrenda implements Serializable{
 		} else if (!ultimaFechaModificacion.equals(other.ultimaFechaModificacion))
 			return false;
 		return true;
-	}	
+	}
+	
+	
 }
-

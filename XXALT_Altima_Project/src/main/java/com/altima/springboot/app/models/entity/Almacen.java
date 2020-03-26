@@ -32,6 +32,9 @@ public class Almacen implements Serializable {
 	@NotBlank
 	private String idText;
 	
+	@Column(name="estatus")
+	@NotBlank
+	private String estatus;
 
 	public Long getIdAlmacen() {
 		return idAlmacen;
@@ -49,15 +52,23 @@ public class Almacen implements Serializable {
 		this.idText = idText;
 	}
 
+	public String getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((estatus == null) ? 0 : estatus.hashCode());
 		result = prime * result + ((idAlmacen == null) ? 0 : idAlmacen.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
 		return result;
@@ -72,6 +83,11 @@ public class Almacen implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Almacen other = (Almacen) obj;
+		if (estatus == null) {
+			if (other.estatus != null)
+				return false;
+		} else if (!estatus.equals(other.estatus))
+			return false;
 		if (idAlmacen == null) {
 			if (other.idAlmacen != null)
 				return false;
@@ -84,8 +100,4 @@ public class Almacen implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-	
-
 }
