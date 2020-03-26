@@ -1,21 +1,25 @@
 package com.altima.springboot.app.models.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.GenericGenerator;
 
 
+
 @Entity
-@Table(name = "alt_hr_rol", uniqueConstraints= {@UniqueConstraint(columnNames= {"id_usuario", "nombre_rol"})})
+@Table(name = "alt_hr_rol")
 
 public class Rol implements Serializable {
 
@@ -27,7 +31,6 @@ public class Rol implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
 	@Column(name="id_rol")
-	
 	private Long idRol;
 	
 	@Column(name="id_text")
@@ -42,41 +45,22 @@ public class Rol implements Serializable {
 	@NotBlank
 	private String nombreRol;
 	
-	@Column(name="id_usuario")
-	
-	private Long idUsuario;
-	
 	@Column(name="creado_por")
 	@NotBlank
 	private String creadoPor;
 	
 	@Column(name="actualizado_por")
-	
 	private String actualizadoPor;
 	
 	@Column(name="fecha_creacion")
-	
 	private String fechaCreacion;
 	
 	@Column(name="ultima_fecha_modificacion")
-	
 	private String ultimaFechaModificacion;
 
-	public String getDescripcionRol() {
-		return descripcionRol;
-	}
-
-	public void setDescripcionRol(String descripcionRol) {
-		this.descripcionRol = descripcionRol;
-	}
-
-	public Long getIdUsuario() {
-		return idUsuario;
-	}
-
-	public void setIdUsuario(Long idUsuario) {
-		this.idUsuario = idUsuario;
-	}
+	@ManyToMany(fetch = FetchType.LAZY,
+            mappedBy = "roles")
+    private Set<Usuario> usuario = new HashSet<>();
 
 	public Long getIdRol() {
 		return idRol;
@@ -92,6 +76,22 @@ public class Rol implements Serializable {
 
 	public void setIdText(String idText) {
 		this.idText = idText;
+	}
+
+	public String getDescripcionRol() {
+		return descripcionRol;
+	}
+
+	public void setDescripcionRol(String descripcionRol) {
+		this.descripcionRol = descripcionRol;
+	}
+
+	public String getNombreRol() {
+		return nombreRol;
+	}
+
+	public void setNombreRol(String nombreRol) {
+		this.nombreRol = nombreRol;
 	}
 
 	public String getCreadoPor() {
@@ -126,84 +126,14 @@ public class Rol implements Serializable {
 		this.ultimaFechaModificacion = ultimaFechaModificacion;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public Set<Usuario> getUsuario() {
+		return usuario;
 	}
 
-	public String getNombreRol() {
-		return nombreRol;
-	}
-
-	public void setNombreRol(String nombreRol) {
-		this.nombreRol = nombreRol;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
-		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
-		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
-		result = prime * result + ((idRol == null) ? 0 : idRol.hashCode());
-		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
-		result = prime * result + ((idUsuario == null) ? 0 : idUsuario.hashCode());
-		result = prime * result + ((nombreRol == null) ? 0 : nombreRol.hashCode());
-		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Rol other = (Rol) obj;
-		if (actualizadoPor == null) {
-			if (other.actualizadoPor != null)
-				return false;
-		} else if (!actualizadoPor.equals(other.actualizadoPor))
-			return false;
-		if (creadoPor == null) {
-			if (other.creadoPor != null)
-				return false;
-		} else if (!creadoPor.equals(other.creadoPor))
-			return false;
-		if (fechaCreacion == null) {
-			if (other.fechaCreacion != null)
-				return false;
-		} else if (!fechaCreacion.equals(other.fechaCreacion))
-			return false;
-		if (idRol == null) {
-			if (other.idRol != null)
-				return false;
-		} else if (!idRol.equals(other.idRol))
-			return false;
-		if (idText == null) {
-			if (other.idText != null)
-				return false;
-		} else if (!idText.equals(other.idText))
-			return false;
-		if (idUsuario == null) {
-			if (other.idUsuario != null)
-				return false;
-		} else if (!idUsuario.equals(other.idUsuario))
-			return false;
-		if (nombreRol == null) {
-			if (other.nombreRol != null)
-				return false;
-		} else if (!nombreRol.equals(other.nombreRol))
-			return false;
-		if (ultimaFechaModificacion == null) {
-			if (other.ultimaFechaModificacion != null)
-				return false;
-		} else if (!ultimaFechaModificacion.equals(other.ultimaFechaModificacion))
-			return false;
-		return true;
+	public void setUsuario(Set<Usuario> usuario) {
+		this.usuario = usuario;
 	}
 
 
-}
+
+}	

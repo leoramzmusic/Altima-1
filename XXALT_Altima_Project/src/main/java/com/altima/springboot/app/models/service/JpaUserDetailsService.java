@@ -30,7 +30,7 @@ public class JpaUserDetailsService implements UserDetailsService{
 	String x=null;
 	
 	@Override
-	@Transactional(readOnly=true)
+	@Transactional
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
         Usuario usuario = repository.findBynombreUsuario(username);
