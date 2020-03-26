@@ -207,7 +207,7 @@ public class MaterialesController {
 		for(int i= 0 ; i<vect.length -1;i++) {
 			DisenioFamiliaComposicionTela fc = new DisenioFamiliaComposicionTela();
 			
-			fc.setIdFamiliaComposicion(Long.valueOf(vect2[i]));
+			fc.setIdFamiliaComposicionTela(Long.valueOf(vect2[i]));
 			fc.setIdTela(tela.getIdTela());
 			fc.setEstatus(0);
 			fc.setCreadoPor(auth.getName());
