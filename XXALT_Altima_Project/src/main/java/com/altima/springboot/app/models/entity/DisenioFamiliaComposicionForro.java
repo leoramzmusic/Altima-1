@@ -1,7 +1,6 @@
 package com.altima.springboot.app.models.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,29 +12,25 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "alt_hr_area")
-
-public class HrArea implements Serializable {
+@Table(name = "alt_disenio_familia_composicion_forro")
+public class DisenioFamiliaComposicionForro implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
-	@Column(name="id_area")
+	@Column(name="id_familia_composicion_forro")
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
-	private Long idArea;
+	private Long idFamiliaComposicionForro;
 	
-	@Column(name="id_sucursal")
-	private Long idSucursal;
+	@Column(name="id_familia_composicion")
+	private Long idFamiliaComposicion;
 	
-	@Column(name="id_text")
-	private String idText;
-	
-	@Column(name="nombre_area")
-	private String nombreArea;
+	@Column(name="id_forro")
+	private Long idForro;
 	
 	@Column(name="creado_por")
 	private String creadoPor;
@@ -48,40 +43,29 @@ public class HrArea implements Serializable {
 	
 	@Column(name="ultima_fecha_modificacion")
 	private String ultimaFechaModificacion;
-	
-	@Column(name="estatus")
-	private String estatus;
 
-	public Long getIdArea() {
-		return idArea;
+	public Long getIdFamiliaComposicionForro() {
+		return idFamiliaComposicionForro;
 	}
 
-	public void setIdArea(Long idArea) {
-		this.idArea = idArea;
+	public void setIdFamiliaComposicionForro(Long idFamiliaComposicionForro) {
+		this.idFamiliaComposicionForro = idFamiliaComposicionForro;
 	}
 
-	public Long getIdSucursal() {
-		return idSucursal;
+	public Long getIdFamiliaComposicion() {
+		return idFamiliaComposicion;
 	}
 
-	public void setIdSucursal(Long idSucursal) {
-		this.idSucursal = idSucursal;
+	public void setIdFamiliaComposicion(Long idFamiliaComposicion) {
+		this.idFamiliaComposicion = idFamiliaComposicion;
 	}
 
-	public String getIdText() {
-		return idText;
+	public Long getIdForro() {
+		return idForro;
 	}
 
-	public void setIdText(String idText) {
-		this.idText = idText;
-	}
-
-	public String getNombreArea() {
-		return nombreArea;
-	}
-
-	public void setNombreArea(String nombreArea) {
-		this.nombreArea = nombreArea;
+	public void setIdForro(Long idForro) {
+		this.idForro = idForro;
 	}
 
 	public String getCreadoPor() {
@@ -116,14 +100,6 @@ public class HrArea implements Serializable {
 		this.ultimaFechaModificacion = ultimaFechaModificacion;
 	}
 
-	public String getEstatus() {
-		return estatus;
-	}
-
-	public void setEstatus(String estatus) {
-		this.estatus = estatus;
-	}
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -134,12 +110,10 @@ public class HrArea implements Serializable {
 		int result = 1;
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
-		result = prime * result + ((estatus == null) ? 0 : estatus.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
-		result = prime * result + ((idArea == null) ? 0 : idArea.hashCode());
-		result = prime * result + ((idSucursal == null) ? 0 : idSucursal.hashCode());
-		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
-		result = prime * result + ((nombreArea == null) ? 0 : nombreArea.hashCode());
+		result = prime * result + ((idFamiliaComposicion == null) ? 0 : idFamiliaComposicion.hashCode());
+		result = prime * result + ((idFamiliaComposicionForro == null) ? 0 : idFamiliaComposicionForro.hashCode());
+		result = prime * result + ((idForro == null) ? 0 : idForro.hashCode());
 		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
 		return result;
 	}
@@ -152,7 +126,7 @@ public class HrArea implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		HrArea other = (HrArea) obj;
+		DisenioFamiliaComposicionForro other = (DisenioFamiliaComposicionForro) obj;
 		if (actualizadoPor == null) {
 			if (other.actualizadoPor != null)
 				return false;
@@ -163,35 +137,25 @@ public class HrArea implements Serializable {
 				return false;
 		} else if (!creadoPor.equals(other.creadoPor))
 			return false;
-		if (estatus == null) {
-			if (other.estatus != null)
-				return false;
-		} else if (!estatus.equals(other.estatus))
-			return false;
 		if (fechaCreacion == null) {
 			if (other.fechaCreacion != null)
 				return false;
 		} else if (!fechaCreacion.equals(other.fechaCreacion))
 			return false;
-		if (idArea == null) {
-			if (other.idArea != null)
+		if (idFamiliaComposicion == null) {
+			if (other.idFamiliaComposicion != null)
 				return false;
-		} else if (!idArea.equals(other.idArea))
+		} else if (!idFamiliaComposicion.equals(other.idFamiliaComposicion))
 			return false;
-		if (idSucursal == null) {
-			if (other.idSucursal != null)
+		if (idFamiliaComposicionForro == null) {
+			if (other.idFamiliaComposicionForro != null)
 				return false;
-		} else if (!idSucursal.equals(other.idSucursal))
+		} else if (!idFamiliaComposicionForro.equals(other.idFamiliaComposicionForro))
 			return false;
-		if (idText == null) {
-			if (other.idText != null)
+		if (idForro == null) {
+			if (other.idForro != null)
 				return false;
-		} else if (!idText.equals(other.idText))
-			return false;
-		if (nombreArea == null) {
-			if (other.nombreArea != null)
-				return false;
-		} else if (!nombreArea.equals(other.nombreArea))
+		} else if (!idForro.equals(other.idForro))
 			return false;
 		if (ultimaFechaModificacion == null) {
 			if (other.ultimaFechaModificacion != null)
@@ -200,7 +164,7 @@ public class HrArea implements Serializable {
 			return false;
 		return true;
 	}
+	
+	
 
-	
-	
 }

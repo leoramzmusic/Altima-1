@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -22,18 +21,32 @@ public class DisenioMaterialTela implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="id_material")
+	@Column(name="id_material_tela")
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
+	private Long idMaterialTela;
+	
+
+	@Column(name="id_material")
 	private Long idMaterial;
 	
+	
 	@Column(name="id_tela")
-	@NotBlank
 	private Long idTela;
 	
 	@Column(name="id_text")
-	@NotBlank
 	private String idText;
+	
+	@Column(name="tipo")
+	private String tipo;
+
+	public Long getIdMaterialTela() {
+		return idMaterialTela;
+	}
+
+	public void setIdMaterialTela(Long idMaterialTela) {
+		this.idMaterialTela = idMaterialTela;
+	}
 
 	public Long getIdMaterial() {
 		return idMaterial;
@@ -59,6 +72,14 @@ public class DisenioMaterialTela implements Serializable{
 		this.idText = idText;
 	}
 
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -68,8 +89,10 @@ public class DisenioMaterialTela implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((idMaterial == null) ? 0 : idMaterial.hashCode());
+		result = prime * result + ((idMaterialTela == null) ? 0 : idMaterialTela.hashCode());
 		result = prime * result + ((idTela == null) ? 0 : idTela.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
+		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
 		return result;
 	}
 
@@ -87,6 +110,11 @@ public class DisenioMaterialTela implements Serializable{
 				return false;
 		} else if (!idMaterial.equals(other.idMaterial))
 			return false;
+		if (idMaterialTela == null) {
+			if (other.idMaterialTela != null)
+				return false;
+		} else if (!idMaterialTela.equals(other.idMaterialTela))
+			return false;
 		if (idTela == null) {
 			if (other.idTela != null)
 				return false;
@@ -97,6 +125,13 @@ public class DisenioMaterialTela implements Serializable{
 				return false;
 		} else if (!idText.equals(other.idText))
 			return false;
+		if (tipo == null) {
+			if (other.tipo != null)
+				return false;
+		} else if (!tipo.equals(other.tipo))
+			return false;
 		return true;
 	}
+
+	
 }

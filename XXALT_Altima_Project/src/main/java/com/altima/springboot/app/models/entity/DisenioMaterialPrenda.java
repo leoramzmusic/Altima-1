@@ -30,19 +30,15 @@ public class DisenioMaterialPrenda implements Serializable{
 	private Long idMaterialPrenda;
 	
 	@Column(name="id_material")
-	//@NotBlank
 	private Long idMaterial;
 	
 	@Column(name="id_prenda")
-	//@NotBlank
 	private Long idPrenda;
 	
 	@Column(name="creado_por")
-	//@NotBlank
 	private String creadoPor;
 	
 	@Column(name="actualizado_por")
-	//@NotBlank
 	private String actualizadoPor;
 	
 

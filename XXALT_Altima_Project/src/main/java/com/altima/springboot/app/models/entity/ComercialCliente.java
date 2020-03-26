@@ -12,7 +12,6 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotBlank;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -73,7 +72,6 @@ public class ComercialCliente implements Serializable {
 	private String PaginaWeb;
 	
 	@Column(name="observacion")
-	@NotBlank
 	private String Observacion;
 	
 	@Column(name="tipo_cliente")

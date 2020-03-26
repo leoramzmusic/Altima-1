@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -29,11 +28,9 @@ public class Almacen implements Serializable {
 	private Long idAlmacen;
 	
 	@Column(name="id_text")
-	@NotBlank
 	private String idText;
 	
 	@Column(name="estatus")
-	@NotBlank
 	private String estatus;
 
 	public Long getIdAlmacen() {

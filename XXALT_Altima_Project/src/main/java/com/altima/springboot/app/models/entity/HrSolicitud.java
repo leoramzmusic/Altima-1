@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -28,31 +27,25 @@ public class HrSolicitud implements Serializable{
 	private Long idSolicitud;
 	
 	@Column(name="id_text")
-	@NotBlank
 	private String idText;
 	
 	@Column(name="id_usuario_emisor")
-	@NotBlank
+
 	private String idUsuarioEmisor;
 	
 	@Column(name="id_usuario_receptor")
-	@NotBlank
 	private String idUsuarioReceptor;
 	
 	@Column(name="mensaje")
-	@NotBlank
 	private String mensaje;
 	
 	@Column(name="fecha_creacion")
-	@NotBlank
 	private String fechaCreacion;
 	
 	@Column(name="ultima_fecha_modificacion")
-	@NotBlank
 	private String ultimaFechaModificacion;
 	
 	@Column(name="estatus")
-	@NotBlank
 	private String estatus;
 
 	public Long getIdSolicitud() {
