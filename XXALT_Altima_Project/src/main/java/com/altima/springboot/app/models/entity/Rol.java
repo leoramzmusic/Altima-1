@@ -12,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -34,19 +33,15 @@ public class Rol implements Serializable {
 	private Long idRol;
 	
 	@Column(name="id_text")
-	@NotBlank
 	private String idText;
 	
 	@Column(name="descripcion_rol")
-	@NotBlank
 	private String descripcionRol;
 	
 	@Column(name="nombre_rol")
-	@NotBlank
 	private String nombreRol;
 	
 	@Column(name="creado_por")
-	@NotBlank
 	private String creadoPor;
 	
 	@Column(name="actualizado_por")
@@ -59,7 +54,6 @@ public class Rol implements Serializable {
 	private String ultimaFechaModificacion;
 	
 	@Column(name="estatus")
-	@NotBlank
 	private String estatus;
 
 	@ManyToMany(fetch = FetchType.LAZY,

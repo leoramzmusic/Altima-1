@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -28,11 +27,9 @@ public class DisenioEntradaSalida implements Serializable{
 	private Long idEntradaSalida;
 
 	@Column(name="id_muestrario")
-	@NotBlank
 	private Long idMuestrario;
 	
 	@Column(name="id_text")
-	@NotBlank
 	private String idText;
 
 	public Long getIdEntradaSalida() {

@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -30,23 +29,18 @@ public class DisenioDetalleMuestrario implements Serializable{
 	private Long idDetalleMuestrario;
 	
 	@Column(name="id_text")
-	@NotBlank
 	private String idText;
 	
 	@Column(name="creado_por")
-	@NotBlank
 	private String creadoPor;
 	
 	@Column(name="actualizado_por")
-	@NotBlank
 	private String actualizadoPor;
 	
 	@Column(name="fecha_creacion")
-	@NotBlank
 	private String fechaCreacion;
 	
 	@Column(name="ultima_fecha_creacion")
-	@NotBlank
 	private String ultimaFechaCreacion;
 
 	

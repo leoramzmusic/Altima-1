@@ -16,7 +16,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.validation.constraints.NotBlank;
 import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name = "alt_hr_usuario")
@@ -39,7 +38,6 @@ public class Usuario  implements Serializable{
 	private String idText;
 	
 	@Column(name="nombre_usuario")
-	@NotBlank
 	private String nombreUsuario;
 	
 	
@@ -60,11 +58,9 @@ public class Usuario  implements Serializable{
 	private String ultimaFechaModificacion;
 	
 	@Column(name="contraseña")
-	@NotBlank
 	private String contraseña;
 	
 	@Column(name="estatus")
-	@NotBlank
 	private String estatus;
 	
 	@Transient 

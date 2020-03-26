@@ -28,43 +28,33 @@ public class DisenioFamiliaPrenda implements Serializable{
 	private Long idFamiliaPrenda;
 	
 	@Column(name="id_text")
-	//@NotBlank
 	private String idText;
 	
 	@Column(name="creado_por")
-	//@NotBlank
 	private String creadoPor;
 	
 	@Column(name="actualizado_por")
-	//@NotBlank
 	private String actualizadoPor;
 	
 	@Column(name="fecha_creacion")
-	//@NotBlank
 	private String fechaCreacion;
 	
 	@Column(name="ultima_fecha_modificacion")
-	//@NotBlank
 	private String ultimaFechaModificacion;
 	
 	@Column(name="tipo_prenda")
-	//@NotBlank
 	private String tipoPrenda;
 	
 	@Column(name="nombre_familia_prenda")
-	//@NotBlank
 	private String nombreFamiliaPrenda;
 	
 	@Column(name="descripcion_familia_prenda")
-	//@NotBlank
 	private String descripcionFamiliaPrenda;
 	
 	@Column(name="id_familia_genero")
-	//@NotBlank
 	private Long idFamiliaGenero;
 	
 	@Column(name="estatus")
-	//@NotBlank
 	private String estatus;
 
 	public Long getIdFamiliaPrenda() {

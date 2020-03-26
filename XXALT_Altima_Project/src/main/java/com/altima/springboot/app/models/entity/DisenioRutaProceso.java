@@ -8,8 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -23,11 +21,9 @@ public class DisenioRutaProceso implements Serializable{
 	private Long idRutaProceso;
 	
 	@Column(name="id_ruta")
-	@NotBlank
 	private String idRuta;
 	
 	@Column(name="id_proceso")
-	@NotBlank
 	private String idProceso;
 
 	public Long getIdRutaProceso() {

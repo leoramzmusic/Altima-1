@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -28,63 +27,48 @@ public class DisenioForro implements Serializable{
 	private Long idForro;
 	
 	@Column(name="id_text")
-	@NotBlank
 	private String idText;
 	
 	@Column(name="creado_por")
-	@NotBlank
 	private String creadoPor;
 	
 	@Column(name="actualizado_por")
-	@NotBlank
 	private String actualizadoPor;
 	
 	@Column(name="fecha_creacion")
-	@NotBlank
 	private String fechaCreacion;
 	
 	@Column(name="ultima_fecha_modificacion")
-	@NotBlank
 	private String ultimaFechaModificacion;
 	
 	@Column(name="clave_forro")
-	@NotBlank
 	private String claveForro;
 	
 	@Column(name="descripcion_forro")
-	@NotBlank
 	private String descripcionForro;
 	
 	@Column(name="nombre_forro")
-	@NotBlank
 	private String nombreForro;
 	
 	@Column(name="composicion_forro")
-	@NotBlank
 	private String composicionForro;
 	
 	@Column(name="ancho_forro")
-	@NotBlank
 	private String anchoForro;
 	
 	@Column(name="id_unidad_medida")
-	@NotBlank
 	private Long idUnidadMedida;
 	
 	@Column(name="consumo_promedio_forro")
-	@NotBlank
 	private String consumoPromedioForro;
 	
 	@Column(name="existencia_forro")
-	@NotBlank
 	private String existenciaForro;
 	
 	@Column(name="id_familia_composicion")
-	@NotBlank
 	private Long idFamiliaComposicion;
 	
 	@Column(name="estatus")
-	@NotBlank
 	private String estatus;
 
 	public Long getIdForro() {
