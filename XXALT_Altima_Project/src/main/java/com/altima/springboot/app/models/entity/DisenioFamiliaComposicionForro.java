@@ -41,7 +41,7 @@ public class DisenioFamiliaComposicionForro implements Serializable{
 	@Column(name="fecha_creacion")
 	private String fechaCreacion;
 	
-	@Column(name="ultima_fecha_modificacion")
+	@Column(name="ultima_fecha_actulizacion")
 	private String ultimaFechaModificacion;
 	
 	@Column(name="composicion")
