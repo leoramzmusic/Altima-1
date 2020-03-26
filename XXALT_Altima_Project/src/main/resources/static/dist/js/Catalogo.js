@@ -21,7 +21,7 @@
 		    success: (data) => {
 		    	$('#quitar').remove();
 		    	$('#contenedorTabla').append("<div class='modal-body' id='quitar'>" +
-		    			"<table class='table tablexd table-striped table-bordered' id='idtable'>" +
+		    			"<table class='table table-striped table-bordered' id='idtable' style='width:100%'>" +
 	                                        "<thead>" +
 	                                            "<tr>" +
 	                                                "<th>Clave</th>" +
@@ -105,7 +105,7 @@
 		    success: (data) => {
 		    	$('#quitar2').remove();
 		    	$('#contenedorTabla2').append("<div class='modal-body' id='quitar2'>" +
-		    			"<table class='table tablexd table-striped table-bordered' id='idtable2'>" +
+		    			"<table class='table table-striped table-bordered' id='idtable2' style='width:100%'>" +
 	                                        "<thead>" +
 	                                            "<tr>" +
 	                                                "<th>Clave</th>" +
@@ -189,7 +189,7 @@
 		    success: (data) => {
 		    	$('#quitar3').remove();
 		    	$('#contenedorTabla3').append("<div class='modal-body' id='quitar3'>" +
-		    			"<table class='table tablexd table-striped table-bordered' id='idtable3'>" +
+		    			"<table class='table table-striped table-bordered' id='idtable3' style='width:100%'>" +
 	                                        "<thead>" +
 	                                            "<tr>" +
 	                                                "<th>Clave</th>" +
@@ -273,7 +273,7 @@
 		    success: (data) => {
 		    	$('#quitar4').remove();
 		    	$('#contenedorTabla4').append("<div class='modal-body' id='quitar4'>" +
-		    			"<table class='table tablexd table-striped table-bordered' id='idtable4'>" +
+		    			"<table class='table table-striped table-bordered' id='idtable4' style='width:100%'>" +
 	                                        "<thead>" +
 	                                            "<tr>" +
 	                                                "<th>Clave</th>" +
@@ -357,7 +357,7 @@
 		    success: (data) => {
 		    	$('#quitar5').remove();
 		    	$('#contenedorTabla5').append("<div class='modal-body' id='quitar5'>" +
-		    			"<table class='table tablexd table-striped table-bordered' id='idtable5'>" +
+		    			"<table class='table table-striped table-bordered' id='idtable5' style='width:100%'>" +
 	                                        "<thead>" +
 	                                            "<tr>" +
 	                                                "<th>Clave</th>" +
@@ -441,7 +441,7 @@
 		    success: (data) => {
 		    	$('#quitar6').remove();
 		    	$('#contenedorTabla6').append("<div class='modal-body' id='quitar6'>" +
-		    			"<table class='table tablexd table-striped table-bordered' id='idtable6'>" +
+		    			"<table class='table  table-striped table-bordered' id='idtable6' style='width:100%'>" +
 	                                        "<thead>" +
 	                                            "<tr>" +
 	                                                "<th>Clave</th>" +
@@ -525,7 +525,7 @@
 		    success: (data) => {
 		    	$('#quitar7').remove();
 		    	$('#contenedorTabla7').append("<div class='modal-body' id='quitar7'>" +
-		    			"<table class='table tablexd table-striped table-bordered' id='idtable7'>" +
+		    			"<table class='table table-striped table-bordered' id='idtable7' style='width:100%'>" +
 	                                        "<thead>" +
 	                                            "<tr>" +
 	                                                "<th>Clave</th>" +
