@@ -82,14 +82,14 @@ public class MaterialesController {
 		List<DisenioLookup> listLookupsClasificacion = disenioMaterialService.findListaClasificacion();	
 		List<DisenioProceso> listClaveProceso = disenioProcesoService.findListClaveProceso();
 		List<DisenioLookup> listLookupsMat = disenioMaterialService.findListaLookupMat();
-		//List<DisenioLookup> listLookupsCol = disenioMaterialService.findListaColor();
+		List<DisenioLookup> listLookupsCol = disenioMaterialService.findListaColor();
 		model.addAttribute("material", material);
 		model.addAttribute("listLookupsMed", listLookupsMed);
 		model.addAttribute("listLookupsMar", listLookupsMar);
 		model.addAttribute("listLookupsClasificacion", listLookupsClasificacion);
 		model.addAttribute("listClaveProceso", listClaveProceso);
 		model.addAttribute("listLookupsMat", listLookupsMat);
-		//model.addAttribute("listLookupsCol", listLookupsCol);
+		model.addAttribute("listLookupsCol", listLookupsCol);
 		System.out.println("epale eaple si entro al method get");
 		
 		// Comienza erik
