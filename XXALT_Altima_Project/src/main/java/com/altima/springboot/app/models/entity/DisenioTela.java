@@ -25,66 +25,51 @@ public class DisenioTela implements Serializable{
 	private Long idTela;
 	
 	@Column(name="id_familia_composicion")
-	@NotBlank
 	private Long idFamiliaComposicion;
 
 	@Column(name="id_calidad")
-	@NotBlank
 	private Long idCalidad;
 	
 	@Column(name="id_text")
-	@NotBlank
 	private String idText;
 	
 	@Column(name="creado_por")
-	@NotBlank
 	private String creadoPor;
 	
 	@Column(name="actualizado_por")
-	@NotBlank
 	private String actualizadoPor;
 	
 	@Column(name="fecha_creacion")
-	@NotBlank
 	private String fechaCreacion;
 	
 	@Column(name="ultima_fecha_modificacion")
-	@NotBlank
 	private String ultimaFechaModificacion;
 	
 	@Column(name="clave_tela")
-	@NotBlank
 	private String claveTela;
 	
 	@Column(name="descripcion_tela")
-	@NotBlank
 	private String descripcionTela;
 	
 	@Column(name="nombre_tela")
-	@NotBlank
 	private String nombreTela;
 
 	@Column(name="linea_tela")
-	@NotBlank
 	private String lineaTela;
 	
 	@Column(name="ancho")
-	@NotBlank
 	private String ancho;
 	
 	@Column(name="id_unidad_medida")
 	private String idUnidadMedida;
 	
 	@Column(name="consumo_promedio")
-	@NotBlank
 	private String consumoPromedio;
 	
 	@Column(name="existencia")
-	@NotBlank
 	private String existencia;
 	
 	@Column(name="indicacion")
-	@NotBlank
 	private String indicacion;
 	
 	@Column(name="consumo")
