@@ -51,7 +51,6 @@ public class UsuarioController {
 			@RequestParam(name="pass", required = false) String pass) {
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		
 		if(role.equals("DISEÑO")) {
 			role="DISENIO";
 		}
@@ -62,7 +61,6 @@ public class UsuarioController {
 		usuarioService.save(usuario);
 		rol.setCreadoPor(auth.getName());
 		rol.setNombreRol(role);
-		rol.setIdUsuario(usuario.getIdUsuario());
 		rol.setDescripcionRol("ROLE_"+role);
 		rol.setIdText("rol");
 		rolService.save(rol);
