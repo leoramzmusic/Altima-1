@@ -69,78 +69,13 @@
             <option value ="6">MAR06 Nike 2 xd</option>
         </select>
     </div>
-    <div class="form-group col-sm-4">
-        <label for="status">Forro principal</label>
-        <select name="f1" class="form-control" >
-        <option value="">Selecciona uno...</option>
-            <option th:each="listForro: ${listForro}"
-			th:value="${listForro.idForro}" th:text="${listForro.nombreForro}"></option>
-        </select>
-    </div>
-    <div class="form-group col-sm-4">
-        <label for="status">Forro secundario</label>
-        <select name="f2"  class="form-control">
-        <option value="">Selecciona uno...</option>
-            <option th:each="listForro: ${listForro}"
-			th:value="${listForro.idForro}" th:text="${listForro.nombreForro}"></option>
-        </select>
-    </div>
-    <div class="form-group col-sm-4">
-        <label for="status">Forro terciario</label>
-        <select name="f3"  class="form-control" >
-        <option value="">Selecciona uno...</option>
-             <option th:each="listForro: ${listForro}"
-			th:value="${listForro.idForro}" th:text="${listForro.nombreForro}"></option>
-        </select>
-    </div>
-    <div class="form-group col-sm-4">
-        <label for="status">Boton principal</label>
-        <select name="b1"  class="form-control" >
-        <option value="">Selecciona uno...</option>
-            <option th:each="listBoton: ${listBoton}"
-			th:value="${listBoton.idLookup}" th:text="${listBoton.nombreLookup}"></option>
-        </select>
-    </div>
-    <div class="form-group col-sm-4">
-        <label for="status">Boton secundario</label>
-        <select name="b2" class="form-control" >
-        <option value="">Selecciona uno...</option>
-           <option th:each="listBoton: ${listBoton}"
-			th:value="${listBoton.idLookup}" th:text="${listBoton.nombreLookup}"></option>
-        </select>
-    </div>
-    <div class="form-group col-sm-4">
-        <label for="status">Boton terciario</label>
-        <select name="b3" class="form-control" >
-        <option value="">Selecciona uno...</option>
-            <option th:each="listBoton: ${listBoton}"
-			th:value="${listBoton.idLookup}" th:text="${listBoton.nombreLookup}"></option>
-        </select>
-    </div>
+    
+    
     <div class="form-group col-sm-12">
         <label for="coloniaEmpresa">Indicaciones</label>
         <textarea class="form-control" th:field="*{tela.indicacion}" placeholder="Especificar" rows="3"></textarea>
     </div>
-    <div class="col-sm-12">
-        <div class="form-group p-3 border p-2 rounded m-3">
-            <div class="row">
-                <div class="col-sm-3 text-center pt-2 border-right">
-                    <label for="mainImageTela"><img src="dist/img/preview.png" alt="Placeholder" id="serviceImageTela" class="placeholder img-thumbnail" aria-describedby="imagePreviewHelp" /></label>
-                    <small id="imagePreviewHelpTela" class="form-text text-muted">Previsualizaci&oacute;n de la imagen</small>
-                </div>
-                <div class="col">
-                    <label for="mainImageTela">Tela</label>
-                    <div class="input-group mb-3">
-                        <input type="file" name="imagenTela" class="form-control border p-1" id="mainImageTela"  />
-                        <div class="input-group-append">
-                            <span class="input-group-text bg-danger text-danger pointer" id="clearUploadTela"><i class="fas fa-times"></i></span>
-                        </div>
-                    </div>
-                    <small id="imageHelpTela" class="form-text text-muted">Selecciona la foto que desea subir.</small>
-                </div>
-            </div>
-        </div>
-    </div>
+   
     <input type="hidden" class="form-control"  id="telaEstatus" value="2">
     <div class="form-group col-sm-12">
        <button onclick="arreglo()"  class="btn btn-primary next-step float-right" type="button">Adicionar a la tabla</button>

@@ -1,4 +1,34 @@
-<form class="row" style="display: none;" th:object="${forro}" id="forroForm" th:action="@{guardar-forro}" method="post">
+<form class="row" style="display: none;" th:object="${forro}" name="forroForm" id="forroForm" th:action="@{/guardar-forro}" method="post">
+	    
+    <div class="form-group col-sm-5">
+        <label for="razonEmpresa">Composici&oacute;n</label>
+        <input type="text" id="telaComposicionf" class="form-control"  placeholder="100% algod&oacute;n">
+    </div>
+    <div class="form-group col-md-6">
+        <label for="status">Familia de composici&oacute;n</label>
+        <select id="telaFamcomposicionf" class="form-control" >
+        	<option value="">Selecciona uno...</option>
+        	<option th:each="lisFam: ${lisFam}"
+			th:value="${lisFam.idLookup}" th:text="${lisFam.nombreLookup}"></option>
+            
+        </select>
+    </div>
+     <div class="form-group col-sm-1">
+     <label for="status">Agregar</label>
+        <button id="adicionarf" onclick="guardarf()" class="btn btn-info rounded-circle" type="button"><i class="fas fa-plus"></i></button>
+        
+    </div>
+     <div class="form-group col-sm-12">
+        <table id="mytablef" class="table table-striped">
+        	<tr>
+    			<th>Tela Composicion</th>
+    			<th style="display:none;">Famila Composicion</th>
+    			<th>Famila Composicion</th>
+    			<th>Eliminar</th>
+
+  			</tr>
+        </table>
+    </div>
 	<div class="form-group col-sm-6">
         <label for="razonEmpresa">Nombre</label>
         <input type="text" th:field="*{nombreForro}" class="form-control" id="forroDescripcion" placeholder="Forro Hueso 01">
@@ -8,31 +38,70 @@
         <label for="razonEmpresa">Descripci&oacute;n</label>
         <input type="text" th:field="*{descripcionForro}"  class="form-control" id="forroDescripcion" placeholder="Forro Hueso 01">
     </div>
-    <div class="form-group col-sm-6">
-        <label for="razonEmpresa">Composici&oacute;n</label>
-        <input type="text" th:field="*{composicionForro}"  class="form-control" id="forroComposicion" placeholder="100% algod&oacute;n">
-    </div>
-    <div class="form-group col-md-6">
-        <label for="status">Familia de composici&oacute;n</label>
-        <select th:field="*{idFamiliaComposicion}"  class="form-control" id="forroFamcomposicion">
-           <option th:each="lisFam: ${lisFam}"
-			th:value="${lisFam.idLookup}" th:text="${lisFam.nombreLookup}"></option>
-			
-        </select>
-    </div>
+    
+    
     <div class="form-group col-sm-6">
         <label for="rfcEmpresa">Ancho(m)</label>
         <input th:field="*{anchoForro}"  type="number" class="form-control" id="telaAncho" placeholder="1.2">
     </div>
     <input type="hidden" class="form-control" id="forroEstatus" value="2">
     <div class="form-group col-sm-12">
-        <input type="submit" class="btn btn-primary next-step float-right" value="Guardar">
-    </div>
-    
+        <button onclick="arreglof()"  class="btn btn-primary next-step float-right" type="button">Guardar</button>
+    </div>	
+    <input name="txtTablaf" type="text" id="txtTablaf" value="">
+    <input name="txtTabla2f" type="text" id="txtTabla2f" value="">
+</form>
+
+<script>
+function guardarf(){
+	   
+    var telaComposicionf = document.getElementById("telaComposicionf").value;
+    var telaFamcomposicionf = document.getElementById("telaFamcomposicionf").value;    
+    var nombref = $( "#telaFamcomposicionf option:selected" ).text()   
+    var i = 1; //contador para asignar id al boton que borrara la fila
+   
+    var fila = '<tr id="row' + i + '"><td>' + telaComposicionf + '</td> <td style="display:none;">' + telaFamcomposicionf + '</td> <td >' + nombref + '</td>  <td><button type="button" name="remove" id="' + i + '" onclick="eliminar(this)" class="btn btn-danger btn_remove">Quitar</button></td>   </tr>'; //esto seria lo que contendria la fila
+    i++;
+    $('#mytablef tr:first').after(fila);
+    $("#adicionadosf").text(""); //esta instruccion limpia el div adicioandos para que no se vayan acumulando
+    var nFilas = $("#mytablef tr").length;
+    $("#adicionadosf").append(nFilas - 1);
+    //le resto 1 para no contar la fila del header
+    document.getElementById("telaComposicionf").value ="";
+    document.getElementById("telaFamcomposicionf").value = "";
    
     
     
     
     
-    
-</form>
+}
+function eliminarf(t) {
+	
+	  var td = t.parentNode;
+    var tr = td.parentNode;
+    var table = tr.parentNode;
+    table.removeChild(tr);
+	 
+	}
+	
+function arreglof() {
+	valores=new Array();
+	var compof="";
+	var idfamf="" ;
+	$('#mytablef tr').each(function () {
+		compof=$(this).find('td').eq(0).html()+","+compof;
+		
+		idfamf= $(this).find('td').eq(1).html()+","+idfamf;
+	      
+	  
+	  document.getElementById("txtTablaf").value = compof;
+	  document.getElementById("txtTabla2f").value = idfamf;
+	  
+	  
+	  
+	 });
+	 document.forroForm.submit()
+	}
+
+	
+</script>

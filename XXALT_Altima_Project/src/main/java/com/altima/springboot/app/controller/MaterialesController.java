@@ -10,20 +10,20 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.altima.springboot.app.models.entity.DisenioFamiliaComposicionForro;
 import com.altima.springboot.app.models.entity.DisenioFamiliaComposicionTela;
 import com.altima.springboot.app.models.entity.DisenioForro;
 import com.altima.springboot.app.models.entity.DisenioLookup;
 import com.altima.springboot.app.models.entity.DisenioMaterial;
 import com.altima.springboot.app.models.entity.DisenioProceso;
 import com.altima.springboot.app.models.entity.DisenioTela;
+import com.altima.springboot.app.models.service.IDisenioFamiliaComposicionForroService;
 import com.altima.springboot.app.models.service.IDisenioFamiliaComposicionTelaService;
 import com.altima.springboot.app.models.service.IDisenioForroService;
 import com.altima.springboot.app.models.service.IDisenioMaterialService;
@@ -40,24 +40,18 @@ public class MaterialesController {
 	
 	@Autowired
 	private IDisenioMaterialService disenioMaterialService;
-	
 	@Autowired
 	private IDisenioProcesoService disenioProcesoService;
-	
-	
-	
 	@Autowired
 	private IDisenioForroService forroService;
-	
 	@Autowired
 	private IDisenioTelaService disenioTelaService;
-	
 	@Autowired
 	private IDisenioFamiliaComposicionTelaService ComposicionTelaService;
-	
 	@Autowired
 	private IUploadService UploadService;
-	
+	@Autowired
+	private IDisenioFamiliaComposicionForroService ComposicionForroService;
 	@GetMapping("materiales") 
 	public String listMateriales(Model model) {
 		
@@ -140,38 +134,51 @@ public class MaterialesController {
 	
 	
 	@PostMapping("guardar-forro")
-	public String guardar_forro( DisenioForro forro) {
+	public String guardar_forro(
+			DisenioForro forro,
+			@RequestParam("txtTablaf") String composicion,
+			@RequestParam("txtTabla2f") String idComposicion) {
+		Date date = new Date();
+		
+		DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if(forro.getIdForro()==null) {
+		
 			forro.setIdText("FORRO");
 			forro.setCreadoPor(auth.getName());
 			forro.setClaveForro("Forro");
 			forro.setIdUnidadMedida(Long.valueOf(1));
 			forro.setConsumoPromedioForro("null");
 			forro.setExistenciaForro("36");
+			forro.setEstatus(1);
+			forro.setFechaCreacion(hourdateFormat.format(date));
+			forro.setUltimaFechaModificacion(hourdateFormat.format(date));
 			forroService.save(forro);
 			forro.setClaveForro("Forro"+forro.getIdForro());
+			
 			forroService.save(forro);
-		}else {
-			forro.setActualizadoPor(auth.getName());
-			Date date = new Date();
-			DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-			forro.setUltimaFechaModificacion(hourdateFormat.format(date));}
+			
+			String [] vect = composicion.split(",");
+			String [] vect2 = idComposicion.split(",");
+			for(int i= 0 ; i<vect.length -1;i++) {
+				DisenioFamiliaComposicionForro ff = new DisenioFamiliaComposicionForro();
+				ff.setIdFamiliaComposicion(Long.valueOf(vect2[i]));
+				ff.setIdForro(forro.getIdForro());
+				ff.setCreadoPor(auth.getName());
+				ff.setActualizadoPor("null");
+				ff.setFechaCreacion(hourdateFormat.format(date));
+				ff.setUltimaFechaModificacion(hourdateFormat.format(date));
+				ff.setComposicion(vect[i]);
+				ComposicionForroService.save(ff);
+			}
+			
 		return "redirect:materiales";
 	}
 	
 	
 	@PostMapping("guardar-tela")
 	public String guardar_tela( DisenioTela tela,
-			@RequestParam("f1") Long f1,
-			@RequestParam("f2") Long f2,
-			@RequestParam("f3") Long f3,
-			@RequestParam("b1") Long b1,
-			@RequestParam("b2") Long b2,
-			@RequestParam("b3") Long b3,
 			@RequestParam("txtTabla") String composicion,
-			@RequestParam("txtTabla2") String idComposicion,
-			@RequestParam("imagenTela") MultipartFile imagenTela
+			@RequestParam("txtTabla2") String idComposicion
 			) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
@@ -192,14 +199,8 @@ public class MaterialesController {
 		tela.setTipo("Prospecto");
 		tela.setEstatus(0);  
 		tela.setConsumo("1");
-		String uniqueFilename = null;
-		try {
-			uniqueFilename = UploadService.copyTela(imagenTela);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		tela.setFoto(uniqueFilename);
+		
+		tela.setFoto("aprueba");
 		disenioTelaService.save(tela);
 		
 		String [] vect = composicion.split(",");
@@ -219,8 +220,5 @@ public class MaterialesController {
 		}
 		return "redirect:materiales";
 	}
-	
-	
-	
 }
 

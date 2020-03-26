@@ -64,7 +64,7 @@ public class DisenioForro implements Serializable{
 	private String existenciaForro;
 	
 	@Column(name="estatus")
-	private String estatus;
+	private Integer estatus;
 
 	public Long getIdForro() {
 		return idForro;
@@ -172,11 +172,11 @@ public class DisenioForro implements Serializable{
 	}
 
 
-	public String getEstatus() {
+	public Integer getEstatus() {
 		return estatus;
 	}
 
-	public void setEstatus(String estatus) {
+	public void setEstatus(Integer estatus) {
 		this.estatus = estatus;
 	}
 
