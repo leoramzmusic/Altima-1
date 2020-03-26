@@ -50,8 +50,6 @@ public class DisenioForro implements Serializable{
 	@Column(name="nombre_forro")
 	private String nombreForro;
 	
-	@Column(name="composicion_forro")
-	private String composicionForro;
 	
 	@Column(name="ancho_forro")
 	private String anchoForro;
@@ -64,9 +62,6 @@ public class DisenioForro implements Serializable{
 	
 	@Column(name="existencia_forro")
 	private String existenciaForro;
-	
-	@Column(name="id_familia_composicion")
-	private Long idFamiliaComposicion;
 	
 	@Column(name="estatus")
 	private String estatus;
@@ -143,13 +138,6 @@ public class DisenioForro implements Serializable{
 		this.nombreForro = nombreForro;
 	}
 
-	public String getComposicionForro() {
-		return composicionForro;
-	}
-
-	public void setComposicionForro(String composicionForro) {
-		this.composicionForro = composicionForro;
-	}
 
 	public String getAnchoForro() {
 		return anchoForro;
@@ -183,13 +171,6 @@ public class DisenioForro implements Serializable{
 		this.existenciaForro = existenciaForro;
 	}
 
-	public Long getIdFamiliaComposicion() {
-		return idFamiliaComposicion;
-	}
-
-	public void setIdFamiliaComposicion(Long idFamiliaComposicion) {
-		this.idFamiliaComposicion = idFamiliaComposicion;
-	}
 
 	public String getEstatus() {
 		return estatus;
@@ -210,14 +191,12 @@ public class DisenioForro implements Serializable{
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
 		result = prime * result + ((anchoForro == null) ? 0 : anchoForro.hashCode());
 		result = prime * result + ((claveForro == null) ? 0 : claveForro.hashCode());
-		result = prime * result + ((composicionForro == null) ? 0 : composicionForro.hashCode());
 		result = prime * result + ((consumoPromedioForro == null) ? 0 : consumoPromedioForro.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((descripcionForro == null) ? 0 : descripcionForro.hashCode());
 		result = prime * result + ((estatus == null) ? 0 : estatus.hashCode());
 		result = prime * result + ((existenciaForro == null) ? 0 : existenciaForro.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
-		result = prime * result + ((idFamiliaComposicion == null) ? 0 : idFamiliaComposicion.hashCode());
 		result = prime * result + ((idForro == null) ? 0 : idForro.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
 		result = prime * result + ((idUnidadMedida == null) ? 0 : idUnidadMedida.hashCode());
@@ -250,11 +229,6 @@ public class DisenioForro implements Serializable{
 				return false;
 		} else if (!claveForro.equals(other.claveForro))
 			return false;
-		if (composicionForro == null) {
-			if (other.composicionForro != null)
-				return false;
-		} else if (!composicionForro.equals(other.composicionForro))
-			return false;
 		if (consumoPromedioForro == null) {
 			if (other.consumoPromedioForro != null)
 				return false;
@@ -284,11 +258,6 @@ public class DisenioForro implements Serializable{
 			if (other.fechaCreacion != null)
 				return false;
 		} else if (!fechaCreacion.equals(other.fechaCreacion))
-			return false;
-		if (idFamiliaComposicion == null) {
-			if (other.idFamiliaComposicion != null)
-				return false;
-		} else if (!idFamiliaComposicion.equals(other.idFamiliaComposicion))
 			return false;
 		if (idForro == null) {
 			if (other.idForro != null)
