@@ -14,9 +14,9 @@
     </div>
     <div class="form-group col-md-6">
         <label for="status">Familia de composici&oacute;n</label>
-        <select th:field="*{idFamilaComposicion}"  class="form-control" id="forroFamcomposicion">
+        <select th:field="*{idFamiliaComposicion}"  class="form-control" id="forroFamcomposicion">
            <option th:each="lisFam: ${lisFam}"
-			th:value="${lisFam.idLookup}" th:text="${lisFam.nombre}"></option>
+			th:value="${lisFam.idLookup}" th:text="${lisFam.nombreLookup}"></option>
 			
         </select>
     </div>
