@@ -62,7 +62,7 @@ public class DisenioRutaProcesoServiceImpl implements IDisenioRutaProcesoService
 	public List<Object> findByRuta(Long id) {
 		// TODO Auto-generated method stub
 		
-		return em.createNativeQuery("select p.id_ruta_proceso, p.id_proceso, nom.nombre from \r\n" + 
+		return em.createNativeQuery("select p.id_ruta_proceso, p.id_proceso, nom.nombre_lookup from \r\n" + 
 				"(select * from alt_disenio_ruta_proceso where id_ruta = "+id+") as p \r\n" + 
 				"inner join alt_disenio_lookup nom on p.id_proceso = nom.id_lookup").getResultList();
 	}
@@ -73,7 +73,7 @@ public class DisenioRutaProcesoServiceImpl implements IDisenioRutaProcesoService
 	public List<Object[]> findByRutaEntity(Long id) {
 		// TODO Auto-generated method stub
 		
-		return em.createNativeQuery("select p.id_ruta_proceso, p.id_proceso, nom.nombre from \r\n" + 
+		return em.createNativeQuery("select p.id_ruta_proceso, p.id_proceso, nom.nombre_lookup from \r\n" + 
 				"(select * from alt_disenio_ruta_proceso where id_ruta = "+id+") as p \r\n" + 
 				"inner join alt_disenio_lookup nom on p.id_proceso = nom.id_lookup").getResultList();
 	}

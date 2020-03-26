@@ -61,6 +61,7 @@ public class RutasRestController {
 			rutas.setUltimaFechaModificacion(formattedDate);
 			rutas.setClaveRuta("c");
 			rutas.setIdText("c");
+			rutas.setEstatus(1);
 			disenioruta.save(rutas);
 			rutas.setClaveRuta("CLA" +(rutas.getIdRuta()+100000));
 			rutas.setIdText("RUT0" + (rutas.getIdRuta()+100000));

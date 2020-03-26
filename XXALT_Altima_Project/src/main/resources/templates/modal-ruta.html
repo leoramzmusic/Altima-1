@@ -36,7 +36,15 @@
 					<button type="button" class="btn btn-danger mr-auto"
 						data-dismiss="modal" id="action1" onclick="vaciarModal()">Cerrar</button>
 					<button type="button" class="btn btn-primary"
-						onclick="crear_datos()">Guardar</button>
+						onclick="ValidarPrimerPestana()">Guardar</button>
+					<button type="button" class="btn btn-primary" id="action2"
+						onclick="crear_datos()" style="display: none">Guardar</button>
+				</div>
+				<div class="form-group col-sm-12" id="AlertaPestana"
+					style="display: none; color: red;">
+					<div class="float-right">
+						<label>Debes llenar todos los campos correctamente.</label>
+					</div>
 				</div>
 			</form>
 		</div>

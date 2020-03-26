@@ -28,36 +28,39 @@ public class DisenioRuta implements Serializable{
 	private Long idRuta;
 	
 	@Column(name="id_text")
-	@NotBlank
 	private String idText;
 	
 	@Column(name="nombre_ruta")
-	@NotBlank
 	private String nombreRuta;
 	
 	@Column(name="creado_por")
-	@NotBlank
 	private String creadoPor;
 	
 	@Column(name="actualizado_por")
-	@NotBlank
 	private String actualizadoPor;
 	
 	@Column(name="fecha_creacion")
-	@NotBlank
 	private String fechaCreacion;
 	
 	@Column(name="ultima_fecha_modificacion")
-	@NotBlank
 	private String ultimaFechaModificacion;
 	
 	@Column(name="clave_ruta")
-	@NotBlank
 	private String claveRuta;
 
 	@Column(name="descripcion_ruta")
-	@NotBlank
 	private String descripcionRuta;
+	
+	@Column(name="estatus")
+	private Integer Estatus;
+
+	public Integer getEstatus() {
+		return Estatus;
+	}
+
+	public void setEstatus(Integer estatus) {
+		Estatus = estatus;
+	}
 
 	public Long getIdRuta() {
 		return idRuta;

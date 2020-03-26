@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -30,10 +30,10 @@ public class DisenioLookup implements Serializable{
 	@Column(name="id_text")
 	private String idText;
 	
-	@Column(name="nombre")
+	@Column(name="nombre_lookup")
 	private String nombre;
 	
-	@Column(name="descripcion")
+	@Column(name="descripcion_lookup")
 	private String descripcion;
 	
 	@Column(name="tipo_lookup")
@@ -52,7 +52,7 @@ public class DisenioLookup implements Serializable{
 	private String ultimaFechaModificacion;
 	
 	@Column(name="estatus")
-	private int Estatus;
+	private Integer Estatus;
 
 	public Long getIdLookup() {
 		return idLookup;
@@ -147,6 +147,7 @@ public class DisenioLookup implements Serializable{
 		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
 		result = prime * result + ((idLookup == null) ? 0 : idLookup.hashCode());
+		result = prime * result + ((Estatus == null) ? 0 : Estatus.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		result = prime * result + ((tipoLookup == null) ? 0 : tipoLookup.hashCode());
@@ -207,6 +208,11 @@ public class DisenioLookup implements Serializable{
 			if (other.ultimaFechaModificacion != null)
 				return false;
 		} else if (!ultimaFechaModificacion.equals(other.ultimaFechaModificacion))
+			return false;
+		if (Estatus == null) {
+			if (other.Estatus != null)
+				return false;
+		} else if (!Estatus.equals(other.Estatus))
 			return false;
 		return true;
 	}
