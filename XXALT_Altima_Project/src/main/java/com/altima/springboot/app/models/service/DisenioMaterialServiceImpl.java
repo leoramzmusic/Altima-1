@@ -19,9 +19,7 @@ import com.altima.springboot.app.repository.DisenioMaterialRepository;
 public class DisenioMaterialServiceImpl implements IDisenioMaterialService {
 	@Autowired
 	private DisenioMaterialRepository repository;
-	
-	
-	
+
 	@Autowired
 	private EntityManager em;
 	
@@ -125,6 +123,13 @@ public class DisenioMaterialServiceImpl implements IDisenioMaterialService {
 	public Object findUno(Long id) {
 		// TODO Auto-generated method stub
 		return em.createNativeQuery("call alt_pr_onematerial(" + id +");").getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<DisenioMaterial> findAllForCreate() {
+		// TODO Auto-generated method stub
+		return em.createQuery("SELECT idMaterial, nombreMaterial FROM DisenioMaterial WHERE estatus = 1").getResultList();
 	}
 
 	

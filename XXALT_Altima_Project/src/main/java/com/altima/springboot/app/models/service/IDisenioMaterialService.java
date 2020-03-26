@@ -24,7 +24,6 @@ public interface IDisenioMaterialService {
 	
 	List<DisenioLookup> findListaClasificacion();
 	
-	
 	public List <Object []> disenioMaterial ();
 	
 	List<DisenioLookup> findLookUps();
@@ -33,9 +32,6 @@ public interface IDisenioMaterialService {
 	
 	Object findUno(Long id);
 	
-	
-	
-
-
+	List<DisenioMaterial> findAllForCreate();
 }
 

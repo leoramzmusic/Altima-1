@@ -135,9 +135,7 @@ public class AgregarPrendaRestController
 		dp.setCombinacion(prenda.get("combinacion").toString());
 		dp.setTotalPrendas(prenda.get("totalPrendas").toString());
 		dp.setMostrar(prenda.get("mostrar").toString());
-		dp.setIdLookup(Long.valueOf(prenda.get("idLookup").toString()));
-		dp.setIdLookup2(Long.valueOf(prenda.get("idLookup2").toString()));
-		dp.setIdLookup3(Long.valueOf(prenda.get("idLookup3").toString()));
+		dp.setEstatus(0L);
 		
 		return dp;
 	}
@@ -145,6 +143,8 @@ public class AgregarPrendaRestController
 	@RequestMapping(value="/guardar_final", method=RequestMethod.GET)
 	public void guardarFinal( @RequestParam(name = "objeto_materiales") String objeto_materiales, @RequestParam(name = "objeto_patronaje") String objeto_patronaje) throws NoSuchFieldException, SecurityException
 	{
+		prendaService.save(dp);
+		dp.setIdText("PRE" + (1000 + dp.getIdPrenda()));
 		prendaService.save(dp);
 		
 		//Coso del auth
@@ -156,8 +156,8 @@ public class AgregarPrendaRestController
 		{
 			JSONObject material = materiales.getJSONObject(i);
 			DisenioMaterialPrenda mdp = new DisenioMaterialPrenda();
-			mdp.setidMaterial(Long.valueOf(material.get("id").toString()));
-			mdp.setidPrenda(Long.valueOf( dp.getIdPrenda()));
+			mdp.setIdMaterial(Long.valueOf(material.get("id").toString()));
+			mdp.setIdPrenda(Long.valueOf( dp.getIdPrenda()));
 			mdp.setCreadoPor(auth.getName());
 			mdp.setActualizadoPor(auth.getName());
 			materialPrendaService.save(mdp);

@@ -2,6 +2,42 @@ $(document).ready(function() {
 
 });
 
+function readURL(input) 
+{
+	  if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+
+	    reader.onload = function(e) {
+	      $('#blah1').attr('src', e.target.result);
+	    }
+
+	    reader.readAsDataURL(input.files[0]); // convert to base64 string
+	  }
+}
+
+function readURL2(input) 
+{
+	  if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+
+	    reader.onload = function(e) {
+	      $('#blah2').attr('src', e.target.result);
+	    }
+
+	    reader.readAsDataURL(input.files[0]); // convert to base64 string
+	  }
+}
+
+	$("#file").change(function() 
+	{
+	  readURL(this);
+	});
+
+	$("#file2").change(function() 
+	{
+		readURL2(this);
+	});
+
 function RecogerDatosPrimeraParte()
 {
 	var today = new Date(); 
@@ -62,22 +98,19 @@ function RecogerDatosPrimeraParte()
 		objeto_prenda['imprimirEtiquetas'] = "0";
 	}
 }
-
 function RecogerDatosSegundaParte()
 {
 	objeto_prenda['detalleConfeccion'] = $('#DetalleConfeccion').val();
 	objeto_prenda['marcadores'] = $('#Marcadores').val();
 }
-
-
 function SacarListaMateriales()
 {
 	console.log(objeto_patronaje);
 }
-
 function AgregarElementoListaMateriales()
 {
 	var id = $('#ListaDeMateriales').val();
+	$('#AgregarElementoMaterial').prop('disabled', true);
 
 	//Solicitud Ajax para obtener los demas campos.
 
@@ -87,7 +120,8 @@ function AgregarElementoListaMateriales()
         data: { id },
         success: (data) =>{	
         	console.log(data);
-        	
+        	$('#AgregarElementoMaterial').prop('disabled', false);
+
 
         	var identidad = id + '_' + data[0][1];
         	var temp = {identidad: identidad, id: data[0][0], NoMaterial: data[0][1], Nombre: data[0][8], Clasificacion: data[0][3], Tamanio: data[0][5] + ' ' + data[0][4],
@@ -95,7 +129,6 @@ function AgregarElementoListaMateriales()
         	
         	objeto_materiales.push(temp);
         	console.log(temp);
-
         	$('#CuerpoTablaMateriales').append("<tr id='RemoverElemento-" + identidad + "'>" + 
         											"<td>" + data[0][1] + "</td>" + 
         											"<th scope='row'>" + data[0][8] +"</th>" +
@@ -115,16 +148,13 @@ function AgregarElementoListaMateriales()
 			console.log(e);
 		}
 	});
-
 }
-
 function QuitarMaterial(identidad)
 {
 	$('#RemoverElemento-' + identidad).remove();
 	var removeIndex = objeto_materiales.map(function(item) { return item.identidad; }).indexOf(identidad);
 	objeto_materiales.splice(removeIndex, 1);
 }
-
 function CambiarCantidadMaterial(identidad)
 {
 	var cantidad = parseInt($('#CantidadMaterial-' + identidad).val(), 10);
@@ -136,7 +166,8 @@ function CambiarCantidadMaterial(identidad)
 function AgregarElementoListaPatronaje()
 {
 	//Se recogen variables
-	
+
+	$('#BotonAgregarPatronaje').prop('disabled', true);
 	var id = $('#ListaPatronaje').val();
 	var nombre = "Jsjjs";
 	var cantidadTela = $('#CantidadTela').val();
@@ -150,6 +181,7 @@ function AgregarElementoListaPatronaje()
         data: { id },
         success: (data) =>{
         	console.log(data);
+        	$('#BotonAgregarPatronaje').prop('disabled', false);
         	var identidad = data[0] + '_' + data[1];
         	var temp = {identidad: identidad, id: data[0], cantidadTela: cantidadTela, cantidadForro: cantidadForro, cantidadEntretela: cantidadEntretela};
         	objeto_patronaje.push(temp);
@@ -166,22 +198,18 @@ function AgregarElementoListaPatronaje()
 										  	  		"</button>" + 
 										  	  "</td>" +
 										 "</tr>");
-
 			},
 			error: (e) => {
 				console.log(e);
 			}
 			});
-
 }
-
 function QuitarPatronaje(identidad)
 {
 	$('#QuitarFilaPatronaje-' + identidad).remove();
 	var removeIndex = objeto_patronaje.map(function(item) { return item.identidad; }).indexOf(identidad);
 	objeto_patronaje.splice(removeIndex, 1);
 }
-
 function Guardar()
 {
 	RecogerDatosPrimeraParte();
@@ -229,4 +257,72 @@ function Guardar()
 	}); 
 }
 
+function ValidarPrimerPestana()
+{
+	if($('#NombrePrenda').val() != "" && $('#DescripcionPrenda').val() != "" && $('#NotaEspecial').val() != "" 
+		&& $('#Ruta').val() != "" && $('#DetallePrenda').val() != "" && $('#file').val() != ""
+			&& $('#file2').val() != "" && $('#TipoPrenda').val() != "")
+	{
+		$('#AlertaPrimerPestana').css('display', 'none');
+		$('#SiguientePrimeraPestana').click();
+	}
+	else
+	{
+		$('#AlertaPrimerPestana').css('display', 'block');
+	}
+}
 
+function ValidarSegundaPestana()
+{
+	if($('#DetalleConfeccion').val() != "" && $('#Marcadores').val() != "")
+	{
+		$('#AlertaSegundaPestana').css('display', 'none');
+		$('#SiguienteSegundaPestana').click();
+		console.log('lleno');
+	}
+	else
+	{
+		$('#AlertaSegundaPestana').css('display', 'block');
+		console.log('vacio');
+	}
+}
+
+function ValidarTerceraPestana()
+{
+	if(objeto_materiales.length === 0)
+	{
+		$('#AlertaTerceraPestana').css('display', 'block');
+	}
+	else
+	{
+		$('#AlertaTerceraPestana').css('display', 'none');
+		$('#SiguienteTerceraPestana').click();
+	}
+}
+
+function ValidarCuartaPestana()
+{
+	if(objeto_patronaje.length === 0)
+	{
+		$('#AlertaCuartaPestana').css('display', 'block');
+	}
+	else
+	{
+		$('#AlertaCuartaPestana').css('display', 'none');
+		$('#SiguienteCuartaPestana').click();
+		console.log('le di clic');
+	}
+}
+
+function ValidarCantidadesPatronaje()
+{
+	if($('#CantidadTela').val() != "" && $('#CantidadForro').val() != "" && $('#CantidadEntretela').val() != "" )
+	{
+		$('#AlertaCantidadesPatronaje').css('display', 'none');
+		AgregarElementoListaPatronaje();
+	}
+	else
+	{
+		$('#AlertaCantidadesPatronaje').css('display', 'block');
+	}
+}

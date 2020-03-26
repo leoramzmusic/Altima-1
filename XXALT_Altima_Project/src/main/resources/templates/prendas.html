@@ -76,7 +76,7 @@
                                                 <th>Descripci&oacute;n</th>
                                                 <th>Tipo</th>
                                                 <th>Estatus</th>
-                                                <th></th>
+                                                <th>Acciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -86,7 +86,8 @@
                                                 <td th:text="${prenda.idFamiliaPrenda}"></td>
                                                 <td th:text="${prenda.detalleConfeccion}">Activo</td>
                                                 <td class="tdcenter">
-                                                    <a th:href="${'detalle-prenda'}" class="btn btn-warning popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Ver m&aacute;s detalles" style="border-radius: 35%;"><i class="fas fa-info"></i></a>&nbsp;
+                                                    <a th:href="${'detalle-prenda'}" class="btn btn-info popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Ver m&aacute;s detalles" style="border-radius: 35%;"><i class="fas fa-info"></i></a>&nbsp;
+                                                    <a th:href="@{/editar-prenda/} + ${prenda.IdPrenda}" class="btn btn-warning popoverxd" style="border-radius: 35%;"><i class="fas fa-edit"></i></a>&nbsp;
                                                 </td>
                                             </tr>
                                         </tbody>
