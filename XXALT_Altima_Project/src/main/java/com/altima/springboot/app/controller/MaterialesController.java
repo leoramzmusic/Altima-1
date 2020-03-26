@@ -33,9 +33,9 @@ import com.altima.springboot.app.models.service.IDisenioTelaService;
 import com.altima.springboot.app.models.service.IUploadService;
 
 
-@CrossOrigin(origins = { "*" })
+
 @Controller
-@RequestMapping("/")
+
 public class MaterialesController {
 	
 	
