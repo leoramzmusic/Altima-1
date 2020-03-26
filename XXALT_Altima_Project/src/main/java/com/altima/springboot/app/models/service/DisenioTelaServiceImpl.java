@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.altima.springboot.app.models.entity.DisenioFamiliaComposicion;
 import com.altima.springboot.app.models.entity.DisenioLookup;
 import com.altima.springboot.app.models.entity.DisenioPrenda;
 import com.altima.springboot.app.models.entity.DisenioTela;
@@ -49,18 +48,20 @@ public class DisenioTelaServiceImpl implements IDisenioTelaService {
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
-	public List<DisenioPrenda> findAllPrenda() {
+	public List<DisenioLookup> findAllFamilaComposicion() {
 		// TODO Auto-generated method stub
-		return em.createQuery("from DisenioPrenda").getResultList();
+		return em.createQuery("from DisenioLookup where tipo_lookup = 'Familia Composicion'").getResultList();
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
-	public List<DisenioFamiliaComposicion> findAllFamComposicion(){
+	public List<DisenioPrenda> findAllPrenda() {
 		// TODO Auto-generated method stub
-		return em.createQuery("from DisenioFamiliaComposicion").getResultList();
+		return em.createQuery("from DisenioPrenda").getResultList();
 	}
+	
+	
 	
 	@Override
 	@Transactional

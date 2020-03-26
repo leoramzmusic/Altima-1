@@ -109,7 +109,7 @@ public class DisenioTela implements Serializable{
 	private String tipo;
 	
 	@Column(name="estatus")
-	private String estatus;
+	private Integer estatus;
 
 	public Long getIdTela() {
 		return idTela;
@@ -303,11 +303,11 @@ public class DisenioTela implements Serializable{
 		this.tipo = tipo;
 	}
 
-	public String getEstatus() {
+	public Integer getEstatus() {
 		return estatus;
 	}
 
-	public void setEstatus(String estatus) {
+	public void setEstatus(Integer estatus) {
 		this.estatus = estatus;
 	}
 

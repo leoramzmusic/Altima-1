@@ -1,4 +1,5 @@
 <form class="row" style="display: none;" id="telaForm" name="telaForm" th:method="post" th:action="@{/guardar-tela}" enctype="multipart/form-data">
+    
     <div class="form-group col-sm-5">
         <label for="razonEmpresa">Composici&oacute;n</label>
         <input type="text" id="telaComposicion" class="form-control"  placeholder="100% algod&oacute;n">
@@ -7,8 +8,9 @@
         <label for="status">Familia de composici&oacute;n</label>
         <select id="telaFamcomposicion" class="form-control" >
         	<option value="">Selecciona uno...</option>
-            <option th:each="lisFam:${lisFam}"
-			th:value="${lisFam.idFamiliaComposicion}" th:text="${lisFam.nombreFamiliaComposicion}"></option>
+        	<option th:each="lisFam: ${lisFam}"
+			th:value="${lisFam.idLookup}" th:text="${lisFam.nombre}"></option>
+            
         </select>
     </div>
      <div class="form-group col-sm-1">
@@ -26,6 +28,10 @@
 
   			</tr>
         </table>
+    </div>
+    <div class="form-group col-sm-12">
+        <label for="razonEmpresa">Nombre</label>
+        <input type="text" th:field="*{tela.nombreTela}" class="form-control" placeholder="Tela lickra">
     </div>
     <div class="form-group col-sm-4">
         <label for="rfcEmpresa">Ancho(m)</label>
