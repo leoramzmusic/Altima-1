@@ -641,7 +641,7 @@ function agregarMarca() {
 	    })
 	    .done(function( data ) {
 	    	
-	    	listarRutas();
+	    	listarMarcas();
   });
 	    
 	        Swal.fire({
@@ -782,6 +782,8 @@ Swal.fire({
 		        	// ,'Descripcion':Descripcion
 		        }
 		       
+		    }).done(function(data){
+		    	listarColores();
 		    });
 		        Swal.fire({
 		          position: 'center',
@@ -790,7 +792,7 @@ Swal.fire({
 		          showConfirmButton: false,
 		          timer: 1250
 		        })
-		        window.setTimeout(function(){location.reload()}, 2000);
+		      ///  window.setTimeout(function(){location.reload()}, 2000);
 		      }
 		    })
 	  }
