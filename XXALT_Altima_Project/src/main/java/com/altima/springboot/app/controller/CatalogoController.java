@@ -1,6 +1,6 @@
 package com.altima.springboot.app.controller;
 
-import java.io.Console;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -115,11 +115,11 @@ public class CatalogoController {
 			System.out.println("entra");
 			DisenioLookup marca = new DisenioLookup();
 			marca.setIdText("MAR004");
-			marca.setNombre(Marca);
+			marca.setNombreLookup(Marca);
 			marca.setTipoLookup("Marca");
 			marca.setCreadoPor(auth.getName());
 			marca.setFechaCreacion(date);
-			marca.SetEstatus(1);
+			marca.setEstatus(1);
 			catalogo.save(marca);
 			marca.setIdText("MAR00" + (marca.getIdLookup() + 10));
 			catalogo.save(marca);
@@ -128,11 +128,11 @@ public class CatalogoController {
 		if (Color != null) {
 			DisenioLookup color = new DisenioLookup();
 			color.setIdText("COL004");
-			color.setNombre(Color);
+			color.setNombreLookup(Color);
 			color.setTipoLookup("Color");
 			color.setCreadoPor(auth.getName());
 			color.setFechaCreacion(date);
-			color.SetEstatus(1);
+			color.setEstatus(1);
 			catalogo.save(color);
 			color.setIdText("COL00" + (color.getIdLookup() + 10));
 			catalogo.save(color);
@@ -141,11 +141,11 @@ public class CatalogoController {
 		if (PiezaTrazo != null) {
 			DisenioLookup piezatrazo = new DisenioLookup();
 			piezatrazo.setIdText("COL004");
-			piezatrazo.setNombre(PiezaTrazo);
+			piezatrazo.setNombreLookup(PiezaTrazo);
 			piezatrazo.setTipoLookup("Pieza Trazo");
 			piezatrazo.setCreadoPor(auth.getName());
 			piezatrazo.setFechaCreacion(date);
-			piezatrazo.SetEstatus(1);
+			piezatrazo.setEstatus(1);
 			catalogo.save(piezatrazo);
 			piezatrazo.setIdText("PZTR00" + (piezatrazo.getIdLookup() + 10));
 			catalogo.save(piezatrazo);
@@ -154,12 +154,12 @@ public class CatalogoController {
 		if (FamiliaPrenda != null) {
 			DisenioLookup familiaprenda = new DisenioLookup();
 			familiaprenda.setIdText("Fam004");
-			familiaprenda.setNombre(FamiliaPrenda);
-			familiaprenda.setDescripcion(Descripcion);
+			familiaprenda.setNombreLookup(FamiliaPrenda);
+			familiaprenda.setDescripcionLookup(Descripcion);
 			familiaprenda.setTipoLookup("Familia Prenda");
 			familiaprenda.setCreadoPor(auth.getName());
 			familiaprenda.setFechaCreacion(date);
-			familiaprenda.SetEstatus(1);
+			familiaprenda.setEstatus(1);
 			catalogo.save(familiaprenda);
 			familiaprenda.setIdText("FAMPR00" + (familiaprenda.getIdLookup() + 10));
 			catalogo.save(familiaprenda);
@@ -168,11 +168,11 @@ public class CatalogoController {
 		if (FamiliaGenero != null) {
 			DisenioLookup familiagenero = new DisenioLookup();
 			familiagenero.setIdText("Fam004");
-			familiagenero.setNombre(FamiliaGenero);
+			familiagenero.setNombreLookup(FamiliaGenero);
 			familiagenero.setTipoLookup("Familia Genero");
 			familiagenero.setCreadoPor(auth.getName());
 			familiagenero.setFechaCreacion(date);
-			familiagenero.SetEstatus(1);
+			familiagenero.setEstatus(1);
 			catalogo.save(familiagenero);
 			familiagenero.setIdText("FAMGE00" + (familiagenero.getIdLookup() + 10));
 			catalogo.save(familiagenero);
@@ -181,11 +181,11 @@ public class CatalogoController {
 		if (FamiliaComposicion != null) {
 			DisenioLookup familiacomposicion = new DisenioLookup();
 			familiacomposicion.setIdText("Fam004");
-			familiacomposicion.setNombre(FamiliaComposicion);
+			familiacomposicion.setNombreLookup(FamiliaComposicion);
 			familiacomposicion.setTipoLookup("Familia Composicion");
 			familiacomposicion.setCreadoPor(auth.getName());
 			familiacomposicion.setFechaCreacion(date);
-			familiacomposicion.SetEstatus(1);
+			familiacomposicion.setEstatus(1);
 			catalogo.save(familiacomposicion);
 			familiacomposicion.setIdText("FAMCOMP00" + (familiacomposicion.getIdLookup() + 10));
 			catalogo.save(familiacomposicion);
@@ -194,11 +194,11 @@ public class CatalogoController {
 		if (InstruccionCuidado != null) {
 			DisenioLookup instruccioncuidado = new DisenioLookup();
 			instruccioncuidado.setIdText("Fam004");
-			instruccioncuidado.setNombre(InstruccionCuidado);
+			instruccioncuidado.setNombreLookup(InstruccionCuidado);
 			instruccioncuidado.setTipoLookup("Instruccion Cuidado");
 			instruccioncuidado.setCreadoPor(auth.getName());
 			instruccioncuidado.setFechaCreacion(date);
-			instruccioncuidado.SetEstatus(1);
+			instruccioncuidado.setEstatus(1);
 			catalogo.save(instruccioncuidado);
 			instruccioncuidado.setIdText("INSTRCU00" + (instruccioncuidado.getIdLookup() + 10));
 			catalogo.save(instruccioncuidado);
@@ -222,7 +222,7 @@ public class CatalogoController {
 		DisenioLookup instruccioncuidado = null;
 		if (Marca != null && idLookup > 0) {
 			marca = catalogo.findOne(idLookup);
-			marca.setNombre(Marca);
+			marca.setNombreLookup(Marca);
 			marca.setUltimaFechaModificacion(date);
 			marca.setActualizadoPor(auth.getName());
 			catalogo.save(marca);
@@ -230,7 +230,7 @@ public class CatalogoController {
 		}
 		if (Color != null && idLookup > 0) {
 			color = catalogo.findOne(idLookup);
-			color.setNombre(Color);
+			color.setNombreLookup(Color);
 			color.setUltimaFechaModificacion(date);
 			color.setActualizadoPor(auth.getName());
 			catalogo.save(color);
@@ -238,7 +238,7 @@ public class CatalogoController {
 		}
 		if (PiezaTrazo != null && idLookup > 0) {
 			piezatrazo = catalogo.findOne(idLookup);
-			piezatrazo.setNombre(PiezaTrazo);
+			piezatrazo.setNombreLookup(PiezaTrazo);
 			piezatrazo.setUltimaFechaModificacion(date);
 			piezatrazo.setActualizadoPor(auth.getName());
 			catalogo.save(piezatrazo);
@@ -246,8 +246,8 @@ public class CatalogoController {
 		}
 		if (FamiliaPrenda != null && idLookup > 0) {
 			familiaprenda = catalogo.findOne(idLookup);
-			familiaprenda.setNombre(FamiliaPrenda);
-			familiaprenda.setDescripcion(Descripcion);
+			familiaprenda.setNombreLookup(FamiliaPrenda);
+			familiaprenda.setDescripcionLookup(Descripcion);
 			familiaprenda.setUltimaFechaModificacion(date);
 			familiaprenda.setActualizadoPor(auth.getName());
 			catalogo.save(familiaprenda);
@@ -255,7 +255,7 @@ public class CatalogoController {
 		}
 		if (FamiliaGenero != null && idLookup > 0) {
 			familiagenero = catalogo.findOne(idLookup);
-			familiagenero.setNombre(FamiliaGenero);
+			familiagenero.setNombreLookup(FamiliaGenero);
 			familiagenero.setUltimaFechaModificacion(date);
 			familiagenero.setActualizadoPor(auth.getName());
 			catalogo.save(familiagenero);
@@ -263,7 +263,7 @@ public class CatalogoController {
 		}
 		if (FamiliaComposicion != null && idLookup > 0) {
 			familiacomposicion = catalogo.findOne(idLookup);
-			familiacomposicion.setNombre(FamiliaComposicion);
+			familiacomposicion.setNombreLookup(FamiliaComposicion);
 			familiacomposicion.setUltimaFechaModificacion(date);
 			familiacomposicion.setActualizadoPor(auth.getName());
 			catalogo.save(familiacomposicion);
@@ -271,7 +271,7 @@ public class CatalogoController {
 		}
 		if (InstruccionCuidado != null && idLookup > 0) {
 			instruccioncuidado = catalogo.findOne(idLookup);
-			instruccioncuidado.setNombre(InstruccionCuidado);
+			instruccioncuidado.setNombreLookup(InstruccionCuidado);
 			instruccioncuidado.setUltimaFechaModificacion(date);
 			instruccioncuidado.setActualizadoPor(auth.getName());
 			catalogo.save(instruccioncuidado);
