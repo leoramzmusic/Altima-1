@@ -37,23 +37,65 @@ public class CatalogoController {
 	@Autowired
 	ICatalogoService catalogo;
 
-	@RequestMapping(value = "/orders", method = RequestMethod.POST)
+	@RequestMapping(value = "/marcas", method = RequestMethod.GET)
 	@ResponseBody
-	public List<DisenioLookup> accountSummary() {
+	public List<DisenioLookup> marcas() {
 
 		return catalogo.findAllMarca();
+	}
+
+	@RequestMapping(value = "/colores", method = RequestMethod.GET)
+	@ResponseBody
+	public List<DisenioLookup> colores() {
+
+		return catalogo.findAllColor();
+	}
+
+	@RequestMapping(value = "/trazos", method = RequestMethod.GET)
+	@ResponseBody
+	public List<DisenioLookup> trazos() {
+
+		return catalogo.findAllPzasTrazo();
+	}
+
+	@RequestMapping(value = "/prendaslook", method = RequestMethod.GET)
+	@ResponseBody
+	public List<DisenioLookup> prendas() {
+
+		return catalogo.findAllFamPrendas();
+	}
+
+	@RequestMapping(value = "/generos", method = RequestMethod.GET)
+	@ResponseBody
+	public List<DisenioLookup> generos() {
+
+		return catalogo.findAllFamGenero();
+	}
+
+	@RequestMapping(value = "/composiciones", method = RequestMethod.GET)
+	@ResponseBody
+	public List<DisenioLookup> composiciones() {
+
+		return catalogo.findAllFamComposicion();
+	}
+
+	@RequestMapping(value = "/cuidados", method = RequestMethod.GET)
+	@ResponseBody
+	public List<DisenioLookup> cuidados() {
+
+		return catalogo.findAllInstrCuidado();
 	}
 
 	@RequestMapping(value = { "/catalogos", "/catalogos-marcas" }, method = RequestMethod.GET)
 	public String catalogo(Model model, RedirectAttributes flash) {
 		model.addAttribute("marcas", catalogo.findAllMarca());
-		//Gson gson = new Gson();
+		// Gson gson = new Gson();
 		// convert your list to json
-		//String marca = gson.toJson(catalogo.findAllMarca());
+		// String marca = gson.toJson(catalogo.findAllMarca());
 		// print your generated json
-		//System.out.println("{" + "\"marca\": " + marca + "}");
-		//model.addAttribute("colores22", marca);
-		//model.addAttribute("marca", "{" + "\"marca\": " + marca + "}");
+		// System.out.println("{" + "\"marca\": " + marca + "}");
+		// model.addAttribute("colores22", marca);
+		// model.addAttribute("marca", "{" + "\"marca\": " + marca + "}");
 		model.addAttribute("colores", catalogo.findAllColor());
 		model.addAttribute("pzastrazo", catalogo.findAllPzasTrazo());
 		model.addAttribute("famprendas", catalogo.findAllFamPrendas());
@@ -77,6 +119,7 @@ public class CatalogoController {
 			marca.setTipoLookup("Marca");
 			marca.setCreadoPor(auth.getName());
 			marca.setFechaCreacion(date);
+			marca.SetEstatus(1);
 			catalogo.save(marca);
 			marca.setIdText("MAR00" + (marca.getIdLookup() + 10));
 			catalogo.save(marca);
@@ -89,6 +132,7 @@ public class CatalogoController {
 			color.setTipoLookup("Color");
 			color.setCreadoPor(auth.getName());
 			color.setFechaCreacion(date);
+			color.SetEstatus(1);
 			catalogo.save(color);
 			color.setIdText("COL00" + (color.getIdLookup() + 10));
 			catalogo.save(color);
@@ -101,6 +145,7 @@ public class CatalogoController {
 			piezatrazo.setTipoLookup("Pieza Trazo");
 			piezatrazo.setCreadoPor(auth.getName());
 			piezatrazo.setFechaCreacion(date);
+			piezatrazo.SetEstatus(1);
 			catalogo.save(piezatrazo);
 			piezatrazo.setIdText("PZTR00" + (piezatrazo.getIdLookup() + 10));
 			catalogo.save(piezatrazo);
@@ -114,6 +159,7 @@ public class CatalogoController {
 			familiaprenda.setTipoLookup("Familia Prenda");
 			familiaprenda.setCreadoPor(auth.getName());
 			familiaprenda.setFechaCreacion(date);
+			familiaprenda.SetEstatus(1);
 			catalogo.save(familiaprenda);
 			familiaprenda.setIdText("FAMPR00" + (familiaprenda.getIdLookup() + 10));
 			catalogo.save(familiaprenda);
@@ -126,6 +172,7 @@ public class CatalogoController {
 			familiagenero.setTipoLookup("Familia Genero");
 			familiagenero.setCreadoPor(auth.getName());
 			familiagenero.setFechaCreacion(date);
+			familiagenero.SetEstatus(1);
 			catalogo.save(familiagenero);
 			familiagenero.setIdText("FAMGE00" + (familiagenero.getIdLookup() + 10));
 			catalogo.save(familiagenero);
@@ -138,6 +185,7 @@ public class CatalogoController {
 			familiacomposicion.setTipoLookup("Familia Composicion");
 			familiacomposicion.setCreadoPor(auth.getName());
 			familiacomposicion.setFechaCreacion(date);
+			familiacomposicion.SetEstatus(1);
 			catalogo.save(familiacomposicion);
 			familiacomposicion.setIdText("FAMCOMP00" + (familiacomposicion.getIdLookup() + 10));
 			catalogo.save(familiacomposicion);
@@ -150,6 +198,7 @@ public class CatalogoController {
 			instruccioncuidado.setTipoLookup("Instruccion Cuidado");
 			instruccioncuidado.setCreadoPor(auth.getName());
 			instruccioncuidado.setFechaCreacion(date);
+			instruccioncuidado.SetEstatus(1);
 			catalogo.save(instruccioncuidado);
 			instruccioncuidado.setIdText("INSTRCU00" + (instruccioncuidado.getIdLookup() + 10));
 			catalogo.save(instruccioncuidado);
@@ -229,11 +278,5 @@ public class CatalogoController {
 			return "redirect:catalogos";
 		}
 		return "redirect:catalogos";
-	}
-	
-	@PostMapping("/save")
-	public String save (String[] name,HttpServletRequest request) {
-		System.out.println("hola ");
-		return null;
 	}
 }
