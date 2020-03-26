@@ -59,7 +59,7 @@ public class DisenioMaterialServiceImpl implements IDisenioMaterialService {
 	@Transactional
 	public List<DisenioLookup> findListaLookupMat(){
 	
-		return em.createQuery("SELECT idLookup, nombre, tipoLookup FROM DisenioLookup WHERE tipoLookup= 'material' and   estatus=1").getResultList();
+		return em.createQuery("SELECT idLookup, nombreLookup, tipoLookup FROM DisenioLookup WHERE tipoLookup= 'material' and   estatus=1").getResultList();
 	}
 	
 	
@@ -69,7 +69,7 @@ public class DisenioMaterialServiceImpl implements IDisenioMaterialService {
 	@Transactional
 	public List<DisenioLookup> findListaLookupMed(){
 	
-		return em.createQuery("SELECT idLookup, nombre, tipoLookup FROM DisenioLookup WHERE tipoLookup= 'medida' and   estatus=1").getResultList();
+		return em.createQuery("SELECT idLookup, nombreLookup, tipoLookup FROM DisenioLookup WHERE tipoLookup= 'medida' and   estatus=1").getResultList();
 	}
 	
 	
@@ -78,7 +78,7 @@ public class DisenioMaterialServiceImpl implements IDisenioMaterialService {
 	@Transactional
 	public List<DisenioLookup> findListaMarcas(){
 	
-		return em.createQuery("SELECT idLookup, nombre, tipoLookup FROM DisenioLookup WHERE tipoLookup= 'Marca' and   estatus=1").getResultList();
+		return em.createQuery("SELECT idLookup, nombreLookup, tipoLookup FROM DisenioLookup WHERE tipoLookup= 'Marca' and   estatus=1").getResultList();
 	}
 	
 	
@@ -88,7 +88,7 @@ public class DisenioMaterialServiceImpl implements IDisenioMaterialService {
 	@Transactional
 	public List<DisenioLookup> findListaClasificacion(){
 	
-		return em.createQuery("SELECT idLookup, nombre, tipoLookup FROM DisenioLookup WHERE tipoLookup= 'clasificacion' and   estatus=1").getResultList();
+		return em.createQuery("SELECT idLookup, nombreLookup, tipoLookup FROM DisenioLookup WHERE tipoLookup= 'clasificacion' and   estatus=1").getResultList();
 	}
 	
 	
@@ -130,6 +130,16 @@ public class DisenioMaterialServiceImpl implements IDisenioMaterialService {
 	public List<DisenioMaterial> findAllForCreate() {
 		// TODO Auto-generated method stub
 		return em.createQuery("SELECT idMaterial, nombreMaterial FROM DisenioMaterial WHERE estatus = 1").getResultList();
+	}
+	
+	
+
+@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<DisenioLookup> findListaColor(){
+	
+		return em.createQuery("SELECT idLookup, nombreLookup, tipoLookup FROM DisenioLookup WHERE tipoLookup= 'color' and   estatus=1").getResultList();
 	}
 
 	

@@ -6,9 +6,39 @@
     
     
     
-    <div class="form-group col-sm-12">
+    <div class="form-group col-sm-3">
         <label   for="nombreMaterial">Nombre del  Material</label>
         <input type="text"   th:field="*{nombreMaterial}" class="form-control" id="nombreMaterial" placeholder="Nombre del material...">
+    </div>
+    
+      <div class="form-group col-sm-3">
+        <label   for="idTipoMaterial">Tipo de Material</label>
+         <select  class="form-control"   th:field="*{idTipoMaterial}"  id="idTipoMaterial">
+                    <option th:each="listLookupsMat:${listLookupsMat}"
+            
+                    th:value="${listLookupsMat[0]}"
+                    th:text="${listLookupsMat[1]}"
+            
+            />
+           
+            
+        </select>
+    </div>
+    
+    
+    
+      <div class="form-group col-sm-3">
+        <label   for="idColor">Color</label>
+         <select  class="form-control"   th:field="*{idColor}"  id="idColor">
+                    <option th:each="listLookupsCol:${listLookupsCol}"
+            
+                    th:value="${listLookupsCol[0]}"
+                    th:text="${listLookupsCol[1]}"
+            
+            />
+           
+            
+        </select>
     </div>
     <div class="form-group col-sm-3">
         <label   for="materialDescripcion">Descripci&oacute;n</label>
