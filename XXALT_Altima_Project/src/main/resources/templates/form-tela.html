@@ -6,13 +6,14 @@
     <div class="form-group col-md-6">
         <label for="status">Familia de composici&oacute;n</label>
         <select id="telaFamcomposicion" class="form-control" >
+        	<option value="">Selecciona uno...</option>
             <option th:each="lisFam:${lisFam}"
 			th:value="${lisFam.idFamiliaComposicion}" th:text="${lisFam.nombreFamiliaComposicion}"></option>
         </select>
     </div>
      <div class="form-group col-sm-1">
      <label for="status">Agregar</label>
-        <button id="adicionar" onclick="guardar()" class="btn btn-success" type="button">Adicionar a la tabla</button>
+        <button id="adicionar" onclick="guardar()" class="btn btn-info rounded-circle" type="button"><i class="fas fa-plus"></i></button>
         
     </div>
      <div class="form-group col-sm-12">
@@ -37,6 +38,7 @@
     <div class="form-group col-sm-4">
         <label for="status">Prenda</label>
         <select class="form-control" th:field="*{tela.idPrenda}">
+        	<option value="">Selecciona uno...</option>
              <option th:each="listPrendas: ${listPrendas}"
 			th:value="${listPrendas.idPrenda}" th:text="${listPrendas.nombrePrenda}"></option>
         </select>
@@ -44,6 +46,7 @@
     <div class="form-group col-sm-6">
         <label for="status">Color</label>
         <select class="form-control" th:field="*{tela.idColor}">
+        <option value="">Selecciona uno...</option>
             <option th:each="listColor: ${listColor}"
 			th:value="${listColor.idLookup}" th:text="${listColor.nombre}"></option>
         </select>
@@ -51,6 +54,7 @@
     <div class="form-group col-sm-6">
         <label for="status">Proveedor</label>
         <select class="form-control"  th:field="*{tela.idProveedor}">
+        <option value="">Selecciona uno...</option>
             <option value ="1">MAR01 Nike</option>
             <option value ="2">MAR02 Adidas</option>
             <option value ="3">MAR03 Joma</option>
@@ -62,6 +66,7 @@
     <div class="form-group col-sm-4">
         <label for="status">Forro principal</label>
         <select name="f1" class="form-control" >
+        <option value="">Selecciona uno...</option>
             <option th:each="listForro: ${listForro}"
 			th:value="${listForro.idForro}" th:text="${listForro.nombreForro}"></option>
         </select>
@@ -69,6 +74,7 @@
     <div class="form-group col-sm-4">
         <label for="status">Forro secundario</label>
         <select name="f2"  class="form-control">
+        <option value="">Selecciona uno...</option>
             <option th:each="listForro: ${listForro}"
 			th:value="${listForro.idForro}" th:text="${listForro.nombreForro}"></option>
         </select>
@@ -76,6 +82,7 @@
     <div class="form-group col-sm-4">
         <label for="status">Forro terciario</label>
         <select name="f3"  class="form-control" >
+        <option value="">Selecciona uno...</option>
              <option th:each="listForro: ${listForro}"
 			th:value="${listForro.idForro}" th:text="${listForro.nombreForro}"></option>
         </select>
@@ -83,6 +90,7 @@
     <div class="form-group col-sm-4">
         <label for="status">Boton principal</label>
         <select name="b1"  class="form-control" >
+        <option value="">Selecciona uno...</option>
             <option th:each="listBoton: ${listBoton}"
 			th:value="${listBoton.idLookup}" th:text="${listBoton.nombre}"></option>
         </select>
@@ -90,6 +98,7 @@
     <div class="form-group col-sm-4">
         <label for="status">Boton secundario</label>
         <select name="b2" class="form-control" >
+        <option value="">Selecciona uno...</option>
            <option th:each="listBoton: ${listBoton}"
 			th:value="${listBoton.idLookup}" th:text="${listBoton.nombre}"></option>
         </select>
@@ -97,6 +106,7 @@
     <div class="form-group col-sm-4">
         <label for="status">Boton terciario</label>
         <select name="b3" class="form-control" >
+        <option value="">Selecciona uno...</option>
             <option th:each="listBoton: ${listBoton}"
 			th:value="${listBoton.idLookup}" th:text="${listBoton.nombre}"></option>
         </select>
@@ -127,7 +137,8 @@
     </div>
     <input type="hidden" class="form-control"  id="telaEstatus" value="2">
     <div class="form-group col-sm-12">
-       <button onclick="arreglo()" class="btn btn-success" type="button">Adicionar a la tabla</button>
+       <button onclick="arreglo()"  class="btn btn-primary next-step float-right" type="button">Adicionar a la tabla</button>
+      
         
          
     </div>
@@ -183,8 +194,8 @@ function arreglo() {
 		idfam= $(this).find('td').eq(1).html()+","+idfam;
 	      
 	  
-	  document.getElementById("txtTabla").value = cuotaNo;
-	  document.getElementById("txtTabla2").value = interes;
+	  document.getElementById("txtTabla").value = compo;
+	  document.getElementById("txtTabla2").value = idfam;
 	  
 	  
 	  

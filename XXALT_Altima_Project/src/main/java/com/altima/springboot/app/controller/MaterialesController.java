@@ -157,7 +157,7 @@ public class MaterialesController {
 	}
 	
 	
-	@PostMapping("/guardar-tela")
+	@PostMapping("guardar-tela")
 	public String guardar_tela( DisenioTela tela,
 			@RequestParam("f1") Long f1,
 			@RequestParam("f2") Long f2,
