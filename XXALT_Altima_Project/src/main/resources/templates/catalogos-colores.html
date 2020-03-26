@@ -15,15 +15,15 @@
 <!-- Modal Marcas Tabla -->
 <div class="modal fade" id="detalleColores" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-colores" role="document">
-        <div class="modal-content">
+        <div class="modal-content" id="contenedorTabla2">
             <div class="modal-header bg-danger">
                 <h5 class="modal-title" id="exampleModalLongTitle">Listado de colores <button onclick="agregarColor()" class="btn btn-light popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Agregar" style="border-radius: 35%;color: #dc3545!important;"><i class="fas fa-plus fa-sm"></i></button></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <table class="table tablaCatalogo table-striped table-bordered">
+            <div class="modal-body" id="quitar2">
+                <table class="table tablaCatalogo table-striped table-bordered" id="idtable2">
                     <thead>
                         <tr>
                             <th>C&oacute;digo</th>
@@ -33,20 +33,7 @@
                           
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr th:each="color: ${colores}">
-                            <td th:text="${color.idText}"></td>
-                            <td th:text="${color.nombre}"></td>
-                            <td style="text-align: center;">
-                                <button class="btn btn-info popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="<strong>Creado por:</strong> Jose Luis Manuel Jajaja<br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020" style="border-radius: 35%;"><i class="fas fa-info-circle"></i></button>&nbsp;
-                            </td>
-                            <td class="tdcenter">
-                                <button th:id="${color.idLookup}" th:value="${color.nombre}" class="btn btn-warning popoverxd edit_data_color" data-container="body" data-toggle="popover" data-placement="top" data-content="Editar" style="border-radius: 35%;"><i class="fas fa-pen fa-sm"></i></button>&nbsp;
-                                <button onclick="bajarColor()" class="btn btn-danger popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Dar de baja" style="border-radius: 35%;"><i class="fas fa-ban fa-sm"></i></button>&nbsp;
-                            <!--     <button onclick="reactivarColor()" class="btn btn-success popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Reactivar" style="border-radius:35%;"><i class="fas fa-check fa-sm"></i></button>--->
-                            </td>
-                        </tr>
-                    </tbody>
+                   
                 </table>
             </div>
         </div>

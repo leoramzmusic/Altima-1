@@ -15,15 +15,15 @@
 <!-- Modal Familia de prendas Tabla -->
 <div class="modal fade" id="detalleMantenimiento" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-mantenimiento" role="document">
-        <div class="modal-content">
+        <div class="modal-content" id="contenedorTabla6">
             <div class="modal-header bg-warning">
                 <h5 class="modal-title" id="exampleModalLongTitle">Familia de Composici&oacute;n <button onclick="agregarComposicion()" class="btn btn-dark popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Agregar" style="border-radius: 35%;color:#ffc107!important"><i class="fas fa-plus fa-sm"></i></button></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <table class="table tablaCatalogo table-striped table-bordered">
+            <div class="modal-body" id="quitar6">
+                <table class="table tablaCatalogo table-striped table-bordered" id="idtable6">
                     <thead>
                         <tr>
                             <th>C&oacute;digo</th>
@@ -33,7 +33,7 @@
                             
                         </tr>
                     </thead>
-                    <tbody>
+                 <!--    <tbody>
                         <tr th:each="familiacomposicion: ${famcomposicion}">
                             <td th:text="${familiacomposicion.idText}">JN534</td>
                             <td th:text="${familiacomposicion.nombre}">Ya me canse cdcdd jajajaxd</td>
@@ -43,11 +43,11 @@
                           
                             <td class="tdcenter">
                                 <button onclick="editarComposicion(this);" th:idlookup="${familiacomposicion.idLookup}" th:nombre="${familiacomposicion.nombre}" class="btn btn-warning popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Editar" style="border-radius: 35%;"><i class="fas fa-pen fa-sm"></i></button>&nbsp;
-                                <button onclick="bajarComposicion()" class="btn btn-danger popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Dar de baja" style="border-radius: 35%;"><i class="fas fa-ban fa-sm"></i></button>&nbsp;
-                              <!--  <button onclick="reactivarGenero()" class="btn btn-success popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Reactivar" style="border-radius:35%;"><i class="fas fa-check fa-sm"></i></button> - -->
+                                <button onclick="bajarGenero()" class="btn btn-danger popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Dar de baja" style="border-radius: 35%;"><i class="fas fa-ban fa-sm"></i></button>&nbsp;
+                               <button onclick="reactivarGenero()" class="btn btn-success popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Reactivar" style="border-radius:35%;"><i class="fas fa-check fa-sm"></i></button> 
                             </td>
                         </tr>
-                    </tbody>
+                    </tbody> --->
                 </table>
             </div>
         </div>

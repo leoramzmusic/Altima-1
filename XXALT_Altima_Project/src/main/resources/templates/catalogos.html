@@ -64,7 +64,7 @@
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
                     	<!-- MARCAS -->
-                      <!--  	<div th:insert="catalogos-marcas" class="col-lg-6 col-6"></div>  --->
+                      	<div th:insert="catalogos-marcas" class="col-lg-6 col-6"></div>  
                       	<!-- COLORES -->
                       	<div th:insert="catalogos-colores" class="col-lg-6 col-6"></div>
                       	<!-- PZAS. TRAZO -->
@@ -124,75 +124,34 @@
 		}
 		window.onload = changeClassById();
 	</script>
-	<script>
+	
+	<!--  -->
+	<!-- <script >
+	$(document).ready( function () {
+	    $('#myTable').DataTable();
+	} );
+	</script>
+<script>
 	$(document).ready(function() {
+		
+	   
+		$.getJSON("/orders", function (data){
+			var employeedata= '';
+			$.each(data, function(key, value){
+				employeedata += '<tr>';
+					employeedata += '<td>'+value.nombre+'</td>';
+					employeedata += '<td>'+value.nombre+'</td>';
+									employeedata += '</tr>'
+				
+			});
+			$('.dt_cliente2').append(employeedata);
+		});
 
-	    
-		tablaUsuarios = $('#dt_cliente').DataTable({  
-			destroy: true,
-		    "ajax":{            
-		        "url": "orders", 
-		        "method": 'POST', //usamos el metodo POST
-		        "data":{"_csrf": $('#token').val()}, //enviamos opcion 4 para que haga un SELECT
-		        "dataSrc":""
-		    },
-		    "columns":[
-		        {"data": "idText"},
-		        {"data": "nombre"},
-		        {"data": "descripcion"},
-		        {"defaultContent":'<td class="tdcenter">'+
-                    '<button id="data": "nombre" th:value="${marca.nombre}" class="btn btn-warning popoverxd edit_data" data-container="body" data-toggle="popover" data-placement="top" data-content="Editar" style="border-radius: 35%;"><i class="fas fa-pen fa-sm"></i></button>&nbsp;'+
-                    '<button onclick="bajarMarca()" class="btn btn-danger popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Dar de baja" style="border-radius: 35%;"><i class="fas fa-ban fa-sm"></i></button>&nbsp;'+
-                    '<button onclick="reactivarMarca()" class="btn btn-success popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Reactivar" style="border-radius:35%;"><i class="fas fa-check fa-sm"></i></button>'+
-                '</td>'}
-		    ],
-		    "ordering": false,
-	        "pageLength": 5,
-	        "lengthMenu": [
-	            [5, 10, 25, 50, 100],
-	            [5, 10, 25, 50, 100]
-	        ],
-	        "language": {
-	            "sProcessing": "Procesando...",
-	            "sLengthMenu": "Mostrar _MENU_ registros",
-	            "sZeroRecords": "No se encontraron resultados",
-	            "sEmptyTable": "Ningún dato disponible en esta tabla =(",
-	            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-	            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-	            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-	            "sInfoPostFix": "",
-	            "sSearch": "Buscar:",
-	            "sUrl": "",
-	            "sInfoThousands": ",",
-	            "sLoadingRecords": "Cargando...",
-	            "oPaginate": {
-	                "sFirst": "Primero",
-	                "sLast": "Último",
-	                "sNext": "Siguiente",
-	                "sPrevious": "Anterior"
-	            },
-	            "oAria": {
-	                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-	                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-	            },
-	            "buttons": {
-	                "copy": "Copiar",
-	                "colvis": "Visibilidad"
-	            }
-	        }
-	    });
-	    $('a.toggle-vis').on( 'click', function (e) {
-	        e.preventDefault();
-	 
-	        // Get the column API object
-	        var column = table.column( $(this).attr('data-column') );
-	 
-	        // Toggle the visibility
-	        column.visible( ! column.visible() );
-	    } );
 
+		     
 		});    
 	</script>
+	--->
 </body>
 
 </html>

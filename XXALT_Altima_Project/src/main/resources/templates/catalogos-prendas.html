@@ -15,15 +15,15 @@
 <!-- Modal Familia de prendas Tabla -->
 <div class="modal fade" id="detallePrenda" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-prendas" role="document">
-        <div class="modal-content">
+        <div class="modal-content" id="contenedorTabla4">
             <div class="modal-header bg-info">
                 <h5 class="modal-title" id="exampleModalLongTitle">Familia de prendas <button onclick="agregarPrenda()" class="btn btn-light popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Agregar" style="border-radius: 35%;color: #17a2b8!important"><i class="fas fa-plus fa-sm"></i></button></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <table class="table tablaCatalogo table-striped table-bordered">
+            <div class="modal-body" id="quitar4">
+                <table class="table tablaCatalogo table-striped table-bordered" id="idtable4">
                     <thead>
                         <tr>
                             <th>C&oacute;digo</th>
@@ -34,7 +34,7 @@
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody>
+              <!--      <tbody>
                         <tr th:each="familiaprenda: ${famprendas}">
                             <td th:text="${familiaprenda.idText}"></td>
                             <td th:text="${familiaprenda.nombre}"></td>
@@ -47,10 +47,10 @@
                          
                                 <button onclick="editarPrenda(this);" th:idlookup="${familiaprenda.idLookup}" th:nombre="${familiaprenda.nombre}" th:descripcion="${familiaprenda.descripcion}" class="btn btn-warning popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Editar" style="border-radius: 35%;"><i class="fas fa-pen fa-sm"></i></button>&nbsp;
                                 <button onclick="bajarPrenda()" class="btn btn-danger popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Dar de baja" style="border-radius: 35%;"><i class="fas fa-ban fa-sm"></i></button>&nbsp;
-                            <!--     <button onclick="reactivarPrenda()" class="btn btn-success popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Reactivar" style="border-radius:35%;"><i class="fas fa-check fa-sm"></i></button> --> 
+                             <button onclick="reactivarPrenda()" class="btn btn-success popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Reactivar" style="border-radius:35%;"><i class="fas fa-check fa-sm"></i></button> 
                             </td>
                         </tr>
-                    </tbody>
+                    </tbody>  --> 
                 </table>
             </div>
         </div>
