@@ -1257,10 +1257,6 @@ Swal.fire({
 		          '<label for="pedidonom">Nombre de la familia prendas</label>'+
 		          '<input type="text" class="swal2-input" id="familia" placeholder="Parisina">'+
 		        '</div>'+
-		        '<div class="form-group col-sm-12">'+
-		          '<label for="pedidonom">Descripcion</label>'+
-		          '<input type="text" class="swal2-input" id="descripcion" placeholder="Parisina">'+
-		        '</div>'+
 		        '</div>',
 		      showCancelButton: true,
 		      cancelButtonColor: '#6C757D',
@@ -1268,17 +1264,16 @@ Swal.fire({
 		      confirmButtonText: 'Agregar',
 		      confirmButtonColor:'#17a2b8',
 		    }).then((result) => {
-		      if (result.value && document.getElementById("familia").value && document.getElementById("descripcion").value) {
+		      if (result.value && document.getElementById("familia").value) {
 				    var FamiliaPrenda=document.getElementById("familia").value;
-				    var Descripcion=document.getElementById("descripcion").value;
-		    	  console.log(result.value);
+				   
 				   $.ajax({
 		        type: "POST",
 		        url: "/guardarcatalogo",
 		        data: { 
 		        	 "_csrf": $('#token').val(),
-		        	'FamiliaPrenda': FamiliaPrenda,
-		        	'Descripcion' :Descripcion
+		        	'FamiliaPrenda': FamiliaPrenda
+		        	
 		        	
 		        	// ,'Descripcion':Descripcion
 		        }
