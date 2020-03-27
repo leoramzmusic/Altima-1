@@ -45,9 +45,6 @@ public class DisenioTela implements Serializable{
 	@Column(name="ultima_fecha_modificacion")
 	private String ultimaFechaModificacion;
 	
-	@Column(name="clave_tela")
-	private String claveTela;
-	
 	@Column(name="descripcion_tela")
 	private String descripcionTela;
 	
@@ -158,14 +155,6 @@ public class DisenioTela implements Serializable{
 
 	public void setUltimaFechaModificacion(String ultimaFechaModificacion) {
 		this.ultimaFechaModificacion = ultimaFechaModificacion;
-	}
-
-	public String getClaveTela() {
-		return claveTela;
-	}
-
-	public void setClaveTela(String claveTela) {
-		this.claveTela = claveTela;
 	}
 
 	public String getDescripcionTela() {
@@ -306,7 +295,6 @@ public class DisenioTela implements Serializable{
 		int result = 1;
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
 		result = prime * result + ((ancho == null) ? 0 : ancho.hashCode());
-		result = prime * result + ((claveTela == null) ? 0 : claveTela.hashCode());
 		result = prime * result + ((consumo == null) ? 0 : consumo.hashCode());
 		result = prime * result + ((consumoPromedio == null) ? 0 : consumoPromedio.hashCode());
 		result = prime * result + ((costoPorMetro == null) ? 0 : costoPorMetro.hashCode());
@@ -350,11 +338,6 @@ public class DisenioTela implements Serializable{
 			if (other.ancho != null)
 				return false;
 		} else if (!ancho.equals(other.ancho))
-			return false;
-		if (claveTela == null) {
-			if (other.claveTela != null)
-				return false;
-		} else if (!claveTela.equals(other.claveTela))
 			return false;
 		if (consumo == null) {
 			if (other.consumo != null)

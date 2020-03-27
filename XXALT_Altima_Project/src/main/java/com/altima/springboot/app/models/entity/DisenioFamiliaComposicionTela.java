@@ -32,9 +32,6 @@ public class DisenioFamiliaComposicionTela implements Serializable {
 	@Column(name="id_tela")
 	private Long idTela;
 	
-	@Column(name="estatus")
-	private Integer estatus;
-	
 	@Column(name="composicion")
 	private String composicion;
 	
@@ -72,14 +69,6 @@ public class DisenioFamiliaComposicionTela implements Serializable {
 
 	public void setIdTela(Long idTela) {
 		this.idTela = idTela;
-	}
-
-	public Integer getEstatus() {
-		return estatus;
-	}
-
-	public void setEstatus(Integer estatus) {
-		this.estatus = estatus;
 	}
 
 	public String getComposicion() {

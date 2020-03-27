@@ -41,9 +41,6 @@ public class DisenioForro implements Serializable{
 	@Column(name="ultima_fecha_modificacion")
 	private String ultimaFechaModificacion;
 	
-	@Column(name="clave_forro")
-	private String claveForro;
-	
 	@Column(name="descripcion_forro")
 	private String descripcionForro;
 	
@@ -64,7 +61,7 @@ public class DisenioForro implements Serializable{
 	private String existenciaForro;
 	
 	@Column(name="estatus")
-	private Integer estatus;
+	private String estatus;
 
 	public Long getIdForro() {
 		return idForro;
@@ -112,14 +109,6 @@ public class DisenioForro implements Serializable{
 
 	public void setUltimaFechaModificacion(String ultimaFechaModificacion) {
 		this.ultimaFechaModificacion = ultimaFechaModificacion;
-	}
-
-	public String getClaveForro() {
-		return claveForro;
-	}
-
-	public void setClaveForro(String claveForro) {
-		this.claveForro = claveForro;
 	}
 
 	public String getDescripcionForro() {
@@ -172,11 +161,11 @@ public class DisenioForro implements Serializable{
 	}
 
 
-	public Integer getEstatus() {
+	public String getEstatus() {
 		return estatus;
 	}
 
-	public void setEstatus(Integer estatus) {
+	public void setEstatus(String estatus) {
 		this.estatus = estatus;
 	}
 
@@ -190,7 +179,6 @@ public class DisenioForro implements Serializable{
 		int result = 1;
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
 		result = prime * result + ((anchoForro == null) ? 0 : anchoForro.hashCode());
-		result = prime * result + ((claveForro == null) ? 0 : claveForro.hashCode());
 		result = prime * result + ((consumoPromedioForro == null) ? 0 : consumoPromedioForro.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((descripcionForro == null) ? 0 : descripcionForro.hashCode());
@@ -223,11 +211,6 @@ public class DisenioForro implements Serializable{
 			if (other.anchoForro != null)
 				return false;
 		} else if (!anchoForro.equals(other.anchoForro))
-			return false;
-		if (claveForro == null) {
-			if (other.claveForro != null)
-				return false;
-		} else if (!claveForro.equals(other.claveForro))
 			return false;
 		if (consumoPromedioForro == null) {
 			if (other.consumoPromedioForro != null)
