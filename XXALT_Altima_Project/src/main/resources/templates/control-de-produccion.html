@@ -48,12 +48,7 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>
-								Control de producci&oacute;n de muestras&nbsp;<a href="agregar-muestra"><button class="bt btn-primary popoverxd" data-container="body" data-toggle="popover" data-placement="right"
-										data-content="Agregar" style="border-radius: 100%;">
-										<i class="fas fa-plus fa-sm"></i>
-									</button></a>
-							</h1>
+							<h1>Control de producci&oacute;n de muestras</h1>
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
@@ -86,7 +81,6 @@
 												<th>Observaciones</th>
 												<th>Proceso actual</th>
 												<th>Proceso</th>
-												<th></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -95,11 +89,9 @@
 												<td>05/01/2020</td>
 												<td>Nota de observaciones</td>
 												<td>Corte</td>
-												<td class="tdcenter"><a data-target="#detalles-proceso" class="btn btn-warning popoverxd rounded-circle" data-container="body" data-toggle="modal" data-placement="top"
-													data-content="Detalles"><i class="fas fa-info-circle fa-sm"></i></a>
+												<td class="tdcenter"><a data-target="#detalles-proceso" class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="modal" data-placement="top"
+													data-content="Detalles"><i class="fas fa-info"></i></a>
 													<div th:insert="control-procesos"></div></td>
-												<td class="tdcenter"><a class="btn btn-warning popoverxd rounded-circle" data-container="body" data-toggle="popover" data-placement="top" data-content="Editar"><i
-														class="fas fa-pen fa-sm"></i></a>&nbsp;</td>
 											</tr>
 										</tbody>
 									</table>
