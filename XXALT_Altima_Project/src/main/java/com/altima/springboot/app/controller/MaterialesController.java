@@ -120,10 +120,15 @@ public class MaterialesController {
 			material.setCreadoPor(auth.getName());
 			disenioMaterialService.save(material);
 			material.setIdText("MAE" + (material.getIdMaterial() + 1000));
+			material.setEstatus("1");
 			disenioMaterialService.save(material);
 			System.out.println("epale eaple si entro al method posts");
 		} else {
 			System.out.println(auth.getName() + "aqui esta el mero mero");
+			material.setCreadoPor(material.getCreadoPor());
+			material.setIdText("MAE" + (material.getIdMaterial() + 1000));
+			material.setEstatus("1");
+			
 			material.setActualizadoPor(auth.getName());
 			disenioMaterialService.save(material);
 	

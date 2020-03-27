@@ -77,8 +77,8 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview" th:if="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')}">
-            <a href="#" class="nav-link">
+          <li class="nav-item has-treeview" th:if="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')}" id="menuComercial">
+            <a href="#" class="nav-link" id="navComercial">
               <i class="nav-icon fas fa-clipboard"></i>
               <p>
                 Comercial
@@ -148,7 +148,7 @@
             </a>
             <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a th:href="${'clientes'}" class="nav-link" id="navVenta1">
+                <a th:href="${'agenda-agente'}" class="nav-link" id="navVenta1">
                   <i class="nav-icon fas fa-user"></i>
                   <p>Agenda</p>
                 </a>
@@ -160,13 +160,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a th:href="${'prospectos'}" class="nav-link" id="navVenta3">
+                <a th:href="${'seguimientos'}" class="nav-link" id="navVenta3">
                   <i class="nav-icon fas fa-vote-yea"></i>
                   <p>Seguimientos</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a th:href="${'clientes'}" class="nav-link" id="navVenta4">
+                <a th:href="${'carga-de-pedidos'}" class="nav-link" id="navVenta4">
                   <i class="nav-icon fas fa-user"></i>
                   <p>Carga de pedidos</p>
                 </a>
@@ -443,7 +443,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a th:href="${''}" class="nav-link" id="navMuestrario1">
+                <a th:href="${'/'}" class="nav-link" id="navMuestrario1">
                   <i class="nav-icon far fa-circle"></i>
                   <p>Ejemplo</p>
                 </a>

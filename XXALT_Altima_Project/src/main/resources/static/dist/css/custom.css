@@ -1,163 +1,161 @@
 .modal-marcas {
-    max-width: 60% !important;
+     max-width: 60% !important;
 }
-.modal-colores {
-    max-width: 50% !important;
+ .modal-colores {
+     max-width: 50% !important;
 }
-.modal-material {
-    max-width: 98% !important;
+ .modal-material {
+     max-width: 98% !important;
 }
-.modal-trazo {
-    max-width: 70% !important;
+ .modal-trazo {
+     max-width: 70% !important;
 }
-.modal-forro {
-    max-width: 80% !important;
+ .modal-forro {
+     max-width: 80% !important;
 }
-.modal-tela {
-    max-width: 98% !important;
+ .modal-tela {
+     max-width: 98% !important;
 }
-.modal-prendas {
-    max-width: 70% !important;
+ .modal-prendas {
+     max-width: 70% !important;
 }
-.modal-genero {
-    max-width: 70% !important;
+ .modal-genero {
+     max-width: 70% !important;
 }
-.modal-mantenimiento {
-    max-width: 83% !important;
+ .modal-mantenimiento {
+     max-width: 83% !important;
 }
-.tdcenter {
-    text-align: center;
+ .tdcenter {
+     text-align: center;
 }
-.hidden {
-    display: none;
-  }
-.swal-wide{
-    width:60% !important;
-}  
-pointer {
-  cursor: pointer;
+ .hidden {
+     display: none;
 }
-
-img.placeholder {
-  width: 100%;
-  height: 100%;
+ .swal-wide{
+     width:60% !important;
 }
-    
+ pointer {
+     cursor: pointer;
+}
+ img.placeholder {
+     width: 100%;
+     height: 100%;
+}
+ .btn-circle.btn-sm {
+     width: 35px;
+     height: 35px;
+     border-radius:25px;
+     font-size: 18px;
+     text-align: center;
+}
+ /*.btn-circle.btn-md {
+     width: 50px;
+     height: 50px;
+     border-radius: 25px;
+     font-size: 2px;
+     text-align: center;
+}
+ .btn-circle.btn-xl {
+     width: 70px;
+     height: 70px;
+     padding: 10px 16px;
+     border-radius: 35px;
+     font-size: 12px;
+     text-align: center;
+}*/
 /* ---- particles.js container ---- */
-
-#particles-js {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: #000000;
-  background-image: url("");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 50% 50%;
+ #particles-js {
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     background-color: #000000;
+     background-image: url("");
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-position: 50% 50%;
 }
-
 /* ---- stats.js ---- */
-
-.count-particles{
-  background: #000022;
-  position: absolute;
-  top: 48px;
-  left: 0;
-  width: 80px;
-  color: #13E8E9;
-  font-size: .8em;
-  text-align: left;
-  text-indent: 4px;
-  line-height: 14px;
-  padding-bottom: 2px;
-  font-weight: bold;
+ .count-particles{
+     background: #000022;
+     position: absolute;
+     top: 48px;
+     left: 0;
+     width: 80px;
+     color: #13E8E9;
+     font-size: .8em;
+     text-align: left;
+     text-indent: 4px;
+     line-height: 14px;
+     padding-bottom: 2px;
+     font-weight: bold;
 }
-
-.js-count-particles{
-  font-size: 1.1em;
+ .js-count-particles{
+     font-size: 1.1em;
 }
-
-#stats,
-.count-particles{
-  -webkit-user-select: none;
+ #stats, .count-particles{
+     -webkit-user-select: none;
 }
-
-#stats{
-  border-radius: 3px 3px 0 0;
-  overflow: hidden;
+ #stats{
+     border-radius: 3px 3px 0 0;
+     overflow: hidden;
 }
-
-.count-particles{
-  border-radius: 0 0 3px 3px;
+ .count-particles{
+     border-radius: 0 0 3px 3px;
 }
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
+ .center {
+     display: block;
+     margin-left: auto;
+     margin-right: auto;
+     width: 50%;
 }
-
-
-fieldset {
-    display: none
+ fieldset {
+     display: none 
 }
-
-fieldset.show {
-    display: block
+ fieldset.show {
+     display: block 
 }
-
-select:focus,
-input:focus {
-    -moz-box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-    border: 1px solid #2196F3 !important;
-    outline-width: 0 !important;
-    font-weight: 400
+ select:focus, input:focus {
+     -moz-box-shadow: none !important;
+     -webkit-box-shadow: none !important;
+     box-shadow: none !important;
+     border: 1px solid #2196F3 !important;
+     outline-width: 0 !important;
+     font-weight: 400 
 }
-
-button:focus {
-    -moz-box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-    outline-width: 0
+ button:focus {
+     -moz-box-shadow: none !important;
+     -webkit-box-shadow: none !important;
+     box-shadow: none !important;
+     outline-width: 0 
 }
-
-.tabs {
-    margin: 2px 5px 0px 5px;
-    padding-bottom: 10px;
-    cursor: pointer
+ .tabs {
+     margin: 2px 5px 0px 5px;
+     padding-bottom: 10px;
+     cursor: pointer 
 }
-
-.tabs:hover,
-.tabs.active {
-    border-bottom: 1px solid #2196F3
+ .tabs:hover, .tabs.active {
+     border-bottom: 1px solid #2196F3 
 }
-
-a:hover {
-    text-decoration: none;
-    color: #1565C0
+ a:hover {
+     text-decoration: none;
+     color: #1565C0 
 }
-
-.box {
-    margin-bottom: 10px;
-    border-radius: 5px;
-    padding: 10px
+ .box {
+     margin-bottom: 10px;
+     border-radius: 5px;
+     padding: 10px 
 }
-
-.modal-backdrop {
-    background-color: #64B5F6
+ .modal-backdrop {
+     background-color: #64B5F6 
 }
-
-.line {
-    background-color: #CFD8DC;
-    height: 1px;
-    width: 100%
+ .line {
+     background-color: #CFD8DC;
+     height: 1px;
+     width: 100% 
 }
-
-@media screen and (max-width: 768px) {
-    .tabs h6 {
-        font-size: 12px
+ @media screen and (max-width: 768px) {
+     .tabs h6 {
+         font-size: 12px 
     }
 }
-    
+ 

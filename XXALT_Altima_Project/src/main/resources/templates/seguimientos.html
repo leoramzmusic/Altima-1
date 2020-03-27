@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Clientes | Altima</title>
+    <title>Seguimientos | Altima</title>
     <link rel="icon" type="image/png" sizes="32x32" href="dist/img/favicon.ico">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,14 +23,21 @@
     <link rel="stylesheet" href="dist/css/jquery.dataTables.min.css">
     <!-- Datatables Plugin-->
     <link rel="stylesheet" href="dist/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
+    
     <!-- Select2 -->
     <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <!-- select2 -->
+  	<link href="dist/css/select2.min.css" rel="stylesheet" />
+	<!-- select2-bootstrap4-theme -->
+	<link href="dist/css/select2-bootstrap4.css" rel="stylesheet">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed sidebar-collapse" >
+<body class="hold-transition sidebar-mini layout-fixed sidebar-collapse">
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Navbar -->
@@ -48,13 +55,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Clientes&nbsp;<a th:href="@{/agregar-cliente}"><button class="bt btn-primary popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Agregar" style="border-radius: 100%;"><i class="fas fa-plus fa-sm"></i></button></a></h1>
+                       	<h1>Seguimientos</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Agentes de venta</li>
-                                <li class="breadcrumb-item active">Clientes</li>
+                                <li class="breadcrumb-item active">Agente de Ventas</li>
                             </ol>
                         </div>
                     </div>
@@ -70,32 +76,32 @@
                             <!-- Default box -->
                             <div class="card">
                                 <div class="card-header bg-dark">
-                                    <h3 class="card-title">Listado de clientes</h3>
+                                    <h3 class="card-title">Listado de seguimientos</h3>
                                 </div>
                                 <div class="card-body">
-                                   <table class="table tablexd table-striped table-bordered">
+                                    <table class="table tablexd table-striped table-bordered">
                                         <thead>
                                             <tr>
-                                                <th>No. Cliente</th>
                                                 <th>Cliente</th>
-                                                <th>Teléfono</th>
-                                                <th>Tipo</th>
-                                                <th>Sucursales</th>
+                                                <th>Seguimiento</th>
+                                                <th>Llamadas</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr th:each="cliente: ${clientes}">
-                                                <td><a th:href="@{/editar-cliente/}+ ${cliente.idCliente}" th:text="${cliente.CidText}"></a>  </td>
-                                                <td th:text="${cliente.Nombre}"></td>
-                                                <td th:text="${cliente.Telefono}"></td>
-                                                <td th:if="${cliente.TipoCliente == '1'}" th:text="Moral"></td>
-                                                <td th:if="${cliente.TipoCliente == '2'}" th:text="Fisica"></td>
-                                                <td class="tdcenter"><a th:href="@{/sucursales/}+ ${cliente.idCliente}" class="btn btn-info btn-circle btn-sm popoverxd" data-container="body" data-placement="top" data-content="Ver m&aacute;s detalles"><i class="fas fa-info"></i></a></td>
-                                               
-                                            </tr>     
+                                            <tr>
+                                                <td>Altima</td>
+                                                <td class="tdcenter">
+                                                    <a data-toggle="modal" data-target="#accionesClienteAgente" class="btn btn-info btn-circle btn-sm popoverxd text-white" data-container="body" data-placement="top" data-content="Detalle de seguimiento"><i class="fas fa-info"></i></a>
+                                            		<div th:insert="modal-seguimiento"></div>
+                                            	</td>
+                                            	<td class="tdcenter">
+                                                    <a data-toggle="modal" data-target="#llamadasAgente" class="btn btn-info btn-circle btn-sm popoverxd text-white" data-container="body" data-placement="top" data-content="Listado de llamadas"><i class="fas fa-info"></i></a>
+                                            		<div th:insert="modal-llamadas"></div>
+                                            	</td>
+                                            </tr>
                                         </tbody>
                                     </table>
-	                                </div>
+                                </div>
                                 <!-- /.card-body -->
                             </div>
                             <!-- /.card -->
@@ -123,14 +129,31 @@
     <script src="plugins/select2/js/select2.full.min.js"></script>
     <!-- SweetAlert -->
     <script src="dist/js/sweetalert.js"></script>
-    <!-- Funcionalidad-->
-    <script src="dist/js/Muestras.js"></script>
     <!-- Datatables Plugin-->
     <script src="dist/js/jquery.dataTables.min.js"></script>
     <script src="dist/js/dataTables.buttons.min.js"></script>
     <script src="dist/js/buttons.colVis.min.js"></script>
     <!-- Bootstrap Datatables Plugin-->
     <script src="dist/js/dataTables.bootstrap4.min.js"></script>
+    <!-- TABLA RESPONSIVA -->
+    <script src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js"></script>
+	<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+	<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+    <!-- select2 -->
+	<script src="dist/js/select2.min.js"></script>
+	<script src="dist/js/Llamadas.js"></script>
+	<script>
+	$(function () {
+		  $('select').each(function () {
+		    $(this).select2({
+		      theme: 'bootstrap4',
+		      width: 'style',
+		      placeholder: $(this).attr('placeholder'),
+		      allowClear: Boolean($(this).data('allow-clear')),
+		    });
+		  });
+		});
+	</script>
     <!-- Popover-->
     <script>
         $(function() {
@@ -143,9 +166,10 @@
     <!-- Script de la tabla -->
     <script>
         $(document).ready(function() {
-            $('table.tablexd').DataTable({
+           var table = $('.tablexd').DataTable({
                 "ordering": false,
                 "pageLength": 5,
+                "responsive": true,
                 "lengthMenu": [
                     [5, 10, 25, 50, 100],
                     [5, 10, 25, 50, 100]
@@ -179,6 +203,7 @@
                     }
                 }
             });
+            new $.fn.dataTable.FixedHeader( table );
 
         });
     </script>
@@ -188,21 +213,18 @@
 			document.getElementById("navComercial").className = "nav-link active";
 			document.getElementById("menuVenta").className = "nav-item has-treeview menu-open";
 			document.getElementById("navVenta").className = "nav-link active";
-			document.getElementById("navVenta2").className = "nav-link active";
+			document.getElementById("navVenta3").className = "nav-link active";
 		}
 		window.onload = changeClassById();
 	</script>
-
-	<script th:if="${icon != null}" th:inline="javascript">
-		Swal.fire({
-	    	  position: 'center',
-	          icon: /*[[${icon}]]*/,
-	          title: /*[[${title}]]*/,
-	          showConfirmButton: false,
-	          timer: 1250
-	    });
+	<script>
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+		   console.log('Esto es un dispositivo móvil');
+		}
+	else{
+		   console.log('Esto es una computadora');
+	}
 	</script>
-
 </body>
 
 </html>
