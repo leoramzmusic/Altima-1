@@ -54,63 +54,63 @@ public class CatalogoServiceImpl implements ICatalogoService {
 	@Override
 	@Transactional
 	public List<DisenioLookup> findAllMarca() {
-		return em.createQuery("from DisenioLookup where tipo_lookup='Marca'").getResultList();
+		return em.createQuery("from DisenioLookup where tipo_lookup='Marca' and Estatus=1").getResultList();
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<DisenioLookup> findAllColor() {
-		return em.createQuery("from DisenioLookup where tipo_lookup='Color'").getResultList();
+		return em.createQuery("from DisenioLookup where tipo_lookup='Color' and Estatus=1").getResultList();
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<DisenioLookup> findAllPzasTrazo() {
-		return em.createQuery("from DisenioLookup where tipo_lookup='Pieza Trazo'").getResultList();
+		return em.createQuery("from DisenioLookup where tipo_lookup='Pieza Trazo' and Estatus=1").getResultList();
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<DisenioLookup> findAllFamPrendas() {
-		return em.createQuery("from DisenioLookup where tipo_lookup='Familia Prenda'").getResultList();
+		return em.createQuery("from DisenioLookup where tipo_lookup='Familia Prenda' and Estatus=1").getResultList();
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<DisenioLookup> findAllFamGenero() {
-		return em.createQuery("from DisenioLookup where tipo_lookup='Familia Genero'").getResultList();
+		return em.createQuery("from DisenioLookup where tipo_lookup='Familia Genero' and Estatus=1").getResultList();
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<DisenioLookup> findAllFamComposicion() {
-		return em.createQuery("from DisenioLookup where tipo_lookup='Familia Composicion'").getResultList();
+		return em.createQuery("from DisenioLookup where tipo_lookup='Familia Composicion' and Estatus=1").getResultList();
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<DisenioLookup> findAllInstrCuidado(){
-		return em.createQuery("from DisenioLookup where tipo_lookup='Instruccion Cuidado'").getResultList();
+		return em.createQuery("from DisenioLookup where tipo_lookup='Instruccion Cuidado' and Estatus=1").getResultList();
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<DisenioLookup> findAllUnidadMedida(){
-		return em.createQuery("from DisenioLookup where tipo_lookup='Unidad Medida'").getResultList();
+		return em.createQuery("from DisenioLookup where tipo_lookup='Unidad Medida' and Estatus=1").getResultList();
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<DisenioLookup> findAllMaterial(){
-		return em.createQuery("from DisenioLookup where tipo_lookup='Material'").getResultList();
+		return em.createQuery("from DisenioLookup where tipo_lookup='Material' and Estatus=1").getResultList();
 	}
 
 }

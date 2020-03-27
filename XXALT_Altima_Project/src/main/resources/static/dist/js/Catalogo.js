@@ -46,8 +46,7 @@
                     "</td>",
 						" <td style='text-align: center;''>"+
 						" <button id='"+data[i].idLookup+"' value='"+data[i].nombreLookup+"' class='btn btn-warning popoverxd edit_data' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
-                      "<button onclick='bajarMarca()' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
-                      "<button onclick='reactivarMarca()' class='btn btn-success popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Reactivar' style='border-radius:35%;'><i class='fas fa-check fa-sm'></i></button>"+
+                      "<button onclick='bajarMarca("+data[i].idLookup+")' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
 						"</td>"+
 						
 						"<tr>"
@@ -130,8 +129,7 @@
                  "</td>",
 						" <td style='text-align: center;''>"+
 						" <button id='"+data[i].idLookup+"' value='"+data[i].nombreLookup+"' class='btn btn-warning popoverxd edit_data_color' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
-                   "<button onclick='bajarMarca()' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
-                   "<button onclick='reactivarMarca()' class='btn btn-success popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Reactivar' style='border-radius:35%;'><i class='fas fa-check fa-sm'></i></button>"+
+                   "<button onclick='bajarColor("+data[i].idLookup+")' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
 						"</td>"+
 						
 						"<tr>"
@@ -214,8 +212,7 @@
                  "</td>",
 						" <td style='text-align: center;''>"+
 						" <button id='"+data[i].idLookup+"' value='"+data[i].nombreLookup+"' class='btn btn-warning popoverxd edit_data_trazo' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
-                   "<button onclick='bajarMarca()' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
-                   "<button onclick='reactivarMarca()' class='btn btn-success popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Reactivar' style='border-radius:35%;'><i class='fas fa-check fa-sm'></i></button>"+
+                   "<button onclick='bajarTrazo("+data[i].idLookup+")' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
 						"</td>"+
 						
 						"<tr>"
@@ -298,8 +295,7 @@
               "</td>",
 						" <td style='text-align: center;''>"+
 				"<button onclick='editarPrenda(this);' idlookup='"+ data[i].idLookup+"' nombre='"+ data[i].nombreLookup+"' descripcion='"+ data[i].descripcion+"' class='btn btn-warning popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
-                "<button onclick='bajarMarca()' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
-                "<button onclick='reactivarMarca()' class='btn btn-success popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Reactivar' style='border-radius:35%;'><i class='fas fa-check fa-sm'></i></button>"+
+                "<button onclick='bajarPrenda("+ data[i].idLookup+")' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
 						"</td>"+
 						
 						"<tr>"
@@ -382,8 +378,7 @@
            "</td>",
 						" <td style='text-align: center;''>"+
 				"<button onclick='editarGenero(this);' idlookup='"+ data[i].idLookup+"' nombre='"+ data[i].nombreLookup+"'  class='btn btn-warning popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
-             "<button onclick='bajarMarca()' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
-             "<button onclick='reactivarMarca()' class='btn btn-success popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Reactivar' style='border-radius:35%;'><i class='fas fa-check fa-sm'></i></button>"+
+             "<button onclick='bajarGenero("+ data[i].idLookup+")' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
 						"</td>"+
 						
 						"<tr>"
@@ -466,8 +461,7 @@
         "</td>",
 						" <td style='text-align: center;''>"+
 				"<button onclick='editarComposicion(this);' idlookup='"+ data[i].idLookup+"' nombre='"+ data[i].nombreLookup+"'  class='btn btn-warning popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
-          "<button onclick='bajarMarca()' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
-          "<button onclick='reactivarMarca()' class='btn btn-success popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Reactivar' style='border-radius:35%;'><i class='fas fa-check fa-sm'></i></button>"+
+          "<button onclick='bajarComposicion("+ data[i].idLookup+")' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
 						"</td>"+
 						
 						"<tr>"
@@ -550,8 +544,7 @@
      "</td>",
 						" <td style='text-align: center;''>"+
 				"<button onclick='editarCuidado(this);' idlookup='"+ data[i].idLookup+"' nombre='"+ data[i].nombreLookup+"'  class='btn btn-warning popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
-       "<button onclick='bajarMarca()' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
-       "<button onclick='reactivarMarca()' class='btn btn-success popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Reactivar' style='border-radius:35%;'><i class='fas fa-check fa-sm'></i></button>"+
+       "<button onclick='bajarCuidado("+ data[i].idLookup+")' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
 						"</td>"+
 						
 						"<tr>"
@@ -634,8 +627,7 @@
      "</td>",
 						" <td style='text-align: center;''>"+
 				"<button onclick='editarMedida(this);' idlookup='"+ data[i].idLookup+"' nombre='"+ data[i].nombreLookup+"'  class='btn btn-warning popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
-       "<button onclick='bajarMarca()' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
-       "<button onclick='reactivarMarca()' class='btn btn-success popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Reactivar' style='border-radius:35%;'><i class='fas fa-check fa-sm'></i></button>"+
+       "<button onclick='bajarMedida("+ data[i].idLookup+")' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
 						"</td>"+
 						
 						"<tr>"
@@ -719,8 +711,7 @@
      "</td>",
 						" <td style='text-align: center;''>"+
 				"<button onclick='editarMaterial(this);' idlookup='"+ data[i].idLookup+"' nombre='"+ data[i].nombreLookup+"'  class='btn btn-warning popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
-       "<button onclick='bajarMarca()' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
-       "<button onclick='reactivarMarca()' class='btn btn-success popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Reactivar' style='border-radius:35%;'><i class='fas fa-check fa-sm'></i></button>"+
+       "<button onclick='bajarMaterial("+ data[i].idLookup+")' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
 						"</td>"+
 						
 						"<tr>"
@@ -877,7 +868,8 @@ Swal.fire({
 }
 )
   // Dar de baja marca
-  function bajarMarca(){
+  function bajarMarca(idbaja){
+	 var id=idbaja;
     Swal.fire({
       title: '¿Deseas dar de baja la marca?',
       icon: 'warning',
@@ -887,15 +879,31 @@ Swal.fire({
       confirmButtonText: 'Dar de baja',
       confirmButtonColor:'#FFC107',
     }).then((result) => {
-      if (result.value) {
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Dada de baja correctamente',
-          showConfirmButton: false,
-          timer: 1250
-        })
-      }
+      if (result.value && id!=null) {
+    	 
+    		console.log(id);
+    	  $.ajax({
+    	      type: "POST",
+    	      url: "/bajacatalogo",
+    	      data: { 
+    	      	 "_csrf": $('#token').val(),
+    	  	'idcatalogo': id
+    	  	
+    	      	// ,'Descripcion':Descripcion
+    	      }
+    	     
+    	  }).done(function(data){
+    		 
+    		  listarMarcas();
+    	  });
+    	      Swal.fire({
+    	        position: 'center',
+    	        icon: 'success',
+    	        title: 'dado de baja correctamente',
+    	        showConfirmButton: false,
+    	        timer: 1250
+    	      })
+      }//////////////termina result value
     })
   }
   // Reactivar marca
@@ -1017,7 +1025,8 @@ Swal.fire({
 	}
 	)
   // Dar de baja color
-  function bajarColor(){
+ function bajarColor(idbaja){
+	 var id=idbaja;
     Swal.fire({
       title: '¿Deseas dar de baja el color?',
       icon: 'warning',
@@ -1025,18 +1034,33 @@ Swal.fire({
       cancelButtonColor: '#6C757D',
       cancelButtonText: 'Cancelar',
       confirmButtonText: 'Dar de baja',
-      confirmButtonColor:'#DC3545',
+      confirmButtonColor:'#FFC107',
     }).then((result) => {
-      if (result.value) {
-    	  console.log(result.value);
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Dado de baja correctamente',
-          showConfirmButton: false,
-          timer: 1250
-        })
-      }
+      if (result.value && id!=null) {
+    	 
+    		console.log(id);
+    	  $.ajax({
+    	      type: "POST",
+    	      url: "/bajacatalogo",
+    	      data: { 
+    	      	 "_csrf": $('#token').val(),
+    	  	'idcatalogo': id
+    	  	
+    	      	// ,'Descripcion':Descripcion
+    	      }
+    	     
+    	  }).done(function(data){
+    		 
+    		  listarColores();
+    	  });
+    	      Swal.fire({
+    	        position: 'center',
+    	        icon: 'success',
+    	        title: 'dado de baja correctamente',
+    	        showConfirmButton: false,
+    	        timer: 1250
+    	      })
+      }//////////////termina result value
     })
   }
   // Reactivar color
@@ -1160,25 +1184,42 @@ Swal.fire({
 	}
 	)
   // Dar de baja pieza de trazo
-  function bajarTrazo(){
+  function bajarTrazo(idbaja){
+	 var id=idbaja;
     Swal.fire({
-      title: '¿Deseas dar de baja la pieza de trazo?',
+      title: '¿Deseas dar de baja el trazo?',
       icon: 'warning',
       showCancelButton: true,
       cancelButtonColor: '#6C757D',
       cancelButtonText: 'Cancelar',
       confirmButtonText: 'Dar de baja',
-      confirmButtonColor:'#28A745',
+      confirmButtonColor:'#FFC107',
     }).then((result) => {
-      if (result.value) {
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Dada de baja correctamente',
-          showConfirmButton: false,
-          timer: 1250
-        })
-      }
+      if (result.value && id!=null) {
+    	 
+    		console.log(id);
+    	  $.ajax({
+    	      type: "POST",
+    	      url: "/bajacatalogo",
+    	      data: { 
+    	      	 "_csrf": $('#token').val(),
+    	  	'idcatalogo': id
+    	  	
+    	      	// ,'Descripcion':Descripcion
+    	      }
+    	     
+    	  }).done(function(data){
+    		 
+    		  listarTrazos();
+    	  });
+    	      Swal.fire({
+    	        position: 'center',
+    	        icon: 'success',
+    	        title: 'dado de baja correctamente',
+    	        showConfirmButton: false,
+    	        timer: 1250
+    	      })
+      }//////////////termina result value
     })
   }
   // Reactivar pieza de trazo
@@ -1314,27 +1355,44 @@ Swal.fire({
 		    })
 	  }
   // Dar de baja prenda
-  function bajarPrenda(){
-    Swal.fire({
-      title: '¿Deseas dar de baja la familia de prenda',
-      icon: 'warning',
-      showCancelButton: true,
-      cancelButtonColor: '#6C757D',
-      cancelButtonText: 'Cancelar',
-      confirmButtonText: 'Dar de baja',
-      confirmButtonColor:'#17A2B8',
-    }).then((result) => {
-      if (result.value) {
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Dada de baja correctamente',
-          showConfirmButton: false,
-          timer: 1250
-        })
-      }
-    })
-  }
+  function bajarPrenda(idbaja){
+		 var id=idbaja;
+	    Swal.fire({
+	      title: '¿Deseas dar de baja la prenda?',
+	      icon: 'warning',
+	      showCancelButton: true,
+	      cancelButtonColor: '#6C757D',
+	      cancelButtonText: 'Cancelar',
+	      confirmButtonText: 'Dar de baja',
+	      confirmButtonColor:'#FFC107',
+	    }).then((result) => {
+	      if (result.value && id!=null) {
+	    	 
+	    		console.log(id);
+	    	  $.ajax({
+	    	      type: "POST",
+	    	      url: "/bajacatalogo",
+	    	      data: { 
+	    	      	 "_csrf": $('#token').val(),
+	    	  	'idcatalogo': id
+	    	  	
+	    	      	// ,'Descripcion':Descripcion
+	    	      }
+	    	     
+	    	  }).done(function(data){
+	    		 
+	    		  listarPrendas();
+	    	  });
+	    	      Swal.fire({
+	    	        position: 'center',
+	    	        icon: 'success',
+	    	        title: 'dado de baja correctamente',
+	    	        showConfirmButton: false,
+	    	        timer: 1250
+	    	      })
+	      }//////////////termina result value
+	    })
+	  }
   // Reactivar prenda
   function reactivarPrenda(){
     Swal.fire({
@@ -1461,27 +1519,44 @@ function editarGenero(e) {
 		    })
 	  }
   // Dar de baja familia de genero
-  function bajarGenero(){
-    Swal.fire({
-      title: '¿Deseas dar de baja la familia de g&eacute;nero',
-      icon: 'warning',
-      showCancelButton: true,
-      cancelButtonColor: '#6C757D',
-      cancelButtonText: 'Cancelar',
-      confirmButtonText: 'Dar de baja',
-      confirmButtonColor:'#DC3545',
-    }).then((result) => {
-      if (result.value) {
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Dada de baja correctamente',
-          showConfirmButton: false,
-          timer: 1250
-        })
-      }
-    })
-  }
+function bajarGenero(idbaja){
+	 var id=idbaja;
+   Swal.fire({
+     title: '¿Deseas dar de baja el genero?',
+     icon: 'warning',
+     showCancelButton: true,
+     cancelButtonColor: '#6C757D',
+     cancelButtonText: 'Cancelar',
+     confirmButtonText: 'Dar de baja',
+     confirmButtonColor:'#FFC107',
+   }).then((result) => {
+     if (result.value && id!=null) {
+   	 
+   		console.log(id);
+   	  $.ajax({
+   	      type: "POST",
+   	      url: "/bajacatalogo",
+   	      data: { 
+   	      	 "_csrf": $('#token').val(),
+   	  	'idcatalogo': id
+   	  	
+   	      	// ,'Descripcion':Descripcion
+   	      }
+   	     
+   	  }).done(function(data){
+   		 
+   		  listarGeneros();
+   	  });
+   	      Swal.fire({
+   	        position: 'center',
+   	        icon: 'success',
+   	        title: 'dado de baja correctamente',
+   	        showConfirmButton: false,
+   	        timer: 1250
+   	      })
+     }//////////////termina result value
+   })
+ }
   // Reactivar familia de genero
   function reactivarGenero(){
     Swal.fire({
@@ -1608,26 +1683,43 @@ function editarComposicion(e) {
 		    })
 	  }
 // Dar de baja familia de genero
-function bajarComposicion(){
- Swal.fire({
-   title: '¿Deseas dar de baja la familia de g&eacute;nero',
-   icon: 'warning',
-   showCancelButton: true,
-   cancelButtonColor: '#6C757D',
-   cancelButtonText: 'Cancelar',
-   confirmButtonText: 'Dar de baja',
-   confirmButtonColor:'#DC3545',
- }).then((result) => {
-   if (result.value) {
-     Swal.fire({
-       position: 'center',
-       icon: 'success',
-       title: 'Dada de baja correctamente',
-       showConfirmButton: false,
-       timer: 1250
-     })
-   }
- })
+function bajarComposicion(idbaja){
+	 var id=idbaja;
+  Swal.fire({
+    title: '¿Deseas dar de baja la composicion?',
+    icon: 'warning',
+    showCancelButton: true,
+    cancelButtonColor: '#6C757D',
+    cancelButtonText: 'Cancelar',
+    confirmButtonText: 'Dar de baja',
+    confirmButtonColor:'#FFC107',
+  }).then((result) => {
+    if (result.value && id!=null) {
+  	 
+  		console.log(id);
+  	  $.ajax({
+  	      type: "POST",
+  	      url: "/bajacatalogo",
+  	      data: { 
+  	      	 "_csrf": $('#token').val(),
+  	  	'idcatalogo': id
+  	  	
+  	      	// ,'Descripcion':Descripcion
+  	      }
+  	     
+  	  }).done(function(data){
+  		 
+  		  listarComposiciones();
+  	  });
+  	      Swal.fire({
+  	        position: 'center',
+  	        icon: 'success',
+  	        title: 'dado de baja correctamente',
+  	        showConfirmButton: false,
+  	        timer: 1250
+  	      })
+    }//////////////termina result value
+  })
 }
 // Reactivar familia de genero
 function reactivarComposicion(){
@@ -1755,26 +1847,43 @@ function editarCuidado(e) {
 	    })
  }
 // Dar de baja familia de genero
-function bajarCuidado(){
-Swal.fire({
- title: '¿Deseas dar de baja la familia de g&eacute;nero',
- icon: 'warning',
- showCancelButton: true,
- cancelButtonColor: '#6C757D',
- cancelButtonText: 'Cancelar',
- confirmButtonText: 'Dar de baja',
- confirmButtonColor:'#DC3545',
-}).then((result) => {
- if (result.value) {
-   Swal.fire({
-     position: 'center',
-     icon: 'success',
-     title: 'Dada de baja correctamente',
-     showConfirmButton: false,
-     timer: 1250
-   })
- }
-})
+function bajarCuidado(idbaja){
+	 var id=idbaja;
+ Swal.fire({
+   title: '¿Deseas dar de baja el cuidado?',
+   icon: 'warning',
+   showCancelButton: true,
+   cancelButtonColor: '#6C757D',
+   cancelButtonText: 'Cancelar',
+   confirmButtonText: 'Dar de baja',
+   confirmButtonColor:'#FFC107',
+ }).then((result) => {
+   if (result.value && id!=null) {
+ 	 
+ 		console.log(id);
+ 	  $.ajax({
+ 	      type: "POST",
+ 	      url: "/bajacatalogo",
+ 	      data: { 
+ 	      	 "_csrf": $('#token').val(),
+ 	  	'idcatalogo': id
+ 	  	
+ 	      	// ,'Descripcion':Descripcion
+ 	      }
+ 	     
+ 	  }).done(function(data){
+ 		 
+ 		  listarCuidados();
+ 	  });
+ 	      Swal.fire({
+ 	        position: 'center',
+ 	        icon: 'success',
+ 	        title: 'dado de baja correctamente',
+ 	        showConfirmButton: false,
+ 	        timer: 1250
+ 	      })
+   }//////////////termina result value
+ })
 }
 // Reactivar familia de genero
 function reactivarCuidado(){
@@ -1902,25 +2011,42 @@ function editarMedida(e) {
 	    })
  }
 // Dar de baja familia de genero
-function bajarCuidado(){
+function bajarMedida(idbaja){
+	 var id=idbaja;
 Swal.fire({
- title: '¿Deseas dar de baja la familia de g&eacute;nero',
- icon: 'warning',
- showCancelButton: true,
- cancelButtonColor: '#6C757D',
- cancelButtonText: 'Cancelar',
- confirmButtonText: 'Dar de baja',
- confirmButtonColor:'#DC3545',
+  title: '¿Deseas dar de baja el cuidado?',
+  icon: 'warning',
+  showCancelButton: true,
+  cancelButtonColor: '#6C757D',
+  cancelButtonText: 'Cancelar',
+  confirmButtonText: 'Dar de baja',
+  confirmButtonColor:'#FFC107',
 }).then((result) => {
- if (result.value) {
-   Swal.fire({
-     position: 'center',
-     icon: 'success',
-     title: 'Dada de baja correctamente',
-     showConfirmButton: false,
-     timer: 1250
-   })
- }
+  if (result.value && id!=null) {
+	 
+		console.log(id);
+	  $.ajax({
+	      type: "POST",
+	      url: "/bajacatalogo",
+	      data: { 
+	      	 "_csrf": $('#token').val(),
+	  	'idcatalogo': id
+	  	
+	      	// ,'Descripcion':Descripcion
+	      }
+	     
+	  }).done(function(data){
+		 
+		  listarMedidas();
+	  });
+	      Swal.fire({
+	        position: 'center',
+	        icon: 'success',
+	        title: 'dado de baja correctamente',
+	        showConfirmButton: false,
+	        timer: 1250
+	      })
+  }//////////////termina result value
 })
 }
 // Reactivar familia de genero
@@ -2049,25 +2175,42 @@ function editarMaterial(e) {
 	    })
  }
 // Dar de baja familia de genero
-function bajarCuidado(){
+function bajarMaterial(idbaja){
+	 var id=idbaja;
 Swal.fire({
- title: '¿Deseas dar de baja la familia de g&eacute;nero',
+ title: '¿Deseas dar de baja el material?',
  icon: 'warning',
  showCancelButton: true,
  cancelButtonColor: '#6C757D',
  cancelButtonText: 'Cancelar',
  confirmButtonText: 'Dar de baja',
- confirmButtonColor:'#DC3545',
+ confirmButtonColor:'#FFC107',
 }).then((result) => {
- if (result.value) {
-   Swal.fire({
-     position: 'center',
-     icon: 'success',
-     title: 'Dada de baja correctamente',
-     showConfirmButton: false,
-     timer: 1250
-   })
- }
+ if (result.value && id!=null) {
+	 
+		console.log(id);
+	  $.ajax({
+	      type: "POST",
+	      url: "/bajacatalogo",
+	      data: { 
+	      	 "_csrf": $('#token').val(),
+	  	'idcatalogo': id
+	  	
+	      	// ,'Descripcion':Descripcion
+	      }
+	     
+	  }).done(function(data){
+		 
+		  listarMateriales();
+	  });
+	      Swal.fire({
+	        position: 'center',
+	        icon: 'success',
+	        title: 'dado de baja correctamente',
+	        showConfirmButton: false,
+	        timer: 1250
+	      })
+ }//////////////termina result value
 })
 }
 // Reactivar familia de genero
