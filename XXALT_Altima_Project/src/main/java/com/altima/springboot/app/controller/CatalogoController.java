@@ -180,7 +180,6 @@ public class CatalogoController {
 			DisenioLookup familiaprenda = new DisenioLookup();
 			familiaprenda.setIdText("Fam004");
 			familiaprenda.setNombreLookup(FamiliaPrenda);
-			familiaprenda.setDescripcionLookup(Descripcion);
 			familiaprenda.setTipoLookup("Familia Prenda");
 			familiaprenda.setCreadoPor(auth.getName());
 			familiaprenda.setFechaCreacion(date);
