@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -113,24 +114,81 @@ public class MaterialesController {
 	
 	@PostMapping("guardar")
 	public String guardarMaterial(@ModelAttribute DisenioMaterial material) {
-		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		
-		System.out.println(auth.getName() + "aqui esta el mero mero");
-		
-		material.setCreadoPor(auth.getName());
-		disenioMaterialService.save(material);
-		
-		material.setIdText("MAE" + (material.getIdMaterial() + 1000));
-		
-		disenioMaterialService.save(material);
-		
+		if (material.getIdMaterial() ==null || material.getIdMaterial() <=0) {
+			System.out.println(auth.getName() + "aqui esta el mero mero");
+			material.setCreadoPor(auth.getName());
+			disenioMaterialService.save(material);
+			material.setIdText("MAE" + (material.getIdMaterial() + 1000));
+			disenioMaterialService.save(material);
+			System.out.println("epale eaple si entro al method posts");
+		} else {
+			System.out.println(auth.getName() + "aqui esta el mero mero");
+			material.setActualizadoPor(auth.getName());
+			disenioMaterialService.save(material);
+	
+			System.out.println("epale eaple si entro al method posts de editar");
 			
-		
-		System.out.println("epale eaple si entro al method posts");
+			
 
-		   return "agregar-material";
+		}
+        return "redirect:materiales";
 	}
+	
+	
+	
+	
+	@GetMapping("editar-material{id}") 
+	public String editarMaterial( @PathVariable("id") Long idMaterial, Model model) {
+		
+		DisenioMaterial material = disenioMaterialService.findOne(idMaterial);
+	
+		List<DisenioLookup> listLookupsMed = disenioMaterialService.findListaLookupMed();
+		List<DisenioLookup> listLookupsMar = disenioMaterialService.findListaMarcas();
+		List<DisenioLookup> listLookupsClasificacion = disenioMaterialService.findListaClasificacion();	
+		List<DisenioProceso> listClaveProceso = disenioProcesoService.findListClaveProceso();
+		List<DisenioLookup> listLookupsMat = disenioMaterialService.findListaLookupMat();
+		List<DisenioLookup> listLookupsCol = disenioMaterialService.findListaColor();
+		
+		model.addAttribute("material", material);
+
+		model.addAttribute("listLookupsMed", listLookupsMed);
+		model.addAttribute("listLookupsMar", listLookupsMar);
+		model.addAttribute("listLookupsClasificacion", listLookupsClasificacion);
+		model.addAttribute("listClaveProceso", listClaveProceso);
+		model.addAttribute("listLookupsMat", listLookupsMat);
+		model.addAttribute("listLookupsCol", listLookupsCol);
+		
+		System.out.println("epale eaple si entro al method get2");
+		//vuelvo incluir esto porque esnecesario para renderizar la vista
+		// Comienza erik
+				DisenioForro forro = new DisenioForro();
+				model.addAttribute("forro", forro);
+				model.addAttribute("lisFam",disenioTelaService.findAllFamilaComposicion());
+				
+				//agregar tela
+				DisenioTela tela = new DisenioTela(); 
+				model.addAttribute("listForro",forroService.findAll()); 
+				model.addAttribute("listBoton", disenioTelaService.findAllBotones());
+				model.addAttribute("listColor", disenioTelaService.findAllColores());
+				model.addAttribute("listPrendas", disenioTelaService.findAllPrenda());
+				model.addAttribute("tela", tela);
+				return "agregar-material";
+			
+	}
+	
+	
+	@GetMapping("delete-material{id}") 
+	public String deleteMaterial(@PathVariable("id") Long idMaterial) {
+		
+		DisenioMaterial material = disenioMaterialService.findOne(idMaterial);
+		material.setEstatus("0");
+		disenioMaterialService.save(material);
+		  
+		  return "redirect:materiales";
+	}
+	
+	
 	
 	
 	@PostMapping("guardar-forro")
@@ -145,15 +203,15 @@ public class MaterialesController {
 		
 			forro.setIdText("FORRO");
 			forro.setCreadoPor(auth.getName());
-			forro.setClaveForro("Forro");
+			
 			forro.setIdUnidadMedida(Long.valueOf(1));
 			forro.setConsumoPromedioForro("null");
 			forro.setExistenciaForro("36");
-			forro.setEstatus(1);
+		
 			forro.setFechaCreacion(hourdateFormat.format(date));
 			forro.setUltimaFechaModificacion(hourdateFormat.format(date));
 			forroService.save(forro);
-			forro.setClaveForro("Forro"+forro.getIdForro());
+			
 			
 			forroService.save(forro);
 			
@@ -175,6 +233,12 @@ public class MaterialesController {
 	}
 	
 	
+	
+	
+	
+	
+	
+	
 	@PostMapping("guardar-tela")
 	public String guardar_tela( DisenioTela tela,
 			@RequestParam("txtTabla") String composicion,
@@ -190,7 +254,7 @@ public class MaterialesController {
 		DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		tela.setFechaCreacion(hourdateFormat.format(date));
 		tela.setUltimaFechaModificacion(hourdateFormat.format(date));
-		tela.setClaveTela("Prospecto");
+	
 		tela.setDescripcionTela("Prospecto");
 		tela.setLineaTela("1");
 		tela.setIdUnidadMedida("1");
@@ -211,7 +275,7 @@ public class MaterialesController {
 		
 			fc.setIdFamiliaComposicion(Long.valueOf(vect2[i]));
 			fc.setIdTela(tela.getIdTela());
-			fc.setEstatus(0);
+		
 			fc.setCreadoPor(auth.getName());
 			fc.setActualizadoPor("null");
 			fc.setFechaCreacion(hourdateFormat.format(date));

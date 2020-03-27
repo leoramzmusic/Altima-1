@@ -69,7 +69,7 @@ public class DisenioMaterialServiceImpl implements IDisenioMaterialService {
 	@Transactional
 	public List<DisenioLookup> findListaLookupMed(){
 	
-		return em.createQuery("SELECT idLookup, nombreLookup, tipoLookup FROM DisenioLookup WHERE tipoLookup= 'Medida' and   estatus=1").getResultList();
+		return em.createQuery("SELECT idLookup, nombreLookup, tipoLookup FROM DisenioLookup WHERE tipoLookup= 'Unidad Medida' and   estatus=1").getResultList();
 	}
 	
 	
@@ -134,13 +134,14 @@ public class DisenioMaterialServiceImpl implements IDisenioMaterialService {
 	
 	
 
-@SuppressWarnings("unchecked")
+   @SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<DisenioLookup> findListaColor(){
 	
 		return em.createQuery("SELECT idLookup, nombreLookup, tipoLookup FROM DisenioLookup WHERE tipoLookup= 'Color' and   estatus=1").getResultList();
 	}
+
 
 	
 	
