@@ -180,7 +180,6 @@ public class CatalogoController {
 			DisenioLookup familiaprenda = new DisenioLookup();
 			familiaprenda.setIdText("Fam004");
 			familiaprenda.setNombreLookup(FamiliaPrenda);
-			familiaprenda.setDescripcionLookup(Descripcion);
 			familiaprenda.setTipoLookup("Familia Prenda");
 			familiaprenda.setCreadoPor(auth.getName());
 			familiaprenda.setFechaCreacion(date);
@@ -300,7 +299,6 @@ public class CatalogoController {
 		if (FamiliaPrenda != null && idLookup > 0) {
 			familiaprenda = catalogo.findOne(idLookup);
 			familiaprenda.setNombreLookup(FamiliaPrenda);
-			familiaprenda.setDescripcionLookup(Descripcion);
 			familiaprenda.setUltimaFechaModificacion(date);
 			familiaprenda.setActualizadoPor(auth.getName());
 			catalogo.save(familiaprenda);
