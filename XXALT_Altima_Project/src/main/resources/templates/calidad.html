@@ -23,6 +23,9 @@
     <link rel="stylesheet" href="dist/css/jquery.dataTables.min.css">
     <!-- Datatables Plugin-->
     <link rel="stylesheet" href="dist/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
+    
     <!-- Select2 -->
     <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
@@ -85,10 +88,122 @@
                                                 <th>Pruebas</th>
                                                 <th>Estatus</th>
                                                 <th>Detalles</th>
-                                                <th></th>
+                                                <th>Operaciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <tr>
+                                                <td>PRU2423</td>
+                                                <td>PRU2423</td>
+                                                <td class="tdcenter">
+                                                    <a class="btn btn-info popoverxd text-white" data-container="body" data-placement="top" data-html="true" data-content="<strong>Prueba de encogimiento: </strong>En proceso<br><strong>Prueba de lavado y pilling: </strong>En proceso<br><strong>Prueba de costura: </strong>Terminada<br><strong>Prueba de contaminaci&oacute;n: </strong>En proceso" style="border-radius: 35%;"><i class="fas fa-info fa-sm"></i></a>&nbsp;
+                                                </td>
+                                                <td>En proceso</td>
+                                                <td class="tdcenter">
+                                                    <a th:href="${'detalle-calidad'}" class="btn btn-info text-white"><i class="fas fa-info-circle"></i> Ver m&aacute;s detalles</a>&nbsp;
+                                            	</td>
+                                                <td class="tdcenter">
+                                                    <a class="btn btn-warning popoverxd" data-container="body" data-placement="top" data-content="Editar" style="border-radius: 35%;"><i class="fas fa-pen fa-sm"></i></a>&nbsp;
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>PRU2423</td>
+                                                <td>PRU2423</td>
+                                                <td class="tdcenter">
+                                                    <a class="btn btn-info popoverxd text-white" data-container="body" data-placement="top" data-html="true" data-content="<strong>Prueba de encogimiento: </strong>En proceso<br><strong>Prueba de lavado y pilling: </strong>En proceso<br><strong>Prueba de costura: </strong>Terminada<br><strong>Prueba de contaminaci&oacute;n: </strong>En proceso" style="border-radius: 35%;"><i class="fas fa-info fa-sm"></i></a>&nbsp;
+                                                </td>
+                                                <td>En proceso</td>
+                                                <td class="tdcenter">
+                                                    <a th:href="${'detalle-calidad'}" class="btn btn-info text-white"><i class="fas fa-info-circle"></i> Ver m&aacute;s detalles</a>&nbsp;
+                                            	</td>
+                                                <td class="tdcenter">
+                                                    <a class="btn btn-warning popoverxd" data-container="body" data-placement="top" data-content="Editar" style="border-radius: 35%;"><i class="fas fa-pen fa-sm"></i></a>&nbsp;
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>PRU2423</td>
+                                                <td>PRU2423</td>
+                                                <td class="tdcenter">
+                                                    <a class="btn btn-info popoverxd text-white" data-container="body" data-placement="top" data-html="true" data-content="<strong>Prueba de encogimiento: </strong>En proceso<br><strong>Prueba de lavado y pilling: </strong>En proceso<br><strong>Prueba de costura: </strong>Terminada<br><strong>Prueba de contaminaci&oacute;n: </strong>En proceso" style="border-radius: 35%;"><i class="fas fa-info fa-sm"></i></a>&nbsp;
+                                                </td>
+                                                <td>En proceso</td>
+                                                <td class="tdcenter">
+                                                    <a th:href="${'detalle-calidad'}" class="btn btn-info text-white"><i class="fas fa-info-circle"></i> Ver m&aacute;s detalles</a>&nbsp;
+                                            	</td>
+                                                <td class="tdcenter">
+                                                    <a class="btn btn-warning popoverxd" data-container="body" data-placement="top" data-content="Editar" style="border-radius: 35%;"><i class="fas fa-pen fa-sm"></i></a>&nbsp;
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>PRU2423</td>
+                                                <td>PRU2423</td>
+                                                <td class="tdcenter">
+                                                    <a class="btn btn-info popoverxd text-white" data-container="body" data-placement="top" data-html="true" data-content="<strong>Prueba de encogimiento: </strong>En proceso<br><strong>Prueba de lavado y pilling: </strong>En proceso<br><strong>Prueba de costura: </strong>Terminada<br><strong>Prueba de contaminaci&oacute;n: </strong>En proceso" style="border-radius: 35%;"><i class="fas fa-info fa-sm"></i></a>&nbsp;
+                                                </td>
+                                                <td>En proceso</td>
+                                                <td class="tdcenter">
+                                                    <a th:href="${'detalle-calidad'}" class="btn btn-info text-white"><i class="fas fa-info-circle"></i> Ver m&aacute;s detalles</a>&nbsp;
+                                            	</td>
+                                                <td class="tdcenter">
+                                                    <a class="btn btn-warning popoverxd" data-container="body" data-placement="top" data-content="Editar" style="border-radius: 35%;"><i class="fas fa-pen fa-sm"></i></a>&nbsp;
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>PRU2423</td>
+                                                <td>PRU2423</td>
+                                                <td class="tdcenter">
+                                                    <a class="btn btn-info popoverxd text-white" data-container="body" data-placement="top" data-html="true" data-content="<strong>Prueba de encogimiento: </strong>En proceso<br><strong>Prueba de lavado y pilling: </strong>En proceso<br><strong>Prueba de costura: </strong>Terminada<br><strong>Prueba de contaminaci&oacute;n: </strong>En proceso" style="border-radius: 35%;"><i class="fas fa-info fa-sm"></i></a>&nbsp;
+                                                </td>
+                                                <td>En proceso</td>
+                                                <td class="tdcenter">
+                                                    <a th:href="${'detalle-calidad'}" class="btn btn-info text-white"><i class="fas fa-info-circle"></i> Ver m&aacute;s detalles</a>&nbsp;
+                                            	</td>
+                                                <td class="tdcenter">
+                                                    <a class="btn btn-warning popoverxd" data-container="body" data-placement="top" data-content="Editar" style="border-radius: 35%;"><i class="fas fa-pen fa-sm"></i></a>&nbsp;
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>PRU2423</td>
+                                                <td>PRU2423</td>
+                                                <td class="tdcenter">
+                                                    <a class="btn btn-info popoverxd text-white" data-container="body" data-placement="top" data-html="true" data-content="<strong>Prueba de encogimiento: </strong>En proceso<br><strong>Prueba de lavado y pilling: </strong>En proceso<br><strong>Prueba de costura: </strong>Terminada<br><strong>Prueba de contaminaci&oacute;n: </strong>En proceso" style="border-radius: 35%;"><i class="fas fa-info fa-sm"></i></a>&nbsp;
+                                                </td>
+                                                <td>En proceso</td>
+                                                <td class="tdcenter">
+                                                    <a th:href="${'detalle-calidad'}" class="btn btn-info text-white"><i class="fas fa-info-circle"></i> Ver m&aacute;s detalles</a>&nbsp;
+                                            	</td>
+                                                <td class="tdcenter">
+                                                    <a class="btn btn-warning popoverxd" data-container="body" data-placement="top" data-content="Editar" style="border-radius: 35%;"><i class="fas fa-pen fa-sm"></i></a>&nbsp;
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>PRU2423</td>
+                                                <td>PRU2423</td>
+                                                <td class="tdcenter">
+                                                    <a class="btn btn-info popoverxd text-white" data-container="body" data-placement="top" data-html="true" data-content="<strong>Prueba de encogimiento: </strong>En proceso<br><strong>Prueba de lavado y pilling: </strong>En proceso<br><strong>Prueba de costura: </strong>Terminada<br><strong>Prueba de contaminaci&oacute;n: </strong>En proceso" style="border-radius: 35%;"><i class="fas fa-info fa-sm"></i></a>&nbsp;
+                                                </td>
+                                                <td>En proceso</td>
+                                                <td class="tdcenter">
+                                                    <a th:href="${'detalle-calidad'}" class="btn btn-info text-white"><i class="fas fa-info-circle"></i> Ver m&aacute;s detalles</a>&nbsp;
+                                            	</td>
+                                                <td class="tdcenter">
+                                                    <a class="btn btn-warning popoverxd" data-container="body" data-placement="top" data-content="Editar" style="border-radius: 35%;"><i class="fas fa-pen fa-sm"></i></a>&nbsp;
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>PRU2423</td>
+                                                <td>PRU2423</td>
+                                                <td class="tdcenter">
+                                                    <a class="btn btn-info popoverxd text-white" data-container="body" data-placement="top" data-html="true" data-content="<strong>Prueba de encogimiento: </strong>En proceso<br><strong>Prueba de lavado y pilling: </strong>En proceso<br><strong>Prueba de costura: </strong>Terminada<br><strong>Prueba de contaminaci&oacute;n: </strong>En proceso" style="border-radius: 35%;"><i class="fas fa-info fa-sm"></i></a>&nbsp;
+                                                </td>
+                                                <td>En proceso</td>
+                                                <td class="tdcenter">
+                                                    <a th:href="${'detalle-calidad'}" class="btn btn-info text-white"><i class="fas fa-info-circle"></i> Ver m&aacute;s detalles</a>&nbsp;
+                                            	</td>
+                                                <td class="tdcenter">
+                                                    <a class="btn btn-warning popoverxd" data-container="body" data-placement="top" data-content="Editar" style="border-radius: 35%;"><i class="fas fa-pen fa-sm"></i></a>&nbsp;
+                                                </td>
+                                            </tr>
                                             <tr>
                                                 <td>PRU2423</td>
                                                 <td>PRU2423</td>
@@ -141,6 +256,10 @@
     <script src="dist/js/buttons.colVis.min.js"></script>
     <!-- Bootstrap Datatables Plugin-->
     <script src="dist/js/dataTables.bootstrap4.min.js"></script>
+    <!-- TABLA RESPONSIVA -->
+    <script src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js"></script>
+	<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+	<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
     <!-- select2 -->
 	<script src="dist/js/select2.min.js"></script>
 	<script>
@@ -167,9 +286,10 @@
     <!-- Script de la tabla -->
     <script>
         $(document).ready(function() {
-            $('table.tablexd').DataTable({
+           var table = $('table.tablexd').DataTable({
                 "ordering": false,
                 "pageLength": 5,
+                "responsive": true,
                 "lengthMenu": [
                     [5, 10, 25, 50, 100],
                     [5, 10, 25, 50, 100]
@@ -203,6 +323,7 @@
                     }
                 }
             });
+            new $.fn.dataTable.FixedHeader( table );
 
         });
     </script>
@@ -213,6 +334,14 @@
 			document.getElementById("navDiseno1").className = "nav-link active";
 		}
 		window.onload = changeClassById();
+	</script>
+	<script>
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+		   console.log('Esto es un dispositivo móvil');
+		}
+	else{
+		   console.log('Esto es una computadora');
+	}
 	</script>
 </body>
 
