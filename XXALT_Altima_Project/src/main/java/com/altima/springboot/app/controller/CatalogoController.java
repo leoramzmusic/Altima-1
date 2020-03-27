@@ -118,6 +118,16 @@ public class CatalogoController {
 		model.addAttribute("instrcuidado", catalogo.findAllInstrCuidado());
 		return "/catalogos";
 	}
+	
+	@PostMapping("/bajacatalogo")
+	public String bajacatalogo(Long idcatalogo) {
+		DisenioLookup catalogo2=null;
+		catalogo2=catalogo.findOne(idcatalogo);
+		catalogo2.setEstatus(0);
+		catalogo.save(catalogo2);
+		return "redirect:catalogos";
+		
+	}
 
 	@PostMapping("/guardarcatalogo")
 	public String guardacatalogo(String Marca, String Descripcion, String Color, String PiezaTrazo,
