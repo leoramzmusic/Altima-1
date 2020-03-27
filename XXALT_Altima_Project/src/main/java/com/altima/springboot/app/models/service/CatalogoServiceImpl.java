@@ -98,5 +98,19 @@ public class CatalogoServiceImpl implements ICatalogoService {
 	public List<DisenioLookup> findAllInstrCuidado(){
 		return em.createQuery("from DisenioLookup where tipo_lookup='Instruccion Cuidado'").getResultList();
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<DisenioLookup> findAllUnidadMedida(){
+		return em.createQuery("from DisenioLookup where tipo_lookup='Unidad Medida'").getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<DisenioLookup> findAllMaterial(){
+		return em.createQuery("from DisenioLookup where tipo_lookup='Material'").getResultList();
+	}
 
 }

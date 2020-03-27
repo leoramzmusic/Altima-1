@@ -7,7 +7,8 @@
 	listarGeneros();
 	listarComposiciones();
 	listarCuidados();
-	
+	listarMedidas();
+	listarMateriales();
 	
 	
 
@@ -558,6 +559,175 @@
 						b.push(a);
 		        }	        
 			    var tabla = $('#idtable7').DataTable({
+	            	"data":b,
+	                "ordering": true,
+	                "pageLength": 5,
+	                "lengthMenu": [
+	                    [5, 10, 25, 50, 100],
+	                    [5, 10, 25, 50, 100]
+	                ],
+	                "language": {
+	                    "sProcessing": "Procesando...",
+	                    "sLengthMenu": "Mostrar _MENU_ registros",
+	                    "sZeroRecords": "No se encontraron resultados",
+	                    "sEmptyTable": "Ningún dato disponible en esta tabla =(",
+	                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+	                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+	                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+	                    "sInfoPostFix": "",
+	                    "sSearch": "Buscar:",
+	                    "sUrl": "",
+	                    "sInfoThousands": ",",
+	                    "sLoadingRecords": "Cargando...",
+	                    "oPaginate": {
+	                        "sFirst": "Primero",
+	                        "sLast": "Último",
+	                        "sNext": "Siguiente",
+	                        "sPrevious": "Anterior"
+	                    },
+	                    "oAria": {
+	                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+	                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+	                    },
+	                    "buttons": {
+	                        "copy": "Copiar",
+	                        "colvis": "Visibilidad"
+	                    }
+	                }
+	            });
+		    },
+		    error: (e) => {
+		        // location.reload();
+		    }
+	}
+	)}
+//////////////////
+ function listarMedidas() {
+		
+		$.ajax({
+		    method: "GET",
+		    url: "/medidaslook",
+		    success: (data) => {
+		    	$('#quitar8').remove();
+		    	$('#contenedorTabla8').append("<div class='modal-body' id='quitar8'>" +
+		    			"<table class='table table-striped table-bordered' id='idtable8' style='width:100%'>" +
+	                                        "<thead>" +
+	                                            "<tr>" +
+	                                                "<th>Clave</th>" +
+	                                                "<th>Nombre</th>" + 
+	                                               
+	                                                "<th>Cambios</th>" +
+	                                                "<th></th>" +
+	                                            "</tr>" +
+	                                        "</thead>" +
+	                                    "</table>" + "</div>");
+		        var a;
+		        var b = [];
+		        for (i in data){
+		        	
+						a = [
+						"<tr>" +
+						"<td>" + data[i].idText + "</td>",
+						"<td>" + data[i].nombreLookup + "</td>",
+						"<td style='text-align: center;'>"+
+         "<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button>&nbsp;"+
+     "</td>",
+						" <td style='text-align: center;''>"+
+				"<button onclick='editarMedida(this);' idlookup='"+ data[i].idLookup+"' nombre='"+ data[i].nombreLookup+"'  class='btn btn-warning popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
+       "<button onclick='bajarMarca()' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
+       "<button onclick='reactivarMarca()' class='btn btn-success popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Reactivar' style='border-radius:35%;'><i class='fas fa-check fa-sm'></i></button>"+
+						"</td>"+
+						
+						"<tr>"
+						];
+						b.push(a);
+		        }	        
+			    var tabla = $('#idtable8').DataTable({
+	            	"data":b,
+	                "ordering": true,
+	                "pageLength": 5,
+	                "lengthMenu": [
+	                    [5, 10, 25, 50, 100],
+	                    [5, 10, 25, 50, 100]
+	                ],
+	                "language": {
+	                    "sProcessing": "Procesando...",
+	                    "sLengthMenu": "Mostrar _MENU_ registros",
+	                    "sZeroRecords": "No se encontraron resultados",
+	                    "sEmptyTable": "Ningún dato disponible en esta tabla =(",
+	                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+	                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+	                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+	                    "sInfoPostFix": "",
+	                    "sSearch": "Buscar:",
+	                    "sUrl": "",
+	                    "sInfoThousands": ",",
+	                    "sLoadingRecords": "Cargando...",
+	                    "oPaginate": {
+	                        "sFirst": "Primero",
+	                        "sLast": "Último",
+	                        "sNext": "Siguiente",
+	                        "sPrevious": "Anterior"
+	                    },
+	                    "oAria": {
+	                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+	                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+	                    },
+	                    "buttons": {
+	                        "copy": "Copiar",
+	                        "colvis": "Visibilidad"
+	                    }
+	                }
+	            });
+		    },
+		    error: (e) => {
+		        // location.reload();
+		    }
+	}
+	)}
+ /////////////////////
+//////////////////
+ function listarMateriales() {
+		
+		$.ajax({
+		    method: "GET",
+		    url: "/materialeslook",
+		    success: (data) => {
+		    	$('#quitar9').remove();
+		    	$('#contenedorTabla9').append("<div class='modal-body' id='quitar9'>" +
+		    			"<table class='table table-striped table-bordered' id='idtable9' style='width:100%'>" +
+	                                        "<thead>" +
+	                                            "<tr>" +
+	                                                "<th>Clave</th>" +
+	                                                "<th>Nombre</th>" + 
+	                                               
+	                                                "<th>Cambios</th>" +
+	                                                "<th></th>" +
+	                                            "</tr>" +
+	                                        "</thead>" +
+	                                    "</table>" + "</div>");
+		        var a;
+		        var b = [];
+		        for (i in data){
+		        	
+						a = [
+						"<tr>" +
+						"<td>" + data[i].idText + "</td>",
+						"<td>" + data[i].nombreLookup + "</td>",
+						"<td style='text-align: center;'>"+
+         "<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button>&nbsp;"+
+     "</td>",
+						" <td style='text-align: center;''>"+
+				"<button onclick='editarMaterial(this);' idlookup='"+ data[i].idLookup+"' nombre='"+ data[i].nombreLookup+"'  class='btn btn-warning popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
+       "<button onclick='bajarMarca()' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
+       "<button onclick='reactivarMarca()' class='btn btn-success popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Reactivar' style='border-radius:35%;'><i class='fas fa-check fa-sm'></i></button>"+
+						"</td>"+
+						
+						"<tr>"
+						];
+						b.push(a);
+		        }	        
+			    var tabla = $('#idtable9').DataTable({
 	            	"data":b,
 	                "ordering": true,
 	                "pageLength": 5,
@@ -1628,3 +1798,300 @@ Swal.fire({
  }
 })
 }
+//////////////////////
+//Habilitar form de SweetAlert2
+$('#detalleMedida').on('shown.bs.modal', function() {
+     $(document).off('focusin.modal');
+ });
+function agregarMedida() {
+	 Swal.fire({
+	      title: 'Agregar medida',
+		    html:'<div class="row">'+
+	        '<div class="form-group col-sm-12">'+
+	          '<label for="pedidonom">Nombre medida</label>'+
+	          '<input type="text" class="swal2-input" id="medida" placeholder="cm">'+
+	        '</div>'+
+	        '</div>',
+	      showCancelButton: true,
+	      cancelButtonColor: '#6C757D',
+	      cancelButtonText: 'Cancelar',
+	      confirmButtonText: 'Agregar',
+	      confirmButtonColor:'#17a2b8',
+	    }).then((result) => {
+	      if (result.value && document.getElementById("medida").value) {
+			    var Medida=document.getElementById("medida").value;
+		
+	    	  console.log(result.value);
+			   $.ajax({
+	        type: "POST",
+	        url: "/guardarcatalogo",
+	        data: { 
+	        	 "_csrf": $('#token').val(),
+	        	'UnidadMedida': Medida
+	        	
+	        	// ,'Descripcion':Descripcion
+	        }
+	       
+	    }).done(function(data){
+	    	listarMedidas();
+	    });
+	        Swal.fire({
+	          position: 'center',
+	          icon: 'success',
+	          title: 'Insertado correctamente',
+	          showConfirmButton: false,
+	          timer: 1250
+	        })
+	      //  window.setTimeout(function(){location.reload()}, 2000);
+	      }
+	    })
+ }
+
+// Editar genero
+
+
+function editarMedida(e) {
+	 var descr=e.getAttribute("descripcion");
+	
+	console.log(descr);
+	 Swal.fire({
+	      title: 'Editar medida',
+		   html:'<div class="row">'+
+		        '<div class="form-group col-sm-12">'+
+		          '<label for="pedidonom">Nombre medida</label>'+
+		          '<input type="text" value=" '+e.getAttribute("nombre")+' " class="swal2-input" id="nombre" placeholder="Parisina">'+
+		        '</div>'+
+		        '<div class="form-group col-sm-12">'+
+		         
+		          '<input type="hidden" value=" '+e.getAttribute("idlookup")+' " class="swal2-input" id="idlookup" placeholder="Parisina">'+
+		        '</div>'+
+		        '</div>',
+	      showCancelButton: true,
+	      cancelButtonColor: '#6C757D',
+	      cancelButtonText: 'Cancelar',
+	      confirmButtonText: 'Actualizar',
+	      confirmButtonColor:'#FFC107',
+	    }).then((result) => {
+	      if (result.value && document.getElementById("nombre").value  && document.getElementById("idlookup").value) {
+			    var Medida=document.getElementById("nombre").value;
+			   
+			    var idLookup=document.getElementById("idlookup").value;
+	    	  console.log(result.value);
+			   $.ajax({
+	        type: "POST",
+	        url: "/editarcatalogo",
+	        data: { 
+	        	 "_csrf": $('#token').val(),
+	        	'UnidadMedida': Medida,
+	        	'idLookup' :idLookup
+	        	// ,'Descripcion':Descripcion
+	        }
+	       
+	    }).done(function(data){
+	    	listarMedidas();
+	    });
+	        Swal.fire({
+	          position: 'center',
+	          icon: 'success',
+	          title: 'editado correctamente',
+	          showConfirmButton: false,
+	          timer: 1250
+	        })
+	        
+	      }
+	    })
+ }
+// Dar de baja familia de genero
+function bajarCuidado(){
+Swal.fire({
+ title: '¿Deseas dar de baja la familia de g&eacute;nero',
+ icon: 'warning',
+ showCancelButton: true,
+ cancelButtonColor: '#6C757D',
+ cancelButtonText: 'Cancelar',
+ confirmButtonText: 'Dar de baja',
+ confirmButtonColor:'#DC3545',
+}).then((result) => {
+ if (result.value) {
+   Swal.fire({
+     position: 'center',
+     icon: 'success',
+     title: 'Dada de baja correctamente',
+     showConfirmButton: false,
+     timer: 1250
+   })
+ }
+})
+}
+// Reactivar familia de genero
+function reactivarCuidado(){
+Swal.fire({
+ title: '¿Deseas reactivar la familia de g&eacute;nero?',
+ icon: 'warning',
+ showCancelButton: true,
+ cancelButtonColor: '#6C757D',
+ cancelButtonText: 'Cancelar',
+ confirmButtonText: 'Activar',
+ confirmButtonColor:'#DC3545',
+}).then((result) => {
+ if (result.value) {
+   Swal.fire({
+     position: 'center',
+     icon: 'success',
+     title: 'Reactivada correctamente',
+     showConfirmButton: false,
+     timer: 1250
+   })
+ }
+})
+}
+////////////////////
+//Habilitar form de SweetAlert2
+$('#detalleMaterial').on('shown.bs.modal', function() {
+     $(document).off('focusin.modal');
+ });
+function agregarMaterial() {
+	 Swal.fire({
+	      title: 'Agregar material',
+		    html:'<div class="row">'+
+	        '<div class="form-group col-sm-12">'+
+	          '<label for="pedidonom">Nombre material</label>'+
+	          '<input type="text" class="swal2-input" id="material" placeholder="cierre">'+
+	        '</div>'+
+	        '</div>',
+	      showCancelButton: true,
+	      cancelButtonColor: '#6C757D',
+	      cancelButtonText: 'Cancelar',
+	      confirmButtonText: 'Agregar',
+	      confirmButtonColor:'#17a2b8',
+	    }).then((result) => {
+	      if (result.value && document.getElementById("material").value) {
+			    var Material=document.getElementById("material").value;
+		
+	    	  console.log(result.value);
+			   $.ajax({
+	        type: "POST",
+	        url: "/guardarcatalogo",
+	        data: { 
+	        	 "_csrf": $('#token').val(),
+	        	'Material': Material
+	        	
+	        	// ,'Descripcion':Descripcion
+	        }
+	       
+	    }).done(function(data){
+	    	listarMateriales();
+	    });
+	        Swal.fire({
+	          position: 'center',
+	          icon: 'success',
+	          title: 'Insertado correctamente',
+	          showConfirmButton: false,
+	          timer: 1250
+	        })
+	      //  window.setTimeout(function(){location.reload()}, 2000);
+	      }
+	    })
+ }
+
+// Editar genero
+
+
+function editarMaterial(e) {
+	 var descr=e.getAttribute("descripcion");
+	
+	console.log(descr);
+	 Swal.fire({
+	      title: 'Editar material',
+		   html:'<div class="row">'+
+		        '<div class="form-group col-sm-12">'+
+		          '<label for="pedidonom">Nombre medida</label>'+
+		          '<input type="text" value=" '+e.getAttribute("nombre")+' " class="swal2-input" id="nombre" placeholder="Parisina">'+
+		        '</div>'+
+		        '<div class="form-group col-sm-12">'+
+		         
+		          '<input type="hidden" value=" '+e.getAttribute("idlookup")+' " class="swal2-input" id="idlookup" placeholder="Parisina">'+
+		        '</div>'+
+		        '</div>',
+	      showCancelButton: true,
+	      cancelButtonColor: '#6C757D',
+	      cancelButtonText: 'Cancelar',
+	      confirmButtonText: 'Actualizar',
+	      confirmButtonColor:'#FFC107',
+	    }).then((result) => {
+	      if (result.value && document.getElementById("nombre").value  && document.getElementById("idlookup").value) {
+			    var Material=document.getElementById("nombre").value;
+			   
+			    var idLookup=document.getElementById("idlookup").value;
+	    	  console.log(result.value);
+			   $.ajax({
+	        type: "POST",
+	        url: "/editarcatalogo",
+	        data: { 
+	        	 "_csrf": $('#token').val(),
+	        	'Material': Material,
+	        	'idLookup' :idLookup
+	        	// ,'Descripcion':Descripcion
+	        }
+	       
+	    }).done(function(data){
+	    	listarMateriales();
+	    });
+	        Swal.fire({
+	          position: 'center',
+	          icon: 'success',
+	          title: 'editado correctamente',
+	          showConfirmButton: false,
+	          timer: 1250
+	        })
+	        
+	      }
+	    })
+ }
+// Dar de baja familia de genero
+function bajarCuidado(){
+Swal.fire({
+ title: '¿Deseas dar de baja la familia de g&eacute;nero',
+ icon: 'warning',
+ showCancelButton: true,
+ cancelButtonColor: '#6C757D',
+ cancelButtonText: 'Cancelar',
+ confirmButtonText: 'Dar de baja',
+ confirmButtonColor:'#DC3545',
+}).then((result) => {
+ if (result.value) {
+   Swal.fire({
+     position: 'center',
+     icon: 'success',
+     title: 'Dada de baja correctamente',
+     showConfirmButton: false,
+     timer: 1250
+   })
+ }
+})
+}
+// Reactivar familia de genero
+function reactivarCuidado(){
+Swal.fire({
+ title: '¿Deseas reactivar la familia de g&eacute;nero?',
+ icon: 'warning',
+ showCancelButton: true,
+ cancelButtonColor: '#6C757D',
+ cancelButtonText: 'Cancelar',
+ confirmButtonText: 'Activar',
+ confirmButtonColor:'#DC3545',
+}).then((result) => {
+ if (result.value) {
+   Swal.fire({
+     position: 'center',
+     icon: 'success',
+     title: 'Reactivada correctamente',
+     showConfirmButton: false,
+     timer: 1250
+   })
+ }
+})
+}
+
+
+

@@ -28,4 +28,8 @@ public interface ICatalogoService {
 
 	List<DisenioLookup> findAllInstrCuidado();
 
+	List<DisenioLookup> findAllUnidadMedida();
+
+	List<DisenioLookup> findAllMaterial();
+
 }
