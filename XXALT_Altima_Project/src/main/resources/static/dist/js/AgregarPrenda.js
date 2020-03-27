@@ -58,7 +58,6 @@ function RecogerDatosPrimeraParte()
 	objeto_prenda['precioLocalAnterior'] = 0.0;
 	objeto_prenda['precioForaneoActual'] = 0.0;
 	objeto_prenda['precioForaneoAnterior'] = 0.0;
-	objeto_prenda['cveRuta'] = $('#Ruta').val();
 	objeto_prenda['cvePrenda'] = 0;
 	objeto_prenda['tipoLargo'] = "Ninguno";
 	objeto_prenda['especificacion'] = "Ninguna";
@@ -204,12 +203,14 @@ function AgregarElementoListaPatronaje()
 			}
 			});
 }
+
 function QuitarPatronaje(identidad)
 {
 	$('#QuitarFilaPatronaje-' + identidad).remove();
 	var removeIndex = objeto_patronaje.map(function(item) { return item.identidad; }).indexOf(identidad);
 	objeto_patronaje.splice(removeIndex, 1);
 }
+
 function Guardar()
 {
 	RecogerDatosPrimeraParte();
@@ -257,6 +258,50 @@ function Guardar()
 	}); 
 }
 
+function EnviarInfoProspecto()
+{
+	RecogerDatosPrimeraParte();
+	RecogerDatosSegundaParte();
+	
+	var token = $('#token').val();
+	var header = $('#token').val();
+	console.log(objeto_materiales);
+	$( '#FormImagenes' ).click();
+	
+	
+	//Solicitud Ajax
+    $.ajax({
+        type: "POST",
+        url: "/guardar_prenda",
+        data: {
+        	"_csrf": $('#token').val(),
+        	"disenioprenda" : JSON.stringify(objeto_prenda)
+        },
+        success: (data) => {
+        	console.log(data);	
+        	
+        	
+            $.ajax({
+                type: "GET",
+                url: "/guardar_final_prospecto",
+                data: {
+                	"_csrf": $('#token').val()
+                },
+                success: (data) => {
+                	console.log('final');	
+        		},
+        		failure: function(errMsg) {
+        	        alert(errMsg);
+        	    }
+        	}); 
+        	
+		},
+		failure: function(errMsg) {
+	        alert(errMsg);
+	    }
+	});
+}
+
 function ValidarPrimerPestana()
 {
 	if($('#NombrePrenda').val() != "" && $('#DescripcionPrenda').val() != "" && $('#NotaEspecial').val() != "" 
@@ -272,9 +317,27 @@ function ValidarPrimerPestana()
 	}
 }
 
+function ValidarPrimerPestana2()
+{
+	if($('#NombrePrenda').val() != "" && $('#DescripcionPrenda').val() != "" && $('#NotaEspecial').val() != "" 
+		&& $('#DetallePrenda').val() != "" && $('#file').val() != "" && $('#file2').val() != "" 
+			&& $('#TipoPrenda').val() != "")
+	{
+		$('#AlertaPrimerPestana').css('display', 'none');
+		//$('#SiguientePrimeraPestana').click();
+		EnviarInfoProspecto();
+		console.log('paso');
+	}
+	else
+	{
+		$('#AlertaPrimerPestana').css('display', 'block');
+		console.log('no paso');
+	}
+}
+
 function ValidarSegundaPestana()
 {
-	if($('#DetalleConfeccion').val() != "" && $('#Marcadores').val() != "")
+	if($('#DetalleConfeccion').val() != "")
 	{
 		$('#AlertaSegundaPestana').css('display', 'none');
 		$('#SiguienteSegundaPestana').click();

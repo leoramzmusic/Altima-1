@@ -1,7 +1,9 @@
 package com.altima.springboot.app.controller;
 
 import java.io.IOException;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
@@ -12,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,6 +33,7 @@ import com.altima.springboot.app.models.service.DisenioPrendaPatronajeServiceImp
 import com.altima.springboot.app.models.service.DisenioPrendaServiceImpl;
 import com.altima.springboot.app.models.service.IDisenioMaterialService;
 import com.altima.springboot.app.models.service.UploadServiceImpl;
+
 
 
 @RestController
@@ -121,7 +125,7 @@ public class AgregarPrendaRestController
 		dp.setConsumoTela(prenda.get("consumoTela").toString());
 		dp.setConsumoForro(prenda.get("consumoForro").toString());
 		dp.setPrecio(prenda.get("precio").toString());
-		dp.setCveRuta(prenda.get("cveRuta").toString());
+		dp.setCveRuta("1"); //Ruta predefinida siempre
 		dp.setTipoLargo(prenda.get("tipoLargo").toString());
 		dp.setCvePrenda(prenda.get("cvePrenda").toString());
 		dp.setEspecificacion(prenda.get("especificacion").toString());
@@ -182,5 +186,24 @@ public class AgregarPrendaRestController
 		
 		dp = null;
 		this.dp = new DisenioPrenda();
+	}
+	
+	@RequestMapping(value="/guardar_final_prospecto", method=RequestMethod.GET)
+	public void guardarFinalProspecto() throws NoSuchFieldException, SecurityException
+	{
+		prendaService.save(dp);
+		dp.setIdText("PRE" + (1000 + dp.getIdPrenda()));
+		dp.setEstatusRecepcionMuestra("Prospecto");
+		prendaService.save(dp);
+		
+		
+		dp = null;
+		this.dp = new DisenioPrenda();
+	}
+	
+	@GetMapping(value = "/fotos")
+	public DisenioPrenda getFotos(HttpServletRequest request, @RequestParam(name = "id") Long id) {
+		DisenioPrenda dp = prendaService.findOne(id); 
+		return dp;
 	}
 }

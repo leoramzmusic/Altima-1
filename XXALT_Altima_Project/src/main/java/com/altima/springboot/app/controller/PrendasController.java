@@ -56,20 +56,38 @@ public class PrendasController {
 		model.addAttribute("patronajes", disenioMaterialService.findLookUps());
 		model.addAttribute("rutas", disenioRutaService.findAll());
 		m.put("disenio", disenio);
-		return "agregar-prenda";
+		m.put("accion", "prospecto");
+		return "agregar-prenda-prospecto";
 	}
 	
 	@RequestMapping(value= "/editar-prenda/{id}")
-	public String editar(@PathVariable (value="id") Long id, Map<String, Object> m, Model model ) 
+	public String editar(@PathVariable (value="id") Long id, Model model, Map<String, Object> m) 
 	{
-		System.out.println("entre al editar jsjs");
+		System.out.println("entre al editar jsjs: " + id);
 		DisenioPrenda disenio = new DisenioPrenda();
+		DisenioPrenda prenda = disenioPrendaService.findOne(id);
+		
 		model.addAttribute("familias", disenioFamiliaPrendaService.findAll());
 		model.addAttribute("materiales", disenioMaterialService.findAllForCreate());
 		model.addAttribute("patronajes", disenioMaterialService.findLookUps());
-		model.addAttribute("rutas", disenioRutaService.findAll());
+		model.addAttribute("prenda", prenda);
 		m.put("disenio", disenio);
 		return "editar-prenda";
+	}
+	
+	@RequestMapping(value= "/confirmar-prenda/{id}")
+	public String confirmar(@PathVariable (value="id") Long id, Model model, Map<String, Object> m) 
+	{
+		System.out.println("entre al confirmar jsjs: " + id);
+		DisenioPrenda disenio = new DisenioPrenda();
+		DisenioPrenda prenda = disenioPrendaService.findOne(id);
+		
+		model.addAttribute("familias", disenioFamiliaPrendaService.findAll());
+		model.addAttribute("materiales", disenioMaterialService.findAllForCreate());
+		model.addAttribute("patronajes", disenioMaterialService.findLookUps());
+		model.addAttribute("prenda", prenda);
+		m.put("disenio", disenio);
+		return "confirmar-prenda";
 	}
 
 }
