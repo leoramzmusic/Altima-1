@@ -9,6 +9,8 @@ public interface IDisenioFamiliaComposicionForroService {
 	List<DisenioFamiliaComposicionForro> findAll();
 
 	void save(DisenioFamiliaComposicionForro DisenioFamiliaComposicionForro);
+	
+	public void deleteLista(Long id);
 
 	void delete(Long id);
 

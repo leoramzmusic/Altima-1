@@ -21,5 +21,12 @@ public interface IUploadService {
 	public String copyTela(MultipartFile file1) throws IOException;
 	
 	public boolean deleteTela(String filename);
+	
+	
+	public Resource loadForro(String filename) throws MalformedURLException;
+	
+	public String copyForro(MultipartFile file1) throws IOException;
+	
+	public boolean deleteForro(String filename);
 
 }

@@ -101,7 +101,7 @@ public class MaterialesController {
 		//agregar tela
 		DisenioTela tela = new DisenioTela(); 
 		model.addAttribute("listForro",forroService.findAll()); 
-		model.addAttribute("listBoton", disenioTelaService.findAllBotones());
+		model.addAttribute("listBoton", disenioTelaService.findAllBotones(tela.getIdTela()));
 		model.addAttribute("listColor", disenioTelaService.findAllColores());
 		model.addAttribute("listPrendas", disenioTelaService.findAllPrenda());
 		model.addAttribute("tela", tela);
@@ -174,7 +174,7 @@ public class MaterialesController {
 				//agregar tela
 				DisenioTela tela = new DisenioTela(); 
 				model.addAttribute("listForro",forroService.findAll()); 
-				model.addAttribute("listBoton", disenioTelaService.findAllBotones());
+				model.addAttribute("listBoton", disenioTelaService.findAllBotones(tela.getIdTela()));
 				model.addAttribute("listColor", disenioTelaService.findAllColores());
 				model.addAttribute("listPrendas", disenioTelaService.findAllPrenda());
 				model.addAttribute("tela", tela);

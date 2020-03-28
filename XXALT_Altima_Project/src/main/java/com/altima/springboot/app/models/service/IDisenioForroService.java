@@ -13,5 +13,7 @@ public interface IDisenioForroService {
 	void delete(Long id);
 
 	DisenioForro findOne(Long id);
+	
+	List<Object []> ForrosSelect(Long id);
 
 }
