@@ -65,6 +65,9 @@ public class DisenioForro implements Serializable{
 	
 	@Column(name="estatus")
 	private String estatus;
+	
+	@Column(name="estatus_forro")
+	private String estatusForro;
 
 	public Long getIdForro() {
 		return idForro;
@@ -178,6 +181,14 @@ public class DisenioForro implements Serializable{
 		this.estatus = estatus;
 	}
 
+	public String getEstatusForro() {
+		return estatusForro;
+	}
+
+	public void setEstatusForro(String estatusForro) {
+		this.estatusForro = estatusForro;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -192,6 +203,7 @@ public class DisenioForro implements Serializable{
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((descripcionForro == null) ? 0 : descripcionForro.hashCode());
 		result = prime * result + ((estatus == null) ? 0 : estatus.hashCode());
+		result = prime * result + ((estatusForro == null) ? 0 : estatusForro.hashCode());
 		result = prime * result + ((existenciaForro == null) ? 0 : existenciaForro.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
 		result = prime * result + ((foto == null) ? 0 : foto.hashCode());
@@ -241,6 +253,11 @@ public class DisenioForro implements Serializable{
 			if (other.estatus != null)
 				return false;
 		} else if (!estatus.equals(other.estatus))
+			return false;
+		if (estatusForro == null) {
+			if (other.estatusForro != null)
+				return false;
+		} else if (!estatusForro.equals(other.estatusForro))
 			return false;
 		if (existenciaForro == null) {
 			if (other.existenciaForro != null)
