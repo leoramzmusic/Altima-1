@@ -141,9 +141,6 @@ public class DisenioPrenda implements Serializable{
 	@Column(name="mostrar")
 	private String mostrar;
 	
-	@Column(name="cantidad")
-	private String cantidad;
-	
 	@Column(name="estatus")
 	private Long estatus;
 
