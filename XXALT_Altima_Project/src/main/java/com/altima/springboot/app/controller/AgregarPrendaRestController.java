@@ -72,34 +72,6 @@ public class AgregarPrendaRestController
 		return dl;
 	}
 	
-	@RequestMapping(value = "/prendas", method = RequestMethod.POST)
-	public void guardar(HttpServletResponse response, DisenioPrenda dp, BindingResult result, Model model, @RequestParam("file") MultipartFile foto, @RequestParam("file2") MultipartFile foto2, RedirectAttributes flash) throws InterruptedException, IOException 
-	{
-		
-		/*
-		if (dp.getIdPrenda() != null && dp.getIdPrenda() > 0 && dp.getDibujoFrente() != null && dp.getDibujoFrente().length() > 0)  
-		{
-			uService.delete(dp.getDibujoFrente());
-		}
-		*/
-		
-		String[] uniqueFilename = null;
-		try 
-		{
-			uniqueFilename = uService.copy(foto, foto2);
-		}
-		catch (IOException e) 
-		{
-			//TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		this.dp.setDibujoEspalda(uniqueFilename[0]);
-		this.dp.setDibujoFrente(uniqueFilename[1]);
-		
-		response.sendRedirect("/prendas");
-	}
-	
 	@RequestMapping(value="/guardar_prenda", method=RequestMethod.POST)
 	public DisenioPrenda guardarPrenda(@RequestParam(name = "disenioprenda") String disenioprenda)
 	{
@@ -131,7 +103,7 @@ public class AgregarPrendaRestController
 		dp.setEspecificacion(prenda.get("especificacion").toString());
 		dp.setImprimirEtiquetas(prenda.get("imprimirEtiquetas").toString());
 		dp.setModeloBoton(prenda.get("modeloBoton").toString());
-		dp.setEstatusRecepcionMuestra(prenda.get("estatusRecepcionMuestra").toString());
+		dp.setEstatusRecepcionMuestra("Definitivo");
 		dp.setDevolucion(prenda.get("devolucion").toString());
 		dp.setPrecioMprod(prenda.get("precioMprod").toString());
 		dp.setPrecioMmuestra(prenda.get("precioMmuestra").toString());
@@ -139,13 +111,13 @@ public class AgregarPrendaRestController
 		dp.setCombinacion(prenda.get("combinacion").toString());
 		dp.setTotalPrendas(prenda.get("totalPrendas").toString());
 		dp.setMostrar(prenda.get("mostrar").toString());
-		dp.setEstatus(0L);
+		dp.setEstatus(1L);
 		
 		return dp;
 	}
 	
 	@RequestMapping(value="/guardar_final", method=RequestMethod.GET)
-	public void guardarFinal( @RequestParam(name = "objeto_materiales") String objeto_materiales, @RequestParam(name = "objeto_patronaje") String objeto_patronaje) throws NoSuchFieldException, SecurityException
+	public void guardarFinal( @RequestParam(name = "objeto_materiales") String objeto_materiales, @RequestParam(name = "objeto_patronaje") String objeto_patronaje, @RequestParam(name = "accion") String accion) throws NoSuchFieldException, SecurityException
 	{
 		prendaService.save(dp);
 		dp.setIdText("PRE" + (1000 + dp.getIdPrenda()));
@@ -153,6 +125,12 @@ public class AgregarPrendaRestController
 		
 		//Coso del auth
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		
+		if(accion == "editar")
+		{
+			prendaPatronajeService.deleteAllPatronajeFromPrenda(dp.getIdPrenda());
+			materialPrendaService.deleteAllMaterialFromPrenda(dp.getIdPrenda());
+		}
 		
 		//Se guardan Muchos a Muchos de Materiales
 		JSONArray materiales = new JSONArray(objeto_materiales);
@@ -201,9 +179,69 @@ public class AgregarPrendaRestController
 		this.dp = new DisenioPrenda();
 	}
 	
-	@GetMapping(value = "/fotos")
-	public DisenioPrenda getFotos(HttpServletRequest request, @RequestParam(name = "id") Long id) {
-		DisenioPrenda dp = prendaService.findOne(id); 
+	@RequestMapping(value="/asignar_id", method=RequestMethod.GET)
+	public DisenioPrenda guardarFinalProspecto(@RequestParam(name = "id") Long id) throws NoSuchFieldException, SecurityException
+	{
+		this.dp = prendaService.findOne(id); 
+		
 		return dp;
+	}
+	
+	@RequestMapping(value = "/prendas", method = RequestMethod.POST)
+	public void guardar(HttpServletResponse response, DisenioPrenda dp, BindingResult result, Model model, @RequestParam("file") MultipartFile foto, @RequestParam("file2") MultipartFile foto2, RedirectAttributes flash) throws InterruptedException, IOException 
+	{		
+		String[] uniqueFilename = null;
+		try 
+		{
+			uniqueFilename = uService.copy(foto, foto2);
+		}
+		catch (IOException e) 
+		{
+			//TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		this.dp.setDibujoEspalda(uniqueFilename[0]);
+		this.dp.setDibujoFrente(uniqueFilename[1]);
+		
+		response.sendRedirect("/prendas");
+	}
+	
+	@RequestMapping(value = "/prendas1", method = RequestMethod.POST)
+	public void guardar1(HttpServletResponse response, DisenioPrenda dp, BindingResult result, Model model, @RequestParam("file") MultipartFile foto, RedirectAttributes flash) throws InterruptedException, IOException 
+	{		
+		String uniqueFilename = null;
+		try 
+		{
+			uniqueFilename = uService.copy2(foto);
+		}
+		catch (IOException e) 
+		{
+			//TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		this.dp.setDibujoFrente(uniqueFilename);
+		
+		response.sendRedirect("/prendas");
+	}
+	
+	@RequestMapping(value = "/prendas2", method = RequestMethod.POST)
+	public void guardar2(HttpServletResponse response, DisenioPrenda dp, BindingResult result, Model model, @RequestParam("file2") MultipartFile foto2, RedirectAttributes flash) throws InterruptedException, IOException 
+	{		
+		String uniqueFilename = null;
+		try 
+		{
+			uniqueFilename = uService.copy2(foto2);
+		}
+		catch (IOException e) 
+		{
+			//TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		this.dp.setDibujoEspalda(uniqueFilename);
+		
+		response.sendRedirect("/prendas");
 	}
 }

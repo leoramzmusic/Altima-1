@@ -33,12 +33,13 @@ public interface IDisenioMaterialService {
 	Object findUno(Long id);
 	
 	List<DisenioMaterial> findAllForCreate();
-	
 
 	List<DisenioLookup> findListaColor();
-
-
 	
+	List<DisenioMaterial> findAllFromPrenda(Long id);
 	
+	List<DisenioLookup> findAllPatronajeFromPrenda(Long id);
+	
+	List<DisenioLookup> findAllFamiliaPrenda();
 }
 

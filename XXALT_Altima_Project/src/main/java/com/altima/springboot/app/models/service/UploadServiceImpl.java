@@ -104,6 +104,20 @@ public class UploadServiceImpl implements IUploadService {
 		}
 		return true;
 	}
+
+
+	@Override
+	public String copy2(MultipartFile file) throws IOException {
+		String img;
+		String uniqueFilename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+		Path rootPath = getPath(uniqueFilename);
+
+		Files.copy(file.getInputStream(), rootPath);
+
+		img = uniqueFilename;
+		
+		return img;
+	}
 	
 
 }
