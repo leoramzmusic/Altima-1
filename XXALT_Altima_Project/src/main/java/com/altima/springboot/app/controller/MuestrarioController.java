@@ -5,9 +5,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MuestrarioController {
-	@GetMapping("/muestras") 
-	public String listMuestras() {
-		return "muestras";
+	@GetMapping("/inventario")
+	public String Inventario() {
+		return "inventario";
 	}
 
+	@GetMapping("/agregar-inventario")
+	public String agregarInventario() {
+		return "agregar-inventario";
+	}
 }
