@@ -91,7 +91,10 @@ public class DisenioTela implements Serializable{
 	private String tipo;
 	
 	@Column(name="estatus")
-	private Integer estatus;
+	private String estatus;
+	
+	@Column(name="estatus_tela")
+	private String estatusTela;
 
 	public Long getIdTela() {
 		return idTela;
@@ -277,12 +280,20 @@ public class DisenioTela implements Serializable{
 		this.tipo = tipo;
 	}
 
-	public Integer getEstatus() {
+	public String getEstatus() {
 		return estatus;
 	}
 
-	public void setEstatus(Integer estatus) {
+	public void setEstatus(String estatus) {
 		this.estatus = estatus;
+	}
+
+	public String getEstatusTela() {
+		return estatusTela;
+	}
+
+	public void setEstatusTela(String estatusTela) {
+		this.estatusTela = estatusTela;
 	}
 
 	public static long getSerialversionuid() {
@@ -301,6 +312,7 @@ public class DisenioTela implements Serializable{
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((descripcionTela == null) ? 0 : descripcionTela.hashCode());
 		result = prime * result + ((estatus == null) ? 0 : estatus.hashCode());
+		result = prime * result + ((estatusTela == null) ? 0 : estatusTela.hashCode());
 		result = prime * result + ((existencia == null) ? 0 : existencia.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
 		result = prime * result + ((foto == null) ? 0 : foto.hashCode());
@@ -368,6 +380,11 @@ public class DisenioTela implements Serializable{
 			if (other.estatus != null)
 				return false;
 		} else if (!estatus.equals(other.estatus))
+			return false;
+		if (estatusTela == null) {
+			if (other.estatusTela != null)
+				return false;
+		} else if (!estatusTela.equals(other.estatusTela))
 			return false;
 		if (existencia == null) {
 			if (other.existencia != null)
@@ -451,6 +468,4 @@ public class DisenioTela implements Serializable{
 			return false;
 		return true;
 	}
-
-	
 }

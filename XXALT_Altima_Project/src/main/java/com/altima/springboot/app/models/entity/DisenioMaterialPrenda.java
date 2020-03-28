@@ -41,6 +41,8 @@ public class DisenioMaterialPrenda implements Serializable{
 	@Column(name="actualizado_por")
 	private String actualizadoPor;
 	
+	@Column(name="cantidad")
+	private String cantidad;
 
 	public Long getIdMaterialPrenda() {
 		return idMaterialPrenda;
@@ -82,6 +84,14 @@ public class DisenioMaterialPrenda implements Serializable{
 		this.actualizadoPor = actualizadoPor;
 	}
 
+	public String getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(String cantidad) {
+		this.cantidad = cantidad;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -91,6 +101,7 @@ public class DisenioMaterialPrenda implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
+		result = prime * result + ((cantidad == null) ? 0 : cantidad.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((idMaterial == null) ? 0 : idMaterial.hashCode());
 		result = prime * result + ((idMaterialPrenda == null) ? 0 : idMaterialPrenda.hashCode());
@@ -111,6 +122,11 @@ public class DisenioMaterialPrenda implements Serializable{
 			if (other.actualizadoPor != null)
 				return false;
 		} else if (!actualizadoPor.equals(other.actualizadoPor))
+			return false;
+		if (cantidad == null) {
+			if (other.cantidad != null)
+				return false;
+		} else if (!cantidad.equals(other.cantidad))
 			return false;
 		if (creadoPor == null) {
 			if (other.creadoPor != null)

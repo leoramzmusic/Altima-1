@@ -1,4 +1,16 @@
 $(document).ready(function() {
+	
+	$("#file").change(function(){
+		  var $this = $(this), $clone = $this.clone();
+		  $this.after($clone).appendTo($('#ContenedorFrente'));
+		  CambiarImgFrente = true;
+		});
+	
+	$("#file2").change(function(){
+		  var $this = $(this), $clone = $this.clone();
+		  $this.after($clone).appendTo($('#ContenedorEspalda'));
+		  CambiarImgEspalda = true;
+		});
 
 });
 
@@ -204,6 +216,65 @@ function AgregarElementoListaPatronaje()
 			});
 }
 
+function AgregarElementoListaPatronaje2()
+{
+	//Se recogen variables
+
+	$('#BotonAgregarPatronaje').prop('disabled', true);
+	var id = $('#ListaPatronaje').val();
+	var nombre = "Jsjjs";
+	var cantidadTela = $('#CantidadTela').val();
+	var cantidadForro = $('#CantidadForro').val();
+	var cantidadEntretela = $('#CantidadEntretela').val();
+	
+	//Solicitud Ajax para obtener los demas campos.
+    $.ajax({
+        type: "GET",
+        url: "/detalle_patronaje",
+        data: { id },
+        success: (data) =>{
+        	console.log(data);
+        	$('#BotonAgregarPatronaje').prop('disabled', false);
+        	var identidad = data[0] + '_' + data[1];
+        	var temp = {id: data[0], idText: data[1],cantidadTela: cantidadTela, cantidadForro: cantidadForro, cantidadEntretela: cantidadEntretela, idPatronaje: data[0]};
+    		ides2.push(temp);
+	
+			$('#CuerpoPatronaje').append("<tr id='QuitarFilaPatronaje-" + identidad + "'>" +
+										  	  "<th scope='row'>" + data[1] + "</th>" + 
+										  	  "<td>" + data[2] + "</td>" + 
+										  	  "<td>" + cantidadTela +  "</td>" + 
+										  	  "<td>" + cantidadForro + "</td>" + 
+										  	  "<td>" + cantidadEntretela + "</td>" + 
+										  	  "<td class='tdcenter'>" +
+								  	  		 	 "<button class='btn btn-warning rounded-circle' onclick=\"EditarPatronajeExistente(\'" + identidad + "\');\"	>" +
+								  	  				"<i class='fas fa-edit fa-sm'></i>" + 
+								  	  			 "</button>" + 
+								  	  		  "</td>" +
+										  	  "<td class='tdcenter'>" +
+										  	  		"<button class='btn btn-danger rounded-circle' onclick=\"QuitarPatronaje(\'" + identidad + "\');\"	>" +
+										  	  			"<i class='fas fa-minus fa-sm'></i>" + 
+										  	  		"</button>" + 
+										  	  "</td>" +
+										 "</tr>");
+			console.log(ides2);
+			objeto_patronajes = {};
+			objeto_patronajes = ides2;
+			$('#ListaPatronaje').val("");
+			$('#CantidadTela').val("");
+			$('#CantidadForro').val("");
+			$('#CantidadEntretela').val("");
+			
+			$('#BotonAgregar').css('display', 'block');
+			$('#BotonEditar').css('display', 'none');
+			console.log(ides2);
+			
+			},
+			error: (e) => {
+				console.log(e);
+			}
+			});
+}
+
 function QuitarPatronaje(identidad)
 {
 	$('#QuitarFilaPatronaje-' + identidad).remove();
@@ -213,6 +284,26 @@ function QuitarPatronaje(identidad)
 
 function Guardar()
 {
+	if(CambiarImgFrente == true && CambiarImgEspalda == true)
+	{
+		$( '#FormImagenes' ).click();
+	}
+	
+	if(CambiarImgFrente != true && CambiarImgEspalda != true)
+	{
+		console.log("ninguna imagen cambio");
+	}
+	
+	if(CambiarImgFrente == true && CambiarImgEspalda != true)
+	{
+		$( '#FormImagenFrente' ).click();
+	}
+		
+	if(CambiarImgFrente != true && CambiarImgEspalda == true)
+	{
+		$( '#FormImagenEspalda' ).click();
+	}
+	
 	RecogerDatosPrimeraParte();
 	RecogerDatosSegundaParte();
 	
@@ -220,7 +311,7 @@ function Guardar()
 	var token = $('#token').val();
 	var header = $('#token').val();
 	console.log(objeto_materiales);
-	$( '#FormImagenes' ).click();
+	console.log("entre al guardar");
 	
 	
 	//Solicitud Ajax
@@ -241,10 +332,15 @@ function Guardar()
                 data: {
                 	"_csrf": $('#token').val(),
                 	"objeto_materiales" : JSON.stringify(objeto_materiales),
-                	"objeto_patronaje" : JSON.stringify(objeto_patronaje)
+                	"objeto_patronaje" : JSON.stringify(objeto_patronaje),
+                	"accion" : $('#accionPag').val()
                 },
                 success: (data) => {
                 	console.log('final');	
+                	if(CambiarImgFrente != true || CambiarImgEspalda != true)
+                	{
+                		window.location.href = '/prendas';
+                	}
         		},
         		failure: function(errMsg) {
         	        alert(errMsg);
@@ -305,8 +401,7 @@ function EnviarInfoProspecto()
 function ValidarPrimerPestana()
 {
 	if($('#NombrePrenda').val() != "" && $('#DescripcionPrenda').val() != "" && $('#NotaEspecial').val() != "" 
-		&& $('#Ruta').val() != "" && $('#DetallePrenda').val() != "" && $('#file').val() != ""
-			&& $('#file2').val() != "" && $('#TipoPrenda').val() != "")
+		&& $('#Ruta').val() != "" && $('#DetallePrenda').val() != "" && $('#TipoPrenda').val() != "")
 	{
 		$('#AlertaPrimerPestana').css('display', 'none');
 		$('#SiguientePrimeraPestana').click();
@@ -320,11 +415,9 @@ function ValidarPrimerPestana()
 function ValidarPrimerPestana2()
 {
 	if($('#NombrePrenda').val() != "" && $('#DescripcionPrenda').val() != "" && $('#NotaEspecial').val() != "" 
-		&& $('#DetallePrenda').val() != "" && $('#file').val() != "" && $('#file2').val() != "" 
-			&& $('#TipoPrenda').val() != "")
+		&& $('#DetallePrenda').val() != "" && $('#TipoPrenda').val() != "" && $('#file').val() != "" && $('#file2').val() != "")
 	{
 		$('#AlertaPrimerPestana').css('display', 'none');
-		//$('#SiguientePrimeraPestana').click();
 		EnviarInfoProspecto();
 		console.log('paso');
 	}
@@ -341,16 +434,14 @@ function ValidarSegundaPestana()
 	{
 		$('#AlertaSegundaPestana').css('display', 'none');
 		$('#SiguienteSegundaPestana').click();
-		console.log('lleno');
 	}
 	else
 	{
 		$('#AlertaSegundaPestana').css('display', 'block');
-		console.log('vacio');
 	}
 }
 
-function ValidarTerceraPestana()
+function ValidarTerceraPestana(id)
 {
 	if(objeto_materiales.length === 0)
 	{
@@ -360,7 +451,22 @@ function ValidarTerceraPestana()
 	{
 		$('#AlertaTerceraPestana').css('display', 'none');
 		$('#SiguienteTerceraPestana').click();
+		AsignarID(id);
+	}	
+}
+
+function ValidarTerceraPestana2(id)
+{
+	if(ides.length === 0)
+	{
+		$('#AlertaTerceraPestana').css('display', 'block');
 	}
+	else
+	{
+		$('#AlertaTerceraPestana').css('display', 'none');
+		$('#SiguienteTerceraPestana').click();
+		AsignarID(id);
+	}	
 }
 
 function ValidarCuartaPestana()
@@ -375,6 +481,24 @@ function ValidarCuartaPestana()
 		$('#SiguienteCuartaPestana').click();
 		console.log('le di clic');
 	}
+	
+	$('#SiguienteCuartaPestana').click();
+}
+
+function ValidarCuartaPestana2()
+{
+	if(ides2.length === 0)
+	{
+		$('#AlertaCuartaPestana').css('display', 'block');
+	}
+	else
+	{
+		$('#AlertaCuartaPestana').css('display', 'none');
+		$('#SiguienteCuartaPestana').click();
+		console.log('le di clic');
+	}
+	
+	$('#SiguienteCuartaPestana').click();
 }
 
 function ValidarCantidadesPatronaje()
@@ -387,5 +511,52 @@ function ValidarCantidadesPatronaje()
 	else
 	{
 		$('#AlertaCantidadesPatronaje').css('display', 'block');
+	}
+}
+
+function ValidarCantidadesPatronaje2()
+{
+	if($('#CantidadTela').val() != "" && $('#CantidadForro').val() != "" && $('#CantidadEntretela').val() != "" )
+	{
+		$('#AlertaCantidadesPatronaje').css('display', 'none');
+		AgregarElementoListaPatronaje2();
+	}
+	else
+	{
+		$('#AlertaCantidadesPatronaje').css('display', 'block');
+	}
+}
+
+function EditarPatronajeExistente(id)
+{
+	console.log(id);
+	for(j = 0; j < ides2.length; j++)
+	{
+		console.log("buscando");
+		if(ides2[j].id == id)
+		{
+			$('#' + ides2[j].idText).remove();
+			console.log(ides2[j].idPatronaje);
+			$('#ListaPatronaje').val(ides2[j].idPatronaje).change();
+			$('#CantidadTela').val(ides2[j].cantidadTela);
+			$('#CantidadForro').val(ides2[j].cantidadForro);
+			$('#CantidadEntretela').val(ides2[j].cantidadEntretela);
+			
+			$('#BotonAgregar').css('display', 'none');
+			$('#BotonEditar').css('display', 'block');
+			ides2.splice(j, 1);
+		}
+	}
+}
+
+function EliminarPatronajeExistente(id)
+{
+	for(i = 0; i < ides2.length; i++)
+	{
+		if(ides2[i].id == id)
+		{
+			$('#' + ides2[i].idText).remove();
+			ides2.splice(i, 1);
+		}
 	}
 }

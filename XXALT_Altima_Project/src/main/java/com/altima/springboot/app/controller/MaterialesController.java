@@ -195,7 +195,7 @@ public class MaterialesController {
 	
 	
 	
-	
+	/*
 	@PostMapping("guardar-forro")
 	public String guardar_forro(
 			DisenioForro forro,
@@ -289,6 +289,6 @@ public class MaterialesController {
 			ComposicionTelaService.save(fc);
 		}
 		return "redirect:materiales";
-	}
+	}*/
 }
 

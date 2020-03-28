@@ -60,8 +60,14 @@ public class DisenioForro implements Serializable{
 	@Column(name="existencia_forro")
 	private String existenciaForro;
 	
+	@Column(name="foto")
+	private String foto;
+	
 	@Column(name="estatus")
 	private String estatus;
+	
+	@Column(name="estatus_forro")
+	private String estatusForro;
 
 	public Long getIdForro() {
 		return idForro;
@@ -127,7 +133,6 @@ public class DisenioForro implements Serializable{
 		this.nombreForro = nombreForro;
 	}
 
-
 	public String getAnchoForro() {
 		return anchoForro;
 	}
@@ -160,6 +165,13 @@ public class DisenioForro implements Serializable{
 		this.existenciaForro = existenciaForro;
 	}
 
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
 
 	public String getEstatus() {
 		return estatus;
@@ -167,6 +179,14 @@ public class DisenioForro implements Serializable{
 
 	public void setEstatus(String estatus) {
 		this.estatus = estatus;
+	}
+
+	public String getEstatusForro() {
+		return estatusForro;
+	}
+
+	public void setEstatusForro(String estatusForro) {
+		this.estatusForro = estatusForro;
 	}
 
 	public static long getSerialversionuid() {
@@ -183,8 +203,10 @@ public class DisenioForro implements Serializable{
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((descripcionForro == null) ? 0 : descripcionForro.hashCode());
 		result = prime * result + ((estatus == null) ? 0 : estatus.hashCode());
+		result = prime * result + ((estatusForro == null) ? 0 : estatusForro.hashCode());
 		result = prime * result + ((existenciaForro == null) ? 0 : existenciaForro.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
+		result = prime * result + ((foto == null) ? 0 : foto.hashCode());
 		result = prime * result + ((idForro == null) ? 0 : idForro.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
 		result = prime * result + ((idUnidadMedida == null) ? 0 : idUnidadMedida.hashCode());
@@ -232,6 +254,11 @@ public class DisenioForro implements Serializable{
 				return false;
 		} else if (!estatus.equals(other.estatus))
 			return false;
+		if (estatusForro == null) {
+			if (other.estatusForro != null)
+				return false;
+		} else if (!estatusForro.equals(other.estatusForro))
+			return false;
 		if (existenciaForro == null) {
 			if (other.existenciaForro != null)
 				return false;
@@ -241,6 +268,11 @@ public class DisenioForro implements Serializable{
 			if (other.fechaCreacion != null)
 				return false;
 		} else if (!fechaCreacion.equals(other.fechaCreacion))
+			return false;
+		if (foto == null) {
+			if (other.foto != null)
+				return false;
+		} else if (!foto.equals(other.foto))
 			return false;
 		if (idForro == null) {
 			if (other.idForro != null)
@@ -268,5 +300,5 @@ public class DisenioForro implements Serializable{
 		} else if (!ultimaFechaModificacion.equals(other.ultimaFechaModificacion))
 			return false;
 		return true;
-	}	
+	}
 }

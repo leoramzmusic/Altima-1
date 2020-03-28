@@ -12,6 +12,8 @@ public interface IUploadService {
 	
 	public String[] copy(MultipartFile file, MultipartFile file2) throws IOException;
 	
+	public String copy2(MultipartFile file) throws IOException;
+	
 	public boolean delete(String filename);
 	
 	public Resource loadTela(String filename) throws MalformedURLException;

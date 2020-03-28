@@ -109,13 +109,13 @@ public class DisenioMaterialServiceImpl implements IDisenioMaterialService {
 	@Override
 	public List<DisenioLookup> findLookUps() {
 		// TODO Auto-generated method stub
-		return em.createNativeQuery("SELECT * FROM alt_disenio_lookup WHERE tipo_lookup = 'PiezasTrazo' AND estatus = 1;").getResultList();
+		return em.createNativeQuery("SELECT * FROM alt_disenio_lookup WHERE tipo_lookup = 'Pieza Trazo' AND estatus = 1;").getResultList();
 	}
 
 	@Override
 	public Object findLookUp(Long id) {
 		// TODO Auto-generated method stubString
-		return (Object) em.createNativeQuery("SELECT * FROM alt_disenio_lookup WHERE tipo_lookup = 'PiezasTrazo' AND id_lookup = " + id).getSingleResult();
+		return (Object) em.createNativeQuery("SELECT * FROM alt_disenio_lookup WHERE tipo_lookup = 'Pieza Trazo' AND id_lookup = " + id).getSingleResult();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -143,7 +143,26 @@ public class DisenioMaterialServiceImpl implements IDisenioMaterialService {
 	}
 
 
-	
-	
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<DisenioMaterial> findAllFromPrenda(Long id) {
+		// TODO Auto-generated method stub
+		return em.createNativeQuery("call alt_pr_materials_from_prenda(" + id +");").getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<DisenioLookup> findAllPatronajeFromPrenda(Long id) {
+		// TODO Auto-generated method stub
+		return em.createNativeQuery("call alt_pr_patronajes_from_prenda(" + id +");").getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<DisenioLookup> findAllFamiliaPrenda() {
+		// TODO Auto-generated method stub
+		return em.createQuery("SELECT idLookup, nombreLookup, tipoLookup FROM DisenioLookup WHERE tipoLookup= 'Familia Prenda' and   estatus=1").getResultList();
+	}	
 
 }

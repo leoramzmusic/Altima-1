@@ -12,4 +12,6 @@ public interface IDisenioPrendaPatronajeService
 	void save(DisenioPrendaPatronaje disenioprendapatronaje);
 
 	void delete(Long id);
+	
+	String deleteAllPatronajeFromPrenda(Long id);
 }
