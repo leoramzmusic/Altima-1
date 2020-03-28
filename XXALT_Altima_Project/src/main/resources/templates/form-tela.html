@@ -2,7 +2,7 @@
     
     <div class="form-group col-sm-5">
         <label for="razonEmpresa">Composici&oacute;n</label>
-        <input type="text" id="telaComposicion" class="form-control"  placeholder="100% algod&oacute;n">
+        <input type="number" id="telaComposicion" class="form-control"  placeholder="100">
     </div>
     <div class="form-group col-md-6">
         <label for="status">Familia de composici&oacute;n</label>
@@ -20,6 +20,7 @@
     </div>
      <div class="form-group col-sm-12">
         <table id="mytable" class="table table-striped">
+        <thead>
         	<tr>
     			<th>Tela Composicion</th>
     			<th style="display:none;">Famila Composicion</th>
@@ -27,6 +28,17 @@
     			<th>Eliminar</th>
 
   			</tr>
+  		<thead>
+  			<tbody>
+                                            <tr th:each="listTelaComposicon: ${listTelaComposicon}">
+                                               
+                                                <td th:text="${listTelaComposicon[0]}"></td>
+                                                <td  style="display:none;"th:text="${listTelaComposicon[1]}"></td>
+                                                <td  th:text="${listTelaComposicon[2]}"></td>
+                                                <td  > <button type="button" name="remove" onclick="eliminar(this)" class="btn btn-danger btn_remove">Quitar</button></td>
+                                               
+                                            </tr>     
+             </tbody>
         </table>
     </div>
     <div class="form-group col-sm-12">
@@ -49,6 +61,47 @@
 			th:value="${listPrendas.idPrenda}" th:text="${listPrendas.nombrePrenda}"></option>
         </select>
     </div>
+    
+    <div th:if="*{tela.idTela != null}" class="form-group col-sm-4">
+        <label for="status">Calidad</label>
+        
+         <input type="text" th:field="*{tela.idCalidad}" class="form-control" placeholder="Calidad">
+       
+    </div>
+    
+    <div th:if="*{tela.idTela != null}" class="form-group col-sm-4">
+        <label for="status">Linea Tela</label>
+        <input type="text" th:field="*{tela.lineaTela}" class="form-control" placeholder="Linea">
+    </div>
+    
+    <div th:if="*{tela.idTela != null}" class="form-group col-sm-4">
+        <label for="status">Unidad de medida</label>
+        <select  class="form-control"   th:field="*{tela.idUnidadMedida}" >
+       <option th:each="listLookupsMed:${listLookupsMed}"
+            
+                    th:value="${listLookupsMed[0]}"
+                    th:text="${listLookupsMed[1]}"
+            
+            />
+            </select>
+    </div>
+    
+    <div th:if="*{tela.idTela != null}" class="form-group col-sm-4">
+        <label for="status">Consumo</label>
+        
+        <input type="text" th:field="*{tela.consumo}" class="form-control" placeholder="Consumo">
+    </div>
+    
+    <div th:if="*{tela.idTela != null}" class="form-group col-sm-4">
+        <label for="status">Consumo promedio</label>      
+        <input type="text" th:field="*{tela.consumoPromedio}" class="form-control" placeholder="Consumo promedio">
+    </div>
+    
+    <div th:if="*{tela.idTela != null}" class="form-group col-sm-4">
+        <label for="status">Tipo</label>
+        <input type="text" th:field="*{tela.tipo}" class="form-control" placeholder="Consumo promedio">
+    </div>
+    
     <div class="form-group col-sm-6">
         <label for="status">Color</label>
         <select class="form-control" th:field="*{tela.idColor}">
@@ -70,13 +123,65 @@
         </select>
     </div>
     
+    <div th:if="*{tela.idTela != null}"  class="form-group col-sm-6">
+        <label for="status">Botones</label>
+        <select multiple class="form-control" name="botones" >
+        
+        </select>
+    </div>
+     
+     <div th:if="*{tela.idTela != null}"  class="form-group col-sm-6">
+        <label for="status">Forro</label>
+        <select multiple class="form-control"  name="forros">
+        <option  value="">Selecciona uno...</option>
+            <option value ="1" selected="selected">MAR01 Nike</option>
+            <option value ="2" selected="selected">MAR02 Adidas</option>
+            <option value ="3">MAR03 Joma</option>
+            <option value ="4">MAR04 I don't know</option>
+            <option value ="5" selected="selected">MAR05 Palomitas acmen</option>
+            <option value ="6">MAR06 Nike 2 xd</option>
+        </select>
+    </div>
+    
+    <div class="form-group col-sm-12">
+        <label for="razonEmpresa">Existencia</label>
+        <input type="text" th:field="*{tela.existencia}" class="form-control" placeholder="100 ">
+    </div>
+
+
+    
+    <div  th:if="*{tela.idTela != null}" class="form-group col-sm-12">
+        <label for="coloniaEmpresa">Descripcion</label>
+        <textarea class="form-control" th:field="*{tela.descripcionTela}" placeholder="Especificar" rows="3"></textarea>
+    </div>
+    
     
     <div class="form-group col-sm-12">
         <label for="coloniaEmpresa">Indicaciones</label>
         <textarea class="form-control" th:field="*{tela.indicacion}" placeholder="Especificar" rows="3"></textarea>
     </div>
+    
+    <div  th:if="*{tela.idTela != null}" class="col-sm-12">
+        <div class="form-group p-3 border p-2 rounded m-3">
+            <div class="row">
+                <div class="col-sm-3 text-center pt-2 border-right">
+                    <label for="mainImageTela"><img th:src="@{'/uploads/telas/' + ${tela.foto}}"  th:onerror="this.src='/dist/img/preview.png'" alt="Placeholder" id="serviceImageTela" class="placeholder img-thumbnail" aria-describedby="imagePreviewHelp" /></label>
+                    <small id="imagePreviewHelpTela" class="form-text text-muted">Previsualizaci&oacute;n de la imagen</small>
+                </div>
+                <div class="col">
+                    <label for="mainImageTela">Tela</label>
+                    <div class="input-group mb-3">
+                        <input type="file" name="imagenTela" class="form-control border p-1" id="mainImageTela"  />
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-danger text-danger pointer" id="clearUploadTela"><i class="fas fa-times"></i></span>
+                        </div>
+                    </div>
+                    <small id="imageHelpTela" class="form-text text-muted">Selecciona la foto que desea subir.</small>
+                </div>
+            </div>
+        </div>
+    </div>
    
-    <input type="hidden" class="form-control"  id="telaEstatus" value="2">
     <div class="form-group col-sm-12">
        <button onclick="arreglo()"  class="btn btn-primary next-step float-right" type="button">Adicionar a la tabla</button>
       
@@ -84,14 +189,37 @@
          
     </div>
     
-    <input name="txtTabla" type="text" id="txtTabla" value="">
-    <input name="txtTabla2" type="text" id="txtTabla2" value="">
+    <input name="txtTabla" type="hidden" id="txtTabla" value="">
+    <input name="txtTabla2" type="hidden" id="txtTabla2" value="">
+    
+    <input  type="hidden" th:field="*{tela.idTela}">
+    <input  type="hidden" th:field="*{tela.idText}">
+    <input  type="hidden" th:field="*{tela.creadoPor}">
+    <input  type="hidden" th:field="*{tela.actualizadoPor}">
+    <input  type="hidden" th:field="*{tela.fechaCreacion}">
+    <input  type="hidden" th:field="*{tela.ultimaFechaModificacion}">
+    <input  type="hidden" th:field="*{tela.foto}">
+    
     
 </form>
 <html xmlns:th="http://www.thymeleaf.org">
+<script src="dist/js/sweetalert.js"></script>
 <script>
 function guardar(){
-	   
+	if( document.getElementById("telaComposicion").value == null || 
+			document.getElementById("telaComposicion").value.length == 0 || 
+			/^\s+$/.test(document.getElementById("telaComposicion").value) ||
+			 document.getElementById("telaFamcomposicion").selectedIndex == null ||
+			 document.getElementById("telaFamcomposicion").selectedIndex == "" ) {
+		Swal.fire({
+	          position: 'center',
+	          icon: 'error',
+	          title: 'Complete Composicion o familia de composicion',
+	          showConfirmButton: false,
+	          timer: 1250
+	        });
+		}
+	else{
     var telaComposicion = document.getElementById("telaComposicion").value;
     var telaFamcomposicion = document.getElementById("telaFamcomposicion").value;    
     var nombre = $( "#telaFamcomposicion option:selected" ).text()   
@@ -105,9 +233,9 @@ function guardar(){
     $("#adicionados").append(nFilas - 1);
     //le resto 1 para no contar la fila del header
     document.getElementById("telaComposicion").value ="";
-    document.getElementById("telaFamcomposicion").value = "";
+    document.getElementById("telaFamcomposicion").value = "0";
    
-    
+	}
     
     
     
@@ -142,5 +270,4 @@ function arreglo() {
 
 	
 </script>
-
 

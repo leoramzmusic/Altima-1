@@ -1,5 +1,5 @@
-<form class="row" style="display: none;" th:object="${forro}" name="forroForm" id="forroForm" th:action="@{/guardar-forro}" method="post">
-	    
+<form class="row" style="display: none;"  th:object="${forro}" name="forroForm" id="forroForm" th:action="@{/guardar-forro}" method="post">
+	  
     <div class="form-group col-sm-5">
         <label for="razonEmpresa">Composici&oacute;n</label>
         <input type="text" id="telaComposicionf" class="form-control"  placeholder="100% algod&oacute;n">
@@ -7,7 +7,7 @@
     <div class="form-group col-md-6">
         <label for="status">Familia de composici&oacute;n</label>
         <select id="telaFamcomposicionf" class="form-control" >
-        	<option value="">Selecciona uno...</option>
+        	<option value="">Seleccion a uno...</option>
         	<option th:each="lisFam: ${lisFam}"
 			th:value="${lisFam.idLookup}" th:text="${lisFam.nombreLookup}"></option>
             
@@ -21,12 +21,23 @@
      <div class="form-group col-sm-12">
         <table id="mytablef" class="table table-striped">
         	<tr>
-    			<th>Tela Composicion</th>
+    			<th>Forro Composicion</th>
     			<th style="display:none;">Famila Composicion</th>
     			<th>Famila Composicion</th>
     			<th>Eliminar</th>
 
   			</tr>
+  		<thead>
+  			<tbody>
+                                            <tr th:each="listForroComposicon: ${listForroComposicon}">
+                                               
+                                                <td th:text="${listForroComposicon[0]}"></td>
+                                                <td  style="display:none;"th:text="${listForroComposicon[1]}"></td>
+                                                <td  th:text="${listForroComposicon[2]}"></td>
+                                                <td  > <button type="button" name="remove" onclick="eliminar(this)" class="btn btn-danger btn_remove">Quitar</button></td>
+                                               
+                                            </tr>     
+             </tbody>
         </table>
     </div>
 	<div class="form-group col-sm-6">
@@ -44,12 +55,34 @@
         <label for="rfcEmpresa">Ancho(m)</label>
         <input th:field="*{anchoForro}"  type="number" class="form-control" id="telaAncho" placeholder="1.2">
     </div>
-    <input type="hidden" class="form-control" id="forroEstatus" value="2">
+    
+    <div th:if="*{idForro != null}" class="form-group col-sm-6">
+        <label for="rfcEmpresa">Unidad de medida</label>
+        <input th:field="*{idUnidadMedida}"  type="number" class="form-control" id="telaAncho" placeholder="1.2">
+    </div>
+    
+    <div th:if="*{idForro != null}" class="form-group col-sm-6">
+        <label for="rfcEmpresa">Consumo promedio</label>
+        <input th:field="*{consumoPromedioForro}"  type="number" class="form-control" id="telaAncho" placeholder="1.2">
+    </div>
+    
+    <div th:if="*{idForro != null}" class="form-group col-sm-6">
+        <label for="rfcEmpresa">Existencias</label>
+        <input th:field="*{existenciaForro}"  type="number" class="form-control" id="telaAncho" placeholder="1.2">
+    </div>
+    
     <div class="form-group col-sm-12">
         <button onclick="arreglof()"  class="btn btn-primary next-step float-right" type="button">Guardar</button>
     </div>	
-    <input name="txtTablaf" type="text" id="txtTablaf" value="">
-    <input name="txtTabla2f" type="text" id="txtTabla2f" value="">
+    <input name="txtTablaf" type="hidden" id="txtTablaf" value="">
+    <input name="txtTabla2f" type="hidden" id="txtTabla2f" value="">
+    
+    <input  type="hidden" th:field="*{idForro}">
+    <input  type="hidden" th:field="*{idText}">
+    <input  type="hidden" th:field="*{creadoPor}">
+    <input  type="hidden" th:field="*{actualizadoPor}">
+    <input  type="hidden" th:field="*{fechaCreacion}">
+    <input  type="hidden" th:field="*{ultimaFechaModificacion}">
 </form>
 
 <script>
@@ -105,3 +138,4 @@ function arreglof() {
 
 	
 </script>
+
