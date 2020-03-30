@@ -111,32 +111,47 @@
 	/*<![CDATA[*/
 
 	var materialDelController = /*[[${material}]]*/ 'default';
+	
+	
+	/*]]>*/
+	</script>
+	
+     <script th:inline="javascript">
+	/*<![CDATA[*/
 	var telaController = /*[[${tela}]]*/ 'default';
+
+	/*]]>*/
+	</script>
+	   <script th:inline="javascript">
+	/*<![CDATA[*/
 	var forroController = /*[[${forro}]]*/ 'default';
 	
-	console.log(materialDelController);
+	/*]]>*/
+	</script>
 	
+	 <script>
+	
+	console.log(materialDelController);
+	console.log(telaController);
+	console.log(forroController);
 	var definitiva;
 	
-	if( materialDelController != null  ){
-		
-		definitiva=materialDelController;
+	
+	if (materialDelController.idMaterial != null) {
+        definitiva=materialDelController;
 		
 		console.log("esta llena la primera validacion");
-		
-	}else{
-		
-		if(telaController != null ){
+		} else if (telaController.idTela != null) {
+                  definitiva=telaController;
 			
-			definitiva=telaController;
+			      console.log("esta llena la segunda validacion");
+		} else {
+                  definitiva=forroController;
 			
-		}else{
-			
-			definitiva=forroController;
-			
+			      onsole.log("esta llena la tercera validacion");
 		}
-		
-	}
+	
+	
 	
 	/*]]>*/
 	</script>
@@ -170,7 +185,7 @@
                    break;
        
                   default:
-                		console.log("no entro al sw");
+                		console.log("entro a la fubncion defautl");
 
                 	  $(function () {
                 	  	  $('select').each(function () {
