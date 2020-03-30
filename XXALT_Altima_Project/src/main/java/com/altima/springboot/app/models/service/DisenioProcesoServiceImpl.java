@@ -55,7 +55,7 @@ public class DisenioProcesoServiceImpl implements IDisenioProcesoService {
 	@Transactional
 	public List<DisenioProceso> findListClaveProceso(){
 	
-		return em.createQuery("SELECT idProceso, claveProceso FROM DisenioProceso ").getResultList();
+		return em.createQuery("SELECT idProceso, claveProceso, nombreProceso FROM DisenioProceso ").getResultList();
 	}
 	
 

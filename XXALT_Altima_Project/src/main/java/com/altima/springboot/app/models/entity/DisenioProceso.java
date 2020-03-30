@@ -57,16 +57,16 @@ public class DisenioProceso implements Serializable{
 	private String estatus;
 	
 	@Column(name="nombre_proceso")
-	private String nombre_proceso;
+	private String nombreProceso;
 	
 	
 
 	public String getNombre_proceso() {
-		return nombre_proceso;
+		return nombreProceso;
 	}
 
 	public void setNombre_proceso(String nombre_proceso) {
-		this.nombre_proceso = nombre_proceso;
+		this.nombreProceso = nombre_proceso;
 	}
 
 	public Long getIdProceso() {
