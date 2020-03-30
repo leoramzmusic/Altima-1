@@ -35,6 +35,11 @@ public class DisenioTelaForro  implements Serializable{
 	@Column(name="id_text")
 	private String idText;
 	
+	
+	@Column(name="descripcion")
+	private String descripcion;
+	
+	
 	@Column(name="creado_por")
 	private String creadoPor;
 	
@@ -113,6 +118,15 @@ public class DisenioTelaForro  implements Serializable{
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	@Override

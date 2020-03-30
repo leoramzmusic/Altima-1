@@ -116,8 +116,8 @@ public class AgregarPrendaRestController
 		return dp;
 	}
 	
-	@RequestMapping(value="/guardar_final", method=RequestMethod.GET)
-	public void guardarFinal( @RequestParam(name = "objeto_materiales") String objeto_materiales, @RequestParam(name = "objeto_patronaje") String objeto_patronaje, @RequestParam(name = "accion") String accion) throws NoSuchFieldException, SecurityException
+	@RequestMapping(value="/guardar_final", method=RequestMethod.POST)
+	public void guardarFinal( @RequestParam(name = "objeto_materiales") String objeto_materiales, @RequestParam(name = "objeto_patronajes") String objeto_patronaje, @RequestParam(name = "accion") String accion) throws NoSuchFieldException, SecurityException
 	{
 		prendaService.save(dp);
 		dp.setIdText("PRE" + (1000 + dp.getIdPrenda()));
@@ -126,10 +126,12 @@ public class AgregarPrendaRestController
 		//Coso del auth
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
-		if(accion == "editar")
+		System.out.println(accion);
+		if(accion.equalsIgnoreCase("editar"))
 		{
 			prendaPatronajeService.deleteAllPatronajeFromPrenda(dp.getIdPrenda());
 			materialPrendaService.deleteAllMaterialFromPrenda(dp.getIdPrenda());
+			System.out.println("eliminare losdemas porque voy a editar ");
 		}
 		
 		//Se guardan Muchos a Muchos de Materiales
@@ -142,6 +144,7 @@ public class AgregarPrendaRestController
 			mdp.setIdPrenda(Long.valueOf( dp.getIdPrenda()));
 			mdp.setCreadoPor(auth.getName());
 			mdp.setActualizadoPor(auth.getName());
+			mdp.setCantidad(material.get("cantidad").toString());
 			materialPrendaService.save(mdp);
 		}
 		

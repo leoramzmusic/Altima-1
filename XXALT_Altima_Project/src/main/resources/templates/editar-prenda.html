@@ -317,16 +317,16 @@
 																	</thead>
 																	<tbody id="CuerpoTablaMateriales">
 																	
-																	<tr th:each="mat: ${materialesPrenda}">
+																	<tr th:each="mat: ${materialesPrenda}" th:id="'RemoverElemento-' + ${mat[10]}">
 																			<td th:text="${mat[1]}"></td>
 																			<td scope='row' th:text="${mat[2]}"></td>
 																			<td th:text="${mat[3]}"></td>
 																			<td th:text="${mat[4] + ' ' +mat[5]}"></td>
 																			<td th:text="${mat[6]}"></td>
 																			<td th:text="${mat[7]}"></td>
-																			<td><input type="number" class="form-control"/></td>
-																			<td>
-																				<button class="btn btn-danger rounded-circle" th:onclick="EliminarMaterialExistente(${mat[8]})">
+																			<td><input type="number" th:id="'CantidadMaterial-' + ${mat[10]}" class="form-control" th:value="${mat[9]}" th:attr="onclick=|CambiarCantidadMaterial('${mat[10]}')|" /></td>
+																			<td class="tdcenter">
+																				<button class="btn btn-danger rounded-circle" th:attr="onclick=|QuitarMaterial('${mat[10]}')|">
 																					<i class='fas fa-minus fa-sm'></i>
 																				</button>
 																			</td>
@@ -345,7 +345,7 @@
 													<div class="row float-right" >
 														<ul class="float-right">	
 															<li class="list-inline-item">
-																<button type="button" class="btn btn-primary" th:onclick="ValidarTerceraPestana2('${prenda.idPrenda}')">Siguiente</button>
+																<button type="button" class="btn btn-primary" th:onclick="ValidarTerceraPestana('${prenda.idPrenda}')">Siguiente</button>
 																<button type="button" class="btn btn-primary next-step" style="display: none" id="SiguienteTerceraPestana">Siguiente</button>
 															</li>
 														</ul>
@@ -447,7 +447,7 @@
 													<div class="row float-right" >
 														<ul class="float-right">	
 															<li class="list-inline-item">
-																<button type="button" class="btn btn-primary" onclick="ValidarCuartaPestana2()">Guardar</button>
+																<button type="button" class="btn btn-primary" onclick="ValidarCuartaPestana()">Guardar</button>
 																<button type="button" class="btn btn-primary next-step" style="display: none" id="SiguienteCuartaPestana" onclick="Guardar()">Guardar</button>
 															</li>
 														</ul>
@@ -539,20 +539,22 @@
 	
 	//Se almacenan en un array de objetos los materiales
 	console.log(materiales);
-	var ides = [];
+	var objeto_materiales = [];
 	for(i = 0; i < materiales.length; i++)
 	{
-		var temp = {id: materiales[i][0], nombre: materiales[i][1]}
-		ides.push(temp);
+		var temp = {identidad: materiales[i][10], id: materiales[i][0], NoMaterial: materiales[i][1], Nombre: materiales[i][2], Clasificacion: materiales[i][3], Tamanio: materiales[i][4] + ' ' + materiales[i][5],
+    			Modelo: materiales[i][7], Proceso: materiales[i][8], cantidad: materiales[i][9]};
+		objeto_materiales.push(temp);
 	}
+	console.log(objeto_materiales);
 	
 	//Se almacenan en un array de objetos los patronajes
 	console.log(patronajes);
-	var ides2 = [];
+	var objeto_patronajes = [];
 	for(i = 0; i < patronajes.length; i++)
 	{
 		var temp = {id: patronajes[i][0], idText: patronajes[i][1],cantidadTela: patronajes[i][3], cantidadForro: patronajes[i][4], cantidadEntretela: patronajes[i][5], idPatronaje: patronajes[i][6]};
-		ides2.push(temp);
+		objeto_patronajes.push(temp);
 	}
 	
 	/*]]>*/
@@ -616,8 +618,8 @@
 	
 		//Objetoa ser llenado para almacenar
 		objeto_prenda = {};
-		objeto_materiales = [];
-		objeto_patronaje = [];
+		//objeto_materiales = ides;
+		//objeto_patronaje = ides2;
 		
 		var CambiarImgFrente = false;
 		var CambiarImgEspalda = false;

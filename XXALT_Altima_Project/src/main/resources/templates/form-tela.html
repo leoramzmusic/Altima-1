@@ -62,19 +62,19 @@
         </select>
     </div>
     
-    <div th:if="*{tela.idTela != null}" class="form-group col-sm-4">
+    <div th:if="*{tela.estatusTela != null}" class="form-group col-sm-4">
         <label for="status">Calidad</label>
         
          <input type="text" th:field="*{tela.idCalidad}" class="form-control" placeholder="Calidad">
        
     </div>
     
-    <div th:if="*{tela.idTela != null}" class="form-group col-sm-4">
+    <div th:if="*{tela.estatusTela != null}" class="form-group col-sm-4">
         <label for="status">Linea Tela</label>
         <input type="text" th:field="*{tela.lineaTela}" class="form-control" placeholder="Linea">
     </div>
     
-    <div th:if="*{tela.idTela != null}" class="form-group col-sm-4">
+    <div th:if="*{tela.estatusTela != null}" class="form-group col-sm-4">
         <label for="status">Unidad de medida</label>
         <select  class="form-control"   th:field="*{tela.idUnidadMedida}" >
        <option th:each="listLookupsMed:${listLookupsMed}"
@@ -86,18 +86,18 @@
             </select>
     </div>
     
-    <div th:if="*{tela.idTela != null}" class="form-group col-sm-4">
+    <div th:if="*{tela.estatusTela != null}" class="form-group col-sm-4">
         <label for="status">Consumo</label>
         
         <input type="text" th:field="*{tela.consumo}" class="form-control" placeholder="Consumo">
     </div>
     
-    <div th:if="*{tela.idTela != null}" class="form-group col-sm-4">
+    <div th:if="*{tela.estatusTela != null}" class="form-group col-sm-4">
         <label for="status">Consumo promedio</label>      
         <input type="text" th:field="*{tela.consumoPromedio}" class="form-control" placeholder="Consumo promedio">
     </div>
     
-    <div th:if="*{tela.idTela != null}" class="form-group col-sm-4">
+    <div th:if="*{tela.estatusTela != null}" class="form-group col-sm-4">
         <label for="status">Tipo</label>
         <input type="text" th:field="*{tela.tipo}" class="form-control" placeholder="Consumo promedio">
     </div>
@@ -123,34 +123,37 @@
         </select>
     </div>
     
-    <div th:if="*{tela.idTela != null}"  class="form-group col-sm-6">
+    <div th:if="*{tela.estatusTela =='1'}"  class="form-group col-sm-6">
         <label for="status">Botones</label>
         <select multiple class="form-control" name="botones" >
         
+        <option th:each="listBtnSelec: ${listBtnSelec}"
+			th:value="${listBtnSelec[0]}" th:text="${listBtnSelec[1]}" selected ></option>
+        
+        <option th:each="listBoton: ${listBoton}"
+			th:value="${listBoton[0]}" th:text="${listBoton[1]}"></option>
         </select>
     </div>
      
-     <div th:if="*{tela.idTela != null}"  class="form-group col-sm-6">
+     <div th:if="*{tela.estatusTela =='1'}"  class="form-group col-sm-6">
         <label for="status">Forro</label>
         <select multiple class="form-control"  name="forros">
-        <option  value="">Selecciona uno...</option>
-            <option value ="1" selected="selected">MAR01 Nike</option>
-            <option value ="2" selected="selected">MAR02 Adidas</option>
-            <option value ="3">MAR03 Joma</option>
-            <option value ="4">MAR04 I don't know</option>
-            <option value ="5" selected="selected">MAR05 Palomitas acmen</option>
-            <option value ="6">MAR06 Nike 2 xd</option>
-        </select>
+        <option th:each="listForroSelec: ${listForroSelec}"
+			th:value="${listForroSelec[0]}" th:text="${listForroSelec[1]}" selected ></option>
+         
+        <option th:each="listForro: ${listForro}"
+			th:value="${listForro[0]}" th:text="${listForro[1]}" ></option>
+			</select>
     </div>
     
-    <div class="form-group col-sm-12">
+    <div th:if="*{tela.estatusTela =='1'}" class="form-group col-sm-12">
         <label for="razonEmpresa">Existencia</label>
         <input type="text" th:field="*{tela.existencia}" class="form-control" placeholder="100 ">
     </div>
 
 
     
-    <div  th:if="*{tela.idTela != null}" class="form-group col-sm-12">
+    <div  th:if="*{tela.estatusTela =='1'}" class="form-group col-sm-12">
         <label for="coloniaEmpresa">Descripcion</label>
         <textarea class="form-control" th:field="*{tela.descripcionTela}" placeholder="Especificar" rows="3"></textarea>
     </div>
@@ -161,7 +164,7 @@
         <textarea class="form-control" th:field="*{tela.indicacion}" placeholder="Especificar" rows="3"></textarea>
     </div>
     
-    <div  th:if="*{tela.idTela != null}" class="col-sm-12">
+    <div  th:if="*{tela.estatusTela =='1'}" class="col-sm-12">
         <div class="form-group p-3 border p-2 rounded m-3">
             <div class="row">
                 <div class="col-sm-3 text-center pt-2 border-right">
@@ -199,6 +202,8 @@
     <input  type="hidden" th:field="*{tela.fechaCreacion}">
     <input  type="hidden" th:field="*{tela.ultimaFechaModificacion}">
     <input  type="hidden" th:field="*{tela.foto}">
+    <input  type="hidden" th:field="*{tela.estatusTela}">
+    <input  type="hidden" th:field="*{tela.estatus}">
     
     
 </form>

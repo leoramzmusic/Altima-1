@@ -19,6 +19,8 @@ public class UploadServiceImpl implements IUploadService {
 	private final static String folderPrendas = "uploads/prendas";
 	
 	private final static String folderTelas = "uploads/telas";
+	
+	private final static String folderForros = "uploads/forros";
 	@Override
 	public Resource load(String filename) throws MalformedURLException {
 		Path pathFoto = getPath(filename);
@@ -72,6 +74,8 @@ public class UploadServiceImpl implements IUploadService {
 
 	}
 	
+	
+	
 	@Override
 	public Resource loadTela(String filename) throws MalformedURLException {
 		Path pathFoto = getPathTela(filename);
@@ -119,5 +123,45 @@ public class UploadServiceImpl implements IUploadService {
 		return img;
 	}
 	
+	
+	
+	
+	@Override
+	public Resource loadForro(String filename) throws MalformedURLException {
+		Path pathFoto = getPathForro(filename);
+		Resource recurso = null;
+
+		recurso = new UrlResource(pathFoto.toUri());
+		if (!recurso.exists() && !recurso.isReadable()) {
+			throw new RuntimeException("Error: No se puede cargar la imagen " + pathFoto.toString());
+		}
+
+		return recurso;
+	}
+	
+	@Override
+	public String copyForro(MultipartFile file) throws IOException {
+		String uniqueFilename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+		Path rootPath = getPathForro(uniqueFilename);
+		Files.copy(file.getInputStream(), rootPath);
+		return uniqueFilename;
+	}
+	
+	@Override
+	public boolean deleteForro(String filename) {
+		Path rootPath = getPathForro(filename);
+		File archivo = rootPath.toFile();
+
+		if (archivo.exists() && archivo.canRead()) {
+			if (archivo.delete()) {
+			}
+		}
+		return true;
+	}
+	
+	public Path getPathForro(String filename) {
+		return Paths.get(folderForros).resolve(filename).toAbsolutePath();
+
+	}
 
 }

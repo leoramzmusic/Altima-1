@@ -14,6 +14,6 @@ public interface IDisenioMaterialPrendaService {
 
 	DisenioMaterialPrenda findOne(Long id);
 
-	String deleteAllMaterialFromPrenda(Long id);
+	void deleteAllMaterialFromPrenda(Long id);
 
 }
