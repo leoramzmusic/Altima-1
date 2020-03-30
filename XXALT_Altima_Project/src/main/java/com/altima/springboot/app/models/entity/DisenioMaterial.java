@@ -67,10 +67,6 @@ public class DisenioMaterial implements Serializable{
 
 	private String precioUnitario;
 	
-	@Column(name="explosion")
-
-	private String explosion;
-	
 	@Column(name="incluir_en_patronaje")
 	
 	private String incluirEnPatronaje;
@@ -201,14 +197,6 @@ public class DisenioMaterial implements Serializable{
 		this.precioUnitario = precioUnitario;
 	}
 
-	public String getExplosion() {
-		return explosion;
-	}
-
-	public void setExplosion(String explosion) {
-		this.explosion = explosion;
-	}
-
 	public String getIncluirEnPatronaje() {
 		return incluirEnPatronaje;
 	}
@@ -301,7 +289,6 @@ public class DisenioMaterial implements Serializable{
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((descripcionMaterial == null) ? 0 : descripcionMaterial.hashCode());
 		result = prime * result + ((estatus == null) ? 0 : estatus.hashCode());
-		result = prime * result + ((explosion == null) ? 0 : explosion.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
 		result = prime * result + ((idAlmacen == null) ? 0 : idAlmacen.hashCode());
 		result = prime * result + ((idClasificacion == null) ? 0 : idClasificacion.hashCode());
@@ -350,11 +337,6 @@ public class DisenioMaterial implements Serializable{
 			if (other.estatus != null)
 				return false;
 		} else if (!estatus.equals(other.estatus))
-			return false;
-		if (explosion == null) {
-			if (other.explosion != null)
-				return false;
-		} else if (!explosion.equals(other.explosion))
 			return false;
 		if (fechaCreacion == null) {
 			if (other.fechaCreacion != null)
