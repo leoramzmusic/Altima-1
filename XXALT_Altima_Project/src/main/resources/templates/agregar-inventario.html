@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Agregar Material | Altima</title>
+<title>Agregar inventario | Altima</title>
 <link rel="icon" type="image/png" sizes="32x32" href="dist/img/favicon.ico">
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,7 +44,7 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>Inventario</h1>
+							<h1>Inventario <a class="btn btn-danger btn-circle btn-sm popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Regresar" th:href="${'inventario'}"><i class="fas fa-arrow-left"></i></a></h1>
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
@@ -58,61 +58,74 @@
 			</section>
 
 			<!-- Main content -->
-			<section class="content">
-				<div class="container-fluid">
-					<div class="row">
-						<div class="col-12">
-							<!-- Default box -->
-							<div class="card">
-								<div class="card-header bg-dark">
-									<h3 class="card-title">Nuevo inventario</h3>
-								</div>
-								<div class="card-body">
-									<div class="form-group">
-										<form action="">
-											<label for="txt1">ID Muestrario</label>
-											<input type="text" class="form-control" name="txt1">
-											<label for="num1">Numero Muestra </label>
-											<input type="number" class="form-control" name="num1">
-
-											<label for="slct1">Tipo Prenda</label> <select class="form-control" name="slct1">
-												<option>Tipo de prenda 1</option>
-												<option>Tipo de prenda 2</option>
-											</select> <label for="slct1">Genero</label> <select class="form-control" name="slct1">
-												<option>Masculino</option>
-												<option>Femenino</option>
-											</select> <label for="txt2">Modelo de Prenda</label>
-											<input type="text" class="form-control" name="txt2">
-
-											<label for="txt3">ID Tela</label>
-											<input type="text" class="form-control" name="txt3">
-
-											<label for="txt4">Talla</label>
-											<input type="text" class="form-control" name="txt4">
-
-											<label for="txt5">Consecutivo</label>
-											<input type="text" class="form-control" name="txt5">
-
-											<div class="form-group">
-											<label>Vigente?</label>
-												<div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-													<input type="checkbox" class="custom-control-input" id="customSwitch3">
-													<label class="custom-control-label" for="customSwitch3">Toggle this custom switch element with custom colors danger/success</label>
-												</div>
-											</div>
-											<button type="cancel" class="form-control btn btn-danger">Cancelar</button>
-											<button type="submit" class="form-control btn btn-success">Guardar</button>
-										</form>
-									</div>
-								</div>
-								<!-- /.card-body -->
-							</div>
-							<!-- /.card -->
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- /.content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- Default box -->
+                            <div class="card">
+                                <div class="card-header bg-dark">
+                                    <h3 class="card-title">A&ntilde;adir inventario</h3>
+                                </div>
+                                <div class="card-body">
+									<form class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label for="prendaInventario">Prenda</label>
+                                        <select class="form-control" id="prendaInventario">
+                                            <option>Blusa</option>
+                                            <option>Abrigo</option>
+                                            <option>Vestido</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="generoInventario">G&eacute;nero</label>
+                                        <select class="form-control" id="generoInventario">
+                                            <option>Masculino</option>
+                                            <option>Femenino</option>
+                                            <option>Unisex</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-3">
+                                        <label for="modeloInventario">Modelo prenda</label>
+                                        <select class="form-control" id="modeloInventario">
+                                            <option>Blusa</option>
+                                            <option>Abrigo</option>
+                                            <option>Vestido</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-3">
+                                        <label for="telaInventario">Tela</label>
+                                        <select class="form-control" id="telaInventario">
+                                            <option>Tela Azul</option>
+                                            <option>Tela Morada</option>
+                                            <option>Tela Roja</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-3">
+                                        <label for="tallaInventario">Talla</label>
+                                        <select class="form-control" id="tallaInventario">
+                                            <option>S</option>
+                                            <option>M</option>
+                                            <option>L</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-3">
+                                        <label for="consecutivoInventario">Consecutivo</label>
+                                        <input type="number" class="form-control" id="consecutivoInventario" placeholder="Limitar a 30">
+                                    </div>
+                                    <input type="hidden" id="estatusInventario" value="1">
+                                    <div class="form-group col-sm-12">
+                                        <a class="btn btn-primary text-white next-step float-right">Agregar</a>
+                                    </div>
+                                    </form>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                    </div>
+                </div>
+            </section>
 		</div>
 		<!-- /.content-wrapper -->
 		<div th:insert="navegacion-footer"></div>
@@ -127,10 +140,18 @@
 	<script src="dist/js/adminlte.min.js"></script>
 	<!-- AdminLTE for demo purposes -->
 	<script src="dist/js/demo.js"></script>
-	<script src="dist/js/TipoMaterial.js"></script>
 	<!-- select2 -->
 	<script src="dist/js/select2.min.js"></script>
-	<script src="dist/js/UploadImage.js"></script>
+	
+	<!-- Popover-->
+	<script>
+		$(function() {
+			$('.popoverxd').popover({
+				container : 'body',
+				trigger : 'hover'
+			})
+		})
+	</script>
 	<script>
 		$(function() {
 			$('select').each(function() {

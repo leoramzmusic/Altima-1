@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Agregar Expediente | Altima</title>
+    <title>Nuevo Expediente: Empresa | Altima</title>
     <link rel="icon" type="image/png" sizes="32x32" href="dist/img/favicon.ico">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -70,7 +70,56 @@
                                     <h3 class="card-title">Nuevo expediente</h3>
                                 </div>
                                 <div class="card-body">
-	                              	
+                                  <form class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label for="clienteExpediente">Cliente</label>
+                                        <select class="form-control" id="clienteExpediente">
+                                            <option>1</option>
+                                            <option>1</option>
+                                            <option>1</option>
+                                            <option>1</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="sastreExpediente">Sastre</label>
+                                        <select class="form-control" id="sastreExpediente">
+                                            <option>1</option>
+                                            <option>1</option>
+                                            <option>1</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-4">
+                                        <label for="fechaTallaExpediente">Fecha de toma de tallas</label>
+                                        <input type="datetime-local" class="form-control" id="fechaTallaExpediente">
+                                    </div>
+                                    <div class="form-group col-sm-4">
+                                      <label for="fechaAnticipoExpediente">Fecha de anticipo</label>
+                                      <input type="datetime-local" class="form-control" id="fechaAnticipoExpediente">
+                                    </div>
+                                    <div class="form-group col-sm-4">
+                                      <label for="fechaEntregaExpediente">Fecha de entrega</label>
+                                      <input type="datetime-local" class="form-control" id="fechaEntregaExpediente">
+                                    </div>
+                                    <div class="form-group col-sm-3">
+                                        <label for="pagoAnticipoExpediente">Anticipo</label>
+                                        <input type="number" class="form-control" id="pagoAnticipoExpediente">
+                                    </div>
+                                    <div class="form-group col-sm-3">
+                                        <label for="pagoEntregaExpediente">Entrega</label>
+                                        <input type="number" class="form-control" id="pagoEntregaExpediente">
+                                    </div>
+                                    <div class="form-group col-sm-3">
+                                        <label for="saldoExpediente">Saldo</label>
+                                        <input type="number" class="form-control" id="saldoExpediente">
+                                    </div>
+                                    <div class="form-group col-sm-3">
+                                        <label for="totalExpediente">Total pedido</label>
+                                        <input type="number" class="form-control" id="totalExpediente">
+                                    </div>
+                                    <div class="form-group col-sm-12">
+                                        <a th:href="${'/agregar-expediente-empleados'}" class="btn btn-primary next-step float-right">Agregar</a>
+                                    </div>
+                                </form>
                                 </div>
                                 <!-- /.card-body -->
                             </div>
@@ -79,7 +128,6 @@
                     </div>
                 </div>
             </section>
-            <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
         <div th:insert="navegacion-footer"></div>

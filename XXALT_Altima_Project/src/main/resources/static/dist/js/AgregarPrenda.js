@@ -233,6 +233,7 @@ function AgregarElementoListaPatronaje2()
         url: "/detalle_patronaje",
         data: { id },
         success: (data) =>{
+        	console.log("esto traje del controller");
         	console.log(data);
         	$('#BotonAgregarPatronaje').prop('disabled', false);
         	var identidad = data[0] + '_' + data[1];
@@ -256,8 +257,8 @@ function AgregarElementoListaPatronaje2()
 										  	  		"</button>" + 
 										  	  "</td>" +
 										 "</tr>");
+			console.log("asi quedaba mi objeto patronajes");
 			console.log(objeto_patronajes);
-			objeto_patronajes = {};
 			objeto_patronajes = objeto_patronajes;
 			$('#ListaPatronaje').val("");
 			$('#CantidadTela').val("");
@@ -310,7 +311,7 @@ function Guardar()
 	
 	var token = $('#token').val();
 	var header = $('#token').val();
-	console.log(objeto_materiales);
+	console.log(objeto_patronajes);
 	console.log("entre al guardar");
 	
 	
@@ -507,11 +508,10 @@ function EditarPatronajeExistente(id)
 	for(j = 0; j < objeto_patronajes.length; j++)
 	{
 		console.log("buscando");
-		if(objeto_patronajes[j].id == id)
+		if(objeto_patronajes[j].idPatronaje == id)
 		{
 			$('#' + objeto_patronajes[j].idText).remove();
-			console.log(objeto_patronajes[j].idPatronaje);
-			$('#ListaPatronaje').val(objeto_patronajes[j].idPatronaje).change();
+			$('#ListaPatronaje').val(objeto_patronajes[j].id).change();
 			$('#CantidadTela').val(objeto_patronajes[j].cantidadTela);
 			$('#CantidadForro').val(objeto_patronajes[j].cantidadForro);
 			$('#CantidadEntretela').val(objeto_patronajes[j].cantidadEntretela);
@@ -527,10 +527,23 @@ function EliminarPatronajeExistente(id)
 {
 	for(i = 0; i < objeto_patronajes.length; i++)
 	{
-		if(objeto_patronajes[i].id == id)
+		if(objeto_patronajes[i].idPatronaje == id)
 		{
 			$('#' + objeto_patronajes[i].idText).remove();
 			objeto_patronajes.splice(i, 1);
 		}
 	}
+}
+
+//Funciones para limpiar inputs
+function LimpiarInput1()
+{
+	$('#file').val('');
+	$('#blah1').attr("src", "/dist/img/preview.png");
+}
+
+function LimpiarInput2()
+{
+	$('#file2').val('');
+	$('#blah2').attr("src", "/dist/img/preview.png");
 }

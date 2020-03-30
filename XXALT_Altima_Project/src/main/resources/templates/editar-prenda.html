@@ -549,11 +549,12 @@
 	console.log(objeto_materiales);
 	
 	//Se almacenan en un array de objetos los patronajes
+	console.log("ahi va");
 	console.log(patronajes);
 	var objeto_patronajes = [];
 	for(i = 0; i < patronajes.length; i++)
 	{
-		var temp = {id: patronajes[i][0], idText: patronajes[i][1],cantidadTela: patronajes[i][3], cantidadForro: patronajes[i][4], cantidadEntretela: patronajes[i][5], idPatronaje: patronajes[i][6]};
+		var temp = {id: patronajes[i][6], idText: patronajes[i][1],cantidadTela: patronajes[i][3], cantidadForro: patronajes[i][4], cantidadEntretela: patronajes[i][5], idPatronaje: patronajes[i][0]};
 		objeto_patronajes.push(temp);
 	}
 	

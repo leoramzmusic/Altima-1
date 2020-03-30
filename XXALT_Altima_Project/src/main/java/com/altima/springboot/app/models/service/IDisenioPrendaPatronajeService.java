@@ -13,5 +13,5 @@ public interface IDisenioPrendaPatronajeService
 
 	void delete(Long id);
 	
-	String deleteAllPatronajeFromPrenda(Long id);
+	void deleteAllPatronajeFromPrenda(Long id);
 }

@@ -164,6 +164,24 @@
     <script src="dist/js/demo.js"></script>
     <script src="dist/js/TablaPrenda.js"></script>
     
+     <script src="dist/js/sweetalert.js"></script>
+    
+    
+    
+   
+<script th:if="${icon != null}" th:inline="javascript">
+		Swal.fire({
+			
+			 position: 'center',
+			  icon:  /*[[${icon}]]*/,
+			  title: /*[[${title}]]*/,
+			  showConfirmButton: false,
+			  timer: 2500			
+	    });
+	</script>
+    
+    
+    
     
     
     

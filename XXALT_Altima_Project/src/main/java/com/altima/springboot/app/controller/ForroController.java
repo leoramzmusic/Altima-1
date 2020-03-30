@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.altima.springboot.app.models.entity.DisenioFamiliaComposicionForro;
 import com.altima.springboot.app.models.entity.DisenioForro;
@@ -57,7 +58,8 @@ public class ForroController {
 			DisenioForro forro,
 			@RequestParam("txtTablaf") String composicion,
 			@RequestParam("txtTabla2f") String idComposicion,
-			@RequestParam(value="imagenForro", required=false) MultipartFile imagenForro) {
+			@RequestParam(value="imagenForro", required=false) MultipartFile imagenForro,
+			RedirectAttributes redirectAttrs) {
 		Date date = new Date();
 		DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -71,8 +73,20 @@ public class ForroController {
 			forro.setIdUnidadMedida(Long.valueOf(1));
 			forro.setConsumoPromedioForro("null");
 			forro.setExistenciaForro("1");
+			
+			if (forro.getIdForro() == null) {
+				forro.setFechaCreacion(hourdateFormat.format(date));
+				redirectAttrs
+	            .addFlashAttribute("title", "Forro guardado correctamente")
+	            .addFlashAttribute("icon", "success");
+			}
+			else {
+					redirectAttrs
+		            .addFlashAttribute("title", "Forro editado correctamente")
+		            .addFlashAttribute("icon", "success");
+			}
 		
-			forro.setFechaCreacion(hourdateFormat.format(date));
+			
 			forro.setUltimaFechaModificacion(hourdateFormat.format(date));
 			forro.setEstatus("1");
 			forro.setEstatusForro("0");
@@ -94,7 +108,7 @@ public class ForroController {
 				ff.setComposicion(vect[i]);
 				ComposicionForroService.save(ff);
 			}
-			}
+			} 	
 		}
 		else {
 			if (!imagenForro.isEmpty()){
@@ -132,6 +146,10 @@ public class ForroController {
 				ff.setComposicion(vect[i]);
 				ComposicionForroService.save(ff);
 			}
+			
+			redirectAttrs
+	        .addFlashAttribute("title", "Forro Editado correctamente")
+	        .addFlashAttribute("icon", "success");
 		}
 			
 			
@@ -193,6 +211,17 @@ public class ForroController {
 		return ResponseEntity.ok()
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
 				.body(recurso);
+	}
+	
+	@GetMapping("delete-forro/{id}") 
+	public String deleteMaterial(@PathVariable("id") Long idForro, RedirectAttributes redirectAttrs) {
+		DisenioForro forro = forroService.findOne(idForro);
+		forro.setEstatus("0");
+		forroService.save(forro);
+		redirectAttrs
+        .addFlashAttribute("title", "Forro elimnado correctamente")
+        .addFlashAttribute("icon", "success");
+		  return "redirect:materiales";
 	}
 	
 

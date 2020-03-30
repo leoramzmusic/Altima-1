@@ -105,9 +105,6 @@ public class DisenioPrenda implements Serializable{
 	@Column(name="tipo_largo")
 	private String tipoLargo;
 	
-	@Column(name="especificacion")
-	private String especificacion;
-	
 	@Column(name="imprimir_etiquetas")
 	private String imprimirEtiquetas;
 	
@@ -134,12 +131,6 @@ public class DisenioPrenda implements Serializable{
 	
 	@Column(name="combinacion")
 	private String combinacion;
-	
-	@Column(name="total_prendas")
-	private String totalPrendas;
-	
-	@Column(name="mostrar")
-	private String mostrar;
 	
 	@Column(name="estatus")
 	private Long estatus;
@@ -360,14 +351,6 @@ public class DisenioPrenda implements Serializable{
 		this.tipoLargo = tipoLargo;
 	}
 
-	public String getEspecificacion() {
-		return especificacion;
-	}
-
-	public void setEspecificacion(String especificacion) {
-		this.especificacion = especificacion;
-	}
-
 	public String getImprimirEtiquetas() {
 		return imprimirEtiquetas;
 	}
@@ -440,22 +423,6 @@ public class DisenioPrenda implements Serializable{
 		this.combinacion = combinacion;
 	}
 
-	public String getTotalPrendas() {
-		return totalPrendas;
-	}
-
-	public void setTotalPrendas(String totalPrendas) {
-		this.totalPrendas = totalPrendas;
-	}
-
-	public String getMostrar() {
-		return mostrar;
-	}
-
-	public void setMostrar(String mostrar) {
-		this.mostrar = mostrar;
-	}
-
 	public Long getEstatus() {
 		return estatus;
 	}
@@ -486,7 +453,6 @@ public class DisenioPrenda implements Serializable{
 		result = prime * result + ((devolucion == null) ? 0 : devolucion.hashCode());
 		result = prime * result + ((dibujoEspalda == null) ? 0 : dibujoEspalda.hashCode());
 		result = prime * result + ((dibujoFrente == null) ? 0 : dibujoFrente.hashCode());
-		result = prime * result + ((especificacion == null) ? 0 : especificacion.hashCode());
 		result = prime * result + ((estatus == null) ? 0 : estatus.hashCode());
 		result = prime * result + ((estatusRecepcionMuestra == null) ? 0 : estatusRecepcionMuestra.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
@@ -497,7 +463,6 @@ public class DisenioPrenda implements Serializable{
 		result = prime * result + ((imprimirEtiquetas == null) ? 0 : imprimirEtiquetas.hashCode());
 		result = prime * result + ((marcadores == null) ? 0 : marcadores.hashCode());
 		result = prime * result + ((modeloBoton == null) ? 0 : modeloBoton.hashCode());
-		result = prime * result + ((mostrar == null) ? 0 : mostrar.hashCode());
 		result = prime * result + ((nombrePrenda == null) ? 0 : nombrePrenda.hashCode());
 		result = prime * result + ((notaEspecial == null) ? 0 : notaEspecial.hashCode());
 		result = prime * result + ((numeroPrenda == null) ? 0 : numeroPrenda.hashCode());
@@ -510,7 +475,6 @@ public class DisenioPrenda implements Serializable{
 		result = prime * result + ((precioMprod == null) ? 0 : precioMprod.hashCode());
 		result = prime * result + ((tipoLargo == null) ? 0 : tipoLargo.hashCode());
 		result = prime * result + ((tipoPrenda == null) ? 0 : tipoPrenda.hashCode());
-		result = prime * result + ((totalPrendas == null) ? 0 : totalPrendas.hashCode());
 		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
 		return result;
 	}
@@ -594,11 +558,6 @@ public class DisenioPrenda implements Serializable{
 				return false;
 		} else if (!dibujoFrente.equals(other.dibujoFrente))
 			return false;
-		if (especificacion == null) {
-			if (other.especificacion != null)
-				return false;
-		} else if (!especificacion.equals(other.especificacion))
-			return false;
 		if (estatus == null) {
 			if (other.estatus != null)
 				return false;
@@ -648,11 +607,6 @@ public class DisenioPrenda implements Serializable{
 			if (other.modeloBoton != null)
 				return false;
 		} else if (!modeloBoton.equals(other.modeloBoton))
-			return false;
-		if (mostrar == null) {
-			if (other.mostrar != null)
-				return false;
-		} else if (!mostrar.equals(other.mostrar))
 			return false;
 		if (nombrePrenda == null) {
 			if (other.nombrePrenda != null)
@@ -713,11 +667,6 @@ public class DisenioPrenda implements Serializable{
 			if (other.tipoPrenda != null)
 				return false;
 		} else if (!tipoPrenda.equals(other.tipoPrenda))
-			return false;
-		if (totalPrendas == null) {
-			if (other.totalPrendas != null)
-				return false;
-		} else if (!totalPrendas.equals(other.totalPrendas))
 			return false;
 		if (ultimaFechaModificacion == null) {
 			if (other.ultimaFechaModificacion != null)

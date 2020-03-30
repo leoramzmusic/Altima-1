@@ -40,10 +40,9 @@ public class DisenioPrendaPatronajeServiceImpl implements IDisenioPrendaPatronaj
 
 	@Override
 	@Transactional
-	public String deleteAllPatronajeFromPrenda(Long id) {
+	public void deleteAllPatronajeFromPrenda(Long id) {
 		// TODO Auto-generated method stub
 		em.createNativeQuery("DELETE FROM alt_disenio_prenda_patronaje WHERE id_prenda = " + id).executeUpdate();
-		return "Erased";
 	}
 
 }

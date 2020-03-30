@@ -100,7 +100,6 @@ public class AgregarPrendaRestController
 		dp.setCveRuta("1"); //Ruta predefinida siempre
 		dp.setTipoLargo(prenda.get("tipoLargo").toString());
 		dp.setCvePrenda(prenda.get("cvePrenda").toString());
-		dp.setEspecificacion(prenda.get("especificacion").toString());
 		dp.setImprimirEtiquetas(prenda.get("imprimirEtiquetas").toString());
 		dp.setModeloBoton(prenda.get("modeloBoton").toString());
 		dp.setEstatusRecepcionMuestra("Definitivo");
@@ -109,8 +108,6 @@ public class AgregarPrendaRestController
 		dp.setPrecioMmuestra(prenda.get("precioMmuestra").toString());
 		dp.setCategoria(prenda.get("categoria").toString());
 		dp.setCombinacion(prenda.get("combinacion").toString());
-		dp.setTotalPrendas(prenda.get("totalPrendas").toString());
-		dp.setMostrar(prenda.get("mostrar").toString());
 		dp.setEstatus(1L);
 		
 		return dp;

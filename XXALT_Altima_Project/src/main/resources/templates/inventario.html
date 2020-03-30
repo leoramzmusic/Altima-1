@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Materiales | Altima</title>
+<title>Inventario | Altima</title>
 <link rel="icon" type="image/png" sizes="32x32" href="dist/img/favicon.ico">
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,8 +25,6 @@
 <link rel="stylesheet" href="dist/css/dataTables.bootstrap4.min.css">
 <!-- Google Font: Source Sans Pro -->
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed sidebar-collapse">
@@ -76,18 +74,18 @@
 									<h3 class="card-title">Inventarios</h3>
 								</div>
 								<div class="card-body">
-									<table class="table tablaPrenda table-striped table-bordered" id="table-materiales">
+									<table class="table table-striped table-bordered" id="inventarioMuestrario">
 										<thead>
 											<tr>
-												<th>ID Muestrario</th>
-												<th>Numero Muestra</th>
-												<th>Tipo Prenda</th>
-												<th>Genero</th>
-												<th>Modelo de Prenda</th>
-												<th>ID Tela</th>
+												<th>Clave</th>
+												<th>Prenda</th>
+												<th>N&uacute;mero muestra</th>
+												<th>G&eacute;nero</th>
+												<th>Modelo</th>
+												<th>Clave tela</th>
 												<th>Talla</th>
 												<th>Consecutivo</th>
-												<th>Estatus (Vigente)</th>
+												<th>Estatus</th>
 												<th></th>
 
 											</tr>
@@ -103,8 +101,10 @@
 												<td>Mientras</td>
 												<td>Le dan</td>
 												<td>Funcionalidad</td>
-												<td><a href="" class="btn btn-danger popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Ver m&aacute;s detalles" style="border-radius: 35%;"><i
-														class="fas fa-trash"></i></a>&nbsp;</td>
+												<td class="tdcenter">
+													<a href="" class="btn btn-danger btn-circle btn-sm text-white popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Dar de baja"><i class="fas fa-caret-down"></i></a>
+													<a href="" class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Reactivar"><i class="fas fa-caret-up"></i></a>
+												</td>
 											</tr>
 										</tbody>
 									</table>
@@ -148,12 +148,54 @@
 			})
 		})
 	</script>
+ <script>
+        $(document).ready(function() {
+            $('#inventarioMuestrario').DataTable({
+                "ordering": false,
+                "pageLength": 5,
+                "lengthMenu": [
+                    [5, 10, 25, 50, 100],
+                    [5, 10, 25, 50, 100]
+                ],
+                "language": {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla =(",
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    },
+                    "buttons": {
+                        "copy": "Copiar",
+                        "colvis": "Visibilidad"
+                    }
+                }
+            });
 
+        });
+    </script>
 	<script>
 		function changeClassById() {
-			document.getElementById("menuDiseno").className = "nav-item has-treeview menu-open";
-			document.getElementById("navDiseno").className = "nav-link active";
-			document.getElementById("navDiseno2").className = "nav-link active";
+			document.getElementById("menuComercial").className = "nav-item has-treeview menu-open";
+			document.getElementById("navComercial").className = "nav-link active";
+			document.getElementById("menuMuestrario").className = "nav-item has-treeview menu-open";
+			document.getElementById("navMuestrario").className = "nav-link active";
+			document.getElementById("navMuestrario1").className = "nav-link active";
 		}
 		window.onload = changeClassById();
 	</script>
