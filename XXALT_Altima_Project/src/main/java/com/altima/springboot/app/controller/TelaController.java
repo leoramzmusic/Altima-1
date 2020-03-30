@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.altima.springboot.app.models.entity.DisenioFamiliaComposicionTela;
 import com.altima.springboot.app.models.entity.DisenioForro;
 import com.altima.springboot.app.models.entity.DisenioLookup;
@@ -112,7 +114,8 @@ public class TelaController {
 			@RequestParam("txtTabla2") String idComposicion,
 			@RequestParam(value="botones" , required=false) String botones,
 			@RequestParam( value="forros" , required=false) String forros,
-			@RequestParam(value="imagenTela", required=false) MultipartFile imagenTela) {
+			@RequestParam(value="imagenTela", required=false) MultipartFile imagenTela,
+			RedirectAttributes redirectAttrs) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Date date = new Date();
 		DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -122,7 +125,18 @@ public class TelaController {
 			tela.setIdCalidad(Long.valueOf(1));
 			tela.setIdText("Prospecto");
 			tela.setCreadoPor(auth.getName());
-			tela.setFechaCreacion(hourdateFormat.format(date));
+			if ( tela.getIdTela() == null) {
+				tela.setFechaCreacion(hourdateFormat.format(date));
+				redirectAttrs
+	            .addFlashAttribute("title", "Tela guardada correctamente")
+	            .addFlashAttribute("icon", "success");
+			}
+			else {
+				redirectAttrs
+	            .addFlashAttribute("title", "Tela editada correctamente")
+	            .addFlashAttribute("icon", "success");
+			}
+			
 			tela.setUltimaFechaModificacion(hourdateFormat.format(date));
 			tela.setDescripcionTela("En evaluación");
 			tela.setLineaTela("1");
@@ -228,9 +242,10 @@ public class TelaController {
 				}
 			}
 			
-		
+			redirectAttrs
+            .addFlashAttribute("title", "Tela editada correctamente")
+            .addFlashAttribute("icon", "success");
 			
-			System.out.println("Froro"+forros);
 		}
 		return "redirect:materiales";
 	}
@@ -290,5 +305,16 @@ public class TelaController {
 		return ResponseEntity.ok()
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
 				.body(recurso);
+	}
+	
+	@GetMapping("delete-tela/{id}") 
+	public String deleteMaterial(@PathVariable("id") Long idTela, RedirectAttributes redirectAttrs) {
+		DisenioTela tela = disenioTelaService.findOne(idTela);
+		tela.setEstatus("0");
+		disenioTelaService.save(tela);
+		redirectAttrs
+        .addFlashAttribute("title", "Tela elimnada correctamente")
+        .addFlashAttribute("icon", "success");
+		  return "redirect:materiales";
 	}
 }
