@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.altima.springboot.app.models.entity.DisenioFamiliaComposicionForro;
 import com.altima.springboot.app.models.entity.DisenioFamiliaComposicionTela;
@@ -113,7 +114,7 @@ public class MaterialesController {
 	
 	
 	@PostMapping("guardar")
-	public String guardarMaterial(@ModelAttribute DisenioMaterial material) {
+	public String guardarMaterial(@ModelAttribute DisenioMaterial material,  RedirectAttributes redirectAttrs) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (material.getIdMaterial() ==null || material.getIdMaterial() <=0) {
 			System.out.println(auth.getName() + "aqui esta el mero mero");
@@ -123,6 +124,7 @@ public class MaterialesController {
 			material.setEstatus("1");
 			disenioMaterialService.save(material);
 			System.out.println("epale eaple si entro al method posts");
+		     redirectAttrs.addFlashAttribute("title", "Material Insertado Correctamente").addFlashAttribute("icon", "success");
 		} else {
 			System.out.println(auth.getName() + "aqui esta el mero mero");
 			material.setCreadoPor(material.getCreadoPor());
@@ -131,7 +133,7 @@ public class MaterialesController {
 			
 			material.setActualizadoPor(auth.getName());
 			disenioMaterialService.save(material);
-	
+			  redirectAttrs.addFlashAttribute("title", "Material Actualizado Correctamente").addFlashAttribute("icon", "success");
 			System.out.println("epale eaple si entro al method posts de editar");
 			
 			
