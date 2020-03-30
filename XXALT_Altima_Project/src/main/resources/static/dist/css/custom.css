@@ -158,4 +158,8 @@
          font-size: 12px 
     }
 }
+div.dataTables_wrapper {
+        width: auto;
+        margin: 0 auto;
+    }
  

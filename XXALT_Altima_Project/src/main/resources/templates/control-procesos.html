@@ -1,49 +1,82 @@
-<div id="detalles-proceso" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
-    <div role="document" class="modal-dialog modal-dialog-centered">
+<!-- Modal -->
+<div class="modal fade" id="detalles-proceso" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header row d-flex justify-content-between mx-1 mx-sm-3 mb-0 pb-0 border-0">
-                <div class="tabs active" id="tab01">
-                    <h6 class="font-weight-bold">Trazo</h6>
-                </div>
-                <div class="tabs" id="tab02">
-                    <h6 class="text-muted">Corte</h6>
-                </div>
-                <div class="tabs" id="tab03">
-                    <h6 class="text-muted">Confecci&oacute;n</h6>
-                </div>
-                <div class="tabs" id="tab04">
-                    <h6 class="text-muted">Planchado</h6>
-                </div>
-                <div class="tabs" id="tab05">
-                    <h6 class="text-muted">Terminado</h6>
-                </div>
+            <div class="modal-header">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link  active" href="#trazo" role="tab" data-toggle="tab" aria-selected="true">Trazo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#corte" role="tab" data-toggle="tab">Corte</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#confeccion" role="tab" data-toggle="tab">Confecci&oacute;n</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#planchado" role="tab" data-toggle="tab">Planchado</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#terminado" role="tab" data-toggle="tab">Terminado</a>
+                    </li>
+                </ul>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="line"></div>
-            <div class="modal-body p-0">
-                <fieldset class="show" id="tab011">
-                    <div class="bg-light">
-                        <table class="table table-bordered">
+            <div class="modal-body">
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="trazo">
+                    	<div class="form-group">
+						    <label for="exampleFormControlSelect1">Operario</label>
+						    <select class="form-control" id="exampleFormControlSelect1">
+						      <option>Operario 1</option>
+						      <option>Operario 2</option>
+						      <option>Operario 3</option>
+						      <option>Operario 4</option>
+						      <option>Operario 5</option>
+						    </select>
+						</div>
+						<div class="form-group">
+							<a class="btn btn-primary btn-circle btn-sm popoverxd text-white" data-container="body" data-toggle="modal" data-placement="top"data-content="Agregar"><i class="fas fa-plus"></i></a>
+						</div>
+                    	<table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th scope="col">Operario <a class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="modal" data-placement="top"
-													data-content="Detalles"><i class="fas fa-plus"></i></a></th>
+                                    <th scope="col">Operario</th>
                                     <th scope="col">Fecha de recepci&oacute;n</th>
                                     <th scope="col">Fecha de entrega</th>
+                                    <th scope="col">Tiempo</th>
+                                    <th scope="col">Controles</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <th scope="row">Juan Jose Maria Morelos</th>
-                                    <td>01/01/2020</td>
-                                    <td>02/01/2020</td>
+                                    <td>03/01/2020 11:00</td>
+                                    <td>04/01/2020 16:00</td>
+                                    <td>1 dia 5 horas</td>
+                                    <td class="tdcenter"><i class="fas fa-play text-success"></i>&nbsp;&nbsp;&nbsp;<i class="fas fa-pause text-warning"></i>&nbsp;&nbsp;&nbsp;<i class="fas fa-stop text-danger"></i></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                </fieldset>
-                <fieldset id="tab021">
-                    <div class="bg-light">
-                        <table class="table table-bordered">
+                    <!--div role="tabpanel" class="tab-pane active" id="corte">
+                    	<div class="form-group">
+						    <label for="exampleFormControlSelect1">Operario</label>
+						    <select class="form-control" id="exampleFormControlSelect1">
+						      <option>Operario 1</option>
+						      <option>Operario 2</option>
+						      <option>Operario 3</option>
+						      <option>Operario 4</option>
+						      <option>Operario 5</option>
+						    </select>
+						</div>
+						<div class="form-group">
+							<a class="btn btn-primary btn-circle btn-sm popoverxd text-white" data-container="body" data-toggle="modal" data-placement="top"data-content="Agregar"><i class="fas fa-plus"></i></a>
+						</div>
+                    	<table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th scope="col">Operario</th>
@@ -60,10 +93,21 @@
                             </tbody>
                         </table>
                     </div>
-                </fieldset>
-                <fieldset id="tab031">
-                    <div class="bg-light">
-                        <table class="table table-bordered">
+                    <div role="tabpanel" class="tab-pane active" id="confeccion">
+                    	<div class="form-group">
+						    <label for="exampleFormControlSelect1">Operario</label>
+						    <select class="form-control" id="exampleFormControlSelect1">
+						      <option>Operario 1</option>
+						      <option>Operario 2</option>
+						      <option>Operario 3</option>
+						      <option>Operario 4</option>
+						      <option>Operario 5</option>
+						    </select>
+						</div>
+						<div class="form-group">
+							<a class="btn btn-primary btn-circle btn-sm popoverxd text-white" data-container="body" data-toggle="modal" data-placement="top"data-content="Agregar"><i class="fas fa-plus"></i></a>
+						</div>
+                    	<table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th scope="col">Operario</th>
@@ -74,16 +118,27 @@
                             <tbody>
                                 <tr>
                                     <th scope="row">Juan Jose Maria Morelos</th>
-                                    <td>05/01/2020</td>
-                                    <td>06/01/2020</td>
+                                    <td>03/01/2020</td>
+                                    <td>04/01/2020</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                </fieldset>
-                <fieldset id="tab041">
-                    <div class="bg-light">
-                        <table class="table table-bordered">
+                    <div role="tabpanel" class="tab-pane active" id="planchado">
+                    	<div class="form-group">
+						    <label for="exampleFormControlSelect1">Operario</label>
+						    <select class="form-control" id="exampleFormControlSelect1">
+						      <option>Operario 1</option>
+						      <option>Operario 2</option>
+						      <option>Operario 3</option>
+						      <option>Operario 4</option>
+						      <option>Operario 5</option>
+						    </select>
+						</div>
+						<div class="form-group">
+							<a class="btn btn-primary btn-circle btn-sm popoverxd text-white" data-container="body" data-toggle="modal" data-placement="top"data-content="Agregar"><i class="fas fa-plus"></i></a>
+						</div>
+                    	<table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th scope="col">Operario</th>
@@ -94,16 +149,27 @@
                             <tbody>
                                 <tr>
                                     <th scope="row">Juan Jose Maria Morelos</th>
-                                    <td>07/01/2020</td>
-                                    <td>08/01/2020</td>
+                                    <td>03/01/2020</td>
+                                    <td>04/01/2020</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                </fieldset>
-                <fieldset id="tab051">
-                    <div class="bg-light">
-                        <table class="table table-bordered">
+                    <div role="tabpanel" class="tab-pane active" id="terminado">
+                    	<div class="form-group">
+						    <label for="exampleFormControlSelect1">Operario</label>
+						    <select class="form-control" id="exampleFormControlSelect1">
+						      <option>Operario 1</option>
+						      <option>Operario 2</option>
+						      <option>Operario 3</option>
+						      <option>Operario 4</option>
+						      <option>Operario 5</option>
+						    </select>
+						</div>
+						<div class="form-group">
+							<a class="btn btn-primary btn-circle btn-sm popoverxd text-white" data-container="body" data-toggle="modal" data-placement="top"data-content="Agregar"><i class="fas fa-plus"></i></a>
+						</div>
+                    	<table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th scope="col">Operario</th>
@@ -114,13 +180,13 @@
                             <tbody>
                                 <tr>
                                     <th scope="row">Juan Jose Maria Morelos</th>
-                                    <td>09/01/2020</td>
-                                    <td>10/01/2020</td>
+                                    <td>03/01/2020</td>
+                                    <td>04/01/2020</td>
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
-                </fieldset>
+                    </div-->
+                </div>
             </div>
         </div>
     </div>

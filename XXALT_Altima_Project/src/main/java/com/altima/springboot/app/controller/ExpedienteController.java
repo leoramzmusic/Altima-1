@@ -16,6 +16,11 @@ public class ExpedienteController {
 		return "agregar-expediente";
 	}
 	
+	@GetMapping("/agregar-expediente-empleados") 
+	public String agregarEmpleadosExpediente() {
+		return "agregar-expediente-empleados";
+	}
+	
 	@GetMapping("/detalle-expediente") 
 	public String detalleExpediente() {
 		return "detalle-expediente";
