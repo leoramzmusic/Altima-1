@@ -41,7 +41,7 @@ public class Usuario  implements Serializable{
 	private String nombreUsuario;
 	
 	@Column(name="id_empleado")
-	private String idEmpleado;
+	private Long idEmpleado;
 	
 	@Column(name="creado_por")
 	
@@ -146,10 +146,10 @@ public class Usuario  implements Serializable{
 	public void setRoles(Set<Rol> roles) {
 		this.roles = roles;
 	}
-	public String getIdEmpleado() {
+	public Long getIdEmpleado() {
 		return idEmpleado;
 	}
-	public void setIdEmpleado(String idEmpleado) {
+	public void setIdEmpleado(Long idEmpleado) {
 		this.idEmpleado = idEmpleado;
 	}
 	

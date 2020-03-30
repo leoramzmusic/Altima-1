@@ -29,6 +29,9 @@ public class DisenioFamiliaComposicionTela implements Serializable {
 	@Column(name="id_tela")
 	private Long idTela;
 	
+	@Column(name="id_familia_composicion")
+	private Long idFamiliaComposicion;
+	
 	@Column(name="composicion")
 	private String composicion;
 	
@@ -43,6 +46,16 @@ public class DisenioFamiliaComposicionTela implements Serializable {
 	
 	@Column(name="ultima_fecha_modificacion")
 	private String ultimaFechaModificacion;
+	
+	
+
+	public Long getIdFamiliaComposicion() {
+		return idFamiliaComposicion;
+	}
+
+	public void setIdFamiliaComposicion(Long idFamiliaComposicion) {
+		this.idFamiliaComposicion = idFamiliaComposicion;
+	}
 
 	public Long getIdFamiliaComposicionTela() {
 		return idFamiliaComposicionTela;
