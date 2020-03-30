@@ -26,9 +26,6 @@ public class DisenioFamiliaComposicionForro implements Serializable{
 	@GenericGenerator(name="native",strategy="native")
 	private Long idFamiliaComposicionForro;
 	
-	@Column(name="id_familia_composicion")
-	private Long idFamiliaComposicion;
-	
 	@Column(name="id_forro")
 	private Long idForro;
 	
@@ -57,14 +54,6 @@ public class DisenioFamiliaComposicionForro implements Serializable{
 
 	public void setIdFamiliaComposicionForro(Long idFamiliaComposicionForro) {
 		this.idFamiliaComposicionForro = idFamiliaComposicionForro;
-	}
-
-	public Long getIdFamiliaComposicion() {
-		return idFamiliaComposicion;
-	}
-
-	public void setIdFamiliaComposicion(Long idFamiliaComposicion) {
-		this.idFamiliaComposicion = idFamiliaComposicion;
 	}
 
 	public Long getIdForro() {
@@ -127,7 +116,6 @@ public class DisenioFamiliaComposicionForro implements Serializable{
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
-		result = prime * result + ((idFamiliaComposicion == null) ? 0 : idFamiliaComposicion.hashCode());
 		result = prime * result + ((idFamiliaComposicionForro == null) ? 0 : idFamiliaComposicionForro.hashCode());
 		result = prime * result + ((idForro == null) ? 0 : idForro.hashCode());
 		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
@@ -157,11 +145,6 @@ public class DisenioFamiliaComposicionForro implements Serializable{
 			if (other.fechaCreacion != null)
 				return false;
 		} else if (!fechaCreacion.equals(other.fechaCreacion))
-			return false;
-		if (idFamiliaComposicion == null) {
-			if (other.idFamiliaComposicion != null)
-				return false;
-		} else if (!idFamiliaComposicion.equals(other.idFamiliaComposicion))
 			return false;
 		if (idFamiliaComposicionForro == null) {
 			if (other.idFamiliaComposicionForro != null)

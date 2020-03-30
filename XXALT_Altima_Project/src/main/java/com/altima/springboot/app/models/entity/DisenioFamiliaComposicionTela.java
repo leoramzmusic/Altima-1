@@ -26,9 +26,6 @@ public class DisenioFamiliaComposicionTela implements Serializable {
 	@GenericGenerator(name="native",strategy="native")
 	private Long idFamiliaComposicionTela;
 	
-	@Column(name="id_familia_composicion")
-	private Long idFamiliaComposicion;
-	
 	@Column(name="id_tela")
 	private Long idTela;
 	
@@ -53,14 +50,6 @@ public class DisenioFamiliaComposicionTela implements Serializable {
 
 	public void setIdFamiliaComposicionTela(Long idFamiliaComposicionTela) {
 		this.idFamiliaComposicionTela = idFamiliaComposicionTela;
-	}
-
-	public Long getIdFamiliaComposicion() {
-		return idFamiliaComposicion;
-	}
-
-	public void setIdFamiliaComposicion(Long idFamiliaComposicion) {
-		this.idFamiliaComposicion = idFamiliaComposicion;
 	}
 
 	public Long getIdTela() {
