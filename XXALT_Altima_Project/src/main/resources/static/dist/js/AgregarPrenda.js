@@ -43,11 +43,13 @@ function readURL2(input)
 	$("#file").change(function() 
 	{
 	  readURL(this);
+	  console.log("cambio");
 	});
 
 	$("#file2").change(function() 
 	{
 		readURL2(this);
+		console.log("cambio");
 	});
 
 function RecogerDatosPrimeraParte()
@@ -538,12 +540,12 @@ function EliminarPatronajeExistente(id)
 //Funciones para limpiar inputs
 function LimpiarInput1()
 {
-	$('#file').val('');
+	$('#file').val(null);
 	$('#blah1').attr("src", "/dist/img/preview.png");
 }
 
 function LimpiarInput2()
 {
-	$('#file2').val('');
+	$('#file2').val(null);
 	$('#blah2').attr("src", "/dist/img/preview.png");
 }
