@@ -534,3 +534,16 @@ function EliminarPatronajeExistente(id)
 		}
 	}
 }
+
+//Funciones para limpiar inputs
+function LimpiarInput1()
+{
+	$('#file').val('');
+	$('#blah1').attr("src", "/dist/img/preview.png");
+}
+
+function LimpiarInput2()
+{
+	$('#file2').val('');
+	$('#blah2').attr("src", "/dist/img/preview.png");
+}
