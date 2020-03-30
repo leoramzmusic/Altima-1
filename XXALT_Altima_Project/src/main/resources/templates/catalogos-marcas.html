@@ -17,7 +17,9 @@
     <div class="modal-dialog modal-dialog-centered modal-marcas" role="document">
         <div class="modal-content" id="contenedorTabla">
             <div class="modal-header bg-warning">
-                <h5 class="modal-title" id="exampleModalLongTitle">Listado de marcas <button onclick="agregarMarca()" class="btn btn-dark popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Agregar" style="border-radius: 35%;color:#ffc107!important"><i class="fas fa-plus fa-sm"></i></button></h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Listado de marcas <button onclick="agregarMarca()" class="btn btn-dark popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Agregar" style="border-radius: 35%;color:#ffc107!important"><i class="fas fa-plus fa-sm"></i></button>
+                <a th:href="@{'/imprimir/' +marca (format=pdf)}" class="btn btn-dark popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Imprimir" style="border-radius: 35%;color:#ffc107!important"><i class="fas fa-print fa-sm"></i></a>
+                </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

@@ -1,6 +1,5 @@
 package com.altima.springboot.app.controller;
 
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -15,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,7 +27,6 @@ import com.altima.springboot.app.models.service.ICatalogoService;
 
 @CrossOrigin(origins = { "*" })
 @Controller
-@RequestMapping("/")
 public class CatalogoController {
 	protected final Log logger = LogFactory.getLog(this.getClass());
 	String pattern = "yyyy-MM-dd";
@@ -85,14 +84,14 @@ public class CatalogoController {
 
 		return catalogo.findAllInstrCuidado();
 	}
-	
+
 	@RequestMapping(value = "/medidaslook", method = RequestMethod.GET)
 	@ResponseBody
 	public List<DisenioLookup> medidas() {
 
 		return catalogo.findAllUnidadMedida();
 	}
-	
+
 	@RequestMapping(value = "/materialeslook", method = RequestMethod.GET)
 	@ResponseBody
 	public List<DisenioLookup> materiales() {
@@ -100,16 +99,9 @@ public class CatalogoController {
 		return catalogo.findAllMaterial();
 	}
 
-	@RequestMapping(value = { "/catalogos", "/catalogos-marcas" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/catalogos" }, method = RequestMethod.GET)
 	public String catalogo(Model model, RedirectAttributes flash) {
 		model.addAttribute("marcas", catalogo.findAllMarca());
-		// Gson gson = new Gson();
-		// convert your list to json
-		// String marca = gson.toJson(catalogo.findAllMarca());
-		// print your generated json
-		// System.out.println("{" + "\"marca\": " + marca + "}");
-		// model.addAttribute("colores22", marca);
-		// model.addAttribute("marca", "{" + "\"marca\": " + marca + "}");
 		model.addAttribute("colores", catalogo.findAllColor());
 		model.addAttribute("pzastrazo", catalogo.findAllPzasTrazo());
 		model.addAttribute("famprendas", catalogo.findAllFamPrendas());
@@ -118,22 +110,21 @@ public class CatalogoController {
 		model.addAttribute("instrcuidado", catalogo.findAllInstrCuidado());
 		return "/catalogos";
 	}
-	
+
 	@PostMapping("/bajacatalogo")
 	public String bajacatalogo(Long idcatalogo) {
-		DisenioLookup catalogo2=null;
-		catalogo2=catalogo.findOne(idcatalogo);
+		DisenioLookup catalogo2 = null;
+		catalogo2 = catalogo.findOne(idcatalogo);
 		catalogo2.setEstatus(0);
 		catalogo.save(catalogo2);
 		return "redirect:catalogos";
-		
+
 	}
 
 	@PostMapping("/guardarcatalogo")
 	public String guardacatalogo(String Marca, String Descripcion, String Color, String PiezaTrazo,
 			String FamiliaPrenda, String FamiliaGenero, String FamiliaComposicion, String InstruccionCuidado,
-			String UnidadMedida, String Material,
-			HttpServletRequest request) {
+			String UnidadMedida, String Material, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
 		if (Marca != null) {
@@ -261,7 +252,7 @@ public class CatalogoController {
 	@PostMapping("/editarcatalogo")
 	public String editacatalogo(Model model, final Long idLookup, String Marca, String Color, String PiezaTrazo,
 			String FamiliaPrenda, String Descripcion, String FamiliaGenero, String FamiliaComposicion,
-			String InstruccionCuidado,String UnidadMedida,String Material) {
+			String InstruccionCuidado, String UnidadMedida, String Material) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		DisenioLookup marca = null;
 		DisenioLookup color = null;
@@ -345,5 +336,16 @@ public class CatalogoController {
 			return "redirect:catalogos";
 		}
 		return "redirect:catalogos";
+	}
+
+	@RequestMapping(value = { "/imprimir/{lookup}" }, method = RequestMethod.GET)
+	public String ver(@PathVariable(value = "lookup") String lookup, Model model) {
+
+		if (lookup.equals("marca")) {
+			List<DisenioLookup> lookup1 = catalogo.findAllMarca();
+			model.addAttribute("lookup", lookup1);
+		}
+
+		return "/catalogos";
 	}
 }
