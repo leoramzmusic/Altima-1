@@ -98,16 +98,17 @@ public class CatalogoController {
 
 		return catalogo.findAllMaterial();
 	}
+	
+	@RequestMapping(value = "/marcadoreslook", method = RequestMethod.GET)
+	@ResponseBody
+	public List<DisenioLookup> marcadores() {
+
+		return catalogo.findAllMarcador();
+	}
 
 	@RequestMapping(value = { "/catalogos" }, method = RequestMethod.GET)
 	public String catalogo(Model model, RedirectAttributes flash) {
-		model.addAttribute("marcas", catalogo.findAllMarca());
-		model.addAttribute("colores", catalogo.findAllColor());
-		model.addAttribute("pzastrazo", catalogo.findAllPzasTrazo());
-		model.addAttribute("famprendas", catalogo.findAllFamPrendas());
-		model.addAttribute("famgenero", catalogo.findAllFamGenero());
-		model.addAttribute("famcomposicion", catalogo.findAllFamComposicion());
-		model.addAttribute("instrcuidado", catalogo.findAllInstrCuidado());
+		
 		return "/catalogos";
 	}
 
@@ -124,11 +125,10 @@ public class CatalogoController {
 	@PostMapping("/guardarcatalogo")
 	public String guardacatalogo(String Marca, String Descripcion, String Color, String PiezaTrazo,
 			String FamiliaPrenda, String FamiliaGenero, String FamiliaComposicion, String InstruccionCuidado,
-			String UnidadMedida, String Material, HttpServletRequest request) {
+			String UnidadMedida, String Material, HttpServletRequest request,String Marcador) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
 		if (Marca != null) {
-			System.out.println("entra");
 			DisenioLookup marca = new DisenioLookup();
 			marca.setIdText("MAR004");
 			marca.setNombreLookup(Marca);
@@ -245,6 +245,19 @@ public class CatalogoController {
 			catalogo.save(material);
 			return "/catalogos";
 		}
+		if (Marcador != null) {
+			DisenioLookup marcador = new DisenioLookup();
+			marcador.setIdText("Fam004");
+			marcador.setNombreLookup(Marcador);
+			marcador.setTipoLookup("Marcador");
+			marcador.setCreadoPor(auth.getName());
+			marcador.setFechaCreacion(date);
+			marcador.setEstatus(1);
+			catalogo.save(marcador);
+			marcador.setIdText("MARC00" + (marcador.getIdLookup() + 10));
+			catalogo.save(marcador);
+			return "/catalogos";
+		}
 		return "redirect:catalogos";
 
 	}
@@ -252,7 +265,7 @@ public class CatalogoController {
 	@PostMapping("/editarcatalogo")
 	public String editacatalogo(Model model, final Long idLookup, String Marca, String Color, String PiezaTrazo,
 			String FamiliaPrenda, String Descripcion, String FamiliaGenero, String FamiliaComposicion,
-			String InstruccionCuidado, String UnidadMedida, String Material) {
+			String InstruccionCuidado, String UnidadMedida, String Material,String Marcador) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		DisenioLookup marca = null;
 		DisenioLookup color = null;
@@ -263,6 +276,7 @@ public class CatalogoController {
 		DisenioLookup instruccioncuidado = null;
 		DisenioLookup unidadmedida = null;
 		DisenioLookup material = null;
+		DisenioLookup marcador = null;
 		if (Marca != null && idLookup > 0) {
 			marca = catalogo.findOne(idLookup);
 			marca.setNombreLookup(Marca);
@@ -335,6 +349,14 @@ public class CatalogoController {
 			catalogo.save(material);
 			return "redirect:catalogos";
 		}
+		if (Marcador != null && idLookup > 0) {
+			marcador = catalogo.findOne(idLookup);
+			marcador.setNombreLookup(Marcador);
+			marcador.setUltimaFechaModificacion(date);
+			marcador.setActualizadoPor(auth.getName());
+			catalogo.save(marcador);
+			return "redirect:catalogos";
+		}
 		return "redirect:catalogos";
 	}
 
@@ -346,6 +368,6 @@ public class CatalogoController {
 			model.addAttribute("lookup", lookup1);
 		}
 
-		return "/catalogos";
+		return "/imprimir";
 	}
 }

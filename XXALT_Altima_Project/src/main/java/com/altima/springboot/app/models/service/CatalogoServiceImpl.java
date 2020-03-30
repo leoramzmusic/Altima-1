@@ -112,5 +112,12 @@ public class CatalogoServiceImpl implements ICatalogoService {
 	public List<DisenioLookup> findAllMaterial(){
 		return em.createQuery("from DisenioLookup where tipo_lookup='Material' and Estatus=1").getResultList();
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<DisenioLookup> findAllMarcador(){
+		return em.createQuery("from DisenioLookup where tipo_lookup='Marcador' and Estatus=1").getResultList();
+	}
 
 }

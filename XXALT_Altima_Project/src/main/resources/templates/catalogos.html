@@ -64,11 +64,11 @@
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
                     	<!-- MARCAS -->
-                      	<div th:insert="catalogos-marcas" class="col-lg-6 col-6"></div>  
-                      	<!-- MAEDIDAS
-                      	<div th:insert="catalogos-medida" class="col-lg-4 col-6"></div>   -->
+                      	<div th:insert="catalogos-marcas" class="col-lg-4 col-6"></div>  
+                      	<!-- MAEDIDAS -->
+                      	<div th:insert="catalogos-medida" class="col-lg-4 col-6"></div>  
                       	<!-- COLORES -->
-                      	<div th:insert="catalogos-colores" class="col-lg-6 col-6"></div>
+                      	<div th:insert="catalogos-colores" class="col-lg-4 col-6"></div>
                       	<!-- PZAS. TRAZO -->
                       	<div th:insert="catalogos-trazo" class="col-lg-4 col-6"></div>
                       	<!-- INSTRUCCIONES DE CUIDAO -->
@@ -76,11 +76,13 @@
                       	<!-- FAM. PRENDAS -->
                       	<div th:insert="catalogos-prendas" class="col-lg-4 col-6"></div>
                       	<!-- FAM. GENERO -->
-                      	<div th:insert="catalogos-genero" class="col-lg-6 col-6"></div>
-                      	<!-- TIPO MATERIAL
-                      	<div th:insert="catalogos-material" class="col-lg-4 col-6"></div>   -->
+                      	<div th:insert="catalogos-genero" class="col-lg-4 col-6"></div>
+                      	<!-- TIPO MATERIAL -->
+                      	<div th:insert="catalogos-material" class="col-lg-4 col-6"></div>  
                       	<!-- FAM. COMPOSICION -->
-                      	<div th:insert="catalogos-composicionfam" class="col-lg-6 col-6"></div>
+                      	<div th:insert="catalogos-composicionfam" class="col-lg-4 col-6"></div>
+                      	<!-- MARCADOR -->
+                      	<div th:insert="catalogos-marcador" class="col-lg-4 col-6"></div>
                       	 <input type="hidden" name="_csrf" id="token"  th:value="${_csrf.token}"/>
                     </div>
                     <!-- /.row -->

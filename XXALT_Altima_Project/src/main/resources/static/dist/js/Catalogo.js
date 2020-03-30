@@ -9,6 +9,7 @@
 	listarCuidados();
 	listarMedidas();
 	listarMateriales();
+	listarMarcadores();
 	
 	
 
@@ -761,7 +762,90 @@
 		    }
 	}
 	)}
- 
+ ///////////////
+//////////////////
+ function listarMarcadores() {
+		
+		$.ajax({
+		    method: "GET",
+		    url: "/marcadoreslook",
+		    success: (data) => {
+		    	$('#quitar10').remove();
+		    	$('#contenedorTabla10').append("<div class='modal-body' id='quitar10'>" +
+		    			"<table class='table table-striped table-bordered' id='idtable10' style='width:100%'>" +
+	                                        "<thead>" +
+	                                            "<tr>" +
+	                                                "<th>Clave</th>" +
+	                                                "<th>Nombre</th>" + 
+	                                               
+	                                                "<th>Cambios</th>" +
+	                                                "<th></th>" +
+	                                            "</tr>" +
+	                                        "</thead>" +
+	                                    "</table>" + "</div>");
+		        var a;
+		        var b = [];
+		        for (i in data){
+		        	
+						a = [
+						"<tr>" +
+						"<td>" + data[i].idText + "</td>",
+						"<td>" + data[i].nombreLookup + "</td>",
+						"<td style='text-align: center;'>"+
+         "<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button>&nbsp;"+
+     "</td>",
+						" <td style='text-align: center;''>"+
+				"<button onclick='editarMarcador(this);' idlookup='"+ data[i].idLookup+"' nombre='"+ data[i].nombreLookup+"'  class='btn btn-warning popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
+       "<button onclick='bajarMarcador("+ data[i].idLookup+")' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
+						"</td>"+
+						
+						"<tr>"
+						];
+						b.push(a);
+		        }	        
+			    var tabla = $('#idtable10').DataTable({
+	            	"data":b,
+	                "ordering": true,
+	                "pageLength": 5,
+	                "lengthMenu": [
+	                    [5, 10, 25, 50, 100],
+	                    [5, 10, 25, 50, 100]
+	                ],
+	                "language": {
+	                    "sProcessing": "Procesando...",
+	                    "sLengthMenu": "Mostrar _MENU_ registros",
+	                    "sZeroRecords": "No se encontraron resultados",
+	                    "sEmptyTable": "Ningún dato disponible en esta tabla =(",
+	                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+	                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+	                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+	                    "sInfoPostFix": "",
+	                    "sSearch": "Buscar:",
+	                    "sUrl": "",
+	                    "sInfoThousands": ",",
+	                    "sLoadingRecords": "Cargando...",
+	                    "oPaginate": {
+	                        "sFirst": "Primero",
+	                        "sLast": "Último",
+	                        "sNext": "Siguiente",
+	                        "sPrevious": "Anterior"
+	                    },
+	                    "oAria": {
+	                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+	                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+	                    },
+	                    "buttons": {
+	                        "copy": "Copiar",
+	                        "colvis": "Visibilidad"
+	                    }
+	                }
+	            });
+		    },
+		    error: (e) => {
+		        // location.reload();
+		    }
+	}
+	)}
 //Habilitar form de SweetAlert2
 $('#detalleMarcas').on('shown.bs.modal', function() {
      $(document).off('focusin.modal');
@@ -2230,6 +2314,148 @@ Swal.fire({
  }
 })
 }
+//////////////////////////
+//Habilitar form de SweetAlert2
+$('#detalleMarcador').on('shown.bs.modal', function() {
+     $(document).off('focusin.modal');
+ });
+function agregarMarcador() {
+	 Swal.fire({
+	      title: 'Agregar marcador',
+		    html:'<div class="row">'+
+	        '<div class="form-group col-sm-12">'+
+	          '<label for="pedidonom">Nombre marcador</label>'+
+	          '<input type="text" class="swal2-input" id="marcador" placeholder="cierre">'+
+	        '</div>'+
+	        '</div>',
+	      showCancelButton: true,
+	      cancelButtonColor: '#6C757D',
+	      cancelButtonText: 'Cancelar',
+	      confirmButtonText: 'Agregar',
+	      confirmButtonColor:'#17a2b8',
+	    }).then((result) => {
+	      if (result.value && document.getElementById("marcador").value) {
+			    var Marcador=document.getElementById("marcador").value;
+		
+	    	  console.log(result.value);
+			   $.ajax({
+	        type: "POST",
+	        url: "/guardarcatalogo",
+	        data: { 
+	        	 "_csrf": $('#token').val(),
+	        	'Marcador': Marcador
+	        	
+	        	// ,'Descripcion':Descripcion
+	        }
+	       
+	    }).done(function(data){
+	    	listarMarcadores();
+	    });
+	        Swal.fire({
+	          position: 'center',
+	          icon: 'success',
+	          title: 'Insertado correctamente',
+	          showConfirmButton: false,
+	          timer: 1250
+	        })
+	      //  window.setTimeout(function(){location.reload()}, 2000);
+	      }
+	    })
+ }
 
+// Editar genero
+
+
+function editarMarcador(e) {
+	 var descr=e.getAttribute("descripcion");
+	
+	console.log(descr);
+	 Swal.fire({
+	      title: 'Editar marcador',
+		   html:'<div class="row">'+
+		        '<div class="form-group col-sm-12">'+
+		          '<label for="pedidonom">Nombre marcador</label>'+
+		          '<input type="text" value=" '+e.getAttribute("nombre")+' " class="swal2-input" id="nombre" placeholder="Parisina">'+
+		        '</div>'+
+		        '<div class="form-group col-sm-12">'+
+		         
+		          '<input type="hidden" value=" '+e.getAttribute("idlookup")+' " class="swal2-input" id="idlookup" placeholder="Parisina">'+
+		        '</div>'+
+		        '</div>',
+	      showCancelButton: true,
+	      cancelButtonColor: '#6C757D',
+	      cancelButtonText: 'Cancelar',
+	      confirmButtonText: 'Actualizar',
+	      confirmButtonColor:'#FFC107',
+	    }).then((result) => {
+	      if (result.value && document.getElementById("nombre").value  && document.getElementById("idlookup").value) {
+			    var Marcador=document.getElementById("nombre").value;
+			   
+			    var idLookup=document.getElementById("idlookup").value;
+	    	  console.log(result.value);
+			   $.ajax({
+	        type: "POST",
+	        url: "/editarcatalogo",
+	        data: { 
+	        	 "_csrf": $('#token').val(),
+	        	'Marcador': Marcador,
+	        	'idLookup' :idLookup
+	        	// ,'Descripcion':Descripcion
+	        }
+	       
+	    }).done(function(data){
+	    	listarMarcadores();
+	    });
+	        Swal.fire({
+	          position: 'center',
+	          icon: 'success',
+	          title: 'editado correctamente',
+	          showConfirmButton: false,
+	          timer: 1250
+	        })
+	        
+	      }
+	    })
+ }
+// Dar de baja familia de genero
+function bajarMarcador(idbaja){
+	 var id=idbaja;
+Swal.fire({
+ title: '¿Deseas dar de baja el marcador?',
+ icon: 'warning',
+ showCancelButton: true,
+ cancelButtonColor: '#6C757D',
+ cancelButtonText: 'Cancelar',
+ confirmButtonText: 'Dar de baja',
+ confirmButtonColor:'#FFC107',
+}).then((result) => {
+ if (result.value && id!=null) {
+	 
+		console.log(id);
+	  $.ajax({
+	      type: "POST",
+	      url: "/bajacatalogo",
+	      data: { 
+	      	 "_csrf": $('#token').val(),
+	  	'idcatalogo': id
+	  	
+	      	// ,'Descripcion':Descripcion
+	      }
+	     
+	  }).done(function(data){
+		 
+		  listarMarcadores();
+	  });
+	      Swal.fire({
+	        position: 'center',
+	        icon: 'success',
+	        title: 'dado de baja correctamente',
+	        showConfirmButton: false,
+	        timer: 1250
+	      })
+ }//////////////termina result value
+})
+}
+// Reactivar familia de genero
 
 

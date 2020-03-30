@@ -32,4 +32,6 @@ public interface ICatalogoService {
 
 	List<DisenioLookup> findAllMaterial();
 
+	List<DisenioLookup> findAllMarcador();
+
 }

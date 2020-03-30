@@ -18,7 +18,7 @@ import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 
-@Component("/catalogos")
+@Component("/imprimir")
 public class LookupPdfView extends AbstractPdfView {
 /* IMPORTANTE ESTE METODO SIRVE PARA TODOS LOS CATALOGOS SOLO AGREGAR EN EL CONTROLADOR CATALOGO CONTROLLER MAS CONDICIONES EN EL METODO VER */
 	@Override

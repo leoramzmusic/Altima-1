@@ -1,0 +1,56 @@
+<!-- small box -->
+<html xmlns:th="http://www.thymeleaf.org">
+<div class="small-box bg-primary">
+    <div class="inner">
+        <h3>Marcadores</h3>
+        <button data-toggle="modal" data-target="#detalleMarcador" class="btn btn-link" style="color: #ffffff!important; padding-left: 1px;"><i class="fas fa-info-circle"></i> Detalle</button>
+    </div>
+    <div class="icon">
+        <i class="ion ion-easel"></i>
+    </div>
+    <a class="small-box-footer">
+        <button onclick="agregarMarcador()" class="btn btn-link" style="color: #ffffff!important">Agregar <i class="fas fa-plus-circle"></i></button>
+    </a>
+</div>
+<!-- Modal Marcas Tabla -->
+<div class="modal fade" id="detalleMarcador" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-genero" role="document">
+        <div class="modal-content" id="contenedorTabla10">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title" id="exampleModalLongTitle">Marcador <button onclick="agregarMarcador()" class="btn btn-light popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Agregar" style="border-radius: 35%;color: #007bff"><i class="fas fa-plus fa-sm"></i></button></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="quitar10">
+                <table class="table tablaCatalogo table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>C&oacute;digo</th>
+                            <th>Nombre</th>
+                            <th>Cambios</th>
+                            <th></th>
+                            
+                        </tr>
+                    </thead>
+                   <!--  <tbody>
+                       <tr th:each="instruccioncuidado: ${instrcuidado}">
+                            <td th:text="${instruccioncuidado.idText}">JN534</td>
+                            <td th:text="${instruccioncuidado.nombre}">Ya me canse cdcdd jajajaxd</td>
+                            <td style="text-align: center;">
+                                <button class="btn btn-info popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="<strong>Creado por:</strong> Jose Luis Manuel Jajaja<br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020" style="border-radius: 35%;"><i class="fas fa-info-circle"></i></button>&nbsp;
+                            </td>
+                          
+                            <td class="tdcenter">
+                                <button onclick="editarTipoMaterial(this);" th:idlookup="${instruccioncuidado.idLookup}" th:nombre="${instruccioncuidado.nombre}" class="btn btn-warning popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Editar" style="border-radius: 35%;"><i class="fas fa-pen fa-sm"></i></button>&nbsp;
+                                <button onclick="bajarTipoMaterial()" class="btn btn-danger popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Dar de baja" style="border-radius: 35%;"><i class="fas fa-ban fa-sm"></i></button>&nbsp;
+                              <button onclick="reactivarTipoMaterial()" class="btn btn-success popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Reactivar" style="border-radius:35%;"><i class="fas fa-check fa-sm"></i></button> 
+                            </td>
+                        </tr>
+                    </tbody> -->
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</html>
