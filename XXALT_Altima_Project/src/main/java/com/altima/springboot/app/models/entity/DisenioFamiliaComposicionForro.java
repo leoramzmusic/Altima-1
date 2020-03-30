@@ -43,11 +43,20 @@ public class DisenioFamiliaComposicionForro implements Serializable{
 	
 	@Column(name="composicion")
 	private String composicion;
-	
-	
+
+	@Column(name="id_familia_composicion")
+	private Long idFamiliaComposicion;
 	
 
 	
+	public Long getIdFamiliaComposicion() {
+		return idFamiliaComposicion;
+	}
+
+	public void setIdFamiliaComposicion(Long idFamiliaComposicion) {
+		this.idFamiliaComposicion = idFamiliaComposicion;
+	}
+
 	public Long getIdFamiliaComposicionForro() {
 		return idFamiliaComposicionForro;
 	}
