@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.altima.springboot.app.models.entity.DisenioPrendaPatronaje;
 import com.altima.springboot.app.repository.DisenioPrendaPatronajeRepository;
@@ -38,9 +39,10 @@ public class DisenioPrendaPatronajeServiceImpl implements IDisenioPrendaPatronaj
 	}
 
 	@Override
+	@Transactional
 	public String deleteAllPatronajeFromPrenda(Long id) {
 		// TODO Auto-generated method stub
-		em.createNativeQuery("DELETE FROM alt_disenio_prenda_patronaje WHERE id_prenda = " + id);
+		em.createNativeQuery("DELETE FROM alt_disenio_prenda_patronaje WHERE id_prenda = " + id).executeUpdate();
 		return "Erased";
 	}
 

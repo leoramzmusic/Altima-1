@@ -47,10 +47,10 @@ public class DisenioMaterialPrendaServiceImpl implements IDisenioMaterialPrendaS
 	}
 
 	@Override
-	public String deleteAllMaterialFromPrenda(Long id) {
+	@Transactional
+	public void deleteAllMaterialFromPrenda(Long id) {
 		// TODO Auto-generated method stub
-		em.createNativeQuery("DELETE FROM alt_disenio_material_prenda WHERE id_prenda = " + id);
-		return "Erased";
+		em.createNativeQuery("DELETE FROM alt_disenio_material_prenda WHERE id_prenda =" + id).executeUpdate();
 	}
 
 }

@@ -54,7 +54,7 @@ function RecogerDatosPrimeraParte()
 {
 	var today = new Date(); 
 	var actual = today.getFullYear() + '-' + today.getMonth() + '-' + today.getDate() + ' ' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
-	objeto_prenda['idFamiliaPrenda'] = "1";
+	objeto_prenda['idFamiliaPrenda'] = $('#TipoPrenda').val();
 	objeto_prenda['creadoPor'] = "Adan";
 	objeto_prenda['actualizadoPor'] = "Adan";
 	objeto_prenda['numeroPrenda'] = "1";
@@ -116,7 +116,7 @@ function RecogerDatosSegundaParte()
 }
 function SacarListaMateriales()
 {
-	console.log(objeto_patronaje);
+	console.log(objeto_patronajes);
 }
 function AgregarElementoListaMateriales()
 {
@@ -136,7 +136,7 @@ function AgregarElementoListaMateriales()
 
         	var identidad = id + '_' + data[0][1];
         	var temp = {identidad: identidad, id: data[0][0], NoMaterial: data[0][1], Nombre: data[0][8], Clasificacion: data[0][3], Tamanio: data[0][5] + ' ' + data[0][4],
-        			Modelo: data[0][6], Proceso: data[0][7], Cantidad: 1};
+        			Modelo: data[0][6], Proceso: data[0][7], cantidad: 1};
         	
         	objeto_materiales.push(temp);
         	console.log(temp);
@@ -168,7 +168,7 @@ function QuitarMaterial(identidad)
 }
 function CambiarCantidadMaterial(identidad)
 {
-	var cantidad = parseInt($('#CantidadMaterial-' + identidad).val(), 10);
+	var cantidad = $('#CantidadMaterial-' + identidad).val();
 	var CambiarCantidad = objeto_materiales.map(function(item) { return item.identidad; }).indexOf(identidad);
 	objeto_materiales[CambiarCantidad].cantidad = 0;
 	objeto_materiales[CambiarCantidad].cantidad = cantidad;
@@ -195,7 +195,7 @@ function AgregarElementoListaPatronaje()
         	$('#BotonAgregarPatronaje').prop('disabled', false);
         	var identidad = data[0] + '_' + data[1];
         	var temp = {identidad: identidad, id: data[0], cantidadTela: cantidadTela, cantidadForro: cantidadForro, cantidadEntretela: cantidadEntretela};
-        	objeto_patronaje.push(temp);
+        	objeto_patronajes.push(temp);
 	
 			$('#CuerpoPatronaje').append("<tr id='QuitarFilaPatronaje-" + identidad + "'>" +
 										  	  "<th scope='row'>" + data[1] + "</th>" + 
@@ -237,7 +237,7 @@ function AgregarElementoListaPatronaje2()
         	$('#BotonAgregarPatronaje').prop('disabled', false);
         	var identidad = data[0] + '_' + data[1];
         	var temp = {id: data[0], idText: data[1],cantidadTela: cantidadTela, cantidadForro: cantidadForro, cantidadEntretela: cantidadEntretela, idPatronaje: data[0]};
-    		ides2.push(temp);
+    		objeto_patronajes.push(temp);
 	
 			$('#CuerpoPatronaje').append("<tr id='QuitarFilaPatronaje-" + identidad + "'>" +
 										  	  "<th scope='row'>" + data[1] + "</th>" + 
@@ -256,9 +256,9 @@ function AgregarElementoListaPatronaje2()
 										  	  		"</button>" + 
 										  	  "</td>" +
 										 "</tr>");
-			console.log(ides2);
+			console.log(objeto_patronajes);
 			objeto_patronajes = {};
-			objeto_patronajes = ides2;
+			objeto_patronajes = objeto_patronajes;
 			$('#ListaPatronaje').val("");
 			$('#CantidadTela').val("");
 			$('#CantidadForro').val("");
@@ -266,7 +266,7 @@ function AgregarElementoListaPatronaje2()
 			
 			$('#BotonAgregar').css('display', 'block');
 			$('#BotonEditar').css('display', 'none');
-			console.log(ides2);
+			console.log(objeto_patronajes);
 			
 			},
 			error: (e) => {
@@ -278,8 +278,8 @@ function AgregarElementoListaPatronaje2()
 function QuitarPatronaje(identidad)
 {
 	$('#QuitarFilaPatronaje-' + identidad).remove();
-	var removeIndex = objeto_patronaje.map(function(item) { return item.identidad; }).indexOf(identidad);
-	objeto_patronaje.splice(removeIndex, 1);
+	var removeIndex = objeto_patronajes.map(function(item) { return item.identidad; }).indexOf(identidad);
+	objeto_patronajes.splice(removeIndex, 1);
 }
 
 function Guardar()
@@ -327,12 +327,12 @@ function Guardar()
         	
         	
             $.ajax({
-                type: "GET",
+                type: "POST",
                 url: "/guardar_final",
                 data: {
                 	"_csrf": $('#token').val(),
                 	"objeto_materiales" : JSON.stringify(objeto_materiales),
-                	"objeto_patronaje" : JSON.stringify(objeto_patronaje),
+                	"objeto_patronajes" : JSON.stringify(objeto_patronajes),
                 	"accion" : $('#accionPag').val()
                 },
                 success: (data) => {
@@ -398,6 +398,7 @@ function EnviarInfoProspecto()
 	});
 }
 
+//Esta valida que los campos esten llenos cuando se va a editar o confirmar una prenda
 function ValidarPrimerPestana()
 {
 	if($('#NombrePrenda').val() != "" && $('#DescripcionPrenda').val() != "" && $('#NotaEspecial').val() != "" 
@@ -412,6 +413,7 @@ function ValidarPrimerPestana()
 	}
 }
 
+//Esta valida que los campos esten llenos cuando se va a hacer un prospecto de prenda
 function ValidarPrimerPestana2()
 {
 	if($('#NombrePrenda').val() != "" && $('#DescripcionPrenda').val() != "" && $('#NotaEspecial').val() != "" 
@@ -428,6 +430,7 @@ function ValidarPrimerPestana2()
 	}
 }
 
+//Esto solo valida que los campos de la 2da parte esten llenos.
 function ValidarSegundaPestana()
 {
 	if($('#DetalleConfeccion').val() != "")
@@ -441,6 +444,7 @@ function ValidarSegundaPestana()
 	}
 }
 
+//Esto valida que la tercer pestana, de materiales, tenga al menos un material
 function ValidarTerceraPestana(id)
 {
 	if(objeto_materiales.length === 0)
@@ -455,23 +459,9 @@ function ValidarTerceraPestana(id)
 	}	
 }
 
-function ValidarTerceraPestana2(id)
-{
-	if(ides.length === 0)
-	{
-		$('#AlertaTerceraPestana').css('display', 'block');
-	}
-	else
-	{
-		$('#AlertaTerceraPestana').css('display', 'none');
-		$('#SiguienteTerceraPestana').click();
-		AsignarID(id);
-	}	
-}
-
 function ValidarCuartaPestana()
 {
-	if(objeto_patronaje.length === 0)
+	if(objeto_patronajes.length === 0)
 	{
 		$('#AlertaCuartaPestana').css('display', 'block');
 	}
@@ -481,26 +471,9 @@ function ValidarCuartaPestana()
 		$('#SiguienteCuartaPestana').click();
 		console.log('le di clic');
 	}
-	
-	$('#SiguienteCuartaPestana').click();
 }
 
-function ValidarCuartaPestana2()
-{
-	if(ides2.length === 0)
-	{
-		$('#AlertaCuartaPestana').css('display', 'block');
-	}
-	else
-	{
-		$('#AlertaCuartaPestana').css('display', 'none');
-		$('#SiguienteCuartaPestana').click();
-		console.log('le di clic');
-	}
-	
-	$('#SiguienteCuartaPestana').click();
-}
-
+//Este valida que las cantidades del patronaje no esten nulas cuando se confirma una prenda
 function ValidarCantidadesPatronaje()
 {
 	if($('#CantidadTela').val() != "" && $('#CantidadForro').val() != "" && $('#CantidadEntretela').val() != "" )
@@ -514,6 +487,7 @@ function ValidarCantidadesPatronaje()
 	}
 }
 
+//Este valida que las cantidades del patronaje no esten nulas cuando se edita una prenda
 function ValidarCantidadesPatronaje2()
 {
 	if($('#CantidadTela').val() != "" && $('#CantidadForro').val() != "" && $('#CantidadEntretela').val() != "" )
@@ -530,33 +504,33 @@ function ValidarCantidadesPatronaje2()
 function EditarPatronajeExistente(id)
 {
 	console.log(id);
-	for(j = 0; j < ides2.length; j++)
+	for(j = 0; j < objeto_patronajes.length; j++)
 	{
 		console.log("buscando");
-		if(ides2[j].id == id)
+		if(objeto_patronajes[j].id == id)
 		{
-			$('#' + ides2[j].idText).remove();
-			console.log(ides2[j].idPatronaje);
-			$('#ListaPatronaje').val(ides2[j].idPatronaje).change();
-			$('#CantidadTela').val(ides2[j].cantidadTela);
-			$('#CantidadForro').val(ides2[j].cantidadForro);
-			$('#CantidadEntretela').val(ides2[j].cantidadEntretela);
+			$('#' + objeto_patronajes[j].idText).remove();
+			console.log(objeto_patronajes[j].idPatronaje);
+			$('#ListaPatronaje').val(objeto_patronajes[j].idPatronaje).change();
+			$('#CantidadTela').val(objeto_patronajes[j].cantidadTela);
+			$('#CantidadForro').val(objeto_patronajes[j].cantidadForro);
+			$('#CantidadEntretela').val(objeto_patronajes[j].cantidadEntretela);
 			
 			$('#BotonAgregar').css('display', 'none');
 			$('#BotonEditar').css('display', 'block');
-			ides2.splice(j, 1);
+			objeto_patronajes.splice(j, 1);
 		}
 	}
 }
 
 function EliminarPatronajeExistente(id)
 {
-	for(i = 0; i < ides2.length; i++)
+	for(i = 0; i < objeto_patronajes.length; i++)
 	{
-		if(ides2[i].id == id)
+		if(objeto_patronajes[i].id == id)
 		{
-			$('#' + ides2[i].idText).remove();
-			ides2.splice(i, 1);
+			$('#' + objeto_patronajes[i].idText).remove();
+			objeto_patronajes.splice(i, 1);
 		}
 	}
 }
