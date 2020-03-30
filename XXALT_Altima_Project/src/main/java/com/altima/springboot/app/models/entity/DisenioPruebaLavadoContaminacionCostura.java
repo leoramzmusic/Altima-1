@@ -50,19 +50,19 @@ public class DisenioPruebaLavadoContaminacionCostura implements Serializable{
 	@Column(name="deslizamiento_tela")
 	private String deslizamientoTela;
 	
-	@Column(name="observacion_deslizado")
-	private String observacionDeslizado;
+	@Column(name="observaciones_deslizado")
+	private String observacionesDeslizado;
 	
 	@Column(name="rasgado_tela")
 	private String rasgadoTela;
 	
-	@Column(name="observacion_rasgado")
-	private String observacionRasgado;
+	@Column(name="observaciones_rasgado")
+	private String observacionesRasgado;
 	
 	@Column(name="prueba_calidad")
 	private String pruebaCalidad;
 	
-	@Column(name="observaciones_resultado")
+	@Column(name="observaciones_resultados")
 	private String observacionesResultados;
 	
 	@Column(name="prueba_pilling")
@@ -151,11 +151,11 @@ public class DisenioPruebaLavadoContaminacionCostura implements Serializable{
 	}
 
 	public String getObservacionDeslizado() {
-		return observacionDeslizado;
+		return observacionesDeslizado;
 	}
 
 	public void setObservacionDeslizado(String observacionDeslizado) {
-		this.observacionDeslizado = observacionDeslizado;
+		this.observacionesDeslizado = observacionDeslizado;
 	}
 
 	public String getRasgadoTela() {
@@ -167,11 +167,11 @@ public class DisenioPruebaLavadoContaminacionCostura implements Serializable{
 	}
 
 	public String getObservacionRasgado() {
-		return observacionRasgado;
+		return observacionesRasgado;
 	}
 
 	public void setObservacionRasgado(String observacionRasgado) {
-		this.observacionRasgado = observacionRasgado;
+		this.observacionesRasgado = observacionRasgado;
 	}
 
 	public String getPruebaCalidad() {
@@ -241,8 +241,8 @@ public class DisenioPruebaLavadoContaminacionCostura implements Serializable{
 		result = prime * result
 				+ ((idPruebaLavadoContaminacionCostura == null) ? 0 : idPruebaLavadoContaminacionCostura.hashCode());
 		result = prime * result + ((idTela == null) ? 0 : idTela.hashCode());
-		result = prime * result + ((observacionDeslizado == null) ? 0 : observacionDeslizado.hashCode());
-		result = prime * result + ((observacionRasgado == null) ? 0 : observacionRasgado.hashCode());
+		result = prime * result + ((observacionesDeslizado == null) ? 0 : observacionesDeslizado.hashCode());
+		result = prime * result + ((observacionesRasgado == null) ? 0 : observacionesRasgado.hashCode());
 		result = prime * result + ((observacionesResultados == null) ? 0 : observacionesResultados.hashCode());
 		result = prime * result + ((pruebaCalidad == null) ? 0 : pruebaCalidad.hashCode());
 		result = prime * result + ((prueba_pilling == null) ? 0 : prueba_pilling.hashCode());
@@ -311,15 +311,15 @@ public class DisenioPruebaLavadoContaminacionCostura implements Serializable{
 				return false;
 		} else if (!idTela.equals(other.idTela))
 			return false;
-		if (observacionDeslizado == null) {
-			if (other.observacionDeslizado != null)
+		if (observacionesDeslizado == null) {
+			if (other.observacionesDeslizado != null)
 				return false;
-		} else if (!observacionDeslizado.equals(other.observacionDeslizado))
+		} else if (!observacionesDeslizado.equals(other.observacionesDeslizado))
 			return false;
-		if (observacionRasgado == null) {
-			if (other.observacionRasgado != null)
+		if (observacionesRasgado == null) {
+			if (other.observacionesRasgado != null)
 				return false;
-		} else if (!observacionRasgado.equals(other.observacionRasgado))
+		} else if (!observacionesRasgado.equals(other.observacionesRasgado))
 			return false;
 		if (observacionesResultados == null) {
 			if (other.observacionesResultados != null)
