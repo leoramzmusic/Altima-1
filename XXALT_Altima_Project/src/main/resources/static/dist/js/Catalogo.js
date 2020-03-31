@@ -111,7 +111,7 @@
 	                                            "<tr>" +
 	                                                "<th>Clave</th>" +
 	                                                "<th>Nombre</th>" + 
-	                                               
+	                                                "<th></th>" + 
 	                                                "<th>Cambios</th>" +
 	                                                "<th></th>" +
 	                                            "</tr>" +
@@ -125,11 +125,12 @@
 						"<tr>" +
 						"<td>" + data[i].idText + "</td>",
 						"<td>" + data[i].nombreLookup + "</td>",
+						"<td> <input type='color' value="+ data[i].atributo1 +" disabled> </td>",
 						"<td style='text-align: center;'>"+
                      "<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button>&nbsp;"+
                  "</td>",
 						" <td style='text-align: center;''>"+
-						" <button id='"+data[i].idLookup+"' value='"+data[i].nombreLookup+"' class='btn btn-warning popoverxd edit_data_color' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
+						" <button id='"+data[i].idLookup+"' value='"+data[i].nombreLookup+"' color='"+data[i].atributo1+"' class='btn btn-warning popoverxd edit_data_color' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button>&nbsp;"+
                    "<button onclick='bajarColor("+data[i].idLookup+")' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button>&nbsp;"+
 						"</td>"+
 						
@@ -909,7 +910,7 @@ Swal.fire({
     html:'<div class="row">'+
     '<div class="form-group col-sm-12">'+
       '<label for="pedidonom">Nombre de la marca</label>'+
-      '<input type="text" class="form-control" id="marca" value=" '+marca_nombre+' " placeholder="Rojo">'+
+      '<input type="text" class="form-control" id="marca" value="'+marca_nombre+'" placeholder="Rojo">'+
       '<input type="hidden" value=" '+marca_id+' ">'+
     '</div>'+
     '</div>',
@@ -1024,6 +1025,8 @@ Swal.fire({
 		        '<div class="form-group col-sm-12">'+
 		          '<label for="pedidonom">Nombre del color</label>'+
 		          '<input type="text" class="swal2-input" id="color" placeholder="Rojo">'+
+		          '<label for="pedidonom">Codigo del color</label>'+
+		          '<input type="color" class="swal2-input" id="codigocolor" placeholder="Rojo">'+
 		        '</div>'+
 		        '</div>',
 		      showCancelButton: true,
@@ -1034,13 +1037,15 @@ Swal.fire({
 		    }).then((result) => {
 		      if (result.value && document.getElementById("color").value) {
 				    var Color=document.getElementById("color").value;
-		    	  console.log(result.value);
+				    var CodigoColor=document.getElementById("codigocolor").value;
+		    	  console.log(CodigoColor);
 				   $.ajax({
 		        type: "POST",
 		        url: "/guardarcatalogo",
 		        data: { 
 		        	 "_csrf": $('#token').val(),
-		        	'Color': Color
+		        	'Color': Color,
+		        	'CodigoColor': CodigoColor
 		        	// ,'Descripcion':Descripcion
 		        }
 		       
@@ -1062,12 +1067,15 @@ Swal.fire({
 	$(document).on('click', '.edit_data_color', function () {
 		  var color_id = $(this).attr("id");  
 			var color_nombre=$(this).attr("value"); 
+			var color_repr=$(this).attr("color");
 	Swal.fire({
 	    title: 'Editar color',
 	    html:'<div class="row">'+
 	    '<div class="form-group col-sm-12">'+
 	      '<label for="pedidonom">Nombre del color</label>'+
-	      '<input type="text" class="form-control" id="color" value=" '+color_nombre+' " placeholder="Rojo">'+
+	      '<input type="text" class="form-control" id="color" value="'+color_nombre+'" placeholder="Rojo">'+
+	      '<label for="pedidonom">Codigo del color</label>'+
+	      '<input type="color" class="form-control" id="color_repr" value="'+color_repr+'" placeholder="Rojo">'+
 	      '<input type="hidden" value=" '+color_id+' ">'+
 	    '</div>'+
 	    '</div>',
@@ -1082,6 +1090,7 @@ Swal.fire({
 	}).then((result) => {
 	    if (result.value && document.getElementById("color").value) {
 			    var Color=document.getElementById("color").value;
+			    var ColorRepr=document.getElementById("color_repr").value;
 	  	  console.log(result.value);
 			   $.ajax({
 	      type: "POST",
@@ -1089,7 +1098,8 @@ Swal.fire({
 	      data: { 
 	      	 "_csrf": $('#token').val(),
 	  	'Color': Color,
-	  	'idLookup': color_id
+	  	'idLookup': color_id,
+	  	'CodigoColor': ColorRepr
 	      	// ,'Descripcion':Descripcion
 	      }
 	     
@@ -1226,7 +1236,7 @@ Swal.fire({
 	    html:'<div class="row">'+
 	    '<div class="form-group col-sm-12">'+
 	      '<label for="pedidonom">Nombre pieza trazo</label>'+
-	      '<input type="text" class="form-control" id="trazo" value=" '+trazo_nombre+' " placeholder="Rojo">'+
+	      '<input type="text" class="form-control" id="trazo" value="'+trazo_nombre+'" placeholder="Rojo">'+
 	      '<input type="hidden" value=" '+trazo_id+' ">'+
 	    '</div>'+
 	    '</div>',
@@ -1389,11 +1399,9 @@ Swal.fire({
 			   html:'<div class="row">'+
 			        '<div class="form-group col-sm-12">'+
 			          '<label for="pedidonom">Nombre de la familia prendas</label>'+
-			          '<input type="text" value=" '+e.getAttribute("nombre")+' " class="swal2-input" id="nombre" placeholder="Parisina">'+
+			          '<input type="text" value="'+e.getAttribute("nombre")+'" class="swal2-input" id="nombre" placeholder="Parisina">'+
 			        '</div>'+
 			        '<div class="form-group col-sm-12">'+
-			          '<label for="pedidonom">Descripcion</label>'+
-			          '<input type="text" class="swal2-input" id="descripcion" placeholder="Parisina" value=" '+e.getAttribute("descripcion")+' "> '+
 			          '<input type="hidden" value=" '+e.getAttribute("idlookup")+' " class="swal2-input" id="idlookup" placeholder="Parisina">'+
 			        '</div>'+
 			        '</div>',
@@ -1555,7 +1563,7 @@ function editarGenero(e) {
 			   html:'<div class="row">'+
 			        '<div class="form-group col-sm-12">'+
 			          '<label for="pedidonom">Nombre de genero</label>'+
-			          '<input type="text" value=" '+e.getAttribute("nombre")+' " class="swal2-input" id="nombre" placeholder="Parisina">'+
+			          '<input type="text" value="'+e.getAttribute("nombre")+'" class="swal2-input" id="nombre" placeholder="Parisina">'+
 			        '</div>'+
 			        '<div class="form-group col-sm-12">'+
 			        
@@ -1719,7 +1727,7 @@ function editarComposicion(e) {
 			   html:'<div class="row">'+
 			        '<div class="form-group col-sm-12">'+
 			          '<label for="pedidonom">Nombre composicón</label>'+
-			          '<input type="text" value=" '+e.getAttribute("nombre")+' " class="swal2-input" id="nombre" placeholder="Parisina">'+
+			          '<input type="text" value="'+e.getAttribute("nombre")+'" class="swal2-input" id="nombre" placeholder="Parisina">'+
 			        '</div>'+
 			        '<div class="form-group col-sm-12">'+
 			          
@@ -1883,7 +1891,7 @@ function editarCuidado(e) {
 		   html:'<div class="row">'+
 		        '<div class="form-group col-sm-12">'+
 		          '<label for="pedidonom">Nombre instrucción de cuidado</label>'+
-		          '<input type="text" value=" '+e.getAttribute("nombre")+' " class="swal2-input" id="nombre" placeholder="Parisina">'+
+		          '<input type="text" value="'+e.getAttribute("nombre")+'" class="swal2-input" id="nombre" placeholder="Parisina">'+
 		        '</div>'+
 		        '<div class="form-group col-sm-12">'+
 		         
@@ -2047,7 +2055,7 @@ function editarMedida(e) {
 		   html:'<div class="row">'+
 		        '<div class="form-group col-sm-12">'+
 		          '<label for="pedidonom">Nombre medida</label>'+
-		          '<input type="text" value=" '+e.getAttribute("nombre")+' " class="swal2-input" id="nombre" placeholder="Parisina">'+
+		          '<input type="text" value="'+e.getAttribute("nombre")+'" class="swal2-input" id="nombre" placeholder="Parisina">'+
 		        '</div>'+
 		        '<div class="form-group col-sm-12">'+
 		         
@@ -2211,7 +2219,7 @@ function editarMaterial(e) {
 		   html:'<div class="row">'+
 		        '<div class="form-group col-sm-12">'+
 		          '<label for="pedidonom">Nombre medida</label>'+
-		          '<input type="text" value=" '+e.getAttribute("nombre")+' " class="swal2-input" id="nombre" placeholder="Parisina">'+
+		          '<input type="text" value="'+e.getAttribute("nombre")+'" class="swal2-input" id="nombre" placeholder="Parisina">'+
 		        '</div>'+
 		        '<div class="form-group col-sm-12">'+
 		         
@@ -2375,7 +2383,7 @@ function editarMarcador(e) {
 		   html:'<div class="row">'+
 		        '<div class="form-group col-sm-12">'+
 		          '<label for="pedidonom">Nombre marcador</label>'+
-		          '<input type="text" value=" '+e.getAttribute("nombre")+' " class="swal2-input" id="nombre" placeholder="Parisina">'+
+		          '<input type="text" value="'+e.getAttribute("nombre")+'" class="swal2-input" id="nombre" placeholder="Parisina">'+
 		        '</div>'+
 		        '<div class="form-group col-sm-12">'+
 		         

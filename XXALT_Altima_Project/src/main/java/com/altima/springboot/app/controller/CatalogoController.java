@@ -125,9 +125,9 @@ public class CatalogoController {
 	@PostMapping("/guardarcatalogo")
 	public String guardacatalogo(String Marca, String Descripcion, String Color, String PiezaTrazo,
 			String FamiliaPrenda, String FamiliaGenero, String FamiliaComposicion, String InstruccionCuidado,
-			String UnidadMedida, String Material, HttpServletRequest request,String Marcador) {
+			String UnidadMedida, String Material, HttpServletRequest request,String Marcador,String CodigoColor) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
+		
 		if (Marca != null) {
 			DisenioLookup marca = new DisenioLookup();
 			marca.setIdText("MAR004");
@@ -149,6 +149,7 @@ public class CatalogoController {
 			color.setCreadoPor(auth.getName());
 			color.setFechaCreacion(date);
 			color.setEstatus(1);
+			color.setAtributo1(CodigoColor);
 			catalogo.save(color);
 			color.setIdText("COL00" + (color.getIdLookup() + 10));
 			catalogo.save(color);
@@ -265,7 +266,7 @@ public class CatalogoController {
 	@PostMapping("/editarcatalogo")
 	public String editacatalogo(Model model, final Long idLookup, String Marca, String Color, String PiezaTrazo,
 			String FamiliaPrenda, String Descripcion, String FamiliaGenero, String FamiliaComposicion,
-			String InstruccionCuidado, String UnidadMedida, String Material,String Marcador) {
+			String InstruccionCuidado, String UnidadMedida, String Material,String Marcador,String CodigoColor) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		DisenioLookup marca = null;
 		DisenioLookup color = null;
@@ -288,6 +289,7 @@ public class CatalogoController {
 		if (Color != null && idLookup > 0) {
 			color = catalogo.findOne(idLookup);
 			color.setNombreLookup(Color);
+			color.setAtributo1(CodigoColor);
 			color.setUltimaFechaModificacion(date);
 			color.setActualizadoPor(auth.getName());
 			catalogo.save(color);
