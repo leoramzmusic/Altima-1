@@ -66,8 +66,8 @@ public class DisenioPrenda implements Serializable{
 	@Column(name="detalle_confeccion")
 	private String detalleConfeccion;
 	
-	@Column(name="marcadores")
-	private String marcadores;
+	@Column(name="id_marcador")
+	private String idMarcador;
 	
 	@Column(name="consumo_tela")
 	private String consumoTela;
@@ -242,11 +242,11 @@ public class DisenioPrenda implements Serializable{
 	}
 
 	public String getMarcadores() {
-		return marcadores;
+		return idMarcador;
 	}
 
 	public void setMarcadores(String marcadores) {
-		this.marcadores = marcadores;
+		this.idMarcador = marcadores;
 	}
 
 	public String getConsumoTela() {
@@ -438,7 +438,7 @@ public class DisenioPrenda implements Serializable{
 		result = prime * result + ((idPrenda == null) ? 0 : idPrenda.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
 		result = prime * result + ((imprimirEtiquetas == null) ? 0 : imprimirEtiquetas.hashCode());
-		result = prime * result + ((marcadores == null) ? 0 : marcadores.hashCode());
+		result = prime * result + ((idMarcador == null) ? 0 : idMarcador.hashCode());
 		result = prime * result + ((nombrePrenda == null) ? 0 : nombrePrenda.hashCode());
 		result = prime * result + ((notaEspecial == null) ? 0 : notaEspecial.hashCode());
 		result = prime * result + ((numeroPrenda == null) ? 0 : numeroPrenda.hashCode());
@@ -569,10 +569,10 @@ public class DisenioPrenda implements Serializable{
 				return false;
 		} else if (!imprimirEtiquetas.equals(other.imprimirEtiquetas))
 			return false;
-		if (marcadores == null) {
-			if (other.marcadores != null)
+		if (idMarcador == null) {
+			if (other.idMarcador != null)
 				return false;
-		} else if (!marcadores.equals(other.marcadores))
+		} else if (!idMarcador.equals(other.idMarcador))
 			return false;
 		if (nombrePrenda == null) {
 			if (other.nombrePrenda != null)
