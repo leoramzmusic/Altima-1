@@ -85,7 +85,11 @@
                                                 <td th:text="${prenda.idText}"></td>
                                                 <td th:text="${prenda.nombrePrenda}"></td>
                                                 <td th:text="${prenda.descripcionPrenda}"></td>
-                                                <td th:text="${prenda.idFamiliaPrenda}"></td>
+                                                
+                                                
+                                                <td>
+                                                	<p th:each="tipo: ${tipos}" th:if="${tipo[0] == prenda.idFamiliaPrenda}" th:text="${ tipo[1] }"></p>
+                                                </td>
                                                 <td th:text="${prenda.estatusRecepcionMuestra}"></td>
                                                 <td class="tdcenter">
                                                     <a th:href="${'detalle-prenda'}" title="Informacion de Prenda" class="btn btn-info popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Ver m&aacute;s detalles" style="border-radius: 35%;"><i class="fas fa-info"></i></a>&nbsp;

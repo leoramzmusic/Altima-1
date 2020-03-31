@@ -124,6 +124,7 @@ function AgregarElementoListaMateriales()
 {
 	var id = $('#ListaDeMateriales').val();
 	$('#AgregarElementoMaterial').prop('disabled', true);
+	$('#SiguienteTerceraPestana').prop('disabled', true);
 
 	//Solicitud Ajax para obtener los demas campos.
 
@@ -134,6 +135,7 @@ function AgregarElementoListaMateriales()
         success: (data) =>{	
         	console.log(data);
         	$('#AgregarElementoMaterial').prop('disabled', false);
+        	$('#SiguienteTerceraPestana').prop('disabled', false);
 
 
         	var identidad = id + '_' + data[0][1];
@@ -340,10 +342,13 @@ function Guardar()
                 },
                 success: (data) => {
                 	console.log('final');	
+                	
                 	if(CambiarImgFrente != true || CambiarImgEspalda != true)
                 	{
                 		window.location.href = '/prendas';
                 	}
+                	
+                	$('#BotonBloquearGuardar').prop('disabled', false);
         		},
         		failure: function(errMsg) {
         	        alert(errMsg);
@@ -388,6 +393,7 @@ function EnviarInfoProspecto()
                 },
                 success: (data) => {
                 	console.log('final');	
+                	$('#BloquearBotonProspecto').prop('disabled', false);
         		},
         		failure: function(errMsg) {
         	        alert(errMsg);
@@ -419,6 +425,8 @@ function ValidarPrimerPestana()
 //Esta valida que los campos esten llenos cuando se va a hacer un prospecto de prenda
 function ValidarPrimerPestana2()
 {
+	$('#BloquearBotonProspecto').prop('disabled', true);
+	
 	if($('#NombrePrenda').val() != "" && $('#DescripcionPrenda').val() != "" && $('#NotaEspecial').val() != "" 
 		&& $('#DetallePrenda').val() != "" && $('#TipoPrenda').val() != "" && $('#file').val() != "" && $('#file2').val() != "")
 	{
@@ -429,6 +437,7 @@ function ValidarPrimerPestana2()
 	else
 	{
 		$('#AlertaPrimerPestana').css('display', 'block');
+		$('#BloquearBotonProspecto').prop('disabled', false);
 		console.log('no paso');
 	}
 }
@@ -470,8 +479,10 @@ function ValidarCuartaPestana()
 	}
 	else
 	{
+		//Se deshabilita el boton
 		$('#AlertaCuartaPestana').css('display', 'none');
 		$('#SiguienteCuartaPestana').click();
+		$('#BotonBloquearGuardar').prop('disabled', true);
 		console.log('le di clic');
 	}
 }

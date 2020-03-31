@@ -42,10 +42,11 @@ public class PrendasController {
 	IUploadService uFileService;
 	
 	@GetMapping("prendas") 
-	public String listClothes(Model model, Map<String, Object> m) 
+	public String listClothes(Model model, Map<String, Object> m) throws InterruptedException 
 	{
 		model.addAttribute("prendas",disenioPrendaService.findAll());
-		
+		model.addAttribute("tipos", disenioMaterialService.findAllFamiliaPrenda());
+
 		return "prendas";
 	}
 	

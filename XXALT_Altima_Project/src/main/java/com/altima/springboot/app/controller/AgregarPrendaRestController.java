@@ -204,6 +204,7 @@ public class AgregarPrendaRestController
 		this.dp.setDibujoEspalda(uniqueFilename[0]);
 		this.dp.setDibujoFrente(uniqueFilename[1]);
 		
+		Thread.sleep(2000);
 		response.sendRedirect("/prendas");
 	}
 	
@@ -223,6 +224,7 @@ public class AgregarPrendaRestController
 		
 		this.dp.setDibujoFrente(uniqueFilename);
 		
+		Thread.sleep(2000);
 		response.sendRedirect("/prendas");
 	}
 	
@@ -242,6 +244,7 @@ public class AgregarPrendaRestController
 		
 		this.dp.setDibujoEspalda(uniqueFilename);
 		
+		Thread.sleep(2000);
 		response.sendRedirect("/prendas");
 	}
 }
