@@ -23,13 +23,13 @@ import com.altima.springboot.app.models.entity.DisenioFamiliaComposicionTela;
 import com.altima.springboot.app.models.entity.DisenioForro;
 import com.altima.springboot.app.models.entity.DisenioLookup;
 import com.altima.springboot.app.models.entity.DisenioMaterial;
-import com.altima.springboot.app.models.entity.DisenioProceso;
+//import com.altima.springboot.app.models.entity.DisenioProceso;
 import com.altima.springboot.app.models.entity.DisenioTela;
 import com.altima.springboot.app.models.service.IDisenioFamiliaComposicionForroService;
 import com.altima.springboot.app.models.service.IDisenioFamiliaComposicionTelaService;
 import com.altima.springboot.app.models.service.IDisenioForroService;
 import com.altima.springboot.app.models.service.IDisenioMaterialService;
-import com.altima.springboot.app.models.service.IDisenioProcesoService;
+//import com.altima.springboot.app.models.service.IDisenioProcesoService;
 import com.altima.springboot.app.models.service.IDisenioTelaService;
 import com.altima.springboot.app.models.service.IUploadService;
 
@@ -42,8 +42,7 @@ public class MaterialesController {
 	
 	@Autowired
 	private IDisenioMaterialService disenioMaterialService;
-	@Autowired
-	private IDisenioProcesoService disenioProcesoService;
+	
 	@Autowired
 	private IDisenioForroService forroService;
 	@Autowired
@@ -82,14 +81,14 @@ public class MaterialesController {
 		List<DisenioLookup> listLookupsMed = disenioMaterialService.findListaLookupMed();
 		List<DisenioLookup> listLookupsMar = disenioMaterialService.findListaMarcas();
 		List<DisenioLookup> listLookupsClasificacion = disenioMaterialService.findListaClasificacion();	
-		List<DisenioProceso> listClaveProceso = disenioProcesoService.findListClaveProceso();
+		//List<DisenioProceso> listClaveProceso = disenioProcesoService.findListClaveProceso();
 		List<DisenioLookup> listLookupsMat = disenioMaterialService.findListaLookupMat();
 		List<DisenioLookup> listLookupsCol = disenioMaterialService.findListaColor();
 		model.addAttribute("material", material);
 		model.addAttribute("listLookupsMed", listLookupsMed);
 		model.addAttribute("listLookupsMar", listLookupsMar);
 		model.addAttribute("listLookupsClasificacion", listLookupsClasificacion);
-		model.addAttribute("listClaveProceso", listClaveProceso);
+		//model.addAttribute("listClaveProceso", listClaveProceso);
 		model.addAttribute("listLookupsMat", listLookupsMat);
 		model.addAttribute("listLookupsCol", listLookupsCol);
 		System.out.println("epale eaple si entro al method get");
@@ -153,7 +152,7 @@ public class MaterialesController {
 		List<DisenioLookup> listLookupsMed = disenioMaterialService.findListaLookupMed();
 		List<DisenioLookup> listLookupsMar = disenioMaterialService.findListaMarcas();
 		List<DisenioLookup> listLookupsClasificacion = disenioMaterialService.findListaClasificacion();	
-		List<DisenioProceso> listClaveProceso = disenioProcesoService.findListClaveProceso();
+		//List<DisenioProceso> listClaveProceso = disenioProcesoService.findListClaveProceso();
 		List<DisenioLookup> listLookupsMat = disenioMaterialService.findListaLookupMat();
 		List<DisenioLookup> listLookupsCol = disenioMaterialService.findListaColor();
 		
@@ -162,7 +161,7 @@ public class MaterialesController {
 		model.addAttribute("listLookupsMed", listLookupsMed);
 		model.addAttribute("listLookupsMar", listLookupsMar);
 		model.addAttribute("listLookupsClasificacion", listLookupsClasificacion);
-		model.addAttribute("listClaveProceso", listClaveProceso);
+		//model.addAttribute("listClaveProceso", listClaveProceso);
 		model.addAttribute("listLookupsMat", listLookupsMat);
 		model.addAttribute("listLookupsCol", listLookupsCol);
 		

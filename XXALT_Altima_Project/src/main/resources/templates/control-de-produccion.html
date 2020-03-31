@@ -73,7 +73,7 @@
 									<h3 class="card-title">Historial de pedidos</h3>
 								</div>
 								<div class="card-body">
-									<table class="table tablexd table-striped table-bordered">
+									<table  class="table tablexd table-striped table-bordered" >
 										<thead>
 											<tr>
 												<th>No. pedido</th>
@@ -89,9 +89,8 @@
 												<td>05/01/2020</td>
 												<td>Nota de observaciones</td>
 												<td>Corte</td>
-												<td class="tdcenter"><a data-target="#detalles-proceso" class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="modal" data-placement="top"
-													data-content="Detalles"><i class="fas fa-info"></i></a>
-													<div th:insert="control-procesos"></div></td>
+												<td class="tdcenter"><a data-target="#detalles-proceso" onclick="listarProcesos(1)" class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="modal" data-placement="top"
+													data-content="Detalles"><i class="fas fa-info"></i></a></td>
 											</tr>
 										</tbody>
 									</table>
@@ -108,6 +107,8 @@
 		<!-- /.content-wrapper -->
 
 		<div th:insert="navegacion-footer"></div>
+		
+		<div th:insert="control-procesos"></div>
 	</div>
 	<!-- ./wrapper -->
 
@@ -140,45 +141,7 @@
 			})
 		})
 	</script>
-	<!-- Script de la tabla -->
-	<script>
-		$(document).ready(function() {
-			$('table.tablexd').DataTable({
-				"ordering" : false,
-				"pageLength" : 5,
-				"lengthMenu" : [[5, 10, 25, 50, 100], [5, 10, 25, 50, 100]],
-				"language" : {
-					"sProcessing" : "Procesando...",
-					"sLengthMenu" : "Mostrar _MENU_ registros",
-					"sZeroRecords" : "No se encontraron resultados",
-					"sEmptyTable" : "Ningún dato disponible en esta tabla =(",
-					"sInfo" : "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-					"sInfoEmpty" : "Mostrando registros del 0 al 0 de un total de 0 registros",
-					"sInfoFiltered" : "(filtrado de un total de _MAX_ registros)",
-					"sInfoPostFix" : "",
-					"sSearch" : "Buscar:",
-					"sUrl" : "",
-					"sInfoThousands" : ",",
-					"sLoadingRecords" : "Cargando...",
-					"oPaginate" : {
-						"sFirst" : "Primero",
-						"sLast" : "Último",
-						"sNext" : "Siguiente",
-						"sPrevious" : "Anterior"
-					},
-					"oAria" : {
-						"sSortAscending" : ": Activar para ordenar la columna de manera ascendente",
-						"sSortDescending" : ": Activar para ordenar la columna de manera descendente"
-					},
-					"buttons" : {
-						"copy" : "Copiar",
-						"colvis" : "Visibilidad"
-					}
-				}
-			});
 
-		});
-	</script>
 	<script>
 		function changeClassById() {
 			document.getElementById("menuDiseno").className = "nav-item has-treeview menu-open";
@@ -187,6 +150,8 @@
 		}
 		window.onload = changeClassById();
 	</script>
+	<!-- Funcionalidad-->
+    <script src="dist/js/ProduccionMuestras.js"></script>
 </body>
 
 </html>

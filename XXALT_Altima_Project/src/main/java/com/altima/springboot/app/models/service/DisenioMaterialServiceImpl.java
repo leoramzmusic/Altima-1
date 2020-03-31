@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.altima.springboot.app.models.entity.DisenioLookup;
 import com.altima.springboot.app.models.entity.DisenioMaterial;
-import com.altima.springboot.app.models.entity.DisenioProceso;
+//import com.altima.springboot.app.models.entity.DisenioProceso;
 import com.altima.springboot.app.repository.DisenioMaterialRepository;
 
 

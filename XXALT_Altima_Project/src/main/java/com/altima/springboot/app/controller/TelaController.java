@@ -28,7 +28,6 @@ import com.altima.springboot.app.models.entity.DisenioForro;
 import com.altima.springboot.app.models.entity.DisenioLookup;
 import com.altima.springboot.app.models.entity.DisenioMaterial;
 import com.altima.springboot.app.models.entity.DisenioMaterialTela;
-import com.altima.springboot.app.models.entity.DisenioProceso;
 import com.altima.springboot.app.models.entity.DisenioTela;
 import com.altima.springboot.app.models.entity.DisenioTelaForro;
 import com.altima.springboot.app.models.entity.HrDireccion;
@@ -37,7 +36,6 @@ import com.altima.springboot.app.models.service.IDisenioFamiliaComposicionTelaSe
 import com.altima.springboot.app.models.service.IDisenioForroService;
 import com.altima.springboot.app.models.service.IDisenioMaterialService;
 import com.altima.springboot.app.models.service.IDisenioMaterialTelaService;
-import com.altima.springboot.app.models.service.IDisenioProcesoService;
 import com.altima.springboot.app.models.service.IDisenioTelaForroService;
 import com.altima.springboot.app.models.service.IDisenioTelaService;
 import com.altima.springboot.app.models.service.IUploadService;
@@ -46,8 +44,7 @@ import com.altima.springboot.app.models.service.IUploadService;
 public class TelaController {
 	@Autowired
 	private IDisenioMaterialService disenioMaterialService;
-	@Autowired
-	private IDisenioProcesoService disenioProcesoService;
+	
 	@Autowired
 	private IDisenioForroService forroService;
 	@Autowired
@@ -143,7 +140,6 @@ public class TelaController {
 			tela.setIdUnidadMedida("1");
 			tela.setConsumoPromedio("1");
 			tela.setExistencia("1");
-			tela.setTipo("Prospecto");
 			tela.setEstatus("1"); //Estatus para ver el registro en el sistema
 			tela.setEstatusTela("0");// estatus para la aprobacion de la tela
 			tela.setConsumo("1");
@@ -202,12 +198,7 @@ public class TelaController {
 					DisenioTelaForro tf = new DisenioTelaForro();
 					tf.setIdTela(tela.getIdTela());
 					tf.setIdForro(Long.valueOf(array[i]));
-					tf.setIdText("1");
-					tf.setDescripcion(String.valueOf(i+1));
-					tf.setCreadoPor(auth.getName());
-					tf.setActualizadoPor("null");
-					tf.setFechaCreacion(hourdateFormat.format(date));
-					tf.setUltimaFechaModificacion(hourdateFormat.format(date));; 
+				
 					TelaForroService.save(tf);	
 				}
 			}
@@ -258,14 +249,14 @@ public class TelaController {
 		List<DisenioLookup> listLookupsMed = disenioMaterialService.findListaLookupMed();
 		List<DisenioLookup> listLookupsMar = disenioMaterialService.findListaMarcas();
 		List<DisenioLookup> listLookupsClasificacion = disenioMaterialService.findListaClasificacion();	
-		List<DisenioProceso> listClaveProceso = disenioProcesoService.findListClaveProceso();
+		//List<DisenioProceso> listClaveProceso = disenioProcesoService.findListClaveProceso();
 		List<DisenioLookup> listLookupsMat = disenioMaterialService.findListaLookupMat();
 		List<DisenioLookup> listLookupsCol = disenioMaterialService.findListaColor();
 		model.addAttribute("material", material);
 		model.addAttribute("listLookupsMed", listLookupsMed);
 		model.addAttribute("listLookupsMar", listLookupsMar);
 		model.addAttribute("listLookupsClasificacion", listLookupsClasificacion);
-		model.addAttribute("listClaveProceso", listClaveProceso);
+		//model.addAttribute("listClaveProceso", listClaveProceso);
 		model.addAttribute("listLookupsMat", listLookupsMat);
 		model.addAttribute("listLookupsCol", listLookupsCol);
 		
