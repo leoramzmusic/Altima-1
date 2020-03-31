@@ -96,20 +96,14 @@ public class DisenioPrenda implements Serializable{
 	@Column(name="precio_foraneo_anterior")
 	private String precioForaneoAnterior;
 	
-	@Column(name="cve_ruta")
-	private String cveRuta;
-	
-	@Column(name="cve_prenda")
-	private String cvePrenda;
+	@Column(name="id_ruta")
+	private String idRuta;
 
 	@Column(name="tipo_largo")
 	private String tipoLargo;
 	
 	@Column(name="imprimir_etiquetas")
 	private String imprimirEtiquetas;
-	
-	@Column(name="modelo_boton")
-	private String modeloBoton;
 	
 	@Column(name="estatus_recepcion_muestra")
 	private String estatusRecepcionMuestra;
@@ -328,19 +322,11 @@ public class DisenioPrenda implements Serializable{
 	}
 
 	public String getCveRuta() {
-		return cveRuta;
+		return idRuta;
 	}
 
 	public void setCveRuta(String cveRuta) {
-		this.cveRuta = cveRuta;
-	}
-
-	public String getCvePrenda() {
-		return cvePrenda;
-	}
-
-	public void setCvePrenda(String cvePrenda) {
-		this.cvePrenda = cvePrenda;
+		this.idRuta = cveRuta;
 	}
 
 	public String getTipoLargo() {
@@ -357,14 +343,6 @@ public class DisenioPrenda implements Serializable{
 
 	public void setImprimirEtiquetas(String imprimirEtiquetas) {
 		this.imprimirEtiquetas = imprimirEtiquetas;
-	}
-
-	public String getModeloBoton() {
-		return modeloBoton;
-	}
-
-	public void setModeloBoton(String modeloBoton) {
-		this.modeloBoton = modeloBoton;
 	}
 
 	public String getEstatusRecepcionMuestra() {
@@ -445,8 +423,7 @@ public class DisenioPrenda implements Serializable{
 		result = prime * result + ((consumoForro == null) ? 0 : consumoForro.hashCode());
 		result = prime * result + ((consumoTela == null) ? 0 : consumoTela.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
-		result = prime * result + ((cvePrenda == null) ? 0 : cvePrenda.hashCode());
-		result = prime * result + ((cveRuta == null) ? 0 : cveRuta.hashCode());
+		result = prime * result + ((idRuta == null) ? 0 : idRuta.hashCode());
 		result = prime * result + ((descripcionPrenda == null) ? 0 : descripcionPrenda.hashCode());
 		result = prime * result + ((detalleConfeccion == null) ? 0 : detalleConfeccion.hashCode());
 		result = prime * result + ((detallePrenda == null) ? 0 : detallePrenda.hashCode());
@@ -462,7 +439,6 @@ public class DisenioPrenda implements Serializable{
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
 		result = prime * result + ((imprimirEtiquetas == null) ? 0 : imprimirEtiquetas.hashCode());
 		result = prime * result + ((marcadores == null) ? 0 : marcadores.hashCode());
-		result = prime * result + ((modeloBoton == null) ? 0 : modeloBoton.hashCode());
 		result = prime * result + ((nombrePrenda == null) ? 0 : nombrePrenda.hashCode());
 		result = prime * result + ((notaEspecial == null) ? 0 : notaEspecial.hashCode());
 		result = prime * result + ((numeroPrenda == null) ? 0 : numeroPrenda.hashCode());
@@ -518,15 +494,10 @@ public class DisenioPrenda implements Serializable{
 				return false;
 		} else if (!creadoPor.equals(other.creadoPor))
 			return false;
-		if (cvePrenda == null) {
-			if (other.cvePrenda != null)
+		if (idRuta == null) {
+			if (other.idRuta != null)
 				return false;
-		} else if (!cvePrenda.equals(other.cvePrenda))
-			return false;
-		if (cveRuta == null) {
-			if (other.cveRuta != null)
-				return false;
-		} else if (!cveRuta.equals(other.cveRuta))
+		} else if (!idRuta.equals(other.idRuta))
 			return false;
 		if (descripcionPrenda == null) {
 			if (other.descripcionPrenda != null)
@@ -602,11 +573,6 @@ public class DisenioPrenda implements Serializable{
 			if (other.marcadores != null)
 				return false;
 		} else if (!marcadores.equals(other.marcadores))
-			return false;
-		if (modeloBoton == null) {
-			if (other.modeloBoton != null)
-				return false;
-		} else if (!modeloBoton.equals(other.modeloBoton))
 			return false;
 		if (nombrePrenda == null) {
 			if (other.nombrePrenda != null)

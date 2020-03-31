@@ -41,6 +41,15 @@ public class Rol implements Serializable {
 	@Column(name="nombre_rol")
 	private String nombreRol;
 	
+	@Column(name="departamento_rol")
+	private String departamentoRol;
+	
+	@Column(name="seccion_rol")
+	private String seccionRol;
+	
+	@Column(name="permiso_rol")
+	private String permisoRol;
+
 	@Column(name="creado_por")
 	private String creadoPor;
 	
@@ -74,6 +83,30 @@ public class Rol implements Serializable {
 
 	public void setIdText(String idText) {
 		this.idText = idText;
+	}
+	
+	public String getDepartamentoRol() {
+		return departamentoRol;
+	}
+
+	public void setDepartamentoRol(String departamentoRol) {
+		this.departamentoRol = departamentoRol;
+	}
+
+	public String getSeccionRol() {
+		return seccionRol;
+	}
+
+	public void setSeccionRol(String seccionRol) {
+		this.seccionRol = seccionRol;
+	}
+
+	public String getPermisoRol() {
+		return permisoRol;
+	}
+
+	public void setPermisoRol(String permisoRol) {
+		this.permisoRol = permisoRol;
 	}
 
 	public String getDescripcionRol() {

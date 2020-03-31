@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -44,9 +43,6 @@ public class DisenioRuta implements Serializable{
 	
 	@Column(name="ultima_fecha_modificacion")
 	private String ultimaFechaModificacion;
-	
-	@Column(name="clave_ruta")
-	private String claveRuta;
 
 	@Column(name="descripcion_ruta")
 	private String descripcionRuta;
@@ -116,14 +112,6 @@ public class DisenioRuta implements Serializable{
 
 	public void setUltimaFechaModificacion(String ultimaFechaModificacion) {
 		this.ultimaFechaModificacion = ultimaFechaModificacion;
-	}
-	
-	public String getClaveRuta() {
-		return claveRuta;
-	}
-
-	public void setClaveRuta(String claveRuta) {
-		this.claveRuta = claveRuta;
 	}
 	
 	public String getDescripcionRuta() {

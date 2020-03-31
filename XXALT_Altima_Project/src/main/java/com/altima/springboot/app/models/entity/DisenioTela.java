@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -86,9 +85,6 @@ public class DisenioTela implements Serializable{
 	
 	@Column(name="foto")
 	private String foto;
-	
-	@Column(name="tipo")
-	private String tipo;
 	
 	@Column(name="estatus")
 	private String estatus;
@@ -272,14 +268,6 @@ public class DisenioTela implements Serializable{
 		this.foto = foto;
 	}
 
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-
 	public String getEstatus() {
 		return estatus;
 	}
@@ -327,7 +315,6 @@ public class DisenioTela implements Serializable{
 		result = prime * result + ((indicacion == null) ? 0 : indicacion.hashCode());
 		result = prime * result + ((lineaTela == null) ? 0 : lineaTela.hashCode());
 		result = prime * result + ((nombreTela == null) ? 0 : nombreTela.hashCode());
-		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
 		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
 		return result;
 	}
@@ -455,11 +442,6 @@ public class DisenioTela implements Serializable{
 			if (other.nombreTela != null)
 				return false;
 		} else if (!nombreTela.equals(other.nombreTela))
-			return false;
-		if (tipo == null) {
-			if (other.tipo != null)
-				return false;
-		} else if (!tipo.equals(other.tipo))
 			return false;
 		if (ultimaFechaModificacion == null) {
 			if (other.ultimaFechaModificacion != null)
