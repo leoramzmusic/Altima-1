@@ -120,6 +120,8 @@ function SacarListaMateriales()
 {
 	console.log(objeto_patronajes);
 }
+
+//Funcion para agregar un nuevo Material desde la vista agregar-confirmar prenda y editar-prenda
 function AgregarElementoListaMateriales()
 {
 	var id = $('#ListaDeMateriales').val();
