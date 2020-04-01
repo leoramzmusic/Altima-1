@@ -35,6 +35,9 @@ public class DisenioControlProduccionMuestra implements Serializable {
 	@Column(name="fecha_fin")
 	private String fechaFin;
 	
+	@Column(name="estatus_tiempo")
+	private String estatusTiempo;
+	
 	@Column(name="id_operario")
 	private String idOperario;
 	
@@ -56,6 +59,16 @@ public class DisenioControlProduccionMuestra implements Serializable {
 	@Column(name="ultima_fecha_modificacion")
 	
 	private String ultimaFechaModificacion;
+
+	
+	
+	public String getEstatusTiempo() {
+		return estatusTiempo;
+	}
+
+	public void setEstatusTiempo(String estatusTiempo) {
+		this.estatusTiempo = estatusTiempo;
+	}
 
 	public Long getIdControlProduccionMuestra() {
 		return idControlProduccionMuestra;
