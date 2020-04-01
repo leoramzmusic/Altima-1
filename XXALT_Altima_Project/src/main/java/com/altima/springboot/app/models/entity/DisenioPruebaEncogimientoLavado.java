@@ -25,9 +25,6 @@ public class DisenioPruebaEncogimientoLavado implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
 	private Long idPruebaEncogimientoLavado;
-	
-	@Column(name="id_calidad")
-	private Long idCalidad;
 
 	@Column(name="entretela_prueba_vapor")
 	private String entretelaPruebaVapor;
@@ -43,9 +40,6 @@ public class DisenioPruebaEncogimientoLavado implements Serializable{
 
 	@Column(name="fecha_finalizacion")
 	private String fechaFinalizacion;
-	
-	@Column(name="proveedor_prueba_vapor")
-	private String proveedorPruebaVapor;
 	
 	@Column(name="temperatura_prueba_vapor")
 	private String temperaturaPruebaVapor;
@@ -83,6 +77,9 @@ public class DisenioPruebaEncogimientoLavado implements Serializable{
 	@Column(name="id_tela")
 	private String idTela;
 	
+	@Column(name="id_calidad")
+	private Long idCalidad;
+	
 	@Column(name="estatus")
 	private String estatus;
 
@@ -92,14 +89,6 @@ public class DisenioPruebaEncogimientoLavado implements Serializable{
 
 	public void setIdPruebaEncogimientoLavado(Long idPruebaEncogimientoLavado) {
 		this.idPruebaEncogimientoLavado = idPruebaEncogimientoLavado;
-	}
-
-	public Long getIdCalidad() {
-		return idCalidad;
-	}
-
-	public void setIdCalidad(Long idCalidad) {
-		this.idCalidad = idCalidad;
 	}
 
 	public String getEntretelaPruebaVapor() {
@@ -114,14 +103,6 @@ public class DisenioPruebaEncogimientoLavado implements Serializable{
 		return creadoPor;
 	}
 
-	public String getAdherenciaPruebaVapor() {
-		return adherenciaPruebaVapor;
-	}
-
-	public void setAdherenciaPruebaVapor(String adherenciaPruebaVapor) {
-		this.adherenciaPruebaVapor = adherenciaPruebaVapor;
-	}
-	
 	public void setCreadoPor(String creadoPor) {
 		this.creadoPor = creadoPor;
 	}
@@ -134,20 +115,20 @@ public class DisenioPruebaEncogimientoLavado implements Serializable{
 		this.fechaRealizacion = fechaRealizacion;
 	}
 
+	public String getAdherenciaPruebaVapor() {
+		return adherenciaPruebaVapor;
+	}
+
+	public void setAdherenciaPruebaVapor(String adherenciaPruebaVapor) {
+		this.adherenciaPruebaVapor = adherenciaPruebaVapor;
+	}
+
 	public String getFechaFinalizacion() {
 		return fechaFinalizacion;
 	}
 
 	public void setFechaFinalizacion(String fechaFinalizacion) {
 		this.fechaFinalizacion = fechaFinalizacion;
-	}
-
-	public String getProveedorPruebaVapor() {
-		return proveedorPruebaVapor;
-	}
-
-	public void setProveedorPruebaVapor(String proveedorPruebaVapor) {
-		this.proveedorPruebaVapor = proveedorPruebaVapor;
 	}
 
 	public String getTemperaturaPruebaVapor() {
@@ -246,6 +227,14 @@ public class DisenioPruebaEncogimientoLavado implements Serializable{
 		this.idTela = idTela;
 	}
 
+	public Long getIdCalidad() {
+		return idCalidad;
+	}
+
+	public void setIdCalidad(Long idCalidad) {
+		this.idCalidad = idCalidad;
+	}
+
 	public String getEstatus() {
 		return estatus;
 	}
@@ -262,6 +251,7 @@ public class DisenioPruebaEncogimientoLavado implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((adherenciaPruebaVapor == null) ? 0 : adherenciaPruebaVapor.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((diferenciaMedidaHilo == null) ? 0 : diferenciaMedidaHilo.hashCode());
 		result = prime * result + ((diferenciaMedidaTrama == null) ? 0 : diferenciaMedidaTrama.hashCode());
@@ -278,7 +268,6 @@ public class DisenioPruebaEncogimientoLavado implements Serializable{
 		result = prime * result + ((medidaInicialTrama == null) ? 0 : medidaInicialTrama.hashCode());
 		result = prime * result + ((observacionesResultados == null) ? 0 : observacionesResultados.hashCode());
 		result = prime * result + ((presionPrueba == null) ? 0 : presionPrueba.hashCode());
-		result = prime * result + ((proveedorPruebaVapor == null) ? 0 : proveedorPruebaVapor.hashCode());
 		result = prime * result + ((temperaturaPruebaVapor == null) ? 0 : temperaturaPruebaVapor.hashCode());
 		result = prime * result + ((tiempoPrueba == null) ? 0 : tiempoPrueba.hashCode());
 		result = prime * result + ((tipoPrueba == null) ? 0 : tipoPrueba.hashCode());
@@ -294,7 +283,11 @@ public class DisenioPruebaEncogimientoLavado implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		DisenioPruebaEncogimientoLavado other = (DisenioPruebaEncogimientoLavado) obj;
-
+		if (adherenciaPruebaVapor == null) {
+			if (other.adherenciaPruebaVapor != null)
+				return false;
+		} else if (!adherenciaPruebaVapor.equals(other.adherenciaPruebaVapor))
+			return false;
 		if (creadoPor == null) {
 			if (other.creadoPor != null)
 				return false;
@@ -375,11 +368,6 @@ public class DisenioPruebaEncogimientoLavado implements Serializable{
 				return false;
 		} else if (!presionPrueba.equals(other.presionPrueba))
 			return false;
-		if (proveedorPruebaVapor == null) {
-			if (other.proveedorPruebaVapor != null)
-				return false;
-		} else if (!proveedorPruebaVapor.equals(other.proveedorPruebaVapor))
-			return false;
 		if (temperaturaPruebaVapor == null) {
 			if (other.temperaturaPruebaVapor != null)
 				return false;
@@ -397,4 +385,6 @@ public class DisenioPruebaEncogimientoLavado implements Serializable{
 			return false;
 		return true;
 	}
+
+	
 }
