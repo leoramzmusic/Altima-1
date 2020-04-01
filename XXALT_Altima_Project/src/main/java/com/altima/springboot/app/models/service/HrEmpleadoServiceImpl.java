@@ -57,5 +57,15 @@ public class HrEmpleadoServiceImpl implements IHrEmpleadoService {
 				
 	
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<Object> findEmpleadoPersona() {
+		// TODO Auto-generated method stub
+		return em.createQuery("Select idEmpleado,concat(hp.nombrePersona,' 'hp.apellidoPaterno,' ',hp.apellidoMaterno) from HrEmpleado he inner join HrPersona hp on hp.idPersona=he.idPersona").getResultList();
+				
+	
+	}
 
 }

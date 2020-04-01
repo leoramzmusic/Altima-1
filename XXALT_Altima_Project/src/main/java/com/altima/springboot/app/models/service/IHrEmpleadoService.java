@@ -15,5 +15,7 @@ public interface IHrEmpleadoService {
 	HrEmpleado findOne(Long id);
 	
 	List<Object> findAllByPuesto(Long id);
+	
+	List<Object> findEmpleadoPersona();
 
 }

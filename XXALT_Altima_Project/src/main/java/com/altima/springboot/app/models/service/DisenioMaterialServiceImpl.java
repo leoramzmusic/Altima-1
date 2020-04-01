@@ -141,6 +141,14 @@ public class DisenioMaterialServiceImpl implements IDisenioMaterialService {
 	
 		return em.createQuery("SELECT idLookup, nombreLookup, tipoLookup FROM DisenioLookup WHERE tipoLookup= 'Color' and   estatus=1").getResultList();
 	}
+   
+   @SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<DisenioLookup> findListaLookupPro(){
+	
+		return em.createQuery("SELECT idLookup, nombreLookup, tipoLookup FROM DisenioLookup WHERE tipoLookup= 'Proceso' and   estatus=1").getResultList();
+	}
 
 
 

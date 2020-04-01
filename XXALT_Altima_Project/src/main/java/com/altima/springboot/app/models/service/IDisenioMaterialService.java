@@ -42,6 +42,8 @@ public interface IDisenioMaterialService {
 	
 	List<DisenioLookup> findAllFamiliaPrenda();
 	
+	List<DisenioLookup> findListaLookupPro();
+	
 	List<Object> findAllByTipoMaterial(Long id);
 }
 
