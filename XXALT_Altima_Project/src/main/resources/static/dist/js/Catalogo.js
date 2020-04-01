@@ -527,7 +527,7 @@
 	                                            "<tr>" +
 	                                                "<th>Clave</th>" +
 	                                                "<th>Nombre</th>" + 
-	                                               
+	                                                "<th></th>" + 
 	                                                "<th>Cambios</th>" +
 	                                                "<th></th>" +
 	                                            "</tr>" +
@@ -541,6 +541,7 @@
 						"<tr>" +
 						"<td>" + data[i].idText + "</td>",
 						"<td>" + data[i].nombreLookup + "</td>",
+						"<td> <img class='img-thumbnail rounded float-left' style='max-width: 25%; ' src='/uploads/cuidados/"+ data[i].atributo1 +"' /> </td>",
 						"<td style='text-align: center;'>"+
          "<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button>&nbsp;"+
      "</td>",
@@ -910,7 +911,7 @@ Swal.fire({
     html:'<div class="row">'+
     '<div class="form-group col-sm-12">'+
       '<label for="pedidonom">Nombre de la marca</label>'+
-      '<input type="text" class="form-control" id="marca" value="'+marca_nombre+'" placeholder="Rojo">'+
+      '<input type="text" class="form-control" id="marca" value="'+marca_nombre+'" placeholder="Parisina">'+
       '<input type="hidden" value=" '+marca_id+' ">'+
     '</div>'+
     '</div>',
@@ -1191,7 +1192,7 @@ Swal.fire({
 			    html:'<div class="row">'+
 		        '<div class="form-group col-sm-12">'+
 		          '<label for="pedidonom">Nombre pieza trazo</label>'+
-		          '<input type="text" class="swal2-input" id="trazo" placeholder="Cuello">'+
+		          '<input type="text" class="swal2-input" id="trazo" placeholder="Delantero">'+
 		        '</div>'+
 		        '</div>',
 		      showCancelButton: true,
@@ -1236,7 +1237,7 @@ Swal.fire({
 	    html:'<div class="row">'+
 	    '<div class="form-group col-sm-12">'+
 	      '<label for="pedidonom">Nombre pieza trazo</label>'+
-	      '<input type="text" class="form-control" id="trazo" value="'+trazo_nombre+'" placeholder="Rojo">'+
+	      '<input type="text" class="form-control" id="trazo" value="'+trazo_nombre+'" placeholder="Delantero">'+
 	      '<input type="hidden" value=" '+trazo_id+' ">'+
 	    '</div>'+
 	    '</div>',
@@ -1349,7 +1350,7 @@ Swal.fire({
 			    html:'<div class="row">'+
 		        '<div class="form-group col-sm-12">'+
 		          '<label for="pedidonom">Nombre de la familia prendas</label>'+
-		          '<input type="text" class="swal2-input" id="familia" placeholder="Parisina">'+
+		          '<input type="text" class="swal2-input" id="familia" placeholder="Pantalón">'+
 		        '</div>'+
 		        '</div>',
 		      showCancelButton: true,
@@ -1399,10 +1400,10 @@ Swal.fire({
 			   html:'<div class="row">'+
 			        '<div class="form-group col-sm-12">'+
 			          '<label for="pedidonom">Nombre de la familia prendas</label>'+
-			          '<input type="text" value="'+e.getAttribute("nombre")+'" class="swal2-input" id="nombre" placeholder="Parisina">'+
+			          '<input type="text" value="'+e.getAttribute("nombre")+'" class="swal2-input" id="nombre" placeholder="Pantalón">'+
 			        '</div>'+
 			        '<div class="form-group col-sm-12">'+
-			          '<input type="hidden" value=" '+e.getAttribute("idlookup")+' " class="swal2-input" id="idlookup" placeholder="Parisina">'+
+			          '<input type="hidden" value=" '+e.getAttribute("idlookup")+' " class="swal2-input" id="idlookup" placeholder="Pantalón">'+
 			        '</div>'+
 			        '</div>',
 		      showCancelButton: true,
@@ -1513,7 +1514,7 @@ Swal.fire({
 			    html:'<div class="row">'+
 		        '<div class="form-group col-sm-12">'+
 		          '<label for="pedidonom">Nombre del genero</label>'+
-		          '<input type="text" class="swal2-input" id="genero" placeholder="masculino">'+
+		          '<input type="text" class="swal2-input" id="genero" placeholder="Caballero">'+
 		        '</div>'+
 		        '</div>',
 		      showCancelButton: true,
@@ -1563,7 +1564,7 @@ function editarGenero(e) {
 			   html:'<div class="row">'+
 			        '<div class="form-group col-sm-12">'+
 			          '<label for="pedidonom">Nombre de genero</label>'+
-			          '<input type="text" value="'+e.getAttribute("nombre")+'" class="swal2-input" id="nombre" placeholder="Parisina">'+
+			          '<input type="text" value="'+e.getAttribute("nombre")+'" class="swal2-input" id="nombre" placeholder="Caballero">'+
 			        '</div>'+
 			        '<div class="form-group col-sm-12">'+
 			        
@@ -1677,7 +1678,7 @@ function bajarGenero(idbaja){
 			    html:'<div class="row">'+
 		        '<div class="form-group col-sm-12">'+
 		          '<label for="pedidonom">Nombre de composición</label>'+
-		          '<input type="text" class="swal2-input" id="composicion" placeholder="100% algodon">'+
+		          '<input type="text" class="swal2-input" id="composicion" placeholder="Algodón">'+
 		        '</div>'+
 		        '</div>',
 		      showCancelButton: true,
@@ -1727,7 +1728,7 @@ function editarComposicion(e) {
 			   html:'<div class="row">'+
 			        '<div class="form-group col-sm-12">'+
 			          '<label for="pedidonom">Nombre composicón</label>'+
-			          '<input type="text" value="'+e.getAttribute("nombre")+'" class="swal2-input" id="nombre" placeholder="Parisina">'+
+			          '<input type="text" value="'+e.getAttribute("nombre")+'" class="swal2-input" id="nombre" placeholder="Algodón">'+
 			        '</div>'+
 			        '<div class="form-group col-sm-12">'+
 			          
@@ -1836,33 +1837,46 @@ $('#detalleCuidado').on('shown.bs.modal', function() {
      $(document).off('focusin.modal');
  });
 function agregarCuidado() {
+	var token =$('#token').val();
 	 Swal.fire({
 	      title: 'Agregar instrucción de cuidado',
-		    html:'<div class="row">'+
+		    html:'<form method="POST" enctype="multipart/form-data" id="fileUploadForm" >'+
+		    	'<div class="row">'+
 	        '<div class="form-group col-sm-12">'+
 	          '<label for="pedidonom">Nombre instrucción de cuidado</label>'+
-	          '<input type="text" class="swal2-input" id="cuidado" placeholder="lavar a mano">'+
+	          '<input type="text" class="swal2-input" name="InstruccionCuidado" id="cuidado" placeholder="Lavar a mano">'+
+	          '<label for="pedidonom">Icono instrucción de cuidado</label>'+
+	          '<input required type="file" class="swal2-input" name="iconocuidado" id="iconocuidado" placeholder="lavar a mano">'+
+	          '<input type="hidden" value='+token+' name="_csrf">'+
 	        '</div>'+
-	        '</div>',
+	        '</div>'+
+	        '</form>',
 	      showCancelButton: true,
 	      cancelButtonColor: '#6C757D',
 	      cancelButtonText: 'Cancelar',
 	      confirmButtonText: 'Agregar',
 	      confirmButtonColor:'#17a2b8',
 	    }).then((result) => {
-	      if (result.value && document.getElementById("cuidado").value) {
+	      if (result.value && document.getElementById("cuidado").value && document.getElementById("iconocuidado").value ) {
 			    var Cuidado=document.getElementById("cuidado").value;
-		
+		        var iconocuidado=document.getElementById("iconocuidado").files[0].name; 
 	    	  console.log(result.value);
-			   $.ajax({
+	    	  console.log(iconocuidado);
+	    	  var form = $('#fileUploadForm')[0];
+
+	  		// Create an FormData object 
+	          var data = new FormData(form);
+	    	  $.ajax({
 	        type: "POST",
 	        url: "/guardarcatalogo",
-	        data: { 
-	        	 "_csrf": $('#token').val(),
-	        	'InstruccionCuidado': Cuidado
-	        	
-	        	// ,'Descripcion':Descripcion
-	        }
+	       
+	        //processData: false,  // Important!
+	       // contentType: false,
+	        data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000
 	       
 	    }).done(function(data){
 	    	listarCuidados();
@@ -1875,6 +1889,14 @@ function agregarCuidado() {
 	          timer: 1250
 	        })
 	      //  window.setTimeout(function(){location.reload()}, 2000);
+	      }else{
+	    	  Swal.fire({
+		          position: 'center',
+		          icon: 'error',
+		          title: 'complete todos los campos',
+		          showConfirmButton: false,
+		          timer: 1250
+		        })
 	      }
 	    })
  }
@@ -1891,7 +1913,7 @@ function editarCuidado(e) {
 		   html:'<div class="row">'+
 		        '<div class="form-group col-sm-12">'+
 		          '<label for="pedidonom">Nombre instrucción de cuidado</label>'+
-		          '<input type="text" value="'+e.getAttribute("nombre")+'" class="swal2-input" id="nombre" placeholder="Parisina">'+
+		          '<input type="text" value="'+e.getAttribute("nombre")+'" class="swal2-input" id="nombre" placeholder="Lavar a mano">'+
 		        '</div>'+
 		        '<div class="form-group col-sm-12">'+
 		         
@@ -2001,11 +2023,11 @@ $('#detalleMedida').on('shown.bs.modal', function() {
  });
 function agregarMedida() {
 	 Swal.fire({
-	      title: 'Agregar medida',
+	      title: 'Agregar unidades de medida',
 		    html:'<div class="row">'+
 	        '<div class="form-group col-sm-12">'+
-	          '<label for="pedidonom">Nombre medida</label>'+
-	          '<input type="text" class="swal2-input" id="medida" placeholder="cm">'+
+	          '<label for="pedidonom">Nombre unidad de medida</label>'+
+	          '<input type="text" class="swal2-input" id="medida" placeholder="Metro">'+
 	        '</div>'+
 	        '</div>',
 	      showCancelButton: true,
@@ -2051,11 +2073,11 @@ function editarMedida(e) {
 	
 	console.log(descr);
 	 Swal.fire({
-	      title: 'Editar medida',
+	      title: 'Editar unidad de medida',
 		   html:'<div class="row">'+
 		        '<div class="form-group col-sm-12">'+
-		          '<label for="pedidonom">Nombre medida</label>'+
-		          '<input type="text" value="'+e.getAttribute("nombre")+'" class="swal2-input" id="nombre" placeholder="Parisina">'+
+		          '<label for="pedidonom">Nombre unidad de medida</label>'+
+		          '<input type="text" value="'+e.getAttribute("nombre")+'" class="swal2-input" id="nombre" placeholder="Metro">'+
 		        '</div>'+
 		        '<div class="form-group col-sm-12">'+
 		         
@@ -2169,7 +2191,7 @@ function agregarMaterial() {
 		    html:'<div class="row">'+
 	        '<div class="form-group col-sm-12">'+
 	          '<label for="pedidonom">Nombre material</label>'+
-	          '<input type="text" class="swal2-input" id="material" placeholder="cierre">'+
+	          '<input type="text" class="swal2-input" id="material" placeholder="Entretela">'+
 	        '</div>'+
 	        '</div>',
 	      showCancelButton: true,
@@ -2219,7 +2241,7 @@ function editarMaterial(e) {
 		   html:'<div class="row">'+
 		        '<div class="form-group col-sm-12">'+
 		          '<label for="pedidonom">Nombre medida</label>'+
-		          '<input type="text" value="'+e.getAttribute("nombre")+'" class="swal2-input" id="nombre" placeholder="Parisina">'+
+		          '<input type="text" value="'+e.getAttribute("nombre")+'" class="swal2-input" id="nombre" placeholder="Entretela">'+
 		        '</div>'+
 		        '<div class="form-group col-sm-12">'+
 		         
@@ -2333,7 +2355,7 @@ function agregarMarcador() {
 		    html:'<div class="row">'+
 	        '<div class="form-group col-sm-12">'+
 	          '<label for="pedidonom">Nombre marcador</label>'+
-	          '<input type="text" class="swal2-input" id="marcador" placeholder="cierre">'+
+	          '<input type="text" class="swal2-input" id="marcador" placeholder="Cierre en la bolsa">'+
 	        '</div>'+
 	        '</div>',
 	      showCancelButton: true,
@@ -2383,7 +2405,7 @@ function editarMarcador(e) {
 		   html:'<div class="row">'+
 		        '<div class="form-group col-sm-12">'+
 		          '<label for="pedidonom">Nombre marcador</label>'+
-		          '<input type="text" value="'+e.getAttribute("nombre")+'" class="swal2-input" id="nombre" placeholder="Parisina">'+
+		          '<input type="text" value="'+e.getAttribute("nombre")+'" class="swal2-input" id="nombre" placeholder="Cierre en la bolsa">'+
 		        '</div>'+
 		        '<div class="form-group col-sm-12">'+
 		         
