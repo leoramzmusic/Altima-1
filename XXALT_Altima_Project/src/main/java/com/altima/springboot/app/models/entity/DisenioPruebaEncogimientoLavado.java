@@ -26,9 +26,6 @@ public class DisenioPruebaEncogimientoLavado implements Serializable{
 	@GenericGenerator(name="native",strategy="native")
 	private Long idPruebaEncogimientoLavado;
 	
-	@Column(name="id_prueba")
-	private Long idPrueba;
-	
 	@Column(name="id_calidad")
 	private Long idCalidad;
 
@@ -38,12 +35,12 @@ public class DisenioPruebaEncogimientoLavado implements Serializable{
 	@Column(name="creado_por")
 	private String creadoPor;
 	
-	@Column(name="actualizado_por")
-	private String actualizadoPor;
-	
 	@Column(name="fecha_realizacion")
 	private String fechaRealizacion;
 	
+	@Column(name="adherencia_prueba_vapor")
+	private String adherenciaPruebaVapor;
+
 	@Column(name="fecha_finalizacion")
 	private String fechaFinalizacion;
 	
@@ -97,14 +94,6 @@ public class DisenioPruebaEncogimientoLavado implements Serializable{
 		this.idPruebaEncogimientoLavado = idPruebaEncogimientoLavado;
 	}
 
-	public Long getIdPrueba() {
-		return idPrueba;
-	}
-
-	public void setIdPrueba(Long idPrueba) {
-		this.idPrueba = idPrueba;
-	}
-
 	public Long getIdCalidad() {
 		return idCalidad;
 	}
@@ -125,16 +114,16 @@ public class DisenioPruebaEncogimientoLavado implements Serializable{
 		return creadoPor;
 	}
 
+	public String getAdherenciaPruebaVapor() {
+		return adherenciaPruebaVapor;
+	}
+
+	public void setAdherenciaPruebaVapor(String adherenciaPruebaVapor) {
+		this.adherenciaPruebaVapor = adherenciaPruebaVapor;
+	}
+	
 	public void setCreadoPor(String creadoPor) {
 		this.creadoPor = creadoPor;
-	}
-
-	public String getActualizadoPor() {
-		return actualizadoPor;
-	}
-
-	public void setActualizadoPor(String actualizadoPor) {
-		this.actualizadoPor = actualizadoPor;
 	}
 
 	public String getFechaRealizacion() {
@@ -273,7 +262,6 @@ public class DisenioPruebaEncogimientoLavado implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((diferenciaMedidaHilo == null) ? 0 : diferenciaMedidaHilo.hashCode());
 		result = prime * result + ((diferenciaMedidaTrama == null) ? 0 : diferenciaMedidaTrama.hashCode());
@@ -282,7 +270,6 @@ public class DisenioPruebaEncogimientoLavado implements Serializable{
 		result = prime * result + ((fechaFinalizacion == null) ? 0 : fechaFinalizacion.hashCode());
 		result = prime * result + ((fechaRealizacion == null) ? 0 : fechaRealizacion.hashCode());
 		result = prime * result + ((idCalidad == null) ? 0 : idCalidad.hashCode());
-		result = prime * result + ((idPrueba == null) ? 0 : idPrueba.hashCode());
 		result = prime * result + ((idPruebaEncogimientoLavado == null) ? 0 : idPruebaEncogimientoLavado.hashCode());
 		result = prime * result + ((idTela == null) ? 0 : idTela.hashCode());
 		result = prime * result + ((medidaFinalHilo == null) ? 0 : medidaFinalHilo.hashCode());
@@ -307,11 +294,7 @@ public class DisenioPruebaEncogimientoLavado implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		DisenioPruebaEncogimientoLavado other = (DisenioPruebaEncogimientoLavado) obj;
-		if (actualizadoPor == null) {
-			if (other.actualizadoPor != null)
-				return false;
-		} else if (!actualizadoPor.equals(other.actualizadoPor))
-			return false;
+
 		if (creadoPor == null) {
 			if (other.creadoPor != null)
 				return false;
@@ -351,11 +334,6 @@ public class DisenioPruebaEncogimientoLavado implements Serializable{
 			if (other.idCalidad != null)
 				return false;
 		} else if (!idCalidad.equals(other.idCalidad))
-			return false;
-		if (idPrueba == null) {
-			if (other.idPrueba != null)
-				return false;
-		} else if (!idPrueba.equals(other.idPrueba))
 			return false;
 		if (idPruebaEncogimientoLavado == null) {
 			if (other.idPruebaEncogimientoLavado != null)

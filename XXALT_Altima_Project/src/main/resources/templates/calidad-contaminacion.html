@@ -8,8 +8,16 @@
     </div>
     <div class="col-sm-4">
         <div class="form-group">
+            <label>Tela</label>
+            <select class="form-control idtelas" id="telasss">
+                <option>Selecciona uno...</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
             <label>Operario</label>
-            <select class="form-control" id="realizadoPeque">
+            <select class="form-control sa" id="operarioContaminacion">
                 <option value="selecciona">Selecciona uno...</option>
                 <option value="tela">Tela</option>
                 <option value="forro">Forro</option>
@@ -17,16 +25,16 @@
             </select>
         </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-2">
         <div class="form-group">
             <label style="font-size: 15px;">Fecha y hora de realizaci&oacute;n</label>
-            <input type="datetime-local" class="form-control" id="adherenciaPeque" placeholder="23.2">
+            <input type="datetime-local" class="form-control" id="fechaRealizacionContaminacion" placeholder="23.2">
         </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-2">
         <div class="form-group">
             <label style="font-size: 15px;">Fecha y hora de finalizaci&oacute;n</label>
-            <input type="datetime-local" class="form-control" id="adherenciaPeque" placeholder="23.2">
+            <input type="datetime-local" class="form-control" id="fechaFinalizacionContaminacion" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-12">
@@ -37,15 +45,15 @@
         <div class="form-group">
             <label>Calidad</label>
             <div class="custom-control custom-radio">
-                <input class="custom-control-input" type="radio" id="buenaConta" name="calidadConta">
+                <input class="custom-control-input" type="radio" value="buena" id="buenaConta" name="calidadConta">
                 <label for="buenaConta" class="custom-control-label">Buena</label>
             </div>
             <div class="custom-control custom-radio">
-                <input class="custom-control-input" type="radio" id="regularConta" name="calidadConta">
+                <input class="custom-control-input" type="radio" value="regular" id="regularConta" name="calidadConta">
                 <label for="regularConta" class="custom-control-label">Regular</label>
             </div>
             <div class="custom-control custom-radio">
-                <input class="custom-control-input" type="radio" id="malaConta" name="calidadConta">
+                <input class="custom-control-input" type="radio" value="mala" id="malaConta" name="calidadConta">
                 <label for="malaConta" class="custom-control-label">Mala</label>
             </div>
         </div>
@@ -53,11 +61,11 @@
     <div class="col-sm-12">
         <div class="form-group">
             <label style="font-size: 15px;">Observaciones</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Especificar"></textarea>
+            <textarea class="form-control" id="observacionesReultContaminacion" rows="3" placeholder="Especificar"></textarea>
         </div>
     </div>
     <div class="form-group col-sm-12">
         <a th:href="${'calidad'}" class="btn btn-danger" data-dismiss="modal">Cancelar</a>
-        <button type="button" class="btn btn-primary next-step float-right">Guardar</button>
+        <a type="button" class="btn btn-primary next-step float-right" th:href="${'calidad'}" onclick="PruebaContaminacion()">Guardar</a>
     </div>
 </div>

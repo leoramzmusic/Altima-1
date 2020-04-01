@@ -1,4 +1,5 @@
 <div class="row">
+	<input type="hidden" name="_csrf" id="token"  th:value="${_csrf.token}"/>
 	<div class="col-sm-12">
 	    <a><strong>IMPORTANTE</strong><br>
 	    <i class="fas fa-check-circle text-success"></i> Cortar 4 testigos con medidas de 25cm x 25cm<br>
@@ -7,8 +8,16 @@
     </div>
     <div class="col-sm-4">
         <div class="form-group">
+            <label>Tela</label>
+            <select class="form-control idtelas" id="tela">
+                <option>Selecciona uno...</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
             <label>Operario</label>
-            <select class="form-control" id="realizadoPeque">
+            <select class="form-control sd" id="operarioEncogi">
                 <option value="selecciona">Selecciona uno...</option>
                 <option value="tela">Tela</option>
                 <option value="forro">Forro</option>
@@ -16,16 +25,16 @@
             </select>
         </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-2">
         <div class="form-group">
             <label style="font-size: 15px;">Fecha y hora de realizaci&oacute;n</label>
-            <input type="datetime-local" class="form-control" id="adherenciaPeque" placeholder="23.2">
+            <input type="datetime-local" class="form-control" id="fechaRealizacionEncogi" placeholder="23.2">
         </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-2">
         <div class="form-group">
             <label style="font-size: 15px;">Fecha y hora de finalizaci&oacute;n</label>
-            <input type="datetime-local" class="form-control" id="adherenciaPeque" placeholder="23.2">
+            <input type="datetime-local" class="form-control" id="fechaFinalizacionEncogi" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-12">
@@ -34,59 +43,59 @@
     <div class="col-sm-4">
         <div class="form-group">
             <label for="status">Entretela</label>
-            <select class="form-control" id="entretelaPeque" name="entretelaPeque">
-                <option value="selecciona">Selecciona uno...</option>
-                <option value="tela">Tela</option>
-                <option value="forro">Forro</option>
-                <option value="material">Otro material</option>
+            <select class="form-control" id="entretelaEncogi" name="entretelaPeque">
+                <option value="">Selecciona uno...</option>
+                <option value="0">Tela</option>
+                <option value="1">Forro</option>
+                <option value="2">Otro material</option>
             </select>
         </div>
     </div>
     <div class="col-sm-4">
         <div class="form-group">
             <label style="font-size: 15px;">Adherencia</label>
-            <input type="text" class="form-control" id="adherenciaPeque" placeholder="23.2">
+            <input type="text" class="form-control" id="adherenciaEncogi" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-4">
         <div class="form-group">
             <label for="status">Proveedor</label>
-            <select class="form-control" id="entretelaPeque" name="entretelaPeque">
-                <option value="selecciona">Selecciona uno...</option>
-                <option value="tela">Tela</option>
-                <option value="forro">Forro</option>
-                <option value="material">Otro material</option>
+            <select class="form-control" id="proveedorEncogi" name="proveedor">
+                <option value="">Selecciona uno...</option>
+                <option value="0">Tela</option>
+                <option value="1">Forro</option>
+                <option value="2">Otro material</option>
             </select>
         </div>
     </div>
     <div class="col-sm-4">
         <div class="form-group">
             <label style="font-size: 15px;">Temperatura</label>
-            <input type="number" class="form-control" id="finalTramaPeque" placeholder="23.2">
+            <input type="number" class="form-control" id="temperaturaPruebaVapor" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-4">
         <div class="form-group">
             <label style="font-size: 15px;">Tiempo (minutos)</label>
-            <input type="number" class="form-control" id="finalTramaPeque" placeholder="5">
+            <input type="number" class="form-control" id="tiempoPruebaVapor" placeholder="5">
         </div>
     </div>
     <div class="col-sm-4">
         <div class="form-group">
             <label style="font-size: 15px;">Presi&oacute;n</label>
-            <input type="number" class="form-control" id="finalTramaPeque" placeholder="23.2">
+            <input type="number" class="form-control" id="presionPruebaVapor" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-6">
         <div class="form-group">
             <label style="font-size: 15px;">Medida final del hilo</label>
-            <input type="number" class="form-control" id="finalHiloPeque" placeholder="23.2">
+            <input type="number" class="form-control" id="medidaHiloPruebaVapor" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-6">
         <div class="form-group">
             <label style="font-size: 15px;">Medida final de la trama</label>
-            <input type="number" class="form-control" id="finalTramaPeque" placeholder="23.2">
+            <input type="number" class="form-control" id="finalTramaPruebaVapor" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-12">
@@ -95,31 +104,31 @@
     <div class="col-sm-3">
         <div class="form-group">
             <label style="font-size: 15px;">Diferencia hilo</label>
-            <input type="number" class="form-control" id="finalHiloPeque" placeholder="23.2">
+            <input type="number" class="form-control" id="diferenciaHiloPruebaVapor" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-3">
         <div class="form-group">
             <label style="font-size: 15px;">(100cm/_____cm)</label>
-            <input type="number" class="form-control" id="finalHiloPeque" placeholder="23.2">
+            <input type="number" class="form-control" id="finalHiloMedPruebaVapor" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-3">
         <div class="form-group">
             <label style="font-size: 15px;">Diferencia trama</label>
-            <input type="number" class="form-control" id="finalTramaPeque" placeholder="23.2">
+            <input type="number" class="form-control" id="diferenciaTramaPruebaVapor" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-3">
         <div class="form-group">
             <label style="font-size: 15px;">(100cm/_____cm)</label>
-            <input type="number" class="form-control" id="finalHiloPeque" placeholder="23.2">
+            <input type="number" class="form-control" id="finalTramaMedPruebaVapor" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-12">
 	  <div class="form-group">
 	    <label style="font-size: 15px;">Observaciones</label>
-	    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Especificar"></textarea>
+	    <textarea class="form-control" id="observacionesReultPruebaVapor" rows="3" placeholder="Especificar"></textarea>
 	  </div>
     </div>
     <div class="col-sm-12">
@@ -128,13 +137,13 @@
     <div class="col-sm-6">
         <div class="form-group">
             <label style="font-size: 15px;">Medida final del hilo</label>
-            <input type="number" class="form-control" id="finalHiloPeque" placeholder="23.2">
+            <input type="number" class="form-control" id="medidaHiloPruebaFusion" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-6">
         <div class="form-group">
             <label style="font-size: 15px;">Medida final de la trama</label>
-            <input type="number" class="form-control" id="finalTramaPeque" placeholder="23.2">
+            <input type="number" class="form-control" id="medidaTramaPruebaFusion" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-12">
@@ -143,31 +152,31 @@
     <div class="col-sm-3">
         <div class="form-group">
             <label style="font-size: 15px;">Diferencia hilo</label>
-            <input type="number" class="form-control" id="finalHiloPeque" placeholder="23.2">
+            <input type="number" class="form-control" id="diferenciaHiloPruebaFusion" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-3">
         <div class="form-group">
             <label style="font-size: 15px;">(100cm/_____cm)</label>
-            <input type="number" class="form-control" id="finalHiloPeque" placeholder="23.2">
+            <input type="number" class="form-control" id="finalHiloMedPruebaFusion" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-3">
         <div class="form-group">
             <label style="font-size: 15px;">Diferencia trama</label>
-            <input type="number" class="form-control" id="finalTramaPeque" placeholder="23.2">
+            <input type="number" class="form-control" id="diferenciaTramaPruebaFusion" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-3">
         <div class="form-group">
             <label style="font-size: 15px;">(100cm/_____cm)</label>
-            <input type="number" class="form-control" id="finalHiloPeque" placeholder="23.2">
+            <input type="number" class="form-control" id="finalTramaMedPruebaFusion" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-12">
 	  <div class="form-group">
 	    <label style="font-size: 15px;">Observaciones</label>
-	    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Especificar"></textarea>
+	    <textarea class="form-control" id="observacionesReultPruebaFusion" rows="3" placeholder="Especificar"></textarea>
 	  </div>
     </div>
     <div class="col-sm-12">
@@ -176,13 +185,13 @@
     <div class="col-sm-6">
         <div class="form-group">
             <label style="font-size: 15px;">Medida final del hilo</label>
-            <input type="number" class="form-control" id="finalHiloPeque" placeholder="23.2">
+            <input type="number" class="form-control" id="medidaHiloPlanchaVapor" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-6">
         <div class="form-group">
             <label style="font-size: 15px;">Medida final de la trama</label>
-            <input type="number" class="form-control" id="finalTramaPeque" placeholder="23.2">
+            <input type="number" class="form-control" id="medidaTramaPlanchaVapor" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-12">
@@ -191,34 +200,34 @@
     <div class="col-sm-3">
         <div class="form-group">
             <label style="font-size: 15px;">Diferencia hilo</label>
-            <input type="number" class="form-control" id="finalHiloPeque" placeholder="23.2">
+            <input type="number" class="form-control" id="diferenciaHiloPlanchaVapor" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-3">
         <div class="form-group">
             <label style="font-size: 15px;">(100cm/_____cm)</label>
-            <input type="number" class="form-control" id="finalHiloPeque" placeholder="23.2">
+            <input type="number" class="form-control" id="finalHiloMedPlanchaVapor" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-3">
         <div class="form-group">
             <label style="font-size: 15px;">Diferencia trama</label>
-            <input type="number" class="form-control" id="finalTramaPeque" placeholder="23.2">
+            <input type="number" class="form-control" id="diferenciaTramaPlanchaVapor" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-3">
         <div class="form-group">
             <label style="font-size: 15px;">(100cm/_____cm)</label>
-            <input type="number" class="form-control" id="finalHiloPeque" placeholder="23.2">
+            <input type="number" class="form-control" id="finalTramaMedPlanchaVapor" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-12">
 	  <div class="form-group">
 	    <label style="font-size: 15px;">Observaciones</label>
-	    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Especificar"></textarea>
+	    <textarea class="form-control" id="observacionesReultPlanchaVapor" rows="3" placeholder="Especificar"></textarea>
 	  </div>
     </div>
     <div class="form-group col-sm-12">
-	    <button type="button" class="btn btn-primary next-step float-right">Guardar</button>
+	    <a type="button" id="enlace" class="btn btn-primary next-step float-right" onclick="PruebasEncogimiento()">Guardar</a>
 	</div>
 </div>

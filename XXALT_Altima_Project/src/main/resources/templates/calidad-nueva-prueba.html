@@ -47,6 +47,7 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
+        <input type="hidden" name="_csrf" id="token"  th:value="${_csrf.token}"/>
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <div class="container-fluid">
@@ -80,7 +81,10 @@
                                     <div class="row">
 										<section class="col-12">
 											<ul class="nav nav-tabs" role="tablist">
-												<li role="presentation" class="nav-item"><a	href="#step1" class="nav-link active" data-toggle="tab" aria-controls="step1" role="tab"><i class="fas fa-info-circle"></i>&nbsp;Pruebas de encogimiento</a></li>
+												<li role="presentation" class="nav-item"><a	
+													href="#step1" class="nav-link active" data-toggle="tab" 
+													aria-controls="step1" role="tab"><i 
+														class="fas fa-info-circle"></i>&nbsp;Pruebas de encogimiento</a></li>
 												<li role="presentation" class="nav-item"><a
 													href="#step2" class="nav-link" data-toggle="tab"
 													aria-controls="step2" role="tab"><i
@@ -90,8 +94,8 @@
 													aria-controls="step3" role="tab"><i
 														class="flaticon-001-wool"></i>&nbsp;Pruebas de costura</a></li>
 												<li role="presentation" class="nav-item"><a
-													href="#complete" class="nav-link"
-													data-toggle="tab" aria-controls="complete" role="tab"><i
+													href="#complete" class="nav-link" data-toggle="tab" 
+													aria-controls="complete" role="tab"><i
 														class="flaticon-019-pattern-1"></i>&nbsp;Prueba de contaminaci&oacute;n en combinaci&oacute;n de telas</a></li>
 											</ul>
 												<br>
@@ -99,13 +103,13 @@
 													<div class="tab-pane active" role="tabpanel" id="step1">
 														<div th:insert="calidad-encogimiento"></div>
 													</div>
-													<div class="tab-pane active" role="tabpanel" id="step2">
+													<div class="tab-pane" role="tabpanel" id="step2">
 														<div th:insert="calidad-lavado"></div>
 													</div>
-													<div class="tab-pane active" role="tabpanel" id="step3">
+													<div class="tab-pane" role="tabpanel" id="step3">
 														<div th:insert="calidad-costura"></div>
 													</div>
-													<div class="tab-pane active" role="tabpanel" id="complete">
+													<div class="tab-pane" role="tabpanel" id="complete">
 														<div th:insert="calidad-contaminacion"></div>
 													</div>
 													<div class="clearfix"></div>
@@ -142,6 +146,7 @@
     <script src="dist/js/buttons.colVis.min.js"></script>
     <!-- Bootstrap Datatables Plugin-->
     <script src="dist/js/dataTables.bootstrap4.min.js"></script>
+    <script src="dist/js/PruebasCalidad.js"></script>
 	
 	<script>
 		$(function() {
@@ -177,7 +182,9 @@
 		  });
 		});
 	</script>
-    
+	<script>
+		window.onload=listarTelas();
+	</script>
 </body>
 
 </html>

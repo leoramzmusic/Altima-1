@@ -26,17 +26,11 @@ public class DisenioPruebaLavadoContaminacionCostura implements Serializable{
 	@GenericGenerator(name="native",strategy="native")
 	private Long idPruebaLavadoContaminacionCostura;
 	
-	@Column(name="id_prueba")
-	private Long idPrueba;
-	
 	@Column(name="id_calidad")
 	private Long idCalidad;
 	
 	@Column(name="creado_por")
 	private String creadoPor;
-	
-	@Column(name="actualizado_por")
-	private String actualizadoPor;
 	
 	@Column(name="fecha_realizacion")
 	private String fechaRealizacion;
@@ -50,14 +44,8 @@ public class DisenioPruebaLavadoContaminacionCostura implements Serializable{
 	@Column(name="deslizamiento_tela")
 	private String deslizamientoTela;
 	
-	@Column(name="observaciones_deslizado")
-	private String observacionesDeslizado;
-	
 	@Column(name="rasgado_tela")
 	private String rasgadoTela;
-	
-	@Column(name="observaciones_rasgado")
-	private String observacionesRasgado;
 	
 	@Column(name="prueba_calidad")
 	private String pruebaCalidad;
@@ -86,14 +74,6 @@ public class DisenioPruebaLavadoContaminacionCostura implements Serializable{
 		this.idPruebaLavadoContaminacionCostura = idPruebaLavadoContaminacionCostura;
 	}
 
-	public Long getIdPrueba() {
-		return idPrueba;
-	}
-
-	public void setIdPrueba(Long idPrueba) {
-		this.idPrueba = idPrueba;
-	}
-
 	public Long getIdCalidad() {
 		return idCalidad;
 	}
@@ -108,14 +88,6 @@ public class DisenioPruebaLavadoContaminacionCostura implements Serializable{
 
 	public void setCreadoPor(String creadoPor) {
 		this.creadoPor = creadoPor;
-	}
-
-	public String getActualizadoPor() {
-		return actualizadoPor;
-	}
-
-	public void setActualizadoPor(String actualizadoPor) {
-		this.actualizadoPor = actualizadoPor;
 	}
 
 	public String getFechaRealizacion() {
@@ -150,28 +122,12 @@ public class DisenioPruebaLavadoContaminacionCostura implements Serializable{
 		this.deslizamientoTela = deslizamientoTela;
 	}
 
-	public String getObservacionDeslizado() {
-		return observacionesDeslizado;
-	}
-
-	public void setObservacionDeslizado(String observacionDeslizado) {
-		this.observacionesDeslizado = observacionDeslizado;
-	}
-
 	public String getRasgadoTela() {
 		return rasgadoTela;
 	}
 
 	public void setRasgadoTela(String rasgadoTela) {
 		this.rasgadoTela = rasgadoTela;
-	}
-
-	public String getObservacionRasgado() {
-		return observacionesRasgado;
-	}
-
-	public void setObservacionRasgado(String observacionRasgado) {
-		this.observacionesRasgado = observacionRasgado;
 	}
 
 	public String getPruebaCalidad() {
@@ -230,19 +186,15 @@ public class DisenioPruebaLavadoContaminacionCostura implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((deslizamientoTela == null) ? 0 : deslizamientoTela.hashCode());
 		result = prime * result + ((estatus == null) ? 0 : estatus.hashCode());
 		result = prime * result + ((fechaFinalizacion == null) ? 0 : fechaFinalizacion.hashCode());
 		result = prime * result + ((fechaRealizacion == null) ? 0 : fechaRealizacion.hashCode());
 		result = prime * result + ((idCalidad == null) ? 0 : idCalidad.hashCode());
-		result = prime * result + ((idPrueba == null) ? 0 : idPrueba.hashCode());
 		result = prime * result
 				+ ((idPruebaLavadoContaminacionCostura == null) ? 0 : idPruebaLavadoContaminacionCostura.hashCode());
 		result = prime * result + ((idTela == null) ? 0 : idTela.hashCode());
-		result = prime * result + ((observacionesDeslizado == null) ? 0 : observacionesDeslizado.hashCode());
-		result = prime * result + ((observacionesRasgado == null) ? 0 : observacionesRasgado.hashCode());
 		result = prime * result + ((observacionesResultados == null) ? 0 : observacionesResultados.hashCode());
 		result = prime * result + ((pruebaCalidad == null) ? 0 : pruebaCalidad.hashCode());
 		result = prime * result + ((prueba_pilling == null) ? 0 : prueba_pilling.hashCode());
@@ -261,11 +213,6 @@ public class DisenioPruebaLavadoContaminacionCostura implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		DisenioPruebaLavadoContaminacionCostura other = (DisenioPruebaLavadoContaminacionCostura) obj;
-		if (actualizadoPor == null) {
-			if (other.actualizadoPor != null)
-				return false;
-		} else if (!actualizadoPor.equals(other.actualizadoPor))
-			return false;
 		if (creadoPor == null) {
 			if (other.creadoPor != null)
 				return false;
@@ -296,11 +243,6 @@ public class DisenioPruebaLavadoContaminacionCostura implements Serializable{
 				return false;
 		} else if (!idCalidad.equals(other.idCalidad))
 			return false;
-		if (idPrueba == null) {
-			if (other.idPrueba != null)
-				return false;
-		} else if (!idPrueba.equals(other.idPrueba))
-			return false;
 		if (idPruebaLavadoContaminacionCostura == null) {
 			if (other.idPruebaLavadoContaminacionCostura != null)
 				return false;
@@ -310,16 +252,6 @@ public class DisenioPruebaLavadoContaminacionCostura implements Serializable{
 			if (other.idTela != null)
 				return false;
 		} else if (!idTela.equals(other.idTela))
-			return false;
-		if (observacionesDeslizado == null) {
-			if (other.observacionesDeslizado != null)
-				return false;
-		} else if (!observacionesDeslizado.equals(other.observacionesDeslizado))
-			return false;
-		if (observacionesRasgado == null) {
-			if (other.observacionesRasgado != null)
-				return false;
-		} else if (!observacionesRasgado.equals(other.observacionesRasgado))
 			return false;
 		if (observacionesResultados == null) {
 			if (other.observacionesResultados != null)

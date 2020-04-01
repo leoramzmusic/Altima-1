@@ -8,8 +8,16 @@
     </div>
     <div class="col-sm-4">
         <div class="form-group">
+            <label>Tela</label>
+            <select class="form-control idtelas" id="telas">
+                <option>Selecciona uno...</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
             <label>Operario</label>
-            <select class="form-control" id="realizadoPeque">
+            <select class="form-control sa" id="operarioLavado">
                 <option value="selecciona">Selecciona uno...</option>
                 <option value="tela">Tela</option>
                 <option value="forro">Forro</option>
@@ -17,16 +25,16 @@
             </select>
         </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-2">
         <div class="form-group">
             <label style="font-size: 15px;">Fecha y hora de realizaci&oacute;n</label>
-            <input type="datetime-local" class="form-control" id="adherenciaPeque" placeholder="23.2">
+            <input type="datetime-local" class="form-control" id="fechaRealizacionLavado" placeholder="23.2">
         </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-2">
         <div class="form-group">
             <label style="font-size: 15px;">Fecha y hora de finalizaci&oacute;n</label>
-            <input type="datetime-local" class="form-control" id="adherenciaPeque" placeholder="23.2">
+            <input type="datetime-local" class="form-control" id="fechaFinalizacionLavado" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-12">
@@ -36,13 +44,13 @@
     <div class="col-sm-6">
         <div class="form-group">
             <label style="font-size: 15px;">Medida final del hilo</label>
-            <input type="number" class="form-control" id="finalHiloPeque" placeholder="23.2">
+            <input type="number" class="form-control" id="medidaHiloPruebaLavado" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-6">
         <div class="form-group">
             <label style="font-size: 15px;">Medida final de la trama</label>
-            <input type="number" class="form-control" id="finalTramaPeque" placeholder="23.2">
+            <input type="number" class="form-control" id="medidaTramaPruebaLavado" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-12">
@@ -51,31 +59,31 @@
     <div class="col-sm-3">
         <div class="form-group">
             <label style="font-size: 15px;">Diferencia hilo</label>
-            <input type="number" class="form-control" id="finalHiloPeque" placeholder="23.2">
+            <input type="number" class="form-control" id="diferenciaHiloPruebaLavado" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-3">
         <div class="form-group">
             <label style="font-size: 15px;">(100cm/_____cm)</label>
-            <input type="number" class="form-control" id="finalHiloPeque" placeholder="23.2">
+            <input type="number" class="form-control" id="finalHiloMedPruebaLavado" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-3">
         <div class="form-group">
             <label style="font-size: 15px;">Diferencia trama</label>
-            <input type="number" class="form-control" id="finalTramaPeque" placeholder="23.2">
+            <input type="number" class="form-control" id="diferenciaTramaPruebaLavado" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-3">
         <div class="form-group">
             <label style="font-size: 15px;">(100cm/_____cm)</label>
-            <input type="number" class="form-control" id="finalHiloPeque" placeholder="23.2">
+            <input type="number" class="form-control" id="finalTramaMedPruebaLavado" placeholder="23.2">
         </div>
     </div>
     <div class="col-sm-12">
         <div class="form-group">
             <label style="font-size: 15px;">Observaciones</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Especificar"></textarea>
+            <textarea class="form-control" id="observacionesReultPruebaLavado" rows="3" placeholder="Especificar"></textarea>
         </div>
     </div>
     <div class="col-sm-12">
@@ -86,15 +94,15 @@
         <div class="form-group">
             <label>Calidad</label>
             <div class="custom-control custom-radio">
-                <input class="custom-control-input" type="radio" id="buena" name="calidad">
+                <input class="custom-control-input" type="radio" value="buena" id="buena" name="calidad">
                 <label for="buena" class="custom-control-label">Buena</label>
             </div>
             <div class="custom-control custom-radio">
-                <input class="custom-control-input" type="radio" id="regular" name="calidad">
+                <input class="custom-control-input" type="radio" value="regular" id="regular" name="calidad">
                 <label for="regular" class="custom-control-label">Regular</label>
             </div>
             <div class="custom-control custom-radio">
-                <input class="custom-control-input" type="radio" id="mala" name="calidad">
+                <input class="custom-control-input" type="radio" value="mala" id="mala" name="calidad">
                 <label for="mala" class="custom-control-label">Mala</label>
             </div>
         </div>
@@ -102,7 +110,7 @@
     <div class="col-sm-12">
         <div class="form-group">
             <label style="font-size: 15px;">Observaciones</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Especificar"></textarea>
+            <textarea class="form-control" id="observacionesReultSolidez" rows="3" placeholder="Especificar"></textarea>
         </div>
     </div>
     <div class="col-sm-12">
@@ -112,11 +120,11 @@
     <div class="col-sm-12">
         <div class="form-group">
             <div class="custom-control custom-radio">
-                <input class="custom-control-input" type="radio" id="si" name="decision">
+                <input class="custom-control-input" type="radio" value="si" id="si" name="decision">
                 <label for="si" class="custom-control-label">Si</label>
             </div>
             <div class="custom-control custom-radio">
-                <input class="custom-control-input" type="radio" id="no" name="decision">
+                <input class="custom-control-input" type="radio" value="no" id="no" name="decision">
                 <label for="no" class="custom-control-label">No</label>
             </div>
         </div>
@@ -124,11 +132,11 @@
     <div class="col-sm-12">
         <div class="form-group">
             <label style="font-size: 15px;">Observaciones</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Especificar"></textarea>
+            <textarea class="form-control" id="observacionesReultPilling" rows="3" placeholder="Especificar"></textarea>
         </div>
     </div>
     <div class="form-group col-sm-12">
         <a th:href="${'calidad'}" class="btn btn-danger" data-dismiss="modal">Cancelar</a>
-        <button type="button" class="btn btn-primary next-step float-right">Guardar</button>
+        <button type="button" class="btn btn-primary next-step float-right" onclick="PruebasLavado()">Guardar</button>
     </div>
 </div>
