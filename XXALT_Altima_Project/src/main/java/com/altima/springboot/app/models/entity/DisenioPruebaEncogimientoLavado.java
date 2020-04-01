@@ -37,6 +37,9 @@ public class DisenioPruebaEncogimientoLavado implements Serializable{
 	
 	@Column(name="adherencia_prueba_vapor")
 	private String adherenciaPruebaVapor;
+	
+	@Column(name="proveedor_prueba_vapor")
+	private String proveedorPruebavapor;
 
 	@Column(name="fecha_finalizacion")
 	private String fechaFinalizacion;
@@ -83,17 +86,16 @@ public class DisenioPruebaEncogimientoLavado implements Serializable{
 	@Column(name="estatus")
 	private String estatus;
 	
-	@Column(name="proveedor_prueba_lavado")
-	private String proveedorPruebaLavado;
+
 
 	
 	
-	public String getProveedorPruebaLavado() {
-		return proveedorPruebaLavado;
+	public String getProveedorPruebaVapor() {
+		return proveedorPruebavapor;
 	}
 
-	public void setProveedorPruebaLavado(String proveedorPruebaLavado) {
-		this.proveedorPruebaLavado = proveedorPruebaLavado;
+	public void setProveedorPruebaVapor(String proveedorPruebaVapor) {
+		this.proveedorPruebavapor = proveedorPruebaVapor;
 	}
 
 	public Long getIdPruebaEncogimientoLavado() {
