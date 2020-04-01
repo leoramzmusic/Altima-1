@@ -29,11 +29,11 @@ public class DisenioFamiliaComposicionTela implements Serializable {
 	@Column(name="id_tela")
 	private Long idTela;
 	
-	@Column(name="id_familia_composicion")
-	private Long idFamiliaComposicion;
+	@Column(name="id_composicion")
+	private Long idComposicion;
 	
-	@Column(name="composicion")
-	private String composicion;
+	@Column(name="porcentaje_composicion")
+	private String porcentajeComposicion;
 	
 	@Column(name="creado_por")
 	private String creadoPor;
@@ -50,11 +50,11 @@ public class DisenioFamiliaComposicionTela implements Serializable {
 	
 
 	public Long getIdFamiliaComposicion() {
-		return idFamiliaComposicion;
+		return idComposicion;
 	}
 
 	public void setIdFamiliaComposicion(Long idFamiliaComposicion) {
-		this.idFamiliaComposicion = idFamiliaComposicion;
+		this.idComposicion = idFamiliaComposicion;
 	}
 
 	public Long getIdFamiliaComposicionTela() {
@@ -74,11 +74,11 @@ public class DisenioFamiliaComposicionTela implements Serializable {
 	}
 
 	public String getComposicion() {
-		return composicion;
+		return porcentajeComposicion;
 	}
 
 	public void setComposicion(String composicion) {
-		this.composicion = composicion;
+		this.porcentajeComposicion = composicion;
 	}
 
 	public String getCreadoPor() {
