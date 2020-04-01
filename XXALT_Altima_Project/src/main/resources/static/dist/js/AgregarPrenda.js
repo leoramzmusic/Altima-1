@@ -114,7 +114,8 @@ function RecogerDatosPrimeraParte()
 function RecogerDatosSegundaParte()
 {
 	objeto_prenda['detalleConfeccion'] = $('#DetalleConfeccion').val();
-	objeto_prenda['marcadores'] = $('#Marcadores').val();
+	//Campo en duro de lo de los marcadores, cambiarlo posteriormente.
+	objeto_prenda['marcadores'] = "1";
 }
 function SacarListaMateriales()
 {
@@ -127,8 +128,30 @@ function AgregarElementoListaMateriales()
 	var id = $('#ListaDeMateriales').val();
 	$('#AgregarElementoMaterial').prop('disabled', true);
 	$('#SiguienteTerceraPestana').prop('disabled', true);
-
+	
+	//Este es un boolean para saber si ya se encontro un registro parecido
+	var EncontreUnMaterialIgual = false;
+	//Si ya existe un registro asi en el objeto que tenemos, se le suma uno a la cantidad.
+	for(k = 0; k < objeto_materiales.length; k++)
+	{
+		if(objeto_materiales[k].id == id)
+		{
+			var can =  objeto_materiales[k].cantidad;
+			objeto_materiales[k].cantidad = 0;
+			objeto_materiales[k].cantidad = (can + 1);
+			$('#CantidadMaterial-' + objeto_materiales[k].identidad).val((can + 1));
+			$('#AgregarElementoMaterial').prop('disabled', false);
+        	$('#SiguienteTerceraPestana').prop('disabled', false);
+        	EncontreUnMaterialIgual = true;
+			console.log("si coincidio");
+		}
+	}
+	
+	
 	//Solicitud Ajax para obtener los demas campos.
+	if(!EncontreUnMaterialIgual)
+	{
+		
 
     $.ajax({
         type: "GET",
@@ -143,6 +166,7 @@ function AgregarElementoListaMateriales()
         	var identidad = id + '_' + data[0][1];
         	var temp = {identidad: identidad, id: data[0][0], NoMaterial: data[0][1], Nombre: data[0][8], Clasificacion: data[0][3], Tamanio: data[0][5] + ' ' + data[0][4],
         			Modelo: data[0][6], Proceso: data[0][7], cantidad: 1};
+        	
         	
         	objeto_materiales.push(temp);
         	console.log(temp);
@@ -165,6 +189,9 @@ function AgregarElementoListaMateriales()
 			console.log(e);
 		}
 	});
+    
+    
+	}//Cierra el if
 }
 function QuitarMaterial(identidad)
 {
@@ -191,6 +218,30 @@ function AgregarElementoListaPatronaje()
 	var cantidadForro = $('#CantidadForro').val();
 	var cantidadEntretela = $('#CantidadEntretela').val();
 	
+	
+	//Este es un boolean para saber si ya se encontro un registro parecido
+	var EncontreUnPatronajeIgual = false;
+	//Si ya existe un registro asi en el objeto que tenemos, se le suma uno a la cantidad.
+	for(k = 0; k < objeto_patronajes.length; k++)
+	{
+		if(objeto_patronajes[k].id == id)
+		{
+			EncontreUnPatronajeIgual =  true;
+			$('#BotonAgregarPatronaje').prop('disabled', false);
+			console.log("si coincidio");
+
+			$('#QuitarFilaPatronaje-' + objeto_patronajes[k].identidad).remove();
+			$('#ListaPatronaje').val(objeto_patronajes[k].id).change();
+			$('#CantidadTela').val(objeto_patronajes[k].cantidadTela);
+			$('#CantidadForro').val(objeto_patronajes[k].cantidadForro);
+			$('#CantidadEntretela').val(objeto_patronajes[k].cantidadEntretela);
+			objeto_patronajes.splice(k, 1);
+			console.log(objeto_patronajes);
+		}
+	}
+	
+	
+	if(!EncontreUnPatronajeIgual){
 	//Solicitud Ajax para obtener los demas campos.
     $.ajax({
         type: "GET",
@@ -215,12 +266,22 @@ function AgregarElementoListaPatronaje()
 										  	  		"</button>" + 
 										  	  "</td>" +
 										 "</tr>");
+			
+			$('#CantidadTela').val(0);
+			$('#CantidadForro').val(0);
+			$('#CantidadEntretela').val(0);
+			
 			},
 			error: (e) => {
 				console.log(e);
 			}
 			});
+    
+	}//Cierra el if
+
 }
+
+
 
 function AgregarElementoListaPatronaje2()
 {
@@ -282,12 +343,16 @@ function AgregarElementoListaPatronaje2()
 			});
 }
 
+
+
 function QuitarPatronaje(identidad)
 {
 	$('#QuitarFilaPatronaje-' + identidad).remove();
 	var removeIndex = objeto_patronajes.map(function(item) { return item.identidad; }).indexOf(identidad);
 	objeto_patronajes.splice(removeIndex, 1);
 }
+
+
 
 function Guardar()
 {

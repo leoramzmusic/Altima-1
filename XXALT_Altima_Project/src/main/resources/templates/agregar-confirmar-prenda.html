@@ -292,6 +292,7 @@
 																	<label>Lista de materiales</label>
 																	<select placeholder="Elige una prenda" id="ListaDeMateriales">
 																			<option th:each="materiales : ${materiales}" th:value="${materiales[0]}" th:text="${materiales[1]}"></option>
+																			
 																	</select>
 																</div>
 															</div>
@@ -361,21 +362,21 @@
 																<label>Cantidad de tela</label>
 																<div class="form-group">
 																	<input type="number" class="form-control"
-																		placeholder="CH9192" id="CantidadTela">
+																		placeholder="0" id="CantidadTela">
 																</div>
 															</div>
 															<div class="col-sm-3">
 																<label>Cantidad de forro</label>
 																<div class="form-group">
 																	<input type="number" class="form-control"
-																		placeholder="CH9192"  id="CantidadForro">
+																		placeholder="0"  id="CantidadForro">
 																</div>
 															</div>
 															<div class="col-sm-3">
 																<label>Cantidad de entretela</label>
 																<div class="form-group">
 																	<input type="number" class="form-control"
-																		placeholder="CH9192"  id="CantidadEntretela">
+																		placeholder="0"  id="CantidadEntretela">
 																</div>
 															</div>
 															<div class="col-sm-3">
