@@ -541,7 +541,7 @@
 						"<tr>" +
 						"<td>" + data[i].idText + "</td>",
 						"<td>" + data[i].nombreLookup + "</td>",
-						"<td> <img class='img-thumbnail rounded float-left' style='max-width: 25%; ' src='/uploads/cuidados/"+ data[i].atributo1 +"' /> </td>",
+						"<td> <img class='img-thumbnail rounded float-left' style='max-width: 75%; ' src='/uploads/cuidados/"+ data[i].atributo1 +"' /> </td>",
 						"<td style='text-align: center;'>"+
          "<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creaci&oacute;n:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicaci&oacute;n:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button>&nbsp;"+
      "</td>",
@@ -1846,7 +1846,7 @@ function agregarCuidado() {
 	          '<label for="pedidonom">Nombre instrucción de cuidado</label>'+
 	          '<input type="text" class="swal2-input" name="InstruccionCuidado" id="cuidado" placeholder="Lavar a mano">'+
 	          '<label for="pedidonom">Icono instrucción de cuidado</label>'+
-	          '<input required type="file" class="swal2-input" name="iconocuidado" id="iconocuidado" placeholder="lavar a mano">'+
+	          '<input required type="file" class="swal2-input" name="iconocuidado" id="iconocuidado" placeholder="Lavar a mano">'+
 	          '<input type="hidden" value='+token+' name="_csrf">'+
 	        '</div>'+
 	        '</div>'+
