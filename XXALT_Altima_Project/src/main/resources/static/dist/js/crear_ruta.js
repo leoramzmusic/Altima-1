@@ -130,9 +130,9 @@ function procesos(){
 	    
 	    success: (data) => {
 			$('.opcionruta').remove();
-		
+			console.log(data);
 			for (i in data){
-			$('#procesoRuta').append("<option class='opcionruta' value='"+data[i].idLookup+"'>"+ data[i].nombre +"</opcion>");
+			$('#procesoRuta').append("<option class='opcionruta' value='"+data[i].idLookup+"'>"+ data[i].nombreLookup +"</opcion>");
 			}
 	    },
 	    

@@ -65,7 +65,7 @@ public class CalidadRestController {
 		disenioCalidad.setActualizadoPor(auth.getName());
 		disenioCalidad.setFechaCreacion(formattedDate);
 		disenioCalidad.setUltimaFechaModificacion(formattedDate);
-		disenioCalidad.setEstatus("1");
+		disenioCalidad.setEstatus("0");
 		CalidadService.save(disenioCalidad);
 		disenioCalidad.setIdText("CAL"+ (disenioCalidad.getIdCalidad()+100000));
 		CalidadService.save(disenioCalidad);
@@ -157,7 +157,7 @@ public class CalidadRestController {
 		disenioCalidad.setActualizadoPor(auth.getName());
 		disenioCalidad.setFechaCreacion(formattedDate);
 		disenioCalidad.setUltimaFechaModificacion(formattedDate);
-		disenioCalidad.setEstatus("1");
+		disenioCalidad.setEstatus("0");
 		CalidadService.save(disenioCalidad);
 		disenioCalidad.setIdText("CAL"+ (disenioCalidad.getIdCalidad()+100000));
 		CalidadService.save(disenioCalidad);
@@ -228,7 +228,7 @@ public class CalidadRestController {
 		disenioCalidad.setActualizadoPor(auth.getName());
 		disenioCalidad.setFechaCreacion(formattedDate);
 		disenioCalidad.setUltimaFechaModificacion(formattedDate);
-		disenioCalidad.setEstatus("1");
+		disenioCalidad.setEstatus("0");
 		CalidadService.save(disenioCalidad);
 		disenioCalidad.setIdText("CAL"+ (disenioCalidad.getIdCalidad()+100000));
 		CalidadService.save(disenioCalidad);
@@ -280,7 +280,7 @@ public class CalidadRestController {
 		disenioCalidad.setActualizadoPor(auth.getName());
 		disenioCalidad.setFechaCreacion(formattedDate);
 		disenioCalidad.setUltimaFechaModificacion(formattedDate);
-		disenioCalidad.setEstatus("1");
+		disenioCalidad.setEstatus("0");
 		disenioCalidad.setIdText("CAL"+ (max+100000));
 		CalidadService.save(disenioCalidad);
 	
