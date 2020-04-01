@@ -43,7 +43,6 @@ function listarOperarios(){
 		    	"_csrf": $('#token').val()
 		    },
 		    success: (data) => {
-		    	console.log(data);
 				for (i in data){
 		    	$('.idOperarios').append("<option value='"+data[i][0]+"'>"+data[i][1]+data[i][2]+data[i][3]+"</option>");
 				}
@@ -62,7 +61,6 @@ function listarEntretelas(){
 		    	"_csrf": $('#token').val()
 		    },
 		    success: (data) => {
-		    	console.log(data);
 				for (i in data){
 		    	$('#entretelaEncogi').append("<option value='"+data[i][0]+"'>"+data[i][1]+"</option>");
 				}
@@ -166,7 +164,6 @@ function PruebasEncogimiento(){
 		    },
 	    
 	    success: (data) => {
-			document.getElementById('enlace').setAttribute('href',calidad);
 	    },
 	   
 	    error: (e) => {
@@ -232,7 +229,6 @@ function PruebasLavado(){
 
 		},
 	    success: (data) => {
-	    	document.getElementById('enlace').setAttribute('href',calidad);
 	    },
 	   
 	    error: (e) => {

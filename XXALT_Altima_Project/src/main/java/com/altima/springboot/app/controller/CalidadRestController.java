@@ -70,7 +70,7 @@ public class CalidadRestController {
 		DisenioCalidad disenioCalidad = new DisenioCalidad();
  		double resultHilo = ((Double.parseDouble(palabras[12])*100/Double.parseDouble(palabras[10]))-100);
  		double resultTrama = ((Double.parseDouble(palabras[13])*100/Double.parseDouble(palabras[11]))-100);
- 		
+ 		System.out.println(palabras);
  		Calendar cal = Calendar.getInstance();
         Date date=cal.getTime();
         LocalDate localDate = LocalDate.now();
