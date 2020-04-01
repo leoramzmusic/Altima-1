@@ -82,6 +82,19 @@ public class DisenioPruebaEncogimientoLavado implements Serializable{
 	
 	@Column(name="estatus")
 	private String estatus;
+	
+	@Column(name="proveedor_prueba_lavado")
+	private String proveedorPruebaLavado;
+
+	
+	
+	public String getProveedorPruebaLavado() {
+		return proveedorPruebaLavado;
+	}
+
+	public void setProveedorPruebaLavado(String proveedorPruebaLavado) {
+		this.proveedorPruebaLavado = proveedorPruebaLavado;
+	}
 
 	public Long getIdPruebaEncogimientoLavado() {
 		return idPruebaEncogimientoLavado;
@@ -246,145 +259,4 @@ public class DisenioPruebaEncogimientoLavado implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((adherenciaPruebaVapor == null) ? 0 : adherenciaPruebaVapor.hashCode());
-		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
-		result = prime * result + ((diferenciaMedidaHilo == null) ? 0 : diferenciaMedidaHilo.hashCode());
-		result = prime * result + ((diferenciaMedidaTrama == null) ? 0 : diferenciaMedidaTrama.hashCode());
-		result = prime * result + ((entretelaPruebaVapor == null) ? 0 : entretelaPruebaVapor.hashCode());
-		result = prime * result + ((estatus == null) ? 0 : estatus.hashCode());
-		result = prime * result + ((fechaFinalizacion == null) ? 0 : fechaFinalizacion.hashCode());
-		result = prime * result + ((fechaRealizacion == null) ? 0 : fechaRealizacion.hashCode());
-		result = prime * result + ((idCalidad == null) ? 0 : idCalidad.hashCode());
-		result = prime * result + ((idPruebaEncogimientoLavado == null) ? 0 : idPruebaEncogimientoLavado.hashCode());
-		result = prime * result + ((idTela == null) ? 0 : idTela.hashCode());
-		result = prime * result + ((medidaFinalHilo == null) ? 0 : medidaFinalHilo.hashCode());
-		result = prime * result + ((medidaFinalTrama == null) ? 0 : medidaFinalTrama.hashCode());
-		result = prime * result + ((medidaInicialHilo == null) ? 0 : medidaInicialHilo.hashCode());
-		result = prime * result + ((medidaInicialTrama == null) ? 0 : medidaInicialTrama.hashCode());
-		result = prime * result + ((observacionesResultados == null) ? 0 : observacionesResultados.hashCode());
-		result = prime * result + ((presionPrueba == null) ? 0 : presionPrueba.hashCode());
-		result = prime * result + ((temperaturaPruebaVapor == null) ? 0 : temperaturaPruebaVapor.hashCode());
-		result = prime * result + ((tiempoPrueba == null) ? 0 : tiempoPrueba.hashCode());
-		result = prime * result + ((tipoPrueba == null) ? 0 : tipoPrueba.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		DisenioPruebaEncogimientoLavado other = (DisenioPruebaEncogimientoLavado) obj;
-		if (adherenciaPruebaVapor == null) {
-			if (other.adherenciaPruebaVapor != null)
-				return false;
-		} else if (!adherenciaPruebaVapor.equals(other.adherenciaPruebaVapor))
-			return false;
-		if (creadoPor == null) {
-			if (other.creadoPor != null)
-				return false;
-		} else if (!creadoPor.equals(other.creadoPor))
-			return false;
-		if (diferenciaMedidaHilo == null) {
-			if (other.diferenciaMedidaHilo != null)
-				return false;
-		} else if (!diferenciaMedidaHilo.equals(other.diferenciaMedidaHilo))
-			return false;
-		if (diferenciaMedidaTrama == null) {
-			if (other.diferenciaMedidaTrama != null)
-				return false;
-		} else if (!diferenciaMedidaTrama.equals(other.diferenciaMedidaTrama))
-			return false;
-		if (entretelaPruebaVapor == null) {
-			if (other.entretelaPruebaVapor != null)
-				return false;
-		} else if (!entretelaPruebaVapor.equals(other.entretelaPruebaVapor))
-			return false;
-		if (estatus == null) {
-			if (other.estatus != null)
-				return false;
-		} else if (!estatus.equals(other.estatus))
-			return false;
-		if (fechaFinalizacion == null) {
-			if (other.fechaFinalizacion != null)
-				return false;
-		} else if (!fechaFinalizacion.equals(other.fechaFinalizacion))
-			return false;
-		if (fechaRealizacion == null) {
-			if (other.fechaRealizacion != null)
-				return false;
-		} else if (!fechaRealizacion.equals(other.fechaRealizacion))
-			return false;
-		if (idCalidad == null) {
-			if (other.idCalidad != null)
-				return false;
-		} else if (!idCalidad.equals(other.idCalidad))
-			return false;
-		if (idPruebaEncogimientoLavado == null) {
-			if (other.idPruebaEncogimientoLavado != null)
-				return false;
-		} else if (!idPruebaEncogimientoLavado.equals(other.idPruebaEncogimientoLavado))
-			return false;
-		if (idTela == null) {
-			if (other.idTela != null)
-				return false;
-		} else if (!idTela.equals(other.idTela))
-			return false;
-		if (medidaFinalHilo == null) {
-			if (other.medidaFinalHilo != null)
-				return false;
-		} else if (!medidaFinalHilo.equals(other.medidaFinalHilo))
-			return false;
-		if (medidaFinalTrama == null) {
-			if (other.medidaFinalTrama != null)
-				return false;
-		} else if (!medidaFinalTrama.equals(other.medidaFinalTrama))
-			return false;
-		if (medidaInicialHilo == null) {
-			if (other.medidaInicialHilo != null)
-				return false;
-		} else if (!medidaInicialHilo.equals(other.medidaInicialHilo))
-			return false;
-		if (medidaInicialTrama == null) {
-			if (other.medidaInicialTrama != null)
-				return false;
-		} else if (!medidaInicialTrama.equals(other.medidaInicialTrama))
-			return false;
-		if (observacionesResultados == null) {
-			if (other.observacionesResultados != null)
-				return false;
-		} else if (!observacionesResultados.equals(other.observacionesResultados))
-			return false;
-		if (presionPrueba == null) {
-			if (other.presionPrueba != null)
-				return false;
-		} else if (!presionPrueba.equals(other.presionPrueba))
-			return false;
-		if (temperaturaPruebaVapor == null) {
-			if (other.temperaturaPruebaVapor != null)
-				return false;
-		} else if (!temperaturaPruebaVapor.equals(other.temperaturaPruebaVapor))
-			return false;
-		if (tiempoPrueba == null) {
-			if (other.tiempoPrueba != null)
-				return false;
-		} else if (!tiempoPrueba.equals(other.tiempoPrueba))
-			return false;
-		if (tipoPrueba == null) {
-			if (other.tipoPrueba != null)
-				return false;
-		} else if (!tipoPrueba.equals(other.tipoPrueba))
-			return false;
-		return true;
-	}
-
-	
 }
