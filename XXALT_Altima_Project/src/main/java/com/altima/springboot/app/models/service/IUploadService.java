@@ -29,4 +29,12 @@ public interface IUploadService {
 	
 	public boolean deleteForro(String filename);
 
+	public Resource loadcuidados(String filename) throws MalformedURLException;
+
+	public String copycuidados(MultipartFile file) throws IOException;
+
+	public boolean deletecuidados(String filename);
+
+	public void initcuidados() throws IOException;
+
 }
