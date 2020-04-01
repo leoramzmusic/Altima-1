@@ -1,5 +1,6 @@
 $(document).ready(function() {
-
+	listarOperarios();
+	listarEntretelas();
 	
 });
 function nextTab(elem) {
@@ -34,7 +35,43 @@ function listarTelas(){
 	
 }
 
+function listarOperarios(){
+	$.ajax({
+		 method: "GET",
+		    url: "/listarOperarios",
+		    data: {
+		    	"_csrf": $('#token').val()
+		    },
+		    success: (data) => {
+		    	console.log(data);
+				for (i in data){
+		    	$('.idOperarios').append("<option value='"+data[i][0]+"'>"+data[i][1]+data[i][2]+data[i][3]+"</option>");
+				}
+		    },
+		    error: (e) => {
+		        // location.reload();
+		    }
+		});
+}
 
+function listarEntretelas(){
+	$.ajax({
+		 method: "GET",
+		    url: "/listarEntretelas",
+		    data: {
+		    	"_csrf": $('#token').val()
+		    },
+		    success: (data) => {
+		    	console.log(data);
+				for (i in data){
+		    	$('#entretelaEncogi').append("<option value='"+data[i][0]+"'>"+data[i][1]+"</option>");
+				}
+		    },
+		    error: (e) => {
+		        // location.reload();
+		    }
+		});
+}
 
 
 

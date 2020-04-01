@@ -20,9 +20,11 @@ import com.altima.springboot.app.models.entity.DisenioPruebaEncogimientoLavado;
 import com.altima.springboot.app.models.entity.DisenioPruebaLavadoContaminacionCostura;
 import com.altima.springboot.app.models.entity.DisenioTela;
 import com.altima.springboot.app.models.service.IDisenioCalidadService;
+import com.altima.springboot.app.models.service.IDisenioMaterialService;
 import com.altima.springboot.app.models.service.IDisenioPruebaEncogimientoLavadoService;
 import com.altima.springboot.app.models.service.IDisenioPruebaLavadoContaminacionCosturaService;
 import com.altima.springboot.app.models.service.IDisenioTelaService;
+import com.altima.springboot.app.models.service.IHrEmpleadoService;
 
 @RestController
 public class CalidadRestController {
@@ -39,10 +41,25 @@ public class CalidadRestController {
 	@Autowired
 	private IDisenioPruebaLavadoContaminacionCosturaService LavadoContaCostura;
 	
+	@Autowired
+	private IHrEmpleadoService empleadoService;
+	
+	@Autowired
+	private IDisenioMaterialService materialService;
+	
 	@RequestMapping(value="/listarTelasCalidad", method=RequestMethod.GET)
 	public List<DisenioTela> listarTelas(){
 		List<DisenioTela> resultTelas = disenioTela.findAll();
 		return resultTelas;
+	}
+	@RequestMapping(value="/listarOperarios", method=RequestMethod.GET)
+	public List<Object> listarOperarios(){
+		return empleadoService.findAllByPuesto(1L);
+	}
+	
+	@RequestMapping(value="/listarEntretelas", method=RequestMethod.GET)
+	public List<Object> listarEntretelas(){
+		return materialService.findAllByTipoMaterial(111L);
 	}
 	
 	@RequestMapping(value="/guardarPruebaEncogimiento", method=RequestMethod.POST)

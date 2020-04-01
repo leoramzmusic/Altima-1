@@ -164,5 +164,12 @@ public class DisenioMaterialServiceImpl implements IDisenioMaterialService {
 		// TODO Auto-generated method stub
 		return em.createQuery("SELECT idLookup, nombreLookup, tipoLookup FROM DisenioLookup WHERE tipoLookup= 'Familia Prenda' and   estatus=1").getResultList();
 	}	
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> findAllByTipoMaterial(Long id) {
+		// TODO Auto-generated method stub
+		return em.createQuery("SELECT idMaterial, nombreMaterial FROM DisenioMaterial WHERE idTipoMaterial="+id+" AND estatus = 1").getResultList();
+	}	
 
 }

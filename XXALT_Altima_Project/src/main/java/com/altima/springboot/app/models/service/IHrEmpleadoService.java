@@ -13,5 +13,7 @@ public interface IHrEmpleadoService {
 	void delete(Long id);
 
 	HrEmpleado findOne(Long id);
+	
+	List<Object> findAllByPuesto(Long id);
 
 }

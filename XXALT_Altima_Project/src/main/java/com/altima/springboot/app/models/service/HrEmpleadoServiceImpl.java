@@ -2,6 +2,8 @@ package com.altima.springboot.app.models.service;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +15,8 @@ import com.altima.springboot.app.repository.HrEmpleadoRepository;
 public class HrEmpleadoServiceImpl implements IHrEmpleadoService {
 	@Autowired
 	private HrEmpleadoRepository repository;
+	@Autowired
+	private EntityManager em;
 	@Override
 	@Transactional(readOnly=true)
 	public List<HrEmpleado> findAll() {
@@ -40,6 +44,18 @@ public class HrEmpleadoServiceImpl implements IHrEmpleadoService {
 	public HrEmpleado findOne(Long id) {
 		// TODO Auto-generated method stub
 		return repository.findById(id).orElse(null);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<Object> findAllByPuesto(Long id) {
+		// TODO Auto-generated method stub
+		return em.createNativeQuery("select emp.id_empleado, per.nombre_persona, per.apellido_paterno, per.apellido_materno from \r\n" + 
+									"(select id_empleado, id_persona from alt_hr_empleado where id_puesto = "+id+") as emp\r\n" + 
+									"INNER JOIN alt_hr_persona per on emp.id_persona = per.id_persona").getResultList();
+				
+	
 	}
 
 }
