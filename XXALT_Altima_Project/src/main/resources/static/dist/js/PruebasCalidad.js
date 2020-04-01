@@ -277,7 +277,6 @@ function PruebaCostura(){
 
 		},
 	    success: (data) => {
-	    	document.getElementById('enlace').setAttribute('href',calidad);
 	    	
 	    },
 	   

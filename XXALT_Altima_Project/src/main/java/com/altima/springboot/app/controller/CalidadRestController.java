@@ -63,7 +63,7 @@ public class CalidadRestController {
 	}
 	
 	@RequestMapping(value="/guardarPruebaEncogimiento", method=RequestMethod.POST)
-	public List<String> guardarPruebaEncogi(@RequestParam(name = "datos") String guardarEncogi){
+	public String guardarPruebaEncogi(@RequestParam(name = "datos") String guardarEncogi){
 		String[] palabras = guardarEncogi.split(",");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		DisenioPruebaEncogimientoLavado PruebaEncoLavado = new DisenioPruebaEncogimientoLavado();
@@ -152,12 +152,12 @@ public class CalidadRestController {
 		
 		EncogimientoLavado.save(PruebaEncoLavado);
 		
-		return null;
+		return "calidad";
 	}
 	
 	
 	@RequestMapping(value="/guardarPruebaLavado", method=RequestMethod.POST)
-	public List<String> guardarPruebaLavado(@RequestParam(name = "datos") String guardarEncogi){
+	public String guardarPruebaLavado(@RequestParam(name = "datos") String guardarEncogi){
 		String[] palabras = guardarEncogi.split(",");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		DisenioPruebaEncogimientoLavado PruebaEncoLavado = new DisenioPruebaEncogimientoLavado();
@@ -225,12 +225,12 @@ public class CalidadRestController {
 		
 		LavadoContaCostura.save(PruebaLavadoContaCostura);
 		
-		return null;
+		return "calidad";
 	}
 	
 	
 	@RequestMapping(value="/guardarPruebaCostura", method=RequestMethod.POST)
-	public void guardarPruebaCostura(@RequestParam(name = "datos") String guardarEncogi){
+	public String guardarPruebaCostura(@RequestParam(name = "datos") String guardarEncogi){
 		String[] palabras = guardarEncogi.split(",");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		DisenioCalidad disenioCalidad = new DisenioCalidad();
@@ -275,6 +275,7 @@ public class CalidadRestController {
 		PruebaLavadoContaCostura.setEstatus("1");
 		
 		LavadoContaCostura.save(PruebaLavadoContaCostura);
+		return "calidad";
 	}
 	
 	@RequestMapping(value="/guardarPruebaContaminacion", method=RequestMethod.POST)
