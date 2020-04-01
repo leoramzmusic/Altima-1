@@ -1,5 +1,7 @@
 package com.altima.springboot.app.controller;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -9,20 +11,27 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.altima.springboot.app.models.entity.DisenioLookup;
 import com.altima.springboot.app.models.service.ICatalogoService;
+import com.altima.springboot.app.models.service.IUploadService;
 //import com.google.gson.Gson;
 
 @CrossOrigin(origins = { "*" })
@@ -35,6 +44,25 @@ public class CatalogoController {
 
 	@Autowired
 	ICatalogoService catalogo;
+
+	@Autowired
+	private IUploadService uploadFileService;
+
+	@GetMapping(value = "/uploads/cuidados/{filename:.+}")
+	public ResponseEntity<Resource> verFoto(@PathVariable String filename) {
+
+		Resource recurso = null;
+
+		try {
+			recurso = uploadFileService.loadcuidados(filename);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+
+		return ResponseEntity.ok()
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
+				.body(recurso);
+	}
 
 	@RequestMapping(value = "/marcas", method = RequestMethod.GET)
 	@ResponseBody
@@ -98,7 +126,7 @@ public class CatalogoController {
 
 		return catalogo.findAllMaterial();
 	}
-	
+
 	@RequestMapping(value = "/marcadoreslook", method = RequestMethod.GET)
 	@ResponseBody
 	public List<DisenioLookup> marcadores() {
@@ -108,7 +136,7 @@ public class CatalogoController {
 
 	@RequestMapping(value = { "/catalogos" }, method = RequestMethod.GET)
 	public String catalogo(Model model, RedirectAttributes flash) {
-		
+
 		return "/catalogos";
 	}
 
@@ -125,7 +153,8 @@ public class CatalogoController {
 	@PostMapping("/guardarcatalogo")
 	public String guardacatalogo(String Marca, String Descripcion, String Color, String PiezaTrazo,
 			String FamiliaPrenda, String FamiliaGenero, String FamiliaComposicion, String InstruccionCuidado,
-			String UnidadMedida, String Material, HttpServletRequest request,String Marcador,String CodigoColor) {
+			String UnidadMedida, String Material, HttpServletRequest request, String Marcador, String CodigoColor,
+			@RequestParam(required = false) MultipartFile iconocuidado) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
 		if (Marca != null) {
@@ -215,6 +244,16 @@ public class CatalogoController {
 			instruccioncuidado.setCreadoPor(auth.getName());
 			instruccioncuidado.setFechaCreacion(date);
 			instruccioncuidado.setEstatus(1);
+			String uniqueFilename = null;
+			try {
+				uniqueFilename = uploadFileService.copycuidados(iconocuidado);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			instruccioncuidado.setAtributo1(uniqueFilename);
+
 			catalogo.save(instruccioncuidado);
 			instruccioncuidado.setIdText("INSTRCU00" + (instruccioncuidado.getIdLookup() + 10));
 			catalogo.save(instruccioncuidado);
@@ -266,7 +305,7 @@ public class CatalogoController {
 	@PostMapping("/editarcatalogo")
 	public String editacatalogo(Model model, final Long idLookup, String Marca, String Color, String PiezaTrazo,
 			String FamiliaPrenda, String Descripcion, String FamiliaGenero, String FamiliaComposicion,
-			String InstruccionCuidado, String UnidadMedida, String Material,String Marcador,String CodigoColor) {
+			String InstruccionCuidado, String UnidadMedida, String Material, String Marcador, String CodigoColor) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		DisenioLookup marca = null;
 		DisenioLookup color = null;
