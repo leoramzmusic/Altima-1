@@ -81,6 +81,7 @@
 												<th>Observaciones</th>
 												<th>Proceso actual</th>
 												<th>Proceso</th>
+												<th>Horas</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -89,11 +90,43 @@
 												<td>05/01/2020</td>
 												<td>Nota de observaciones</td>
 												<td>Corte</td>
-												<td class="tdcenter"><a data-target="#detalles-proceso" onclick="listarProcesos(1)" class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="modal" data-placement="top"
+												<td class="tdcenter"><a data-target="#detalles-proceso" onclick="listarTrazos(1)" class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="modal" data-placement="top"
+													data-content="Detalles"><i class="fas fa-info"></i></a></td>
+													
+													<td class="tdcenter"><a data-target="#Contador" onclick="listarHoras(1)" class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="modal" data-placement="top"
+													data-content="Horas"><i class="fas fa-info"></i></a></td>
+											</tr>
+											
+											<tr>
+												<td><a th:href="${''}">MAE123</a></td>
+												<td>05/01/2020</td>
+												<td>Nota de observaciones</td>
+												<td>Corte</td>
+												<td class="tdcenter"><a data-target="#detalles-proceso" onclick="listarTrazos(2)" class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="modal" data-placement="top"
+													data-content="Detalles"><i class="fas fa-info"></i></a></td>
+											</tr>
+											
+											<tr>
+												<td><a th:href="${''}">MAE123</a></td>
+												<td>05/01/2020</td>
+												<td>Nota de observaciones</td>
+												<td>Corte</td>
+												<td class="tdcenter"><a data-target="#detalles-proceso" onclick="listarTrazos(3)" class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="modal" data-placement="top"
+													data-content="Detalles"><i class="fas fa-info"></i></a></td>
+											</tr>
+											
+											<tr>
+												<td><a th:href="${''}">MAE123</a></td>
+												<td>05/01/2020</td>
+												<td>Nota de observaciones</td>
+												<td>Corte</td>
+												<td class="tdcenter"><a data-target="#detalles-proceso" onclick="listarTrazos(4)" class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="modal" data-placement="top"
 													data-content="Detalles"><i class="fas fa-info"></i></a></td>
 											</tr>
 										</tbody>
 									</table>
+									
+
 								</div>
 								<!-- /.card-body -->
 							</div>
@@ -153,5 +186,26 @@
 	<!-- Funcionalidad-->
     <script src="dist/js/ProduccionMuestras.js"></script>
 </body>
+
+
+
+<div class="modal fade" id="Contador" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+		<div class="modal-content" id="contenedorTablaContador">
+			
+			<div class="modal-body">
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div class="modal-body" id="quitarContador">
+                    	<table class="table table-bordered" id="idtableContador" >
+                          
+                        </table>
+                        </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 
 </html>

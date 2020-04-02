@@ -2,27 +2,8 @@
 <div class="modal fade" id="detalles-proceso" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content" id="contenedorTabla">
-            <div class="modal-header">
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link  active" href="#trazo" role="tab" data-toggle="tab" aria-selected="true">Trazo</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#corte" role="tab" data-toggle="tab">Corte</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#confeccion" role="tab" data-toggle="tab">Confecci&oacute;n</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#planchado" role="tab" data-toggle="tab">Planchado</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#terminado" role="tab" data-toggle="tab">Terminado</a>
-                    </li>
-                </ul>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+            <div  class="modal-header" id="menu" >
+                
             </div>
             <div class="modal-body">
                 <!-- Tab panes -->
@@ -30,162 +11,47 @@
                     <div role="tabpanel" class="tab-pane active" id="trazo">
                     
 						
-					<input type="hidden" th:name="${_csrf.parameterName}" id="token" th:value="${_csrf.token}"/>
-						<div class="form-group">
-							  <button onclick="agregarProceso()" class="btn btn-link" style="color: #1f2d3d!important">Agregar <i class="fas fa-plus-circle"></i></button>
-							<a class="btn btn-primary btn-circle btn-sm popoverxd text-white" data-container="body" data-toggle="modal" data-placement="top"data-content="Agregar"><i class="fas fa-plus"></i></a>
-						</div>
+						<input type="hidden" th:name="${_csrf.parameterName}" id="token" th:value="${_csrf.token}"/>
+						
 						<div class="modal-body" id="quitar">
                     	<table class="table table-bordered" id="idtable" >
-                            <thead>
-                                <tr>
-                                    <th scope="col">Operario</th>
-                                    <th scope="col">Fecha de recepci&oacute;n</th>
-                                    <th scope="col">Fecha de entrega</th>
-                                    <th scope="col">Tiempo</th>
-                                    <th scope="col">Controles</th>
-                                </tr>
-                            </thead>
-                            <!-- <tbody>
-                                <tr>
-                                    <th scope="row">Juan Jose Maria Morelos</th>
-                                    <td>03/01/2020 11:00</td>
-                                    <td>04/01/2020 16:00</td>
-                                    <td>1 dia 5 horas</td>
-                                    <td class="tdcenter">	                                    
-	                                    <i class="fas fa-play text-success"></i>&nbsp;&nbsp;&nbsp;
-	                                    <i class="fas fa-pause text-warning"></i>&nbsp;&nbsp;&nbsp;
-	                                    <i class="fas fa-stop text-danger"></i>
-                                    </td>
-                                </tr>
-                            </tbody> -->
+                          
                         </table>
                         </div>
                     </div>
-                    <!--div role="tabpanel" class="tab-pane active" id="corte">
-                    	<div class="form-group">
-						    <label for="exampleFormControlSelect1">Operario</label>
-						    <select class="form-control" id="exampleFormControlSelect1">
-						      <option>Operario 1</option>
-						      <option>Operario 2</option>
-						      <option>Operario 3</option>
-						      <option>Operario 4</option>
-						      <option>Operario 5</option>
-						    </select>
-						</div>
-						<div class="form-group">
-							<a class="btn btn-primary btn-circle btn-sm popoverxd text-white" data-container="body" data-toggle="modal" data-placement="top"data-content="Agregar"><i class="fas fa-plus"></i></a>
-						</div>
-                    	<table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Operario</th>
-                                    <th scope="col">Fecha de recepci&oacute;n</th>
-                                    <th scope="col">Fecha de entrega</th>
-                                </tr>modal-content
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">Juan Jose Maria Morelos</th>
-                                    <td>03/01/2020</td>
-                                    <td>04/01/2020</td>
-                                </tr>
-                            </tbody>
+                    <div role="tabpanel" class="tab-pane active" id="corte">
+                  		
+                  		<div class="modal-body" id="quitar2">
+                    	<table class="table table-bordered" id="idtable2" >
+                     
                         </table>
+                        </div>
+						
                     </div>
                     <div role="tabpanel" class="tab-pane active" id="confeccion">
-                    	<div class="form-group">
-						    <label for="exampleFormControlSelect1">Operario</label>
-						    <select class="form-control" id="exampleFormControlSelect1">
-						      <option>Operario 1</option>
-						      <option>Operario 2</option>
-						      <option>Operario 3</option>
-						      <option>Operario 4</option>
-						      <option>Operario 5</option>
-						    </select>
-						</div>
-						<div class="form-group">
-							<a class="btn btn-primary btn-circle btn-sm popoverxd text-white" data-container="body" data-toggle="modal" data-placement="top"data-content="Agregar"><i class="fas fa-plus"></i></a>
-						</div>
-                    	<table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Operario</th>
-                                    <th scope="col">Fecha de recepci&oacute;n</th>
-                                    <th scope="col">Fecha de entrega</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">Juan Jose Maria Morelos</th>
-                                    <td>03/01/2020</td>
-                                    <td>04/01/2020</td>
-                                </tr>
-                            </tbody>
+                    	<div class="modal-body" id="quitar3">
+                    	<table class="table table-bordered" id="idtable3" >
+                     
                         </table>
+                        </div>
+						
                     </div>
                     <div role="tabpanel" class="tab-pane active" id="planchado">
-                    	<div class="form-group">
-						    <label for="exampleFormControlSelect1">Operario</label>
-						    <select class="form-control" id="exampleFormControlSelect1">
-						      <option>Operario 1</option>
-						      <option>Operario 2</option>
-						      <option>Operario 3</option>
-						      <option>Operario 4</option>
-						      <option>Operario 5</option>
-						    </select>
-						</div>
-						<div class="form-group">
-							<a class="btn btn-primary btn-circle btn-sm popoverxd text-white" data-container="body" data-toggle="modal" data-placement="top"data-content="Agregar"><i class="fas fa-plus"></i></a>
-						</div>
-                    	<table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Operario</th>
-                                    <th scope="col">Fecha de recepci&oacute;n</th>
-                                    <th scope="col">Fecha de entrega</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">Juan Jose Maria Morelos</th>
-                                    <td>03/01/2020</td>
-                                    <td>04/01/2020</td>
-                                </tr>
-                            </tbody>
+                    	<div class="modal-body" id="quitar4">
+                    	<table class="table table-bordered" id="idtable4" >
+                     
                         </table>
+                        </div>
                     </div>
                     <div role="tabpanel" class="tab-pane active" id="terminado">
-                    	<div class="form-group">
-						    <label for="exampleFormControlSelect1">Operario</label>
-						    <select class="form-control" id="exampleFormControlSelect1">
-						      <option>Operario 1</option>
-						      <option>Operario 2</option>
-						      <option>Operario 3</option>
-						      <option>Operario 4</option>
-						      <option>Operario 5</option>
-						    </select>
-						</div>
-						<div class="form-group">
-							<a class="btn btn-primary btn-circle btn-sm popoverxd text-white" data-container="body" data-toggle="modal" data-placement="top"data-content="Agregar"><i class="fas fa-plus"></i></a>
-						</div>
-                    	<table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Operario</th>
-                                    <th scope="col">Fecha de recepci&oacute;n</th>
-                                    <th scope="col">Fecha de entrega</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">Juan Jose Maria Morelos</th>
-                                    <td>03/01/2020</td>
-                                    <td>04/01/2020</td>
-                                </tr>
-                            </tbody>
+                    	
+						<div class="modal-body" id="quitar5">
+                    	<table class="table table-bordered" id="idtable5" >
+                     
                         </table>
-                    </div-->
+                        </div>
+                    	
+                    </div>
                 </div>
             </div>
         </div>
@@ -193,4 +59,42 @@
 </div>
 
 
+<div class="modal fade" id="aux" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+		<div class="modal-content">
+			
+			<div class="modal-body">
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div class="row">
+						<div class="form-group col-sm-4">
+							<label for="pedidonom">Operador</label> 
+							<br> 
+							<select class="swal2-input" id="operador">
+								<option value="">Seleccion a un maldito exclavo...</option>
+								<option 
+									th:each="operador: ${operador}"
+									th:value="${operador[0]}" th:text="${operador[1]}">
+								</option>
+							</select>
+						</div>
+						<div class="form-group col-sm-4">
+							<label for="pedidonom">Fecha de recepcion</label> 
+							<input type="datetime-local" class="swal2-input" id="f1">
+						</div>
+						<div class="form-group col-sm-4">
+							<label for="pedidonom">Fecha de entrega</label> 
+							<input type="datetime-local" class="swal2-input" id="f2">
+						</div>
+						<input type="text" name="id_muestra" id="id_muestra">
+						<input type="text"  name="tipo" id="tipo">
+						<div class="form-group col-sm-12">
+       						<button onclick="agregar()"  class="btn btn-primary next-step float-right" type="button">Guardar</button>
+      					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
