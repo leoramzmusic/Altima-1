@@ -1,29 +1,8 @@
-.modal-marcas {
-     max-width: 60% !important;
-}
- .modal-colores {
-     max-width: 50% !important;
-}
- .modal-material {
-     max-width: 98% !important;
-}
- .modal-trazo {
-     max-width: 70% !important;
-}
- .modal-forro {
-     max-width: 80% !important;
-}
- .modal-tela {
-     max-width: 98% !important;
-}
- .modal-prendas {
-     max-width: 70% !important;
-}
- .modal-genero {
-     max-width: 70% !important;
-}
- .modal-mantenimiento {
+ .modal-catalogo-info {
      max-width: 83% !important;
+}
+.modal-completo{
+     max-width: 98% !important;
 }
  .tdcenter {
      text-align: center;
@@ -42,10 +21,10 @@
      height: 100%;
 }
  .btn-circle.btn-sm {
-     width: 35px;
-     height: 35px;
+     width: 30px;
+     height: 30px;
      border-radius:25px;
-     font-size: 18px;
+     font-size: 15px;
      text-align: center;
 }
  /*.btn-circle.btn-md {
@@ -162,4 +141,7 @@ div.dataTables_wrapper {
         width: auto;
         margin: 0 auto;
     }
- 
+    
+    .swal-wide{
+    width:850px !important;
+}

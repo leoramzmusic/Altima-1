@@ -26,10 +26,8 @@
 <link rel="stylesheet" href="dist/css/jquery.dataTables.min.css">
 <!-- Datatables Plugin-->
 <link rel="stylesheet" href="dist/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
+<link rel="stylesheet" href="dist/css/fixedHeader.bootstrap.min.css">
+<link rel="stylesheet" href="dist/css/responsive.bootstrap.min.css">
 
 <!-- Select2 -->
 <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
@@ -199,50 +197,48 @@
 	</script>
 	<!-- Script de la tabla -->
 	<script>
-		$(document)
-				.ready(
-						function() {
-							var table = $('table.tablexd')
-									.DataTable(
-											{
-												"ordering" : false,
-												"pageLength" : 5,
-												"responsive" : true,
-												"lengthMenu" : [
-														[ 5, 10, 25, 50, 100 ],
-														[ 5, 10, 25, 50, 100 ] ],
-												"language" : {
-													"sProcessing" : "Procesando...",
-													"sLengthMenu" : "Mostrar _MENU_ registros",
-													"sZeroRecords" : "No se encontraron resultados",
-													"sEmptyTable" : "Ningún dato disponible en esta tabla =(",
-													"sInfo" : "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-													"sInfoEmpty" : "Mostrando registros del 0 al 0 de un total de 0 registros",
-													"sInfoFiltered" : "(filtrado de un total de _MAX_ registros)",
-													"sInfoPostFix" : "",
-													"sSearch" : "Buscar:",
-													"sUrl" : "",
-													"sInfoThousands" : ",",
-													"sLoadingRecords" : "Cargando...",
-													"oPaginate" : {
-														"sFirst" : "Primero",
-														"sLast" : "Último",
-														"sNext" : "Siguiente",
-														"sPrevious" : "Anterior"
-													},
-													"oAria" : {
-														"sSortAscending" : ": Activar para ordenar la columna de manera ascendente",
-														"sSortDescending" : ": Activar para ordenar la columna de manera descendente"
-													},
-													"buttons" : {
-														"copy" : "Copiar",
-														"colvis" : "Visibilidad"
-													}
-												}
-											});
-							new $.fn.dataTable.FixedHeader(table);
+	$(document).ready(function() {
+	    var table = $('table.tablexd')
+	        .DataTable({
+	            "ordering": false,
+	            "pageLength": 5,
+	            "responsive": true,
+	            "lengthMenu": [
+	                [5, 10, 25, 50, 100],
+	                [5, 10, 25, 50, 100]
+	            ],
+	            "language": {
+	                "sProcessing": "Procesando...",
+	                "sLengthMenu": "Mostrar _MENU_ registros",
+	                "sZeroRecords": "No se encontraron resultados",
+	                "sEmptyTable": "Ningún dato disponible en esta tabla =(",
+	                "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+	                "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+	                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+	                "sInfoPostFix": "",
+	                "sSearch": "Buscar:",
+	                "sUrl": "",
+	                "sInfoThousands": ",",
+	                "sLoadingRecords": "Cargando...",
+	                "oPaginate": {
+	                    "sFirst": "Primero",
+	                    "sLast": "Último",
+	                    "sNext": "Siguiente",
+	                    "sPrevious": "Anterior"
+	                },
+	                "oAria": {
+	                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+	                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+	                },
+	                "buttons": {
+	                    "copy": "Copiar",
+	                    "colvis": "Visibilidad"
+	                }
+	            }
+	        });
+	    new $.fn.dataTable.FixedHeader(table);
 
-						});
+	});
 	</script>
 	<script>
 		function changeClassById() {

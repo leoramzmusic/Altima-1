@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Traspasos | Altima</title>
+<title>Entregas y Salidas | Altima</title>
 <link rel="icon" type="image/png" sizes="32x32" href="dist/img/favicon.ico">
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,6 +23,10 @@
 <link rel="stylesheet" href="dist/css/jquery.dataTables.min.css">
 <!-- Datatables Plugin-->
 <link rel="stylesheet" href="dist/css/dataTables.bootstrap4.min.css">
+<!-- select2 -->
+<link href="dist/css/select2.min.css" rel="stylesheet" />
+<!-- select2-bootstrap4-theme -->
+<link href="dist/css/select2-bootstrap4.css" rel="stylesheet">
 <!-- Google Font: Source Sans Pro -->
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -46,7 +50,7 @@
 					<div class="row mb-2">
 						<div class="col-sm-6">
 							<h1>
-								Traspaso&nbsp;<button class="btn btn-primary btn-circle btn-sm popoverxd" data-container="body" data-target="#addTraspaso" data-toggle="modal" data-placement="right" data-content="Agregar"><i class="fas fa-plus"></i></button>
+								Entradas y salidas&nbsp;<button class="btn btn-primary btn-circle btn-sm popoverxd" data-container="body" data-target="#addTraspaso" data-toggle="modal" data-placement="right" data-content="Agregar"><i class="fas fa-plus"></i></button>
 							</h1>
 							<div th:insert="modal-traspaso"></div>
 						</div>
@@ -54,7 +58,7 @@
 							<ol class="breadcrumb float-sm-right">
 								<li class="breadcrumb-item"><a href="#">Dashboard</a></li>
 								<li class="breadcrumb-item active">Muestrario</li>
-								<li class="breadcrumb-item active">Traspaso</li>
+								<li class="breadcrumb-item active">Entradas y Salidas</li>
 							</ol>
 						</div>
 					</div>
@@ -77,28 +81,90 @@
 										<thead>
 											<tr>
 												<th>Folio</th>
-												<th>Pedido</th>
+												<th>Empresa</th>
 												<th>Vendedor</th>
 												<th>Fecha de Salida</th>
 												<th>Fecha de Entrega</th>
+												<th>Prendas</th>
+												<th>Estatus</th>
 												<th></th>
 
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
-												<td>Esto</td>
-												<td>Será</td>
-												<td>Esto</td>
-												<td>Será</td>
-												<td>Esto</td>
+												<td>FOL001</td>
+												<td>Altima</td>
+												<td>Juan Jose Origel</td>
+												<td></td>
+												<td></td>
 												<td class="tdcenter">
-													<button data-target="#infoTraspaso" data-toggle="modal" class="btn btn-info btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Detalles"><i class="fas fa-info"></i></button>
+													<button data-target="#infoTraspaso" data-toggle="modal" class="btn btn-info btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Listado de prendas"><i class="fas fa-info"></i></button>
+												</td>
+												<td>Pendiente de recoger</td>
+												<td class="tdcenter">
+													<a class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Entregado a vendedor"><i class="fas fa-user-check"></i></a>
+                                    				<a class="btn btn-danger btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Cancelar"><i class="fas fa-times"></i></a>
+                                    			</td>
+											</tr>
+											<tr>
+												<td>FOL002</td>
+												<td>Altima</td>
+												<td>Fabian Lavalle</td>
+												<td></td>
+												<td></td>
+												<td class="tdcenter">
+													<button data-target="#infoTraspaso" data-toggle="modal" class="btn btn-info btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Listado de prendas"><i class="fas fa-info"></i></button>
+												</td>
+												<td>Cancelado</td>
+												<td class="tdcenter">
+												</td>
+											</tr>
+											<tr>
+												<td>FOL003</td>
+												<td>Altima</td>
+												<td>Pedro Sola</td>
+												<td>05/01/2020 14:00</td>
+												<td></td>
+												<td class="tdcenter">
+													<button data-target="#infoTraspaso" data-toggle="modal" class="btn btn-info btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Listado de prendas"><i class="fas fa-info"></i></button>
+												</td>
+												<td>Entregado a vendendor</td>
+												<td class="tdcenter">
+													<button data-target="#updateTraspaso" data-toggle="modal" class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-placement="top" data-content="Actualizar"><i class="fas fa-pen"></i></button>
+													<a class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Entregado"><i class="fas fa-check"></i></a>
+                                    			</td>
+											</tr>
+											<tr>
+												<td>FOL004</td>
+												<td>Altima</td>
+												<td>Pati Chapoy</td>
+												<td>06/01/2020 16:00</td>
+												<td>08/01/2020 10:00</td>
+												<td class="tdcenter">
+													<button data-target="#infoTraspaso" data-toggle="modal" class="btn btn-info btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Listado de prendas"><i class="fas fa-info"></i></button>
+												</td>
+												<td>Devuelto</td>
+												<td class="tdcenter">
+												</td>
+											</tr>
+											<tr>
+												<td>FOL005</td>
+												<td>Altima</td>
+												<td>Andrea Legarreta</td>
+												<td>09/01/2020 16:00</td>
+												<td>15/01/2020 10:00</td>
+												<td class="tdcenter">
+													<button data-target="#infoTraspaso" data-toggle="modal" class="btn btn-info btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Listado de prendas"><i class="fas fa-info"></i></button>
+												</td>
+												<td>Devuelto con recargos</td>
+												<td class="tdcenter">
 												</td>
 											</tr>
 										</tbody>
 									</table>
 									<div th:insert="modal-traspaso-info"></div>
+									<div th:insert="modal-traspaso-update"></div>
 								</div>
 								<!-- /.card-body -->
 							</div>
@@ -138,6 +204,21 @@
 				trigger : 'hover'
 			})
 		})
+	</script>
+	<!-- select2 -->
+	<script src="dist/js/select2.min.js"></script>
+	
+	<script>
+		$(function() {
+			$('select').each(function() {
+				$(this).select2({
+					theme : 'bootstrap4',
+					width : 'style',
+					placeholder : $(this).attr('placeholder'),
+					allowClear : Boolean($(this).data('allow-clear')),
+				});
+			});
+		});
 	</script>
  <script>
         $(document).ready(function() {
@@ -231,6 +312,5 @@
 		}
 		window.onload = changeClassById();
 	</script>
-
 </body>
 </html>

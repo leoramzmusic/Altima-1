@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="dist/css/jquery.dataTables.min.css">
     <!-- Datatables Plugin-->
     <link rel="stylesheet" href="dist/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="dist/css/fixedHeader.bootstrap.min.css">
+<link rel="stylesheet" href="dist/css/responsive.bootstrap.min.css">
     <!-- Ekko Lightbox -->
     <link rel="stylesheet" href="plugins/ekko-lightbox/ekko-lightbox.css">
     <!-- Google Font: Source Sans Pro -->
@@ -66,23 +68,23 @@
                     	<!-- MARCAS 
                       	<div th:insert="catalogos-marcas" class="col-lg-4 col-6"></div>  -->
                       	<!-- MAEDIDAS -->
-                      	<div th:insert="catalogos-medida" class="col-lg-4 col-6"></div>  
+                      	<div th:insert="catalogos-medida" class="col-lg-4 col-6" id="medidasCatalogo"></div>  
                       	<!-- COLORES -->
-                      	<div th:insert="catalogos-colores" class="col-lg-4 col-6"></div>
+                      	<div th:insert="catalogos-colores" class="col-lg-4 col-6" id="coloresCatalogo"></div>
                       	<!-- PZAS. TRAZO -->
-                      	<div th:insert="catalogos-trazo" class="col-lg-4 col-6"></div>
+                      	<div th:insert="catalogos-trazo" class="col-lg-4 col-6" id="trazosCatalogo"></div>
                       	<!-- INSTRUCCIONES DE CUIDAO -->
-                      	<div th:insert="catalogos-cuidado" class="col-lg-4 col-6"></div>
+                      	<div th:insert="catalogos-cuidado" class="col-lg-4 col-6" id="cuidadosCatalogo"></div>
                       	<!-- FAM. PRENDAS -->
-                      	<div th:insert="catalogos-prendas" class="col-lg-4 col-6"></div>
+                      	<div th:insert="catalogos-prendas" class="col-lg-4 col-6" id="prendasCatalogo"></div>
                       	<!-- FAM. GENERO -->
-                      	<div th:insert="catalogos-genero" class="col-lg-4 col-6"></div>
+                      	<div th:insert="catalogos-genero" class="col-lg-4 col-6" id="generosCatalogo"></div>
                       	<!-- TIPO MATERIAL -->
-                      	<div th:insert="catalogos-material" class="col-lg-4 col-6"></div>  
+                      	<div th:insert="catalogos-material" class="col-lg-4 col-6" id="materialesCatalogo"></div>  
                       	<!-- FAM. COMPOSICION -->
-                      	<div th:insert="catalogos-composicionfam" class="col-lg-4 col-6"></div>
+                      	<div th:insert="catalogos-composicionfam" class="col-lg-4 col-6" id="composicionesCatalogo"></div>
                       	<!-- MARCADOR -->
-                      	<div th:insert="catalogos-marcador" class="col-lg-4 col-6"></div>
+                      	<div th:insert="catalogos-marcador" class="col-lg-4 col-6" id="marcadoresCatalogo"></div>
                       	 <input type="hidden" name="_csrf" id="token"  th:value="${_csrf.token}"/>
                     </div>
                     <!-- /.row -->
@@ -99,7 +101,22 @@
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Popover-->
+    <!-- Datatables Plugin-->
+    <script src="dist/js/jquery.dataTables.min.js"></script>
+    <!-- Bootstrap Datatables Plugin-->
+    <script src="dist/js/dataTables.bootstrap4.min.js"></script>
+    <!-- TABLA RESPONSIVA -->
+	<script
+		src="dist/js/dataTables.fixedHeader.min.js"></script>
+	<script
+		src="dist/js/dataTables.responsive.min.js"></script>
+	<script
+		src="dist/js/responsive.bootstrap.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
+     <!-- Popover-->
     <script>
         $(function() {
             $('.popoverxd').popover({
@@ -108,20 +125,12 @@
             })
         })
     </script>
-    <!-- Datatables Plugin-->
-    <script src="dist/js/jquery.dataTables.min.js"></script>
-    <!-- Bootstrap Datatables Plugin-->
-    <script src="dist/js/dataTables.bootstrap4.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="dist/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="dist/js/demo.js"></script>
     <!-- SweetAlert -->
     <script src="dist/js/sweetalert.js"></script>
     <!-- Funcionalidad-->
-    <script src="dist/js/TablasCatalogo.js"></script>
     <!-- Funcionalidad-->
     <script src="dist/js/Catalogo.js"></script>
+    <script src="dist/js/viewCatalogos.js"></script>
     <script>
 		function changeClassById() {
 			document.getElementById("menuDiseno").className = "nav-item has-treeview menu-open";

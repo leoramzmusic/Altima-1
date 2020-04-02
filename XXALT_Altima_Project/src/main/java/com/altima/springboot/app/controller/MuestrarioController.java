@@ -14,4 +14,9 @@ public class MuestrarioController {
 	public String agregarInventario() {
 		return "agregar-inventario";
 	}
+	
+	@GetMapping("/catalogos-muestrario")
+	public String listCatalogo() {
+		return "catalogos-muestrario";
+	}
 }

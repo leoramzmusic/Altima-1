@@ -78,13 +78,9 @@
 										<thead>
 											<tr>
 												<th>Clave</th>
-												<th>Prenda</th>
 												<th>N&uacute;mero muestra</th>
-												<th>G&eacute;nero</th>
-												<th>Modelo</th>
-												<th>Clave tela</th>
-												<th>Talla</th>
 												<th>Consecutivo</th>
+												<th>Detalles</th>
 												<th>Estatus</th>
 												<th></th>
 
@@ -92,15 +88,13 @@
 										</thead>
 										<tbody>
 											<tr>
-												<td>Esto</td>
-												<td>Será</td>
-												<td>Esto</td>
-												<td>Será</td>
-												<td>Esto</td>
-												<td>Será</td>
-												<td>Mientras</td>
-												<td>Le dan</td>
-												<td>Funcionalidad</td>
+												<td>INV001</td>
+												<td>1</td>
+												<td>4</td>
+												<td class="tdcenter">
+													<button data-toggle="modal" data-target="#infoInventario" class="btn btn-info btn-circle btn-sm text-white"><i class="fas fa-info"></i></button>
+												</td>
+												<td>Aprobado</td>
 												<td class="tdcenter">
 													<a href="" class="btn btn-danger btn-circle btn-sm text-white popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Dar de baja"><i class="fas fa-caret-down"></i></a>
 													<a href="" class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Reactivar"><i class="fas fa-caret-up"></i></a>
@@ -108,6 +102,7 @@
 											</tr>
 										</tbody>
 									</table>
+									<div th:insert="${'modal-inventario'}"></div>
 								</div>
 								<!-- /.card-body -->
 							</div>
@@ -196,6 +191,7 @@
 			document.getElementById("menuMuestrario").className = "nav-item has-treeview menu-open";
 			document.getElementById("navMuestrario").className = "nav-link active";
 			document.getElementById("navMuestrario1").className = "nav-link active";
+			document.getElementById("iComercial").className = "nav-icon fas fa-clipboard";
 		}
 		window.onload = changeClassById();
 	</script>
