@@ -24,4 +24,7 @@ public interface IDisenioControlProduccionMuestraService {
 	DisenioControlHora findOneHora(Long id);
 	
 	public Integer Pausa(Long id);
+	
+	
+	//vhbjnklm
 }

@@ -16,7 +16,8 @@ import com.altima.springboot.app.repository.DisenioControlProduccionMuestraRepos
 
 @Service
 public class DisenioControlProduccionMuestraServiceImpl implements IDisenioControlProduccionMuestraService {
-	
+	//vhhbj
+	//cgvhbjnk
 	@Autowired 
 	private DisenioControlProduccionMuestraRepository repository;
 	

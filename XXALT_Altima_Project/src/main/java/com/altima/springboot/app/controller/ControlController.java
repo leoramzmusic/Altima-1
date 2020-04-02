@@ -64,7 +64,7 @@ public class ControlController {
 		
 		return  DCPM.OperacionesCofeccion(id);	
 	}
-	
+	//erik
 	
 	@RequestMapping(value = "/listar-horas/{id}", method = RequestMethod.GET)
 	@ResponseBody

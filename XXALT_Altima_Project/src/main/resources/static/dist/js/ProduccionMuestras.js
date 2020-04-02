@@ -1068,7 +1068,7 @@
 	            });
 		    },
 		    error: (e) => {
-		        // location.reload();
+		        // location.reload();nnn
 		    }
 	}
 	)}

@@ -5,6 +5,18 @@ import com.altima.springboot.app.models.entity.DisenioControlProduccionMuestra;
 @Repository
 public interface DisenioControlProduccionMuestraRepository extends CrudRepository<DisenioControlProduccionMuestra, Long> {
 
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
 
 

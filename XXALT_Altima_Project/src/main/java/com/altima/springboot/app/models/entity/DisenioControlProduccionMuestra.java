@@ -17,6 +17,13 @@ public class DisenioControlProduccionMuestra implements Serializable {
 
 	/**
 	 * 
+	 * 
+	 * 
+	 * 
+	 * jjjj
+	 * 
+	 * 
+	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	

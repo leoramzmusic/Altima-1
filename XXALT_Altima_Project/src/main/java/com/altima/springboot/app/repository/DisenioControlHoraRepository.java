@@ -5,4 +5,14 @@ import com.altima.springboot.app.models.entity.DisenioControlHora;
 @Repository
 public interface DisenioControlHoraRepository  extends CrudRepository<DisenioControlHora, Long> {
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

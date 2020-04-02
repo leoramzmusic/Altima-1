@@ -14,7 +14,8 @@ import org.hibernate.annotations.GenericGenerator;
 public class DisenioControlHora {
 	
 	/**
-	 * 
+	 * nnn}
+	 * nnn
 	 */
 	private static final long serialVersionUID = 1L;
 	
