@@ -27,7 +27,7 @@
 	 console.log("hola humano yo soy el id que mandas de control de produccionS "+id);
 		$.ajax({
 		    method: "GET",
-		    url: "/listar-trazos/"+id,
+		    url: "/listar-trazos/"+2,
 		    success: (data) => {
 		    	$('#quitar').remove();
 		    	$('#quitar2').remove();
@@ -1008,7 +1008,7 @@
 	                                                "<th>Fecha Fin</th>" +
 	                                                "<th>Proceso</th>" +
 	                                                "<th>Estatus</th>" +
-	                                                "<th>Horas</th>" +
+	                                                "<th>Tiempo</th>" +
 	                                                
 	                                            "</tr>" +
 	                                        "</thead>" +

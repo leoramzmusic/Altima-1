@@ -179,18 +179,23 @@ public class ControlProduccionMuestraServiceImpl implements IControlProduccionMu
 	@Transactional
 	public List<Object[]> ContadorHoras(Long id) {
 		List<Object[]> re= em.createNativeQuery("SELECT hora.id_control_hora, Date_format( hora.fecha_inicio,'%Y/%M/%d %h:%i:%s %p'),  IFNULL(Date_format( hora.fecha_fin,'%Y/%M/%d %h:%i:%s %p'),'En proceso') , \r\n" + 
-				"				CASE\r\n" + 
-				"					WHEN hora.tipo = 1 THEN 'Trazo'\r\n" + 
-				"				    WHEN hora.tipo = 2 THEN 'Corte' \r\n" + 
-				"				    WHEN hora.tipo = 3 THEN 'Confección' \r\n" + 
-				"				    WHEN hora.tipo = 4 THEN 'Planchado'\r\n" + 
-				"				    WHEN hora.tipo = 5 THEN 'Terminado' \r\n" + 
-				"				    ELSE 'Null'\r\n" + 
-				"				END  ,    IFNULL(TIMESTAMPDIFF (MINUTE,hora.fecha_inicio, hora.fecha_fin ) ,'En proceso') as tiempo, hora.estatus\r\n" + 
-				"				from alt_control_hora as hora ,alt_control_produccion_muestra as muestra \r\n" + 
-				"				where 1=1\r\n" + 
-				"				and muestra.id_control_produccion_muestra= hora.id_control_produccion_muestra\r\n" + 
-				"				and hora.id_control_produccion_muestra="+id).getResultList();
+				"								CASE\r\n" + 
+				"									WHEN hora.tipo = 1 THEN 'Trazo' \r\n" + 
+				"								    WHEN hora.tipo = 2 THEN 'Corte' \r\n" + 
+				"								    WHEN hora.tipo = 3 THEN 'Confección' \r\n" + 
+				"								    WHEN hora.tipo = 4 THEN 'Planchado'\r\n" + 
+				"								    WHEN hora.tipo = 5 THEN 'Terminado'  \r\n" + 
+				"								    ELSE 'Null'\r\n" + 
+				"								END  ,    \r\n" + 
+				"                                IFNULL( \r\n" + 
+				"                                     IF( TIMESTAMPDIFF (HOUR,hora.fecha_inicio, hora.fecha_fin )  =0, \r\n" + 
+				"                                        CONCAT( TIMESTAMPDIFF (  MINUTE,hora.fecha_inicio, hora.fecha_fin ),' Minutos'), \r\n" + 
+				"                                  		CONCAT( TIMESTAMPDIFF (HOUR,hora.fecha_inicio, hora.fecha_fin ),' Horas')),'En proceso') as tiempo,\r\n" + 
+				"                                        hora.estatus \r\n" + 
+				"								from alt_control_hora as hora ,alt_control_produccion_muestra as muestra \r\n" + 
+				"								where 1=1\r\n" + 
+				"								and muestra.id_control_produccion_muestra= hora.id_control_produccion_muestra\r\n" + 
+				"								and hora.id_control_produccion_muestra="+id).getResultList();
 		return re;
 	}
 	
@@ -213,7 +218,7 @@ public class ControlProduccionMuestraServiceImpl implements IControlProduccionMu
 				"						WHEN muestra.tipo = 4 THEN 'Planchado' \r\n" + 
 				"						WHEN muestra.tipo = 5 THEN 'Terminado' \r\n" + 
 				"						ELSE 'Nuevo' \r\n" + 
-				"						END  )from alt_control_produccion_muestra as muestra where muestra.estatus_tiempo ='Play' and muestra.id_pedido= pedido.id_pedido), 'Sin proceso asignado')) as proceso \r\n" + 
+				"						END  )from alt_control_produccion_muestra as muestra where muestra.estatus_tiempo ='Play' and muestra.id_pedido= pedido.id_pedido  LIMIT 1), 'Sin proceso asignado')) as proceso \r\n" + 
 				"	from alt_pedido as pedido").getResultList();
 		return re;
 	}

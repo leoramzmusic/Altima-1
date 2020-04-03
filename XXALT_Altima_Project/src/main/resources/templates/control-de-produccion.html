@@ -81,7 +81,7 @@
 												<th>Observaciones</th>
 												<th>Proceso actual</th>
 												<th>Proceso</th>
-												<th>Horas</th>
+												<th>Tiempo</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -92,10 +92,10 @@
                                                 <td th:text="${pedidos[3]}"></td>
                                                 <td th:text="${pedidos[4]}"></td>
                                                 
-                                                <td class="tdcenter"><a data-target="#detalles-proceso"  th:onclick="'listarTrazos('+${pedidos[0]}+');'"  class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="modal" data-placement="top"
+                                                <td class="tdcenter"><a data-target="#detalles-proceso"  th:onclick="'listarTrazos('+${pedidos[0]}+')'"  class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="modal" data-placement="top"
 													data-content="Detalles"><i class="fas fa-info"></i></a></td>
                                                 
-                                               <td class="tdcenter"><a data-target="#Contador"  th:onclick="'listarHoras('+${pedidos[0]}+');'"   class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="modal" data-placement="top"
+                                               <td class="tdcenter"><a data-target="#Contador"  th:onclick="'listarHoras('+${pedidos[0]}+')'"   class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="modal" data-placement="top"
 													data-content="Horas"><i class="fas fa-info"></i></a></td>
                                                
                                             </tr>
