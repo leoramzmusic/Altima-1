@@ -78,11 +78,12 @@
 
                                                         <a class="btn btn-info btn-circle btn-sm text-white popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Detalles"><i class="fas fa-info"></i></a>
 
-                                                        <a th:href="${'delete-material'}+${mt[0]}" class="btn btn-danger btn-circle btn-sm popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Dar de baja"><i class="fas fa-caret-down"></i></a>
+                                                        <a th:href="${'delete-material'}+${mt[0]}" class="btn btn-danger btn-circle btn-sm btn-delete popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Dar de baja"><i class="fas fa-caret-down"></i></a>
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
+                                        <div th:insert="modal-baja-material"></div>
                                     </div>
                                     <!-- /.card-body -->
                                 </div>
@@ -102,7 +103,14 @@
         <div th:replace="navegacion-scripts"></div>
         <script src="dist/js/tablaMateriales.js"></script>
         <script src="dist/js/sweetalert.js"></script>
-
+		<script>
+		$('.btn-delete').on('click', function (e) {
+		    e.preventDefault();
+		    var href =$(this).attr('href');
+		    $('#bajaMaterialModal #btnDelteYes').attr('href',href);
+		    $('#bajaMaterialModal').modal();
+		});
+		</script>
         <script th:if="${icon != null}" th:inline="javascript">
             Swal.fire({
 

@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class SolicitudController {
 	
-	@GetMapping("/solicitudes") 
+	@GetMapping("/mensajeria") 
 	public String listForms() {
-		return "solicitudes";
+		return "mensajeria";
 	}
 	
 	@GetMapping("/generar-solicitud") 

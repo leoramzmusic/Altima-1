@@ -21,15 +21,15 @@
                with font-awesome or any other icon font library -->
                 <li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')}">
                     <a th:href="${'/'}" class="nav-link" id="navDashboard">
-                        <i class="nav-icon fas fa-tachometer-alt text-primary"></i>
+                        <i class="nav-icon fas fa-tachometer-alt text-primary" id="iDashboard"></i>
                         <p>
                             Dashboard
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a th:href="${'/solicitudes'}" class="nav-link" id="navMensajeria">
-                        <i class="nav-icon fas fa-mail-bulk text-primary"></i>
+                    <a th:href="${'/mensajeria'}" class="nav-link" id="navMensajeria">
+                        <i class="nav-icon fas fa-mail-bulk text-primary" id="iMensajeria"></i>
                         <p>Mensajer&iacute;a</p>
                     </a>
                 </li>
