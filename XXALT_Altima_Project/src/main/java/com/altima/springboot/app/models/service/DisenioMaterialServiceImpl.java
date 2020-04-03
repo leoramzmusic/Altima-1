@@ -109,7 +109,7 @@ public class DisenioMaterialServiceImpl implements IDisenioMaterialService {
 	@Override
 	public List<DisenioLookup> findLookUps() {
 		// TODO Auto-generated method stub
-		return em.createNativeQuery("SELECT * FROM alt_disenio_lookup WHERE tipo_lookup = 'Pieza Trazo' AND estatus = 1 order by nombreLookup;").getResultList();
+		return em.createNativeQuery("SELECT * FROM alt_disenio_lookup WHERE tipo_lookup = 'Pieza Trazo' AND estatus = 1 ;").getResultList();
 	}
 
 	@Override
