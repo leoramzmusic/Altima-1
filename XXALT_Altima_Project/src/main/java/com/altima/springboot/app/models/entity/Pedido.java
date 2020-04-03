@@ -38,8 +38,11 @@ public class Pedido implements Serializable {
 	@Column(name="estatus")
 	private String estatus;
 	
-	@Column(name="descripcion_pedido")
-	private String descripcionPedido;
+	@Column(name="id_text")
+	private String idText;
+	
+	@Column(name="prenda_producir")
+	private String prendaProducir;
 
 	public Long getIdPedido() {
 		return idPedido;
@@ -81,15 +84,25 @@ public class Pedido implements Serializable {
 		this.estatus = estatus;
 	}
 
-	public String getDescripcionPedido() {
-		return descripcionPedido;
+	public String getIdText() {
+		return idText;
 	}
 
-	public void setDescripcionPedido(String descripcionPedido) {
-		this.descripcionPedido = descripcionPedido;
+	public void setIdText(String idText) {
+		this.idText = idText;
+	}
+
+	public String getPrendaProducir() {
+		return prendaProducir;
+	}
+
+	public void setPrendaProducir(String prendaProducir) {
+		this.prendaProducir = prendaProducir;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	
 }
