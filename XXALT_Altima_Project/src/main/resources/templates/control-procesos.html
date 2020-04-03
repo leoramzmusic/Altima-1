@@ -70,8 +70,8 @@
 						<div class="form-group col-sm-4">
 							<label for="pedidonom">Operador</label> 
 							<br> 
-							<select class="swal2-input" id="operador">
-								<option value="">Seleccion a un maldito exclavo...</option>
+							<select class="swal2-input" id="operador" name="operador">
+								<option value="">Seleccion a un operador</option>
 								<option 
 									th:each="operador: ${operador}"
 									th:value="${operador[0]}" th:text="${operador[1]}">
@@ -80,11 +80,11 @@
 						</div>
 						<div class="form-group col-sm-4">
 							<label for="pedidonom">Fecha de recepcion</label> 
-							<input type="datetime-local" class="swal2-input" id="f1">
+							<input type="datetime-local" class="swal2-input" id="f1" name="f1">
 						</div>
 						<div class="form-group col-sm-4">
 							<label for="pedidonom">Fecha de entrega</label> 
-							<input type="datetime-local" class="swal2-input" id="f2">
+							<input type="datetime-local" class="swal2-input" id="f2" name="f2">
 						</div>
 						<input type="hidden" name="id_muestra" id="id_muestra">
 						<input type="hidden"  name="tipo" id="tipo">

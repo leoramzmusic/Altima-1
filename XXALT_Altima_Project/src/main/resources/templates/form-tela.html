@@ -2,11 +2,11 @@
     
     <div class="form-group col-sm-5">
         <label for="razonEmpresa">Porcentaje</label>
-        <input type="number" id="telaComposicion" class="form-control"  placeholder="100">
+        <input type="number" id="telaComposicion" name="telaComposicion" class="form-control"  placeholder="100">
     </div>
     <div class="form-group col-md-6">
         <label for="status">Composici&oacute;n</label>
-        <select id="telaFamcomposicion" class="form-control" >
+        <select id="telaFamcomposicion" name="telaFamcomposicion" class="form-control" >
         	<option value="">Selecciona uno...</option>
         	<option th:each="lisFam: ${lisFam}"
 			th:value="${lisFam.idLookup}" th:text="${lisFam.nombreLookup}"></option>
@@ -247,8 +247,11 @@ function guardar(){
     var nFilas = $("#mytable tr").length;
     $("#adicionados").append(nFilas - 1);
     //le resto 1 para no contar la fila del header
+    
+    
+    document.getElementById('telaFamcomposicion').options.selectedIndex = 0;
     document.getElementById("telaComposicion").value ="";
-    document.getElementById("telaFamcomposicion").value = "0";
+    
    
 	}
     

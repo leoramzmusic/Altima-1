@@ -59,10 +59,10 @@
 							"<td>" + data[i][1]+ "</td>",
 							"<td>" + data[i][2] + "</td>",
 							"<td>" + data[i][5]+ "</td>",
-							" <td>"+
-							" <button onclick='play("+data[i][4]+","+id+" )' id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-play text-success'>  </i></button>&nbsp;"+
-							" <button id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-pause text-warning'>  </i></button>&nbsp;"+
-							"<button onclick='bajarMarca("+data[i][4]+")'  style='border-radius: 35%;'><i class='fas fa-stop text-danger'></i></button>&nbsp;"+
+							"<td>"+
+							"<button onclick='play("+data[i][4]+","+id+" )' id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-play text-success'>  </i></button>&nbsp;"+
+							"<button style='border-radius: 35%;'> <i class='fa fa-pause'></i> </i></button>&nbsp;"+
+							"<button  style='border-radius: 35%;'> <i class='fa fa-stop'></i></button>&nbsp;"+
 							"</td>"+
 							"<tr>"
 							];
@@ -75,7 +75,7 @@
 							"<td>" + data[i][2] + "</td>",
 							"<td>" + data[i][5]+ "</td>",		
 							" <td>"+
-							" <button  id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-play text-success'>  </i></button>&nbsp;"+
+							" <button style='border-radius: 35%;'> <i class='fa fa-play'></i> </button>&nbsp;"+
 							" <button onclick='pausa("+data[i][4]+","+id+" )' id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-pause text-warning'>  </i></button>&nbsp;"+
 							"<button  onclick='stop("+data[i][4]+","+id+" )'  style='border-radius: 35%;'><i class='fas fa-stop text-danger'></i></button>&nbsp;"+
 							"</td>"+
@@ -91,8 +91,8 @@
 							"<td>" + data[i][5]+ "</td>",		
 							" <td>"+
 							" <button onclick='play("+data[i][4]+","+id+" )' id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-play text-success'>  </i></button>&nbsp;"+
-							" <button  id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-pause text-warning'>  </i></button>&nbsp;"+
-							"<button   style='border-radius: 35%;'><i class='fas fa-stop text-danger'></i></button>&nbsp;"+
+							"<button style='border-radius: 35%;'> <i class='fa fa-pause'></i> </i></button>&nbsp;"+
+							"<button  style='border-radius: 35%;'> <i class='fa fa-stop'></i></button>&nbsp;"+
 							"</td>"+
 							"<tr>"
 							];
@@ -105,9 +105,9 @@
 							"<td>" + data[i][2] + "</td>",
 							"<td>" + data[i][5]+ "</td>",		
 							" <td>"+
-							" <button  id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-play text-success'>  </i></button>&nbsp;"+
-							" <button  id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-pause text-warning'>  </i></button>&nbsp;"+
-							"<button   style='border-radius: 35%;'><i class='fas fa-stop text-danger'></i></button>&nbsp;"+
+							" <button style='border-radius: 35%;'> <i class='fa fa-play'></i> </button>&nbsp;"+
+							"<button style='border-radius: 35%;'> <i class='fa fa-pause'></i> </i></button>&nbsp;"+
+							"<button  style='border-radius: 35%;'> <i class='fa fa-stop'></i></button>&nbsp;"+
 							"</td>"+
 							"<tr>"
 							];
@@ -218,10 +218,10 @@
 							"<td>" + data[i][1]+ "</td>",
 							"<td>" + data[i][2] + "</td>",
 							"<td>" + data[i][5]+ "</td>",
-							" <td>"+
-							" <button onclick='play("+data[i][4]+","+id+" )' id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-play text-success'>  </i></button>&nbsp;"+
-							" <button id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-pause text-warning'>  </i></button>&nbsp;"+
-							"<button onclick='bajarMarca("+data[i][4]+")'  style='border-radius: 35%;'><i class='fas fa-stop text-danger'></i></button>&nbsp;"+
+							"<td>"+
+							"<button onclick='play("+data[i][4]+","+id+" )' id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-play text-success'>  </i></button>&nbsp;"+
+							"<button style='border-radius: 35%;'> <i class='fa fa-pause'></i> </i></button>&nbsp;"+
+							"<button  style='border-radius: 35%;'> <i class='fa fa-stop'></i></button>&nbsp;"+
 							"</td>"+
 							"<tr>"
 							];
@@ -234,7 +234,7 @@
 							"<td>" + data[i][2] + "</td>",
 							"<td>" + data[i][5]+ "</td>",		
 							" <td>"+
-							" <button  id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-play text-success'>  </i></button>&nbsp;"+
+							" <button style='border-radius: 35%;'> <i class='fa fa-play'></i> </button>&nbsp;"+
 							" <button onclick='pausa("+data[i][4]+","+id+" )' id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-pause text-warning'>  </i></button>&nbsp;"+
 							"<button  onclick='stop("+data[i][4]+","+id+" )'  style='border-radius: 35%;'><i class='fas fa-stop text-danger'></i></button>&nbsp;"+
 							"</td>"+
@@ -250,24 +250,23 @@
 							"<td>" + data[i][5]+ "</td>",		
 							" <td>"+
 							" <button onclick='play("+data[i][4]+","+id+" )' id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-play text-success'>  </i></button>&nbsp;"+
-							" <button  id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-pause text-warning'>  </i></button>&nbsp;"+
-							"<button   style='border-radius: 35%;'><i class='fas fa-stop text-danger'></i></button>&nbsp;"+
+							"<button style='border-radius: 35%;'> <i class='fa fa-pause'></i> </i></button>&nbsp;"+
+							"<button  style='border-radius: 35%;'> <i class='fa fa-stop'></i></button>&nbsp;"+
 							"</td>"+
 							"<tr>"
 							];
 		        	}
-		        	
 		        	if (data[i][5]=='Stop'){
 		        		a = [
 							"<tr>" +
 							"<td>" + data[i][0] + "</td>",
 							"<td>" + data[i][1]+ "</td>",
 							"<td>" + data[i][2] + "</td>",
-							"<td>" + data[i][5]+ "</td>",
+							"<td>" + data[i][5]+ "</td>",		
 							" <td>"+
-							" <button  id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-play text-success'>  </i></button>&nbsp;"+
-							" <button  id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-pause text-warning'>  </i></button>&nbsp;"+
-							"<button   style='border-radius: 35%;'><i class='fas fa-stop text-danger'></i></button>&nbsp;"+
+							" <button style='border-radius: 35%;'> <i class='fa fa-play'></i> </button>&nbsp;"+
+							"<button style='border-radius: 35%;'> <i class='fa fa-pause'></i> </i></button>&nbsp;"+
+							"<button  style='border-radius: 35%;'> <i class='fa fa-stop'></i></button>&nbsp;"+
 							"</td>"+
 							"<tr>"
 							];
@@ -379,10 +378,10 @@
 							"<td>" + data[i][1]+ "</td>",
 							"<td>" + data[i][2] + "</td>",
 							"<td>" + data[i][5]+ "</td>",
-							" <td>"+
-							" <button onclick='play("+data[i][4]+","+id+" )' id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-play text-success'>  </i></button>&nbsp;"+
-							" <button id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-pause text-warning'>  </i></button>&nbsp;"+
-							"<button onclick='bajarMarca("+data[i][4]+")'  style='border-radius: 35%;'><i class='fas fa-stop text-danger'></i></button>&nbsp;"+
+							"<td>"+
+							"<button onclick='play("+data[i][4]+","+id+" )' id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-play text-success'>  </i></button>&nbsp;"+
+							"<button style='border-radius: 35%;'> <i class='fa fa-pause'></i> </i></button>&nbsp;"+
+							"<button  style='border-radius: 35%;'> <i class='fa fa-stop'></i></button>&nbsp;"+
 							"</td>"+
 							"<tr>"
 							];
@@ -395,7 +394,7 @@
 							"<td>" + data[i][2] + "</td>",
 							"<td>" + data[i][5]+ "</td>",		
 							" <td>"+
-							" <button  id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-play text-success'>  </i></button>&nbsp;"+
+							" <button style='border-radius: 35%;'> <i class='fa fa-play'></i> </button>&nbsp;"+
 							" <button onclick='pausa("+data[i][4]+","+id+" )' id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-pause text-warning'>  </i></button>&nbsp;"+
 							"<button  onclick='stop("+data[i][4]+","+id+" )'  style='border-radius: 35%;'><i class='fas fa-stop text-danger'></i></button>&nbsp;"+
 							"</td>"+
@@ -411,24 +410,23 @@
 							"<td>" + data[i][5]+ "</td>",		
 							" <td>"+
 							" <button onclick='play("+data[i][4]+","+id+" )' id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-play text-success'>  </i></button>&nbsp;"+
-							" <button  id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-pause text-warning'>  </i></button>&nbsp;"+
-							"<button   style='border-radius: 35%;'><i class='fas fa-stop text-danger'></i></button>&nbsp;"+
+							"<button style='border-radius: 35%;'> <i class='fa fa-pause'></i> </i></button>&nbsp;"+
+							"<button  style='border-radius: 35%;'> <i class='fa fa-stop'></i></button>&nbsp;"+
 							"</td>"+
 							"<tr>"
 							];
 		        	}
-		        	
 		        	if (data[i][5]=='Stop'){
 		        		a = [
 							"<tr>" +
 							"<td>" + data[i][0] + "</td>",
 							"<td>" + data[i][1]+ "</td>",
 							"<td>" + data[i][2] + "</td>",
-							"<td>" + data[i][5]+ "</td>",
+							"<td>" + data[i][5]+ "</td>",		
 							" <td>"+
-							" <button  id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-play text-success'>  </i></button>&nbsp;"+
-							" <button  id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-pause text-warning'>  </i></button>&nbsp;"+
-							"<button   style='border-radius: 35%;'><i class='fas fa-stop text-danger'></i></button>&nbsp;"+
+							" <button style='border-radius: 35%;'> <i class='fa fa-play'></i> </button>&nbsp;"+
+							"<button style='border-radius: 35%;'> <i class='fa fa-pause'></i> </i></button>&nbsp;"+
+							"<button  style='border-radius: 35%;'> <i class='fa fa-stop'></i></button>&nbsp;"+
 							"</td>"+
 							"<tr>"
 							];
@@ -540,10 +538,10 @@
 							"<td>" + data[i][1]+ "</td>",
 							"<td>" + data[i][2] + "</td>",
 							"<td>" + data[i][5]+ "</td>",
-							" <td>"+
-							" <button onclick='play("+data[i][4]+","+id+" )' id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-play text-success'>  </i></button>&nbsp;"+
-							" <button id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-pause text-warning'>  </i></button>&nbsp;"+
-							"<button onclick='bajarMarca("+data[i][4]+")'  style='border-radius: 35%;'><i class='fas fa-stop text-danger'></i></button>&nbsp;"+
+							"<td>"+
+							"<button onclick='play("+data[i][4]+","+id+" )' id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-play text-success'>  </i></button>&nbsp;"+
+							"<button style='border-radius: 35%;'> <i class='fa fa-pause'></i> </i></button>&nbsp;"+
+							"<button  style='border-radius: 35%;'> <i class='fa fa-stop'></i></button>&nbsp;"+
 							"</td>"+
 							"<tr>"
 							];
@@ -556,7 +554,7 @@
 							"<td>" + data[i][2] + "</td>",
 							"<td>" + data[i][5]+ "</td>",		
 							" <td>"+
-							" <button  id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-play text-success'>  </i></button>&nbsp;"+
+							" <button style='border-radius: 35%;'> <i class='fa fa-play'></i> </button>&nbsp;"+
 							" <button onclick='pausa("+data[i][4]+","+id+" )' id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-pause text-warning'>  </i></button>&nbsp;"+
 							"<button  onclick='stop("+data[i][4]+","+id+" )'  style='border-radius: 35%;'><i class='fas fa-stop text-danger'></i></button>&nbsp;"+
 							"</td>"+
@@ -572,30 +570,29 @@
 							"<td>" + data[i][5]+ "</td>",		
 							" <td>"+
 							" <button onclick='play("+data[i][4]+","+id+" )' id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-play text-success'>  </i></button>&nbsp;"+
-							" <button  id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-pause text-warning'>  </i></button>&nbsp;"+
-							"<button   style='border-radius: 35%;'><i class='fas fa-stop text-danger'></i></button>&nbsp;"+
+							"<button style='border-radius: 35%;'> <i class='fa fa-pause'></i> </i></button>&nbsp;"+
+							"<button  style='border-radius: 35%;'> <i class='fa fa-stop'></i></button>&nbsp;"+
 							"</td>"+
 							"<tr>"
 							];
 		        	}
-		        	
 		        	if (data[i][5]=='Stop'){
 		        		a = [
 							"<tr>" +
 							"<td>" + data[i][0] + "</td>",
 							"<td>" + data[i][1]+ "</td>",
 							"<td>" + data[i][2] + "</td>",
-							"<td>" + data[i][5]+ "</td>",
+							"<td>" + data[i][5]+ "</td>",		
 							" <td>"+
-							" <button  id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-play text-success'>  </i></button>&nbsp;"+
-							" <button  id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-pause text-warning'>  </i></button>&nbsp;"+
-							"<button   style='border-radius: 35%;'><i class='fas fa-stop text-danger'></i></button>&nbsp;"+
+							" <button style='border-radius: 35%;'> <i class='fa fa-play'></i> </button>&nbsp;"+
+							"<button style='border-radius: 35%;'> <i class='fa fa-pause'></i> </i></button>&nbsp;"+
+							"<button  style='border-radius: 35%;'> <i class='fa fa-stop'></i></button>&nbsp;"+
 							"</td>"+
 							"<tr>"
 							];
 		        	}
 						b.push(a);	
-		        }	        
+		        }	        	        
 			    var tabla = $('#idtable4').DataTable({
 	            	"data":b,
 	                "ordering": true,
@@ -699,10 +696,10 @@
 							"<td>" + data[i][1]+ "</td>",
 							"<td>" + data[i][2] + "</td>",
 							"<td>" + data[i][5]+ "</td>",
-							" <td>"+
-							" <button onclick='play("+data[i][4]+","+id+" )' id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-play text-success'>  </i></button>&nbsp;"+
-							" <button id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-pause text-warning'>  </i></button>&nbsp;"+
-							"<button onclick='bajarMarca("+data[i][4]+")'  style='border-radius: 35%;'><i class='fas fa-stop text-danger'></i></button>&nbsp;"+
+							"<td>"+
+							"<button onclick='play("+data[i][4]+","+id+" )' id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-play text-success'>  </i></button>&nbsp;"+
+							"<button style='border-radius: 35%;'> <i class='fa fa-pause'></i> </i></button>&nbsp;"+
+							"<button  style='border-radius: 35%;'> <i class='fa fa-stop'></i></button>&nbsp;"+
 							"</td>"+
 							"<tr>"
 							];
@@ -715,7 +712,7 @@
 							"<td>" + data[i][2] + "</td>",
 							"<td>" + data[i][5]+ "</td>",		
 							" <td>"+
-							" <button  id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-play text-success'>  </i></button>&nbsp;"+
+							" <button style='border-radius: 35%;'> <i class='fa fa-play'></i> </button>&nbsp;"+
 							" <button onclick='pausa("+data[i][4]+","+id+" )' id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-pause text-warning'>  </i></button>&nbsp;"+
 							"<button  onclick='stop("+data[i][4]+","+id+" )'  style='border-radius: 35%;'><i class='fas fa-stop text-danger'></i></button>&nbsp;"+
 							"</td>"+
@@ -731,24 +728,23 @@
 							"<td>" + data[i][5]+ "</td>",		
 							" <td>"+
 							" <button onclick='play("+data[i][4]+","+id+" )' id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-play text-success'>  </i></button>&nbsp;"+
-							" <button  id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-pause text-warning'>  </i></button>&nbsp;"+
-							"<button   style='border-radius: 35%;'><i class='fas fa-stop text-danger'></i></button>&nbsp;"+
+							"<button style='border-radius: 35%;'> <i class='fa fa-pause'></i> </i></button>&nbsp;"+
+							"<button  style='border-radius: 35%;'> <i class='fa fa-stop'></i></button>&nbsp;"+
 							"</td>"+
 							"<tr>"
 							];
 		        	}
-		        	
 		        	if (data[i][5]=='Stop'){
 		        		a = [
 							"<tr>" +
 							"<td>" + data[i][0] + "</td>",
 							"<td>" + data[i][1]+ "</td>",
 							"<td>" + data[i][2] + "</td>",
-							"<td>" + data[i][5]+ "</td>",
+							"<td>" + data[i][5]+ "</td>",		
 							" <td>"+
-							" <button  id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-play text-success'>  </i></button>&nbsp;"+
-							" <button  id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-pause text-warning'>  </i></button>&nbsp;"+
-							"<button   style='border-radius: 35%;'><i class='fas fa-stop text-danger'></i></button>&nbsp;"+
+							" <button style='border-radius: 35%;'> <i class='fa fa-play'></i> </button>&nbsp;"+
+							"<button style='border-radius: 35%;'> <i class='fa fa-pause'></i> </i></button>&nbsp;"+
+							"<button  style='border-radius: 35%;'> <i class='fa fa-stop'></i></button>&nbsp;"+
 							"</td>"+
 							"<tr>"
 							];
@@ -847,6 +843,10 @@
  	      }
  	      
  	    $("#aux").modal('hide');//ocultamos el modal
+ 	    
+ 	   document.getElementById('operador').options.selectedIndex = 0;
+ 	  document.getElementById("f1").value ="";
+ 	 document.getElementById("f2").value ="";
    }
  
  
