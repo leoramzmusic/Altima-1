@@ -102,10 +102,10 @@ public class DisenioTelaServiceImpl implements IDisenioTelaService {
 	public List<Object[]> ComposicionTelaMN(Long id) {
 		
 		
-		List<Object[]> re= em.createNativeQuery("select alt_disenio_familia_composicion_tela.composicion ,"
+		List<Object[]> re= em.createNativeQuery("select alt_disenio_familia_composicion_tela.porcentaje_composicion ,"
 				+ "alt_disenio_lookup.id_lookup ,alt_disenio_lookup.nombre_lookup "
 				+ "from alt_disenio_familia_composicion_tela, alt_disenio_lookup "
-				+ "where alt_disenio_lookup.id_lookup=alt_disenio_familia_composicion_tela.id_familia_composicion "
+				+ "where alt_disenio_lookup.id_lookup=alt_disenio_familia_composicion_tela.id_composicion "
 				+ "and alt_disenio_familia_composicion_tela.id_tela="+id).getResultList();
 		return re;
 	}
