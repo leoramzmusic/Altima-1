@@ -32,7 +32,7 @@ public class Pedido implements Serializable {
 	@Column(name="fecha_creacion_pedido")
 	private String fechaCreacionPedido;
 	
-	@Column(name="quien_creo__pedido")
+	@Column(name="quien_creo_pedido")
 	private String QuienCreoPedido;
 	
 	@Column(name="estatus")
