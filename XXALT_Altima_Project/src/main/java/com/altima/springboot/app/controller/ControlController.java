@@ -22,16 +22,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.altima.springboot.app.models.entity.DisenioControlHora;
-import com.altima.springboot.app.models.entity.DisenioControlProduccionMuestra;
+import com.altima.springboot.app.models.entity.ControlHora;
+import com.altima.springboot.app.models.entity.ControlProduccionMuestra;
 import com.altima.springboot.app.models.entity.DisenioLookup;
-import com.altima.springboot.app.models.service.IDisenioControlProduccionMuestraService;
+import com.altima.springboot.app.models.service.IControlProduccionMuestraService;
 
 @CrossOrigin(origins = { "*" })
 @Controller
 public class ControlController {
 	@Autowired
-	private  IDisenioControlProduccionMuestraService DCPM;
+	private  IControlProduccionMuestraService DCPM;
 	
 	protected final Log logger = LogFactory.getLog(this.getClass());
 	@GetMapping("/control-de-produccion")
@@ -100,7 +100,7 @@ public class ControlController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Date date = new Date();
 		DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		DisenioControlProduccionMuestra muestra = new DisenioControlProduccionMuestra();
+		ControlProduccionMuestra muestra = new ControlProduccionMuestra();
 		System.out.println(tipo);
 		if ( tipo.equals("trazo")) {
 			System.out.println("Soy un trazo");
@@ -185,13 +185,13 @@ public class ControlController {
 	public String playProceso(Long idproceso ,String tipo  ,HttpServletRequest request) {
 		System.out.println("Hola soy de play el id es"+ idproceso); 
 		System.out.println("Hola soy de play el tipo es"+ tipo);
-		DisenioControlProduccionMuestra muestra;
+		ControlProduccionMuestra muestra;
 		muestra=DCPM.findOne(idproceso);
 		muestra.setEstatusTiempo("Play");
 		DCPM.save(muestra);
 		if ( tipo.equals("trazo")) {
 			System.out.println("Soy un trazo");
-			DisenioControlHora hora = new DisenioControlHora();
+			ControlHora hora = new ControlHora();
 			hora.setIdControlProduccionMuestra(muestra.getIdControlProduccionMuestra());
 			Date date = new Date();
 			DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -203,7 +203,7 @@ public class ControlController {
 		
 		if ( tipo.equals("corte")) {
 			System.out.println("Soy un trazo");
-			DisenioControlHora hora = new DisenioControlHora();
+			ControlHora hora = new ControlHora();
 			hora.setIdControlProduccionMuestra(muestra.getIdControlProduccionMuestra());
 			Date date = new Date();
 			DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -215,7 +215,7 @@ public class ControlController {
 		
 		if ( tipo.equals("confeccion")) {
 			System.out.println("Soy un trazo");
-			DisenioControlHora hora = new DisenioControlHora();
+			ControlHora hora = new ControlHora();
 			hora.setIdControlProduccionMuestra(muestra.getIdControlProduccionMuestra());
 			Date date = new Date();
 			DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -227,7 +227,7 @@ public class ControlController {
 		
 		if ( tipo.equals("planchado")) {
 			System.out.println("Soy un trazo");
-			DisenioControlHora hora = new DisenioControlHora();
+			ControlHora hora = new ControlHora();
 			hora.setIdControlProduccionMuestra(muestra.getIdControlProduccionMuestra());
 			Date date = new Date();
 			DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -239,7 +239,7 @@ public class ControlController {
 		
 		if ( tipo.equals("terminado")) {
 			System.out.println("Soy un trazo");
-			DisenioControlHora hora = new DisenioControlHora();
+			ControlHora hora = new ControlHora();
 			hora.setIdControlProduccionMuestra(muestra.getIdControlProduccionMuestra());
 			Date date = new Date();
 			DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -258,12 +258,12 @@ public class ControlController {
 		
 		
 		
-		DisenioControlProduccionMuestra muestra;
+		ControlProduccionMuestra muestra;
 		muestra=DCPM.findOne(idproceso);
 		muestra.setEstatusTiempo("Pausa");
 		DCPM.save(muestra);
 		
-		DisenioControlHora hora ;
+		ControlHora hora ;
 		Integer id= DCPM.Pausa(muestra.getIdControlProduccionMuestra());
 		
 		hora=DCPM.findOneHora(Long.valueOf(id));
@@ -283,12 +283,12 @@ public class ControlController {
 	public String stopProceso(Long idproceso ,String tipo , HttpServletRequest request) {
 		System.out.println("Hola soy stop");
 		
-		DisenioControlProduccionMuestra muestra;
+		ControlProduccionMuestra muestra;
 		muestra=DCPM.findOne(idproceso);
 		muestra.setEstatusTiempo("Stop");
 		DCPM.save(muestra);
 		
-		DisenioControlHora hora ;
+		ControlHora hora ;
 		Integer id= DCPM.Pausa(muestra.getIdControlProduccionMuestra());
 		
 		hora=DCPM.findOneHora(Long.valueOf(id));

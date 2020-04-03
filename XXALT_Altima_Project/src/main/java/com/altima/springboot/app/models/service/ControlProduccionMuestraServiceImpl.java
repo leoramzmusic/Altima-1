@@ -9,33 +9,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.altima.springboot.app.models.entity.DisenioControlHora;
-import com.altima.springboot.app.models.entity.DisenioControlProduccionMuestra;
-import com.altima.springboot.app.repository.DisenioControlHoraRepository;
-import com.altima.springboot.app.repository.DisenioControlProduccionMuestraRepository;
+import com.altima.springboot.app.models.entity.ControlHora;
+import com.altima.springboot.app.models.entity.ControlProduccionMuestra;
+import com.altima.springboot.app.repository.ControlHoraRepository;
+import com.altima.springboot.app.repository.ControlProduccionMuestraRepository;
 
 @Service
-public class DisenioControlProduccionMuestraServiceImpl implements IDisenioControlProduccionMuestraService {
+public class ControlProduccionMuestraServiceImpl implements IControlProduccionMuestraService {
 	//vhhbj
 	//cgvhbjnk
 	@Autowired 
-	private DisenioControlProduccionMuestraRepository repository;
+	private ControlProduccionMuestraRepository repository;
 	
 	@Autowired 
-	private DisenioControlHoraRepository repositoryHora;
+	private ControlHoraRepository repositoryHora;
 	
 	 @PersistenceContext
 	private EntityManager em;
 	 @SuppressWarnings("unchecked")
 	@Override
 	@Transactional
-	public List<DisenioControlProduccionMuestra> findAll(Long id) {
+	public List<ControlProduccionMuestra> findAll(Long id) {
 		
 		return em.createQuery("from DisenioControlProduccionMuestra where id_pedido="+id).getResultList();
 	}
 
 	@Override
-	public void save(DisenioControlProduccionMuestra DisenioControlProduccionMuestra) {
+	public void save(ControlProduccionMuestra DisenioControlProduccionMuestra) {
 		// TODO Auto-generated method stub
 		repository.save(DisenioControlProduccionMuestra);
 	}
@@ -47,7 +47,7 @@ public class DisenioControlProduccionMuestraServiceImpl implements IDisenioContr
 	}
 
 	@Override
-	public DisenioControlProduccionMuestra findOne(Long id) {
+	public ControlProduccionMuestra findOne(Long id) {
 		// TODO Auto-generated method stub
 		return repository.findById(id).orElse(null);
 	}
@@ -143,14 +143,14 @@ public class DisenioControlProduccionMuestraServiceImpl implements IDisenioContr
 	}
 
 	@Override
-	public void saveHora(DisenioControlHora DisenioControlHora) {
+	public void saveHora(ControlHora DisenioControlHora) {
 		// TODO Auto-generated method stub
 		repositoryHora.save(DisenioControlHora);
 		
 	}
 	
 	@Override
-	public DisenioControlHora findOneHora(Long id) {
+	public ControlHora findOneHora(Long id) {
 		// TODO Auto-generated method stub
 		return repositoryHora.findById(id).orElse(null);
 	}
