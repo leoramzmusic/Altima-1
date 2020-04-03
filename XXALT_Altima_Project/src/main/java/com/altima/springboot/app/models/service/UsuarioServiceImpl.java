@@ -10,8 +10,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.altima.springboot.app.dto.ChangePasswordForm;
 import com.altima.springboot.app.models.entity.Usuario;
 import com.altima.springboot.app.repository.UsuarioRepository;
+
 
 @Service
 public class UsuarioServiceImpl implements IUsuarioService {
@@ -22,6 +24,8 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	private EntityManager em;
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
+	
+	public String mensajeError;
 	
 	@Override
 	@Transactional(readOnly=true)
@@ -37,8 +41,21 @@ public class UsuarioServiceImpl implements IUsuarioService {
 		if(usuarioxd.getIdUsuario()==null) {
 		usuarioxd.setContraseña(passwordEncoder.encode(usuarioxd.getContraseña()));
 		}
+		else {
+			Usuario usuario = findOne(usuarioxd.getIdUsuario());
+			mapUser(usuario,usuarioxd);
+		}
 		usuario.save(usuarioxd);
 		}
+	protected void mapUser(Usuario from, Usuario to) {
+		//to.setNombreUsuario(from.getNombreUsuario());
+		//to.setFirstName(from.getFirstName());
+		//to.setLastName(from.getLastName());
+		//to.setEmail(from.getEmail());
+		//to.setIdEmpleado(from.getIdEmpleado());
+		to.setContraseña(from.getContraseña());
+		//to.setEstatus(from.getEstatus());
+	}
 	
 	@Override
 	@Transactional
@@ -60,4 +77,32 @@ public class UsuarioServiceImpl implements IUsuarioService {
 		// TODO Auto-generated method stub
 		return em.createNativeQuery("call alt_pr_usuarios").getResultList();
 	}
+	@Override
+	public Usuario changePassword(ChangePasswordForm form) throws Exception {
+		Usuario user  = findOne(form.getId());
+		
+		/*
+		 * if( !user.getContraseña().equals(form.getCurrentPassword())) { throw new
+		 * Exception("Currente Password invalido."); }
+		 */
+		
+		if( passwordEncoder.matches(form.getNewPassword(), user.getContraseña())) {
+			mensajeError=("Nueva Contraseña debe ser diferente a la contraseña actual.");
+			throw new Exception("Nueva Contraseña debe ser diferente a la contraseña actual.");
+		}
+		
+		if( !form.getNewPassword().equals(form.getConfirmPassword())) {
+			mensajeError=("Nueva Contraseña y Confirmar Contraseña no coinciden.");
+			throw new Exception("Nueva Contraseña y Confirmar Contraseña no coinciden.");
+		}
+		
+		String encodePassword = passwordEncoder.encode(form.getNewPassword());
+		user.setContraseña(encodePassword);
+		return usuario.save(user);
+	}
+	@Override
+	public String getMensajeError() {
+		return mensajeError;
+	}
+
 }

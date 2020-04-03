@@ -405,7 +405,7 @@ public class CatalogoController {
 	public String ver(@PathVariable(value = "lookup") String lookup, Model model) {
 
 		if (lookup.equals("marca")) {
-			List<DisenioLookup> lookup1 = catalogo.findAllMarca();
+			List<DisenioLookup> lookup1 = catalogo.findAllColor();
 			model.addAttribute("lookup", lookup1);
 		}
 

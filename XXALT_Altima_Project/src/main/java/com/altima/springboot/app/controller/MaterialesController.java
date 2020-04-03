@@ -81,14 +81,14 @@ public class MaterialesController {
 		List<DisenioLookup> listLookupsMed = disenioMaterialService.findListaLookupMed();
 		List<DisenioLookup> listLookupsMar = disenioMaterialService.findListaMarcas();
 		List<DisenioLookup> listLookupsClasificacion = disenioMaterialService.findListaClasificacion();	
-		//List<DisenioProceso> listClaveProceso = disenioProcesoService.findListClaveProceso();
+		List<DisenioLookup> listClaveProceso = disenioMaterialService.findListaLookupPro();
 		List<DisenioLookup> listLookupsMat = disenioMaterialService.findListaLookupMat();
 		List<DisenioLookup> listLookupsCol = disenioMaterialService.findListaColor();
 		model.addAttribute("material", material);
 		model.addAttribute("listLookupsMed", listLookupsMed);
 		model.addAttribute("listLookupsMar", listLookupsMar);
 		model.addAttribute("listLookupsClasificacion", listLookupsClasificacion);
-		//model.addAttribute("listClaveProceso", listClaveProceso);
+		model.addAttribute("listClaveProceso", listClaveProceso);
 		model.addAttribute("listLookupsMat", listLookupsMat);
 		model.addAttribute("listLookupsCol", listLookupsCol);
 		System.out.println("epale eaple si entro al method get");
@@ -152,7 +152,7 @@ public class MaterialesController {
 		List<DisenioLookup> listLookupsMed = disenioMaterialService.findListaLookupMed();
 		List<DisenioLookup> listLookupsMar = disenioMaterialService.findListaMarcas();
 		List<DisenioLookup> listLookupsClasificacion = disenioMaterialService.findListaClasificacion();	
-		//List<DisenioProceso> listClaveProceso = disenioProcesoService.findListClaveProceso();
+		List<DisenioLookup> listClaveProceso = disenioMaterialService.findListaLookupPro();
 		List<DisenioLookup> listLookupsMat = disenioMaterialService.findListaLookupMat();
 		List<DisenioLookup> listLookupsCol = disenioMaterialService.findListaColor();
 		
@@ -161,7 +161,7 @@ public class MaterialesController {
 		model.addAttribute("listLookupsMed", listLookupsMed);
 		model.addAttribute("listLookupsMar", listLookupsMar);
 		model.addAttribute("listLookupsClasificacion", listLookupsClasificacion);
-		//model.addAttribute("listClaveProceso", listClaveProceso);
+		model.addAttribute("listClaveProceso", listClaveProceso);
 		model.addAttribute("listLookupsMat", listLookupsMat);
 		model.addAttribute("listLookupsCol", listLookupsCol);
 		

@@ -1,6 +1,9 @@
 package com.altima.springboot.app.models.service;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +15,8 @@ import com.altima.springboot.app.repository.UsuarioRepository;
 @Service
 public class RolServiceImpl implements IRolService {
 
+	@Autowired	
+	EntityManager em;
 	@Autowired	
 	private RolRepository repository;
 	
@@ -37,6 +42,22 @@ public class RolServiceImpl implements IRolService {
 	public void delete(Long id_rol) {
 		// TODO Auto-generated method stub
 		repository.deleteById(id_rol);
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@Override
+	public ArrayList findBySeccionRol(String seccion) {
+		// TODO Auto-generated method stub
+		ArrayList secciones =new ArrayList();
+		List<String> seccionNombre=new ArrayList<String>();
+		List<String> seccionId=new ArrayList<String>();
+		for(Rol sec: repository.findBySeccionRol(seccion)) {
+			seccionNombre.add(sec.getPermisoRol());
+			seccionId.add(sec.getIdRol().toString());
+		}
+		secciones.add(seccionNombre);
+		secciones.add(seccionId);
+		return secciones;
 	}
 
 }

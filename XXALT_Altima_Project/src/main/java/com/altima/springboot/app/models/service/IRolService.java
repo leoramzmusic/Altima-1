@@ -1,5 +1,6 @@
 package com.altima.springboot.app.models.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.altima.springboot.app.models.entity.Rol;
@@ -13,5 +14,8 @@ public interface IRolService {
 	public void save(Rol rol);
 
 	public void delete(Long id_rol);
+
+	@SuppressWarnings("rawtypes")
+	public ArrayList findBySeccionRol(String seccion);
 
 }
