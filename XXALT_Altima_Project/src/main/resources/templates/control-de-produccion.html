@@ -85,44 +85,21 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td><a th:href="${''}">MAE123</a></td>
-												<td>05/01/2020</td>
-												<td>Nota de observaciones</td>
-												<td>Corte</td>
-												<td class="tdcenter"><a data-target="#detalles-proceso" onclick="listarTrazos(1)" class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="modal" data-placement="top"
+										
+											<tr th:each="pedidos: ${pedidos}">
+                                                <td><a th:text="${pedidos[1]}"></a>  </td>
+                                                <td th:text="${pedidos[2]}"></td>
+                                                <td th:text="${pedidos[3]}"></td>
+                                                <td th:text="${pedidos[4]}"></td>
+                                                
+                                                <td class="tdcenter"><a data-target="#detalles-proceso"  th:onclick="'listarTrazos('+${pedidos[0]}+');'"  class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="modal" data-placement="top"
 													data-content="Detalles"><i class="fas fa-info"></i></a></td>
-													
-													<td class="tdcenter"><a data-target="#Contador" onclick="listarHoras(1)" class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="modal" data-placement="top"
+                                                
+                                               <td class="tdcenter"><a data-target="#Contador"  th:onclick="'listarHoras('+${pedidos[0]}+');'"   class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="modal" data-placement="top"
 													data-content="Horas"><i class="fas fa-info"></i></a></td>
-											</tr>
-											
-											<tr>
-												<td><a th:href="${''}">MAE123</a></td>
-												<td>05/01/2020</td>
-												<td>Nota de observaciones</td>
-												<td>Corte</td>
-												<td class="tdcenter"><a data-target="#detalles-proceso" onclick="listarTrazos(2)" class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="modal" data-placement="top"
-													data-content="Detalles"><i class="fas fa-info"></i></a></td>
-											</tr>
-											
-											<tr>
-												<td><a th:href="${''}">MAE123</a></td>
-												<td>05/01/2020</td>
-												<td>Nota de observaciones</td>
-												<td>Corte</td>
-												<td class="tdcenter"><a data-target="#detalles-proceso" onclick="listarTrazos(3)" class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="modal" data-placement="top"
-													data-content="Detalles"><i class="fas fa-info"></i></a></td>
-											</tr>
-											
-											<tr>
-												<td><a th:href="${''}">MAE123</a></td>
-												<td>05/01/2020</td>
-												<td>Nota de observaciones</td>
-												<td>Corte</td>
-												<td class="tdcenter"><a data-target="#detalles-proceso" onclick="listarTrazos(4)" class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="modal" data-placement="top"
-													data-content="Detalles"><i class="fas fa-info"></i></a></td>
-											</tr>
+                                               
+                                            </tr>
+										
 										</tbody>
 									</table>
 									

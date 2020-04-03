@@ -59,10 +59,11 @@ public class ControlProduccionMuestraServiceImpl implements IControlProduccionMu
 		// TODO Auto-generated method stub
 		
 		
-		List<Object[]> re= em.createNativeQuery("select empleado.id_empleado, persona.nombre_persona from alt_hr_empleado as empleado, alt_hr_persona as persona \r\n" + 
-				"where 1=1 \r\n" + 
-				"and empleado.id_persona= persona.id_persona\r\n" + 
-				"and empleado.id_puesto=1").getResultList();
+		List<Object[]> re= em.createNativeQuery("select empleado.id_empleado,  CONCAT( persona.nombre_persona,' ',  persona.apellido_paterno) as nombre from alt_hr_empleado as empleado, alt_hr_persona as persona \r\n" + 
+				"				where 1=1\r\n" + 
+				"				and empleado.id_persona= persona.id_persona\r\n" + 
+				"				and empleado.id_puesto=1\r\n" + 
+				"                ORDER BY persona.nombre_persona").getResultList();
 		return re;
 	}
 	
@@ -72,12 +73,13 @@ public class ControlProduccionMuestraServiceImpl implements IControlProduccionMu
 	public List<Object []> OperacionesTrazo(Long id) {
 		// TODO Auto-generated method stub
 		List<Object[]> re= em.createNativeQuery("select persona.nombre_persona , Date_format(muestra.fecha_recepcion,'%Y/%M/%d %h:%i:%s %p'),Date_format(muestra.fecha_entrega,'%Y/%M/%d %h:%i:%s %p'), TIMESTAMPDIFF(DAY, muestra.fecha_recepcion, muestra.fecha_entrega), muestra.id_control_produccion_muestra, muestra.estatus_tiempo\r\n" + 
-				"from alt_hr_empleado as empleado, alt_disenio_control_produccion_muestra  as muestra, alt_hr_persona as persona\r\n" + 
-				"where 1=1\r\n" + 
-				"and empleado.id_empleado=muestra.id_operario\r\n" + 
-				"and empleado.id_persona=persona.id_persona\r\n" + 
-				"and muestra.tipo=1\r\n" + 
-				"and muestra.id_pedido="+id).getResultList();
+				"				from alt_hr_empleado as empleado, alt_control_produccion_muestra  as muestra, alt_hr_persona as persona \r\n" + 
+				"				where 1=1\r\n" + 
+				"				and empleado.id_empleado=muestra.id_operario \r\n" + 
+				"				and empleado.id_persona=persona.id_persona \r\n" + 
+				"				and muestra.tipo=1 \r\n" + 
+				"                ORDER BY muestra.fecha_recepcion\r\n" + 
+				"				and muestra.id_pedido="+id).getResultList();
 		return re;
 	}
 
@@ -87,11 +89,12 @@ public class ControlProduccionMuestraServiceImpl implements IControlProduccionMu
 	public List<Object[]> OperacionesCorte(Long id) {
 		// TODO Auto-generated method stub
 		List<Object[]> re= em.createNativeQuery("select persona.nombre_persona , Date_format(muestra.fecha_recepcion,'%Y/%M/%d %h:%i:%s %p'),Date_format(muestra.fecha_entrega,'%Y/%M/%d %h:%i:%s %p'), TIMESTAMPDIFF(DAY, muestra.fecha_recepcion, muestra.fecha_entrega), muestra.id_control_produccion_muestra, muestra.estatus_tiempo\r\n" + 
-				"from alt_hr_empleado as empleado, alt_disenio_control_produccion_muestra  as muestra, alt_hr_persona as persona\r\n" + 
+				"from alt_hr_empleado as empleado, alt_control_produccion_muestra  as muestra, alt_hr_persona as persona\r\n" + 
 				"where 1=1\r\n" + 
 				"and empleado.id_empleado=muestra.id_operario\r\n" + 
 				"and empleado.id_persona=persona.id_persona\r\n" + 
 				"and muestra.tipo=2\r\n" + 
+				"ORDER BY muestra.fecha_recepcion\r\n" + 
 				"and muestra.id_pedido="+id).getResultList();
 		return re;
 	}
@@ -102,11 +105,12 @@ public class ControlProduccionMuestraServiceImpl implements IControlProduccionMu
 	public List<Object[]> OperacionesCofeccion(Long id) {
 		// TODO Auto-generated method stub
 		List<Object[]> re= em.createNativeQuery("select persona.nombre_persona , Date_format(muestra.fecha_recepcion,'%Y/%M/%d %h:%i:%s %p'),Date_format(muestra.fecha_entrega,'%Y/%M/%d %h:%i:%s %p'), TIMESTAMPDIFF(DAY, muestra.fecha_recepcion, muestra.fecha_entrega), muestra.id_control_produccion_muestra, muestra.estatus_tiempo\r\n" + 
-				"from alt_hr_empleado as empleado, alt_disenio_control_produccion_muestra  as muestra, alt_hr_persona as persona\r\n" + 
+				"from alt_hr_empleado as empleado, alt_control_produccion_muestra  as muestra, alt_hr_persona as persona\r\n" + 
 				"where 1=1\r\n" + 
 				"and empleado.id_empleado=muestra.id_operario\r\n" + 
 				"and empleado.id_persona=persona.id_persona\r\n" + 
 				"and muestra.tipo=3\r\n" + 
+				"ORDER BY muestra.fecha_recepcion\r\n" + 
 				"and muestra.id_pedido="+id).getResultList();
 		return re;
 	}
@@ -117,11 +121,12 @@ public class ControlProduccionMuestraServiceImpl implements IControlProduccionMu
 	public List<Object[]> OperacionesPlanchado(Long id) {
 		// TODO Auto-generated method stub
 		List<Object[]> re= em.createNativeQuery("select persona.nombre_persona , Date_format(muestra.fecha_recepcion,'%Y/%M/%d %h:%i:%s %p'),Date_format(muestra.fecha_entrega,'%Y/%M/%d %h:%i:%s %p'), TIMESTAMPDIFF(DAY, muestra.fecha_recepcion, muestra.fecha_entrega), muestra.id_control_produccion_muestra, muestra.estatus_tiempo\r\n" + 
-				"from alt_hr_empleado as empleado, alt_disenio_control_produccion_muestra  as muestra, alt_hr_persona as persona\r\n" + 
+				"from alt_hr_empleado as empleado, alt_control_produccion_muestra  as muestra, alt_hr_persona as persona\r\n" + 
 				"where 1=1\r\n" + 
 				"and empleado.id_empleado=muestra.id_operario\r\n" + 
 				"and empleado.id_persona=persona.id_persona\r\n" + 
 				"and muestra.tipo=4\r\n" + 
+				"ORDER BY muestra.fecha_recepcion\r\n" + 
 				"and muestra.id_pedido="+id).getResultList();
 		return re;
 	}
@@ -133,11 +138,12 @@ public class ControlProduccionMuestraServiceImpl implements IControlProduccionMu
 	public List<Object[]> OperacionesTerminado(Long id) {
 		// TODO Auto-generated method stub
 		List<Object[]> re= em.createNativeQuery("select persona.nombre_persona , Date_format(muestra.fecha_recepcion,'%Y/%M/%d %h:%i:%s %p'),Date_format(muestra.fecha_entrega,'%Y/%M/%d %h:%i:%s %p'), TIMESTAMPDIFF(DAY, muestra.fecha_recepcion, muestra.fecha_entrega), muestra.id_control_produccion_muestra, muestra.estatus_tiempo\r\n" + 
-				"from alt_hr_empleado as empleado, alt_disenio_control_produccion_muestra  as muestra, alt_hr_persona as persona\r\n" + 
+				"from alt_hr_empleado as empleado, alt_control_produccion_muestra  as muestra, alt_hr_persona as persona\r\n" + 
 				"where 1=1\r\n" + 
 				"and empleado.id_empleado=muestra.id_operario\r\n" + 
 				"and empleado.id_persona=persona.id_persona\r\n" + 
 				"and muestra.tipo=5\r\n" + 
+				"ORDER BY muestra.fecha_recepcion\r\n" + 
 				"and muestra.id_pedido="+id).getResultList();
 		return re;
 	}
@@ -161,9 +167,9 @@ public class ControlProduccionMuestraServiceImpl implements IControlProduccionMu
 	public Integer Pausa(Long id) {
 		
 		System.out.println("SSoy pausa del service ");
-		Integer re =(Integer) em.createNativeQuery("select   MAX(alt_disenio_control_hora.id_control_hora) from alt_disenio_control_hora\r\n" + 
-				"where  alt_disenio_control_hora.estatus=\"Play\"\r\n" + 
-				"and  alt_disenio_control_hora.id_control_produccion_muestra="+id).getSingleResult();
+		Integer re =(Integer) em.createNativeQuery("select   MAX(alt_control_hora.id_control_hora) from alt_control_hora\r\n" + 
+				"where  alt_control_hora.estatus=\"Play\"\r\n" + 
+				"and  alt_control_hora.id_control_produccion_muestra="+id).getSingleResult();
 		return re;
 	
 	}
@@ -172,21 +178,41 @@ public class ControlProduccionMuestraServiceImpl implements IControlProduccionMu
 	@Override
 	@Transactional
 	public List<Object[]> ContadorHoras(Long id) {
-		List<Object[]> re= em.createNativeQuery("SELECT hora.id_control_hora, Date_format( hora.fecha_inicio,'%Y/%M/%d %h:%i:%s %p'), Date_format( hora.fecha_fin,'%Y/%M/%d %h:%i:%s %p'),\r\n" + 
-				"CASE\r\n" + 
-				"	WHEN hora.tipo = 1 THEN 'Trazo'\r\n" + 
-				"    WHEN hora.tipo = 2 THEN 'Corte'\r\n" + 
-				"    WHEN hora.tipo = 3 THEN 'Confección'\r\n" + 
-				"    WHEN hora.tipo = 4 THEN 'Planchado'\r\n" + 
-				"    WHEN hora.tipo = 5 THEN 'Terminado'\r\n" + 
-				"    ELSE 'null'\r\n" + 
-				"END  ,TIMESTAMPDIFF (MINUTE,hora.fecha_inicio, hora.fecha_fin )  as tiempo, hora.estatus\r\n" + 
-				"from alt_disenio_control_hora as hora ,alt_disenio_control_produccion_muestra as muestra\r\n" + 
-				"where 1=1\r\n" + 
-				"and muestra.id_control_produccion_muestra= hora.id_control_produccion_muestra\r\n" + 
-				"\r\n" + 
-				"and hora.id_control_produccion_muestra="+id).getResultList();
+		List<Object[]> re= em.createNativeQuery("SELECT hora.id_control_hora, Date_format( hora.fecha_inicio,'%Y/%M/%d %h:%i:%s %p'),  IFNULL(Date_format( hora.fecha_fin,'%Y/%M/%d %h:%i:%s %p'),'En proceso') , \r\n" + 
+				"				CASE\r\n" + 
+				"					WHEN hora.tipo = 1 THEN 'Trazo'\r\n" + 
+				"				    WHEN hora.tipo = 2 THEN 'Corte' \r\n" + 
+				"				    WHEN hora.tipo = 3 THEN 'Confección' \r\n" + 
+				"				    WHEN hora.tipo = 4 THEN 'Planchado'\r\n" + 
+				"				    WHEN hora.tipo = 5 THEN 'Terminado' \r\n" + 
+				"				    ELSE 'Null'\r\n" + 
+				"				END  ,    IFNULL(TIMESTAMPDIFF (MINUTE,hora.fecha_inicio, hora.fecha_fin ) ,'En proceso') as tiempo, hora.estatus\r\n" + 
+				"				from alt_control_hora as hora ,alt_control_produccion_muestra as muestra \r\n" + 
+				"				where 1=1\r\n" + 
+				"				and muestra.id_control_produccion_muestra= hora.id_control_produccion_muestra\r\n" + 
+				"				and hora.id_control_produccion_muestra="+id).getResultList();
 		return re;
 	}
-
+	
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<Object[]> ListarPedidos() {
+		List<Object[]> re= em.createNativeQuery("select\r\n" + 
+				"	pedido.id_pedido,\r\n" + 
+				"	pedido.id_text,\r\n" + 
+				"	pedido.fecha_creacion_pedido, \r\n" + 
+				"	pedido.descripcion_pedido, \r\n" + 
+				"	( IFNULL((select(CASE \r\n" + 
+				"						WHEN muestra.tipo = 1 THEN 'Trazo' \r\n" + 
+				"						WHEN muestra.tipo = 2 THEN 'Corte' \r\n" + 
+				"						WHEN muestra.tipo = 3 THEN 'Confección' \r\n" + 
+				"						WHEN muestra.tipo = 4 THEN 'Planchado' \r\n" + 
+				"						WHEN muestra.tipo = 5 THEN 'Terminado' \r\n" + 
+				"						ELSE 'Nuevo' \r\n" + 
+				"						END  )from alt_control_produccion_muestra as muestra where muestra.estatus_tiempo ='Play' and muestra.id_pedido= pedido.id_pedido), 'Sin proceso asignado')) as proceso \r\n" + 
+				"	from alt_pedido as pedido").getResultList();
+		return re;
+	}
 }

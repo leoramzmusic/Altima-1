@@ -40,6 +40,8 @@ public class ControlController {
 	public String listControlProduccion(Model model) {		
 		
 		model.addAttribute("operador", DCPM.Operadores());
+		
+		model.addAttribute("pedidos", DCPM.ListarPedidos());
 		return "control-de-produccion";
 	}
 	

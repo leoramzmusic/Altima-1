@@ -25,6 +25,8 @@ public interface IControlProduccionMuestraService {
 	
 	public Integer Pausa(Long id);
 	
+	List<Object []> ListarPedidos();
+	
 	
 	//vhbjnklm
 }
