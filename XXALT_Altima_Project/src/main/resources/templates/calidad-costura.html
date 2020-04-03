@@ -1,95 +1,106 @@
 <div class="row">
-    <div class="col-sm-12">
-        <a><strong>IMPORTANTE</strong><br>
-	    <i class="fas fa-check-circle text-success"></i> Cortar 4 testigos con medidas de 25cm x 25cm<br>
-	    <i class="fas fa-check-circle text-success"></i> Marcar con una muesca el hilo de las telas<br>
-	    <strong style="color:#ff0000"><i class="fas fa-exclamation-triangle"></i> Guardar un testigo original</strong></a>
-        <hr>
-    </div>
-    <div class="col-sm-4">
-        <div class="form-group">
-            <label>Tela</label>
-            <select class="form-control idtelas" id="telass">
-                <option>Selecciona uno...</option>
-            </select>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="form-group">
-            <label>Operario</label>
-            <select class="form-control idOperarios" id="operarioCostura">
-                <option>Selecciona uno...</option>
-            </select>
-        </div>
-    </div>
-    <div class="col-sm-2">
-        <div class="form-group">
-            <label style="font-size: 15px;">Fecha y hora de realizaci&oacute;n</label>
-            <input type="datetime-local" class="form-control" id="fechaRealizacionCostura" placeholder="23.2">
-        </div>
-    </div>
-    <div class="col-sm-2">
-        <div class="form-group">
-            <label style="font-size: 15px;">Fecha y hora de finalizaci&oacute;n</label>
-            <input type="datetime-local" class="form-control" id="fechaFinalizacionCostura" placeholder="23.2">
-        </div>
-    </div>
-    <div class="col-sm-12">
-        <hr>
-        <h4>Descripci&oacute;n:<strong> Resultado costura</strong></h4>
-    </div>
-    <div class="col-sm-12">
-        <div class="form-group">
-            <label for="status">Tipo de aguja</label>
-            <select class="form-control" id="tipoAguja" name="tipodeAguja">
-                <option value="selecciona">Selecciona uno...</option>
-                <option value="8">60/8</option>
-                <option value="10">70/10</option>
-                <option value="12">80/12</option>
-                <option value="14">890/14</option>
-            </select>
-        </div>
-    </div>
-    <div class="col-sm-12">
-        <label>Deslizamiento</label>
-        <div class="form-group">
-            <div class="custom-control custom-radio">
-                <input class="custom-control-input" type="radio" id="siDeslizamiento" value="si" name="decisionDeslizamiento">
-                <label for="siDeslizamiento" class="custom-control-label">Si</label>
-            </div>
-            <div class="custom-control custom-radio">
-                <input class="custom-control-input" type="radio" id="noDeslizamiento"value="no" name="decisionDeslizamiento">
-                <label for="noDeslizamiento" class="custom-control-label">No</label>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-12">
-        <div class="form-group">
-            <label style="font-size: 15px;">Observaciones</label>
-            <textarea class="form-control" id="observacionesDeslizamiento" rows="3" placeholder="Especificar"></textarea>
-        </div>
-    </div>
-    <div class="col-sm-12">
-        <label>Rasgado de tela</label>
-        <div class="form-group">
-            <div class="custom-control custom-radio">
-                <input class="custom-control-input" type="radio" id="siRasgado" value="si" name="decisionRasgado">
-                <label for="siRasgado" class="custom-control-label">Si</label>
-            </div>
-            <div class="custom-control custom-radio">
-                <input class="custom-control-input" type="radio" id="noRasgado" value="no" name="decisionRasgado">
-                <label for="noRasgado" class="custom-control-label">No</label>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-12">
-        <div class="form-group">
-            <label style="font-size: 15px;">Observaciones</label>
-            <textarea class="form-control" id="observacionesRasgado" rows="3" placeholder="Especificar"></textarea>
-        </div>
-    </div>
-    <div class="form-group col-sm-12">
-        <a th:href="${'calidad'}" class="btn btn-danger" data-dismiss="modal">Cancelar</a>
-        <a type="button" class="btn btn-primary next-step float-right" th:href="calidad"   onClick="PruebaCostura()">Guardar</a>
-    </div>
+	<div class="col-sm-12">
+		<a>
+			<strong>IMPORTANTE</strong><br> <i class="fas fa-check-circle text-success"></i> Cortar 4 testigos con medidas de 25cm x 25cm<br> <i
+				class="fas fa-check-circle text-success"></i> Marcar con una muesca el hilo de las telas<br> <strong style="color: #ff0000"><i
+				class="fas fa-exclamation-triangle"></i> Guardar un testigo original</strong>
+		</a>
+		<hr>
+	</div>
+	<div class="col-sm-4">
+		<div class="form-group">
+			<label>Tela</label>
+			<select class="form-control idtelas" id="telass">
+				<option>Selecciona uno...</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-sm-4">
+		<div class="form-group">
+			<label>Operario</label>
+			<select class="form-control idOperarios" id="operarioCostura">
+				<option>Selecciona uno...</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-sm-2">
+		<div class="form-group">
+			<label style="font-size: 15px;">Fecha y hora de realizaci&oacute;n</label>
+			<input type="datetime-local" class="form-control" id="fechaRealizacionCostura" placeholder="23.2">
+		</div>
+	</div>
+	<div class="col-sm-2">
+		<div class="form-group">
+			<label style="font-size: 15px;">Fecha y hora de finalizaci&oacute;n</label>
+			<input type="datetime-local" class="form-control" id="fechaFinalizacionCostura" placeholder="23.2">
+		</div>
+	</div>
+	<div class="col-sm-12">
+		<hr>
+		<h4>
+			Descripci&oacute;n:<strong> Resultado costura</strong>
+		</h4>
+	</div>
+	<div class="col-sm-12">
+		<div class="form-group">
+			<label for="status">Tipo de aguja</label>
+			<select class="form-control" id="tipoAguja" name="tipodeAguja">
+				<option value="selecciona">Selecciona uno...</option>
+				<option value="8">60/8</option>
+				<option value="10">70/10</option>
+				<option value="12">80/12</option>
+				<option value="14">890/14</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-sm-12">
+		<label>Deslizamiento</label>
+		<div class="form-group">
+			<div class="custom-control custom-radio">
+				<input class="custom-control-input" type="radio" id="siDeslizamiento" value="si" name="decisionDeslizamiento">
+				<label for="siDeslizamiento" class="custom-control-label">Si</label>
+			</div>
+			<div class="custom-control custom-radio">
+				<input class="custom-control-input" type="radio" id="noDeslizamiento" value="no" name="decisionDeslizamiento">
+				<label for="noDeslizamiento" class="custom-control-label">No</label>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-12">
+		<div class="form-group">
+			<label style="font-size: 15px;">Observaciones</label>
+			<textarea class="form-control" id="observacionesDeslizamiento" rows="3" placeholder="Especificar"></textarea>
+		</div>
+	</div>
+	<div class="col-sm-12">
+		<label>Rasgado de tela</label>
+		<div class="form-group">
+			<div class="custom-control custom-radio">
+				<input class="custom-control-input" type="radio" id="siRasgado" value="si" name="decisionRasgado">
+				<label for="siRasgado" class="custom-control-label">Si</label>
+			</div>
+			<div class="custom-control custom-radio">
+				<input class="custom-control-input" type="radio" id="noRasgado" value="no" name="decisionRasgado">
+				<label for="noRasgado" class="custom-control-label">No</label>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-12">
+		<div class="form-group">
+			<label style="font-size: 15px;">Observaciones</label>
+			<textarea class="form-control" id="observacionesRasgado" rows="3" placeholder="Especificar"></textarea>
+		</div>
+	</div>
+	<div class="form-group col-sm-12">
+		<a th:href="${'calidad'}" class="btn btn-danger" data-dismiss="modal">Cancelar</a>
+		<a type="button" class="btn btn-primary next-step float-right" onclick="ValidacionCostura()">Guardar</a>
+		<a type="button" class="btn btn-primary next-step float-right" onclick="PruebaCostura()" id="enlaceCostura" style="display: none;"></a>
+	</div>
+	<div class="form-group col-sm-12">
+		<div class="form-group col-sm-12" id="AlertaPestanaCostura" style="display: none; color: red;">
+			<div class="float-right">
+				<label>Debes llenar todos los campos correctamente.</label>
+			</div>
+		</div>
+	</div>
 </div>
