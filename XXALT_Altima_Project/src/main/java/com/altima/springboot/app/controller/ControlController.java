@@ -47,7 +47,9 @@ public class ControlController {
 	
 	@RequestMapping(value = "/listar-trazos/{id}", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Object []> listar_trazos(@PathVariable(value="id") Long id) {		
+	public List<Object []> listar_trazos(@PathVariable(value="id") Long id) {	
+		
+		System.out.println("Soy el id"+id);
 		
 		return  DCPM.OperacionesTrazo(id);
 	}

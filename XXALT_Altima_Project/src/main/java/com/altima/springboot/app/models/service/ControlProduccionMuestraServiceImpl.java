@@ -78,7 +78,7 @@ public class ControlProduccionMuestraServiceImpl implements IControlProduccionMu
 				"				and empleado.id_empleado=muestra.id_operario \r\n" + 
 				"				and empleado.id_persona=persona.id_persona \r\n" + 
 				"				and muestra.tipo=1 \r\n" + 
-				"                ORDER BY muestra.fecha_recepcion\r\n" + 
+				
 				"				and muestra.id_pedido="+id).getResultList();
 		return re;
 	}
@@ -94,7 +94,7 @@ public class ControlProduccionMuestraServiceImpl implements IControlProduccionMu
 				"and empleado.id_empleado=muestra.id_operario\r\n" + 
 				"and empleado.id_persona=persona.id_persona\r\n" + 
 				"and muestra.tipo=2\r\n" + 
-				"ORDER BY muestra.fecha_recepcion\r\n" + 
+				
 				"and muestra.id_pedido="+id).getResultList();
 		return re;
 	}
@@ -110,7 +110,7 @@ public class ControlProduccionMuestraServiceImpl implements IControlProduccionMu
 				"and empleado.id_empleado=muestra.id_operario\r\n" + 
 				"and empleado.id_persona=persona.id_persona\r\n" + 
 				"and muestra.tipo=3\r\n" + 
-				"ORDER BY muestra.fecha_recepcion\r\n" + 
+				
 				"and muestra.id_pedido="+id).getResultList();
 		return re;
 	}
@@ -126,7 +126,7 @@ public class ControlProduccionMuestraServiceImpl implements IControlProduccionMu
 				"and empleado.id_empleado=muestra.id_operario\r\n" + 
 				"and empleado.id_persona=persona.id_persona\r\n" + 
 				"and muestra.tipo=4\r\n" + 
-				"ORDER BY muestra.fecha_recepcion\r\n" + 
+				
 				"and muestra.id_pedido="+id).getResultList();
 		return re;
 	}
@@ -143,7 +143,7 @@ public class ControlProduccionMuestraServiceImpl implements IControlProduccionMu
 				"and empleado.id_empleado=muestra.id_operario\r\n" + 
 				"and empleado.id_persona=persona.id_persona\r\n" + 
 				"and muestra.tipo=5\r\n" + 
-				"ORDER BY muestra.fecha_recepcion\r\n" + 
+				
 				"and muestra.id_pedido="+id).getResultList();
 		return re;
 	}

@@ -27,7 +27,7 @@
 	 console.log("hola humano yo soy el id que mandas de control de produccionS "+id);
 		$.ajax({
 		    method: "GET",
-		    url: "/listar-trazos/"+2,
+		    url: "/listar-trazos/"+id,
 		    success: (data) => {
 		    	$('#quitar').remove();
 		    	$('#quitar2').remove();
