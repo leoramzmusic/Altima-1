@@ -28,14 +28,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a th:href="${'solicitudes'}" class="nav-link" id="navMensajeria">
+                    <a th:href="${'/solicitudes'}" class="nav-link" id="navMensajeria">
                         <i class="nav-icon fas fa-mail-bulk text-primary"></i>
                         <p>Mensajer&iacute;a</p>
                     </a>
                 </li>
                 <li class="nav-item has-treeview" id="menuDiseno" th:if="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')} or (${#authorization.expression('hasRole(''ROLE_DISENIO'')')})">
                     <a class="nav-link" id="navDiseno">
-                        <i class="nav-icon flaticon-005-dress text-primary" style="margin-right: -3px;margin-left: 6px;"></i>
+                        <i class="nav-icon flaticon-005-dress text-primary" style="margin-right: -3px;margin-left: 6px;" id="iDiseno"></i>
                         <p>
                             Dise&ntilde;o
                             <i class="fas fa-angle-left right"></i>
@@ -43,31 +43,31 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a th:href="${'calidad'}" class="nav-link " id="navDiseno1">
+                            <a th:href="${'/calidad'}" class="nav-link " id="navDiseno1">
                                 <i class="nav-icon fas fa-stamp"></i>
                                 <p>Calidad</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a th:href="${'materiales'}" class="nav-link " id="navDiseno2">
+                            <a th:href="${'/materiales'}" class="nav-link " id="navDiseno2">
                                 <i class="nav-icon flaticon-018-pattern"></i>
                                 <p>Materiales</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a th:href="${'prendas'}" class="nav-link " id="navDiseno3">
+                            <a th:href="${'/prendas'}" class="nav-link " id="navDiseno3">
                                 <i class="nav-icon flaticon-005-dress" style="margin-right: -3px;margin-left: 6px;"></i>
                                 <p>Prendas</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a th:href="${'catalogos'}" class="nav-link " id="navDiseno4">
+                            <a th:href="${'/catalogos'}" class="nav-link " id="navDiseno4">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>Cat&aacute;logos</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a th:href="${'control-de-produccion'}" class="nav-link " id="navDiseno5">
+                            <a th:href="${'/control-de-produccion'}" class="nav-link " id="navDiseno5">
                                 <i class="nav-icon flaticon-010-wardrobe"></i>
                                 <p>Producci&oacute;n de muestras</p>
                             </a>
@@ -93,19 +93,19 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a th:href="${'inventario'}" class="nav-link" id="navMuestrario1">
+                                    <a th:href="${'/inventario'}" class="nav-link" id="navMuestrario1">
                                         <i class="nav-icon fas fa-store"></i>
                                         <p>Inventario</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a th:href="${'traspasos'}" class="nav-link" id="navMuestrario2">
+                                    <a th:href="${'/traspasos'}" class="nav-link" id="navMuestrario2">
                                         <i class="nav-icon fas fa-exchange-alt"></i>
-                                        <p>Traspasos</p>
+                                        <p>Movimientos</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a th:href="${'catalogos-muestrario'}" class="nav-link" id="navMuestrario3">
+                                    <a th:href="${'/catalogos-muestrario'}" class="nav-link" id="navMuestrario3">
                                         <i class="nav-icon flaticon-007-dummy-1"></i>
                                         <p>Cat&aacute;logo</p>
                                     </a>
@@ -122,25 +122,25 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a th:href="${'agenda-agente'}" class="nav-link" id="navVenta1">
+                                    <a th:href="${'/agenda-agente'}" class="nav-link" id="navVenta1">
                                         <i class="nav-icon fas fa-user"></i>
                                         <p>Agenda</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a th:href="${'clientes'}" class="nav-link" id="navVenta2">
+                                    <a th:href="${'/clientes'}" class="nav-link" id="navVenta2">
                                         <i class="nav-icon fas fa-user"></i>
                                         <p>Clientes</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a th:href="${'seguimientos'}" class="nav-link" id="navVenta3">
+                                    <a th:href="${'/seguimientos'}" class="nav-link" id="navVenta3">
                                         <i class="nav-icon fas fa-vote-yea"></i>
                                         <p>Seguimientos</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a th:href="${'carga-de-pedidos'}" class="nav-link" id="navVenta4">
+                                    <a th:href="${'/carga-de-pedidos'}" class="nav-link" id="navVenta4">
                                         <i class="nav-icon fas fa-user"></i>
                                         <p>Carga de pedidos</p>
                                     </a>
@@ -157,7 +157,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a th:href="${'expediente'}" class="nav-link" id="navExpediente1">
+                                    <a th:href="${'/expediente'}" class="nav-link" id="navExpediente1">
                                         <i class="nav-icon fas fa-list"></i>
                                         <p>Listado de pedidos</p>
                                     </a>
@@ -174,7 +174,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a th:href="${''}" class="nav-link" id="navMuestrario1">
+                                    <a th:href="${'/'}" class="nav-link" id="navMuestrario1">
                                         <i class="nav-icon far fa-circle"></i>
                                         <p>Ejemplo</p>
                                     </a>
@@ -191,7 +191,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a th:href="${'clientes'}" class="nav-link" id="navVenta1">
+                                    <a th:href="${'/clientes'}" class="nav-link" id="navVenta1">
                                         <i class="nav-icon fas fa-user"></i>
                                         <p>Agenda</p>
                                     </a>
@@ -208,7 +208,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a th:href="${''}" class="nav-link" id="navMuestrario1">
+                                    <a th:href="${'/'}" class="nav-link" id="navMuestrario1">
                                         <i class="nav-icon far fa-circle"></i>
                                         <p>Ejemplo</p>
                                     </a>
@@ -225,31 +225,31 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a th:href="${''}" class="nav-link" id="navMuestrario1">
+                                    <a th:href="${'/'}" class="nav-link" id="navMuestrario1">
                                         <i class="nav-icon far fa-circle"></i>
                                         <p>Agenda</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a th:href="${''}" class="nav-link" id="navMuestrario1">
+                                    <a th:href="${'/'}" class="nav-link" id="navMuestrario1">
                                         <i class="nav-icon far fa-circle"></i>
                                         <p>Cotizaciones</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a th:href="${''}" class="nav-link" id="navMuestrario1">
+                                    <a th:href="${'/'}" class="nav-link" id="navMuestrario1">
                                         <i class="nav-icon far fa-circle"></i>
                                         <p>Clientes</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a th:href="${''}" class="nav-link" id="navMuestrario1">
+                                    <a th:href="${'/'}" class="nav-link" id="navMuestrario1">
                                         <i class="nav-icon far fa-circle"></i>
                                         <p>Asignaciones</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a th:href="${''}" class="nav-link" id="navMuestrario1">
+                                    <a th:href="${'/'}" class="nav-link" id="navMuestrario1">
                                         <i class="nav-icon far fa-circle"></i>
                                         <p>Comisiones</p>
                                     </a>
@@ -266,25 +266,25 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a th:href="${''}" class="nav-link" id="navMuestrario1">
+                                    <a th:href="${'/'}" class="nav-link" id="navMuestrario1">
                                         <i class="nav-icon far fa-circle"></i>
                                         <p>Prospectos</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a th:href="${''}" class="nav-link" id="navMuestrario1">
+                                    <a th:href="${'/'}" class="nav-link" id="navMuestrario1">
                                         <i class="nav-icon far fa-circle"></i>
                                         <p>Seguimientos</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a th:href="${''}" class="nav-link" id="navMuestrario1">
+                                    <a th:href="${'/'}" class="nav-link" id="navMuestrario1">
                                         <i class="nav-icon far fa-circle"></i>
                                         <p>Linea Express</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a th:href="${''}" class="nav-link" id="navMuestrario1">
+                                    <a th:href="${'/'}" class="nav-link" id="navMuestrario1">
                                         <i class="nav-icon far fa-circle"></i>
                                         <p>Registro de llamadas</p>
                                     </a>
@@ -294,7 +294,7 @@
                     </ul>
                 </li>
                 <li class="nav-item has-treeview" th:if="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')}">
-                    <a th:href="${'rutas'}" class="nav-link" id="navRutas">
+                    <a th:href="${'/rutas'}" class="nav-link" id="navRutas">
                         <i class="nav-icon fas fa-truck text-primary"></i>
                         <p>Log&iacute;stica</p>
                     </a>
@@ -309,97 +309,97 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a th:href="${'produccion-fechas-pedido'}" class="nav-link" id="navProduccion1">
+                            <a th:href="${'/produccion-fechas-pedido'}" class="nav-link" id="navProduccion1">
                                 <i class="nav-icon far fa-check-circle"></i>
                                 <p>Cierre de expediente</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a th:href="${'produccion-fechas-pedido'}" class="nav-link" id="navProduccion2">
+                            <a th:href="${'/produccion-fechas-pedido'}" class="nav-link" id="navProduccion2">
                                 <i class="nav-icon far fa-calendar-alt"></i>
                                 <p>Fechas de pedido</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a th:href="${'muestras'}" class="nav-link" id="navProduccion3">
+                            <a th:href="${'/muestras'}" class="nav-link" id="navProduccion3">
                                 <i class="nav-icon flaticon-028-sew"></i>
                                 <p>Pedidos de muestra</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a th:href="${''}" class="nav-link" id="navProduccion4">
+                            <a th:href="${'/'}" class="nav-link" id="navProduccion4">
                                 <i class="nav-icon flaticon-009-clean-cloth"></i>
                                 <p>Telas faltantes</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a th:href="${''}" class="nav-link" id="navProduccion5">
+                            <a th:href="${'/'}" class="nav-link" id="navProduccion5">
                                 <i class="nav-icon far fa-clock"></i>
                                 <p>Pedidos a vencer</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a th:href="${''}" class="nav-link" id="navProduccion6">
+                            <a th:href="${'/'}" class="nav-link" id="navProduccion6">
                                 <i class="nav-icon fas fa-hand-paper"></i>
                                 <p>Control de piso</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a th:href="${''}" class="nav-link" id="navProduccion7">
+                            <a th:href="${'/'}" class="nav-link" id="navProduccion7">
                                 <i class="nav-icon fas fa-clipboard-check"></i>
                                 <p>Asignaciones</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a th:href="${''}" class="nav-link" id="navProduccion8">
+                            <a th:href="${'/'}" class="nav-link" id="navProduccion8">
                                 <i class="nav-icon fas fa-calculator"></i>
                                 <p>Carga de producci&oacute;n</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a th:href="${''}" class="nav-link" id="navProduccion9">
+                            <a th:href="${'/'}" class="nav-link" id="navProduccion9">
                                 <i class="nav-icon fas fa-forward"></i>
                                 <p>Avances de producci&oacute;n</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a th:href="${''}" class="nav-link" id="navProduccion10">
+                            <a th:href="${'/'}" class="nav-link" id="navProduccion10">
                                 <i class="nav-icon fas fa-calendar-day"></i>
                                 <p>Producci&oacute;n por d&iacute;a</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a th:href="${''}" class="nav-link" id="navProduccion10">
+                            <a th:href="${'/'}" class="nav-link" id="navProduccion10">
                                 <i class="nav-icon flaticon-030-stitching"></i>
                                 <p>Producci&oacute;n de muestras</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a th:href="${'rutas'}" class="nav-link" id="navProduccion11">
+                            <a th:href="${'/rutas'}" class="nav-link" id="navProduccion11">
                                 <i class="nav-icon fas fa-route"></i>
                                 <p>Rutas de procesos</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a th:href="${'rutas'}" class="nav-link" id="navProduccion11">
+                            <a th:href="${'/rutas'}" class="nav-link" id="navProduccion11">
                                 <i class="nav-icon flaticon-005-dress" style="margin-right: -3px;margin-left: 6px;"></i>
                                 <p>Prendas faltantes</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a th:href="${'rutas'}" class="nav-link" id="navProduccion11">
+                            <a th:href="${'/rutas'}" class="nav-link" id="navProduccion11">
                                 <i class="nav-icon fas fa-box"></i>
                                 <p>Pedidos entregados</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a th:href="${'rutas'}" class="nav-link" id="navProduccion11">
+                            <a th:href="${'/rutas'}" class="nav-link" id="navProduccion11">
                                 <i class="nav-icon fas fa-ticket-alt"></i>
                                 <p>Impresi&oacute;n de etiquetas</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a th:href="${'rutas'}" class="nav-link" id="navProduccion11">
+                            <a th:href="${'/rutas'}" class="nav-link" id="navProduccion11">
                                 <i class="nav-icon fas fa-tint"></i>
                                 <p>Hojas de tonos</p>
                             </a>
@@ -424,7 +424,7 @@
                     </ul>
                 </li>
                 <li class="nav-item has-treeview" th:if="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')}">
-                    <a th:href="${'administracion_usuarios'}" class="nav-link" id="navUsuario">
+                    <a th:href="${'/administracion_usuarios'}" class="nav-link" id="navUsuario">
                         <i class="nav-icon fas fa-users text-primary"></i>
                         <p>Usuarios</p>
                     </a>
