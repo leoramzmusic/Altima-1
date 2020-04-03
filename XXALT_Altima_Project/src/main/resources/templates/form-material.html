@@ -41,7 +41,7 @@
         </select>
     </div>
     <div class="form-group col-sm-3">
-        <label   for="materialDescripcion">Descripci&oacute;n</label>
+        <label   for="materialDescripcion">Detalle</label>
         <input type="text"   th:field="*{descripcionMaterial}" class="form-control" id="materialDescripcion" placeholder="material tela principal">
     </div>
 
@@ -49,13 +49,13 @@
     
      <div class="form-group col-sm-3">
         <label    for="tamanio">Tama&ntilde;o</label>
-          <input type="text" th:field="*{tamanio}" class="form-control" id="tamanio" placeholder="Tama&ntilde;o">
+          <input type="number"  th:field="*{tamanio}" class="form-control" id="tamanio" placeholder="Tama&ntilde;o">
     </div>
     
     
     <div class="form-group col-sm-3">
         <label   for="idUnidadMedida">Unidad medida</label>
-         <select  class="form-control"   th:field="*{idUnidadMedida}"  id="idUnidadMedida">
+         <select  class="form-control"  th:field="*{idUnidadMedida}"  id="idUnidadMedida">
                     <option th:each="listLookupsMed:${listLookupsMed}"
             
                     th:value="${listLookupsMed[0]}"
@@ -86,7 +86,7 @@
     </div>
     <div class="form-group col-sm-3">
         <label    for="precioUnitario">Precio Unitario</label>
-        <input type="number"  th:field="*{precioUnitario}"  class="form-control" id="precioUnitario" placeholder="100.00">
+        <input type="number"  step="0.01" th:field="*{precioUnitario}"  class="form-control" id="precioUnitario" placeholder="100.00">
     </div>
     
     
