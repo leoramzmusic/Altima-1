@@ -27,7 +27,8 @@
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
-                                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a th:href="${'/'}">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">Dise&ntilde;o</li>
                                     <li class="breadcrumb-item active">Materiales</li>
                                 </ol>
                             </div>
@@ -44,7 +45,7 @@
                                 <!-- Default box -->
                                 <div class="card">
                                     <div class="card-header bg-dark">
-                                        <h3 class="card-title">Consulta de materiales</h3>
+                                        <h3 class="card-title">Listado de materiales</h3>
                                     </div>
                                     <div class="card-body">
                                         <table class="table tablaMaterial table-striped table-bordered" id="table-materiales">
@@ -124,6 +125,7 @@
 
         <script>
             function changeClassById() {
+            	document.getElementById("iDiseno").className = "nav-icon flaticon-005-dress";
                 document.getElementById("menuDiseno").className = "nav-item has-treeview menu-open";
                 document.getElementById("navDiseno").className = "nav-link active";
                 document.getElementById("navDiseno2").className = "nav-link active";

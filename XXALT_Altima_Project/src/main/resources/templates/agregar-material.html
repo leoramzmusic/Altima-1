@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Agregar Material | Altima</title>
+    <title>Materiales | Altima</title>
     <link rel="icon" type="image/png" sizes="32x32" th:href="@{/dist/img/favicon.ico}">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,12 +44,13 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Materiales</h1>
+                            <h1>Materiales&nbsp;<a th:href="${'materiales'}"><button class="bt btn-danger btn-circle btn-sm popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Regresar"><i class="fas fa-arrow-left"></i></button></a></h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Materiales</li>
+                                <li class="breadcrumb-item"><a th:href="${'/'}">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">Dise&ntilde;o</li>
+                                    <li class="breadcrumb-item active">Materiales</li>
                             </ol>
                         </div>
                     </div>
@@ -93,14 +94,7 @@
         <!-- /.content-wrapper -->
         <div th:insert="navegacion-footer"></div>
     </div>
-   <!-- jQuery -->
-    <script th:src="@{/plugins/jquery/jquery.min.js}"></script>
-    <!-- Bootstrap 4 -->
-    <script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
-    <!-- AdminLTE App -->
-    <script th:src="@{/dist/js/adminlte.min.js}"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script th:src="@{/dist/js/demo.js}"></script>
+    <div th:insert="navegacion-scripts"></div>
     <script th:src="@{/dist/js/TipoMaterial.js}"></script>
     <!-- select2 -->
 	<script th:src="@{/dist/js/select2.min.js}"></script>
