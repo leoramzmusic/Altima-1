@@ -259,9 +259,6 @@ public class ControlController {
 	
 	@PostMapping("/pausa")
 	public String pausoProceso(Long idproceso,String tipo  , HttpServletRequest request) {
-		
-		
-		
 		ControlProduccionMuestra muestra;
 		muestra=DCPM.findOne(idproceso);
 		muestra.setEstatusTiempo("Pausa");
@@ -269,9 +266,7 @@ public class ControlController {
 		
 		ControlHora hora ;
 		Integer id= DCPM.Pausa(muestra.getIdControlProduccionMuestra());
-		
 		hora=DCPM.findOneHora(Long.valueOf(id));
-		
 		Date date = new Date();
 		DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		hora.setFechaFin(hourdateFormat.format(date));

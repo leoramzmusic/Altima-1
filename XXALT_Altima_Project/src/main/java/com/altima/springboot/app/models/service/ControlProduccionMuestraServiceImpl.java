@@ -195,7 +195,7 @@ public class ControlProduccionMuestraServiceImpl implements IControlProduccionMu
 				"								from alt_control_hora as hora ,alt_control_produccion_muestra as muestra \r\n" + 
 				"								where 1=1\r\n" + 
 				"								and muestra.id_control_produccion_muestra= hora.id_control_produccion_muestra\r\n" + 
-				"								and hora.id_control_produccion_muestra="+id).getResultList();
+				"								and muestra.id_pedido="+id).getResultList();
 		return re;
 	}
 	
