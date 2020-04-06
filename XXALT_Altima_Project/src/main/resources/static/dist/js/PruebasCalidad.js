@@ -491,7 +491,7 @@ function ValidacionCostura() {
         && $('#operarioCostura').val() != ""
         && $('#fechaRealizacionCostura').val() != ""
         && $('#fechaFinalizacionCostura').val() != ""
-        && $('#tipoAguja').val() == ""
+        && $('#tipoAguja').val() != ""
 
         && $('input:radio[name=decisionDeslizamiento]:checked').val() == "si"
         || $('input:radio[name=decisionDeslizamiento]:checked').val() == "no"
