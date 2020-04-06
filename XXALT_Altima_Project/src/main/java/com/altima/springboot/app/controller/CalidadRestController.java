@@ -309,6 +309,7 @@ public class CalidadRestController {
 			CalidadService.save(disenioCalidad);
 			disenioCalidad.setIdText("CAL"+ (disenioCalidad.getIdCalidad()+100000));
 			CalidadService.save(disenioCalidad);
+			PruebaLavadoContaCostura.setIdCalidad(disenioCalidad.getIdCalidad());
 		}
 		else {
  			PruebaLavadoContaCostura.setIdCalidad(Long.valueOf(palabras[9]));
