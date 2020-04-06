@@ -3,6 +3,8 @@ package com.altima.springboot.app.models.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,9 @@ import com.altima.springboot.app.repository.UsuarioRepository;
 public class JpaUserDetailsService implements UserDetailsService{
 
 	@Autowired
-	private UsuarioRepository repository;
+	EntityManager em;
+
+	
 	
 	private Logger logger = LoggerFactory.getLogger(JpaUserDetailsService.class);
 	String x=null;
@@ -33,7 +37,7 @@ public class JpaUserDetailsService implements UserDetailsService{
 	@Transactional
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-        Usuario usuario = repository.findBynombreUsuario(username);
+        Usuario usuario = findBynombreUsuario(username);
         
         if(usuario == null) {
         	x="Usuario no encontrado";
@@ -59,6 +63,10 @@ public class JpaUserDetailsService implements UserDetailsService{
         }
         x=null;
 		return new User(usuario.getNombreUsuario(), usuario.getContraseña(), authorities);
+	}
+	
+	protected Usuario findBynombreUsuario(String username) {
+		return (Usuario) em.createQuery("from Usuario where nombreUsuario = '"+username+"'").getSingleResult();		
 	}
 
 	public String getX() {

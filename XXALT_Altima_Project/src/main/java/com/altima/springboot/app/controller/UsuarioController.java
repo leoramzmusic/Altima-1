@@ -66,19 +66,46 @@ public class UsuarioController {
 
 	@PostMapping("agregar_usuario")
 	public String postUser(Model model, Map<String, Object> m, Usuario usuario,
-			@RequestParam(name = "rol_value", required = false) String rol_value,
-			@RequestParam(name = "pass", required = false) String pass) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		for(String rol_split:rol_value.split(",")){
-			usuario.getRoles().add(rolService.findOne(Long.parseLong(rol_split)));
-		}
-		usuario.setIdText("Id");
-		usuario.setCreadoPor(auth.getName());
-		usuarioService.save(usuario);
-		usuario.setIdText("user_" + (1000 + usuario.getIdUsuario()));
-		usuarioService.save(usuario);
+			@RequestParam(name = "rol_value", required = false) String rol_value,ChangePasswordForm passwordForm,
+			RedirectAttributes redirectAttrs) {
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			if(rol_value.equals("")) {
+				//mensajeError=("Agregar al menos un permiso.");
+				if(usuario.getIdUsuario()==null) {
+					redirectAttrs.addFlashAttribute("title", "Agrega al menos un permiso").addFlashAttribute("icon", "error");
+					return "redirect:/agregar_usuario/";
+				}
+				else {
+					redirectAttrs.addFlashAttribute("title", "Agrega al menos un permiso").addFlashAttribute("icon", "error");
+					return "redirect:/editar_usuario/"+usuario.getIdUsuario();
+				}
+				
+				
+			}
+			for(String rol_split:rol_value.split(",")){
+				usuario.getRoles().add(rolService.findOne(Long.parseLong(rol_split)));
+			}
+			usuario.setIdText("Id");
+			usuario.setCreadoPor(auth.getName());
+			System.out.println("no mames");
+			try {
+				usuarioService.save(usuario,passwordForm);
+				System.out.println("soy tremendo");
+				usuario.setIdText("user_" + (1000 + usuario.getIdUsuario()));
+				usuarioService.save(usuario,passwordForm);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				System.out.println(usuarioService.getMensajeError());
+				redirectAttrs.addFlashAttribute("title", usuarioService.getMensajeError()).addFlashAttribute("icon", "error");
+				e.printStackTrace();
+				return "redirect:/agregar_usuario/";
+			}
 
-
+			
+			// TODO Auto-generated catch block
+			//redirectAttrs.addFlashAttribute("title", usuarioService.getMensajeError()).addFlashAttribute("icon", "error");
+			//return "redirect:/agregar_usuario/";
+		
 		return "redirect:/administracion_usuarios";
 	}
 	

@@ -11,7 +11,7 @@ public interface IUsuarioService {
 	
 	public List<Object[]> findUserRol();
 
-	public void save(Usuario usuario);
+	public void save(Usuario usuario,ChangePasswordForm form) throws Exception;
 
 	public void delete(Long id_usuario);
 

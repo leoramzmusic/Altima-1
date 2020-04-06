@@ -15,7 +15,7 @@
         <label   for="idTipoMaterial">Tipo de Material</label>
          <select  class="form-control"   th:field="*{idTipoMaterial}"  id="idTipoMaterial">
                     <option th:each="listLookupsMat:${listLookupsMat}"
-            
+            	
                     th:value="${listLookupsMat[0]}"
                     th:text="${listLookupsMat[1]}"
             
@@ -29,21 +29,18 @@
     
       <div class="form-group col-sm-3">
         <label   for="idColor">Color</label>
-         <select  class="form-control"   th:field="*{idColor}"  id="idColor">
+         <select  class="form-control"   th:field="*{idColor}"  id="idColor1">
                     <option th:each="listLookupsCol:${listLookupsCol}"
-            
+            		th:data-content="@{<i class='fa fa-tint'}+@{style='color:}+${listLookupsCol[3]}+@{;'></i>}+'             '+${listLookupsCol[1]}"
                     th:value="${listLookupsCol[0]}"
-                    th:text="${listLookupsCol[1]}"
+                    
             
             />
            
             
         </select>
     </div>
-    <div class="form-group col-sm-3">
-        <label   for="materialDescripcion">Detalle</label>
-        <input type="text"   th:field="*{descripcionMaterial}" class="form-control" id="materialDescripcion" placeholder="material tela principal">
-    </div>
+
 
     
     
@@ -73,7 +70,7 @@
         <input type="text" th:field="*{modelo}" class="form-control" id="materialModelo" placeholder="Abrigo">
     </div>
     <div class="form-group col-sm-3">
-        <label   for="idProceso"  >Nombre Proceso</label>
+        <label   for="idProceso"  >Proceso al que aplica</label>
         <select  class="form-control"  th:field="*{idProceso}" id="idProceso">
                 <option th:each="listClaveProceso:${listClaveProceso}"
             
@@ -94,7 +91,7 @@
     
     
       <div class="form-group col-sm-3">
-        <label   for="idClasificacion">Clasificacion</label>
+        <label   for="idClasificacion">Clasificaci&oacute;n</label>
          <select class="form-control"  th:field="*{idClasificacion}" id="idClasificacion">
                     <option th:each="listLookupsClasificacion:${listLookupsClasificacion}"
             
@@ -116,7 +113,7 @@
     
    
     <div class="form-group col-sm-3">
-        <label for="idMarca">Marcas</label>
+        <label for="idMarca">Proveedores</label>
         <select  class="form-control" id="idMarca"  th:field="*{idMarca}">
             <option th:each="listLookupsMar:${listLookupsMar}"
             
@@ -126,6 +123,10 @@
             />
            
         </select>
+    </div>
+    <div class="form-group col-sm-3">
+        <label   for="materialDescripcion">Observaciones</label>
+        <textarea  type="text"   th:field="*{descripcionMaterial}" class="form-control" id="materialDescripcion" placeholder="Opcional"> </textarea>
     </div>
     <input type="hidden" class="form-control" id="materialEstatus" value="0">
     <div class="form-group col-sm-12">

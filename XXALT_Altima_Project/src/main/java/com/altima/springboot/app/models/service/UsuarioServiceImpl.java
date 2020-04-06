@@ -1,6 +1,7 @@
 package com.altima.springboot.app.models.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -34,12 +35,30 @@ public class UsuarioServiceImpl implements IUsuarioService {
 		return (List<Usuario>) usuario.findAll();
 	}
 	
+	private boolean checkUsernameAvailable(Usuario user) throws Exception {
+		Optional<Usuario> userFound = usuario.findBynombreUsuario(user.getNombreUsuario());
+		if(userFound.isPresent()) {
+			mensajeError="Nombre de Usuario no disponible.";
+			throw new Exception("Nombre de Usuario no disponible");
+		}
+		return true;
+	}
+	
 	@Override
 	@Transactional
-	public void save(Usuario usuarioxd) {
+	public void save(Usuario usuarioxd,ChangePasswordForm form) throws Exception{
 		// TODO Auto-generated method stub
+		if(checkUsernameAvailable(usuarioxd)==false) {
+			throw new Exception("Nombre de Usuario no disponible.");
+			
+		}
+		if( !form.getNewPassword().equals(form.getConfirmPassword())) {
+			mensajeError=("Nueva Contraseña y Confirmar Contraseña no coinciden.");
+			throw new Exception("Nueva Contraseña y Confirmar Contraseña no coinciden.");
+		}
 		if(usuarioxd.getIdUsuario()==null) {
-		usuarioxd.setContraseña(passwordEncoder.encode(usuarioxd.getContraseña()));
+			String encodePassword = passwordEncoder.encode(form.getNewPassword());
+			usuarioxd.setContraseña(encodePassword);
 		}
 		else {
 			Usuario usuario = findOne(usuarioxd.getIdUsuario());
