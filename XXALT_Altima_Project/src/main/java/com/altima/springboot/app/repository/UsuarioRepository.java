@@ -10,6 +10,6 @@ import com.altima.springboot.app.models.entity.Usuario;
 @Repository
 public interface UsuarioRepository extends CrudRepository<Usuario, Long>{
 	//cambio
-	public Optional<Usuario> findBynombreUsuario(String username); 
+	public Optional<Usuario> findBynombreUsuario(String username);
 
 }

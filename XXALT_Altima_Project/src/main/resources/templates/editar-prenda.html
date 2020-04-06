@@ -27,8 +27,15 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-						    <h1>Prendas&nbsp;<a th:href="${'/prendas'}"><button class="bt btn-danger btn-circle btn-sm popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Regresar"><i class="fas fa-arrow-left"></i></button></a></h1>
-                        </div>
+							<h1>
+								Prendas&nbsp;<a th:href="${'/prendas'}"><button
+										class="bt btn-danger btn-circle btn-sm popoverxd"
+										data-container="body" data-toggle="popover"
+										data-placement="right" data-content="Regresar">
+										<i class="fas fa-arrow-left"></i>
+									</button></a>
+							</h1>
+						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
 								<li class="breadcrumb-item"><a href="#">Dashboard</a></li>
@@ -75,44 +82,51 @@
 											</ul>
 											<!-- <form th:action="@{/prendas}" method="post"
 												th:object="${disenio}">-->
-												<div th:object="${prenda}">
-												<input type="hidden" value="editar" id="accionPag"/>
+											<div th:object="${prenda}">
+												<input type="hidden" value="editar" id="accionPag" />
 												<div class="tab-content py-2">
 													<div class="tab-pane active" role="tabpanel" id="step1">
 														<div class="row">
 															<div class="col-sm-12">
 																<div class="form-group">
-																	<label>Tipo de prenda</label> 
-																	<select placeholder="Elige un tipo de prenda" id="TipoPrenda">
+																	<label>Tipo de prenda</label> <select
+																		placeholder="Elige un tipo de prenda" id="TipoPrenda">
 																		<option value=""></option>
-																		<option th:each="familia: ${familias}" th:value="${familia[0]}" 
-																		th:text="${familia[1]}" th:selected="${familia[0] == prenda.idFamiliaPrenda}"></option>
+																		<option th:each="familia: ${familias}"
+																			th:value="${familia[0]}" th:text="${familia[1]}"
+																			th:selected="${familia[0] == prenda.idFamiliaPrenda}"></option>
 																	</select>
 																</div>
 															</div>
 															<div class="col-sm-4">
 																<div class="form-group">
-																	<label style="font-size: 15px;">Nombre de la prenda</label> <input type="text" class="form-control" placeholder="Blusa" th:value="*{nombrePrenda}" id="NombrePrenda">
+																	<label style="font-size: 15px;">Nombre de la
+																		prenda</label> <input type="text" class="form-control"
+																		placeholder="Blusa" th:value="*{nombrePrenda}"
+																		id="NombrePrenda">
 																</div>
 															</div>
 															<div class="col-sm-4">
 																<div class="form-group">
 																	<label style="font-size: 15px;">Descripci&oacute;n
 																		de la prenda</label> <input type="text" class="form-control"
-																		placeholder="CH9192" th:value="*{descripcionPrenda}" id="DescripcionPrenda">
+																		placeholder="CH9192" th:value="*{descripcionPrenda}"
+																		id="DescripcionPrenda">
 																</div>
 															</div>
 															<div class="col-sm-4">
 																<div class="form-group">
 																	<label style="font-size: 15px;">Nota especial</label> <input
-																		type="text" class="form-control" placeholder="CH9192"  th:value="*{notaEspecial}" id="NotaEspecial">
+																		type="text" class="form-control" placeholder="CH9192"
+																		th:value="*{notaEspecial}" id="NotaEspecial">
 																</div>
 															</div>
 															<div class="col-sm-10">
 																<div class="form-group">
 																	<label>Detalle de la prenda</label>
 																	<textarea class="form-control" rows="3"
-																		placeholder="Enter ..." id="DetallePrenda" th:text="*{detallePrenda}"></textarea>
+																		placeholder="Enter ..." id="DetallePrenda"
+																		th:text="*{detallePrenda}"></textarea>
 																</div>
 															</div>
 															<div class="col-sm-2" style="font-size: 15px;">
@@ -120,8 +134,8 @@
 																	<div
 																		class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
 																		<input type="checkbox" class="custom-control-input"
-																			id="combi" th:checked="${prenda.combinacion == '1'}"> <label
-																			class="custom-control-label" for="combi">Lleva
+																			id="combi" th:checked="${prenda.combinacion == '1'}">
+																		<label class="custom-control-label" for="combi">Lleva
 																			combinaci&oacute;n</label>
 																	</div>
 																</div>
@@ -129,147 +143,228 @@
 																	<div
 																		class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
 																		<input type="checkbox" class="custom-control-input"
-																			id="ticket" th:checked="${prenda.imprimirEtiquetas == '1'}"> <label
-																			class="custom-control-label" for="ticket">Imprimir
+																			id="ticket"
+																			th:checked="${prenda.imprimirEtiquetas == '1'}">
+																		<label class="custom-control-label" for="ticket">Imprimir
 																			ticket</label>
 																	</div>
 																</div>
 															</div>
 														</div>
-														
-														<form th:action="@{/prendas}" method="POST" enctype="multipart/form-data" th:object="${disenio}" ><!-- Abre form de la imagen -->
-														<input type="hidden" name="_csrf" id="token"  th:value="${_csrf.token}"/>
-														
-														
-														<div class="row">
-															<div class="col-sm-12">
-																<div class="form-group p-3 border p-2 rounded m-3">
-																	<div class="row">
-																		<div class="col-sm-3 text-center pt-2 border-right">
-																			<label for="mainImage1">
-																				<img th:src="@{'/uploads/prendas/' + ${prenda.dibujoFrente}}" alt="Placeholder" id="blah1" class="placeholder img-thumbnail"
-																				aria-describedby="imagePreviewHelp1" th:onerror="this.src='/dist/img/preview.png'"/></label> 
-																				<small id="imagePreviewHelp1" class="form-text text-muted">Previsualizaci&oacute;n
-																				de la imagen</small>
-																		</div>
-																		<div class="col">
-																			<label for="mainImage1">Imagen frontal</label>
-																			<div class="input-group mb-3">
-																				<input type="file" class="form-control border p-1" id="file" name="file"/>
-																				<div class="input-group-append">
-																					<span class="input-group-text bg-danger text-danger pointer" id="clearUpload1">
-																						<i class="fas fa-times"></i>
-																					</span>
-																				</div>
+
+														<form th:action="@{/prendas}" method="POST"
+															enctype="multipart/form-data" th:object="${disenio}">
+															<!-- Abre form de la imagen -->
+															<input type="hidden" name="_csrf" id="token"
+																th:value="${_csrf.token}" />
+
+
+															<div class="row">
+																<div class="col-sm-12">
+																	<div class="form-group p-3 border p-2 rounded m-3">
+																		<div class="row">
+																			<div class="col-sm-3 text-center pt-2 border-right">
+																				<label for="mainImage1"> <img
+																					th:src="@{'/uploads/prendas/' + ${prenda.dibujoFrente}}"
+																					alt="Placeholder" id="blah1"
+																					class="placeholder img-thumbnail"
+																					aria-describedby="imagePreviewHelp1"
+																					th:onerror="this.src='/dist/img/preview.png'" /></label> <small
+																					id="imagePreviewHelp1" class="form-text text-muted">Previsualizaci&oacute;n
+																					de la imagen</small>
 																			</div>
-																			<small id="imageHelp1" class="form-text text-muted">Selecciona la foto que desea subir.</small>
+																			<div class="col">
+																				<label for="mainImage1">Imagen frontal</label>
+																				<div class="input-group mb-3">
+																					<input type="file" class="form-control border p-1"
+																						id="file" name="file" />
+																					<div class="input-group-append">
+																						<span
+																							class="input-group-text bg-danger text-danger pointer"
+																							id="clearUpload1"> <i class="fas fa-times"></i>
+																						</span>
+																					</div>
+																				</div>
+																				<small id="imageHelp1" class="form-text text-muted">Selecciona
+																					la foto que desea subir.</small>
+																			</div>
 																		</div>
 																	</div>
 																</div>
-															</div>
-															<div class="col-sm-12">
-																<div class="form-group p-3 border p-2 rounded m-3">
-																	<div class="row">
-																		<div class="col-sm-3 text-center pt-2 border-right">
-																			<label for="mainImage"><img th:src="@{'/uploads/prendas/' + ${prenda.dibujoEspalda}}" alt="Placeholder" id="blah2" class="placeholder img-thumbnail"
-																				aria-describedby="imagePreviewHelp" th:onerror="this.src='/dist/img/preview.png'"/></label> 
-																				<small id="imagePreviewHelp" class="form-text text-muted">Previsualizaci&oacute;n
-																				de la imagen</small>
-																		</div>
-																		<div class="col">
-																			<label for="mainImage">Imagen espalda/trasero</label>
-																			<div class="input-group mb-3">
-																				<input type="file" class="form-control border p-1" id="file2" name="file2"/>
-																				<div class="input-group-append">
-																					<span class="input-group-text bg-danger text-danger pointer" id="clearUpload">
-																						<i class="fas fa-times"></i>
-																					</span>
-																				</div>
+																<div class="col-sm-12">
+																	<div class="form-group p-3 border p-2 rounded m-3">
+																		<div class="row">
+																			<div class="col-sm-3 text-center pt-2 border-right">
+																				<label for="mainImage"><img
+																					th:src="@{'/uploads/prendas/' + ${prenda.dibujoEspalda}}"
+																					alt="Placeholder" id="blah2"
+																					class="placeholder img-thumbnail"
+																					aria-describedby="imagePreviewHelp"
+																					th:onerror="this.src='/dist/img/preview.png'" /></label> <small
+																					id="imagePreviewHelp" class="form-text text-muted">Previsualizaci&oacute;n
+																					de la imagen</small>
 																			</div>
-																			<small id="imageHelp" class="form-text text-muted">Selecciona la foto que desea subir.</small>
+																			<div class="col">
+																				<label for="mainImage">Imagen
+																					espalda/trasero</label>
+																				<div class="input-group mb-3">
+																					<input type="file" class="form-control border p-1"
+																						id="file2" name="file2" />
+																					<div class="input-group-append">
+																						<span
+																							class="input-group-text bg-danger text-danger pointer"
+																							id="clearUpload"> <i class="fas fa-times"></i>
+																						</span>
+																					</div>
+																				</div>
+																				<small id="imageHelp" class="form-text text-muted">Selecciona
+																					la foto que desea subir.</small>
+																			</div>
 																		</div>
 																	</div>
 																</div>
-															</div>
-															<div class="form-group col-sm-12">
-																<button type="button" class="btn btn-primary float-right" onclick="ValidarPrimerPestana()">Siguiente</button>	
-																<button type="button" class="btn btn-primary next-step float-right" id="SiguientePrimeraPestana" style="display: none">Siguiente</button><br>
-																<button type="submit" id="FormImagenes" style="border: none"></button>
-															</div>
-															<div class="form-group col-sm-12" id="AlertaPrimerPestana" style="display: none; color: red;">
-																<div class="float-right">
-																	<label>Debes llenar todos los campos correctamente.</label>
+																<div class="form-group col-sm-12">
+																	<button type="button"
+																		class="btn btn-primary float-right"
+																		onclick="ValidarPrimerPestana()">Siguiente</button>
+																	<button type="button"
+																		class="btn btn-primary next-step float-right"
+																		id="SiguientePrimeraPestana" style="display: none">Siguiente</button>
+																	<br>
+																	<button type="submit" id="FormImagenes"
+																		style="border: none"></button>
+																</div>
+																<div class="form-group col-sm-12"
+																	id="AlertaPrimerPestana"
+																	style="display: none; color: red;">
+																	<div class="float-right">
+																		<label>Debes llenar todos los campos
+																			correctamente.</label>
+																	</div>
 																</div>
 															</div>
-														</div>
-														</form><!-- Cierra form de la imagen -->
+														</form>
+														<!-- Cierra form de la imagen -->
 													</div>
-													
-													
+
+
 													<!-- Form de imagen Frente -->
-														<form th:action="@{/prendas1}" method="POST" enctype="multipart/form-data" th:object="${disenio}" style="display: none">
-															<div id="ContenedorFrente"></div>
-															<button type="submit" id="FormImagenFrente" style="border: none"></button>
-														</form>
-														<!-- Form de imagen Frente -->
-														
-														<!-- Form de imagen Espalda -->
-														<form th:action="@{/prendas2}" method="POST" enctype="multipart/form-data" th:object="${disenio}" style="display: none">
-															<div id="ContenedorEspalda"></div>
-															<button type="submit" id="FormImagenEspalda" style="border: none"></button>
-														</form>
-														<!-- Form de imagen Espalda -->
-														
+													<form th:action="@{/prendas1}" method="POST"
+														enctype="multipart/form-data" th:object="${disenio}"
+														style="display: none">
+														<div id="ContenedorFrente"></div>
+														<button type="submit" id="FormImagenFrente"
+															style="border: none"></button>
+													</form>
+													<!-- Form de imagen Frente -->
+
+													<!-- Form de imagen Espalda -->
+													<form th:action="@{/prendas2}" method="POST"
+														enctype="multipart/form-data" th:object="${disenio}"
+														style="display: none">
+														<div id="ContenedorEspalda"></div>
+														<button type="submit" id="FormImagenEspalda"
+															style="border: none"></button>
+													</form>
+													<!-- Form de imagen Espalda -->
+
 													<div class="tab-pane" role="tabpanel" id="step2">
 														<div class="row">
 															<div class="col-sm-6">
 																<div class="form-group">
 																	<label>Detalle de la confecci&oacute;n</label>
-																	<textarea class="form-control" rows="6" th:field="*{detalleConfeccion}"
+																	<textarea class="form-control" rows="6"
+																		th:field="*{detalleConfeccion}"
 																		placeholder="Especificar" id="DetalleConfeccion"></textarea>
 																</div>
 															</div>
-															<div class="col-sm-6">
-																<div class="form-group">
-																	<label>Marcadores</label>
-																	<textarea class="form-control" rows="6" th:field="*{marcadores}"
-																		placeholder="Especificar"  id="Marcadores"></textarea>
+															<div class="col-sm-5">
+																<label class="col-form-label-sm mb-0">permisos</label> <select
+																	class="form-control" name="permiso" id="permiso">
+																	<option value="">Seleccione...</option>
+																</select>
+															</div>
+															<div class="form-group col-sm-1">
+																<label for="status">Agregar</label>
+																<button id="adicionar"
+																	class="btn btn-info rounded-circle" type="button"
+																	onclick="guardar()">
+																	<i class="fas fa-plus"></i>
+																</button>
+															</div>
+															<div class="row">
+																<div class="col-sm-6">
+																	
+																		<label>Marcadores</label>
+																		<table class="table table-bordered table-hover">
+																			<thead>
+																				<tr>
+																					<th style="display: none;">Id</th>
+																					<th>Marcadores</th>
+																					<th>Eliminar</th>
+																				</tr>
+																			</thead>
+																			<tbody id="tablita">
+																				<div>
+																					<tr>
+																						<td style="display: none;">test</td>
+																						<td>test</td>
+																						<td><button type="button" name="remove"
+																								onclick="eliminar(this)"
+																								class="btn btn-danger btn_remove">Quitar</button></td>
+																					</tr>
+																				</div>
+																			</tbody>
+																		</table>
+																	
 																</div>
 															</div>
 														</div>
-														<div class="row float-right" >
-														<ul class="float-right">	
-															<li class="list-inline-item">
-																<button type="button" class="btn btn-primary" onclick="ValidarSegundaPestana()">Siguiente</button>
-																<button type="button" class="btn btn-primary next-step" style="display: none" id="SiguienteSegundaPestana">Siguiente</button>
-															</li>
-														</ul>
-														</div><br><br><br>
-														<div class="row float-right" id="AlertaSegundaPestana" style="display: none; color: red;">
-														<ul class="float-right">
-															<li class="list-inline-item">
-																<div class="float-right">
-																	<label>Debes llenar todos los campos correctamente.</label>
-																</div>
-															</li>
-														</ul>
+
+
+
+														<div class="row float-right">
+															<ul class="float-right">
+																<li class="list-inline-item">
+																	<button type="button" class="btn btn-primary"
+																		onclick="ValidarSegundaPestana()">Siguiente</button>
+																	<button type="button" class="btn btn-primary next-step"
+																		style="display: none" id="SiguienteSegundaPestana">Siguiente</button>
+																</li>
+															</ul>
+														</div>
+														<br> <br> <br>
+														<div class="row float-right" id="AlertaSegundaPestana"
+															style="display: none; color: red;">
+															<ul class="float-right">
+																<li class="list-inline-item">
+																	<div class="float-right">
+																		<label>Debes llenar todos los campos
+																			correctamente.</label>
+																	</div>
+																</li>
+															</ul>
 														</div>
 													</div>
 													<div class="tab-pane" role="tabpanel" id="step3">
 														<div class="row">
 															<div class="col-sm-10">
 																<div class="form-group">
-																	<label>Lista de materiales</label>
-																	<select placeholder="Elige una prenda" id="ListaDeMateriales">
-																			<option th:each="materiales : ${materiales}" th:value="${materiales[0]}" th:text="${materiales[1]}"></option>
+																	<label>Lista de materiales</label> <select
+																		placeholder="Elige una prenda" id="ListaDeMateriales">
+																		<option th:each="materiales : ${materiales}"
+																			th:value="${materiales[0]}"
+																			th:text="${materiales[1]}"></option>
 																	</select>
 																</div>
 															</div>
 															<div class="col-sm-2">
 																<label>&nbsp;</label>
 																<div class="form-group">
-																<!-- añadir a clas btn-block -->
-																	<button class="btn btn-primary" onclick="AgregarElementoListaMateriales()" id="AgregarElementoMaterial">
+																	<!-- añadir a clas btn-block -->
+																	<button class="btn btn-primary"
+																		onclick="AgregarElementoListaMateriales()"
+																		id="AgregarElementoMaterial">
 																		<i class="fas fa-plus fa-sm"></i> Agregar
 																	</button>
 																</div>
@@ -289,22 +384,27 @@
 																		</tr>
 																	</thead>
 																	<tbody id="CuerpoTablaMateriales">
-																	
-																	<tr th:each="mat: ${materialesPrenda}" th:id="'RemoverElemento-' + ${mat[10]}">
+
+																		<tr th:each="mat: ${materialesPrenda}"
+																			th:id="'RemoverElemento-' + ${mat[10]}">
 																			<td th:text="${mat[1]}"></td>
 																			<td scope='row' th:text="${mat[2]}"></td>
 																			<td th:text="${mat[3]}"></td>
 																			<td th:text="${mat[4] + ' ' +mat[5]}"></td>
 																			<td th:text="${mat[6]}"></td>
 																			<td th:text="${mat[7]}"></td>
-																			<td><input type="number" th:id="'CantidadMaterial-' + ${mat[10]}" class="form-control" th:value="${mat[9]}" th:attr="onclick=|CambiarCantidadMaterial('${mat[10]}')|" /></td>
+																			<td><input type="number"
+																				th:id="'CantidadMaterial-' + ${mat[10]}"
+																				class="form-control" th:value="${mat[9]}"
+																				th:attr="onclick=|CambiarCantidadMaterial('${mat[10]}')|" /></td>
 																			<td class="tdcenter">
-																				<button class="btn btn-danger rounded-circle" th:attr="onclick=|QuitarMaterial('${mat[10]}')|">
+																				<button class="btn btn-danger rounded-circle"
+																					th:attr="onclick=|QuitarMaterial('${mat[10]}')|">
 																					<i class='fas fa-minus fa-sm'></i>
 																				</button>
 																			</td>
 																		</tr>
-																		
+
 																	</tbody>
 																</table>
 															</div>
@@ -315,23 +415,27 @@
 																<button type="button" class="btn btn-outline-primary next-step">Siguiente</button>
 															</li>
 														</ul> -->
-													<div class="row float-right" >
-														<ul class="float-right">	
-															<li class="list-inline-item">
-																<button type="button" class="btn btn-primary" th:onclick="ValidarTerceraPestana('${prenda.idPrenda}')">Siguiente</button>
-																<button type="button" class="btn btn-primary next-step" style="display: none" id="SiguienteTerceraPestana">Siguiente</button>
-															</li>
-														</ul>
-														</div><br><br><br>
-														<div class="row float-right" id="AlertaTerceraPestana" style="display: none; color: red;">
-														<ul class="float-right">
-															<li class="list-inline-item">
-																<div class="float-right">
-																	<label>Debes agregar al menos un material.</label>
-																</div>
-															</li>
-														</ul>
-													</div>
+														<div class="row float-right">
+															<ul class="float-right">
+																<li class="list-inline-item">
+																	<button type="button" class="btn btn-primary"
+																		th:onclick="ValidarTerceraPestana('${prenda.idPrenda}')">Siguiente</button>
+																	<button type="button" class="btn btn-primary next-step"
+																		style="display: none" id="SiguienteTerceraPestana">Siguiente</button>
+																</li>
+															</ul>
+														</div>
+														<br> <br> <br>
+														<div class="row float-right" id="AlertaTerceraPestana"
+															style="display: none; color: red;">
+															<ul class="float-right">
+																<li class="list-inline-item">
+																	<div class="float-right">
+																		<label>Debes agregar al menos un material.</label>
+																	</div>
+																</li>
+															</ul>
+														</div>
 													</div>
 													<div class="tab-pane" role="tabpanel" id="complete">
 														<div class="row">
@@ -339,7 +443,9 @@
 																<div class="form-group">
 																	<label>Lista de piezas de patronaje</label> <select
 																		placeholder="Elige una prenda" id="ListaPatronaje">
-																		<option th:each="patronajes : ${patronajes}" th:value="${patronajes[0]}" th:text="${patronajes[2]}"></option>
+																		<option th:each="patronajes : ${patronajes}"
+																			th:value="${patronajes[0]}"
+																			th:text="${patronajes[2]}"></option>
 																	</select>
 																</div>
 															</div>
@@ -354,26 +460,30 @@
 																<label>Cantidad de forro</label>
 																<div class="form-group">
 																	<input type="text" class="form-control"
-																		placeholder="10"  id="CantidadForro">
+																		placeholder="10" id="CantidadForro">
 																</div>
 															</div>
 															<div class="col-sm-3">
 																<label>Cantidad de entretela</label>
 																<div class="form-group">
 																	<input type="text" class="form-control"
-																		placeholder="10"  id="CantidadEntretela">
+																		placeholder="10" id="CantidadEntretela">
 																</div>
 															</div>
 															<div class="col-sm-3">
 																<label>&nbsp;</label>
 																<div class="form-group">
 																	<div id="BotonAgregar" style="display: block">
-																		<button class="btn btn-primary btn-block" onclick="ValidarCantidadesPatronaje()" id="BotonAgregarPatronaje">
+																		<button class="btn btn-primary btn-block"
+																			onclick="ValidarCantidadesPatronaje()"
+																			id="BotonAgregarPatronaje">
 																			<i class="fas fa-plus fa-sm"></i> Agregar
 																		</button>
 																	</div>
 																	<div id="BotonEditar" style="display: none">
-																		<button class="btn btn-warning btn-block" onclick="ValidarCantidadesPatronaje2()" id="BotonAgregarPatronaje">
+																		<button class="btn btn-warning btn-block"
+																			onclick="ValidarCantidadesPatronaje2()"
+																			id="BotonAgregarPatronaje">
 																			<i class="fas fa-edit fa-sm"></i> Editar
 																		</button>
 																	</div>
@@ -393,60 +503,69 @@
 																		</tr>
 																	</thead>
 																	<tbody id="CuerpoPatronaje">
-																	
-																	<tr th:each="pat: ${patronajesPrenda}" th:id="${pat[1]}">
+
+																		<tr th:each="pat: ${patronajesPrenda}"
+																			th:id="${pat[1]}">
 																			<th scope="row" th:text="${pat[1]}"></th>
 																			<td th:text="${pat[2]}"></td>
 																			<td th:text="${pat[3]}"></td>
 																			<td th:text="${pat[4]}"></td>
 																			<td th:text="${pat[5]}"></td>
 																			<td class="tdcenter">
-																				<button class="btn btn-warning rounded-circle" th:onclick="'EditarPatronajeExistente(\'' + ${pat[0]} + '\');'">
+																				<button class="btn btn-warning rounded-circle"
+																					th:onclick="'EditarPatronajeExistente(\'' + ${pat[0]} + '\');'">
 																					<i class='fas fa-edit fa-sm'></i>
 																				</button>
 																			</td>
 																			<td class="tdcenter">
-																				<button class="btn btn-danger rounded-circle" th:onclick="'EliminarPatronajeExistente(\'' + ${pat[0]} + '\');'">
+																				<button class="btn btn-danger rounded-circle"
+																					th:onclick="'EliminarPatronajeExistente(\'' + ${pat[0]} + '\');'">
 																					<i class='fas fa-minus fa-sm'></i>
 																				</button>
 																			</td>
 																		</tr>
-																	
+
 																	</tbody>
 																</table>
 															</div>
 														</div>
-														
-													<div class="row float-right" >
-														<ul class="float-right">	
-															<li class="list-inline-item">
-																<button type="button" class="btn btn-primary" onclick="ValidarCuartaPestana()">Guardar</button>
-																<button type="button" class="btn btn-primary next-step" style="display: none" id="SiguienteCuartaPestana" onclick="Guardar()">Guardar</button>
-															</li>
-														</ul>
-														</div><br><br><br>
-														<div class="row float-right" id="AlertaCuartaPestana" style="display: none; color: red;">
-														<ul class="float-right">
-															<li class="list-inline-item">
-																<div class="float-right">
-																	<label>Debes agregar al menos un elemento.</label>
-																</div>
-															</li>
-														</ul>
-													</div>
-													<div class="row float-right" id=AlertaCantidadesPatronaje style="display: none; color: red !important">
-														<ul class="float-right">
-															<li class="list-inline-item">
-																<div class="float-right">
-																	<label>Debes agregar las cantidades.</label>
-																</div>
-															</li>
-														</ul>
-													</div>
+
+														<div class="row float-right">
+															<ul class="float-right">
+																<li class="list-inline-item">
+																	<button type="button" class="btn btn-primary"
+																		onclick="ValidarCuartaPestana()">Guardar</button>
+																	<button type="button" class="btn btn-primary next-step"
+																		style="display: none" id="SiguienteCuartaPestana"
+																		onclick="Guardar()">Guardar</button>
+																</li>
+															</ul>
+														</div>
+														<br> <br> <br>
+														<div class="row float-right" id="AlertaCuartaPestana"
+															style="display: none; color: red;">
+															<ul class="float-right">
+																<li class="list-inline-item">
+																	<div class="float-right">
+																		<label>Debes agregar al menos un elemento.</label>
+																	</div>
+																</li>
+															</ul>
+														</div>
+														<div class="row float-right" id=AlertaCantidadesPatronaje
+															style="display: none; color: red !important">
+															<ul class="float-right">
+																<li class="list-inline-item">
+																	<div class="float-right">
+																		<label>Debes agregar las cantidades.</label>
+																	</div>
+																</li>
+															</ul>
+														</div>
 													</div>
 													<div class="clearfix"></div>
 												</div>
-											</form>
+												</form>
 										</section>
 									</div>
 								</div>
