@@ -123,15 +123,39 @@ public class CalidadController {
 				if(cc.getTipoPrueba().equalsIgnoreCase("Solidez/Color")) {
 					model.addAttribute("observacionesReultSolidez", cc.getObservacionesResultados());
 					
+					if(cc.getPruebaCalidad().equals("buena")) {
+						model.addAttribute("checkBLavado", "true");
+					}
+					if(cc.getPruebaCalidad().equals("regular")) {
+						model.addAttribute("checkRLavado", "true");
+					}
+					if(cc.getPruebaCalidad().equals("mala")) {
+						model.addAttribute("checkMLavado", "true");
+					}
+					
 				}
 				if(cc.getTipoPrueba().equalsIgnoreCase("Resultado pilling")) {
 			
 					model.addAttribute("observacionesReultPilling", cc.getObservacionesResultados());
+					
+					if(cc.getPrueba_pilling().equals("si")) {
+						model.addAttribute("checkSLavado", "true");
+					}
+					if(cc.getPrueba_pilling().equals("no")) {
+						model.addAttribute("checkNLavado", "true");
+					}
 				}
 				if(cc.getTipoPrueba().equalsIgnoreCase("Resultado costura")) {
 					model.addAttribute("readCostura", "true");
 					model.addAttribute("observacionesDeslizamiento", cc.getObservacionesResultados());
 					model.addAttribute("displaCostura", "true");
+					
+					if(cc.getPruebaCalidad().equals("si")) {
+						model.addAttribute("checkSCostura", "true");
+					}
+					if(cc.getPruebaCalidad().equals("no")) {
+						model.addAttribute("checkNCostura", "true");
+					}
 				}
 				if(cc.getTipoPrueba().equalsIgnoreCase("Resultado de contaminación") || cc.getTipoPrueba().equalsIgnoreCase("Resultado de contaminacion")) {
 					model.addAttribute("readContamin", "true");

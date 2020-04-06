@@ -42,7 +42,7 @@
     <div class="col-sm-12">
         <div class="form-group">
             <label for="status">Tipo de aguja</label>
-            <select class="form-control" id="tipoAguja" name="tipodeAguja" th:readonly="${readCostura}">
+            <select class="form-control" id="tipoAguja" name="tipodeAguja" th:disabled="${readCostura}">
                 <option value="selecciona">Selecciona uno...</option>
                 <option value="8">60/8</option>
                 <option value="10">70/10</option>
@@ -55,11 +55,11 @@
         <label>Deslizamiento</label>
         <div class="form-group">
             <div class="custom-control custom-radio">
-                <input class="custom-control-input" type="radio" id="siDeslizamiento" value="si" name="decisionDeslizamiento" th:readonly="${readCostura}">
+                <input class="custom-control-input" type="radio" id="siDeslizamiento" value="si" name="decisionDeslizamiento" th:disabled="${readCostura}" th:checked="${checkSDeslizamiento}">
                 <label for="siDeslizamiento" class="custom-control-label">Si</label>
             </div>
             <div class="custom-control custom-radio">
-                <input class="custom-control-input" type="radio" id="noDeslizamiento"value="no" name="decisionDeslizamiento" th:readonly="${readCostura}">
+                <input class="custom-control-input" type="radio" id="noDeslizamiento"value="no" name="decisionDeslizamiento" th:disabled="${readCostura}" th:checked="${checkNDeslizamiento}">
                 <label for="noDeslizamiento" class="custom-control-label">No</label>
             </div>
         </div>
@@ -74,11 +74,11 @@
         <label>Rasgado de tela</label>
         <div class="form-group">
             <div class="custom-control custom-radio">
-                <input class="custom-control-input" type="radio" id="siRasgado" value="si" name="decisionRasgado" th:readonly="${readCostura}">
+                <input class="custom-control-input" type="radio" id="siRasgado" value="si" name="decisionRasgado" th:disabled="${readCostura}" th:checked="${checkSCostura}">
                 <label for="siRasgado" class="custom-control-label">Si</label>
             </div>
             <div class="custom-control custom-radio">
-                <input class="custom-control-input" type="radio" id="noRasgado" value="no" name="decisionRasgado" th:readonly="${readCostura}">
+                <input class="custom-control-input" type="radio" id="noRasgado" value="no" name="decisionRasgado" th:disabled="${readCostura}" th:checked="${checkNCostura}">
                 <label for="noRasgado" class="custom-control-label">No</label>
             </div>
         </div>

@@ -92,15 +92,15 @@
         <div class="form-group">
             <label>Calidad</label>
             <div class="custom-control custom-radio">
-                <input class="custom-control-input" type="radio" value="buena" id="buena" name="calidad" th:checked="${check}">
+                <input class="custom-control-input" type="radio" value="buena" id="buena" name="calidad" th:disabled="${readLavado}" th:checked="${checkBLavado}">
                 <label for="buena" class="custom-control-label">Buena</label>
             </div>
             <div class="custom-control custom-radio">
-                <input class="custom-control-input" type="radio" value="regular" id="regular" name="calidad">
+                <input class="custom-control-input" type="radio" value="regular" id="regular" name="calidad" th:disabled="${readLavado}" th:checked="${checkRLavado}">
                 <label for="regular" class="custom-control-label">Regular</label>
             </div>
             <div class="custom-control custom-radio">
-                <input class="custom-control-input" type="radio" value="mala" id="mala" name="calidad">
+                <input class="custom-control-input" type="radio" value="mala" id="mala" name="calidad" th:disabled="${readLavado}" th:checked="${checkMLavado}">
                 <label for="mala" class="custom-control-label">Mala</label>
             </div>
         </div>
@@ -118,11 +118,11 @@
     <div class="col-sm-12">
         <div class="form-group">
             <div class="custom-control custom-radio">
-                <input class="custom-control-input" type="radio" value="si" id="si" name="decision">
+                <input class="custom-control-input" type="radio" value="si" id="si" name="decision" th:disabled="${readLavado}" th:checked="${checkSLavado}">
                 <label for="si" class="custom-control-label">Si</label>
             </div>
             <div class="custom-control custom-radio">
-                <input class="custom-control-input" type="radio" value="no" id="no" name="decision">
+                <input class="custom-control-input" type="radio" value="no" id="no" name="decision" th:disabled="${readLavado}" th:checked="${checkNLavado}">
                 <label for="no" class="custom-control-label">No</label>
             </div>
         </div>

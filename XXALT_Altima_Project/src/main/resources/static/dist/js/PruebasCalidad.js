@@ -448,7 +448,6 @@ function ValidacionEncogimiento() {
         && $('#medidaTramaPruebaFusion').val() != ""
         && $('#diferenciaHiloPruebaFusion').val() != ""
         && $('#diferenciaTramaPruebaFusion').val() != ""
-        && $('#finalTramaMedPruebaVapor').val() != ""
         && $('#medidaHiloPlanchaVapor').val() != ""
         && $('#medidaTramaPlanchaVapor').val() != ""
         && $('#diferenciaHiloPlanchaVapor').val() != ""
@@ -456,7 +455,7 @@ function ValidacionEncogimiento() {
     ) {
         $('#AlertaPestanaEncogimiento').css('display', 'none');
         $('#enlace').click();
-        location.href = "calidad";
+        location.href = "redirect:/calidad";
     }
     else {
         $('#AlertaPestanaEncogimiento').css('display', 'block');
@@ -480,7 +479,7 @@ function ValidacionLavado() {
     ) {
         $('#AlertaPestanaLavado').css('display', 'none');
         $('#enlaceLavado').click();
-        location.href = "calidad";
+        location.href = "redirect:/calidad";
     }
     else {
         $('#AlertaPestanaLavado').css('display', 'block');
@@ -504,7 +503,7 @@ function ValidacionCostura() {
     ) {
         $('#AlertaPestanaCostura').css('display', 'none');
         $('#enlaceCostura').click();
-        location.href = "calidad";
+        location.href = "redirect:/calidad";
     }
     else {
         $('#AlertaPestanaCostura').css('display', 'block');
@@ -523,7 +522,7 @@ function ValidacionContaminacion() {
     ) {
         $('#AlertaPestanaContaminacion').css('display', 'none');
         $('#enlaceContaminacion').click();
-        location.href = "calidad";
+        location.href = "redirect:/calidad";
     }
     else {
         $('#AlertaPestanaContaminacion').css('display', 'block');
