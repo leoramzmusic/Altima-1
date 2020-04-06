@@ -17,6 +17,11 @@ public class DisenioTela implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@Column(name="id_tela")
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
+	@GenericGenerator(name="native",strategy="native")
+	private Long idTela;
 	
 	@Column(name="id_familia_composicion")
 	private Long idFamiliaComposicion;
@@ -69,9 +74,6 @@ public class DisenioTela implements Serializable{
 	@Column(name="costo_por_metro")
 	private String costoPorMetro;
 	
-	@Column(name="id_prenda")
-	private Long idPrenda;
-	
 	@Column(name="color")
 	private String Color;
 	
@@ -93,6 +95,13 @@ public class DisenioTela implements Serializable{
 	@Column(name="estatus_tela")
 	private String estatusTela;
 
+	public Long getIdTela() {
+		return idTela;
+	}
+
+	public void setIdTela(Long idTela) {
+		this.idTela = idTela;
+	}
 
 	public Long getIdFamiliaComposicion() {
 		return idFamiliaComposicion;
@@ -230,14 +239,6 @@ public class DisenioTela implements Serializable{
 		this.costoPorMetro = costoPorMetro;
 	}
 
-	public Long getIdPrenda() {
-		return idPrenda;
-	}
-
-	public void setIdPrenda(Long idPrenda) {
-		this.idPrenda = idPrenda;
-	}
-
 	public String getColor() {
 		return Color;
 	}
@@ -298,172 +299,6 @@ public class DisenioTela implements Serializable{
 		return serialVersionUID;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((Color == null) ? 0 : Color.hashCode());
-		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
-		result = prime * result + ((ancho == null) ? 0 : ancho.hashCode());
-		result = prime * result + ((codigoColor == null) ? 0 : codigoColor.hashCode());
-		result = prime * result + ((consumo == null) ? 0 : consumo.hashCode());
-		result = prime * result + ((consumoPromedio == null) ? 0 : consumoPromedio.hashCode());
-		result = prime * result + ((costoPorMetro == null) ? 0 : costoPorMetro.hashCode());
-		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
-		result = prime * result + ((descripcionTela == null) ? 0 : descripcionTela.hashCode());
-		result = prime * result + ((estampado == null) ? 0 : estampado.hashCode());
-		result = prime * result + ((estatus == null) ? 0 : estatus.hashCode());
-		result = prime * result + ((estatusTela == null) ? 0 : estatusTela.hashCode());
-		result = prime * result + ((existencia == null) ? 0 : existencia.hashCode());
-		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
-		result = prime * result + ((foto == null) ? 0 : foto.hashCode());
-		result = prime * result + ((idCalidad == null) ? 0 : idCalidad.hashCode());
-		result = prime * result + ((idFamiliaComposicion == null) ? 0 : idFamiliaComposicion.hashCode());
-		result = prime * result + ((idPrenda == null) ? 0 : idPrenda.hashCode());
-		result = prime * result + ((idProveedor == null) ? 0 : idProveedor.hashCode());
-		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
-		result = prime * result + ((idUnidadMedida == null) ? 0 : idUnidadMedida.hashCode());
-		result = prime * result + ((indicacion == null) ? 0 : indicacion.hashCode());
-		result = prime * result + ((lineaTela == null) ? 0 : lineaTela.hashCode());
-		result = prime * result + ((nombreTela == null) ? 0 : nombreTela.hashCode());
-		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
-		return result;
-	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		DisenioTela other = (DisenioTela) obj;
-		if (Color == null) {
-			if (other.Color != null)
-				return false;
-		} else if (!Color.equals(other.Color))
-			return false;
-		if (actualizadoPor == null) {
-			if (other.actualizadoPor != null)
-				return false;
-		} else if (!actualizadoPor.equals(other.actualizadoPor))
-			return false;
-		if (ancho == null) {
-			if (other.ancho != null)
-				return false;
-		} else if (!ancho.equals(other.ancho))
-			return false;
-		if (codigoColor == null) {
-			if (other.codigoColor != null)
-				return false;
-		} else if (!codigoColor.equals(other.codigoColor))
-			return false;
-		if (consumo == null) {
-			if (other.consumo != null)
-				return false;
-		} else if (!consumo.equals(other.consumo))
-			return false;
-		if (consumoPromedio == null) {
-			if (other.consumoPromedio != null)
-				return false;
-		} else if (!consumoPromedio.equals(other.consumoPromedio))
-			return false;
-		if (costoPorMetro == null) {
-			if (other.costoPorMetro != null)
-				return false;
-		} else if (!costoPorMetro.equals(other.costoPorMetro))
-			return false;
-		if (creadoPor == null) {
-			if (other.creadoPor != null)
-				return false;
-		} else if (!creadoPor.equals(other.creadoPor))
-			return false;
-		if (descripcionTela == null) {
-			if (other.descripcionTela != null)
-				return false;
-		} else if (!descripcionTela.equals(other.descripcionTela))
-			return false;
-		if (estampado == null) {
-			if (other.estampado != null)
-				return false;
-		} else if (!estampado.equals(other.estampado))
-			return false;
-		if (estatus == null) {
-			if (other.estatus != null)
-				return false;
-		} else if (!estatus.equals(other.estatus))
-			return false;
-		if (estatusTela == null) {
-			if (other.estatusTela != null)
-				return false;
-		} else if (!estatusTela.equals(other.estatusTela))
-			return false;
-		if (existencia == null) {
-			if (other.existencia != null)
-				return false;
-		} else if (!existencia.equals(other.existencia))
-			return false;
-		if (fechaCreacion == null) {
-			if (other.fechaCreacion != null)
-				return false;
-		} else if (!fechaCreacion.equals(other.fechaCreacion))
-			return false;
-		if (foto == null) {
-			if (other.foto != null)
-				return false;
-		} else if (!foto.equals(other.foto))
-			return false;
-		if (idCalidad == null) {
-			if (other.idCalidad != null)
-				return false;
-		} else if (!idCalidad.equals(other.idCalidad))
-			return false;
-		if (idFamiliaComposicion == null) {
-			if (other.idFamiliaComposicion != null)
-				return false;
-		} else if (!idFamiliaComposicion.equals(other.idFamiliaComposicion))
-			return false;
-		if (idPrenda == null) {
-			if (other.idPrenda != null)
-				return false;
-		} else if (!idPrenda.equals(other.idPrenda))
-			return false;
-		if (idProveedor == null) {
-			if (other.idProveedor != null)
-				return false;
-		} else if (!idProveedor.equals(other.idProveedor))
-			return false;
-		if (idText == null) {
-			if (other.idText != null)
-				return false;
-		} else if (!idText.equals(other.idText))
-			return false;
-		if (idUnidadMedida == null) {
-			if (other.idUnidadMedida != null)
-				return false;
-		} else if (!idUnidadMedida.equals(other.idUnidadMedida))
-			return false;
-		if (indicacion == null) {
-			if (other.indicacion != null)
-				return false;
-		} else if (!indicacion.equals(other.indicacion))
-			return false;
-		if (lineaTela == null) {
-			if (other.lineaTela != null)
-				return false;
-		} else if (!lineaTela.equals(other.lineaTela))
-			return false;
-		if (nombreTela == null) {
-			if (other.nombreTela != null)
-				return false;
-		} else if (!nombreTela.equals(other.nombreTela))
-			return false;
-		if (ultimaFechaModificacion == null) {
-			if (other.ultimaFechaModificacion != null)
-				return false;
-		} else if (!ultimaFechaModificacion.equals(other.ultimaFechaModificacion))
-			return false;
-		return true;
-	}
+	
 }
