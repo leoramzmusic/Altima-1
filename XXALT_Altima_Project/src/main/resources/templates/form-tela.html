@@ -48,13 +48,55 @@
     
     <div class="form-group col-sm-6">
         <label for="razonEmpresa">Famila Composicion</label>
-        <select id="telaFamcomposicion" class="form-control" >
+        <select id="telaFamcomposicion" class="form-control" th:field="*{tela.idFamiliaComposicion}" >
         	<option value="">Selecciona uno...</option>
         	<option th:each="lisFam: ${lisFam}"
 			th:value="${lisFam.idLookup}" th:text="${lisFam.nombreLookup}"></option>
             
         </select>
     </div>
+    
+    
+    <div class="form-group col-md-6">
+        <label for="status">Prenda</label>
+        <select class="form-control" name="idPrenda"  id ="idPrenda">
+        	<option value="">Selecciona uno...</option>
+             <option th:each="listPrendas: ${listPrendas}"
+			th:value="${listPrendas.idLookup}" th:text="${listPrendas.nombreLookup}"></option>
+        </select>
+    </div>
+   
+     <div class="form-group col-sm-1">
+     <label for="status">Agregar</label>
+        <button id="adicionarPrenda" onclick="guardarPrenda()" class="btn btn-info rounded-circle" type="button"><i class="fas fa-plus"></i></button>
+        
+    </div>
+     <div class="form-group col-sm-12">
+        <table id="mytablePrenda" class="table table-striped">
+        <thead>
+        	<tr>
+    			<th>Prenda</th>
+    			<th style="display:none;">id_prenda</th>
+    			<th>Eliminar</th>
+
+  			</tr>
+  		<thead>
+  			<tbody>
+                                            <tr th:each="listVistaTelaPrenda: ${listVistaTelaPrenda}">
+                                               
+                                               
+                                             
+                                                <td  th:text="${listVistaTelaPrenda[1]}"></td>
+                                                
+                                                 <td style="display:none;"th:text="${listVistaTelaPrenda[0]}"></td>
+                                                <td  > <button type="button" name="remove" onclick="eliminar(this)" class="btn btn-danger btn_remove">Quitar</button></td>
+                                               
+                                            </tr>     
+             </tbody>
+        </table>
+    </div>
+    
+    
     <div class="form-group col-sm-4">
         <label for="rfcEmpresa">Ancho(m)</label>
         <input type="number" class="form-control" th:field="*{tela.ancho}" placeholder="1.2">
@@ -64,27 +106,32 @@
         <input type="number" class="form-control" th:field="*{tela.costoPorMetro}" placeholder="1.2">
     </div>
     <div class="form-group col-sm-4">
-        <label for="status">Prenda</label>
-        <select class="form-control" th:field="*{tela.idPrenda}">
+        <label for="status">Estampado</label>
+        <select class="form-control"  th:field="*{tela.estampado}" >
         	<option value="">Selecciona uno...</option>
-             <option th:each="listPrendas: ${listPrendas}"
-			th:value="${listPrendas.idPrenda}" th:text="${listPrendas.nombrePrenda}"></option>
+            <option value ="1">Estampado 1</option>
+            <option value ="2">Estampado 2</option>
+            <option value ="3">Estampado 3</option>
+            <option value ="4">Estampado 4</option>
+            <option value ="5">Estampado 5</option>
+            <option value ="6">Estampado 6</option>
+        </select>
         </select>
     </div>
     
-    <div th:if="*{tela.estatusTela != null}" class="form-group col-sm-4">
+    <div th:if="*{tela.estatusTela =='1'}" class="form-group col-sm-4">
         <label for="status">Calidad</label>
         
          <input type="text" th:field="*{tela.idCalidad}" class="form-control" placeholder="Calidad">
        
     </div>
     
-    <div th:if="*{tela.estatusTela != null}" class="form-group col-sm-4">
+    <div th:if="*{tela.estatusTela =='1'}" class="form-group col-sm-4">
         <label for="status">Linea Tela</label>
         <input type="text" th:field="*{tela.lineaTela}" class="form-control" placeholder="Linea">
     </div>
     
-    <div th:if="*{tela.estatusTela != null}" class="form-group col-sm-4">
+    <div th:if="*{tela.estatusTela =='1'}" class="form-group col-sm-4">
         <label for="status">Unidad de medida</label>
         <select  class="form-control"   th:field="*{tela.idUnidadMedida}" >
        <option th:each="listLookupsMed:${listLookupsMed}"
@@ -96,13 +143,13 @@
             </select>
     </div>
     
-    <div th:if="*{tela.estatusTela != null}" class="form-group col-sm-4">
+    <div th:if="*{tela.estatusTela =='1'}" class="form-group col-sm-4">
         <label for="status">Consumo</label>
         
         <input type="text" th:field="*{tela.consumo}" class="form-control" placeholder="Consumo">
     </div>
     
-    <div th:if="*{tela.estatusTela != null}" class="form-group col-sm-4">
+    <div th:if="*{tela.estatusTela =='1'}" class="form-group col-sm-4">
         <label for="status">Consumo promedio</label>      
         <input type="text" th:field="*{tela.consumoPromedio}" class="form-control" placeholder="Consumo promedio">
     </div>
@@ -112,15 +159,23 @@
 <!--         <input type="text" th:field="*{tela.tipo}" class="form-control" placeholder="Consumo promedio"> -->
 <!--     </div> -->
     
-    <div class="form-group col-sm-6">
+    <div class="form-group col-sm-4">
         <label for="status">Color</label>
-        <select class="form-control" th:field="*{tela.idColor}">
+        <select class="form-control" th:field="*{tela.Color}" >
         <option value="">Selecciona uno...</option>
             <option th:each="listColor: ${listColor}"
-			th:value="${listColor.idLookup}" th:text="${listColor.nombreLookup}"></option>
+			th:value="${listColor.nombreLookup}" th:text="${listColor.nombreLookup}"></option>
         </select>
     </div>
-    <div class="form-group col-sm-6">
+    
+    <div class="form-group col-sm-4">
+        <label for="status">Codigo Color</label>
+        
+        
+        <input type="color" th:field="*{tela.codigoColor}"  class="form-control" placeholder="Codigo Color">
+    </div>
+    
+    <div class="form-group col-sm-4">
         <label for="status">Proveedor</label>
         <select class="form-control"  th:field="*{tela.idProveedor}">
         <option value="">Selecciona uno...</option>
@@ -135,7 +190,7 @@
     
     <div th:if="*{tela.estatusTela =='1'}"  class="form-group col-sm-6">
         <label for="status">Botones</label>
-        <select multiple class="form-control" name="botones" >
+        <select  class="selectpicker" multiple  name="botones" >
         
         <option th:each="listBtnSelec: ${listBtnSelec}"
 			th:value="${listBtnSelec[0]}" th:text="${listBtnSelec[1]}" selected ></option>
@@ -147,7 +202,7 @@
      
      <div th:if="*{tela.estatusTela =='1'}"  class="form-group col-sm-6">
         <label for="status">Forro</label>
-        <select multiple class="form-control"  name="forros">
+        <select class="selectpicker" multiple  name="forros">
         <option th:each="listForroSelec: ${listForroSelec}"
 			th:value="${listForroSelec[0]}" th:text="${listForroSelec[1]}" selected ></option>
          
@@ -196,15 +251,14 @@
     </div>
    
     <div class="form-group col-sm-12">
-    	<a th:href="${'materiales'}" class="btn btn-danger">Cancelar</a>
+    	<a th:href="@{/materiales}" class="btn btn-danger">Cancelar</a>
        <button onclick="arreglo()"  class="btn btn-primary next-step float-right" type="button">Adicionar a la tabla</button>
-      
-        
-         
     </div>
     
     <input name="txtTabla" type="hidden" id="txtTabla" value="">
     <input name="txtTabla2" type="hidden" id="txtTabla2" value="">
+    
+    <input name="id_prendas" type="hidden" id="id_prendas" value="">
     
     <input  type="hidden" th:field="*{tela.idTela}">
     <input  type="hidden" th:field="*{tela.idText}">
@@ -219,7 +273,7 @@
     
 </form>
 <html xmlns:th="http://www.thymeleaf.org">
-<script src="dist/js/sweetalert.js"></script>
+<script th:src="@{/dist/js/sweetalert.js}"></script>
 <script>
 function guardar(){
 	if( document.getElementById("telaComposicion").value == null || 
@@ -240,24 +294,16 @@ function guardar(){
     var telaFamcomposicion = document.getElementById("telaFamcomposicion").value;    
     var nombre = $( "#telaFamcomposicion option:selected" ).text()   
     var i = 1; //contador para asignar id al boton que borrara la fila
-   
-    var fila = '<tr id="row' + i + '"><td>' + telaComposicion + '</td> <td style="display:none;">' + telaFamcomposicion + '</td> <td >' + nombre + '</td>  <td><button type="button" name="remove" id="' + i + '" onclick="eliminar(this)" class="btn btn-danger btn_remove">Quitar</button></td>   </tr>'; //esto seria lo que contendria la fila
+    var fila = '<tr id="row' + i + '"><td>' + telaComposicion  + '</td> <td style="display:none;">' + telaFamcomposicion + '</td> <td >' + nombre + '</td>  <td><button type="button" name="remove" id="' + i + '" onclick="eliminar(this)" class="btn btn-danger btn_remove">Quitar</button></td>   </tr>'; //esto seria lo que contendria la fila
     i++;
     $('#mytable tr:first').after(fila);
     $("#adicionados").text(""); //esta instruccion limpia el div adicioandos para que no se vayan acumulando
     var nFilas = $("#mytable tr").length;
     $("#adicionados").append(nFilas - 1);
     //le resto 1 para no contar la fila del header
-    
-    
     document.getElementById('telaFamcomposicion').options.selectedIndex = 0;
     document.getElementById("telaComposicion").value ="";
-    
-   
-	}
-    
-    
-    
+	}  
 }
 function eliminar(t) {
 	
@@ -269,9 +315,8 @@ function eliminar(t) {
 	}
 	
 function arreglo() {
-	valores=new Array();
 	var compo="";
-	var idfam="" ;
+	var idfam="";
 	$('#mytable tr').each(function () {
 		compo=$(this).find('td').eq(0).html()+","+compo;
 		
@@ -284,9 +329,44 @@ function arreglo() {
 	  
 	  
 	 });
+	
+	var id="";
+	$('#mytablePrenda tr').each(function () {
+		id=$(this).find('td').eq(1).html()+","+id;
+	  document.getElementById("id_prendas").value = id;
+	 });
 	document.telaForm.submit()
 	}
-
 	
+function guardarPrenda(){
+	if( document.getElementById("idPrenda").value == null || 
+			document.getElementById("idPrenda").value.length == 0) {
+		Swal.fire({
+	          position: 'center',
+	          icon: 'error',
+	          title: 'Error en prenda',
+	          showConfirmButton: false,
+	          timer: 1250
+	        });
+		}
+	else{
+    //var telaComposicion = document.getElementById("telaComposicion").value;
+    var idPrenda = document.getElementById("idPrenda").value;   
+    var nombre = $( "#idPrenda option:selected" ).text()   
+    var i = 1; //contador para asignar id al boton que borrara la fila
+    
+    var fila = '<tr id="row' + i + '"><td>' + nombre  + '</td> <td style="display:none;">' + idPrenda + '</td>   <td><button type="button" name="remove" id="' + i + '" onclick="eliminar(this)" class="btn btn-danger btn_remove">Quitar</button></td>   </tr>'; //esto seria lo que contendria la fila
+    i++;
+    $('#mytablePrenda tr:first').after(fila);
+    $("#adicionados").text(""); //esta instruccion limpia el div adicioandos para que no se vayan acumulando
+    var nFilas = $("#mytable tr").length;
+    $("#adicionados").append(nFilas - 1);
+    //le resto 1 para no contar la fila del header
+    document.getElementById('idPrenda').options.selectedIndex = 0;
+    document.getElementById("idPrenda").value ="";
+	}  
+}
 </script>
+
+
 

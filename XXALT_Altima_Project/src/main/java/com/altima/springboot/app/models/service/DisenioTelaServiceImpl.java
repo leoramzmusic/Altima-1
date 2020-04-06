@@ -15,6 +15,8 @@ import com.altima.springboot.app.models.entity.DisenioMaterialTela;
 import com.altima.springboot.app.models.entity.DisenioPrenda;
 import com.altima.springboot.app.models.entity.DisenioTela;
 import com.altima.springboot.app.models.entity.DisenioTelaForro;
+import com.altima.springboot.app.models.entity.DisenioTelaPrenda;
+import com.altima.springboot.app.repository.DisenioTelaPrendaRepository;
 import com.altima.springboot.app.repository.DisenioTelaRepository;
 
 
@@ -25,6 +27,11 @@ public class DisenioTelaServiceImpl implements IDisenioTelaService {
 	
 	@Autowired
 	private DisenioTelaRepository repository;
+	
+	@Autowired
+	private DisenioTelaPrendaRepository repositoryTelaPrenda;
+
+	
 	@Override
 	@Transactional(readOnly=true)
 	public List<DisenioTela> findAll() {
@@ -67,9 +74,9 @@ public class DisenioTelaServiceImpl implements IDisenioTelaService {
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
-	public List<DisenioPrenda> findAllPrenda() {
+	public List<DisenioLookup> findAllPrenda() {
 		// TODO Auto-generated method stub
-		return em.createQuery("from DisenioPrenda").getResultList();
+		return em.createQuery("from DisenioLookup where tipo_lookup='Familia Prenda'").getResultList();
 	}
 	
 	
@@ -180,6 +187,33 @@ public class DisenioTelaServiceImpl implements IDisenioTelaService {
 				"		where 1=1\r\n" + 
 				"		and alt_disenio_tela_forro.id_forro=alt_disenio_forro.id_forro\r\n" + 
 				"		and alt_disenio_tela_forro.id_tela="+id).getResultList();
+		return re;
+	}
+
+	@Override
+	public void saveTelaPrenda(DisenioTelaPrenda telaPrenda) {
+		// TODO Auto-generated method stub
+		repositoryTelaPrenda.save(telaPrenda);
+	}
+	
+	@Override
+	@Transactional
+	public void borrarTelaPrenda(Long id) {
+		// TODO Auto-generated method stub
+		Query query = em.createNativeQuery("DELETE FROM alt_disenio_tela_prenda WHERE alt_disenio_tela_prenda.id_tela="+id);
+		
+		query.executeUpdate();
+		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<Object[]> VistaTelaPrenda(Long id) {
+		List<Object[]> re= em.createNativeQuery("select tp.id_prenda, l.nombre_lookup  from alt_disenio_tela_prenda as tp , alt_disenio_lookup as l\r\n" + 
+				"where 1=1 \r\n" + 
+				"and tp.id_prenda= l.id_lookup\r\n" + 
+				"and tp.id_tela="+id).getResultList();
 		return re;
 	}
 }

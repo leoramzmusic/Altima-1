@@ -1,12 +1,8 @@
 package com.altima.springboot.app.models.service;
-
 import java.util.List;
-
 import com.altima.springboot.app.models.entity.DisenioLookup;
-import com.altima.springboot.app.models.entity.DisenioMaterialTela;
-import com.altima.springboot.app.models.entity.DisenioPrenda;
 import com.altima.springboot.app.models.entity.DisenioTela;
-import com.altima.springboot.app.models.entity.DisenioTelaForro;
+import com.altima.springboot.app.models.entity.DisenioTelaPrenda;
 
 public interface IDisenioTelaService {
 
@@ -18,7 +14,7 @@ public interface IDisenioTelaService {
 	
 	List<DisenioLookup> findAllFamilaComposicion();
 	
-	List<DisenioPrenda> findAllPrenda();
+	List<DisenioLookup> findAllPrenda();
 	
 	public List<Object []> ComposicionTelaMN( Long id);
 	
@@ -40,5 +36,9 @@ public interface IDisenioTelaService {
 	void delete(Long id);
 
 	DisenioTela findOne(Long id);
-
+	
+	// Muchos a muchos de tela y prenda 
+	void saveTelaPrenda(DisenioTelaPrenda telaPrenda);
+	public void borrarTelaPrenda( Long id);
+	public List<Object []> VistaTelaPrenda( Long id);
 }

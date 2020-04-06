@@ -30,6 +30,7 @@ import com.altima.springboot.app.models.entity.DisenioMaterial;
 import com.altima.springboot.app.models.entity.DisenioMaterialTela;
 import com.altima.springboot.app.models.entity.DisenioTela;
 import com.altima.springboot.app.models.entity.DisenioTelaForro;
+import com.altima.springboot.app.models.entity.DisenioTelaPrenda;
 import com.altima.springboot.app.models.entity.HrDireccion;
 import com.altima.springboot.app.models.service.IDisenioFamiliaComposicionForroService;
 import com.altima.springboot.app.models.service.IDisenioFamiliaComposicionTelaService;
@@ -111,6 +112,7 @@ public class TelaController {
 			@RequestParam("txtTabla2") String idComposicion,
 			@RequestParam(value="botones" , required=false) String botones,
 			@RequestParam( value="forros" , required=false) String forros,
+			@RequestParam( value="id_prendas" , required=false) String id_prendas,
 			@RequestParam(value="imagenTela", required=false) MultipartFile imagenTela,
 			RedirectAttributes redirectAttrs) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -143,7 +145,7 @@ public class TelaController {
 			tela.setEstatus("1"); //Estatus para ver el registro en el sistema
 			tela.setEstatusTela("0");// estatus para la aprobacion de la tela
 			tela.setConsumo("1");
-			tela.setFoto("aprueba.png");
+			tela.setFoto("Sin imagen");
 			disenioTelaService.save(tela);
 			
 			disenioTelaService.borrarComposicionTela(tela.getIdTela());
@@ -163,6 +165,17 @@ public class TelaController {
 				ComposicionTelaService.save(fc);
 			}
 		}
+			// prendas de muchos a muchos 
+			disenioTelaService.borrarTelaPrenda(tela.getIdTela());
+			if ( id_prendas.length()>1) {
+				String [] vect = id_prendas.split(",");
+				for(int i= 0 ; i<vect.length -1;i++) {
+					DisenioTelaPrenda tp = new DisenioTelaPrenda();
+					tp.setIdPrenda(Long.valueOf(vect[i]));
+					tp.setIdTela(tela.getIdTela());
+					disenioTelaService.saveTelaPrenda(tp);
+				}
+			}
 		}
 		else {
 			disenioTelaService.borrarBotonesTela(tela.getIdTela());
@@ -183,12 +196,6 @@ public class TelaController {
 				}
 				tela.setFoto(uniqueFilename);
 			}
-			
-			tela.setIdFamiliaComposicion(Long.valueOf(1));
-			
-			
-			
-			tela.setIdFamiliaComposicion(Long.valueOf(1));
 			 
 			disenioTelaService.save(tela);
 			
@@ -232,6 +239,18 @@ public class TelaController {
 					ComposicionTelaService.save(fc);
 				}
 			}
+			
+			// prendas de muchos a muchos 
+						disenioTelaService.borrarTelaPrenda(tela.getIdTela());
+						if ( id_prendas.length()>1) {
+							String [] vect = id_prendas.split(",");
+							for(int i= 0 ; i<vect.length -1;i++) {
+								DisenioTelaPrenda tp = new DisenioTelaPrenda();
+								tp.setIdPrenda(Long.valueOf(vect[i]));
+								tp.setIdTela(tela.getIdTela());
+								disenioTelaService.saveTelaPrenda(tp);
+							}
+						}
 			
 			redirectAttrs
             .addFlashAttribute("title", "Tela editada correctamente")
@@ -277,6 +296,8 @@ public class TelaController {
 		
 		model.addAttribute("listBtnSelec", disenioTelaService.BonotesSeleccionados(id));
 		model.addAttribute("listForroSelec", disenioTelaService.ForrosSeleccionados(id));
+		
+		model.addAttribute("listVistaTelaPrenda", disenioTelaService.VistaTelaPrenda(id));
 		model.addAttribute("tela", tela);
 		
 		return"agregar-material";   
