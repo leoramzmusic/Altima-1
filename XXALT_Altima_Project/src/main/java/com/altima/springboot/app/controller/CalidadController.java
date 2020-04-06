@@ -34,7 +34,7 @@ public class CalidadController {
 	@Autowired
 	IDisenioLookupService disenioLookup;
 	
-	@GetMapping("calidad") 
+	@GetMapping("/calidad") 
 	public String listCalidad(Model model) {
 		disenioCalidad.findAll();
 		model.addAttribute("calidadComponentes",disenioCalidad.findAll());
@@ -150,13 +150,27 @@ public class CalidadController {
 					model.addAttribute("observacionesDeslizamiento", cc.getObservacionesResultados());
 					model.addAttribute("displaCostura", "true");
 					
-					if(cc.getPruebaCalidad().equals("si")) {
+					if(cc.getDeslizamientoTela().equals("si")) {
+						model.addAttribute("checkSDeslizamiento", "true");
+					}
+					if(cc.getDeslizamientoTela().equals("no")) {
+						model.addAttribute("checkNDeslizamiento", "true");
+					}
+				}
+				
+				if(cc.getTipoPrueba().equalsIgnoreCase("Rasgado de Tela")) {
+					model.addAttribute("readCostura", "true");
+					model.addAttribute("observacionesDeslizamiento", cc.getObservacionesResultados());
+					model.addAttribute("displaCostura", "true");
+					
+					if(cc.getRasgadoTela().equals("si")) {
 						model.addAttribute("checkSCostura", "true");
 					}
-					if(cc.getPruebaCalidad().equals("no")) {
+					if(cc.getRasgadoTela().equals("no")) {
 						model.addAttribute("checkNCostura", "true");
 					}
 				}
+				
 				if(cc.getTipoPrueba().equalsIgnoreCase("Resultado de contaminación") || cc.getTipoPrueba().equalsIgnoreCase("Resultado de contaminacion")) {
 					model.addAttribute("readContamin", "true");
 					model.addAttribute("observacionesReultContaminacion", cc.getObservacionesResultados());				

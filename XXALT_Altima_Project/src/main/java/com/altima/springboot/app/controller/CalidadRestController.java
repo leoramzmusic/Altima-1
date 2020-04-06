@@ -141,6 +141,7 @@ public class CalidadRestController {
 		}
 
  		else {
+ 			PruebaEncoLavado = new DisenioPruebaEncogimientoLavado();
  			PruebaEncoLavado.setIdCalidad(Long.valueOf(palabras[25]));	
  			}
 		
@@ -167,6 +168,7 @@ public class CalidadRestController {
 			PruebaEncoLavado.setIdCalidad(disenioCalidad.getIdCalidad());
 		}		
 		else {
+			PruebaEncoLavado = new DisenioPruebaEncogimientoLavado();
  			PruebaEncoLavado.setIdCalidad(Long.valueOf(palabras[25]));	
  			}
 		resultHilo = ((Double.parseDouble(palabras[22])*100/Double.parseDouble(palabras[20]))-100);
@@ -243,6 +245,7 @@ public class CalidadRestController {
 		PruebaEncoLavado.setEstatus("1");
 		
 		EncogimientoLavado.save(PruebaEncoLavado);
+		
 		if(palabras[13].equals("") || palabras[13]==null) {
 			PruebaLavadoContaCostura.setIdCalidad(disenioCalidad.getIdCalidad());
 		 }
@@ -265,6 +268,7 @@ public class CalidadRestController {
 			PruebaLavadoContaCostura.setIdCalidad(disenioCalidad.getIdCalidad());
 			 }
 		else {
+			PruebaLavadoContaCostura = new DisenioPruebaLavadoContaminacionCostura();
 			PruebaEncoLavado.setIdCalidad(Long.valueOf(palabras[13]));	
 			 }
 		
@@ -307,9 +311,8 @@ public class CalidadRestController {
 			CalidadService.save(disenioCalidad);
 		}
 		else {
- 			PruebaLavadoContaCostura.setIdCalidad(Long.valueOf(palabras[6]));
+ 			PruebaLavadoContaCostura.setIdCalidad(Long.valueOf(palabras[9]));
  		}
-		PruebaLavadoContaCostura.setIdCalidad(disenioCalidad.getIdCalidad());
 		PruebaLavadoContaCostura.setIdTela(palabras[0]);
 		PruebaLavadoContaCostura.setCreadoPor(palabras[1]);
 		PruebaLavadoContaCostura.setFechaRealizacion(palabras[2].replace("T", " "));
@@ -327,13 +330,14 @@ public class CalidadRestController {
 			PruebaLavadoContaCostura.setIdCalidad(disenioCalidad.getIdCalidad());
 		}
 		else {
-			PruebaLavadoContaCostura.setIdCalidad(Long.valueOf(palabras[6]));
+			PruebaLavadoContaCostura = new DisenioPruebaLavadoContaminacionCostura();
+			PruebaLavadoContaCostura.setIdCalidad(Long.valueOf(palabras[9]));
 		}
 		
 		PruebaLavadoContaCostura.setIdTela(palabras[0]);
 		PruebaLavadoContaCostura.setCreadoPor(palabras[1]);
-		PruebaLavadoContaCostura.setFechaRealizacion(palabras[2]);
-		PruebaLavadoContaCostura.setFechaFinalizacion(palabras[3]);
+		PruebaLavadoContaCostura.setFechaRealizacion(palabras[2].replace("T", " "));
+		PruebaLavadoContaCostura.setFechaFinalizacion(palabras[3].replace("T", " "));
 		PruebaLavadoContaCostura.setRasgadoTela(palabras[7]);
 		PruebaLavadoContaCostura.setObservacionesResultados(palabras[8]);
 		PruebaLavadoContaCostura.setTipoPrueba("Rasgado de Tela");
