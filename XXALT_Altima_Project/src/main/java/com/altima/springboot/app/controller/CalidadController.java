@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.altima.springboot.app.models.entity.DisenioCalidad;
 import com.altima.springboot.app.models.entity.DisenioLookup;
 import com.altima.springboot.app.models.entity.DisenioPruebaEncogimientoLavado;
 import com.altima.springboot.app.models.entity.DisenioPruebaLavadoContaminacionCostura;
 import com.altima.springboot.app.models.service.IDisenioCalidadService;
 import com.altima.springboot.app.models.service.IDisenioLookupService;
+import com.altima.springboot.app.models.service.IDisenioMaterialService;
 import com.altima.springboot.app.models.service.IDisenioPruebaEncogimientoLavadoService;
 import com.altima.springboot.app.models.service.IDisenioPruebaLavadoContaminacionCosturaService;
 
@@ -33,6 +35,9 @@ public class CalidadController {
 	
 	@Autowired
 	IDisenioLookupService disenioLookup;
+	
+	@Autowired
+	IDisenioMaterialService materialService;
 	
 	@GetMapping("/calidad") 
 	public String listCalidad(Model model) {
@@ -56,7 +61,7 @@ public class CalidadController {
 	public String addPruebaCalidad(@PathVariable(name = "id") Long id, Model model) {
 		List<DisenioPruebaEncogimientoLavado> pruebasEL = pruebaEncogiLavado.findAllByCalidad(id);
 		List<DisenioPruebaLavadoContaminacionCostura> pruebasLCC = pruebaContaCostura.findAllByCalidad(id);
-
+		int cont = 0;
 		if(pruebaContaCostura.ifExist(id)==0 || pruebaEncogiLavado.ifExist(id)==1 ) {
 			
 			for (DisenioPruebaEncogimientoLavado u : pruebasEL) {
@@ -79,6 +84,7 @@ public class CalidadController {
 				model.addAttribute("finalTramaMedPruebaVapor", u.getDiferenciaMedidaTrama());
 				model.addAttribute("observacionesReultPruebaVapor", u.getObservacionesResultados());
 				model.addAttribute("displa", "true");
+				cont+=1;
 				}
 				if (u.getTipoPrueba().equalsIgnoreCase("Prueba de Fusion")) {
 				model.addAttribute("medidaHiloPruebaFusion", u.getMedidaInicialHilo());
@@ -88,6 +94,7 @@ public class CalidadController {
 				model.addAttribute("diferenciaTramaPruebaFusion", u.getMedidaFinalTrama());
 				model.addAttribute("finalTramaMedPruebaFusion", u.getDiferenciaMedidaTrama());
 				model.addAttribute("observacionesReultPruebaFusion", u.getObservacionesResultados());
+				cont+=1;
 				}
 				if (u.getTipoPrueba().equalsIgnoreCase("Plancha con Vapor")) {
 				model.addAttribute("medidaHiloPlanchaVapor", u.getMedidaInicialHilo());
@@ -97,6 +104,7 @@ public class CalidadController {
 				model.addAttribute("diferenciaTramaPlanchaVapor", u.getMedidaFinalTrama());
 				model.addAttribute("finalTramaMedPlanchaVapor", u.getDiferenciaMedidaTrama());
 				model.addAttribute("observacionesReultPlanchaVapor", u.getObservacionesResultados());
+				cont+=1;
 				}
 				
 				if (u.getTipoPrueba().equalsIgnoreCase("Prueba de Lavado")) {
@@ -113,6 +121,7 @@ public class CalidadController {
 				model.addAttribute("finalTramaMedPruebaLavado", u.getDiferenciaMedidaTrama());
 				model.addAttribute("observacionesReultPruebaLavado", u.getObservacionesResultados());
 				model.addAttribute("displaLavado", "true");
+				cont+=1;
 				}
 				System.out.println("asdasdasdasdasdasd"+pruebasLCC);
 			}
@@ -132,7 +141,7 @@ public class CalidadController {
 					if(cc.getPruebaCalidad().equals("mala")) {
 						model.addAttribute("checkMLavado", "true");
 					}
-					
+					cont+=1;
 				}
 				if(cc.getTipoPrueba().equalsIgnoreCase("Resultado pilling")) {
 			
@@ -144,6 +153,7 @@ public class CalidadController {
 					if(cc.getPrueba_pilling().equals("no")) {
 						model.addAttribute("checkNLavado", "true");
 					}
+					cont+=1;
 				}
 				if(cc.getTipoPrueba().equalsIgnoreCase("Resultado costura")) {
 					model.addAttribute("readCostura", "true");
@@ -156,6 +166,7 @@ public class CalidadController {
 					if(cc.getDeslizamientoTela().equals("no")) {
 						model.addAttribute("checkNDeslizamiento", "true");
 					}
+					cont+=1;
 				}
 				
 				if(cc.getTipoPrueba().equalsIgnoreCase("Rasgado de Tela")) {
@@ -169,6 +180,7 @@ public class CalidadController {
 					if(cc.getRasgadoTela().equals("no")) {
 						model.addAttribute("checkNCostura", "true");
 					}
+					cont+=1;
 				}
 				
 				if(cc.getTipoPrueba().equalsIgnoreCase("Resultado de contaminación") || cc.getTipoPrueba().equalsIgnoreCase("Resultado de contaminacion")) {
@@ -185,12 +197,17 @@ public class CalidadController {
 					if(cc.getPruebaCalidad().equals("mala")) {
 						model.addAttribute("checkMConta", "true");
 					}
-					
+					cont+=1;
 					
 				}
 
 			}
-			model.addAttribute("idCalidad", id);		
+			model.addAttribute("idCalidad", id);
+			if(cont==9) {
+				DisenioCalidad Calidad = disenioCalidad.findOne(id);
+				Calidad.setEstatus("1");
+				disenioCalidad.save(Calidad);
+			}
 			return "/calidad-nueva-prueba";
 		}
 		else {
@@ -199,8 +216,92 @@ public class CalidadController {
 	}
 	
 	@RequestMapping(value = "/detalle-calidad/{id}", method = RequestMethod.GET)
-	public String infoPruebasCalidad(@PathVariable(name = "id") Long id) {
+	public String infoPruebasCalidad(@PathVariable(name = "id") Long id, Model model) {
+		List<DisenioPruebaEncogimientoLavado> pruebasEL = pruebaEncogiLavado.findAllByCalidad(id);
+		List<DisenioPruebaLavadoContaminacionCostura> pruebasLCC = pruebaContaCostura.findAllByCalidad(id);
+
+		if(pruebaContaCostura.ifExist(id)==0 || pruebaEncogiLavado.ifExist(id)==1 ) {
+			
+			for (DisenioPruebaEncogimientoLavado u : pruebasEL) {
+				if (u.getTipoPrueba().equalsIgnoreCase("Prueba de Vapor")) {
+					
+				model.addAttribute("adherenciaEnco", u.getAdherenciaPruebaVapor());
+				model.addAttribute("proveedorEncogi", u.getProveedorPruebaVapor());
+				model.addAttribute("entretela", materialService.findOne(Long.valueOf(u.getEntretelaPruebaVapor())).getNombreMaterial());
+				model.addAttribute("temperaturaVapor", u.getTemperaturaPruebaVapor());
+				model.addAttribute("tiempoVapor", u.getTiempoPrueba());
+				model.addAttribute("presionVapor", u.getPresionPrueba());
+				model.addAttribute("finalMedHiloPruebaVapor", u.getMedidaFinalHilo());
+				model.addAttribute("diferenciaMedPruebaVapor", u.getDiferenciaMedidaHilo());
+				model.addAttribute("finalTramaMedPruebaVapor", u.getMedidaFinalTrama());
+				model.addAttribute("diferenciaTramaPruebaVapor", u.getDiferenciaMedidaTrama());
+				model.addAttribute("observacionesReultPruebaVapor", u.getObservacionesResultados());
+				}
+				if (u.getTipoPrueba().equalsIgnoreCase("Prueba de Fusion")) {
+				model.addAttribute("finalHiloMedFusion", u.getMedidaFinalHilo());
+				model.addAttribute("diferenciaHiloFusion", u.getDiferenciaMedidaHilo());
+				model.addAttribute("finalTramaMedFusion", u.getMedidaFinalTrama());
+				model.addAttribute("diferenciaTramaFusion", u.getDiferenciaMedidaTrama());
+				model.addAttribute("observacionesReultFusion", u.getObservacionesResultados());
+				}
+				if (u.getTipoPrueba().equalsIgnoreCase("Plancha con Vapor")) {
+				model.addAttribute("finalHiloMedPlanchaVapor", u.getMedidaFinalHilo());
+				model.addAttribute("diferenciaHiloPlanchaVapor", u.getDiferenciaMedidaHilo());
+				model.addAttribute("finalTramaMedPlanchaVapor", u.getMedidaFinalTrama());
+				model.addAttribute("diferenciaTramaPlanchaVapor", u.getDiferenciaMedidaTrama());
+				model.addAttribute("observacionesReultPlanchaVapor", u.getObservacionesResultados());
+				}
+				
+				if (u.getTipoPrueba().equalsIgnoreCase("Prueba de Lavado")) {
+				
+				model.addAttribute("finalHiloMedPruebaLavado", u.getMedidaFinalHilo());
+				model.addAttribute("diferenciaHiloPruebaLavado", u.getDiferenciaMedidaHilo());
+				model.addAttribute("finalTramaMedPruebaLavado", u.getMedidaFinalTrama());
+				model.addAttribute("diferenciaTramaPruebaLavado", u.getDiferenciaMedidaTrama());
+				model.addAttribute("observacionesReultPruebaLavado", u.getObservacionesResultados());
+				}
+			}
 		
-		return "detalle-calidad";
+			for (DisenioPruebaLavadoContaminacionCostura cc : pruebasLCC) {
+				
+				if(cc.getTipoPrueba().equalsIgnoreCase("Solidez/Color")) {
+					model.addAttribute("observacionesReultSolidez", cc.getObservacionesResultados());
+					model.addAttribute("solidezColor", cc.getPruebaCalidad());
+				}
+				
+				if(cc.getTipoPrueba().equalsIgnoreCase("Resultado pilling")) {
+			
+					model.addAttribute("observacionesReultPilling", cc.getObservacionesResultados());
+					model.addAttribute("resultadoPilling", cc.getPrueba_pilling());
+				}
+				
+				if(cc.getTipoPrueba().equalsIgnoreCase("Resultado costura")) {
+					model.addAttribute("observacionesDeslizamiento", cc.getObservacionesResultados());
+					model.addAttribute("Deslizamiento", cc.getDeslizamientoTela());
+					
+					if(cc.getDeslizamientoTela().equals("no")) {
+						model.addAttribute("checkNDeslizamiento", "true");
+					}
+				}
+				
+				if(cc.getTipoPrueba().equalsIgnoreCase("Rasgado de Tela")) {
+					model.addAttribute("observacionescostura", cc.getObservacionesResultados());
+					model.addAttribute("Costura", cc.getRasgadoTela());
+					
+				}
+				
+				if(cc.getTipoPrueba().equalsIgnoreCase("Resultado de contaminación") || cc.getTipoPrueba().equalsIgnoreCase("Resultado de contaminacion")) {
+					model.addAttribute("observacionesReultContaminacion", cc.getObservacionesResultados());				
+					model.addAttribute("calidadContaminacion", cc.getPruebaCalidad());
+
+				}
+
+			}
+			model.addAttribute("idCalidad", id);		
+			return "/detalle-calidad";
+		}
+		else {
+			return "calidad-nueva-prueba";
+		}
 	}
 }

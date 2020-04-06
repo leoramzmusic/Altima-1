@@ -27,29 +27,29 @@
                     </tr>
                     <tr class="tdcenter">
                         <th colspan="2">Prueba de lavado</th>
-                        <td colspan="1">25.3</td>
-                        <td colspan="1">26</td>
+                        <td colspan="1" th:text="${finalHiloMedPruebaLavado}"></td>
+                        <td colspan="1" th:text="${finalTramaMedPruebaLavado}"></td>
                         <td colspan="2">Diferencia hilo: 0.3</td>
-                        <td colspan="2">(100cm/0.3)</td>
+                        <td colspan="2" th:text="${diferenciaHiloPruebaLavado}+'%'">(100cm/0.3)</td>
                         <td colspan="2">Diferencia trama: 1</td>
-                        <td colspan="2">(100cm/1)</td>
+                        <td colspan="2" th:text="${diferenciaTramaPruebaLavado}+'%'">(100cm/1)</td>
                     </tr>
                     <tr>
-                        <td colspan="12" class="text-justify">Observaciones:</td>
+                        <td colspan="12" class="text-justify" th:text="'Observaciones: ' +${observacionesReultPruebaLavado}"></td>
                     </tr>
                     <tr class="tdcenter">
                         <th colspan="2">Solidez/Color</th>
-                        <td colspan="10">Buena</td>
+                        <td colspan="10" th:text="${solidezColor}"></td>
                     </tr>
                     <tr>
-                        <td colspan="12" class="text-justify">Observaciones:</td>
+                        <td colspan="12" class="text-justify" th:text="'Observaciones: ' +${observacionesReultSolidez}"></td>
                     </tr>
                     <tr class="tdcenter">
                         <th colspan="2">Resultado del pilling</th>
-                        <td colspan="10">Si</td>
+                        <td colspan="10" th:text="${resultadoPilling}">Si</td>
                     </tr>
                     <tr>
-                        <td colspan="12" class="text-justify">Observaciones:</td>
+                        <td colspan="12" class="text-justify" th:text="'Observaciones:   ' +${observacionesReultPilling}"></td>
                     </tr>
              </thead>
             </table>

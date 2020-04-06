@@ -27,25 +27,25 @@
                     </tr>
                     <tr class="tdcenter">
                         <th colspan="2">Prueba de vapor</th>
-                        <td colspan="1">25.3</td>
-                        <td colspan="1">26</td>
-                        <td colspan="2">Diferencia hilo: 0.3</td>
-                        <td colspan="2">(100cm/0.3)</td>
-                        <td colspan="2">Diferencia trama: 1</td>
-                        <td colspan="2">(100cm/1)</td>
+                        <td colspan="1" th:text="${finalMedHiloPruebaVapor}"></td>
+                        <td colspan="1" th:text="${finalTramaMedPruebaVapor}"></td>
+                        <td colspan="2">Diferencia hilo:</td>
+                        <td colspan="2" th:text="${diferenciaMedPruebaVapor}+'%'"></td>
+                        <td colspan="2">Diferencia trama:</td>
+                        <td colspan="2" th:text="${diferenciaTramaPruebaVapor}+'%'"></td>
                     </tr>
                     <tr>
-                        <td colspan="4">Entretela: </td>
-                        <td colspan="4">Adherencia: </td>
-                        <td colspan="4">Proveedor:</td>
+                        <td colspan="4" th:text="'Entretela:  '+ ${entretela}"></td>
+                        <td colspan="4" th:text="'Adherencia: '+ ${adherenciaEnco}"></td>
+                        <td colspan="4" th:text="'Proveedor:  '+ ${proveedorEncogi}"></td>
                     </tr>
                     <tr>
-                        <td colspan="4">Temperatura:</td>
-                        <td colspan="4">Tiempo: </td>
-                        <td colspan="4">Presi&oacute;n:</td>
+                        <td colspan="4" th:text="'Temperatura:  '+ ${temperaturaVapor}"></td>
+                        <td colspan="4" th:text="'Tiempo:   '+ ${tiempoVapor}"></td>
+                        <td colspan="4" th:text="'Presi&oacute;n:  '+ ${presionVapor}"></td>
                     </tr>
                     <tr>
-                        <td colspan="12" class="text-justify">Observaciones:</td>
+                        <td colspan="12" class="text-justify" th:text="'Observaciones:  '+ ${observacionesReultPruebaVapor}"></td>
                     </tr>
                     <tr class="tdcenter thead-dark">
                         <th rowspan="2" colspan="2">
@@ -64,27 +64,27 @@
                     </tr>
                     <tr class="tdcenter">
                         <th colspan="2">Prueba de fusi&oacute;n</th>
-                        <td colspan="1">25.3</td>
-                        <td colspan="1">26</td>
-                        <td colspan="2">Diferencia hilo: 0.3</td>
-                        <td colspan="2">(100cm/0.3)</td>
-                        <td colspan="2">Diferencia trama: 1</td>
-                        <td colspan="2">(100cm/1)</td>
+                        <td colspan="1" th:text="${finalHiloMedFusion}"></td>
+                        <td colspan="1" th:text="${finalTramaMedFusion}"></td>
+                        <td colspan="2">Diferencia hilo:</td>
+                        <td colspan="2" th:text="${diferenciaHiloFusion}+'%'"></td>
+                        <td colspan="2">Diferencia trama:</td>
+                        <td colspan="2" th:text="${diferenciaTramaFusion}+'%'"></td>
                     </tr>
                     <tr>
-                        <td colspan="12" class="text-justify">Observaciones:</td>
+                        <td colspan="12" class="text-justify" th:text="'Observaciones:  '+${observacionesReultFusion}"></td>
                     </tr>
                     <tr class="tdcenter">
                         <th colspan="2">Plancha con vapor</th>
-                        <td colspan="1">25.3</td>
-                        <td colspan="1">26</td>
+                        <td colspan="1" th:text="${finalHiloMedPlanchaVapor}">25.3</td>
+                        <td colspan="1" th:text="${diferenciaHiloPlanchaVapor}">26</td>
                         <td colspan="2">Diferencia hilo: 0.3</td>
-                        <td colspan="2">(100cm/0.3)</td>
+                        <td colspan="2" th:text="${finalTramaMedPlanchaVapor}+'%'">(100cm/0.3)</td>
                         <td colspan="2">Diferencia trama: 1</td>
-                        <td colspan="2">(100cm/1)</td>
+                        <td colspan="2" th:text="${diferenciaTramaPlanchaVapor}+'%'">(100cm/1)</td>
                     </tr>
                     <tr>
-                        <td colspan="12" class="text-justify">Observaciones:</td>
+                        <td colspan="12" class="text-justify" th:text="'Observaciones: '+${observacionesReultPlanchaVapor}"></td>
                     </tr>
                </thead>
             </table>

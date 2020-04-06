@@ -250,7 +250,7 @@ public class CalidadRestController {
 			PruebaLavadoContaCostura.setIdCalidad(disenioCalidad.getIdCalidad());
 		 }
 		 else {
-			PruebaEncoLavado.setIdCalidad(Long.valueOf(palabras[13]));	
+			 PruebaLavadoContaCostura.setIdCalidad(Long.valueOf(palabras[13]));	
 		 }
 		PruebaLavadoContaCostura.setIdTela(palabras[0]);
 		PruebaLavadoContaCostura.setCreadoPor(palabras[1]);
@@ -258,7 +258,7 @@ public class CalidadRestController {
 		PruebaLavadoContaCostura.setFechaFinalizacion(palabras[3].replace("T", " "));
 		PruebaLavadoContaCostura.setPruebaCalidad(palabras[9]);
 		PruebaLavadoContaCostura.setObservacionesResultados(palabras[10]);
-		PruebaLavadoContaCostura.setTipoPrueba("Solidez /Color");
+		PruebaLavadoContaCostura.setTipoPrueba("Solidez/Color");
 		PruebaLavadoContaCostura.setEstatus("1");
 		
 		LavadoContaCostura.save(PruebaLavadoContaCostura);
@@ -269,7 +269,7 @@ public class CalidadRestController {
 			 }
 		else {
 			PruebaLavadoContaCostura = new DisenioPruebaLavadoContaminacionCostura();
-			PruebaEncoLavado.setIdCalidad(Long.valueOf(palabras[13]));	
+			PruebaLavadoContaCostura.setIdCalidad(Long.valueOf(palabras[13]));	
 			 }
 		
 		PruebaLavadoContaCostura.setIdTela(palabras[0]);

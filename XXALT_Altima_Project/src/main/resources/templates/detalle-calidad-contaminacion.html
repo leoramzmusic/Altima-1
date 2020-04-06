@@ -20,10 +20,10 @@
                     </tr>
                     <tr class="tdcenter">
                         <th colspan="2">Resultado de la contaminaci&oacute;n</th>
-                        <td colspan="10">Regular</td>
+                        <td colspan="10" th:text="${calidadContaminacion}"></td>
                     </tr>
                     <tr>
-                        <td colspan="12" class="text-justify">Observaciones:</td>
+                        <td colspan="12" class="text-justify" th:text="'Observaciones:' +${observacionesReultContaminacion}"></td>
                     </tr>
                   </thead>
             </table>
