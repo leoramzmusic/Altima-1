@@ -2,7 +2,7 @@
     
     <div class="form-group col-sm-5">
         <label for="razonEmpresa">Porcentaje</label>
-        <input type="number" id="telaComposicion" name="telaComposicion" class="form-control"  placeholder="100">
+        <input type="number"  min="1"   id="telaComposicion" name="telaComposicion" class="form-control"  placeholder="100">
     </div>
     <div class="form-group col-md-6">
         <label for="status">Composici&oacute;n</label>
@@ -43,12 +43,12 @@
     </div>
     <div class="form-group col-sm-6">
         <label for="razonEmpresa">Nombre</label>
-        <input type="text" th:field="*{tela.nombreTela}" class="form-control" placeholder="Tela lickra">
+        <input type="text" th:field="*{tela.nombreTela}" class="form-control" placeholder="Tela lickra" required>
     </div>
     
     <div class="form-group col-sm-6">
         <label for="razonEmpresa">Famila Composicion</label>
-        <select id="telaFamcomposicion" class="form-control" th:field="*{tela.idFamiliaComposicion}" >
+        <select required id="telaFamcomposicion" class="form-control" th:field="*{tela.idFamiliaComposicion}" >
         	<option value="">Selecciona uno...</option>
         	<option th:each="lisFam: ${lisFam}"
 			th:value="${lisFam.idLookup}" th:text="${lisFam.nombreLookup}"></option>
@@ -99,15 +99,15 @@
     
     <div class="form-group col-sm-4">
         <label for="rfcEmpresa">Ancho(m)</label>
-        <input type="number" class="form-control" th:field="*{tela.ancho}" placeholder="1.2">
+        <input type="number"  min="1" required class="form-control" th:field="*{tela.ancho}" placeholder="1.2">
     </div>
     <div class="form-group col-sm-4">
         <label for="rfcEmpresa">Costo por metro</label>
-        <input type="number" class="form-control" th:field="*{tela.costoPorMetro}" placeholder="1.2">
+        <input type="number"  min="1" required  class="form-control" th:field="*{tela.costoPorMetro}" placeholder="1.2">
     </div>
     <div class="form-group col-sm-4">
         <label for="status">Estampado</label>
-        <select class="form-control"  th:field="*{tela.estampado}" >
+        <select required class="form-control"  th:field="*{tela.estampado}" >
         	<option value="">Selecciona uno...</option>
             <option value ="1">Estampado 1</option>
             <option value ="2">Estampado 2</option>
@@ -122,18 +122,18 @@
     <div th:if="*{tela.estatusTela =='1'}" class="form-group col-sm-4">
         <label for="status">Calidad</label>
         
-         <input type="text" th:field="*{tela.idCalidad}" class="form-control" placeholder="Calidad">
+         <input required type="text" th:field="*{tela.idCalidad}" class="form-control" placeholder="Calidad">
        
     </div>
     
     <div th:if="*{tela.estatusTela =='1'}" class="form-group col-sm-4">
         <label for="status">Linea Tela</label>
-        <input type="text" th:field="*{tela.lineaTela}" class="form-control" placeholder="Linea">
+        <input required type="text" th:field="*{tela.lineaTela}" class="form-control" placeholder="Linea">
     </div>
     
     <div th:if="*{tela.estatusTela =='1'}" class="form-group col-sm-4">
         <label for="status">Unidad de medida</label>
-        <select  class="form-control"   th:field="*{tela.idUnidadMedida}" >
+        <select required class="form-control"   th:field="*{tela.idUnidadMedida}" >
        <option th:each="listLookupsMed:${listLookupsMed}"
             
                     th:value="${listLookupsMed[0]}"
@@ -146,12 +146,12 @@
     <div th:if="*{tela.estatusTela =='1'}" class="form-group col-sm-4">
         <label for="status">Consumo</label>
         
-        <input type="text" th:field="*{tela.consumo}" class="form-control" placeholder="Consumo">
+        <input type="text" required th:field="*{tela.consumo}" class="form-control" placeholder="Consumo">
     </div>
     
     <div th:if="*{tela.estatusTela =='1'}" class="form-group col-sm-4">
         <label for="status">Consumo promedio</label>      
-        <input type="text" th:field="*{tela.consumoPromedio}" class="form-control" placeholder="Consumo promedio">
+        <input type="text" required th:field="*{tela.consumoPromedio}" class="form-control" placeholder="Consumo promedio">
     </div>
     
 <!--     <div th:if="*{tela.estatusTela != null}" class="form-group col-sm-4"> -->
@@ -161,7 +161,7 @@
     
     <div class="form-group col-sm-4">
         <label for="status">Color</label>
-        <select class="form-control" th:field="*{tela.Color}" >
+        <select required class="form-control" th:field="*{tela.Color}" >
         <option value="">Selecciona uno...</option>
             <option th:each="listColor: ${listColor}"
 			th:value="${listColor.nombreLookup}" th:text="${listColor.nombreLookup}"></option>
@@ -172,12 +172,12 @@
         <label for="status">Codigo Color</label>
         
         
-        <input type="color" th:field="*{tela.codigoColor}"  class="form-control" placeholder="Codigo Color">
+        <input required  type="color" th:field="*{tela.codigoColor}"  class="form-control" placeholder="Codigo Color">
     </div>
     
     <div class="form-group col-sm-4">
         <label for="status">Proveedor</label>
-        <select class="form-control"  th:field="*{tela.idProveedor}">
+        <select required class="form-control"  th:field="*{tela.idProveedor}">
         <option value="">Selecciona uno...</option>
             <option value ="1">MAR01 Nike</option>
             <option value ="2">MAR02 Adidas</option>
@@ -190,7 +190,7 @@
     
     <div th:if="*{tela.estatusTela =='1'}"  class="form-group col-sm-6">
         <label for="status">Botones</label>
-        <select  class="selectpicker" multiple  name="botones" >
+        <select required  class="selectpicker" multiple  name="botones" >
         
         <option th:each="listBtnSelec: ${listBtnSelec}"
 			th:value="${listBtnSelec[0]}" th:text="${listBtnSelec[1]}" selected ></option>
@@ -202,7 +202,7 @@
      
      <div th:if="*{tela.estatusTela =='1'}"  class="form-group col-sm-6">
         <label for="status">Forro</label>
-        <select class="selectpicker" multiple  name="forros">
+        <select required class="selectpicker" multiple  name="forros">
         <option th:each="listForroSelec: ${listForroSelec}"
 			th:value="${listForroSelec[0]}" th:text="${listForroSelec[1]}" selected ></option>
          
@@ -220,13 +220,13 @@
     
     <div  th:if="*{tela.estatusTela =='1'}" class="form-group col-sm-12">
         <label for="coloniaEmpresa">Descripcion</label>
-        <textarea class="form-control" th:field="*{tela.descripcionTela}" placeholder="Especificar" rows="3"></textarea>
+        <textarea  required class="form-control" th:field="*{tela.descripcionTela}" placeholder="Especificar" rows="3"></textarea>
     </div>
     
     
     <div class="form-group col-sm-12">
         <label for="coloniaEmpresa">Indicaciones</label>
-        <textarea class="form-control" th:field="*{tela.indicacion}" placeholder="Especificar" rows="3"></textarea>
+        <textarea required  class="form-control" th:field="*{tela.indicacion}" placeholder="Especificar" rows="3"></textarea>
     </div>
     
     <div  th:if="*{tela.estatusTela =='1'}" class="col-sm-12">
@@ -239,7 +239,7 @@
                 <div class="col">
                     <label for="mainImageTela">Tela</label>
                     <div class="input-group mb-3">
-                        <input type="file" name="imagenTela" class="form-control border p-1" id="mainImageTela"  />
+                        <input required  type="file" name="imagenTela" class="form-control border p-1" id="mainImageTela"  />
                         <div class="input-group-append">
                             <span class="input-group-text bg-danger text-danger pointer" id="clearUploadTela"><i class="fas fa-times"></i></span>
                         </div>
@@ -252,7 +252,7 @@
    
     <div class="form-group col-sm-12">
     	<a th:href="@{/materiales}" class="btn btn-danger">Cancelar</a>
-       <button onclick="arreglo()"  class="btn btn-primary next-step float-right" type="button">Adicionar a la tabla</button>
+       <button onclick="arreglo()"   class="btn btn-primary next-step float-right" type="submit">Guardar</button>
     </div>
     
     <input name="txtTabla" type="hidden" id="txtTabla" value="">
@@ -319,15 +319,9 @@ function arreglo() {
 	var idfam="";
 	$('#mytable tr').each(function () {
 		compo=$(this).find('td').eq(0).html()+","+compo;
-		
 		idfam= $(this).find('td').eq(1).html()+","+idfam;
-	      
-	  
-	  document.getElementById("txtTabla").value = compo;
-	  document.getElementById("txtTabla2").value = idfam;
-	  
-	  
-	  
+	  	document.getElementById("txtTabla").value = compo;
+	  	document.getElementById("txtTabla2").value = idfam;
 	 });
 	
 	var id="";
@@ -335,7 +329,8 @@ function arreglo() {
 		id=$(this).find('td').eq(1).html()+","+id;
 	  document.getElementById("id_prendas").value = id;
 	 });
-	document.telaForm.submit()
+	
+		
 	}
 	
 function guardarPrenda(){
