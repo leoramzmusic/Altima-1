@@ -177,7 +177,7 @@ public class DisenioMaterialServiceImpl implements IDisenioMaterialService {
 	@Override
 	public List<Object> findAllByTipoMaterial(Long id) {
 		// TODO Auto-generated method stub
-		return em.createQuery("SELECT idMaterial, nombreMaterial FROM DisenioMaterial WHERE idTipoMaterial="+id+" AND estatus = 1 order").getResultList();
+		return em.createQuery("SELECT idMaterial, nombreMaterial FROM DisenioMaterial WHERE idTipoMaterial="+id+" AND estatus = 1 order by nombreMaterial").getResultList();
 	}	
 
 }

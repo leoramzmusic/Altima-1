@@ -106,27 +106,7 @@
 											</tr>
 										</thead>
 										</tbody>
-											<tr th:each="calidad: ${calidadComponentes}">
-												<td th:text="${calidad.idText}"></td>
-												<td th:text="${calidad.idText}"></td>
-												<td class="tdcenter"><a
-													class="btn btn-info popoverxd text-white"
-													data-container="body" data-placement="top" data-html="true"
-													data-content="<strong>Prueba de encogimiento: </strong>En proceso<br><strong>Prueba de lavado y pilling: </strong>En proceso<br><strong>Prueba de costura: </strong>Terminada<br><strong>Prueba de contaminaci&oacute;n: </strong>En proceso"
-													style="border-radius: 35%;"><i class="fas fa-info fa-sm"></i></a>&nbsp;
-												</td>
-												<td th:text="${calidad.estatus=='0'}?'En Proceso':'Terminada'"></td>
-												<td class="tdcenter"><a th:href="${'detalle-calidad'}"
-													class="btn btn-info text-white"><i
-														class="fas fa-info-circle"></i> Ver m&aacute;s detalles</a>&nbsp;
-												</td>
-												<td class="tdcenter"><a
-													class="btn btn-warning popoverxd" data-container="body"
-													data-placement="top" data-content="Editar"
-													style="border-radius: 35%;"><i class="fas fa-pen fa-sm"></i></a>&nbsp;
-												</td>
-											</tr>
-										<tbody>
+										<tbody id="contenidoTablaCalidad">
 									</table>
 								</div>
 								<!-- /.card-body -->
@@ -198,47 +178,9 @@
 	<!-- Script de la tabla -->
 	<script>
 	$(document).ready(function() {
-	    var table = $('table.tablexd')
-	        .DataTable({
-	            "ordering": false,
-	            "pageLength": 5,
-	            "responsive": true,
-	            "lengthMenu": [
-	                [5, 10, 25, 50, 100],
-	                [5, 10, 25, 50, 100]
-	            ],
-	            "language": {
-	                "sProcessing": "Procesando...",
-	                "sLengthMenu": "Mostrar _MENU_ registros",
-	                "sZeroRecords": "No se encontraron resultados",
-	                "sEmptyTable": "Ningún dato disponible en esta tabla =(",
-	                "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-	                "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-	                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-	                "sInfoPostFix": "",
-	                "sSearch": "Buscar:",
-	                "sUrl": "",
-	                "sInfoThousands": ",",
-	                "sLoadingRecords": "Cargando...",
-	                "oPaginate": {
-	                    "sFirst": "Primero",
-	                    "sLast": "Último",
-	                    "sNext": "Siguiente",
-	                    "sPrevious": "Anterior"
-	                },
-	                "oAria": {
-	                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-	                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-	                },
-	                "buttons": {
-	                    "copy": "Copiar",
-	                    "colvis": "Visibilidad"
-	                }
-	            }
-	        });
-	    new $.fn.dataTable.FixedHeader(table);
-
+		listarTabla();
 	});
+	
 	</script>
 	<script>
 		function changeClassById() {

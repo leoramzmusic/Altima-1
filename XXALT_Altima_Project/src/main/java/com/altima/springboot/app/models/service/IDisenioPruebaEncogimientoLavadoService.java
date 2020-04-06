@@ -10,6 +10,8 @@ public interface IDisenioPruebaEncogimientoLavadoService {
 	
 	public void save (DisenioPruebaEncogimientoLavado pruebaEncogimientoLavado);	
 	
+	public int ifExist(Long id);
 	
+	public List<DisenioPruebaEncogimientoLavado> findAllByCalidad(Long id);
 	
 }

@@ -1,6 +1,8 @@
 package com.altima.springboot.app.controller;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Calendar;
@@ -39,6 +41,12 @@ public class CalidadRestController {
 	private IDisenioCalidadService CalidadService;
 	
 	@Autowired
+	IDisenioPruebaEncogimientoLavadoService pruebaEncogiLavado;
+	
+	@Autowired
+	IDisenioPruebaLavadoContaminacionCosturaService pruebaContaCostura;
+	
+	@Autowired
 	private IDisenioPruebaLavadoContaminacionCosturaService LavadoContaCostura;
 	
 	@Autowired
@@ -46,6 +54,15 @@ public class CalidadRestController {
 	
 	@Autowired
 	private IDisenioMaterialService materialService;
+	
+	@Autowired
+	IDisenioCalidadService disenioCalidad;
+	
+	@RequestMapping(value="/listarCalidad", method=RequestMethod.GET)
+	public List<DisenioCalidad> listarCalidad(){
+		
+		return disenioCalidad.findAll();
+	}
 	
 	@RequestMapping(value="/listarTelasCalidad", method=RequestMethod.GET)
 	public List<DisenioTela> listarTelas(){
@@ -76,8 +93,12 @@ public class CalidadRestController {
         LocalDate localDate = LocalDate.now();
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         String formattedDate=localDate + " "+ dateFormat.format(date);
+        DecimalFormatSymbols separadoresPersonalizados = new DecimalFormatSymbols();
+		separadoresPersonalizados.setDecimalSeparator('.');
+		DecimalFormat df =new DecimalFormat("0.##", separadoresPersonalizados);
  		
- 		
+		System.out.println(palabras);
+		if(palabras[25].equals("") || palabras[25]==null) {
 		disenioCalidad.setCreadoPor(auth.getName());
 		disenioCalidad.setActualizadoPor(auth.getName());
 		disenioCalidad.setFechaCreacion(formattedDate);
@@ -86,8 +107,12 @@ public class CalidadRestController {
 		CalidadService.save(disenioCalidad);
 		disenioCalidad.setIdText("CAL"+ (disenioCalidad.getIdCalidad()+100000));
 		CalidadService.save(disenioCalidad);
- 		
 		PruebaEncoLavado.setIdCalidad(disenioCalidad.getIdCalidad());
+		}
+		
+		else {
+		PruebaEncoLavado.setIdCalidad(Long.valueOf(palabras[25]));	
+		}
 		PruebaEncoLavado.setIdTela(palabras[0]);
 		PruebaEncoLavado.setCreadoPor(palabras[1]);
 		PruebaEncoLavado.setFechaRealizacion(palabras[2].replace("T", " "));
@@ -101,11 +126,11 @@ public class CalidadRestController {
 		PruebaEncoLavado.setMedidaInicialHilo(palabras[10]);
 		PruebaEncoLavado.setMedidaInicialTrama(palabras[11]);
 		PruebaEncoLavado.setMedidaFinalHilo(palabras[12]);
-		PruebaEncoLavado.setDiferenciaMedidaHilo(String.valueOf(resultHilo));
+		PruebaEncoLavado.setDiferenciaMedidaHilo(String.valueOf(df.format(resultHilo)));
 		PruebaEncoLavado.setMedidaFinalTrama(palabras[13]);
-		PruebaEncoLavado.setDiferenciaMedidaTrama(String.valueOf(resultTrama));
+		PruebaEncoLavado.setDiferenciaMedidaTrama(String.valueOf(df.format(resultTrama)));
 		PruebaEncoLavado.setObservacionesResultados(palabras[14]);
-		PruebaEncoLavado.setTipoPrueba("1");
+		PruebaEncoLavado.setTipoPrueba("Prueba de Vapor");
 		PruebaEncoLavado.setEstatus("1");
 		
 		EncogimientoLavado.save(PruebaEncoLavado);
@@ -122,11 +147,11 @@ public class CalidadRestController {
 		PruebaEncoLavado.setMedidaInicialHilo(palabras[15]);
 		PruebaEncoLavado.setMedidaInicialTrama(palabras[16]);
 		PruebaEncoLavado.setMedidaFinalHilo(palabras[17]);
-		PruebaEncoLavado.setDiferenciaMedidaHilo(String.valueOf(resultHilo));
+		PruebaEncoLavado.setDiferenciaMedidaHilo(String.valueOf(df.format(resultHilo)));
 		PruebaEncoLavado.setMedidaFinalTrama(palabras[18]);
-		PruebaEncoLavado.setDiferenciaMedidaTrama(String.valueOf(resultTrama));
+		PruebaEncoLavado.setDiferenciaMedidaTrama(String.valueOf(df.format(resultTrama)));
 		PruebaEncoLavado.setObservacionesResultados(palabras[19]);
-		PruebaEncoLavado.setTipoPrueba("2");
+		PruebaEncoLavado.setTipoPrueba("Prueba de Fusion");
 		PruebaEncoLavado.setEstatus("1");
 		
 		EncogimientoLavado.save(PruebaEncoLavado);
@@ -143,11 +168,11 @@ public class CalidadRestController {
 		PruebaEncoLavado.setMedidaInicialHilo(palabras[20]);
 		PruebaEncoLavado.setMedidaInicialTrama(palabras[21]);
 		PruebaEncoLavado.setMedidaFinalHilo(palabras[22]);
-		PruebaEncoLavado.setDiferenciaMedidaHilo(String.valueOf(resultHilo));
+		PruebaEncoLavado.setDiferenciaMedidaHilo(String.valueOf(df.format(resultHilo)));
 		PruebaEncoLavado.setMedidaFinalTrama(palabras[23]);
-		PruebaEncoLavado.setDiferenciaMedidaTrama(String.valueOf(resultTrama));
+		PruebaEncoLavado.setDiferenciaMedidaTrama(String.valueOf(df.format(resultTrama)));
 		PruebaEncoLavado.setObservacionesResultados(palabras[24]);
-		PruebaEncoLavado.setTipoPrueba("3");
+		PruebaEncoLavado.setTipoPrueba("Plancha con Vapor");
 		PruebaEncoLavado.setEstatus("1");
 		
 		EncogimientoLavado.save(PruebaEncoLavado);
@@ -163,7 +188,10 @@ public class CalidadRestController {
 		DisenioPruebaEncogimientoLavado PruebaEncoLavado = new DisenioPruebaEncogimientoLavado();
 		DisenioCalidad disenioCalidad = new DisenioCalidad();
 		DisenioPruebaLavadoContaminacionCostura PruebaLavadoContaCostura = new DisenioPruebaLavadoContaminacionCostura();
-	
+		
+		DecimalFormatSymbols separadoresPersonalizados = new DecimalFormatSymbols();
+		separadoresPersonalizados.setDecimalSeparator('.');
+		DecimalFormat df =new DecimalFormat("0.##", separadoresPersonalizados);
 		Calendar cal = Calendar.getInstance();
         Date date=cal.getTime();
         LocalDate localDate = LocalDate.now();
@@ -191,11 +219,11 @@ public class CalidadRestController {
 		PruebaEncoLavado.setMedidaInicialHilo(palabras[4]);
 		PruebaEncoLavado.setMedidaInicialTrama(palabras[5]);
 		PruebaEncoLavado.setMedidaFinalHilo(palabras[6]);
-		PruebaEncoLavado.setDiferenciaMedidaHilo(String.valueOf(resultHilo));
+		PruebaEncoLavado.setDiferenciaMedidaHilo(String.valueOf(df.format(resultHilo)));
 		PruebaEncoLavado.setMedidaFinalTrama(palabras[7]);
-		PruebaEncoLavado.setDiferenciaMedidaTrama(String.valueOf(resultTrama));
+		PruebaEncoLavado.setDiferenciaMedidaTrama(String.valueOf(df.format(resultTrama)));
 		PruebaEncoLavado.setObservacionesResultados(palabras[8]);
-		PruebaEncoLavado.setTipoPrueba("4");
+		PruebaEncoLavado.setTipoPrueba("Prueba de Lavado");
 		PruebaEncoLavado.setEstatus("1");
 		
 		EncogimientoLavado.save(PruebaEncoLavado);
@@ -207,7 +235,7 @@ public class CalidadRestController {
 		PruebaLavadoContaCostura.setFechaFinalizacion(palabras[3].replace("T", " "));
 		PruebaLavadoContaCostura.setPruebaCalidad(palabras[9]);
 		PruebaLavadoContaCostura.setObservacionesResultados(palabras[10]);
-		PruebaLavadoContaCostura.setTipoPrueba("5");
+		PruebaLavadoContaCostura.setTipoPrueba("Solidez /Color");
 		PruebaLavadoContaCostura.setEstatus("1");
 		
 		LavadoContaCostura.save(PruebaLavadoContaCostura);
@@ -220,7 +248,7 @@ public class CalidadRestController {
 		PruebaLavadoContaCostura.setFechaFinalizacion(palabras[3].replace("T", " "));
 		PruebaLavadoContaCostura.setPrueba_pilling(palabras[11]);
 		PruebaLavadoContaCostura.setObservacionesResultados(palabras[12]);
-		PruebaLavadoContaCostura.setTipoPrueba("6");
+		PruebaLavadoContaCostura.setTipoPrueba("Resultado Pilling");
 		PruebaLavadoContaCostura.setEstatus("1");
 		
 		LavadoContaCostura.save(PruebaLavadoContaCostura);
@@ -241,15 +269,20 @@ public class CalidadRestController {
         LocalDate localDate = LocalDate.now();
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         String formattedDate=localDate + " "+ dateFormat.format(date);
-		disenioCalidad.setCreadoPor(auth.getName());
-		disenioCalidad.setActualizadoPor(auth.getName());
-		disenioCalidad.setFechaCreacion(formattedDate);
-		disenioCalidad.setUltimaFechaModificacion(formattedDate);
-		disenioCalidad.setEstatus("0");
-		CalidadService.save(disenioCalidad);
-		disenioCalidad.setIdText("CAL"+ (disenioCalidad.getIdCalidad()+100000));
-		CalidadService.save(disenioCalidad);
-	
+			
+        if(palabras[9].equals("") || palabras[9]==null) {
+        	disenioCalidad.setCreadoPor(auth.getName());
+			disenioCalidad.setActualizadoPor(auth.getName());
+			disenioCalidad.setFechaCreacion(formattedDate);
+			disenioCalidad.setUltimaFechaModificacion(formattedDate);
+			disenioCalidad.setEstatus("0");
+			CalidadService.save(disenioCalidad);
+			disenioCalidad.setIdText("CAL"+ (disenioCalidad.getIdCalidad()+100000));
+			CalidadService.save(disenioCalidad);
+		}
+		else {
+ 			PruebaLavadoContaCostura.setIdCalidad(Long.valueOf(palabras[6]));
+ 		}
 		PruebaLavadoContaCostura.setIdCalidad(disenioCalidad.getIdCalidad());
 		PruebaLavadoContaCostura.setIdTela(palabras[0]);
 		PruebaLavadoContaCostura.setCreadoPor(palabras[1]);
@@ -258,7 +291,7 @@ public class CalidadRestController {
 		PruebaLavadoContaCostura.setTipoAguja("2");
 		PruebaLavadoContaCostura.setDeslizamientoTela(palabras[5]);
 		PruebaLavadoContaCostura.setObservacionesResultados(palabras[6]);
-		PruebaLavadoContaCostura.setTipoPrueba("6");
+		PruebaLavadoContaCostura.setTipoPrueba("Resultado Costura");
 		PruebaLavadoContaCostura.setEstatus("1");
 		
 		LavadoContaCostura.save(PruebaLavadoContaCostura);
@@ -271,7 +304,7 @@ public class CalidadRestController {
 		PruebaLavadoContaCostura.setFechaFinalizacion(palabras[3]);
 		PruebaLavadoContaCostura.setRasgadoTela(palabras[7]);
 		PruebaLavadoContaCostura.setObservacionesResultados(palabras[8]);
-		PruebaLavadoContaCostura.setTipoPrueba("6");
+		PruebaLavadoContaCostura.setTipoPrueba("Rasgado de Tela");
 		PruebaLavadoContaCostura.setEstatus("1");
 		
 		LavadoContaCostura.save(PruebaLavadoContaCostura);
@@ -290,29 +323,36 @@ public class CalidadRestController {
         LocalDate localDate = LocalDate.now();
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         String formattedDate=localDate + " "+ dateFormat.format(date);
- 		List<DisenioCalidad> lista = CalidadService.findAll();
- 		
- 		int max= lista.size()+1;
- 		System.out.println(max);
-		disenioCalidad.setCreadoPor(auth.getName());
-		disenioCalidad.setActualizadoPor(auth.getName());
-		disenioCalidad.setFechaCreacion(formattedDate);
-		disenioCalidad.setUltimaFechaModificacion(formattedDate);
-		disenioCalidad.setEstatus("0");
-		disenioCalidad.setIdText("CAL"+ (max+100000));
-		CalidadService.save(disenioCalidad);
-	
-		PruebaLavadoContaCostura.setIdCalidad(disenioCalidad.getIdCalidad());
+        System.out.println(guardarEncogi);
+ 		if(palabras[6].equals("") || palabras[6]==null) {
+			disenioCalidad.setCreadoPor(auth.getName());
+			disenioCalidad.setActualizadoPor(auth.getName());
+			disenioCalidad.setFechaCreacion(formattedDate);
+			disenioCalidad.setUltimaFechaModificacion(formattedDate);
+			disenioCalidad.setEstatus("0");
+			disenioCalidad.setEstatus("0");
+			CalidadService.save(disenioCalidad);
+			disenioCalidad.setIdText("CAL"+ (disenioCalidad.getIdCalidad()+100000));
+			CalidadService.save(disenioCalidad);
+			PruebaLavadoContaCostura.setIdCalidad(disenioCalidad.getIdCalidad());
+ 		}
+ 		else {
+ 			PruebaLavadoContaCostura.setIdCalidad(Long.valueOf(palabras[6]));
+ 		}
+		
 		PruebaLavadoContaCostura.setIdTela(palabras[0]);
 		PruebaLavadoContaCostura.setCreadoPor(palabras[1]);
 		PruebaLavadoContaCostura.setFechaRealizacion(palabras[2].replace("T", " "));
 		PruebaLavadoContaCostura.setFechaFinalizacion(palabras[3].replace("T", " "));
 		PruebaLavadoContaCostura.setPruebaCalidad(palabras[4]);
 		PruebaLavadoContaCostura.setObservacionesResultados(palabras[5]);
-		PruebaLavadoContaCostura.setTipoPrueba("6");
+		PruebaLavadoContaCostura.setTipoPrueba("Resultado de Contaminación");
 		PruebaLavadoContaCostura.setEstatus("1");
+
+			
+		
 		System.out.println("guarda prueba contaminaciones");
 		LavadoContaCostura.save(PruebaLavadoContaCostura);
-		return "calidad";
+		return "redirect:/calidad";
 	}
 }

@@ -1,241 +1,231 @@
 <div class="row">
-	<input type="hidden" name="_csrf" id="token" th:value="${_csrf.token}" />
+	<input type="hidden" name="_csrf" id="token"  th:value="${_csrf.token}"/>
+	 <input type="hidden" id="idCalidadEnco" th:value="${idCalidad}">
 	<div class="col-sm-12">
-		<a>
-			<strong>IMPORTANTE</strong><br> <i class="fas fa-check-circle text-success"></i> Cortar 4 testigos con medidas de 25cm x 25cm<br> <i
-				class="fas fa-check-circle text-success"></i> Marcar con una muesca el hilo de las telas<br> <strong style="color: #ff0000"><i
-				class="fas fa-exclamation-triangle"></i> Guardar un testigo original</strong>
-		</a>
-		<hr>
-	</div>
-	<div class="col-sm-4">
-		<div class="form-group">
-			<label>Tela</label>
-			<select class="form-control idtelas" id="tela">
-				<option>Selecciona uno...</option>
-			</select>
-		</div>
-	</div>
-	<div class="col-sm-4">
-		<div class="form-group">
-			<label>Operario</label>
-			<select class="form-control idOperarios" id="operarioEncogi">
-				<option>Selecciona uno...</option>
-			</select>
-		</div>
-	</div>
-	<div class="col-sm-2">
-		<div class="form-group">
-			<label style="font-size: 15px;">Fecha y hora de realizaci&oacute;n</label>
-			<input type="datetime-local" class="form-control" id="fechaRealizacionEncogi" placeholder="23.2">
-		</div>
-	</div>
-	<div class="col-sm-2">
-		<div class="form-group">
-			<label style="font-size: 15px;">Fecha y hora de finalizaci&oacute;n</label>
-			<input type="datetime-local" class="form-control" id="fechaFinalizacionEncogi" placeholder="23.2">
-		</div>
-	</div>
-	<div class="col-sm-12">
-		<hr>
-		<h4>
-			Descripci&oacute;n:<strong> Prueba de vapor</strong>
-		</h4>
-	</div>
-	<div class="col-sm-4">
-		<div class="form-group">
-			<label for="status">Entretela</label>
-			<select class="form-control" id="entretelaEncogi" name="entretelaPeque">
-				<option>Selecciona uno...</option>
-			</select>
-		</div>
-	</div>
-	<div class="col-sm-4">
-		<div class="form-group">
-			<label style="font-size: 15px;">Adherencia</label>
-			<input type="text" class="form-control" id="adherenciaEncogi" placeholder="23.2">
-		</div>
-	</div>
-	<div class="col-sm-4">
-		<div class="form-group">
-			<label for="status">Proveedor</label>
-			<select class="form-control" id="proveedorEncogi" name="proveedor">
-				<option>Selecciona uno...</option>
-				<option value="0">Real Textil</option>
-				<option value="1">terpel del norte</option>
-				<option value="2">Telas Lafayette De Mexico</option>
-				<option value="3">Telas Rafa</option>
-			</select>
-		</div>
-	</div>
-	<div class="col-sm-4">
-		<div class="form-group">
-			<label style="font-size: 15px;">Temperatura</label>
-			<input type="number" class="form-control" id="temperaturaPruebaVapor" placeholder="23.2">
-		</div>
-	</div>
-	<div class="col-sm-4">
-		<div class="form-group">
-			<label style="font-size: 15px;">Tiempo (minutos)</label>
-			<input type="number" class="form-control" id="tiempoPruebaVapor" placeholder="5">
-		</div>
-	</div>
-	<div class="col-sm-4">
-		<div class="form-group">
-			<label style="font-size: 15px;">Presi&oacute;n</label>
-			<input type="number" class="form-control" id="presionPruebaVapor" placeholder="23.2">
-		</div>
-	</div>
-	<div class="col-sm-6">
-		<div class="form-group">
-			<label style="font-size: 15px;">Medida final del hilo</label>
-			<input type="number" class="form-control" id="medidaHiloPruebaVapor" placeholder="23.2">
-		</div>
-	</div>
-	<div class="col-sm-6">
-		<div class="form-group">
-			<label style="font-size: 15px;">Medida final de la trama</label>
-			<input type="number" class="form-control" id="finalTramaPruebaVapor" placeholder="23.2">
-		</div>
-	</div>
-	<div class="col-sm-12">
-		<h5>Resultado</h5>
-	</div>
-	<div class="col-sm-3">
-		<div class="form-group">
-			<label style="font-size: 15px;">Diferencia hilo</label>
-			<input type="number" class="form-control" id="diferenciaHiloPruebaVapor" placeholder="23.2">
-		</div>
-	</div>
-	<div class="col-sm-3">
-		<div class="form-group">
-			<label style="font-size: 15px;">(100cm/_____cm)</label>
-			<input type="number" class="form-control" id="finalHiloMedPruebaVapor" placeholder="23.2">
-		</div>
-	</div>
-	<div class="col-sm-3">
-		<div class="form-group">
-			<label style="font-size: 15px;">Diferencia trama</label>
-			<input type="number" class="form-control" id="diferenciaTramaPruebaVapor" placeholder="23.2">
-		</div>
-	</div>
-	<div class="col-sm-3">
-		<div class="form-group">
-			<label style="font-size: 15px;">(100cm/_____cm)</label>
-			<input type="number" class="form-control" id="finalTramaMedPruebaVapor" placeholder="23.2">
-		</div>
-	</div>
-	<div class="col-sm-12">
-		<div class="form-group">
-			<label style="font-size: 15px;">Observaciones</label>
-			<textarea class="form-control" id="observacionesReultPruebaVapor" rows="3" placeholder="Especificar"></textarea>
-		</div>
-	</div>
-	<div class="col-sm-12">
-		<hr>
-		<h4>
-			Descripci&oacute;n:<strong> Prueba de fusi&oacute;n</strong>
-		</h4>
-	</div>
-	<div class="col-sm-6">
-		<div class="form-group">
-			<label style="font-size: 15px;">Medida final del hilo</label>
-			<input type="number" class="form-control" id="medidaHiloPruebaFusion" placeholder="23.2">
-		</div>
-	</div>
-	<div class="col-sm-6">
-		<div class="form-group">
-			<label style="font-size: 15px;">Medida final de la trama</label>
-			<input type="number" class="form-control" id="medidaTramaPruebaFusion" placeholder="23.2">
-		</div>
-	</div>
-	<div class="col-sm-12">
-		<h5>Resultado</h5>
-	</div>
-	<div class="col-sm-3">
-		<div class="form-group">
-			<label style="font-size: 15px;">Diferencia hilo</label>
-			<input type="number" class="form-control" id="diferenciaHiloPruebaFusion" placeholder="23.2">
-		</div>
-	</div>
-	<div class="col-sm-3">
-		<div class="form-group">
-			<label style="font-size: 15px;">(100cm/_____cm)</label>
-			<input type="number" class="form-control" id="finalHiloMedPruebaFusion" placeholder="23.2">
-		</div>
-	</div>
-	<div class="col-sm-3">
-		<div class="form-group">
-			<label style="font-size: 15px;">Diferencia trama</label>
-			<input type="number" class="form-control" id="diferenciaTramaPruebaFusion" placeholder="23.2">
-		</div>
-	</div>
-	<div class="col-sm-3">
-		<div class="form-group">
-			<label style="font-size: 15px;">(100cm/_____cm)</label>
-			<input type="number" class="form-control" id="finalTramaMedPruebaFusion" placeholder="23.2">
-		</div>
-	</div>
-	<div class="col-sm-12">
-		<div class="form-group">
-			<label style="font-size: 15px;">Observaciones</label>
-			<textarea class="form-control" id="observacionesReultPruebaFusion" rows="3" placeholder="Especificar"></textarea>
-		</div>
-	</div>
-	<div class="col-sm-12">
-		<hr>
-		<h4>
-			Descripci&oacute;n:<strong> Plancha con vapor</strong>
-		</h4>
-	</div>
-	<div class="col-sm-6">
-		<div class="form-group">
-			<label style="font-size: 15px;">Medida final del hilo</label>
-			<input type="number" class="form-control" id="medidaHiloPlanchaVapor" placeholder="23.2">
-		</div>
-	</div>
-	<div class="col-sm-6">
-		<div class="form-group">
-			<label style="font-size: 15px;">Medida final de la trama</label>
-			<input type="number" class="form-control" id="medidaTramaPlanchaVapor" placeholder="23.2">
-		</div>
-	</div>
-	<div class="col-sm-12">
-		<h5>Resultado</h5>
-	</div>
-	<div class="col-sm-3">
-		<div class="form-group">
-			<label style="font-size: 15px;">Diferencia hilo</label>
-			<input type="number" class="form-control" id="diferenciaHiloPlanchaVapor" placeholder="23.2">
-		</div>
-	</div>
-	<div class="col-sm-3">
-		<div class="form-group">
-			<label style="font-size: 15px;">(100cm/_____cm)</label>
-			<input type="number" class="form-control" id="finalHiloMedPlanchaVapor" placeholder="23.2">
-		</div>
-	</div>
-	<div class="col-sm-3">
-		<div class="form-group">
-			<label style="font-size: 15px;">Diferencia trama</label>
-			<input type="number" class="form-control" id="diferenciaTramaPlanchaVapor" placeholder="23.2">
-		</div>
-	</div>
-	<div class="col-sm-3">
-		<div class="form-group">
-			<label style="font-size: 15px;">(100cm/_____cm)</label>
-			<input type="number" class="form-control" id="finalTramaMedPlanchaVapor" placeholder="23.2">
-		</div>
-	</div>
-	<div class="col-sm-12">
-		<div class="form-group">
-			<label style="font-size: 15px;">Observaciones</label>
-			<textarea class="form-control" id="observacionesReultPlanchaVapor" rows="3" placeholder="Especificar"></textarea>
-		</div>
-	</div>
+	    <a><strong>IMPORTANTE</strong><br>
+	    <i class="fas fa-check-circle text-success"></i> Cortar 4 testigos con medidas de 25cm x 25cm<br>
+	    <i class="fas fa-check-circle text-success"></i> Marcar con una muesca el hilo de las telas<br>
+	    <strong style="color:#ff0000"><i class="fas fa-exclamation-triangle"></i> Guardar un testigo original</strong></a><hr>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label>Tela</label>
+            <select class="form-control idtelas" id="tela" th:readonly="${read}" th:value="${tela}">
+                <option>Selecciona uno...</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label>Operario</label>
+            <select class="form-control idOperarios" id="operarioEncogi" th:value="${operarioEncogi}">
+                <option>Selecciona uno...</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-2">
+        <div class="form-group">
+            <label style="font-size: 15px;">Fecha y hora de realizaci&oacute;n</label>
+            <input type="datetime-local" class="form-control" id="fechaRealizacionEncogi" placeholder="23.2" th:readonly="${read}" th:value="${fechaRealizacionEncogi}">
+        </div>
+    </div>
+    <div class="col-sm-2">
+        <div class="form-group">
+            <label style="font-size: 15px;">Fecha y hora de finalizaci&oacute;n</label>
+            <input type="datetime-local" class="form-control" id="fechaFinalizacionEncogi" placeholder="23.2" th:readonly="${read}" th:value="${fechaFinalizacionEncogi}">
+        </div>
+    </div>
+    <div class="col-sm-12">
+	    <hr><h4>Descripci&oacute;n:<strong> Prueba de vapor</strong></h4>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="status">Entretela</label>
+            <select class="form-control" id="entretelaEncogi" name="entretelaPeque" th:readonly="${read}" th:value="${entretelaEncogi}">
+                <option>Selecciona uno...</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label style="font-size: 15px;">Adherencia</label>
+            <input type="text" class="form-control" id="adherenciaEncogi" th:value="${adherenciaEncogi}" placeholder="23.2" th:readonly="${read}">
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="status">Proveedor</label>
+            <select class="form-control" id="proveedorEncogi" name="proveedor" th:value="${proveedorEncogi}">
+                <option>Selecciona uno...</option>
+                <option value="0">Real Textil</option>
+                <option value="1">terpel del norte</option>
+                <option value="2">Telas Lafayette De Mexico</option>
+                <option value="3">Telas Rafa</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label style="font-size: 15px;">Temperatura</label>
+            <input type="number" class="form-control" id="temperaturaPruebaVapor" placeholder="23.2" th:readonly="${read}" th:value="${temperaturaPruebaVapor}">
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label style="font-size: 15px;">Tiempo (minutos)</label>
+            <input type="number" class="form-control" id="tiempoPruebaVapor" placeholder="5" th:readonly="${read}" th:value="${tiempoPruebaVapor}">
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label style="font-size: 15px;">Presi&oacute;n</label>
+            <input type="number" class="form-control" id="presionPruebaVapor" placeholder="23.2" th:readonly="${read}" th:value="${presionPruebaVapor}">
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label style="font-size: 15px;">Medida final del hilo</label>
+            <input type="number" class="form-control" id="medidaHiloPruebaVapor" placeholder="23.2" th:readonly="${read}" th:value="${medidaHiloPruebaVapor}">
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label style="font-size: 15px;">Medida final de la trama</label>
+            <input type="number" class="form-control" id="finalTramaPruebaVapor" placeholder="23.2" th:readonly="${read}" th:value="${finalTramaPruebaVapor}">
+        </div>
+    </div>
+    <div class="col-sm-12">
+	    <h5>Resultado</h5>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label style="font-size: 15px;">Diferencia hilo</label>
+            <input type="number" class="form-control" id="diferenciaHiloPruebaVapor" placeholder="23.2" th:readonly="${read}" th:value="${diferenciaHiloPruebaVapor}">
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label style="font-size: 15px;">(100cm/_____cm)</label>
+            <input type="text" class="form-control" id="finalHiloMedPruebaVapor" placeholder="23.2" readonly="readonly" th:value="${finalHiloMedPruebaVapor==null}?'':${finalHiloMedPruebaVapor}+'%'">
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label style="font-size: 15px;">Diferencia trama</label>
+            <input type="number" class="form-control" id="diferenciaTramaPruebaVapor" placeholder="23.2" th:readonly="${read}" th:value="${diferenciaTramaPruebaVapor}">
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label style="font-size: 15px;">(100cm/_____cm)</label>
+            <input type="text" class="form-control" id="finalTramaMedPruebaVapor" placeholder="23.2" readonly="readonly" th:value="${finalTramaMedPruebaVapor==null}?'':${finalTramaMedPruebaVapor}+'%'">
+        </div>
+    </div>
+    <div class="col-sm-12">
+	  <div class="form-group">
+	    <label style="font-size: 15px;">Observaciones</label>
+	    <textarea class="form-control" id="observacionesReultPruebaVapor" rows="3" placeholder="Especificar" th:readonly="${read}" th:value="${observacionesReultPruebaVapor}"></textarea>
+	  </div>
+    </div>
+    <div class="col-sm-12">
+	    <hr><h4>Descripci&oacute;n:<strong> Prueba de fusi&oacute;n</strong></h4>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label style="font-size: 15px;">Medida final del hilo</label>
+            <input type="number" class="form-control" id="medidaHiloPruebaFusion" placeholder="23.2" th:readonly="${read}" th:value="${medidaHiloPruebaFusion}">
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label style="font-size: 15px;">Medida final de la trama</label>
+            <input type="number" class="form-control" id="medidaTramaPruebaFusion" placeholder="23.2" th:readonly="${read}" th:value="${medidaTramaPruebaFusion}">
+        </div>
+    </div>
+    <div class="col-sm-12">
+	    <h5>Resultado</h5>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label style="font-size: 15px;">Diferencia hilo</label>
+            <input type="number" class="form-control" id="diferenciaHiloPruebaFusion" placeholder="23.2" th:readonly="${read}" th:value="${diferenciaHiloPruebaFusion}">
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label style="font-size: 15px;">(100cm/_____cm)</label>
+            <input type="text" class="form-control" id="finalHiloMedPruebaFusion" placeholder="23.2" readonly="readonly" th:value="${finalHiloMedPruebaFusion==null}?'':${finalHiloMedPruebaFusion}+'%'">
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label style="font-size: 15px;">Diferencia trama</label>
+            <input type="number" class="form-control" id="diferenciaTramaPruebaFusion" placeholder="23.2" th:readonly="${read}" th:value="${diferenciaTramaPruebaFusion}">
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label style="font-size: 15px;">(100cm/_____cm)</label>
+            <input type="text" class="form-control" id="finalTramaMedPruebaFusion" placeholder="23.2" readonly="readonly" th:value="${finalTramaMedPruebaFusion==null}?'':${finalTramaMedPruebaFusion}+'%'">
+        </div>
+    </div>
+    <div class="col-sm-12">
+	  <div class="form-group">
+	    <label style="font-size: 15px;">Observaciones</label>
+	    <textarea class="form-control" id="observacionesReultPruebaFusion" rows="3" placeholder="Especificar" th:readonly="${read}" th:value="${observacionesReultPruebaFusion}"></textarea>
+	  </div>
+    </div>
+    <div class="col-sm-12">
+	    <hr><h4>Descripci&oacute;n:<strong> Plancha con vapor</strong></h4>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label style="font-size: 15px;">Medida final del hilo</label>
+            <input type="number" class="form-control" id="medidaHiloPlanchaVapor" placeholder="23.2" th:readonly="${read}" th:value="${medidaHiloPlanchaVapor}">
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label style="font-size: 15px;">Medida final de la trama</label>
+            <input type="number" class="form-control" id="medidaTramaPlanchaVapor" placeholder="23.2" th:readonly="${read}" th:value="${medidaTramaPlanchaVapor}">
+        </div>
+    </div>
+    <div class="col-sm-12">
+	    <h5>Resultado</h5>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label style="font-size: 15px;">Diferencia hilo</label>
+            <input type="number" class="form-control" id="diferenciaHiloPlanchaVapor" placeholder="23.2" th:readonly="${read}" th:value="${diferenciaHiloPlanchaVapor}">
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label style="font-size: 15px;">(100cm/_____cm)</label>
+            <input type="text" class="form-control" id="finalHiloMedPlanchaVapor" placeholder="23.2" readonly="readonly" th:value="${finalHiloMedPlanchaVapor==null}?'':${finalHiloMedPlanchaVapor}+'%'">
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label style="font-size: 15px;">Diferencia trama</label>
+            <input type="number" class="form-control" id="diferenciaTramaPlanchaVapor" placeholder="23.2" th:readonly="${read}" th:value="${diferenciaTramaPlanchaVapor}">
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label style="font-size: 15px;">(100cm/_____cm)</label>
+            <input type="text" class="form-control" id="finalTramaMedPlanchaVapor" placeholder="23.2" readonly="readonly" th:value="${finalTramaMedPlanchaVapor==null}?'':${finalTramaMedPlanchaVapor}+'%'">
+        </div>
+    </div>
+    <div class="col-sm-12">
+	  <div class="form-group">
+	    <label style="font-size: 15px;">Observaciones</label>
+	    <textarea class="form-control" id="observacionesReultPlanchaVapor" rows="3" placeholder="Especificar" th:readonly="${read}" th:value="${observacionesReultPlanchaVapor}"></textarea>
+	  </div>
+    </div>
 	<div class="form-group col-sm-12">
 		<a th:href="${'calidad'}" class="btn btn-danger" data-dismiss="modal">Cancelar</a>
-		<a type="button" class="btn btn-primary next-step float-right" onclick="ValidacionEncogimiento()">Guardar</a>
+		<a type="button" class="btn btn-primary next-step float-right" th:hidden="${displa}" onclick="ValidacionEncogimiento()">Guardar</a>
 		<a type="button" class="btn btn-primary next-step float-right" onclick="PruebasEncogimiento()" id="enlaceEncogimiento" style="display: none;"></a>
 	</div>
 	<div class="form-group col-sm-12">
