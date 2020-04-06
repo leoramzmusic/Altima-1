@@ -17,11 +17,6 @@ public class DisenioTela implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@Column(name="id_tela")
-	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
-	@GenericGenerator(name="native",strategy="native")
-	private Long idTela;
 	
 	@Column(name="id_familia_composicion")
 	private Long idFamiliaComposicion;
@@ -77,8 +72,14 @@ public class DisenioTela implements Serializable{
 	@Column(name="id_prenda")
 	private Long idPrenda;
 	
-	@Column(name="id_color")
-	private Long idColor;
+	@Column(name="color")
+	private String Color;
+	
+	@Column(name="codigo_color")
+	private String codigoColor;
+	
+	@Column(name="estampado")
+	private String estampado;
 	
 	@Column(name="id_proveedor")
 	private Long idProveedor;
@@ -92,13 +93,6 @@ public class DisenioTela implements Serializable{
 	@Column(name="estatus_tela")
 	private String estatusTela;
 
-	public Long getIdTela() {
-		return idTela;
-	}
-
-	public void setIdTela(Long idTela) {
-		this.idTela = idTela;
-	}
 
 	public Long getIdFamiliaComposicion() {
 		return idFamiliaComposicion;
@@ -244,12 +238,28 @@ public class DisenioTela implements Serializable{
 		this.idPrenda = idPrenda;
 	}
 
-	public Long getIdColor() {
-		return idColor;
+	public String getColor() {
+		return Color;
 	}
 
-	public void setIdColor(Long idColor) {
-		this.idColor = idColor;
+	public void setColor(String color) {
+		Color = color;
+	}
+
+	public String getCodigoColor() {
+		return codigoColor;
+	}
+
+	public void setCodigoColor(String codigoColor) {
+		this.codigoColor = codigoColor;
+	}
+
+	public String getEstampado() {
+		return estampado;
+	}
+
+	public void setEstampado(String estampado) {
+		this.estampado = estampado;
 	}
 
 	public Long getIdProveedor() {
@@ -292,24 +302,25 @@ public class DisenioTela implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((Color == null) ? 0 : Color.hashCode());
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
 		result = prime * result + ((ancho == null) ? 0 : ancho.hashCode());
+		result = prime * result + ((codigoColor == null) ? 0 : codigoColor.hashCode());
 		result = prime * result + ((consumo == null) ? 0 : consumo.hashCode());
 		result = prime * result + ((consumoPromedio == null) ? 0 : consumoPromedio.hashCode());
 		result = prime * result + ((costoPorMetro == null) ? 0 : costoPorMetro.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((descripcionTela == null) ? 0 : descripcionTela.hashCode());
+		result = prime * result + ((estampado == null) ? 0 : estampado.hashCode());
 		result = prime * result + ((estatus == null) ? 0 : estatus.hashCode());
 		result = prime * result + ((estatusTela == null) ? 0 : estatusTela.hashCode());
 		result = prime * result + ((existencia == null) ? 0 : existencia.hashCode());
 		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
 		result = prime * result + ((foto == null) ? 0 : foto.hashCode());
 		result = prime * result + ((idCalidad == null) ? 0 : idCalidad.hashCode());
-		result = prime * result + ((idColor == null) ? 0 : idColor.hashCode());
 		result = prime * result + ((idFamiliaComposicion == null) ? 0 : idFamiliaComposicion.hashCode());
 		result = prime * result + ((idPrenda == null) ? 0 : idPrenda.hashCode());
 		result = prime * result + ((idProveedor == null) ? 0 : idProveedor.hashCode());
-		result = prime * result + ((idTela == null) ? 0 : idTela.hashCode());
 		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
 		result = prime * result + ((idUnidadMedida == null) ? 0 : idUnidadMedida.hashCode());
 		result = prime * result + ((indicacion == null) ? 0 : indicacion.hashCode());
@@ -328,6 +339,11 @@ public class DisenioTela implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		DisenioTela other = (DisenioTela) obj;
+		if (Color == null) {
+			if (other.Color != null)
+				return false;
+		} else if (!Color.equals(other.Color))
+			return false;
 		if (actualizadoPor == null) {
 			if (other.actualizadoPor != null)
 				return false;
@@ -337,6 +353,11 @@ public class DisenioTela implements Serializable{
 			if (other.ancho != null)
 				return false;
 		} else if (!ancho.equals(other.ancho))
+			return false;
+		if (codigoColor == null) {
+			if (other.codigoColor != null)
+				return false;
+		} else if (!codigoColor.equals(other.codigoColor))
 			return false;
 		if (consumo == null) {
 			if (other.consumo != null)
@@ -362,6 +383,11 @@ public class DisenioTela implements Serializable{
 			if (other.descripcionTela != null)
 				return false;
 		} else if (!descripcionTela.equals(other.descripcionTela))
+			return false;
+		if (estampado == null) {
+			if (other.estampado != null)
+				return false;
+		} else if (!estampado.equals(other.estampado))
 			return false;
 		if (estatus == null) {
 			if (other.estatus != null)
@@ -393,11 +419,6 @@ public class DisenioTela implements Serializable{
 				return false;
 		} else if (!idCalidad.equals(other.idCalidad))
 			return false;
-		if (idColor == null) {
-			if (other.idColor != null)
-				return false;
-		} else if (!idColor.equals(other.idColor))
-			return false;
 		if (idFamiliaComposicion == null) {
 			if (other.idFamiliaComposicion != null)
 				return false;
@@ -412,11 +433,6 @@ public class DisenioTela implements Serializable{
 			if (other.idProveedor != null)
 				return false;
 		} else if (!idProveedor.equals(other.idProveedor))
-			return false;
-		if (idTela == null) {
-			if (other.idTela != null)
-				return false;
-		} else if (!idTela.equals(other.idTela))
 			return false;
 		if (idText == null) {
 			if (other.idText != null)
