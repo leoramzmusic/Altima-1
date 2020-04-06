@@ -1,11 +1,11 @@
 <form class="row" style="display: none;"  th:object="${forro}" name="forroForm" id="forroForm" th:action="@{/guardar-forro}" enctype="multipart/form-data" method="post">
 	  
     <div class="form-group col-sm-5">
-        <label for="razonEmpresa">Composici&oacute;n</label>
-        <input type="text" id="telaComposicionf" class="form-control"  placeholder="100% algod&oacute;n">
+        <label for="razonEmpresa">Porcentaje</label>
+        <input type="number" id="telaComposicionf" class="form-control"  placeholder="100">
     </div>
     <div class="form-group col-md-6">
-        <label for="status">Familia de composici&oacute;n</label>
+        <label for="status">Composici&oacute;n</label>
         <select id="telaFamcomposicionf" class="form-control" >
         	<option value="">Seleccion a uno...</option>
         	<option th:each="lisFam: ${lisFam}"
@@ -112,21 +112,39 @@
 
 <script>
 function guardarf(){
+	
+	if( document.getElementById("telaComposicionf").value == null || 
+			document.getElementById("telaComposicionf").value.length == 0 || 
+			/^\s+$/.test(document.getElementById("telaComposicionf").value) ||
+			 document.getElementById("telaFamcomposicionf").selectedIndex == null ||
+			 document.getElementById("telaFamcomposicionf").selectedIndex == "" ) {
+		Swal.fire({
+	          position: 'center',
+	          icon: 'error',
+	          title: 'Error',
+	          showConfirmButton: false,
+	          timer: 1250
+	        });
+		}
+	
+	else {
+		  var telaComposicionf = document.getElementById("telaComposicionf").value;
+		    var telaFamcomposicionf = document.getElementById("telaFamcomposicionf").value;    
+		    var nombref = $( "#telaFamcomposicionf option:selected" ).text()   
+		    var i = 1; //contador para asignar id al boton que borrara la fila
+		   
+		    var fila = '<tr id="row' + i + '"><td>' + telaComposicionf + '</td> <td style="display:none;">' + telaFamcomposicionf + '</td> <td >' + nombref + '</td>  <td><button type="button" name="remove" id="' + i + '" onclick="eliminar(this)" class="btn btn-danger btn_remove">Quitar</button></td>   </tr>'; //esto seria lo que contendria la fila
+		    i++;
+		    $('#mytablef tr:first').after(fila);
+		    $("#adicionadosf").text(""); //esta instruccion limpia el div adicioandos para que no se vayan acumulando
+		    var nFilas = $("#mytablef tr").length;
+		    $("#adicionadosf").append(nFilas - 1);
+		    //le resto 1 para no contar la fila del header
+		    document.getElementById("telaComposicionf").value ="";
+		    document.getElementById("telaFamcomposicionf").value = "";
+	}
 	   
-    var telaComposicionf = document.getElementById("telaComposicionf").value;
-    var telaFamcomposicionf = document.getElementById("telaFamcomposicionf").value;    
-    var nombref = $( "#telaFamcomposicionf option:selected" ).text()   
-    var i = 1; //contador para asignar id al boton que borrara la fila
-   
-    var fila = '<tr id="row' + i + '"><td>' + telaComposicionf + '</td> <td style="display:none;">' + telaFamcomposicionf + '</td> <td >' + nombref + '</td>  <td><button type="button" name="remove" id="' + i + '" onclick="eliminar(this)" class="btn btn-danger btn_remove">Quitar</button></td>   </tr>'; //esto seria lo que contendria la fila
-    i++;
-    $('#mytablef tr:first').after(fila);
-    $("#adicionadosf").text(""); //esta instruccion limpia el div adicioandos para que no se vayan acumulando
-    var nFilas = $("#mytablef tr").length;
-    $("#adicionadosf").append(nFilas - 1);
-    //le resto 1 para no contar la fila del header
-    document.getElementById("telaComposicionf").value ="";
-    document.getElementById("telaFamcomposicionf").value = "";
+  
    
     
     
