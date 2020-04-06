@@ -10,7 +10,7 @@
     <div class="col-sm-4">
         <div class="form-group">
             <label>Tela</label>
-            <select class="form-control idtelas" id="telass" th:readonly="${readCostura}">
+            <select class="form-control idtelas" id="telass" th:disabled="${readCostura}">
                 <option>Selecciona uno...</option>
             </select>
         </div>
@@ -18,7 +18,7 @@
     <div class="col-sm-4">
         <div class="form-group">
             <label>Operario</label>
-            <select class="form-control idOperarios" id="operarioCostura" th:readonly="${readCostura}">
+            <select class="form-control idOperarios" id="operarioCostura" th:disabled="${readCostura}">
                 <option>Selecciona uno...</option>
             </select>
         </div>

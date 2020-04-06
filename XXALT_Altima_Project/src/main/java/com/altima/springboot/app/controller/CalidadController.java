@@ -137,6 +137,18 @@ public class CalidadController {
 					model.addAttribute("readContamin", "true");
 					model.addAttribute("observacionesReultContaminacion", cc.getObservacionesResultados());				
 					model.addAttribute("displaConta", "true");
+					
+					if(cc.getPruebaCalidad().equals("buena")) {
+						model.addAttribute("checkBConta", "true");
+					}
+					if(cc.getPruebaCalidad().equals("regular")) {
+						model.addAttribute("checkRConta", "true");
+					}
+					if(cc.getPruebaCalidad().equals("mala")) {
+						model.addAttribute("checkMConta", "true");
+					}
+					
+					
 				}
 
 			}

@@ -10,7 +10,7 @@
     <div class="col-sm-4">
         <div class="form-group">
             <label>Tela</label>
-            <select class="form-control idtelas" id="telasss" th:readonly="${readContamin}">
+            <select class="form-control idtelas" id="telasss" th:disabled="${readContamin}">
                 <option>Selecciona uno...</option>
             </select>
         </div>
@@ -18,7 +18,7 @@
     <div class="col-sm-4">
         <div class="form-group">
             <label>Operario</label>
-            <select class="form-control idOperarios" id="operarioContaminacion" th:readonly="${readContamin}">
+            <select class="form-control idOperarios" id="operarioContaminacion" th:disabled="${readContamin}">
                 <option>Selecciona uno...</option>
             </select>
         </div>
@@ -43,15 +43,15 @@
         <div class="form-group">
             <label>Calidad</label>
             <div class="custom-control custom-radio">
-                <input class="custom-control-input" type="radio" value="buena" id="buenaConta" name="calidadConta" th:readonly="${readContamin}">
+                <input class="custom-control-input" type="radio" value="buena" id="buenaConta" name="calidadConta" th:disabled="${readContamin}" th:checked="${checkBConta}">
                 <label for="buenaConta" class="custom-control-label">Buena</label>
             </div>
             <div class="custom-control custom-radio">
-                <input class="custom-control-input" type="radio" value="regular" id="regularConta" name="calidadConta" th:readonly="${readContamin}">
+                <input class="custom-control-input" type="radio" value="regular" id="regularConta" name="calidadConta" th:disabled="${readContamin}" th:checked="${checkRConta}">
                 <label for="regularConta" class="custom-control-label">Regular</label>
             </div>
             <div class="custom-control custom-radio">
-                <input class="custom-control-input" type="radio" value="mala" id="malaConta" name="calidadConta" th:readonly="${readContamin}">
+                <input class="custom-control-input" type="radio" value="mala" id="malaConta" name="calidadConta" th:disabled="${readContamin}" th:checked="${checkMConta}">
                 <label for="malaConta" class="custom-control-label">Mala</label>
             </div>
         </div>

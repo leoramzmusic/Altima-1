@@ -10,7 +10,7 @@
     <div class="col-sm-4">
         <div class="form-group">
             <label>Tela</label>
-            <select class="form-control idtelas" id="tela" th:readonly="${read}" th:value="${tela}">
+            <select class="form-control idtelas" id="tela" th:disabled="${read}" th:value="${tela}">
                 <option>Selecciona uno...</option>
             </select>
         </div>
@@ -18,7 +18,7 @@
     <div class="col-sm-4">
         <div class="form-group">
             <label>Operario</label>
-            <select class="form-control idOperarios" id="operarioEncogi" th:value="${operarioEncogi}">
+            <select class="form-control idOperarios" id="operarioEncogi" th:disabled="${read}" th:value="${operarioEncogi}">
                 <option>Selecciona uno...</option>
             </select>
         </div>
@@ -41,7 +41,7 @@
     <div class="col-sm-4">
         <div class="form-group">
             <label for="status">Entretela</label>
-            <select class="form-control" id="entretelaEncogi" name="entretelaPeque" th:readonly="${read}" th:value="${entretelaEncogi}">
+            <select class="form-control" id="entretelaEncogi" name="entretelaPeque" th:disabled="${read}" th:value="${entretelaEncogi}">
                 <option>Selecciona uno...</option>
             </select>
         </div>
@@ -55,7 +55,7 @@
     <div class="col-sm-4">
         <div class="form-group">
             <label for="status">Proveedor</label>
-            <select class="form-control" id="proveedorEncogi" name="proveedor" th:value="${proveedorEncogi}">
+            <select class="form-control" id="proveedorEncogi" name="proveedor" th:disabled="${read}" th:value="${proveedorEncogi}">
                 <option>Selecciona uno...</option>
                 <option value="0">Real Textil</option>
                 <option value="1">terpel del norte</option>
