@@ -2,7 +2,7 @@
 	  
     <div class="form-group col-sm-5">
         <label for="razonEmpresa">Porcentaje</label>
-        <input type="number" id="telaComposicionf" class="form-control"  placeholder="100">
+        <input type="number" min="1"  id="telaComposicionf" class="form-control"  placeholder="100">
     </div>
     <div class="form-group col-md-6">
         <label for="status">Composici&oacute;n</label>
@@ -42,33 +42,33 @@
     </div>
 	<div class="form-group col-sm-6">
         <label for="razonEmpresa">Nombre</label>
-        <input type="text" th:field="*{nombreForro}" class="form-control" id="forroDescripcion" placeholder="Forro Hueso 01">
+        <input type="text" th:field="*{nombreForro}" class="form-control" id="forroDescripcion" placeholder="Forro Hueso" required>
     </div>
 	
 	<div class="form-group col-sm-6">
         <label for="razonEmpresa">Descripci&oacute;n</label>
-        <input type="text" th:field="*{descripcionForro}"  class="form-control" id="forroDescripcion" placeholder="Forro Hueso 01">
+        <input type="text" th:field="*{descripcionForro}"  class="form-control" id="forroDescripcion" placeholder="Descripción" required>
     </div>
     
     
     <div class="form-group col-sm-6">
         <label for="rfcEmpresa">Ancho(m)</label>
-        <input th:field="*{anchoForro}"  type="number" class="form-control" id="telaAncho" placeholder="1.2">
+        <input th:field="*{anchoForro}"  type="number" min="1"  class="form-control"  placeholder="1.2" required>
     </div>
     
     <div th:if="*{estatusForro  == '1'}" class="form-group col-sm-6">
         <label for="rfcEmpresa">Unidad de medida</label>
-        <input th:field="*{idUnidadMedida}"  type="number" class="form-control" id="telaAncho" placeholder="1.2">
+        <input th:field="*{idUnidadMedida}"  type="number" min="1"  class="form-control"  placeholder="1.2" required>
     </div>
     
     <div th:if="*{estatusForro  == '1'}"  class="form-group col-sm-6">
         <label for="rfcEmpresa">Consumo promedio</label>
-        <input th:field="*{consumoPromedioForro}"  type="number" class="form-control" id="telaAncho" placeholder="1.2">
+        <input th:field="*{consumoPromedioForro}"  type="number" min="1"  class="form-control"  placeholder="1.2" required>
     </div>
     
     <div th:if="*{estatusForro  == '1'}"  class="form-group col-sm-6">
         <label for="rfcEmpresa">Existencias</label>
-        <input th:field="*{existenciaForro}"  type="number" class="form-control" id="telaAncho" placeholder="1.2">
+        <input th:field="*{existenciaForro}"  type="number" min="0"  class="form-control"  placeholder="10" required>
     </div>
     
     <div  th:if="*{estatusForro == '1'}" class="col-sm-12">
@@ -121,7 +121,7 @@ function guardarf(){
 		Swal.fire({
 	          position: 'center',
 	          icon: 'error',
-	          title: 'Error',
+	          title: 'Complete los campos porcentaje o composicion',
 	          showConfirmButton: false,
 	          timer: 1250
 	        });
@@ -130,18 +130,36 @@ function guardarf(){
 	else {
 		  var telaComposicionf = document.getElementById("telaComposicionf").value;
 		    var telaFamcomposicionf = document.getElementById("telaFamcomposicionf").value;    
-		    var nombref = $( "#telaFamcomposicionf option:selected" ).text()   
-		    var i = 1; //contador para asignar id al boton que borrara la fila
-		   
-		    var fila = '<tr id="row' + i + '"><td>' + telaComposicionf + '</td> <td style="display:none;">' + telaFamcomposicionf + '</td> <td >' + nombref + '</td>  <td><button type="button" name="remove" id="' + i + '" onclick="eliminar(this)" class="btn btn-danger btn_remove">Quitar</button></td>   </tr>'; //esto seria lo que contendria la fila
-		    i++;
-		    $('#mytablef tr:first').after(fila);
-		    $("#adicionadosf").text(""); //esta instruccion limpia el div adicioandos para que no se vayan acumulando
-		    var nFilas = $("#mytablef tr").length;
-		    $("#adicionadosf").append(nFilas - 1);
-		    //le resto 1 para no contar la fila del header
-		    document.getElementById("telaComposicionf").value ="";
-		    document.getElementById("telaFamcomposicionf").value = "";
+		    var nombref = $( "#telaFamcomposicionf option:selected" ).text()
+		    
+		    var vali;
+    		var aux;
+    			$('#mytablef tr').each(function () {
+    				vali= $(this).find('td').eq(1).html();
+    				if ( vali == telaFamcomposicionf ){
+    					aux=0;
+    					Swal.fire({
+    		          		position: 'center',
+    		          		icon: 'error',
+    		          		title: 'Ya ha seleccionado esa composicion',
+    		          		showConfirmButton: false,
+    		          		timer: 1250
+    		        });
+    		}
+			
+		 });
+    		if (aux != 0){
+		  		var i = 1; //contador para asignar id al boton que borrara la fila
+		    	var fila = '<tr id="row' + i + '"><td>' + telaComposicionf + '</td> <td style="display:none;">' + telaFamcomposicionf + '</td> <td >' + nombref + '</td>  <td><button type="button" name="remove" id="' + i + '" onclick="eliminar(this)" class="btn btn-danger btn_remove">Quitar</button></td>   </tr>'; //esto seria lo que contendria la fila
+		    	i++;
+		    	$('#mytablef tr:first').after(fila);
+		    	$("#adicionadosf").text(""); //esta instruccion limpia el div adicioandos para que no se vayan acumulando
+		    	var nFilas = $("#mytablef tr").length;
+		    	$("#adicionadosf").append(nFilas - 1);
+		    	//le resto 1 para no contar la fila del header
+		    	document.getElementById("telaComposicionf").value ="";
+		    	document.getElementById("telaFamcomposicionf").value = "";
+    		}
 	}
 	   
   
@@ -176,9 +194,8 @@ function arreglof() {
 	  
 	  
 	 });
-	 document.forroForm.submit()
+	
 	}
 
 	
 </script>
-
