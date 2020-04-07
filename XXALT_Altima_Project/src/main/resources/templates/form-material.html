@@ -13,7 +13,7 @@
     
       <div class="form-group col-sm-3">
         <label   for="idTipoMaterial">Tipo de Material</label>
-         <select  class="form-control"   th:field="*{idTipoMaterial}"  id="idTipoMaterial">
+         <select  class="form-control selectCustom"   th:field="*{idTipoMaterial}"  id="idTipoMaterial" data-live-search="true">
                     <option th:each="listLookupsMat:${listLookupsMat}"
             	
                     th:value="${listLookupsMat[0]}"
@@ -29,7 +29,7 @@
     
       <div class="form-group col-sm-3">
         <label   for="idColor">Color</label>
-         <select  class="form-control"   th:field="*{idColor}"  id="idColor1">
+         <select  class="form-control selectCustom"   th:field="*{idColor}"  id="idColor1" data-live-search="true">
                     <option th:each="listLookupsCol:${listLookupsCol}"
             		th:data-content="@{<i class='fa fa-tint'}+@{style='color:}+${listLookupsCol[3]}+@{;'></i>}+'             '+${listLookupsCol[1]}"
                     th:value="${listLookupsCol[0]}"
@@ -52,7 +52,7 @@
     
     <div class="form-group col-sm-3">
         <label   for="idUnidadMedida">Unidad medida</label>
-         <select  class="form-control"  th:field="*{idUnidadMedida}"  id="idUnidadMedida">
+         <select  class="form-control selectCustom"  th:field="*{idUnidadMedida}"  id="idUnidadMedida" data-live-search="true">
                     <option th:each="listLookupsMed:${listLookupsMed}"
             
                     th:value="${listLookupsMed[0]}"
@@ -71,7 +71,7 @@
     </div>
     <div class="form-group col-sm-3">
         <label   for="idProceso"  >Proceso al que aplica</label>
-        <select  class="form-control"  th:field="*{idProceso}" id="idProceso">
+        <select  class="form-control selectCustom"  th:field="*{idProceso}" id="idProceso" data-live-search="true">
                 <option th:each="listClaveProceso:${listClaveProceso}"
             
                     th:value="${listClaveProceso[0]}"
@@ -92,7 +92,7 @@
     
       <div class="form-group col-sm-3">
         <label   for="idClasificacion">Clasificaci&oacute;n</label>
-         <select class="form-control"  th:field="*{idClasificacion}" id="idClasificacion">
+         <select class="form-control selectCustom"  th:field="*{idClasificacion}" id="idClasificacion" data-live-search="true">
                     <option th:each="listLookupsClasificacion:${listLookupsClasificacion}"
             
                     th:value="${listLookupsClasificacion[0]}"
@@ -114,7 +114,7 @@
    
     <div class="form-group col-sm-3">
         <label for="idMarca">Proveedores</label>
-        <select  class="form-control" id="idMarca"  th:field="*{idMarca}">
+        <select  class="form-control selectCustom" id="idMarca"  th:field="*{idMarca}" data-live-search="true">
             <option th:each="listLookupsMar:${listLookupsMar}"
             
                     th:value="${listLookupsMar[0]}"
