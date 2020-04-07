@@ -66,7 +66,7 @@ public class CalidadController {
 			
 			for (DisenioPruebaEncogimientoLavado u : pruebasEL) {
 				if (u.getTipoPrueba().equalsIgnoreCase("Prueba de Vapor")) {
-				model.addAttribute("read", "true");
+				//model.addAttribute("read", "true");
 				model.addAttribute("tela", u.getIdTela());
 				model.addAttribute("operarioEncogi", u.getCreadoPor());
 				model.addAttribute("fechaRealizacionEncogi", u.getFechaRealizacion().replace(" ", "T"));
@@ -83,7 +83,9 @@ public class CalidadController {
 				model.addAttribute("diferenciaTramaPruebaVapor", u.getMedidaFinalTrama());
 				model.addAttribute("finalTramaMedPruebaVapor", u.getDiferenciaMedidaTrama());
 				model.addAttribute("observacionesReultPruebaVapor", u.getObservacionesResultados());
-				model.addAttribute("displa", "true");
+				model.addAttribute("proovedores", u.getProveedorPruebaVapor());
+				model.addAttribute("entretelas", u.getEntretelaPruebaVapor());
+				//model.addAttribute("displa", "true");
 				cont+=1;
 				}
 				if (u.getTipoPrueba().equalsIgnoreCase("Prueba de Fusion")) {
@@ -108,7 +110,7 @@ public class CalidadController {
 				}
 				
 				if (u.getTipoPrueba().equalsIgnoreCase("Prueba de Lavado")) {
-				model.addAttribute("readLavado", "true");
+				//model.addAttribute("readLavado", "true");
 				model.addAttribute("telas", u.getIdTela());
 				model.addAttribute("operarioLavado", u.getCreadoPor());
 				model.addAttribute("fechaRealizacionLavado", u.getFechaRealizacion().replace(" ", "T"));
@@ -120,15 +122,15 @@ public class CalidadController {
 				model.addAttribute("diferenciaTramaPruebaLavado", u.getMedidaFinalTrama());
 				model.addAttribute("finalTramaMedPruebaLavado", u.getDiferenciaMedidaTrama());
 				model.addAttribute("observacionesReultPruebaLavado", u.getObservacionesResultados());
-				model.addAttribute("displaLavado", "true");
+				//model.addAttribute("displaLavado", "true");
 				cont+=1;
 				}
-				System.out.println("asdasdasdasdasdasd"+pruebasLCC);
+
+				model.addAttribute("idTela", u.getIdTela());
+				model.addAttribute("idoperar", u.getCreadoPor());
 			}
-			System.out.println("asdasdasdasdasdasd"+pruebasLCC);
 		
 			for (DisenioPruebaLavadoContaminacionCostura cc : pruebasLCC) {
-				System.out.println("si esta entrando al ciclo");
 				if(cc.getTipoPrueba().equalsIgnoreCase("Solidez/Color")) {
 					model.addAttribute("observacionesReultSolidez", cc.getObservacionesResultados());
 					
@@ -156,9 +158,13 @@ public class CalidadController {
 					cont+=1;
 				}
 				if(cc.getTipoPrueba().equalsIgnoreCase("Resultado costura")) {
-					model.addAttribute("readCostura", "true");
+					model.addAttribute("telass", cc.getIdTela());
+					model.addAttribute("operarioCostura", cc.getCreadoPor());
+					model.addAttribute("fechaRealizacionCostura", cc.getFechaRealizacion().replace(" ", "T"));
+					model.addAttribute("fechaFinalizacionCostura", cc.getFechaFinalizacion().replace(" ", "T"));
+					//model.addAttribute("readCostura", "true");
 					model.addAttribute("observacionesDeslizamiento", cc.getObservacionesResultados());
-					model.addAttribute("displaCostura", "true");
+					//model.addAttribute("displaCostura", "true");
 					
 					if(cc.getDeslizamientoTela().equals("si")) {
 						model.addAttribute("checkSDeslizamiento", "true");
@@ -170,9 +176,9 @@ public class CalidadController {
 				}
 				
 				if(cc.getTipoPrueba().equalsIgnoreCase("Rasgado de Tela")) {
-					model.addAttribute("readCostura", "true");
+					//model.addAttribute("readCostura", "true");
 					model.addAttribute("observacionesDeslizamiento", cc.getObservacionesResultados());
-					model.addAttribute("displaCostura", "true");
+					//model.addAttribute("displaCostura", "true");
 					
 					if(cc.getRasgadoTela().equals("si")) {
 						model.addAttribute("checkSCostura", "true");
@@ -184,9 +190,13 @@ public class CalidadController {
 				}
 				
 				if(cc.getTipoPrueba().equalsIgnoreCase("Resultado de contaminación") || cc.getTipoPrueba().equalsIgnoreCase("Resultado de contaminacion")) {
-					model.addAttribute("readContamin", "true");
+					model.addAttribute("telasss", cc.getIdTela());
+					model.addAttribute("operarioContaminacion", cc.getCreadoPor());
+					model.addAttribute("fechaRealizacionContaminacion", cc.getFechaRealizacion().replace(" ", "T"));
+					model.addAttribute("fechaFinalizacionContaminacion", cc.getFechaFinalizacion().replace(" ", "T"));
+					//model.addAttribute("readContamin", "true");
 					model.addAttribute("observacionesReultContaminacion", cc.getObservacionesResultados());				
-					model.addAttribute("displaConta", "true");
+					//model.addAttribute("displaConta", "true");
 					
 					if(cc.getPruebaCalidad().equals("buena")) {
 						model.addAttribute("checkBConta", "true");
@@ -200,9 +210,12 @@ public class CalidadController {
 					cont+=1;
 					
 				}
+				model.addAttribute("idTela", cc.getIdTela());
+				model.addAttribute("idoperar", cc.getCreadoPor());
 
 			}
 			model.addAttribute("idCalidad", id);
+			
 			if(cont==9) {
 				DisenioCalidad Calidad = disenioCalidad.findOne(id);
 				Calidad.setEstatus("1");

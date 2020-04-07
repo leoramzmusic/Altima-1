@@ -1,6 +1,5 @@
 <div class="row">
 	<input type="hidden" name="_csrf" id="token"  th:value="${_csrf.token}"/>
-	 <input type="hidden" id="idCalidadEnco" th:value="${idCalidad}">
 	<div class="col-sm-12">
 	    <a><strong>IMPORTANTE</strong><br>
 	    <i class="fas fa-check-circle text-success"></i> Cortar 4 testigos con medidas de 25cm x 25cm<br>
@@ -124,7 +123,7 @@
     <div class="col-sm-12">
 	  <div class="form-group">
 	    <label style="font-size: 15px;">Observaciones</label>
-	    <textarea class="form-control" id="observacionesReultPruebaVapor" rows="3" placeholder="Especificar" th:readonly="${read}" th:value="${observacionesReultPruebaVapor}"></textarea>
+	    <textarea class="form-control" id="observacionesReultPruebaVapor" rows="3" placeholder="Especificar" th:readonly="${read}" th:text="${observacionesReultPruebaVapor}"></textarea>
 	  </div>
     </div>
     <div class="col-sm-12">
@@ -172,7 +171,7 @@
     <div class="col-sm-12">
 	  <div class="form-group">
 	    <label style="font-size: 15px;">Observaciones</label>
-	    <textarea class="form-control" id="observacionesReultPruebaFusion" rows="3" placeholder="Especificar" th:readonly="${read}" th:value="${observacionesReultPruebaFusion}"></textarea>
+	    <textarea class="form-control" id="observacionesReultPruebaFusion" rows="3" placeholder="Especificar" th:readonly="${read}" th:text="${observacionesReultPruebaFusion}"></textarea>
 	  </div>
     </div>
     <div class="col-sm-12">
@@ -220,7 +219,7 @@
     <div class="col-sm-12">
 	  <div class="form-group">
 	    <label style="font-size: 15px;">Observaciones</label>
-	    <textarea class="form-control" id="observacionesReultPlanchaVapor" rows="3" placeholder="Especificar" th:readonly="${read}" th:value="${observacionesReultPlanchaVapor}"></textarea>
+	    <textarea class="form-control" id="observacionesReultPlanchaVapor" rows="3" placeholder="Especificar" th:readonly="${read}" th:text="${observacionesReultPlanchaVapor}"></textarea>
 	  </div>
     </div>
 	<div class="form-group col-sm-12">

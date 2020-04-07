@@ -46,5 +46,11 @@ public class DisenioPruebaLavadoContaminacionCosturaServiceImpl implements IDise
 															"WHERE id_calidad = "+id+")>0, 1 , 0)").getSingleResult().toString());
 	}
 
+	@Override
+	public DisenioPruebaLavadoContaminacionCostura findByTipoPrueba(String tipo, Long id) {
+		
+		return (DisenioPruebaLavadoContaminacionCostura) em.createQuery("from DisenioPruebaLavadoContaminacionCostura where idCalidad="+id+" and tipoPrueba = '"+tipo+"'").getSingleResult();
+	}
+
 	
 }

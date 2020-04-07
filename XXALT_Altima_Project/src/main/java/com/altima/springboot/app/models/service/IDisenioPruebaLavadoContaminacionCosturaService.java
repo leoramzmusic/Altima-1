@@ -11,5 +11,7 @@ public interface IDisenioPruebaLavadoContaminacionCosturaService {
 	public int ifExist(Long id);
 	
 	public List<DisenioPruebaLavadoContaminacionCostura> findAllByCalidad(Long id);
+	
+	public DisenioPruebaLavadoContaminacionCostura findByTipoPrueba(String tipo, Long id);
 
 }

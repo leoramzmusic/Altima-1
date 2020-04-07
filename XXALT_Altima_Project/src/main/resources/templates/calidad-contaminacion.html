@@ -10,7 +10,7 @@
     <div class="col-sm-4">
         <div class="form-group">
             <label>Tela</label>
-            <select class="form-control idtelas" id="telasss" th:disabled="${readContamin}">
+            <select class="form-control idtelas" id="telasss" th:disabled="${readContamin}" th:value="${telasss}">
                 <option>Selecciona uno...</option>
             </select>
         </div>
@@ -18,7 +18,7 @@
     <div class="col-sm-4">
         <div class="form-group">
             <label>Operario</label>
-            <select class="form-control idOperarios" id="operarioContaminacion" th:disabled="${readContamin}">
+            <select class="form-control idOperarios" id="operarioContaminacion" th:disabled="${readContamin}" th:value="${operarioContaminacion}">
                 <option>Selecciona uno...</option>
             </select>
         </div>
@@ -26,13 +26,13 @@
     <div class="col-sm-2">
         <div class="form-group">
             <label style="font-size: 15px;">Fecha y hora de realizaci&oacute;n</label>
-            <input type="datetime-local" class="form-control" id="fechaRealizacionContaminacion" placeholder="23.2" th:readonly="${readContamin}">
+            <input type="datetime-local" class="form-control" id="fechaRealizacionContaminacion" placeholder="23.2" th:readonly="${readContamin}" th:value="${fechaRealizacionContaminacion}">
         </div>
     </div>
     <div class="col-sm-2">
         <div class="form-group">
             <label style="font-size: 15px;">Fecha y hora de finalizaci&oacute;n</label>
-            <input type="datetime-local" class="form-control" id="fechaFinalizacionContaminacion" placeholder="23.2" th:readonly="${readContamin}">
+            <input type="datetime-local" class="form-control" id="fechaFinalizacionContaminacion" placeholder="23.2" th:readonly="${readContamin}" th:value="${fechaFinalizacionContaminacion}">
         </div>
     </div>
     <div class="col-sm-12">
@@ -59,7 +59,7 @@
     <div class="col-sm-12">
         <div class="form-group">
             <label style="font-size: 15px;">Observaciones</label>
-            <textarea class="form-control" id="observacionesReultContaminacion" rows="3" placeholder="Especificar" th:readonly="${readContamin}" th:value="${observacionesReultContaminacion}"></textarea>
+            <textarea class="form-control" id="observacionesReultContaminacion" rows="3" placeholder="Especificar" th:readonly="${readContamin}" th:text="${observacionesReultContaminacion}"></textarea>
         </div>
     </div>
 	<div class="form-group col-sm-12">

@@ -94,14 +94,9 @@ function prevTab(elem) {
 	$(elem).parent().prev().find('a[data-toggle="tab"]').click();
 
 }
-function agregarPrueba(id){
-	var valor = id;
-	console.log(valor);
-	return valor;
-}
+
 function listarTelas(){
-	var resultado = agregarPrueba();
-	console.log(resultado);
+	
 	$.ajax({
 		 method: "GET",
 		    url: "/listarTelasCalidad",
@@ -112,6 +107,10 @@ function listarTelas(){
 				for (i in data){
 		    	$('.idtelas').append("<option value='"+data[i].idTela+"'>"+data[i].nombreTela+"</option>");
 				}
+				var tela = $('#idtela').val();
+				$('.idtelas option[value="'+tela+'"]').attr("selected", true);
+				tela = $('#proovedores').val();
+				$('#proveedorEncogi option[value="'+tela+'"]').attr("selected", true);
 		    },
 		   
 		    error: (e) => {
@@ -133,6 +132,8 @@ function listarOperarios(){
 				for (i in data){
 		    	$('.idOperarios').append("<option value='"+data[i][0]+"'>"+data[i][1]+data[i][2]+data[i][3]+"</option>");
 				}
+				var tela = $('#idoperar').val();
+				$('.idOperarios option[value="'+tela+'"]').attr("selected", true);
 		    },
 		    error: (e) => {
 		        // location.reload();
@@ -151,6 +152,9 @@ function listarEntretelas(){
 				for (i in data){
 		    	$('#entretelaEncogi').append("<option value='"+data[i][0]+"'>"+data[i][1]+"</option>");
 				}
+				
+				var tela = $('#entretelas').val();
+				$('#entretelaEncogi option[value="'+tela+'"]').attr("selected", true);
 		    },
 		    error: (e) => {
 		        // location.reload();
