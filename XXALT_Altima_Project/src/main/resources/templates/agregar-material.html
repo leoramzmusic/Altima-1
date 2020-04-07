@@ -65,10 +65,10 @@
                                 <div class="card-header bg-dark">
                                     <h3 class="card-title">Nuevo material</h3>
                                 </div>
-                                <div class="card-body">
-                              		<div class="form-group">
-                                        <label for="status">Tipo de material</label>
-                                        <select class="form-control selectCustom" id="status" name="status" onChange="showMaterial(this.value);">
+                                <div class="card-body" >
+                              		<div id="edit"  class="form-group" >
+                                        <label  for="status">Tipo de material</label>
+                                        <select  class="form-control selectCustom" id="status" name="status" onChange="showMaterial(this.value);">
                                         	<option value="selecciona">Selecciona uno...</option>
                                             <option value="tela">Tela</option>
                                             <option value="forro">Forro</option>
@@ -166,51 +166,52 @@
                   case definitiva.idMaterial > 0:
                 	  $('#status').val("material").change();
               		console.log("algunamamadaparaverqueentro");
+              		 document.getElementById('edit').style.display = "none";
+              		 
                    break;
                    
                    
                   case definitiva.idTela   > 0:
                 	  $('#status').val("tela").change();
               		console.log("algunamamadaparaverqueentro");
+              	  document.getElementById('edit').style.display = "none";
+              		 
                    break;
                    
                    
                   case definitiva.idForro > 0:
                 	  $('#status').val("forro").change();
               		console.log("algunamamadaparaverqueentro");
+              		 document.getElementById('edit').style.display = "none";
+              		 
                    break;
        
                   default:
                 		console.log("entro a la fubncion defautl");
+            	  
+                  
+                  
+                  function mostrar(){
+                	  
+                
+                  }
 
-                	  $(function () {
-                	  	  $('select').each(function () {
-                	  	    $(this).select2({
-                	  	      theme: 'bootstrap4',
-                	  	      width: 'style',
-                	  	      placeholder: $(this).attr('placeholder'),
-                	  	      allowClear: Boolean($(this).data('allow-clear')),
-                	  	    });
-                	  	  });
-                	  	}); 
                    break;  
 		
 	  }
+		 
+         function changeClassById() {
+         	document.getElementById("iDiseno").className = "nav-icon flaticon-005-dress";
+             document.getElementById("menuDiseno").className = "nav-item has-treeview menu-open";
+             document.getElementById("navDiseno").className = "nav-link active";
+             document.getElementById("navDiseno2").className = "nav-link active";
+         }
 	}
 		 
 
 </script>
 
-<script>
-            function changeClassById() {
-            	document.getElementById("iDiseno").className = "nav-icon flaticon-005-dress";
-                document.getElementById("menuDiseno").className = "nav-item has-treeview menu-open";
-                document.getElementById("navDiseno").className = "nav-link active";
-                document.getElementById("navDiseno2").className = "nav-link active";
-            }
-            window.onload = changeClassById();
-        </script>
-    
+
 </body>
 
 </html>
