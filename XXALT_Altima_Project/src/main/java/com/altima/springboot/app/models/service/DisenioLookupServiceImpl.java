@@ -54,7 +54,7 @@ public class DisenioLookupServiceImpl implements IDisenioLookupService {
 	@Override
 	public DisenioLookup findOne(Long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return em.find(DisenioLookup.class, id);
 	}
 
 	

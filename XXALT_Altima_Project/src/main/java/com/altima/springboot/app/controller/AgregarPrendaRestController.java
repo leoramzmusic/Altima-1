@@ -27,11 +27,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.altima.springboot.app.models.entity.DisenioMaterial;
 import com.altima.springboot.app.models.entity.DisenioMaterialPrenda;
 import com.altima.springboot.app.models.entity.DisenioPrenda;
+import com.altima.springboot.app.models.entity.DisenioPrendaMarcador;
 import com.altima.springboot.app.models.entity.DisenioPrendaPatronaje;
 import com.altima.springboot.app.models.service.DisenioMaterialPrendaServiceImpl;
 import com.altima.springboot.app.models.service.DisenioPrendaPatronajeServiceImpl;
 import com.altima.springboot.app.models.service.DisenioPrendaServiceImpl;
+import com.altima.springboot.app.models.service.IDisenioLookupService;
 import com.altima.springboot.app.models.service.IDisenioMaterialService;
+import com.altima.springboot.app.models.service.IDisenioPrendaMarcadorService;
 import com.altima.springboot.app.models.service.UploadServiceImpl;
 
 
@@ -49,7 +52,10 @@ public class AgregarPrendaRestController
 	private DisenioMaterialPrendaServiceImpl materialPrendaService;
 	@Autowired
 	private DisenioPrendaPatronajeServiceImpl prendaPatronajeService;
-
+	@Autowired
+	private IDisenioLookupService disenioLookupService;
+	@Autowired
+	private IDisenioPrendaMarcadorService disenioPrendaMarcadorService; 
 	public String file1;
 	
 	public String file2;
@@ -68,7 +74,7 @@ public class AgregarPrendaRestController
 	public Object detallePatronaje(@RequestParam Long id) 
 	{
 		Object dl = disenioMaterialService.findLookUp(id);
-		
+		System.out.println("pos aqui si entra");
 		return dl;
 	}
 	
@@ -79,6 +85,7 @@ public class AgregarPrendaRestController
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 				
 		JSONObject prenda = new JSONObject(disenioprenda.toString());
+	
 		dp.setIdFamiliaPrenda(Long.valueOf((String) prenda.get("idFamiliaPrenda")));
 		dp.setCreadoPor(auth.getName());
 		dp.setActualizadoPor(auth.getName());
@@ -107,13 +114,30 @@ public class AgregarPrendaRestController
 		dp.setCategoria(prenda.get("categoria").toString());
 		dp.setCombinacion(prenda.get("combinacion").toString());
 		dp.setEstatus(1L);
-		
+		System.out.println("si se imprime esto si la libra hasta aqui");
 		return dp;
 	}
 	
 	@RequestMapping(value="/guardar_final", method=RequestMethod.POST)
-	public void guardarFinal( @RequestParam(name = "objeto_materiales") String objeto_materiales, @RequestParam(name = "objeto_patronajes") String objeto_patronaje, @RequestParam(name = "accion") String accion) throws NoSuchFieldException, SecurityException
-	{
+	public void guardarFinal( @RequestParam(name = "objeto_materiales") String objeto_materiales,@RequestParam(name = "objeto_marcadores") String objeto_marcadores, @RequestParam(name = "objeto_patronajes") String objeto_patronaje, @RequestParam(name = "accion") String accion) throws NoSuchFieldException, SecurityException
+	{		
+		System.out.println(accion);
+		if(accion.equalsIgnoreCase("editar"))
+		{
+			disenioPrendaMarcadorService.deleteByIdPrenda(dp.getIdPrenda());
+			prendaPatronajeService.deleteAllPatronajeFromPrenda(dp.getIdPrenda());
+			materialPrendaService.deleteAllMaterialFromPrenda(dp.getIdPrenda());
+			
+			System.out.println("eliminare losdemas porque voy a editar ");
+		}
+		
+		for (String marcador_split : objeto_marcadores.split(",")) {
+			DisenioPrendaMarcador dpm =new DisenioPrendaMarcador();
+			dpm.setIdMarcador(Long.parseLong(marcador_split));
+			dpm.setIdPrenda(dp.getIdPrenda());		
+			disenioPrendaMarcadorService.save(dpm);
+		}
+		System.out.println("dios porfa que si jale");
 		prendaService.save(dp);
 		dp.setIdText("PRE" + (1000 + dp.getIdPrenda()));
 		prendaService.save(dp);
@@ -121,14 +145,9 @@ public class AgregarPrendaRestController
 		//Coso del auth
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
-		System.out.println(accion);
-		if(accion.equalsIgnoreCase("editar"))
-		{
-			prendaPatronajeService.deleteAllPatronajeFromPrenda(dp.getIdPrenda());
-			materialPrendaService.deleteAllMaterialFromPrenda(dp.getIdPrenda());
-			System.out.println("eliminare losdemas porque voy a editar ");
-		}
+
 		
+
 		//Se guardan Muchos a Muchos de Materiales
 		JSONArray materiales = new JSONArray(objeto_materiales);
 		for(int i = 0; i < materiales.length(); i++)
@@ -167,6 +186,7 @@ public class AgregarPrendaRestController
 	@RequestMapping(value="/guardar_final_prospecto", method=RequestMethod.GET)
 	public void guardarFinalProspecto() throws NoSuchFieldException, SecurityException
 	{
+		System.out.println("seguro aqui vale nepe");
 		prendaService.save(dp);
 		dp.setIdText("PRE" + (1000 + dp.getIdPrenda()));
 		dp.setEstatusRecepcionMuestra("Prospecto");
@@ -175,6 +195,7 @@ public class AgregarPrendaRestController
 		
 		dp = null;
 		this.dp = new DisenioPrenda();
+		System.out.println("sale libre");
 	}
 	
 	@RequestMapping(value="/asignar_id", method=RequestMethod.GET)

@@ -1,4 +1,4 @@
-//Objetos ser llenado para almacenar
+    //Objetos ser llenado para almacenar
 objeto_prenda = {};
 objeto_materiales = [];
 objeto_patronajes = [];

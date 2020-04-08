@@ -27,11 +27,11 @@ public class DisenioPrendaMarcador implements Serializable {
 	private Long idPrendaMarcador;
 	
 	@Column(name="id_prenda")
-	private Long idMaterial;
+	private Long idPrenda;
 	
 	
 	@Column(name="id_marcador")
-	private Long idTela;
+	private Long idMarcador;
 
 
 	public Long getIdPrendaMarcador() {
@@ -44,28 +44,25 @@ public class DisenioPrendaMarcador implements Serializable {
 	}
 
 
-	public Long getIdMaterial() {
-		return idMaterial;
-	}
-
-
-	public void setIdMaterial(Long idMaterial) {
-		this.idMaterial = idMaterial;
-	}
-
-
-	public Long getIdTela() {
-		return idTela;
-	}
-
-
-	public void setIdTela(Long idTela) {
-		this.idTela = idTela;
-	}
-
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public Long getIdMarcador() {
+		return idMarcador;
+	}
+
+	public void setIdMarcador(Long idMarcador) {
+		this.idMarcador = idMarcador;
+	}
+
+	public Long getIdPrenda() {
+		return idPrenda;
+	}
+
+	public void setIdPrenda(Long idPrenda) {
+		this.idPrenda = idPrenda;
 	}
 	
 	

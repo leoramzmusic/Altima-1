@@ -115,7 +115,7 @@ public class DisenioMaterialServiceImpl implements IDisenioMaterialService {
 	@Override
 	public Object findLookUp(Long id) {
 		// TODO Auto-generated method stubString
-		return (Object) em.createNativeQuery("SELECT * FROM alt_disenio_lookup WHERE tipo_lookup = 'Pieza Trazo' AND id_lookup = " + id+" order by nombreLookup").getSingleResult();
+		return (Object) em.createNativeQuery("SELECT * FROM alt_disenio_lookup WHERE tipo_lookup = 'Pieza Trazo' AND id_lookup = " + id+" order by nombre_lookup").getSingleResult();
 	}
 
 	@SuppressWarnings("unchecked")

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -22,7 +21,9 @@ import com.altima.springboot.app.models.entity.DisenioMaterial;
 import com.altima.springboot.app.models.entity.DisenioPrenda;
 import com.altima.springboot.app.models.entity.DisenioRuta;
 import com.altima.springboot.app.models.service.IDisenioFamiliaPrendaService;
+import com.altima.springboot.app.models.service.IDisenioLookupService;
 import com.altima.springboot.app.models.service.IDisenioMaterialService;
+import com.altima.springboot.app.models.service.IDisenioPrendaMarcadorService;
 import com.altima.springboot.app.models.service.IDisenioPrendaService;
 import com.altima.springboot.app.models.service.IDisenioRutaService;
 import com.altima.springboot.app.models.service.IUploadService;
@@ -40,6 +41,10 @@ public class PrendasController {
 	IDisenioRutaService disenioRutaService;
 	@Autowired
 	IUploadService uFileService;
+	@Autowired
+	IDisenioLookupService disenioLookupService;
+	@Autowired
+	private IDisenioPrendaMarcadorService disenioPrendaMarcadorService; 
 	
 	@GetMapping("prendas") 
 	public String listClothes(Model model, Map<String, Object> m) throws InterruptedException 
@@ -92,7 +97,9 @@ public class PrendasController {
 		System.out.println("entre al editar jsjs: " + id);
 		DisenioPrenda disenio = new DisenioPrenda();
 		DisenioPrenda prenda = disenioPrendaService.findOne(id);
-		
+
+		model.addAttribute("marcadores", disenioLookupService.findByTipoLookup("Marcador"));
+		model.addAttribute("prendasmarcadores", disenioPrendaMarcadorService.findByIdPrenda(id));
 		model.addAttribute("familias", disenioMaterialService.findAllFamiliaPrenda());
 		model.addAttribute("materiales", disenioMaterialService.findAllForCreate());
 		model.addAttribute("materialesPrenda", disenioMaterialService.findAllFromPrenda(id));
@@ -100,6 +107,8 @@ public class PrendasController {
 		model.addAttribute("patronajesPrenda", disenioMaterialService.findAllPatronajeFromPrenda(id));
 		model.addAttribute("prenda", prenda);
 		m.put("disenio", disenio);
+
+		System.out.println("sale de esta vaina");
 		return "editar-prenda";
 	}
 	

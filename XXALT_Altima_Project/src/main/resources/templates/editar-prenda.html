@@ -219,14 +219,15 @@
                                                                     <textarea class="form-control" rows="6" th:field="*{detalleConfeccion}" placeholder="Especificar" id="DetalleConfeccion"></textarea>
                                                                 </div>
                                                             </div>
-                                                            <label for="adicionar" style="margin-left: 7px;">Permisos&nbsp;&nbsp;</label>
+                                                            <label for="adicionar" style="margin-left: 7px;">Marcadores&nbsp;&nbsp;</label>
                                                             <div class="input-group col-sm-12">
 											
-                                                                <select class="form-control" name="permiso" id="permiso">
+                                                                <select class="form-control" name="marcador_" id="marcador_">
                                                                     <option value="">Seleccione...</option>
+                                                                    <option th:each="marcador:${marcadores}"th:value="${marcador.idLookup}" th:text="${marcador.nombreLookup}"></option>
                                                                 </select>
 															  <span class="input-group-btn">
-															    <button id="adicionar" class="btn btn-primary" type="button" onclick="guardar()">
+															    <button id="adicionar" class="btn btn-primary" type="button" onclick="guardarMarcador()">
                                                                     <i class="fas fa-plus"></i>
                                                                 </button>
 															  </span>
@@ -234,21 +235,20 @@
 															<br><br>
                                                             <div class="col-sm-12">
 
-                                                                <label>Marcadores</label>
                                                                 <table class="table table-bordered table-hover">
                                                                     <thead>
                                                                         <tr>
                                                                             <th style="display: none;">Id</th>
-                                                                            <th>Marcadores</th>
+                                                                            <th>Lista</th>
                                                                             <th>Eliminar</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody id="tablita">
-                                                                        <tr>
-                                                                            <td style="display: none;">test</td>
-                                                                            <td>test</td>
+                                                                        <tr th:each="pm:${prendasmarcadores}">
+                                                                            <td style="display: none;" th:text="${pm[0]}"></td>
+                                                                            <td th:text="${pm[1]}"></td>
                                                                             <td>
-                                                                                <button type="button" name="remove" onclick="eliminar(this)" class="btn btn-danger btn_remove">Quitar</button>
+                                                                                <button type="button" name="remove" onclick="eliminarMarcador(this)" class="btn btn-danger btn_remove">Quitar</button>
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>
@@ -432,7 +432,7 @@
                                                                                 </button>
                                                                             </td>
                                                                             <td class="tdcenter">
-                                                                                <button class="btn btn-danger rounded-circle" th:onclick="'EliminarPatronajeExistente(\'' + ${pat[0]} + '\');'">
+                                                                                <button class="btn btn-danger rounded-circle" th:onclick="'QuitarPatronaje(\'' + ${pat[0]} + '\');'">
                                                                                     <i class='fas fa-minus fa-sm'></i>
                                                                                 </button>
                                                                             </td>

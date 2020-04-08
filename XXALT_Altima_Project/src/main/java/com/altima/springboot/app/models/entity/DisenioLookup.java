@@ -1,12 +1,16 @@
 package com.altima.springboot.app.models.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 
@@ -171,100 +175,4 @@ public class DisenioLookup implements Serializable{
 		return serialVersionUID;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((Estatus == null) ? 0 : Estatus.hashCode());
-		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
-		result = prime * result + ((atributo1 == null) ? 0 : atributo1.hashCode());
-		result = prime * result + ((atributo2 == null) ? 0 : atributo2.hashCode());
-		result = prime * result + ((atributo3 == null) ? 0 : atributo3.hashCode());
-		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
-		result = prime * result + ((descripcionLookup == null) ? 0 : descripcionLookup.hashCode());
-		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
-		result = prime * result + ((idLookup == null) ? 0 : idLookup.hashCode());
-		result = prime * result + ((idText == null) ? 0 : idText.hashCode());
-		result = prime * result + ((nombreLookup == null) ? 0 : nombreLookup.hashCode());
-		result = prime * result + ((tipoLookup == null) ? 0 : tipoLookup.hashCode());
-		result = prime * result + ((ultimaFechaModificacion == null) ? 0 : ultimaFechaModificacion.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		DisenioLookup other = (DisenioLookup) obj;
-		if (Estatus == null) {
-			if (other.Estatus != null)
-				return false;
-		} else if (!Estatus.equals(other.Estatus))
-			return false;
-		if (actualizadoPor == null) {
-			if (other.actualizadoPor != null)
-				return false;
-		} else if (!actualizadoPor.equals(other.actualizadoPor))
-			return false;
-		if (atributo1 == null) {
-			if (other.atributo1 != null)
-				return false;
-		} else if (!atributo1.equals(other.atributo1))
-			return false;
-		if (atributo2 == null) {
-			if (other.atributo2 != null)
-				return false;
-		} else if (!atributo2.equals(other.atributo2))
-			return false;
-		if (atributo3 == null) {
-			if (other.atributo3 != null)
-				return false;
-		} else if (!atributo3.equals(other.atributo3))
-			return false;
-		if (creadoPor == null) {
-			if (other.creadoPor != null)
-				return false;
-		} else if (!creadoPor.equals(other.creadoPor))
-			return false;
-		if (descripcionLookup == null) {
-			if (other.descripcionLookup != null)
-				return false;
-		} else if (!descripcionLookup.equals(other.descripcionLookup))
-			return false;
-		if (fechaCreacion == null) {
-			if (other.fechaCreacion != null)
-				return false;
-		} else if (!fechaCreacion.equals(other.fechaCreacion))
-			return false;
-		if (idLookup == null) {
-			if (other.idLookup != null)
-				return false;
-		} else if (!idLookup.equals(other.idLookup))
-			return false;
-		if (idText == null) {
-			if (other.idText != null)
-				return false;
-		} else if (!idText.equals(other.idText))
-			return false;
-		if (nombreLookup == null) {
-			if (other.nombreLookup != null)
-				return false;
-		} else if (!nombreLookup.equals(other.nombreLookup))
-			return false;
-		if (tipoLookup == null) {
-			if (other.tipoLookup != null)
-				return false;
-		} else if (!tipoLookup.equals(other.tipoLookup))
-			return false;
-		if (ultimaFechaModificacion == null) {
-			if (other.ultimaFechaModificacion != null)
-				return false;
-		} else if (!ultimaFechaModificacion.equals(other.ultimaFechaModificacion))
-			return false;
-		return true;
-	}	
 }
