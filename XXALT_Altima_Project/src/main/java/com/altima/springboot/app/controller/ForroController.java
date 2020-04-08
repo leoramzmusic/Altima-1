@@ -53,7 +53,7 @@ public class ForroController {
 	private IDisenioFamiliaComposicionForroService ComposicionForroService;
 	
 
-	@PostMapping("guardar-forro")
+	@PostMapping("/guardar-forro")
 	public String guardar_forro(
 			DisenioForro forro,
 			@RequestParam("txtTablaf") String composicion,
@@ -157,7 +157,7 @@ public class ForroController {
 	}
 	
 	
-	@GetMapping("editar-forro/{id}")
+	@GetMapping("/editar-forro/{id}")
 	public String editar(@PathVariable(value="id") Long id , Model model) {
 		DisenioTela tela = new DisenioTela() ;
 		DisenioMaterial material = new DisenioMaterial();
@@ -179,7 +179,7 @@ public class ForroController {
 		// Comienza erik
 				
 		model.addAttribute("lisFam",disenioTelaService.findAllFamilaComposicion());
-		
+		model.addAttribute("lisCom",disenioTelaService.findAllComposicion());
 		model.addAttribute("listForro",forroService.findAll()); 
 		model.addAttribute("listBoton", disenioTelaService.findAllBotones(null));
 		model.addAttribute("listColor", disenioTelaService.findAllColores());
@@ -213,7 +213,7 @@ public class ForroController {
 				.body(recurso);
 	}
 	
-	@GetMapping("delete-forro/{id}") 
+	@GetMapping("/delete-forro/{id}") 
 	public String deleteMaterial(@PathVariable("id") Long idForro, RedirectAttributes redirectAttrs) {
 		DisenioForro forro = forroService.findOne(idForro);
 		forro.setEstatus("0");
@@ -221,7 +221,7 @@ public class ForroController {
 		redirectAttrs
         .addFlashAttribute("title", "Forro elimnado correctamente")
         .addFlashAttribute("icon", "success");
-		  return "redirect:materiales";
+		  return "redirect:/materiales";
 	}
 	
 

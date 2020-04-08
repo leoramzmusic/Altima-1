@@ -242,7 +242,7 @@ public class TelaController {
 				DisenioForro forro = new DisenioForro();
 				model.addAttribute("forro", forro);
 				model.addAttribute("lisFam",disenioTelaService.findAllFamilaComposicion());
-				
+				model.addAttribute("lisCom",disenioTelaService.findAllComposicion());
 				model.addAttribute("listForro",forroService.ForrosSelect(id)); 
 				model.addAttribute("listBoton", disenioTelaService.findAllBotones(id));
 				model.addAttribute("listColor", disenioTelaService.findAllColores());
@@ -286,6 +286,6 @@ public class TelaController {
 		redirectAttrs
         .addFlashAttribute("title", "Tela elimnada correctamente")
         .addFlashAttribute("icon", "success");
-		  return "redirect:materiales";
+		  return "redirect:/materiales";
 	}
 }

@@ -14,6 +14,8 @@ public interface IDisenioTelaService {
 	
 	List<DisenioLookup> findAllFamilaComposicion();
 	
+	List<DisenioLookup> findAllComposicion();
+	
 	List<DisenioLookup> findAllPrenda();
 	
 	public List<Object []> ComposicionTelaMN( Long id);

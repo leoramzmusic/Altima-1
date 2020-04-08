@@ -91,6 +91,8 @@ public class MaterialesController {
 		model.addAttribute("forro", forro);
 		model.addAttribute("lisFam",disenioTelaService.findAllFamilaComposicion());
 		
+		model.addAttribute("lisCom",disenioTelaService.findAllComposicion());
+		
 		//agregar tela
 		DisenioTela tela = new DisenioTela(); 
 		model.addAttribute("listForro",forroService.findAll()); 

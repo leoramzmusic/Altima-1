@@ -68,6 +68,15 @@ public class DisenioTelaServiceImpl implements IDisenioTelaService {
 		return em.createQuery("from DisenioLookup where tipo_lookup = 'Familia Composicion'").getResultList();
 	}
 	
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<DisenioLookup> findAllComposicion() {
+		// TODO Auto-generated method stub
+		return em.createQuery("from DisenioLookup where tipo_lookup = 'Composicion'").getResultList();
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional

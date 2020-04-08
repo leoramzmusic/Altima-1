@@ -8,8 +8,8 @@
         <label for="status">Composici&oacute;n</label>
         <select id="telaFamcomposicion" name="telaFamcomposicion" class="form-control selectCustom" data-live-search="true">
         	<option value="">Selecciona uno...</option>
-        	<option th:each="lisFam: ${lisFam}"
-			th:value="${lisFam.idLookup}" th:text="${lisFam.nombreLookup}"></option>
+        	<option th:each="lisCom: ${lisCom}"
+			th:value="${lisCom.idLookup}" th:text="${lisCom.nombreLookup}"></option>
             
         </select>
     </div>
