@@ -42,7 +42,7 @@ public class DisenioPruebaLavadoContaminacionCosturaServiceImpl implements IDise
 	public int ifExist(Long id) {
 
 		return Integer.parseInt(em.createNativeQuery("SELECT IF((SELECT COUNT(*) \r\n" + 
-														"FROM alt_disenio_prueba_encogimiento_lavado \r\n" + 
+														"FROM alt_disenio_prueba_lavado_contaminacion_costura \r\n" + 
 															"WHERE id_calidad = "+id+")>0, 1 , 0)").getSingleResult().toString());
 	}
 
@@ -57,7 +57,7 @@ public class DisenioPruebaLavadoContaminacionCosturaServiceImpl implements IDise
 	public int ifExistContaCostura(Long id, String tipo) {
 
 		return Integer.parseInt(em.createNativeQuery("SELECT IF((SELECT COUNT(*) \r\n" + 
-														"FROM alt_disenio_prueba_encogimiento_lavado \r\n" + 
+														"FROM alt_disenio_prueba_lavado_contaminacion_costura \r\n" + 
 															"WHERE id_calidad = "+id+" AND tipo_prueba= '"+tipo+"')>0, 1 , 0)").getSingleResult().toString());
 	}
 }

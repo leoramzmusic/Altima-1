@@ -276,6 +276,7 @@ function PruebasEncogimiento(){
 		    },
 	    
 	    success: (data) => {
+	    	location.href = "/calidad";
 	    },
 	   
 	    error: (e) => {
@@ -298,9 +299,9 @@ function PruebasLavado(){
 	var medidaTramaPruebaLavado= $('#medidaTramaPruebaLavado').val();
 //resultado
 	var diferenciaHiloPlanchaVapor= $('#diferenciaHiloPruebaLavado').val();
-	var finalHiloMedPlanchaVapor= $('#finalHiloMedPruebaLavado').val();
+	//var finalHiloMedPlanchaVapor= $('#finalHiloMedPruebaLavado').val();
 	var diferenciaTramaPlanchaVapor= $('#diferenciaTramaPruebaLavado').val();
-	var finalTramaMedPlanchaVapor= $('#finalTramaMedPruebaLavado').val();
+	//var finalTramaMedPlanchaVapor= $('#finalTramaMedPruebaLavado').val();
 	var observacionesReultPlanchaVapor= $('#observacionesReultPruebaLavado').val();
 	
 //===================variables de Prueba de solidez y color=======================
@@ -342,6 +343,7 @@ function PruebasLavado(){
 
 		},
 	    success: (data) => {
+	    	location.href = "/calidad";
 	    },
 	   
 	    error: (e) => {
@@ -391,7 +393,7 @@ function PruebaCostura(){
 
 		},
 	    success: (data) => {
-	    	
+	    	location.href = "/calidad";
 	    },
 	   
 	    error: (e) => {
@@ -435,7 +437,7 @@ $.ajax({
 	    
 	    success: (data) => {
 
-	    	
+	    	location.href = "/calidad";
 	    },
 	   
 	    error: (e) => {
@@ -471,7 +473,7 @@ function ValidacionEncogimiento() {
     ) {
         $('#AlertaPestanaEncogimiento').css('display', 'none');
         $('#enlaceEncogimiento').click();
-        location.href = "/calidad";
+        
     }
     else {
         $('#AlertaPestanaEncogimiento').css('display', 'block');
@@ -494,7 +496,7 @@ function ValidacionLavado() {
     ) {
         $('#AlertaPestanaLavado').css('display', 'none');
         $('#enlaceLavado').click();
-        location.href = "/calidad";
+        
     }
     else {
         $('#AlertaPestanaLavado').css('display', 'block');
@@ -515,7 +517,7 @@ function ValidacionCostura() {
     ) {
         $('#AlertaPestanaCostura').css('display', 'none');
         $('#enlaceCostura').click();
-        location.href = "/calidad";
+        
     }
     else {
         $('#AlertaPestanaCostura').css('display', 'block');
@@ -533,7 +535,7 @@ function ValidacionContaminacion() {
     ) {
         $('#AlertaPestanaContaminacion').css('display', 'none');
         $('#enlaceContaminacion').click();
-        location.href = "/calidad";
+        
     }
     else {
         $('#AlertaPestanaContaminacion').css('display', 'block');

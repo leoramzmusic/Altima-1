@@ -87,7 +87,7 @@ public class CalidadController {
 				//model.addAttribute("displa", "true");
 				cont+=1;
 				}
-				if (u.getTipoPrueba().equalsIgnoreCase("Prueba de Fusion")) {
+				if (u.getTipoPrueba().equalsIgnoreCase("Prueba de Fusión")) {
 				model.addAttribute("medidaHiloPruebaFusion", u.getMedidaInicialHilo());
 				model.addAttribute("medidaTramaPruebaFusion", u.getMedidaInicialTrama());
 				model.addAttribute("diferenciaHiloPruebaFusion", u.getMedidaFinalHilo());
@@ -172,7 +172,7 @@ public class CalidadController {
 				
 				if(cc.getTipoPrueba().equalsIgnoreCase("Rasgado de Tela")) {
 					//model.addAttribute("readCostura", "true");
-					model.addAttribute("observacionesDeslizamiento", cc.getObservacionesResultados());
+					model.addAttribute("observacionesRasgado", cc.getObservacionesResultados());
 					//model.addAttribute("displaCostura", "true");
 					
 					if(cc.getRasgadoTela().equals("si")) {
@@ -209,11 +209,6 @@ public class CalidadController {
 			}
 			model.addAttribute("idCalidad", id);
 			
-			if(cont==9) {
-				Calidad = disenioCalidad.findOne(id);
-				Calidad.setEstatus("1");
-				disenioCalidad.save(Calidad);
-			}
 			return "/calidad-nueva-prueba";
 		}
 		else {
