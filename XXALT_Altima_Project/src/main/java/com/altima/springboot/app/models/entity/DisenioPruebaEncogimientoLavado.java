@@ -40,9 +40,6 @@ public class DisenioPruebaEncogimientoLavado implements Serializable{
 	
 	@Column(name="proveedor_prueba_vapor")
 	private String proveedorPruebavapor;
-
-	@Column(name="fecha_finalizacion")
-	private String fechaFinalizacion;
 	
 	@Column(name="temperatura_prueba_vapor")
 	private String temperaturaPruebaVapor;
@@ -76,9 +73,6 @@ public class DisenioPruebaEncogimientoLavado implements Serializable{
 	
 	@Column(name="tipo_prueba")
 	private String tipoPrueba;
-	
-	@Column(name="id_tela")
-	private String idTela;
 	
 	@Column(name="id_calidad")
 	private Long idCalidad;
@@ -136,14 +130,6 @@ public class DisenioPruebaEncogimientoLavado implements Serializable{
 
 	public void setAdherenciaPruebaVapor(String adherenciaPruebaVapor) {
 		this.adherenciaPruebaVapor = adherenciaPruebaVapor;
-	}
-
-	public String getFechaFinalizacion() {
-		return fechaFinalizacion;
-	}
-
-	public void setFechaFinalizacion(String fechaFinalizacion) {
-		this.fechaFinalizacion = fechaFinalizacion;
 	}
 
 	public String getTemperaturaPruebaVapor() {
@@ -232,14 +218,6 @@ public class DisenioPruebaEncogimientoLavado implements Serializable{
 
 	public void setTipoPrueba(String tipoPrueba) {
 		this.tipoPrueba = tipoPrueba;
-	}
-
-	public String getIdTela() {
-		return idTela;
-	}
-
-	public void setIdTela(String idTela) {
-		this.idTela = idTela;
 	}
 
 	public Long getIdCalidad() {
