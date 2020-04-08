@@ -88,7 +88,7 @@ public class PrendasController {
 		model.addAttribute("prenda", prenda);
 		m.put("disenio", disenio);
 		m.put("accion", "confirmar");
-		return "agregar-confirmar-prenda";
+		return "editar-prenda";
 	}
 	
 	@RequestMapping(value= "/editar-prenda/{id}")
