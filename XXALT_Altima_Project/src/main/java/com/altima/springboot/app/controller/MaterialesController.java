@@ -137,7 +137,7 @@ public class MaterialesController {
 	
 	
 	
-	@GetMapping("/editar-material{id}") 
+	@GetMapping("/editar-material/{id}") 
 	public String editarMaterial( @PathVariable("id") Long idMaterial, Model model) {
 		
 		DisenioMaterial material = disenioMaterialService.findOne(idMaterial);
@@ -177,14 +177,14 @@ public class MaterialesController {
 	}
 	
 	
-	@GetMapping("/delete-material{id}") 
+	@GetMapping("/delete-material/{id}") 
 	public String deleteMaterial(@PathVariable("id") Long idMaterial) {
 		
 		DisenioMaterial material = disenioMaterialService.findOne(idMaterial);
 		material.setEstatus("0");
 		disenioMaterialService.save(material);
 		  
-		  return "redirect:materiales";
+		  return "redirect:/materiales";
 	}
 	
 	

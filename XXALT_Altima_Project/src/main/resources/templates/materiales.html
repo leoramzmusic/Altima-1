@@ -104,7 +104,7 @@
                                                         <a th:case="'Forro'" th:href="@{/editar-forro/}+${mt[0]}" class="btn btn-warning btn-circle btn-sm popoverxd" 
                                                         data-container="body" data-toggle="popover" data-placement="top" data-content="Editar"><i class="fas fa-pen"></i></a>
 
-                                                        <a th:case="*" th:href="@{/editar-material}+${mt[0]}" class="btn btn-warning btn-circle btn-sm popoverxd" 
+                                                        <a th:case="*" th:href="@{/editar-material/}+${mt[0]}" class="btn btn-warning btn-circle btn-sm popoverxd" 
                                                         data-container="body" data-toggle="popover" data-placement="top" data-content="Editar"><i class="fas fa-pen"></i></a>
                                                         
                                                         
@@ -116,7 +116,7 @@
                                                         
                                                         
                                                         
-                                                             <a th:unless="${mt[3] == 'Forro' || mt[3] == 'Tela'  }" th:href="@{/delete-material}+${mt[0]}"  class="btn btn-danger btn-circle btn-sm btn-delete popoverxd"
+                                                             <a th:unless="${mt[3] == 'Forro' || mt[3] == 'Tela'  }" th:href="@{/delete-material/}+${mt[0]}"  class="btn btn-danger btn-circle btn-sm btn-delete popoverxd"
                                                          data-container="body" data-toggle="popover" data-placement="top"
                                                           data-content="Dar de baja"><i class="fas fa-caret-down"></i></a>
                                                           
