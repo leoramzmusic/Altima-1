@@ -42,6 +42,7 @@
      <input type="hidden" id="idoperar" th:value="${idoperar}">
      <input type="hidden" id="entretelas" th:value="${entretelas}">
      <input type="hidden" id="proovedores" th:value="${proovedores}">
+     <input type="hidden" id="aguja" th:value="${aguja}">
         <!-- Navbar -->
         <div th:insert="navegacion-nav"></div>
         <!-- /.navbar -->
@@ -193,6 +194,7 @@
 		listarOperarios();
 		listarEntretelas();
 		listarTelas();
+		listarAgujas();
 	});
 	</script>
 </body>

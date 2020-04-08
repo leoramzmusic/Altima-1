@@ -52,5 +52,12 @@ public class DisenioPruebaLavadoContaminacionCosturaServiceImpl implements IDise
 		return (DisenioPruebaLavadoContaminacionCostura) em.createQuery("from DisenioPruebaLavadoContaminacionCostura where idCalidad="+id+" and tipoPrueba = '"+tipo+"'").getSingleResult();
 	}
 
-	
+	@Override
+	@Transactional
+	public int ifExistContaCostura(Long id, String tipo) {
+
+		return Integer.parseInt(em.createNativeQuery("SELECT IF((SELECT COUNT(*) \r\n" + 
+														"FROM alt_disenio_prueba_encogimiento_lavado \r\n" + 
+															"WHERE id_calidad = "+id+" AND tipo_prueba= '"+tipo+"')>0, 1 , 0)").getSingleResult().toString());
+	}
 }

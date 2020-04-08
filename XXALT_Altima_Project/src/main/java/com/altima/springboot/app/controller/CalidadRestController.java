@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.altima.springboot.app.models.entity.DisenioCalidad;
+import com.altima.springboot.app.models.entity.DisenioLookup;
 import com.altima.springboot.app.models.entity.DisenioPruebaEncogimientoLavado;
 import com.altima.springboot.app.models.entity.DisenioPruebaLavadoContaminacionCostura;
 import com.altima.springboot.app.models.entity.DisenioTela;
 import com.altima.springboot.app.models.service.IDisenioCalidadService;
+import com.altima.springboot.app.models.service.IDisenioLookupService;
 import com.altima.springboot.app.models.service.IDisenioMaterialService;
 import com.altima.springboot.app.models.service.IDisenioPruebaEncogimientoLavadoService;
 import com.altima.springboot.app.models.service.IDisenioPruebaLavadoContaminacionCosturaService;
@@ -40,11 +42,13 @@ public class CalidadRestController {
 	@Autowired
 	private IDisenioCalidadService CalidadService;
 	
-	@Autowired
-	IDisenioPruebaEncogimientoLavadoService pruebaEncogiLavado;
+	@Autowired IDisenioLookupService disenioLookup;
 	
 	@Autowired
-	IDisenioPruebaLavadoContaminacionCosturaService pruebaContaCostura;
+	private IDisenioPruebaEncogimientoLavadoService pruebaEncogiLavado;
+	
+	@Autowired
+	private IDisenioPruebaLavadoContaminacionCosturaService pruebaContaCostura;
 	
 	@Autowired
 	private IDisenioPruebaLavadoContaminacionCosturaService LavadoContaCostura;
@@ -56,7 +60,7 @@ public class CalidadRestController {
 	private IDisenioMaterialService materialService;
 	
 	@Autowired
-	IDisenioCalidadService disenioCalidad;
+	private IDisenioCalidadService disenioCalidad;
 	
 	@RequestMapping(value="/listarCalidad", method=RequestMethod.GET)
 	public List<DisenioCalidad> listarCalidad(){
@@ -77,6 +81,11 @@ public class CalidadRestController {
 	@RequestMapping(value="/listarEntretelas", method=RequestMethod.GET)
 	public List<Object> listarEntretelas(){
 		return materialService.findAllByTipoMaterial(111L);
+	}
+	
+	@RequestMapping(value="/listarTipoAguja", method=RequestMethod.GET)
+	public List<DisenioLookup> listarAgujas(){
+		return disenioLookup.findByTipoLookup("Medida Aguja");
 	}
 	
 	@RequestMapping(value="/guardarPruebaEncogimiento", method=RequestMethod.POST)
@@ -110,13 +119,14 @@ public class CalidadRestController {
 			PruebaEncoLavado.setIdCalidad(disenioCalidad.getIdCalidad());
 		}
 		
-		else if (palabras[25]!=null && EncogimientoLavado.ifExist(Long.valueOf(palabras[25]))==0) {
+		else if (palabras[25]!=null && EncogimientoLavado.ifExist(Long.valueOf(palabras[25]))==0 || EncogimientoLavado.ifExistLavado(Long.valueOf(palabras[25]), "Prueba de Vapor")==0) {
 			PruebaEncoLavado.setIdCalidad(Long.valueOf(palabras[25]));	
 		}
 			
 		else {
 			PruebaEncoLavado = EncogimientoLavado.findByTipoPrueba("Prueba de Vapor", Long.valueOf(palabras[25]));
 		}
+			
 		PruebaEncoLavado.setIdTela(palabras[0]);
 		PruebaEncoLavado.setCreadoPor(palabras[1]);
 		PruebaEncoLavado.setFechaRealizacion(palabras[2].replace("T", " "));
@@ -144,7 +154,7 @@ public class CalidadRestController {
 			PruebaEncoLavado.setIdCalidad(disenioCalidad.getIdCalidad());
 		}
 
-		else if (palabras[25]!=null && EncogimientoLavado.ifExist(Long.valueOf(palabras[25]))==0) {
+		else if (palabras[25]!=null && EncogimientoLavado.ifExist(Long.valueOf(palabras[25]))==0 || EncogimientoLavado.ifExistLavado(Long.valueOf(palabras[25]), "Prueba de Fusion")==0) {
 			PruebaEncoLavado = new DisenioPruebaEncogimientoLavado();
 			PruebaEncoLavado.setIdCalidad(Long.valueOf(palabras[25]));	
 		}
@@ -175,7 +185,7 @@ public class CalidadRestController {
 			PruebaEncoLavado = new DisenioPruebaEncogimientoLavado();
 			PruebaEncoLavado.setIdCalidad(disenioCalidad.getIdCalidad());
 		}		
-		else if (palabras[25]!=null && EncogimientoLavado.ifExist(Long.valueOf(palabras[25]))==0) {
+		else if (palabras[25]!=null && EncogimientoLavado.ifExist(Long.valueOf(palabras[25]))==0 || EncogimientoLavado.ifExistLavado(Long.valueOf(palabras[25]), "Plancha con Vapor")==0) {
 			PruebaEncoLavado = new DisenioPruebaEncogimientoLavado();
 			PruebaEncoLavado.setIdCalidad(Long.valueOf(palabras[25]));	
 		}
@@ -235,7 +245,7 @@ public class CalidadRestController {
 			PruebaEncoLavado.setIdCalidad(disenioCalidad.getIdCalidad());
         }
         
-        else if (palabras[13]!=null && EncogimientoLavado.ifExist(Long.valueOf(palabras[13]))==0) {
+        else if (palabras[13]!=null && EncogimientoLavado.ifExist(Long.valueOf(palabras[13]))==0 || EncogimientoLavado.ifExistLavado(Long.valueOf(palabras[13]), "Prueba de Lavado")==0) {
 			PruebaEncoLavado.setIdCalidad(Long.valueOf(palabras[13]));	
 		}
 			
@@ -268,7 +278,7 @@ public class CalidadRestController {
 			PruebaLavadoContaCostura.setIdCalidad(disenioCalidad.getIdCalidad());
 		 }
 		
-		else if (palabras[13]!=null && LavadoContaCostura.ifExist(Long.valueOf(palabras[13]))==0) {
+		else if (palabras[13]!=null && LavadoContaCostura.ifExist(Long.valueOf(palabras[13]))==0 || LavadoContaCostura.ifExistContaCostura(Long.valueOf(palabras[13]), "Solidez/Color")==0) {
 			PruebaLavadoContaCostura.setIdCalidad(Long.valueOf(palabras[13]));	
 		}
 			
@@ -291,7 +301,7 @@ public class CalidadRestController {
 			PruebaLavadoContaCostura = new DisenioPruebaLavadoContaminacionCostura();
 			PruebaLavadoContaCostura.setIdCalidad(disenioCalidad.getIdCalidad());
 			 }
-		else if (palabras[13]!=null && LavadoContaCostura.ifExist(Long.valueOf(palabras[13]))==0) {
+		else if (palabras[13]!=null && LavadoContaCostura.ifExist(Long.valueOf(palabras[13]))==0 || LavadoContaCostura.ifExistContaCostura(Long.valueOf(palabras[13]), "Resultado Pilling")==0) {
 			PruebaLavadoContaCostura = new DisenioPruebaLavadoContaminacionCostura();
 			PruebaLavadoContaCostura.setIdCalidad(Long.valueOf(palabras[13]));	
 			
@@ -339,7 +349,7 @@ public class CalidadRestController {
 			CalidadService.save(disenioCalidad);
 			PruebaLavadoContaCostura.setIdCalidad(disenioCalidad.getIdCalidad());
 		}
-        else if (palabras[9]!=null && LavadoContaCostura.ifExist(Long.valueOf(palabras[9]))==0) {
+        else if (palabras[9]!=null && LavadoContaCostura.ifExist(Long.valueOf(palabras[9]))==0 || LavadoContaCostura.ifExistContaCostura(Long.valueOf(palabras[9]), "Resultado Costura")==0) {
 			PruebaLavadoContaCostura.setIdCalidad(Long.valueOf(palabras[9]));	
 			
 		}
@@ -362,7 +372,7 @@ public class CalidadRestController {
 			PruebaLavadoContaCostura = new DisenioPruebaLavadoContaminacionCostura();
 			PruebaLavadoContaCostura.setIdCalidad(disenioCalidad.getIdCalidad());
 		}
-		else if (palabras[9]!=null && LavadoContaCostura.ifExist(Long.valueOf(palabras[9]))==0) {
+		else if (palabras[9]!=null && LavadoContaCostura.ifExist(Long.valueOf(palabras[9]))==0 || LavadoContaCostura.ifExistContaCostura(Long.valueOf(palabras[9]), "Rasgado de Telaa")==0) {
 			PruebaLavadoContaCostura = new DisenioPruebaLavadoContaminacionCostura();
 			PruebaLavadoContaCostura.setIdCalidad(Long.valueOf(palabras[9]));	
 			
@@ -409,7 +419,7 @@ public class CalidadRestController {
 			CalidadService.save(disenioCalidad);
 			PruebaLavadoContaCostura.setIdCalidad(disenioCalidad.getIdCalidad());
  		}
- 		else if (palabras[6]!=null && LavadoContaCostura.ifExist(Long.valueOf(palabras[6]))==0) {
+ 		else if (palabras[6]!=null && LavadoContaCostura.ifExist(Long.valueOf(palabras[6]))==0 || LavadoContaCostura.ifExistContaCostura(Long.valueOf(palabras[6]), "Resultado de Contaminacion")==0) {
 			PruebaLavadoContaCostura.setIdCalidad(Long.valueOf(palabras[6]));	
 			
 		}

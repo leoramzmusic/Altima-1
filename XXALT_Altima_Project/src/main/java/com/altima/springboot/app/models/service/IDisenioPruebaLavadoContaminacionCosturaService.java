@@ -14,4 +14,5 @@ public interface IDisenioPruebaLavadoContaminacionCosturaService {
 	
 	public DisenioPruebaLavadoContaminacionCostura findByTipoPrueba(String tipo, Long id);
 
+	public int ifExistContaCostura(Long id, String tipo);
 }

@@ -15,4 +15,6 @@ public interface IDisenioPruebaEncogimientoLavadoService {
 	public List<DisenioPruebaEncogimientoLavado> findAllByCalidad(Long id);
 	
 	public DisenioPruebaEncogimientoLavado findByTipoPrueba(String tipo, Long id);
+	
+	public int ifExistLavado(Long id, String tipo);
 }

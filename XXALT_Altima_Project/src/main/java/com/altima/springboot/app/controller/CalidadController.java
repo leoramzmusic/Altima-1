@@ -165,6 +165,7 @@ public class CalidadController {
 					//model.addAttribute("readCostura", "true");
 					model.addAttribute("observacionesDeslizamiento", cc.getObservacionesResultados());
 					//model.addAttribute("displaCostura", "true");
+					model.addAttribute("aguja", cc.getTipoAguja());
 					
 					if(cc.getDeslizamientoTela().equals("si")) {
 						model.addAttribute("checkSDeslizamiento", "true");

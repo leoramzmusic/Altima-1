@@ -53,7 +53,7 @@ public class HrEmpleadoServiceImpl implements IHrEmpleadoService {
 		// TODO Auto-generated method stub
 		return em.createNativeQuery("select emp.id_empleado, per.nombre_persona, per.apellido_paterno, per.apellido_materno from \r\n" + 
 									"(select id_empleado, id_persona from alt_hr_empleado where id_puesto = "+id+") as emp\r\n" + 
-									"INNER JOIN alt_hr_persona per on emp.id_persona = per.id_persona").getResultList();
+									"INNER JOIN alt_hr_persona per on emp.id_persona = per.id_persona order by per.nombre_persona").getResultList();
 				
 	
 	}

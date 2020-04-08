@@ -162,6 +162,27 @@ function listarEntretelas(){
 		});
 }
 
+function listarAgujas(){
+	$.ajax({
+		 method: "GET",
+		    url: "/listarTipoAguja",
+		    data: {
+		    	"_csrf": $('#token').val()
+		    },
+		    success: (data) => {
+				for (i in data){
+		    	$('#tipoAguja').append("<option value='"+data[i].idLookup+"'>"+data[i].nombreLookup+"</option>");
+				}
+				
+				var tela = $('#aguja').val();
+				$('#tipoAguja option[value="'+tela+'"]').attr("selected", true);
+		    },
+		    error: (e) => {
+		        // location.reload();
+		    }
+		});
+}
+
 
 
 
