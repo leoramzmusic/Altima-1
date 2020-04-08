@@ -21,7 +21,7 @@
     <link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-	<link rel="stylesheet" href="/dist/css/bootstrap-select.min.css">
+	<link rel="stylesheet" th:href="@{/dist/css/bootstrap-select.min.css}">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed sidebar-collapse"   onload="cargar_pagina()" >
     <!-- Site wrapper -->
@@ -45,7 +45,7 @@
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a th:href="@{'/'}">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a >Dashboard</a></li>
                                     <li class="breadcrumb-item active">Dise&ntilde;o</li>
                                     <li class="breadcrumb-item active">Materiales</li>
                             </ol>

@@ -1,15 +1,12 @@
 package com.altima.springboot.app.controller;
 
-import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,9 +31,8 @@ import com.altima.springboot.app.models.service.IDisenioTelaService;
 import com.altima.springboot.app.models.service.IUploadService;
 
 
-
+@CrossOrigin(origins = { "*" })
 @Controller
-
 public class MaterialesController {
 	
 	
@@ -47,15 +43,12 @@ public class MaterialesController {
 	private IDisenioForroService forroService;
 	@Autowired
 	private IDisenioTelaService disenioTelaService;
-	@Autowired
-	private IDisenioFamiliaComposicionTelaService ComposicionTelaService;
-	@Autowired
-	private IUploadService UploadService;
-	@Autowired
-	private IDisenioFamiliaComposicionForroService ComposicionForroService;
-	@GetMapping("materiales") 
+	
+	
+	@GetMapping("/materiales") 
 	public String listMateriales(Model model) {
 		
+		System.out.println("Errrror soy yo");
 		List<Object []> disenioMaterial = disenioMaterialService.disenioMaterial();
 		
 		model.addAttribute("listarMateriales", disenioMaterial);
@@ -112,7 +105,7 @@ public class MaterialesController {
 	
 	
 	
-	@PostMapping("guardar")
+	@PostMapping("/guardar")
 	public String guardarMaterial(@ModelAttribute DisenioMaterial material,  RedirectAttributes redirectAttrs) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (material.getIdMaterial() ==null || material.getIdMaterial() <=0) {
@@ -144,7 +137,7 @@ public class MaterialesController {
 	
 	
 	
-	@GetMapping("editar-material{id}") 
+	@GetMapping("/editar-material{id}") 
 	public String editarMaterial( @PathVariable("id") Long idMaterial, Model model) {
 		
 		DisenioMaterial material = disenioMaterialService.findOne(idMaterial);
@@ -184,7 +177,7 @@ public class MaterialesController {
 	}
 	
 	
-	@GetMapping("delete-material{id}") 
+	@GetMapping("/delete-material{id}") 
 	public String deleteMaterial(@PathVariable("id") Long idMaterial) {
 		
 		DisenioMaterial material = disenioMaterialService.findOne(idMaterial);
