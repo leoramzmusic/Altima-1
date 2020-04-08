@@ -1,6 +1,4 @@
-/*<![CDATA[*/
-	var message = /*[[${prenda}]]*/ 'default';
-	var familias = /*[[${familias}]]*/ 'default';
+
 	console.log(familias);
 	function AsignarID()
 	{
@@ -20,4 +18,3 @@
 		    }
 		});
 	}	
-	/*]]>*/

@@ -356,6 +356,7 @@ function QuitarPatronaje(identidad) {
 
 
 function Guardar() {
+	console.log("que pedo que pedo");
 	if (CambiarImgFrente == true && CambiarImgEspalda == true) {
 		$('#FormImagenes').click();
 	}
@@ -531,6 +532,7 @@ function ValidarCuartaPestana() {
 	}
 	else {
 		//Se deshabilita el boton
+		console.log("aqui si jala");
 		$('#AlertaCuartaPestana').css('display', 'none');
 		$('#SiguienteCuartaPestana').click();
 		$('#BotonBloquearGuardar').prop('disabled', true);

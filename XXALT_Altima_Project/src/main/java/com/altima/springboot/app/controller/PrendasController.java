@@ -81,14 +81,14 @@ public class PrendasController {
 		System.out.println("entre al confirmar jsjs: " + id);
 		DisenioPrenda disenio = new DisenioPrenda();
 		DisenioPrenda prenda = disenioPrendaService.findOne(id);
-		
+		model.addAttribute("marcadores", disenioLookupService.findByTipoLookup("Marcador"));
 		model.addAttribute("familias", disenioMaterialService.findAllFamiliaPrenda());
 		model.addAttribute("materiales", disenioMaterialService.findAllForCreate());
 		model.addAttribute("patronajes", disenioMaterialService.findLookUps());
 		model.addAttribute("prenda", prenda);
 		m.put("disenio", disenio);
 		m.put("accion", "confirmar");
-		return "editar-prenda";
+		return "agregar-confirmar-prenda";
 	}
 	
 	@RequestMapping(value= "/editar-prenda/{id}")
