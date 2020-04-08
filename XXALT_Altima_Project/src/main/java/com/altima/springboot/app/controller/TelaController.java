@@ -31,8 +31,6 @@ import com.altima.springboot.app.models.entity.DisenioMaterialTela;
 import com.altima.springboot.app.models.entity.DisenioTela;
 import com.altima.springboot.app.models.entity.DisenioTelaForro;
 import com.altima.springboot.app.models.entity.DisenioTelaPrenda;
-import com.altima.springboot.app.models.entity.HrDireccion;
-import com.altima.springboot.app.models.service.IDisenioFamiliaComposicionForroService;
 import com.altima.springboot.app.models.service.IDisenioFamiliaComposicionTelaService;
 import com.altima.springboot.app.models.service.IDisenioForroService;
 import com.altima.springboot.app.models.service.IDisenioMaterialService;
@@ -54,8 +52,7 @@ public class TelaController {
 	private IDisenioFamiliaComposicionTelaService ComposicionTelaService;
 	@Autowired
 	private IUploadService UploadService;
-	@Autowired
-	private IDisenioFamiliaComposicionForroService ComposicionForroService;
+	
 	
 	@Autowired
 	private IDisenioTelaForroService TelaForroService;
@@ -66,45 +63,6 @@ public class TelaController {
 	
 	protected final Log logger = LogFactory.getLog(this.getClass());
 	
-	/*
-	@PostMapping("/guardar-tela")
-	public String guardarCliente(DisenioTela tela ,
-			DisenioTelaForro forro1,
-			DisenioTelaForro forro2,
-			DisenioTelaForro forro3,
-			DisenioMaterialTela boton1,
-			DisenioMaterialTela boton2,
-			DisenioMaterialTela boton3,
-			RedirectAttributes redirectAttrs) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		
-		if ( tela.getIdTela()== null){
-			tela.setIdFamiliaComposicion(Long.valueOf(1));
-			tela.setIdLookup(Long.valueOf(1));
-			tela.setIdCalidad(Long.valueOf(1));
-			tela.setIdText("Prospecto");
-			tela.setCreadoPor(auth.getName());
-			DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-			tela.setFechaCreacion(hourdateFormat.toString());
-			tela.setUltimaFechaModificacion(hourdateFormat.toString());
-			tela.setClaveTela("Prospecto");
-			tela.setDescripcionTela("Prospecto");
-			tela.setLineaTela("1");
-			tela.setIdUnidadMedida("1");
-			tela.setConsumoPromedio("Prospecto");
-			tela.setExistencia("1");
-			tela.setTipo("Prospecto");
-			tela.setNombreTela("prospecto");
-			disenioTelaService.save(tela);
-			
-			
-		}
-		
-		
-		
-		return "redirect:clientes";
-	}
-*/
 	
 	@PostMapping("guardar-tela")
 	public String guardar_tela( DisenioTela tela,
@@ -114,39 +72,40 @@ public class TelaController {
 			@RequestParam( value="forros" , required=false) String forros,
 			@RequestParam( value="id_prendas" , required=false) String id_prendas,
 			@RequestParam(value="imagenTela", required=false) MultipartFile imagenTela,
-			RedirectAttributes redirectAttrs) {
+			RedirectAttributes redirectAttrs) throws Exception {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Date date = new Date();
 		DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		
 		if ( tela.getIdTela()== null || tela.getEstatusTela().equals("0") ) {
 			System.out.println("Entra if de id null y estatus tela 0 forro");
-			tela.setIdFamiliaComposicion(Long.valueOf(1));
 			tela.setIdCalidad(Long.valueOf(1));
-			tela.setIdText("Prospecto");
+			tela.setIdText("Tela");
 			tela.setCreadoPor(auth.getName());
 			if ( tela.getIdTela() == null) {
 				tela.setFechaCreacion(hourdateFormat.format(date));
+				tela.setUltimaFechaModificacion(null);
+				tela.setEstatus("1"); //Estatus para ver el registro en el sistema
+				tela.setEstatusTela("0");// estatus para la aprobacion de la tela
+				tela.setIdUnidadMedida("61");
+				disenioTelaService.save(tela);
+				tela.setIdText("TELA"+(tela.getIdTela()+100));
+				disenioTelaService.save(tela);
 				redirectAttrs
 	            .addFlashAttribute("title", "Tela guardada correctamente")
 	            .addFlashAttribute("icon", "success");
 			}
 			else {
+				tela.setIdUnidadMedida("61");
+				tela.setActualizadoPor(auth.getName());
+				tela.setUltimaFechaModificacion(hourdateFormat.format(date));
+				disenioTelaService.save(tela);
 				redirectAttrs
 	            .addFlashAttribute("title", "Tela editada correctamente")
 	            .addFlashAttribute("icon", "success");
 			}
 			
-			tela.setUltimaFechaModificacion(hourdateFormat.format(date));
-			tela.setDescripcionTela("En evaluación");
-			tela.setLineaTela("1");
-			tela.setIdUnidadMedida("1");
-			tela.setConsumoPromedio("1");
-			tela.setExistencia("1");
-			tela.setEstatus("1"); //Estatus para ver el registro en el sistema
-			tela.setEstatusTela("0");// estatus para la aprobacion de la tela
-			tela.setConsumo("1");
-			tela.setFoto("Sin imagen");
-			disenioTelaService.save(tela);
+		
 			
 			disenioTelaService.borrarComposicionTela(tela.getIdTela());
 			if ( composicion.length()>1) {
@@ -320,7 +279,7 @@ public class TelaController {
 	}
 	
 	@GetMapping("delete-tela/{id}") 
-	public String deleteMaterial(@PathVariable("id") Long idTela, RedirectAttributes redirectAttrs) {
+	public String deleteMaterial(@PathVariable("id") Long idTela, RedirectAttributes redirectAttrs) throws Exception {
 		DisenioTela tela = disenioTelaService.findOne(idTela);
 		tela.setEstatus("0");
 		disenioTelaService.save(tela);

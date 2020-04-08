@@ -75,7 +75,7 @@ public class MaterialesController {
 	
 	
 	
-	@GetMapping("agregar-material") 
+	@GetMapping("/agregar-material") 
 	public String agregarMaterial(Model model) {
 		DisenioMaterial material = new DisenioMaterial();
 		List<DisenioLookup> listLookupsMed = disenioMaterialService.findListaLookupMed();

@@ -11,10 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.altima.springboot.app.models.entity.DisenioLookup;
-import com.altima.springboot.app.models.entity.DisenioMaterialTela;
-import com.altima.springboot.app.models.entity.DisenioPrenda;
 import com.altima.springboot.app.models.entity.DisenioTela;
-import com.altima.springboot.app.models.entity.DisenioTelaForro;
 import com.altima.springboot.app.models.entity.DisenioTelaPrenda;
 import com.altima.springboot.app.repository.DisenioTelaPrendaRepository;
 import com.altima.springboot.app.repository.DisenioTelaRepository;

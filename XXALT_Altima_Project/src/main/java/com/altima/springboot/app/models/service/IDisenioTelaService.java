@@ -31,7 +31,7 @@ public interface IDisenioTelaService {
 	List<Object []> ForrosSeleccionados(Long id);
 	
 	
-	void save(DisenioTela diseniotela);
+	void save(DisenioTela diseniotela) throws Exception;
 
 	void delete(Long id);
 
