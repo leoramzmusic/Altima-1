@@ -238,7 +238,7 @@ public class CalidadController {
 				model.addAttribute("diferenciaTramaPruebaVapor", u.getDiferenciaMedidaTrama());
 				model.addAttribute("observacionesReultPruebaVapor", u.getObservacionesResultados());
 				}
-				if (u.getTipoPrueba().equalsIgnoreCase("Prueba de Fusion")) {
+				if (u.getTipoPrueba().equalsIgnoreCase("Prueba de Fusion") || u.getTipoPrueba().equalsIgnoreCase("Prueba de Fusión")) {
 				model.addAttribute("finalHiloMedFusion", u.getMedidaFinalHilo());
 				model.addAttribute("diferenciaHiloFusion", u.getDiferenciaMedidaHilo());
 				model.addAttribute("finalTramaMedFusion", u.getMedidaFinalTrama());
