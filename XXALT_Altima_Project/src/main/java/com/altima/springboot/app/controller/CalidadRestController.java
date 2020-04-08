@@ -94,8 +94,8 @@ public class CalidadRestController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		DisenioPruebaEncogimientoLavado PruebaEncoLavado = new DisenioPruebaEncogimientoLavado();
 		DisenioCalidad disenioCalidad = new DisenioCalidad();
- 		double resultHilo = ((Double.parseDouble(palabras[12])*100/Double.parseDouble(palabras[10]))-100);
- 		double resultTrama = ((Double.parseDouble(palabras[13])*100/Double.parseDouble(palabras[11]))-100);
+ 		double resultHilo = ((Double.parseDouble(palabras[11])*100/Double.parseDouble(palabras[9]))-100);
+ 		double resultTrama = ((Double.parseDouble(palabras[12])*100/Double.parseDouble(palabras[10]))-100);
  		System.out.println(palabras);
  		Calendar cal = Calendar.getInstance();
         Date date=cal.getTime();
@@ -107,7 +107,7 @@ public class CalidadRestController {
 		DecimalFormat df =new DecimalFormat("0.##", separadoresPersonalizados);
  		
 		System.out.println(palabras);
-			if(palabras[25].equals("") || palabras[25]==null) {
+			if(palabras[24].equals("") || palabras[24]==null) {
 			disenioCalidad.setCreadoPor(auth.getName());
 			disenioCalidad.setActualizadoPor(auth.getName());
 			disenioCalidad.setFechaCreacion(formattedDate);
@@ -121,89 +121,89 @@ public class CalidadRestController {
 			
 		}
 		
-		else if (palabras[25]!=null && EncogimientoLavado.ifExist(Long.valueOf(palabras[25]))==0 || EncogimientoLavado.ifExistLavado(Long.valueOf(palabras[25]), "Prueba de Vapor")==0) {
-			PruebaEncoLavado.setIdCalidad(Long.valueOf(palabras[25]));	
+		else if (palabras[24]!=null && EncogimientoLavado.ifExist(Long.valueOf(palabras[24]))==0 || EncogimientoLavado.ifExistLavado(Long.valueOf(palabras[24]), "Prueba de Vapor")==0) {
+			PruebaEncoLavado.setIdCalidad(Long.valueOf(palabras[24]));	
 		}
 			
 		else {
-			PruebaEncoLavado = EncogimientoLavado.findByTipoPrueba("Prueba de Vapor", Long.valueOf(palabras[25]));
+			PruebaEncoLavado = EncogimientoLavado.findByTipoPrueba("Prueba de Vapor", Long.valueOf(palabras[24]));
 		}
 			
 		
 		PruebaEncoLavado.setCreadoPor(palabras[1]);
 		PruebaEncoLavado.setFechaRealizacion(palabras[2].replace("T", " "));
-		PruebaEncoLavado.setEntretelaPruebaVapor(palabras[4]);
-		PruebaEncoLavado.setAdherenciaPruebaVapor(palabras[5]);
-		PruebaEncoLavado.setProveedorPruebaVapor(palabras[6]);
-		PruebaEncoLavado.setTemperaturaPruebaVapor(palabras[7]);
-		PruebaEncoLavado.setTiempoPrueba(palabras[8]);
-		PruebaEncoLavado.setPresionPrueba(palabras[9]);
-		PruebaEncoLavado.setMedidaInicialHilo(palabras[10]);
-		PruebaEncoLavado.setMedidaInicialTrama(palabras[11]);
-		PruebaEncoLavado.setMedidaFinalHilo(palabras[12]);
+		PruebaEncoLavado.setEntretelaPruebaVapor(palabras[3]);
+		PruebaEncoLavado.setAdherenciaPruebaVapor(palabras[4]);
+		PruebaEncoLavado.setProveedorPruebaVapor(palabras[5]);
+		PruebaEncoLavado.setTemperaturaPruebaVapor(palabras[6]);
+		PruebaEncoLavado.setTiempoPrueba(palabras[7]);
+		PruebaEncoLavado.setPresionPrueba(palabras[8]);
+		PruebaEncoLavado.setMedidaInicialHilo(palabras[9]);
+		PruebaEncoLavado.setMedidaInicialTrama(palabras[10]);
+		PruebaEncoLavado.setMedidaFinalHilo(palabras[11]);
 		PruebaEncoLavado.setDiferenciaMedidaHilo(String.valueOf(df.format(resultHilo)));
-		PruebaEncoLavado.setMedidaFinalTrama(palabras[13]);
+		PruebaEncoLavado.setMedidaFinalTrama(palabras[12]);
 		PruebaEncoLavado.setDiferenciaMedidaTrama(String.valueOf(df.format(resultTrama)));
-		PruebaEncoLavado.setObservacionesResultados(palabras[14]);
+		PruebaEncoLavado.setObservacionesResultados(palabras[13]);
 		PruebaEncoLavado.setTipoPrueba("Prueba de Vapor");
 		PruebaEncoLavado.setEstatus("1");
 		
 		EncogimientoLavado.save(PruebaEncoLavado);
 		
-		if(palabras[25].equals("") || palabras[25]==null) {
+		if(palabras[24].equals("") || palabras[24]==null) {
 			PruebaEncoLavado = new DisenioPruebaEncogimientoLavado();
 			PruebaEncoLavado.setIdCalidad(disenioCalidad.getIdCalidad());
 		}
 
-		else if (palabras[25]!=null && EncogimientoLavado.ifExist(Long.valueOf(palabras[25]))==0 || EncogimientoLavado.ifExistLavado(Long.valueOf(palabras[25]), "Prueba de Fusion")==0) {
+		else if (palabras[24]!=null && EncogimientoLavado.ifExist(Long.valueOf(palabras[24]))==0 || EncogimientoLavado.ifExistLavado(Long.valueOf(palabras[24]), "Prueba de Fusion")==0) {
 			PruebaEncoLavado = new DisenioPruebaEncogimientoLavado();
-			PruebaEncoLavado.setIdCalidad(Long.valueOf(palabras[25]));	
+			PruebaEncoLavado.setIdCalidad(Long.valueOf(palabras[24]));	
 		}
 			
 		else {
-			PruebaEncoLavado = EncogimientoLavado.findByTipoPrueba("Prueba de Fusion", Long.valueOf(palabras[25]));
+			PruebaEncoLavado = EncogimientoLavado.findByTipoPrueba("Prueba de Fusion", Long.valueOf(palabras[24]));
 		}
 		
-		resultHilo = ((Double.parseDouble(palabras[17])*100/Double.parseDouble(palabras[15]))-100);
- 		resultTrama = ((Double.parseDouble(palabras[18])*100/Double.parseDouble(palabras[16]))-100);
+		resultHilo = ((Double.parseDouble(palabras[16])*100/Double.parseDouble(palabras[14]))-100);
+ 		resultTrama = ((Double.parseDouble(palabras[17])*100/Double.parseDouble(palabras[15]))-100);
 		PruebaEncoLavado.setCreadoPor(palabras[1]);
 		PruebaEncoLavado.setFechaRealizacion(palabras[2].replace("T", " "));
-		PruebaEncoLavado.setMedidaInicialHilo(palabras[15]);
-		PruebaEncoLavado.setMedidaInicialTrama(palabras[16]);
-		PruebaEncoLavado.setMedidaFinalHilo(palabras[17]);
+		PruebaEncoLavado.setMedidaInicialHilo(palabras[14]);
+		PruebaEncoLavado.setMedidaInicialTrama(palabras[15]);
+		PruebaEncoLavado.setMedidaFinalHilo(palabras[16]);
 		PruebaEncoLavado.setDiferenciaMedidaHilo(String.valueOf(df.format(resultHilo)));
-		PruebaEncoLavado.setMedidaFinalTrama(palabras[18]);
+		PruebaEncoLavado.setMedidaFinalTrama(palabras[17]);
 		PruebaEncoLavado.setDiferenciaMedidaTrama(String.valueOf(df.format(resultTrama)));
-		PruebaEncoLavado.setObservacionesResultados(palabras[19]);
+		PruebaEncoLavado.setObservacionesResultados(palabras[18]);
 		PruebaEncoLavado.setTipoPrueba("Prueba de Fusion");
 		PruebaEncoLavado.setEstatus("1");
 		
 		EncogimientoLavado.save(PruebaEncoLavado);
 		
-		if(palabras[25].equals("") || palabras[25]==null) {
+		if(palabras[24].equals("") || palabras[24]==null) {
 			PruebaEncoLavado = new DisenioPruebaEncogimientoLavado();
 			PruebaEncoLavado.setIdCalidad(disenioCalidad.getIdCalidad());
 		}		
-		else if (palabras[25]!=null && EncogimientoLavado.ifExist(Long.valueOf(palabras[25]))==0 || EncogimientoLavado.ifExistLavado(Long.valueOf(palabras[25]), "Plancha con Vapor")==0) {
+		else if (palabras[24]!=null && EncogimientoLavado.ifExist(Long.valueOf(palabras[24]))==0 || EncogimientoLavado.ifExistLavado(Long.valueOf(palabras[24]), "Plancha con Vapor")==0) {
 			PruebaEncoLavado = new DisenioPruebaEncogimientoLavado();
-			PruebaEncoLavado.setIdCalidad(Long.valueOf(palabras[25]));	
+			PruebaEncoLavado.setIdCalidad(Long.valueOf(palabras[24]));	
 		}
 			
 		else {
-			PruebaEncoLavado = EncogimientoLavado.findByTipoPrueba("Plancha con Vapor", Long.valueOf(palabras[25]));
+			PruebaEncoLavado = EncogimientoLavado.findByTipoPrueba("Plancha con Vapor", Long.valueOf(palabras[24]));
 		}
-		resultHilo = ((Double.parseDouble(palabras[22])*100/Double.parseDouble(palabras[20]))-100);
- 		resultTrama = ((Double.parseDouble(palabras[23])*100/Double.parseDouble(palabras[21]))-100);
+		resultHilo = ((Double.parseDouble(palabras[21])*100/Double.parseDouble(palabras[19]))-100);
+ 		resultTrama = ((Double.parseDouble(palabras[22])*100/Double.parseDouble(palabras[20]))-100);
 		
 		PruebaEncoLavado.setCreadoPor(palabras[1]);
 		PruebaEncoLavado.setFechaRealizacion(palabras[2].replace("T", " "));
-		PruebaEncoLavado.setMedidaInicialHilo(palabras[20]);
-		PruebaEncoLavado.setMedidaInicialTrama(palabras[21]);
-		PruebaEncoLavado.setMedidaFinalHilo(palabras[22]);
+		PruebaEncoLavado.setMedidaInicialHilo(palabras[19]);
+		PruebaEncoLavado.setMedidaInicialTrama(palabras[20]);
+		PruebaEncoLavado.setMedidaFinalHilo(palabras[21]);
 		PruebaEncoLavado.setDiferenciaMedidaHilo(String.valueOf(df.format(resultHilo)));
-		PruebaEncoLavado.setMedidaFinalTrama(palabras[23]);
+		PruebaEncoLavado.setMedidaFinalTrama(palabras[22]);
 		PruebaEncoLavado.setDiferenciaMedidaTrama(String.valueOf(df.format(resultTrama)));
-		PruebaEncoLavado.setObservacionesResultados(palabras[24]);
+		PruebaEncoLavado.setObservacionesResultados(palabras[23]);
 		PruebaEncoLavado.setTipoPrueba("Plancha con Vapor");
 		PruebaEncoLavado.setEstatus("1");
 		
@@ -230,7 +230,7 @@ public class CalidadRestController {
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         String formattedDate=localDate + " "+ dateFormat.format(date);
        
-        if(palabras[13].equals("") || palabras[13]==null) {
+        if(palabras[12].equals("") || palabras[12]==null) {
 			disenioCalidad.setCreadoPor(auth.getName());
 			disenioCalidad.setActualizadoPor(auth.getName());
 			disenioCalidad.setFechaCreacion(formattedDate);
@@ -244,71 +244,71 @@ public class CalidadRestController {
 			
         }
         
-        else if (palabras[13]!=null && EncogimientoLavado.ifExist(Long.valueOf(palabras[13]))==0 || EncogimientoLavado.ifExistLavado(Long.valueOf(palabras[13]), "Prueba de Lavado")==0) {
-			PruebaEncoLavado.setIdCalidad(Long.valueOf(palabras[13]));	
+        else if (palabras[12]!=null && EncogimientoLavado.ifExist(Long.valueOf(palabras[12]))==0 || EncogimientoLavado.ifExistLavado(Long.valueOf(palabras[12]), "Prueba de Lavado")==0) {
+			PruebaEncoLavado.setIdCalidad(Long.valueOf(palabras[12]));	
 		}
 			
 		else {
-			PruebaEncoLavado = EncogimientoLavado.findByTipoPrueba("Prueba de Lavado", Long.valueOf(palabras[13]));
+			PruebaEncoLavado = EncogimientoLavado.findByTipoPrueba("Prueba de Lavado", Long.valueOf(palabras[12]));
 		}
 			
 		
-		double resultHilo = ((Double.parseDouble(palabras[6])*100/Double.parseDouble(palabras[4]))-100);
- 		double resultTrama = ((Double.parseDouble(palabras[7])*100/Double.parseDouble(palabras[5]))-100);
+		double resultHilo = ((Double.parseDouble(palabras[5])*100/Double.parseDouble(palabras[3]))-100);
+ 		double resultTrama = ((Double.parseDouble(palabras[6])*100/Double.parseDouble(palabras[4]))-100);
 		
 		
 		PruebaEncoLavado.setCreadoPor(palabras[1]);
 		PruebaEncoLavado.setFechaRealizacion(palabras[2].replace("T", " "));
-		PruebaEncoLavado.setMedidaInicialHilo(palabras[4]);
-		PruebaEncoLavado.setMedidaInicialTrama(palabras[5]);
-		PruebaEncoLavado.setMedidaFinalHilo(palabras[6]);
+		PruebaEncoLavado.setMedidaInicialHilo(palabras[3]);
+		PruebaEncoLavado.setMedidaInicialTrama(palabras[4]);
+		PruebaEncoLavado.setMedidaFinalHilo(palabras[5]);
 		PruebaEncoLavado.setDiferenciaMedidaHilo(String.valueOf(df.format(resultHilo)));
-		PruebaEncoLavado.setMedidaFinalTrama(palabras[7]);
+		PruebaEncoLavado.setMedidaFinalTrama(palabras[6]);
 		PruebaEncoLavado.setDiferenciaMedidaTrama(String.valueOf(df.format(resultTrama)));
-		PruebaEncoLavado.setObservacionesResultados(palabras[8]);
+		PruebaEncoLavado.setObservacionesResultados(palabras[7]);
 		PruebaEncoLavado.setTipoPrueba("Prueba de Lavado");
 		PruebaEncoLavado.setEstatus("1");
 		
 		EncogimientoLavado.save(PruebaEncoLavado);
 		
-		if(palabras[13].equals("") || palabras[13]==null) {
+		if(palabras[12].equals("") || palabras[12]==null) {
 			PruebaLavadoContaCostura.setIdCalidad(disenioCalidad.getIdCalidad());
 		 }
 		
-		else if (palabras[13]!=null && LavadoContaCostura.ifExist(Long.valueOf(palabras[13]))==0 || LavadoContaCostura.ifExistContaCostura(Long.valueOf(palabras[13]), "Solidez/Color")==0) {
-			PruebaLavadoContaCostura.setIdCalidad(Long.valueOf(palabras[13]));	
+		else if (palabras[12]!=null && LavadoContaCostura.ifExist(Long.valueOf(palabras[12]))==0 || LavadoContaCostura.ifExistContaCostura(Long.valueOf(palabras[12]), "Solidez/Color")==0) {
+			PruebaLavadoContaCostura.setIdCalidad(Long.valueOf(palabras[12]));	
 		}
 			
 		else {
-			PruebaLavadoContaCostura = LavadoContaCostura.findByTipoPrueba("Solidez/Color", Long.valueOf(palabras[13]));
+			PruebaLavadoContaCostura = LavadoContaCostura.findByTipoPrueba("Solidez/Color", Long.valueOf(palabras[12]));
 		}
 		 
 		PruebaLavadoContaCostura.setCreadoPor(palabras[1]);
 		PruebaLavadoContaCostura.setFechaRealizacion(palabras[2].replace("T", " "));
-		PruebaLavadoContaCostura.setPruebaCalidad(palabras[9]);
-		PruebaLavadoContaCostura.setObservacionesResultados(palabras[10]);
+		PruebaLavadoContaCostura.setPruebaCalidad(palabras[8]);
+		PruebaLavadoContaCostura.setObservacionesResultados(palabras[9]);
 		PruebaLavadoContaCostura.setTipoPrueba("Solidez/Color");
 		PruebaLavadoContaCostura.setEstatus("1");
 		
 		LavadoContaCostura.save(PruebaLavadoContaCostura);
 		
-		if(palabras[13].equals("") || palabras[13]==null) {
+		if(palabras[12].equals("") || palabras[12]==null) {
 			PruebaLavadoContaCostura = new DisenioPruebaLavadoContaminacionCostura();
 			PruebaLavadoContaCostura.setIdCalidad(disenioCalidad.getIdCalidad());
 			 }
-		else if (palabras[13]!=null && LavadoContaCostura.ifExist(Long.valueOf(palabras[13]))==0 || LavadoContaCostura.ifExistContaCostura(Long.valueOf(palabras[13]), "Resultado Pilling")==0) {
+		else if (palabras[12]!=null && LavadoContaCostura.ifExist(Long.valueOf(palabras[12]))==0 || LavadoContaCostura.ifExistContaCostura(Long.valueOf(palabras[12]), "Resultado Pilling")==0) {
 			PruebaLavadoContaCostura = new DisenioPruebaLavadoContaminacionCostura();
-			PruebaLavadoContaCostura.setIdCalidad(Long.valueOf(palabras[13]));	
+			PruebaLavadoContaCostura.setIdCalidad(Long.valueOf(palabras[12]));	
 			
 		}
 		else {
-			PruebaLavadoContaCostura = LavadoContaCostura.findByTipoPrueba("Resultado Pilling", Long.valueOf(palabras[13]));
+			PruebaLavadoContaCostura = LavadoContaCostura.findByTipoPrueba("Resultado Pilling", Long.valueOf(palabras[12]));
 		}
 			
 		PruebaLavadoContaCostura.setCreadoPor(palabras[1]);
 		PruebaLavadoContaCostura.setFechaRealizacion(palabras[2].replace("T", " "));
-		PruebaLavadoContaCostura.setPrueba_pilling(palabras[11]);
-		PruebaLavadoContaCostura.setObservacionesResultados(palabras[12]);
+		PruebaLavadoContaCostura.setPrueba_pilling(palabras[10]);
+		PruebaLavadoContaCostura.setObservacionesResultados(palabras[11]);
 		PruebaLavadoContaCostura.setTipoPrueba("Resultado Pilling");
 		PruebaLavadoContaCostura.setEstatus("1");
 		
@@ -331,7 +331,7 @@ public class CalidadRestController {
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         String formattedDate=localDate + " "+ dateFormat.format(date);
 			
-        if(palabras[9].equals("") || palabras[9]==null) {
+        if(palabras[8].equals("") || palabras[8]==null) {
         	disenioCalidad.setCreadoPor(auth.getName());
 			disenioCalidad.setActualizadoPor(auth.getName());
 			disenioCalidad.setFechaCreacion(formattedDate);
@@ -343,41 +343,41 @@ public class CalidadRestController {
 			CalidadService.save(disenioCalidad);
 			PruebaLavadoContaCostura.setIdCalidad(disenioCalidad.getIdCalidad());
 		}
-        else if (palabras[9]!=null && LavadoContaCostura.ifExist(Long.valueOf(palabras[9]))==0 || LavadoContaCostura.ifExistContaCostura(Long.valueOf(palabras[9]), "Resultado Costura")==0) {
-			PruebaLavadoContaCostura.setIdCalidad(Long.valueOf(palabras[9]));	
+        else if (palabras[8]!=null && LavadoContaCostura.ifExist(Long.valueOf(palabras[8]))==0 || LavadoContaCostura.ifExistContaCostura(Long.valueOf(palabras[8]), "Resultado Costura")==0) {
+			PruebaLavadoContaCostura.setIdCalidad(Long.valueOf(palabras[8]));	
 			
 		}
 		else {
-			PruebaLavadoContaCostura = LavadoContaCostura.findByTipoPrueba("Resultado Costura", Long.valueOf(palabras[9]));
+			PruebaLavadoContaCostura = LavadoContaCostura.findByTipoPrueba("Resultado Costura", Long.valueOf(palabras[8]));
 		}
 		
 		PruebaLavadoContaCostura.setCreadoPor(palabras[1]);
 		PruebaLavadoContaCostura.setFechaRealizacion(palabras[2].replace("T", " "));
-		PruebaLavadoContaCostura.setTipoAguja("2");
-		PruebaLavadoContaCostura.setDeslizamientoTela(palabras[5]);
-		PruebaLavadoContaCostura.setObservacionesResultados(palabras[6]);
+		PruebaLavadoContaCostura.setTipoAguja(palabras[3]);
+		PruebaLavadoContaCostura.setDeslizamientoTela(palabras[4]);
+		PruebaLavadoContaCostura.setObservacionesResultados(palabras[5]);
 		PruebaLavadoContaCostura.setTipoPrueba("Resultado Costura");
 		PruebaLavadoContaCostura.setEstatus("1");
 		
 		LavadoContaCostura.save(PruebaLavadoContaCostura);
 		
-		if(palabras[9].equals("") || palabras[9]==null) {
+		if(palabras[8].equals("") || palabras[8]==null) {
 			PruebaLavadoContaCostura = new DisenioPruebaLavadoContaminacionCostura();
 			PruebaLavadoContaCostura.setIdCalidad(disenioCalidad.getIdCalidad());
 		}
-		else if (palabras[9]!=null && LavadoContaCostura.ifExist(Long.valueOf(palabras[9]))==0 || LavadoContaCostura.ifExistContaCostura(Long.valueOf(palabras[9]), "Rasgado de Telaa")==0) {
+		else if (palabras[8]!=null && LavadoContaCostura.ifExist(Long.valueOf(palabras[8]))==0 || LavadoContaCostura.ifExistContaCostura(Long.valueOf(palabras[8]), "Rasgado de Telaa")==0) {
 			PruebaLavadoContaCostura = new DisenioPruebaLavadoContaminacionCostura();
-			PruebaLavadoContaCostura.setIdCalidad(Long.valueOf(palabras[9]));	
+			PruebaLavadoContaCostura.setIdCalidad(Long.valueOf(palabras[8]));	
 			
 		}
 		else {
-			PruebaLavadoContaCostura = LavadoContaCostura.findByTipoPrueba("Rasgado de Tela", Long.valueOf(palabras[9]));
+			PruebaLavadoContaCostura = LavadoContaCostura.findByTipoPrueba("Rasgado de Tela", Long.valueOf(palabras[8]));
 		}
 		
 		PruebaLavadoContaCostura.setCreadoPor(palabras[1]);
 		PruebaLavadoContaCostura.setFechaRealizacion(palabras[2].replace("T", " "));
-		PruebaLavadoContaCostura.setRasgadoTela(palabras[7]);
-		PruebaLavadoContaCostura.setObservacionesResultados(palabras[8]);
+		PruebaLavadoContaCostura.setRasgadoTela(palabras[6]);
+		PruebaLavadoContaCostura.setObservacionesResultados(palabras[7]);
 		PruebaLavadoContaCostura.setTipoPrueba("Rasgado de Tela");
 		PruebaLavadoContaCostura.setEstatus("1");
 		
@@ -398,7 +398,7 @@ public class CalidadRestController {
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         String formattedDate=localDate + " "+ dateFormat.format(date);
         System.out.println(guardarEncogi);
- 		if(palabras[6].equals("") || palabras[6]==null) {
+ 		if(palabras[5].equals("") || palabras[5]==null) {
 			disenioCalidad.setCreadoPor(auth.getName());
 			disenioCalidad.setActualizadoPor(auth.getName());
 			disenioCalidad.setFechaCreacion(formattedDate);
@@ -411,18 +411,18 @@ public class CalidadRestController {
 			CalidadService.save(disenioCalidad);
 			PruebaLavadoContaCostura.setIdCalidad(disenioCalidad.getIdCalidad());
  		}
- 		else if (palabras[6]!=null && LavadoContaCostura.ifExist(Long.valueOf(palabras[6]))==0 || LavadoContaCostura.ifExistContaCostura(Long.valueOf(palabras[6]), "Resultado de Contaminacion")==0) {
-			PruebaLavadoContaCostura.setIdCalidad(Long.valueOf(palabras[6]));	
+ 		else if (palabras[5]!=null && LavadoContaCostura.ifExist(Long.valueOf(palabras[5]))==0 || LavadoContaCostura.ifExistContaCostura(Long.valueOf(palabras[5]), "Resultado de Contaminacion")==0) {
+			PruebaLavadoContaCostura.setIdCalidad(Long.valueOf(palabras[5]));	
 			
 		}
 		else {
-			PruebaLavadoContaCostura = LavadoContaCostura.findByTipoPrueba("Resultado de Contaminación", Long.valueOf(palabras[6]));
+			PruebaLavadoContaCostura = LavadoContaCostura.findByTipoPrueba("Resultado de Contaminación", Long.valueOf(palabras[5]));
 		}
 		
 		PruebaLavadoContaCostura.setCreadoPor(palabras[1]);
 		PruebaLavadoContaCostura.setFechaRealizacion(palabras[2].replace("T", " "));
-		PruebaLavadoContaCostura.setPruebaCalidad(palabras[4]);
-		PruebaLavadoContaCostura.setObservacionesResultados(palabras[5]);
+		PruebaLavadoContaCostura.setPruebaCalidad(palabras[3]);
+		PruebaLavadoContaCostura.setObservacionesResultados(palabras[4]);
 		PruebaLavadoContaCostura.setTipoPrueba("Resultado de Contaminación");
 		PruebaLavadoContaCostura.setEstatus("1");
 
