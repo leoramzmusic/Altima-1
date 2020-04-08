@@ -484,11 +484,12 @@ function ValidarPrimerPestana() {
 
 //Esta valida que los campos esten llenos cuando se va a hacer un prospecto de prenda
 function ValidarPrimerPestana2() {
+	console.log("aqui es donde vale verga");
 	$('#BloquearBotonProspecto').prop('disabled', true);
 
 	if ($('#NombrePrenda').val() != "" && $('#DescripcionPrenda').val() != "" && $('#NotaEspecial').val() != ""
 		&& $('#DetallePrenda').val() != "" && $('#TipoPrenda').val() != "" && $('#file').val() != "" && $('#file2').val() != "") {
-		console.log("aqui es donde vale verga");
+		
 		$('#AlertaPrimerPestana').css('display', 'none');
 		EnviarInfoProspecto();
 		console.log('paso');
