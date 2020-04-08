@@ -473,6 +473,13 @@ function ValidacionEncogimiento() {
     ) {
         $('#AlertaPestanaEncogimiento').css('display', 'none');
         $('#enlaceEncogimiento').click();
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Insertado correctamente',
+            showConfirmButton: false,
+            timer: 1550
+        })
         
     }
     else {
@@ -496,6 +503,13 @@ function ValidacionLavado() {
     ) {
         $('#AlertaPestanaLavado').css('display', 'none');
         $('#enlaceLavado').click();
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Insertado correctamente',
+            showConfirmButton: false,
+            timer: 1550
+        })
         
     }
     else {
@@ -517,6 +531,13 @@ function ValidacionCostura() {
     ) {
         $('#AlertaPestanaCostura').css('display', 'none');
         $('#enlaceCostura').click();
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Insertado correctamente',
+            showConfirmButton: false,
+            timer: 1550
+        })
         
     }
     else {
@@ -535,6 +556,13 @@ function ValidacionContaminacion() {
     ) {
         $('#AlertaPestanaContaminacion').css('display', 'none');
         $('#enlaceContaminacion').click();
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Insertado correctamente',
+            showConfirmButton: false,
+            timer: 1550
+        })
         
     }
     else {
