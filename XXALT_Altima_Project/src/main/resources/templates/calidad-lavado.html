@@ -10,7 +10,7 @@
     <div class="col-sm-4">
         <div class="form-group">
             <label>Tela</label>
-            <select class="form-control idtelas" id="telas" th:disabled="${readLavado}" th:value="${telas}">
+            <select class="form-control idtelas" id="telas" th:disabled="${readtela}" th:value="${telas}">
                 <option>Selecciona uno...</option>
             </select>
         </div>
@@ -23,7 +23,7 @@
             </select>
         </div>
     </div>
-    <div class="col-sm-2">
+    <div class="col-sm-4">
         <div class="form-group">
             <label style="font-size: 15px;">Fecha y hora de realizaci&oacute;n</label>
             <input type="datetime-local" class="form-control" id="fechaRealizacionLavado" placeholder="23.2" th:readonly="${readLavado}" th:value="${fechaRealizacionLavado}">

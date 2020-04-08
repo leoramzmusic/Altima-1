@@ -41,9 +41,7 @@ public class CalidadController {
 	
 	@GetMapping("/calidad") 
 	public String listCalidad(Model model) {
-		disenioCalidad.findAll();
-		model.addAttribute("calidadComponentes",disenioCalidad.findAll());
-		
+		//si se ocupa este metodo
 		return "calidad";
 	}
 	
@@ -63,6 +61,7 @@ public class CalidadController {
 		List<DisenioPruebaLavadoContaminacionCostura> pruebasLCC = pruebaContaCostura.findAllByCalidad(id);
 		DisenioCalidad Calidad = disenioCalidad.findOne(id);
 		model.addAttribute("idTela", Calidad.getIdTela());
+		model.addAttribute("readtela", "true");
 		int cont = 0;
 		if(pruebaContaCostura.ifExist(id)==0 || pruebaEncogiLavado.ifExist(id)==1 ) {
 			

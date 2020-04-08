@@ -9,7 +9,7 @@
     <div class="col-sm-4">
         <div class="form-group">
             <label>Tela</label>
-            <select class="form-control idtelas" id="tela" th:disabled="${read}" th:value="${tela}">
+            <select class="form-control idtelas" id="tela" th:disabled="${readtela}" th:value="${tela}">
                 <option>Selecciona uno...</option>
             </select>
         </div>
@@ -22,7 +22,7 @@
             </select>
         </div>
     </div>
-    <div class="col-sm-2">
+    <div class="col-sm-4">
         <div class="form-group">
             <label style="font-size: 15px;">Fecha y hora de realizaci&oacute;n</label>
             <input type="datetime-local" class="form-control" id="fechaRealizacionEncogi" placeholder="23.2" th:readonly="${read}" th:value="${fechaRealizacionEncogi}">

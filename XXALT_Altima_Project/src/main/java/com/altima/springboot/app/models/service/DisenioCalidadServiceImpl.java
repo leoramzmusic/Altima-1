@@ -2,6 +2,8 @@ package com.altima.springboot.app.models.service;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +16,8 @@ import com.altima.springboot.app.repository.DisenioCalidadRepository;
 public class DisenioCalidadServiceImpl implements IDisenioCalidadService {
 	@Autowired
 	private DisenioCalidadRepository repository;
+	@Autowired
+	private EntityManager em;
 	@Override
 	@Transactional(readOnly=true)
 	public List<DisenioCalidad> findAll() {
@@ -43,4 +47,13 @@ public class DisenioCalidadServiceImpl implements IDisenioCalidadService {
 		return repository.findById(id).orElse(null);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<Object> findAllWithIdTextTela() {
+		// TODO Auto-generated method stub
+		return em.createNativeQuery("select calidad.id_calidad, calidad.id_text, tela.id_text as text, calidad.estatus from alt_disenio_calidad as calidad\r\n" + 
+										"INNER JOIN alt_disenio_tela tela ON calidad.id_tela = tela.id_tela\r\n" + 
+										"ORDER BY calidad.id_text").getResultList();
+	}
 }

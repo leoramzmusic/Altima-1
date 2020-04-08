@@ -11,11 +11,11 @@ function listarTabla(){
 			    var estatus;
 			    console.log(data);
 			    for (i in data){
-			    	estatus = (data[i].estatus=='0')?'En Proceso':'Terminada';
+			    	estatus = (data[i][3]=='0')?'En Proceso':'Terminada';
 			    	a += 
 			    		"<tr>"+
-			    		"<td>"+data[i].idText+"</td>"+
-						"<td>"+data[i].idText+"</td>"+
+			    		"<td>"+data[i][1]+"</td>"+
+						"<td>"+data[i][2]+"</td>"+
 						"<td class='tdcenter'><a"+
 							" class='btn btn-info popoverxd text-white'"+
 							" data-container='body' data-placement='top' data-html='true'"+
@@ -23,12 +23,12 @@ function listarTabla(){
 							" style='border-radius: 35%;'><i class='fas fa-info fa-sm'></i></a>&nbsp;"+
 						"</td>"+
 						"<td>"+estatus+"</td>"+
-						"<td class='tdcenter'><a href='detalle-calidad/"+data[i].idCalidad+"'"+
+						"<td class='tdcenter'><a href='detalle-calidad/"+data[i][0]+"'"+
 							" class='btn btn-info text-white'><i"+
 								" class='fas fa-info-circle'></i> Ver m&aacute;s detalles</a>&nbsp;"+
 						"</td>"+
 						"<td class='tdcenter'><a"+
-							" class='btn btn-warning popoverxd' data-container='body' href='/calidad-nueva-prueba/"+data[i].idCalidad+"'"+
+							" class='btn btn-warning popoverxd' data-container='body' href='/calidad-nueva-prueba/"+data[i][0]+"'"+
 							" data-placement='top' data-content='Editar'"+
 							" style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></a>&nbsp;"+
 						"</td>"+
@@ -198,7 +198,6 @@ function PruebasEncogimiento(){
 	var tipoTela= $('#tela').val();
 	var operario= $('#operarioEncogi').val();
 	var frealizacion= $('#fechaRealizacionEncogi').val();
-	var ffinalizacion= $('#fechaFinalizacionEncogi').val();
 	
 //===================variables de Pruebas de vapor=======================
 	var entretela= $('#entretelaEncogi').val();
@@ -241,7 +240,6 @@ function PruebasEncogimiento(){
 	var datos = [tipoTela,
 				operario, 
 				frealizacion,
-				ffinalizacion,
 				entretela,
 				adherencia,
 				proveedor,
@@ -294,7 +292,6 @@ function PruebasLavado(){
 	var tipoTela= $('#telas').val();
 	var operario= $('#operarioLavado').val();
 	var frealizacion= $('#fechaRealizacionLavado').val();
-	var ffinalizacion= $('#fechaFinalizacionLavado').val();
 	
 //===================variables de Prueba de lavado=======================
 	var medidaHiloPruebaLavado= $('#medidaHiloPruebaLavado').val();
@@ -322,7 +319,6 @@ function PruebasLavado(){
 	var datos =[tipoTela,
 				operario,
 				frealizacion,
-				ffinalizacion,
 				medidaHiloPruebaLavado,
 				medidaTramaPruebaLavado,
 				diferenciaHiloPlanchaVapor,
@@ -361,7 +357,6 @@ function PruebaCostura(){
 	var tipoTela= $('#telass').val();
 	var operario= $('#operarioCostura').val();
 	var frealizacion= $('#fechaRealizacionCostura').val();
-	var ffinalizacion= $('#fechaFinalizacionCostura').val();
 	
 //===================variables de Prueba de costura=======================
 	var tipoAguja = $('#tipoAguja').val();
@@ -377,7 +372,6 @@ function PruebaCostura(){
 	var datos =[tipoTela,
 				operario,
 				frealizacion,
-				ffinalizacion,
 				tipoAguja,
 				Deslizamiento,
 				observacionesDeslizamiento,
@@ -412,7 +406,6 @@ function PruebaContaminacion() {
 	var tipoTela= $('#telasss').val();
 	var operarioContaminacion= $('#operarioContaminacion').val();
 	var frealizacionContaminacion= $('#fechaRealizacionContaminacion').val();
-	var ffinalizacionContaminacion= $('#fechaFinalizacionContaminacion').val();
 	
 	//===================variables de resultados de pruebas de Contaminacion=======================
 	var calidadContaminacion = $('input:radio[name=calidadConta]:checked').val();
@@ -424,7 +417,6 @@ function PruebaContaminacion() {
 	var datos= [tipoTela,
 				operarioContaminacion,
 				frealizacionContaminacion,
-				ffinalizacionContaminacion,
 				calidadContaminacion,
 				observacionesReultSolidez,
 				idCalidad,
@@ -458,7 +450,6 @@ function ValidacionEncogimiento() {
     if ($('#tela').val() != ""
         && $('#operarioEncogi').val() != ""
         && $('#fechaRealizacionEncogi').val() != ""
-        && $('#fechaFinalizacionEncogi').val() != ""
         && $('#entretelaEncogi').val() != ""
         && $('#adherenciaEncogi').val() != ""
         && $('#proveedorEncogi').val() != ""
@@ -491,7 +482,6 @@ function ValidacionLavado() {
     if ($('#telas').val() != ""
         && $('#operarioLavado').val() != ""
         && $('#fechaRealizacionLavado').val() != ""
-        && $('#fechaFinalizacionLavado').val() != ""
         && $('#medidaHiloPruebaLavado').val() != ""
         && $('#medidaTramaPruebaLavado').val() != ""
         && $('#diferenciaHiloPruebaLavado').val() != ""
@@ -515,7 +505,6 @@ function ValidacionCostura() {
     if ($('#telass').val() != ""
         && $('#operarioCostura').val() != ""
         && $('#fechaRealizacionCostura').val() != ""
-        && $('#fechaFinalizacionCostura').val() != ""
         && $('#tipoAguja').val() != ""
 
         && $('input:radio[name=decisionDeslizamiento]:checked').val() == "si"
@@ -537,7 +526,6 @@ function ValidacionContaminacion() {
     if ($('#telasss').val() != ""
         && $('#operarioContaminacion').val() != ""
         && $('#fechaRealizacionContaminacion').val() != ""
-        && $('#fechaFinalizacionContaminacion').val() != ""
 
         && $('input:radio[name=calidadConta]:checked').val() == "buena"
         || $('input:radio[name=calidadConta]:checked').val() == "regular"

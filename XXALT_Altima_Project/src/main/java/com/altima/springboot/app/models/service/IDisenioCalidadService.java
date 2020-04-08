@@ -13,5 +13,7 @@ public interface IDisenioCalidadService {
 	void delete(Long id);
 
 	DisenioCalidad findOne(Long id);
+	
+	public List<Object> findAllWithIdTextTela();
 
 }

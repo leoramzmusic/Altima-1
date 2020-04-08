@@ -63,9 +63,9 @@ public class CalidadRestController {
 	private IDisenioCalidadService disenioCalidad;
 	
 	@RequestMapping(value="/listarCalidad", method=RequestMethod.GET)
-	public List<DisenioCalidad> listarCalidad(){
+	public List<Object> listarCalidad(){
 		
-		return disenioCalidad.findAll();
+		return disenioCalidad.findAllWithIdTextTela();
 	}
 	
 	@RequestMapping(value="/listarTelasCalidad", method=RequestMethod.GET)
