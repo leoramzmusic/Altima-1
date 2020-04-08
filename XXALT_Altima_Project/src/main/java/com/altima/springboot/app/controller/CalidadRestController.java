@@ -113,10 +113,12 @@ public class CalidadRestController {
 			disenioCalidad.setFechaCreacion(formattedDate);
 			disenioCalidad.setUltimaFechaModificacion(formattedDate);
 			disenioCalidad.setEstatus("0");
+			disenioCalidad.setIdTela(Long.valueOf(palabras[0]));
 			CalidadService.save(disenioCalidad);
 			disenioCalidad.setIdText("CAL"+ (disenioCalidad.getIdCalidad()+100000));
 			CalidadService.save(disenioCalidad);
 			PruebaEncoLavado.setIdCalidad(disenioCalidad.getIdCalidad());
+			
 		}
 		
 		else if (palabras[25]!=null && EncogimientoLavado.ifExist(Long.valueOf(palabras[25]))==0 || EncogimientoLavado.ifExistLavado(Long.valueOf(palabras[25]), "Prueba de Vapor")==0) {
@@ -127,10 +129,9 @@ public class CalidadRestController {
 			PruebaEncoLavado = EncogimientoLavado.findByTipoPrueba("Prueba de Vapor", Long.valueOf(palabras[25]));
 		}
 			
-		PruebaEncoLavado.setIdTela(palabras[0]);
+		
 		PruebaEncoLavado.setCreadoPor(palabras[1]);
 		PruebaEncoLavado.setFechaRealizacion(palabras[2].replace("T", " "));
-		PruebaEncoLavado.setFechaFinalizacion(palabras[3].replace("T", " "));
 		PruebaEncoLavado.setEntretelaPruebaVapor(palabras[4]);
 		PruebaEncoLavado.setAdherenciaPruebaVapor(palabras[5]);
 		PruebaEncoLavado.setProveedorPruebaVapor(palabras[6]);
@@ -165,10 +166,8 @@ public class CalidadRestController {
 		
 		resultHilo = ((Double.parseDouble(palabras[17])*100/Double.parseDouble(palabras[15]))-100);
  		resultTrama = ((Double.parseDouble(palabras[18])*100/Double.parseDouble(palabras[16]))-100);
-		PruebaEncoLavado.setIdTela(palabras[0]);
 		PruebaEncoLavado.setCreadoPor(palabras[1]);
 		PruebaEncoLavado.setFechaRealizacion(palabras[2].replace("T", " "));
-		PruebaEncoLavado.setFechaFinalizacion(palabras[3].replace("T", " "));
 		PruebaEncoLavado.setMedidaInicialHilo(palabras[15]);
 		PruebaEncoLavado.setMedidaInicialTrama(palabras[16]);
 		PruebaEncoLavado.setMedidaFinalHilo(palabras[17]);
@@ -196,10 +195,8 @@ public class CalidadRestController {
 		resultHilo = ((Double.parseDouble(palabras[22])*100/Double.parseDouble(palabras[20]))-100);
  		resultTrama = ((Double.parseDouble(palabras[23])*100/Double.parseDouble(palabras[21]))-100);
 		
-		PruebaEncoLavado.setIdTela(palabras[0]);
 		PruebaEncoLavado.setCreadoPor(palabras[1]);
 		PruebaEncoLavado.setFechaRealizacion(palabras[2].replace("T", " "));
-		PruebaEncoLavado.setFechaFinalizacion(palabras[3].replace("T", " "));
 		PruebaEncoLavado.setMedidaInicialHilo(palabras[20]);
 		PruebaEncoLavado.setMedidaInicialTrama(palabras[21]);
 		PruebaEncoLavado.setMedidaFinalHilo(palabras[22]);
@@ -239,10 +236,12 @@ public class CalidadRestController {
 			disenioCalidad.setFechaCreacion(formattedDate);
 			disenioCalidad.setUltimaFechaModificacion(formattedDate);
 			disenioCalidad.setEstatus("0");
+			disenioCalidad.setIdTela(Long.valueOf(palabras[0]));
 			CalidadService.save(disenioCalidad);
 			disenioCalidad.setIdText("CAL"+ (disenioCalidad.getIdCalidad()+100000));
 			CalidadService.save(disenioCalidad);
 			PruebaEncoLavado.setIdCalidad(disenioCalidad.getIdCalidad());
+			
         }
         
         else if (palabras[13]!=null && EncogimientoLavado.ifExist(Long.valueOf(palabras[13]))==0 || EncogimientoLavado.ifExistLavado(Long.valueOf(palabras[13]), "Prueba de Lavado")==0) {
@@ -258,10 +257,8 @@ public class CalidadRestController {
  		double resultTrama = ((Double.parseDouble(palabras[7])*100/Double.parseDouble(palabras[5]))-100);
 		
 		
-		PruebaEncoLavado.setIdTela(palabras[0]);
 		PruebaEncoLavado.setCreadoPor(palabras[1]);
 		PruebaEncoLavado.setFechaRealizacion(palabras[2].replace("T", " "));
-		PruebaEncoLavado.setFechaFinalizacion(palabras[3].replace("T", " "));
 		PruebaEncoLavado.setMedidaInicialHilo(palabras[4]);
 		PruebaEncoLavado.setMedidaInicialTrama(palabras[5]);
 		PruebaEncoLavado.setMedidaFinalHilo(palabras[6]);
@@ -286,10 +283,8 @@ public class CalidadRestController {
 			PruebaLavadoContaCostura = LavadoContaCostura.findByTipoPrueba("Solidez/Color", Long.valueOf(palabras[13]));
 		}
 		 
-		PruebaLavadoContaCostura.setIdTela(palabras[0]);
 		PruebaLavadoContaCostura.setCreadoPor(palabras[1]);
 		PruebaLavadoContaCostura.setFechaRealizacion(palabras[2].replace("T", " "));
-		PruebaLavadoContaCostura.setFechaFinalizacion(palabras[3].replace("T", " "));
 		PruebaLavadoContaCostura.setPruebaCalidad(palabras[9]);
 		PruebaLavadoContaCostura.setObservacionesResultados(palabras[10]);
 		PruebaLavadoContaCostura.setTipoPrueba("Solidez/Color");
@@ -310,10 +305,8 @@ public class CalidadRestController {
 			PruebaLavadoContaCostura = LavadoContaCostura.findByTipoPrueba("Resultado Pilling", Long.valueOf(palabras[13]));
 		}
 			
-		PruebaLavadoContaCostura.setIdTela(palabras[0]);
 		PruebaLavadoContaCostura.setCreadoPor(palabras[1]);
 		PruebaLavadoContaCostura.setFechaRealizacion(palabras[2].replace("T", " "));
-		PruebaLavadoContaCostura.setFechaFinalizacion(palabras[3].replace("T", " "));
 		PruebaLavadoContaCostura.setPrueba_pilling(palabras[11]);
 		PruebaLavadoContaCostura.setObservacionesResultados(palabras[12]);
 		PruebaLavadoContaCostura.setTipoPrueba("Resultado Pilling");
@@ -344,6 +337,7 @@ public class CalidadRestController {
 			disenioCalidad.setFechaCreacion(formattedDate);
 			disenioCalidad.setUltimaFechaModificacion(formattedDate);
 			disenioCalidad.setEstatus("0");
+			disenioCalidad.setIdTela(Long.valueOf(palabras[0]));
 			CalidadService.save(disenioCalidad);
 			disenioCalidad.setIdText("CAL"+ (disenioCalidad.getIdCalidad()+100000));
 			CalidadService.save(disenioCalidad);
@@ -356,10 +350,9 @@ public class CalidadRestController {
 		else {
 			PruebaLavadoContaCostura = LavadoContaCostura.findByTipoPrueba("Resultado Costura", Long.valueOf(palabras[9]));
 		}
-		PruebaLavadoContaCostura.setIdTela(palabras[0]);
+		
 		PruebaLavadoContaCostura.setCreadoPor(palabras[1]);
 		PruebaLavadoContaCostura.setFechaRealizacion(palabras[2].replace("T", " "));
-		PruebaLavadoContaCostura.setFechaFinalizacion(palabras[3].replace("T", " "));
 		PruebaLavadoContaCostura.setTipoAguja("2");
 		PruebaLavadoContaCostura.setDeslizamientoTela(palabras[5]);
 		PruebaLavadoContaCostura.setObservacionesResultados(palabras[6]);
@@ -381,10 +374,8 @@ public class CalidadRestController {
 			PruebaLavadoContaCostura = LavadoContaCostura.findByTipoPrueba("Rasgado de Tela", Long.valueOf(palabras[9]));
 		}
 		
-		PruebaLavadoContaCostura.setIdTela(palabras[0]);
 		PruebaLavadoContaCostura.setCreadoPor(palabras[1]);
 		PruebaLavadoContaCostura.setFechaRealizacion(palabras[2].replace("T", " "));
-		PruebaLavadoContaCostura.setFechaFinalizacion(palabras[3].replace("T", " "));
 		PruebaLavadoContaCostura.setRasgadoTela(palabras[7]);
 		PruebaLavadoContaCostura.setObservacionesResultados(palabras[8]);
 		PruebaLavadoContaCostura.setTipoPrueba("Rasgado de Tela");
@@ -414,6 +405,7 @@ public class CalidadRestController {
 			disenioCalidad.setUltimaFechaModificacion(formattedDate);
 			disenioCalidad.setEstatus("0");
 			disenioCalidad.setEstatus("0");
+			disenioCalidad.setIdTela(Long.valueOf(palabras[0]));
 			CalidadService.save(disenioCalidad);
 			disenioCalidad.setIdText("CAL"+ (disenioCalidad.getIdCalidad()+100000));
 			CalidadService.save(disenioCalidad);
@@ -427,10 +419,8 @@ public class CalidadRestController {
 			PruebaLavadoContaCostura = LavadoContaCostura.findByTipoPrueba("Resultado de Contaminación", Long.valueOf(palabras[6]));
 		}
 		
-		PruebaLavadoContaCostura.setIdTela(palabras[0]);
 		PruebaLavadoContaCostura.setCreadoPor(palabras[1]);
 		PruebaLavadoContaCostura.setFechaRealizacion(palabras[2].replace("T", " "));
-		PruebaLavadoContaCostura.setFechaFinalizacion(palabras[3].replace("T", " "));
 		PruebaLavadoContaCostura.setPruebaCalidad(palabras[4]);
 		PruebaLavadoContaCostura.setObservacionesResultados(palabras[5]);
 		PruebaLavadoContaCostura.setTipoPrueba("Resultado de Contaminación");
