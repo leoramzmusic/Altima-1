@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
@@ -71,16 +72,41 @@
 
                                                     <td class="tdcenter" th:switch="${mt[3]}">
 
-                                                        <a th:case="'Tela'" th:href="${'editar-tela/'}+${mt[0]}" class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Editar"><i class="fas fa-pen"></i></a>
+                                                        <a th:case="'Tela'" th:href="${'editar-tela/'}+${mt[0]}" class="btn btn-warning btn-circle btn-sm popoverxd" 
+                                                         data-container="body" data-toggle="popover"
+                                                          data-placement="top" data-content="Editar"><i class="fas fa-pen"></i></a>
 
-                                                        <a th:case="'Forro'" th:href="${'editar-forro/'}+${mt[0]}" class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Editar"><i class="fas fa-pen"></i></a>
+                                                        <a th:case="'Forro'" th:href="${'editar-forro/'}+${mt[0]}" class="btn btn-warning btn-circle btn-sm popoverxd" 
+                                                        data-container="body" data-toggle="popover" data-placement="top" data-content="Editar"><i class="fas fa-pen"></i></a>
 
-                                                        <a th:case="*" th:href="${'editar-material'}+${mt[0]}" class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Editar"><i class="fas fa-pen"></i></a>
+                                                        <a th:case="*" th:href="${'editar-material'}+${mt[0]}" class="btn btn-warning btn-circle btn-sm popoverxd" 
+                                                        data-container="body" data-toggle="popover" data-placement="top" data-content="Editar"><i class="fas fa-pen"></i></a>
+                                                        
+                                                        
+                                                        
+                                                        
 
                                                         <a class="btn btn-info btn-circle btn-sm text-white popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Detalles"><i class="fas fa-info"></i></a>
-
-                                                        <a th:href="${'delete-material'}+${mt[0]}" class="btn btn-danger btn-circle btn-sm btn-delete popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Dar de baja"><i class="fas fa-caret-down"></i></a>
+                                                        
+                                                        
+                                                        
+                                                        
+                                                             <a th:unless="${mt[3] == 'Forro' || mt[3] == 'Tela'  }" th:href="${'delete-material'}+${mt[0]}"  class="btn btn-danger btn-circle btn-sm btn-delete popoverxd"
+                                                         data-container="body" data-toggle="popover" data-placement="top"
+                                                          data-content="Dar de baja"><i class="fas fa-caret-down"></i></a>
+                                                          
+                                                          <a th:if="${mt[3] == 'Tela'}" th:href="${'delete-tela'}+${mt[0]}"  class="btn btn-danger btn-circle btn-sm btn-delete popoverxd"
+                                                         data-container="body" data-toggle="popover" data-placement="top"
+                                                          data-content="Dar de baja"><i class="fas fa-caret-down"></i></a>
+                                                          
+                                                          
+                                                          <a th:if="${mt[3] == 'Forro'}" th:href="${'delete-forro'}+${mt[0]}"  class="btn btn-danger btn-circle btn-sm btn-delete popoverxd"
+                                                         data-container="body" data-toggle="popover" data-placement="top"
+                                                          data-content="Dar de baja"><i class="fas fa-caret-down"></i></a>
+                                                       
                                                     </td>
+                                                    
+                                                  
                                                 </tr>
                                             </tbody>
                                         </table>
