@@ -4,9 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +19,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.altima.springboot.app.models.entity.ControlHora;
 import com.altima.springboot.app.models.entity.ControlProduccionMuestra;
-import com.altima.springboot.app.models.entity.DisenioLookup;
 import com.altima.springboot.app.models.service.IControlProduccionMuestraService;
 
 @CrossOrigin(origins = { "*" })
@@ -108,6 +104,8 @@ public class ControlController {
 		System.out.println(tipo);
 		if ( tipo.equals("trazo")) {
 			System.out.println("Soy un trazo");
+			Integer contador = DCPM.Contador("1");
+			muestra.setIdText("TRAZO"+(100+contador+1));
 			muestra.setIdPedido(id);
 			muestra.setFechaRecepcion(f1+":00");
 			muestra.setFechaEntrega(f2+":00");
@@ -122,6 +120,8 @@ public class ControlController {
 		}
 		
 		if ( tipo.equals("corte")) {
+			Integer contador = DCPM.Contador("2");
+			muestra.setIdText("CORTE"+(100+contador+1));
 			muestra.setIdPedido(id);
 			muestra.setFechaRecepcion(f1+":00");
 			muestra.setFechaEntrega(f2+":00");
@@ -137,6 +137,8 @@ public class ControlController {
 		}
 		
 		if ( tipo.equals("confeccion")) {
+			Integer contador = DCPM.Contador("3");
+			muestra.setIdText("CONFEC"+(100+contador+1));
 			muestra.setIdPedido(id);
 			muestra.setFechaRecepcion(f1+":00");
 			muestra.setFechaEntrega(f2+":00");
@@ -152,6 +154,8 @@ public class ControlController {
 		}
 		
 		if ( tipo.equals("planchado")) {
+			Integer contador = DCPM.Contador("4");
+			muestra.setIdText("PLANC"+(100+contador+1));
 			muestra.setIdPedido(id);
 			muestra.setFechaRecepcion(f1+":00");
 			muestra.setFechaEntrega(f2+":00");
@@ -167,6 +171,8 @@ public class ControlController {
 		}
 		
 		if ( tipo.equals("terminado")) {
+			Integer contador = DCPM.Contador("5");
+			muestra.setIdText("TERM"+(100+contador+1));
 			muestra.setIdPedido(id);
 			muestra.setFechaRecepcion(f1+":00");
 			muestra.setFechaEntrega(f2+":00");
