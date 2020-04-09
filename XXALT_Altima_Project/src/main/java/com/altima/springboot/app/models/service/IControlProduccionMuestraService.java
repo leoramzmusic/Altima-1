@@ -28,6 +28,9 @@ public interface IControlProduccionMuestraService {
 	List<Object []> ListarPedidos();
 	
 	
+	public Integer Contador (String tipo);
+	
+	
 	//vhbjnklm   bbbbbb
 	
 	

@@ -858,7 +858,7 @@
 	 console.log(tipo);
 	 console.log(id);
     Swal.fire({
-      title: '¿Deseas inicial con este proceso?',
+      title: '¿Deseas iniciar este proceso?',
       icon: 'warning',
       showCancelButton: true,
       cancelButtonColor: '#6C757D',
@@ -892,7 +892,7 @@
     	      Swal.fire({
     	        position: 'center',
     	        icon: 'success',
-    	        title: 'dado de baja correctamente',
+    	        title: 'Proceso iniciado correctamente',
     	        showConfirmButton: false,
     	        timer: 1250
     	      })
@@ -904,7 +904,7 @@
  function pausa(id , id2){
 	 var tipo=document.getElementById("tipo").value;
     Swal.fire({
-      title: '¿Deseas pausar con este proceso?',
+      title: '¿Deseas pausar este proceso?',
       icon: 'warning',
       showCancelButton: true,
       cancelButtonColor: '#6C757D',
@@ -937,7 +937,7 @@
     	      Swal.fire({
     	        position: 'center',
     	        icon: 'success',
-    	        title: 'dado de baja correctamente',
+    	        title: 'Proceso pausado correctamente',
     	        showConfirmButton: false,
     	        timer: 1250
     	      })
@@ -982,7 +982,7 @@
     	      Swal.fire({
     	        position: 'center',
     	        icon: 'success',
-    	        title: 'dado de baja correctamente',
+    	        title: 'Proceso terminado correctamente',
     	        showConfirmButton: false,
     	        timer: 1250
     	      })

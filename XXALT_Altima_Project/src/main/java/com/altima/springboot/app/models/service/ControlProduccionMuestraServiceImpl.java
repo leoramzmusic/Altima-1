@@ -165,8 +165,6 @@ public class ControlProduccionMuestraServiceImpl implements IControlProduccionMu
 	@Transactional(readOnly=true)
 	@Override
 	public Integer Pausa(Long id) {
-		
-		System.out.println("SSoy pausa del service ");
 		Integer re =(Integer) em.createNativeQuery("select   MAX(alt_control_hora.id_control_hora) from alt_control_hora\r\n" + 
 				"where  alt_control_hora.estatus=\"Play\"\r\n" + 
 				"and  alt_control_hora.id_control_produccion_muestra="+id).getSingleResult();
@@ -221,5 +219,17 @@ public class ControlProduccionMuestraServiceImpl implements IControlProduccionMu
 				"						END  )from alt_control_produccion_muestra as muestra where muestra.estatus_tiempo ='Play' and muestra.id_pedido= pedido.id_pedido  LIMIT 1), 'Sin proceso asignado')) as proceso \r\n" + 
 				"	from alt_pedido as pedido").getResultList();
 		return re;
+	}
+	
+	
+	@Transactional(readOnly=true)
+	@Override
+	public Integer Contador(String tipo){
+		
+		String re = em.createNativeQuery("SELECT COUNT(*) "
+				+ "FROM alt_control_produccion_muestra "
+				+ "WHERE alt_control_produccion_muestra.tipo="+tipo).getSingleResult().toString();
+		return Integer.parseInt(re);
+	
 	}
 }

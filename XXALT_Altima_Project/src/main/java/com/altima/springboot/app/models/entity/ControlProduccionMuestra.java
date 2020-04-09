@@ -37,7 +37,7 @@ public class ControlProduccionMuestra implements Serializable {
 	private Long idPedido;
 	
 	@Column(name="id_text")
-	private Long idText;
+	private String idText;
 	
 	@Column(name="fecha_recepcion")
 	private String fechaRecepcion;
@@ -72,11 +72,11 @@ public class ControlProduccionMuestra implements Serializable {
 	
 	
 
-	public Long getIdText() {
+	public String getIdText() {
 		return idText;
 	}
 
-	public void setIdText(Long idText) {
+	public void setIdText(String idText) {
 		this.idText = idText;
 	}
 
