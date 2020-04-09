@@ -121,7 +121,7 @@ public class ControlController {
 		
 		if ( tipo.equals("corte")) {
 			Integer contador = DCPM.Contador("2");
-			muestra.setIdText("TRAZO"+(100+contador+1));
+			muestra.setIdText("CORTE"+(100+contador+1));
 			muestra.setIdPedido(id);
 			muestra.setFechaRecepcion(f1+":00");
 			muestra.setFechaEntrega(f2+":00");
@@ -137,6 +137,8 @@ public class ControlController {
 		}
 		
 		if ( tipo.equals("confeccion")) {
+			Integer contador = DCPM.Contador("3");
+			muestra.setIdText("CONFEC"+(100+contador+1));
 			muestra.setIdPedido(id);
 			muestra.setFechaRecepcion(f1+":00");
 			muestra.setFechaEntrega(f2+":00");
@@ -152,8 +154,8 @@ public class ControlController {
 		}
 		
 		if ( tipo.equals("planchado")) {
-			Integer contador = DCPM.Contador("3");
-			muestra.setIdText("TRAZO"+(100+contador+1));
+			Integer contador = DCPM.Contador("4");
+			muestra.setIdText("PLANC"+(100+contador+1));
 			muestra.setIdPedido(id);
 			muestra.setFechaRecepcion(f1+":00");
 			muestra.setFechaEntrega(f2+":00");
@@ -169,8 +171,8 @@ public class ControlController {
 		}
 		
 		if ( tipo.equals("terminado")) {
-			Integer contador = DCPM.Contador("4");
-			muestra.setIdText("TRAZO"+(100+contador+1));
+			Integer contador = DCPM.Contador("5");
+			muestra.setIdText("TERM"+(100+contador+1));
 			muestra.setIdPedido(id);
 			muestra.setFechaRecepcion(f1+":00");
 			muestra.setFechaEntrega(f2+":00");
