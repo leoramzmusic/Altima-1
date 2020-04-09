@@ -237,7 +237,7 @@
                                                             <div class="input-group col-sm-12">
 											
                                                                 <select class="form-control" name="marcador_" id="marcador_">
-                                                                    <option value="">Seleccione...</option>
+                                                                    
                                                                     <option th:each="marcador:${marcadores}"th:value="${marcador.idLookup}" th:text="${marcador.nombreLookup}"></option>
                                                                 </select>
 															  <span class="input-group-btn">
@@ -401,6 +401,7 @@
 																			<th scope="col">Cantidad de tela</th>
 																			<th scope="col">Cantidad de forro</th>
 																			<th scope="col">Cantidad de entretela</th>
+																			<th scope="col">Editar</th>
 																			<th scope="col">Quitar</th>
 																		</tr>
 																	</thead>

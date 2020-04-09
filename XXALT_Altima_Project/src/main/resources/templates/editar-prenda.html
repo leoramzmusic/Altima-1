@@ -223,7 +223,7 @@
                                                             <div class="input-group col-sm-12">
 											
                                                                 <select class="form-control" name="marcador_" id="marcador_">
-                                                                    <option value="">Seleccione...</option>
+                                                                    
                                                                     <option th:each="marcador:${marcadores}"th:value="${marcador.idLookup}" th:text="${marcador.nombreLookup}"></option>
                                                                 </select>
 															  <span class="input-group-btn">
@@ -375,19 +375,19 @@
                                                             <div class="col-sm-3">
                                                                 <label>Cantidad de tela</label>
                                                                 <div class="form-group">
-                                                                    <input type="text" class="form-control" placeholder="10" id="CantidadTela">
+                                                                    <input type="number" class="form-control" placeholder="10" id="CantidadTela">
                                                                 </div>
                                                             </div>
                                                             <div class="col-sm-3">
                                                                 <label>Cantidad de forro</label>
                                                                 <div class="form-group">
-                                                                    <input type="text" class="form-control" placeholder="10" id="CantidadForro">
+                                                                    <input type="number" class="form-control" placeholder="10" id="CantidadForro">
                                                                 </div>
                                                             </div>
                                                             <div class="col-sm-3">
                                                                 <label>Cantidad de entretela</label>
                                                                 <div class="form-group">
-                                                                    <input type="text" class="form-control" placeholder="10" id="CantidadEntretela">
+                                                                    <input type="number" class="form-control" placeholder="10" id="CantidadEntretela">
                                                                 </div>
                                                             </div>
                                                             <div class="col-sm-3">
