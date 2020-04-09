@@ -413,7 +413,8 @@ function PruebaContaminacion() {
 	var calidadContaminacion = $('input:radio[name=calidadConta]:checked').val();
 
 	var observacionesReultSolidez= $('#observacionesReultContaminacion').val();
-	var idCalidad = $('#idCalidadConta').val();
+	var idCalidad = $('#idCalidadEnco').val();
+	console.log(idCalidad);
 	var valordeReferencia = " ";
 	
 	var datos= [tipoTela,

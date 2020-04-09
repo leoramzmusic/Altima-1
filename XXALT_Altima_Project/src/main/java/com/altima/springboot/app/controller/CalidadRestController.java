@@ -424,7 +424,7 @@ public class CalidadRestController {
         LocalDate localDate = LocalDate.now();
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         String formattedDate=localDate + " "+ dateFormat.format(date);
-        System.out.println(palabras[5]);
+        System.out.println(palabras[5]+"ayuda");
  		if(palabras[5].equals("") || palabras[5]==null) {
 			disenioCalidad.setCreadoPor(auth.getName());
 			disenioCalidad.setActualizadoPor(auth.getName());
