@@ -30,8 +30,8 @@ public class ComercialInventarioDetalle implements Serializable {
 	@Column(name="id_inventario")
 	private Long idInventario;
 	
-	@Column(name="consecutivo")
-	private String consecutivo;
+	@Column(name="id_text")
+	private String idText;
 
 	public Long getIdInventarioDetalle() {
 		return idInventarioDetalle;
@@ -48,13 +48,13 @@ public class ComercialInventarioDetalle implements Serializable {
 	public void setIdInventario(Long idInventario) {
 		this.idInventario = idInventario;
 	}
-
-	public String getConsecutivo() {
-		return consecutivo;
+	
+	public String getIdText() {
+		return idText;
 	}
 
-	public void setConsecutivo(String consecutivo) {
-		this.consecutivo = consecutivo;
+	public void setIdText(String idText) {
+		this.idText = idText;
 	}
 
 	public static long getSerialversionuid() {
