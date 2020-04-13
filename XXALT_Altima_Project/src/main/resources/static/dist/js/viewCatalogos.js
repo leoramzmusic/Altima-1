@@ -9,6 +9,7 @@ if( /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.u
 		document.getElementById("materialesCatalogo").className = "col-lg-4 col-12";
 		document.getElementById("composicionesCatalogo").className = "col-lg-4 col-12";
 		document.getElementById("marcadoresCatalogo").className = "col-lg-4 col-12";
+		document.getElementById("composicionCatalogo").className = "col-lg-4 col-12";
 	}
 	window.onload = changeClassById();
 }
