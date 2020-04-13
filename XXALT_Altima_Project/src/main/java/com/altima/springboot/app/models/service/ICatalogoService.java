@@ -34,4 +34,26 @@ public interface ICatalogoService {
 
 	List<DisenioLookup> findAllMarcador();
 
+	List<DisenioLookup> findAllComposicion();
+
+	DisenioLookup findLastComposicion();
+
+	DisenioLookup findLastMarcador();
+
+	DisenioLookup findLastMaterial();
+
+	DisenioLookup findLastUnidadMedida();
+
+	DisenioLookup findLastInstrCuidado();
+
+	DisenioLookup findLastFamComposicion();
+
+	DisenioLookup findLastFamGenero();
+
+	DisenioLookup findLastFamPrendas();
+
+	DisenioLookup findLastPzasTrazo();
+
+	DisenioLookup findLastColor();
+
 }
