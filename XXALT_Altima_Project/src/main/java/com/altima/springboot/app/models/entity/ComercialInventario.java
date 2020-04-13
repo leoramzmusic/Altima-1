@@ -12,25 +12,31 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "alt_orden")
-public class Orden implements Serializable {
+@Table(name = "alt_comercial_inventario")
+public class ComercialInventario implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@Column(name="id_orden")
+	@Column(name="id_inventario")
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
-	private Long idOrden;
+	private Long idInventario;
 	
-	@Column(name="id_pedido")
-	private Long idPedido;
+	@Column(name="id_tela")
+	private Long idTela;
 	
-	@Column(name="id_text")
-	private String idText;
+	@Column(name="talla")
+	private String talla;
+	
+	@Column(name="imagen")
+	private String imagen;
+	
+	@Column(name="cantidad")
+	private String cantidad;
 	
 	@Column(name="creado_por")
 	private String creadoPor;
@@ -47,28 +53,44 @@ public class Orden implements Serializable {
 	@Column(name="estatus")
 	private String estatus;
 
-	public Long getIdOrden() {
-		return idOrden;
+	public Long getIdInventario() {
+		return idInventario;
 	}
 
-	public void setIdOrden(Long idOrden) {
-		this.idOrden = idOrden;
+	public void setIdInventario(Long idInventario) {
+		this.idInventario = idInventario;
 	}
 
-	public Long getIdPedido() {
-		return idPedido;
+	public Long getIdTela() {
+		return idTela;
 	}
 
-	public void setIdPedido(Long idPedido) {
-		this.idPedido = idPedido;
+	public void setIdTela(Long idTela) {
+		this.idTela = idTela;
 	}
 
-	public String getIdText() {
-		return idText;
+	public String getTalla() {
+		return talla;
 	}
 
-	public void setIdText(String idText) {
-		this.idText = idText;
+	public void setTalla(String talla) {
+		this.talla = talla;
+	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+	public String getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(String cantidad) {
+		this.cantidad = cantidad;
 	}
 
 	public String getCreadoPor() {
@@ -115,5 +137,4 @@ public class Orden implements Serializable {
 		return serialVersionUID;
 	}
 	
-
 }
