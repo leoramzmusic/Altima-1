@@ -78,8 +78,8 @@
 												</td>
 												<td>Pendiente de recoger</td>
 												<td class="tdcenter">
-													<a data-target="#entregadoVendedorTraspaso" data-toggle="modal" class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Entregado a vendedor"><i class="fas fa-user-check"></i></a>
-                                    				<a data-target="#canceladoVendedorTraspaso" data-toggle="modal" class="btn btn-danger btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Cancelar"><i class="fas fa-times"></i></a>
+													<a onclick="entregarSolicitud()" class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Entregado a vendedor"><i class="fas fa-user-check"></i></a>
+                                    				<a onclick="cancelarSolicitud()" class="btn btn-danger btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Cancelar"><i class="fas fa-times"></i></a>
                                     			</td>
 											</tr>
 											<tr>
@@ -106,7 +106,7 @@
 												</td>
 												<td>Entregado a vendendor</td>
 												<td class="tdcenter">
-													<a data-target="#devolucionTraspaso" data-toggle="modal" class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Entregado"><i class="fas fa-check"></i></a>
+													<a onclick="devueltoSolicitud()" class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Devuelto"><i class="fas fa-check"></i></a>
 												</td>
 											</tr>
 											<tr>
@@ -152,10 +152,6 @@
 										</tbody>
 									</table>
 									<div th:insert="modal-traspaso-info"></div>
-									<div th:insert="modal-traspaso-update"></div>
-									<div th:insert="modal-traspaso-devolucion"></div>
-									<div th:insert="modal-traspaso-vendedor"></div>
-									<div th:insert="modal-traspaso-cancelado"></div>
 								</div>
 								<!-- /.card-body -->
 							</div>
@@ -173,6 +169,8 @@
 	<!-- ./wrapper -->
 	<div th:replace="navegacion-scripts"></div>
 	<script src="dist/js/tablaMovimientos.js"></script>
+	<script src="/dist/js/sweetalert.js"></script>
+	<script src="/dist/js/confirmacionesMovimientos.js"></script>
      <script>
         $(document).ready(function() {
             $('#tablaTraspasoinfo').DataTable({

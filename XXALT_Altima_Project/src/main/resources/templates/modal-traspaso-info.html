@@ -2,9 +2,9 @@
     <div class="modal-dialog modal-dialog-centered modal-catalogo-info" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                <h5 class="modal-title" id="exampleModalLongTitle">Muestras&nbsp;<a data-target="#devolucionTraspaso" data-toggle="modal" class="btn btn-light btn-circle btn-sm text-success popoverxd" data-container="body" data-placement="top" data-content="Devuelto"><i class="fas fa-check"></i></a>
+                <h5 class="modal-title" id="exampleModalLongTitle">Muestras&nbsp;<a onclick="devueltoIndividualSolicitud()" class="btn btn-light btn-circle btn-sm text-success popoverxd" data-container="body" data-placement="top" data-content="Devuelto"><i class="fas fa-check"></i></a>
                 &nbsp;<a class="btn btn-light text-warning btn-circle btn-sm popoverxd" data-target="#traspasoAgente" data-toggle="modal" data-container="body" data-placement="top" data-content="Traspaso"><i class="fas fa-exchange-alt"></i></a>&nbsp;
-                <a data-target="#updateTraspaso" data-toggle="modal" class="btn btn-light text-primary btn-circle btn-sm popoverxd" data-container="body" data-placement="top" data-content="Prestado a empresa"><i class="fas fa-building"></i></a></h5>
+                <a onclick="prestamoSolicitud()" class="btn btn-light text-primary btn-circle btn-sm popoverxd" data-container="body" data-placement="top" data-content="Prestado a empresa"><i class="fas fa-building"></i></a></h5>
                 <div th:insert="modal-traspaso-agente"></div>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
