@@ -8,8 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -28,20 +26,10 @@ public class DisenioComposicionIcuidado implements Serializable {
 	private Long idUmedidaIcuidado;
 	
 	@Column(name="id_composicion")
-	@NotBlank
 	private Long idComposicion;
 	
-	@Column(name="id_instrucciones_cuidado")
-	@NotBlank
+	@Column(name="id_instruccion_cuidado")
 	private Long idInstruccionesCuidado;
-
-	public Long getIdUmedidaIcuidado() {
-		return idUmedidaIcuidado;
-	}
-
-	public void setIdUmedidaIcuidado(Long idUmedidaIcuidado) {
-		this.idUmedidaIcuidado = idUmedidaIcuidado;
-	}
 
 	public Long getIdComposicion() {
 		return idComposicion;
