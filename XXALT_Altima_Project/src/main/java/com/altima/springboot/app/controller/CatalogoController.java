@@ -5,9 +5,7 @@ import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +26,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+import com.altima.springboot.app.models.entity.DisenioComposicionIcuidado;
 import com.altima.springboot.app.models.entity.DisenioLookup;
 import com.altima.springboot.app.models.service.ICatalogoService;
+import com.altima.springboot.app.models.service.IDisenioComposicionCuidadoService;
 import com.altima.springboot.app.models.service.IUploadService;
 //import com.google.gson.Gson;
 
@@ -44,6 +43,9 @@ public class CatalogoController {
 
 	@Autowired
 	ICatalogoService catalogo;
+
+	@Autowired
+	IDisenioComposicionCuidadoService composicioncuidado;
 
 	@Autowired
 	private IUploadService uploadFileService;
@@ -134,6 +136,13 @@ public class CatalogoController {
 		return catalogo.findAllMarcador();
 	}
 
+	@RequestMapping(value = "/composicioneslook", method = RequestMethod.GET)
+	@ResponseBody
+	public List<DisenioLookup> composicion() {
+
+		return catalogo.findAllComposicion();
+	}
+
 	@RequestMapping(value = { "/catalogos" }, method = RequestMethod.GET)
 	public String catalogo(Model model, RedirectAttributes flash) {
 
@@ -150,13 +159,24 @@ public class CatalogoController {
 
 	}
 
+	@PostMapping("/eliminarcomposicioncuidado")
+	@ResponseBody
+	public DisenioLookup eliminarcomposicioncuidado(Long id) {
+		DisenioComposicionIcuidado composicioncuidado1 = composicioncuidado.findOne(id);
+		DisenioLookup composicion = catalogo.findOne(composicioncuidado1.getIdComposicion());
+		composicioncuidado.delete(id);
+		return composicion;
+
+	}
+
 	@PostMapping("/guardarcatalogo")
 	public String guardacatalogo(String Marca, String Descripcion, String Color, String PiezaTrazo,
 			String FamiliaPrenda, String FamiliaGenero, String FamiliaComposicion, String InstruccionCuidado,
 			String UnidadMedida, String Material, HttpServletRequest request, String Marcador, String CodigoColor,
-			@RequestParam(required = false) MultipartFile iconocuidado) {
+			@RequestParam(required = false) MultipartFile iconocuidado, Long Idcuidado, String Simbolo,
+			String Composicion) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		
+
 		if (Marca != null) {
 			DisenioLookup marca = new DisenioLookup();
 			marca.setIdText("MAR004");
@@ -172,7 +192,25 @@ public class CatalogoController {
 		}
 		if (Color != null) {
 			DisenioLookup color = new DisenioLookup();
-			color.setIdText("COL004");
+			DisenioLookup ultimoid = null;
+			try {
+				ultimoid = catalogo.findLastColor();
+
+			} catch (Exception e) {
+
+				System.out.println(e);
+			}
+
+			if (ultimoid == null) {
+				color.setIdText("COL0010");
+			} else {
+
+				String str = ultimoid.getIdText();
+				String[] part = str.split("(?<=\\D)(?=\\d)");
+				Integer cont = Integer.parseInt(part[1]);
+				color.setIdText("COL00" + (cont + 1));
+			}
+
 			color.setNombreLookup(Color);
 			color.setTipoLookup("Color");
 			color.setCreadoPor(auth.getName());
@@ -180,50 +218,265 @@ public class CatalogoController {
 			color.setEstatus(1);
 			color.setAtributo1(CodigoColor);
 			catalogo.save(color);
-			color.setIdText("COL00" + (color.getIdLookup() + 10));
-			catalogo.save(color);
 			return "/catalogos";
 		}
 		if (PiezaTrazo != null) {
 			DisenioLookup piezatrazo = new DisenioLookup();
-			piezatrazo.setIdText("COL004");
+			DisenioLookup ultimoid = null;
+			try {
+				ultimoid = catalogo.findLastPzasTrazo();
+
+			} catch (Exception e) {
+
+				System.out.println(e);
+			}
+
+			if (ultimoid == null) {
+				piezatrazo.setIdText("PZTR0010");
+			} else {
+
+				String str = ultimoid.getIdText();
+				String[] part = str.split("(?<=\\D)(?=\\d)");
+				Integer cont = Integer.parseInt(part[1]);
+				piezatrazo.setIdText("PZTR00" + (cont + 1));
+			}
+
 			piezatrazo.setNombreLookup(PiezaTrazo);
 			piezatrazo.setTipoLookup("Pieza Trazo");
 			piezatrazo.setCreadoPor(auth.getName());
 			piezatrazo.setFechaCreacion(date);
 			piezatrazo.setEstatus(1);
 			catalogo.save(piezatrazo);
-			piezatrazo.setIdText("PZTR00" + (piezatrazo.getIdLookup() + 10));
-			catalogo.save(piezatrazo);
 			return "/catalogos";
 		}
 		if (FamiliaPrenda != null) {
 			DisenioLookup familiaprenda = new DisenioLookup();
-			familiaprenda.setIdText("Fam004");
+			DisenioLookup ultimoid = null;
+			try {
+				ultimoid = catalogo.findLastFamPrendas();
+
+			} catch (Exception e) {
+
+				System.out.println(e);
+			}
+
+			if (ultimoid == null) {
+				familiaprenda.setIdText("FAMPR0010");
+			} else {
+
+				String str = ultimoid.getIdText();
+				String[] part = str.split("(?<=\\D)(?=\\d)");
+				Integer cont = Integer.parseInt(part[1]);
+				familiaprenda.setIdText("FAMPR00" + (cont + 1));
+			}
+
 			familiaprenda.setNombreLookup(FamiliaPrenda);
 			familiaprenda.setTipoLookup("Familia Prenda");
 			familiaprenda.setCreadoPor(auth.getName());
 			familiaprenda.setFechaCreacion(date);
 			familiaprenda.setEstatus(1);
 			catalogo.save(familiaprenda);
-			familiaprenda.setIdText("FAMPR00" + (familiaprenda.getIdLookup() + 10));
-			catalogo.save(familiaprenda);
 			return "/catalogos";
 		}
 		if (FamiliaGenero != null) {
 			DisenioLookup familiagenero = new DisenioLookup();
-			familiagenero.setIdText("Fam004");
+			DisenioLookup ultimoid = null;
+			try {
+				ultimoid = catalogo.findLastFamGenero();
+
+			} catch (Exception e) {
+
+				System.out.println(e);
+
+			}
+
+			if (ultimoid == null) {
+				familiagenero.setIdText("FAMGE0010");
+			} else {
+
+				String str = ultimoid.getIdText();
+				String[] part = str.split("(?<=\\D)(?=\\d)");
+				Integer cont = Integer.parseInt(part[1]);
+				familiagenero.setIdText("FAMGE00" + (cont + 1));
+			}
+
 			familiagenero.setNombreLookup(FamiliaGenero);
 			familiagenero.setTipoLookup("Familia Genero");
 			familiagenero.setCreadoPor(auth.getName());
 			familiagenero.setFechaCreacion(date);
 			familiagenero.setEstatus(1);
 			catalogo.save(familiagenero);
-			familiagenero.setIdText("FAMGE00" + (familiagenero.getIdLookup() + 10));
-			catalogo.save(familiagenero);
 			return "/catalogos";
 		}
-		if (FamiliaComposicion != null) {
+
+		if (InstruccionCuidado != null) {
+			DisenioLookup instruccioncuidado = new DisenioLookup();
+			DisenioLookup ultimoid = null;
+			try {
+				ultimoid = catalogo.findLastInstrCuidado();
+
+			} catch (Exception e) {
+
+				System.out.println(e);
+
+			}
+
+			if (ultimoid == null) {
+				instruccioncuidado.setIdText("INSTRCU0010");
+			} else {
+
+				String str = ultimoid.getIdText();
+				String[] part = str.split("(?<=\\D)(?=\\d)");
+				Integer cont = Integer.parseInt(part[1]);
+				instruccioncuidado.setIdText("INSTRCU00" + (cont + 1));
+			}
+
+			instruccioncuidado.setNombreLookup(InstruccionCuidado);
+			instruccioncuidado.setTipoLookup("Instruccion Cuidado");
+			instruccioncuidado.setCreadoPor(auth.getName());
+			instruccioncuidado.setFechaCreacion(date);
+			instruccioncuidado.setEstatus(1);
+			String uniqueFilename = null;
+			try {
+				uniqueFilename = uploadFileService.copycuidados(iconocuidado);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			instruccioncuidado.setAtributo1(uniqueFilename);
+			catalogo.save(instruccioncuidado);
+			return "/catalogos";
+		}
+		if (UnidadMedida != null) {
+			DisenioLookup unidadmedida = new DisenioLookup();
+			DisenioLookup ultimoid = null;
+			try {
+				ultimoid = catalogo.findLastUnidadMedida();
+
+			} catch (Exception e) {
+
+				System.out.println(e);
+
+			}
+
+			if (ultimoid == null) {
+				unidadmedida.setIdText("UMED0010");
+			} else {
+
+				String str = ultimoid.getIdText();
+				String[] part = str.split("(?<=\\D)(?=\\d)");
+				Integer cont = Integer.parseInt(part[1]);
+				unidadmedida.setIdText("UMED00" + (cont + 1));
+			}
+
+			unidadmedida.setNombreLookup(UnidadMedida);
+			unidadmedida.setTipoLookup("Unidad Medida");
+			unidadmedida.setDescripcionLookup(Simbolo);
+			unidadmedida.setCreadoPor(auth.getName());
+			unidadmedida.setFechaCreacion(date);
+			unidadmedida.setEstatus(1);
+			catalogo.save(unidadmedida);
+			return "/catalogos";
+		}
+		if (Material != null) {
+			DisenioLookup material = new DisenioLookup();
+			DisenioLookup ultimoid = null;
+			try {
+				ultimoid = catalogo.findLastMaterial();
+
+			} catch (Exception e) {
+
+				System.out.println(e);
+
+			}
+
+			if (ultimoid == null) {
+				material.setIdText("MAT0010");
+			} else {
+
+				String str = ultimoid.getIdText();
+				String[] part = str.split("(?<=\\D)(?=\\d)");
+				Integer cont = Integer.parseInt(part[1]);
+				material.setIdText("MAT00" + (cont + 1));
+			}
+
+			material.setNombreLookup(Material);
+			material.setTipoLookup("Material");
+			material.setCreadoPor(auth.getName());
+			material.setFechaCreacion(date);
+			material.setEstatus(1);
+			catalogo.save(material);
+			return "/catalogos";
+		}
+		if (Marcador != null) {
+			DisenioLookup marcador = new DisenioLookup();
+			DisenioLookup ultimoid = null;
+			try {
+				ultimoid = catalogo.findLastMarcador();
+
+			} catch (Exception e) {
+
+				System.out.println(e);
+
+			}
+
+			if (ultimoid == null) {
+				marcador.setIdText("MARC0010");
+			} else {
+
+				String str = ultimoid.getIdText();
+				String[] part = str.split("(?<=\\D)(?=\\d)");
+				Integer cont = Integer.parseInt(part[1]);
+				marcador.setIdText("MARC00" + (cont + 1));
+			}
+
+			marcador.setNombreLookup(Marcador);
+			marcador.setTipoLookup("Marcador");
+			marcador.setCreadoPor(auth.getName());
+			marcador.setFechaCreacion(date);
+			marcador.setEstatus(1);
+			catalogo.save(marcador);
+			return "/catalogos";
+		}
+		if (Composicion != null) {
+			DisenioLookup composicion = new DisenioLookup();
+			DisenioLookup ultimoid = null;
+			try {
+				ultimoid = catalogo.findLastComposicion();
+
+			} catch (Exception e) {
+
+				System.out.println(e);
+			}
+
+			if (ultimoid == null) {
+				composicion.setIdText("COMP0010");
+			} else {
+
+				String str = ultimoid.getIdText();
+				String[] part = str.split("(?<=\\D)(?=\\d)");
+				Integer cont = Integer.parseInt(part[1]);
+				composicion.setIdText("COMP00" + (cont + 1));
+			}
+
+			composicion.setNombreLookup(Composicion);
+			composicion.setTipoLookup("Composicion");
+			composicion.setCreadoPor(auth.getName());
+			composicion.setFechaCreacion(date);
+			composicion.setEstatus(1);
+			catalogo.save(composicion);
+			return "/catalogos";
+		}
+		return "redirect:catalogos";
+
+	}
+
+	@RequestMapping(value = "/composicioncuidadorest", method = RequestMethod.POST)
+	@ResponseBody
+	public String[] composicioncuidado(Long idcuidado, String FamiliaComposicion, Long idcomposicion) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String[] result = new String[2];
+		if (FamiliaComposicion != null && FamiliaComposicion.length() > 0) {
 			DisenioLookup familiacomposicion = new DisenioLookup();
 			familiacomposicion.setIdText("Fam004");
 			familiacomposicion.setNombreLookup(FamiliaComposicion);
@@ -234,78 +487,39 @@ public class CatalogoController {
 			catalogo.save(familiacomposicion);
 			familiacomposicion.setIdText("FAMCOMP00" + (familiacomposicion.getIdLookup() + 10));
 			catalogo.save(familiacomposicion);
-			return "/catalogos";
-		}
-		if (InstruccionCuidado != null) {
-			DisenioLookup instruccioncuidado = new DisenioLookup();
-			instruccioncuidado.setIdText("Fam004");
-			instruccioncuidado.setNombreLookup(InstruccionCuidado);
-			instruccioncuidado.setTipoLookup("Instruccion Cuidado");
-			instruccioncuidado.setCreadoPor(auth.getName());
-			instruccioncuidado.setFechaCreacion(date);
-			instruccioncuidado.setEstatus(1);
-			String uniqueFilename = null;
-			try {
-				uniqueFilename = uploadFileService.copycuidados(iconocuidado);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			DisenioComposicionIcuidado diseniocomposicioncuidado = new DisenioComposicionIcuidado();
+			diseniocomposicioncuidado.setIdComposicion(familiacomposicion.getIdLookup());
+			diseniocomposicioncuidado.setIdInstruccionesCuidado(idcuidado);
+			composicioncuidado.save(diseniocomposicioncuidado);
+			result[0] = familiacomposicion.getIdLookup().toString();
+			result[1] = familiacomposicion.getNombreLookup();
+		} else {
 
-			instruccioncuidado.setAtributo1(uniqueFilename);
+			DisenioComposicionIcuidado diseniocomposicioncuidado = new DisenioComposicionIcuidado();
+			diseniocomposicioncuidado.setIdComposicion(idcomposicion);
+			diseniocomposicioncuidado.setIdInstruccionesCuidado(idcuidado);
+			composicioncuidado.save(diseniocomposicioncuidado);
+			DisenioLookup famcomp = catalogo.findOne(diseniocomposicioncuidado.getIdComposicion());
+			result[0] = famcomp.getIdLookup().toString();
+			result[1] = famcomp.getNombreLookup();
 
-			catalogo.save(instruccioncuidado);
-			instruccioncuidado.setIdText("INSTRCU00" + (instruccioncuidado.getIdLookup() + 10));
-			catalogo.save(instruccioncuidado);
-			return "/catalogos";
 		}
-		if (UnidadMedida != null) {
-			DisenioLookup unidadmedida = new DisenioLookup();
-			unidadmedida.setIdText("Fam004");
-			unidadmedida.setNombreLookup(UnidadMedida);
-			unidadmedida.setTipoLookup("Unidad Medida");
-			unidadmedida.setCreadoPor(auth.getName());
-			unidadmedida.setFechaCreacion(date);
-			unidadmedida.setEstatus(1);
-			catalogo.save(unidadmedida);
-			unidadmedida.setIdText("UMED00" + (unidadmedida.getIdLookup() + 10));
-			catalogo.save(unidadmedida);
-			return "/catalogos";
-		}
-		if (Material != null) {
-			DisenioLookup material = new DisenioLookup();
-			material.setIdText("Fam004");
-			material.setNombreLookup(Material);
-			material.setTipoLookup("Material");
-			material.setCreadoPor(auth.getName());
-			material.setFechaCreacion(date);
-			material.setEstatus(1);
-			catalogo.save(material);
-			material.setIdText("MAT00" + (material.getIdLookup() + 10));
-			catalogo.save(material);
-			return "/catalogos";
-		}
-		if (Marcador != null) {
-			DisenioLookup marcador = new DisenioLookup();
-			marcador.setIdText("Fam004");
-			marcador.setNombreLookup(Marcador);
-			marcador.setTipoLookup("Marcador");
-			marcador.setCreadoPor(auth.getName());
-			marcador.setFechaCreacion(date);
-			marcador.setEstatus(1);
-			catalogo.save(marcador);
-			marcador.setIdText("MARC00" + (marcador.getIdLookup() + 10));
-			catalogo.save(marcador);
-			return "/catalogos";
-		}
-		return "redirect:catalogos";
+
+		return result;
+	}
+
+	@RequestMapping(value = "/composicionescuidadosrest", method = RequestMethod.POST)
+	@ResponseBody
+	public List<Object> composicionescuidados(Long FamiliaComposicion) {
+		return composicioncuidado.composicioncuidado(FamiliaComposicion);
 
 	}
 
 	@PostMapping("/editarcatalogo")
 	public String editacatalogo(Model model, final Long idLookup, String Marca, String Color, String PiezaTrazo,
 			String FamiliaPrenda, String Descripcion, String FamiliaGenero, String FamiliaComposicion,
-			String InstruccionCuidado, String UnidadMedida, String Material, String Marcador, String CodigoColor) {
+			String InstruccionCuidado, String UnidadMedida, String Material, String Marcador, String CodigoColor,
+			String Simbolo, String Composicion) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		DisenioLookup marca = null;
 		DisenioLookup color = null;
@@ -317,6 +531,7 @@ public class CatalogoController {
 		DisenioLookup unidadmedida = null;
 		DisenioLookup material = null;
 		DisenioLookup marcador = null;
+		DisenioLookup composicion = null;
 		if (Marca != null && idLookup > 0) {
 			marca = catalogo.findOne(idLookup);
 			marca.setNombreLookup(Marca);
@@ -377,6 +592,7 @@ public class CatalogoController {
 		if (UnidadMedida != null && idLookup > 0) {
 			unidadmedida = catalogo.findOne(idLookup);
 			unidadmedida.setNombreLookup(UnidadMedida);
+			unidadmedida.setDescripcionLookup(Simbolo);
 			unidadmedida.setUltimaFechaModificacion(date);
 			unidadmedida.setActualizadoPor(auth.getName());
 			catalogo.save(unidadmedida);
@@ -396,6 +612,14 @@ public class CatalogoController {
 			marcador.setUltimaFechaModificacion(date);
 			marcador.setActualizadoPor(auth.getName());
 			catalogo.save(marcador);
+			return "redirect:catalogos";
+		}
+		if (Composicion != null && idLookup > 0) {
+			composicion = catalogo.findOne(idLookup);
+			composicion.setNombreLookup(Composicion);
+			composicion.setUltimaFechaModificacion(date);
+			composicion.setActualizadoPor(auth.getName());
+			catalogo.save(composicion);
 			return "redirect:catalogos";
 		}
 		return "redirect:catalogos";
