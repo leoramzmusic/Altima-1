@@ -32,6 +32,28 @@ public class ProduccionDetallePedido implements Serializable {
 	@Column(name="id_tela")
 	private Long idTela;
 	
+	@Column(name="id_inventario")
+	private Long idInventario;
+	
+	public Long getIdInventario() {
+		return idInventario;
+	}
+
+	public void setIdInventario(Long idInventario) {
+		this.idInventario = idInventario;
+	}
+
+	public String getEstatus_confeccion() {
+		return estatus_confeccion;
+	}
+
+	public void setEstatus_confeccion(String estatus_confeccion) {
+		this.estatus_confeccion = estatus_confeccion;
+	}
+
+	@Column(name="estatus_confeccion")
+	private String estatus_confeccion;
+	
 	@Column(name="talla")
 	private String talla;
 	
@@ -58,6 +80,8 @@ public class ProduccionDetallePedido implements Serializable {
 	
 	@Column(name="estatus")
 	private String estatus;
+	
+	
 
 	public Long getIdDetallePedido() {
 		return idDetallePedido;
