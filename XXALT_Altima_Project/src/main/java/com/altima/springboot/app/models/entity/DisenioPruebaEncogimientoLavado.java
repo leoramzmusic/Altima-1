@@ -80,10 +80,36 @@ public class DisenioPruebaEncogimientoLavado implements Serializable{
 	@Column(name="estatus")
 	private String estatus;
 	
-
-
+	@Column(name="ultima_fecha_modificacion")
+	private String ultimaFechaModificacion;
 	
+	@Column(name="actualizado_por")
+	private String actualizadoPor;
 	
+	public String getProveedorPruebavapor() {
+		return proveedorPruebavapor;
+	}
+
+	public void setProveedorPruebavapor(String proveedorPruebavapor) {
+		this.proveedorPruebavapor = proveedorPruebavapor;
+	}
+
+	public String getUltimaFechaModificacion() {
+		return ultimaFechaModificacion;
+	}
+
+	public void setUltimaFechaModificacion(String ultimaFechaModificacion) {
+		this.ultimaFechaModificacion = ultimaFechaModificacion;
+	}
+
+	public String getActualizadoPor() {
+		return actualizadoPor;
+	}
+
+	public void setActualizadoPor(String actualizadoPor) {
+		this.actualizadoPor = actualizadoPor;
+	}
+
 	public String getProveedorPruebaVapor() {
 		return proveedorPruebavapor;
 	}

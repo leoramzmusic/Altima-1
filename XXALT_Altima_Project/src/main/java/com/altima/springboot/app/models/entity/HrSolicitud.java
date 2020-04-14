@@ -45,8 +45,32 @@ public class HrSolicitud implements Serializable{
 	@Column(name="ultima_fecha_modificacion")
 	private String ultimaFechaModificacion;
 	
+	@Column(name="creado_por")
+	private String creadoPor;
+	
+	@Column(name="actualizado_por")
+	private String actualizadoPor;
+	
 	@Column(name="estatus")
 	private String estatus;
+	
+	
+
+	public String getCreadoPor() {
+		return creadoPor;
+	}
+
+	public void setCreadoPor(String creadoPor) {
+		this.creadoPor = creadoPor;
+	}
+
+	public String getActualizadoPor() {
+		return actualizadoPor;
+	}
+
+	public void setActualizadoPor(String actualizadoPor) {
+		this.actualizadoPor = actualizadoPor;
+	}
 
 	public Long getIdSolicitud() {
 		return idSolicitud;

@@ -59,6 +59,12 @@ public class DisenioPruebaLavadoContaminacionCostura implements Serializable{
 	@Column(name="tipo_prueba")
 	private String tipoPrueba;
 	
+	@Column(name="ultima_fecha_modificacion")
+	private String ultimaFechaModificacion;
+	
+	@Column(name="actualizado_por")
+	private String actualizadoPor;
+	
 
 	public Long getIdPruebaLavadoContaminacionCostura() {
 		return idPruebaLavadoContaminacionCostura;

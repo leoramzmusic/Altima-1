@@ -12,25 +12,22 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "alt_disenio_tela_prenda")
-public class DisenioTelaPrenda implements Serializable{
+@Table(name = "alt_produccion_pedido")
+public class ProduccionPedido implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@Column(name="id_tela_prenda")
+	@Column(name="id_pedido")
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
-	private Long idTelaPrenda;
+	private Long idPedido;
 	
-	@Column(name="id_tela")
-	private Long idTela;
-	
-	@Column(name="id_prenda")
-	private Long idPrenda;
+	@Column(name="id_cliente")
+	private Long idCliente;
 	
 	@Column(name="fecha_creacion")
 	private String fechaCreacion;
@@ -44,6 +41,33 @@ public class DisenioTelaPrenda implements Serializable{
 	@Column(name="actualizado_por")
 	private String actualizadoPor;
 	
+	@Column(name="estatus")
+	private String estatus;
+	
+	@Column(name="id_text")
+	private String idText;
+	
+	@Column(name="cantidad")
+	private String cantidad;
+	
+	@Column(name="descripcion")
+	private String descripcion;
+
+	public Long getIdPedido() {
+		return idPedido;
+	}
+
+	public void setIdPedido(Long idPedido) {
+		this.idPedido = idPedido;
+	}
+
+	public Long getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(Long idCliente) {
+		this.idCliente = idCliente;
+	}
 
 	public String getFechaCreacion() {
 		return fechaCreacion;
@@ -77,34 +101,43 @@ public class DisenioTelaPrenda implements Serializable{
 		this.actualizadoPor = actualizadoPor;
 	}
 
-	public Long getIdTelaPrenda() {
-		return idTelaPrenda;
+	public String getEstatus() {
+		return estatus;
 	}
 
-	public void setIdTelaPrenda(Long idTelaPrenda) {
-		this.idTelaPrenda = idTelaPrenda;
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
 	}
 
-	public Long getIdTela() {
-		return idTela;
+	public String getIdText() {
+		return idText;
 	}
 
-	public void setIdTela(Long idTela) {
-		this.idTela = idTela;
+	public void setIdText(String idText) {
+		this.idText = idText;
 	}
 
-	public Long getIdPrenda() {
-		return idPrenda;
+	public String getCantidad() {
+		return cantidad;
 	}
 
-	public void setIdPrenda(Long idPrenda) {
-		this.idPrenda = idPrenda;
+	public void setCantidad(String cantidad) {
+		this.cantidad = cantidad;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
 	
 
+	
 }

@@ -12,23 +12,34 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "alt_comercial_inventario_detalle")
-public class ComercialInventarioDetalle implements Serializable {
+@Table(name = "alt_produccion_orden")
+public class ProduccionOrden implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	
 	@Id
-	@Column(name="id_inventario_detalle")
+	@Column(name="id_orden")
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
-	private Long idInventarioDetalle;
+	private Long idOrden;
 	
-	@Column(name="id_inventario")
-	private Long idInventario;
+	@Column(name="id_pedido")
+	private Long idPedido;
+	
+	@Column(name="id_tela")
+	private Long idTela;
+	
+	@Column(name="talla")
+	private String talla;
+	
+	@Column(name="largo")
+	private String largo;
+	
+	@Column(name="descripcion")
+	private String descripcion;
 	
 	@Column(name="id_text")
 	private String idText;
@@ -45,7 +56,65 @@ public class ComercialInventarioDetalle implements Serializable {
 	@Column(name="ultima_fecha_modificacion")
 	private String ultimaFechaModificacion;
 	
+	@Column(name="estatus")
+	private String estatus;
 	
+
+	public Long getIdTela() {
+		return idTela;
+	}
+
+	public void setIdTela(Long idTela) {
+		this.idTela = idTela;
+	}
+
+	public String getTalla() {
+		return talla;
+	}
+
+	public void setTalla(String talla) {
+		this.talla = talla;
+	}
+
+	public String getLargo() {
+		return largo;
+	}
+
+	public void setLargo(String largo) {
+		this.largo = largo;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public Long getIdOrden() {
+		return idOrden;
+	}
+
+	public void setIdOrden(Long idOrden) {
+		this.idOrden = idOrden;
+	}
+
+	public Long getIdPedido() {
+		return idPedido;
+	}
+
+	public void setIdPedido(Long idPedido) {
+		this.idPedido = idPedido;
+	}
+
+	public String getIdText() {
+		return idText;
+	}
+
+	public void setIdText(String idText) {
+		this.idText = idText;
+	}
 
 	public String getCreadoPor() {
 		return creadoPor;
@@ -79,33 +148,17 @@ public class ComercialInventarioDetalle implements Serializable {
 		this.ultimaFechaModificacion = ultimaFechaModificacion;
 	}
 
-	public Long getIdInventarioDetalle() {
-		return idInventarioDetalle;
+	public String getEstatus() {
+		return estatus;
 	}
 
-	public void setIdInventarioDetalle(Long idInventarioDetalle) {
-		this.idInventarioDetalle = idInventarioDetalle;
-	}
-
-	public Long getIdInventario() {
-		return idInventario;
-	}
-
-	public void setIdInventario(Long idInventario) {
-		this.idInventario = idInventario;
-	}
-	
-	public String getIdText() {
-		return idText;
-	}
-
-	public void setIdText(String idText) {
-		this.idText = idText;
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 	
-	
+
 }

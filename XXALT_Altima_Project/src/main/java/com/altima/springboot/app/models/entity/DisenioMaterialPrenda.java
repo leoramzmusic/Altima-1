@@ -43,6 +43,30 @@ public class DisenioMaterialPrenda implements Serializable{
 	
 	@Column(name="cantidad")
 	private String cantidad;
+	
+	@Column(name="fecha_creacion")
+	private String fechaCreacion;
+	
+	@Column(name="ultima_fecha_modificacion")
+	private String ultimaFechaModificacion;
+	
+	
+
+	public String getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(String fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+
+	public String getUltimaFechaModificacion() {
+		return ultimaFechaModificacion;
+	}
+
+	public void setUltimaFechaModificacion(String ultimaFechaModificacion) {
+		this.ultimaFechaModificacion = ultimaFechaModificacion;
+	}
 
 	public Long getIdMaterialPrenda() {
 		return idMaterialPrenda;
