@@ -29,6 +29,9 @@ public class ProduccionInventarioOrden implements Serializable{
 	@Column(name="id_orden")
 	private Long id_orden;
 	
+	@Column(name="id_inventario")
+	private Long id_inventario;
+	
 	@Column(name="creado_por")
 	private String creadoPor;
 	
