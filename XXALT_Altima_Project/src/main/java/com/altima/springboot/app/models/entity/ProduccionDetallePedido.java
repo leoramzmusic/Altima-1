@@ -32,24 +32,17 @@ public class ProduccionDetallePedido implements Serializable {
 	@Column(name="id_tela")
 	private Long idTela;
 	
+	@Column(name="id_prenda")
+	private Long idPrenda;
+	
+	@Column(name="id_familia_genero")
+	private Long idFamiliaGenero;
+	
+	@Column(name="costo")
+	private String costo;
+
 	@Column(name="id_inventario")
 	private Long idInventario;
-	
-	public Long getIdInventario() {
-		return idInventario;
-	}
-
-	public void setIdInventario(Long idInventario) {
-		this.idInventario = idInventario;
-	}
-
-	public String getEstatus_confeccion() {
-		return estatus_confeccion;
-	}
-
-	public void setEstatus_confeccion(String estatus_confeccion) {
-		this.estatus_confeccion = estatus_confeccion;
-	}
 
 	@Column(name="estatus_confeccion")
 	private String estatus_confeccion;
@@ -81,7 +74,45 @@ public class ProduccionDetallePedido implements Serializable {
 	@Column(name="estatus")
 	private String estatus;
 	
+	public Long getIdPrenda() {
+		return idPrenda;
+	}
+
+	public void setIdPrenda(Long idPrenda) {
+		this.idPrenda = idPrenda;
+	}
+
+	public Long getIdFamiliaGenero() {
+		return idFamiliaGenero;
+	}
+
+	public void setIdFamiliaGenero(Long idFamiliaGenero) {
+		this.idFamiliaGenero = idFamiliaGenero;
+	}
+
+	public String getCosto() {
+		return costo;
+	}
+
+	public void setCosto(String costo) {
+		this.costo = costo;
+	}
 	
+	public Long getIdInventario() {
+		return idInventario;
+	}
+
+	public void setIdInventario(Long idInventario) {
+		this.idInventario = idInventario;
+	}
+
+	public String getEstatus_confeccion() {
+		return estatus_confeccion;
+	}
+
+	public void setEstatus_confeccion(String estatus_confeccion) {
+		this.estatus_confeccion = estatus_confeccion;
+	}
 
 	public Long getIdDetallePedido() {
 		return idDetallePedido;
