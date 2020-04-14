@@ -1568,9 +1568,8 @@ function editarPrenda(e) {
 		confirmButtonText: 'Actualizar',
 		confirmButtonColor: '#FFC107',
 	}).then((result) => {
-		if (result.value && document.getElementById("nombre").value && document.getElementById("descripcion").value && document.getElementById("idlookup").value) {
+		if (result.value && document.getElementById("nombre").value && document.getElementById("idlookup").value) {
 			var FamiliaPrenda = document.getElementById("nombre").value;
-			var Descripcion = document.getElementById("descripcion").value;
 			var idLookup = document.getElementById("idlookup").value;
 			$.ajax({
 				type: "POST",
@@ -1578,7 +1577,6 @@ function editarPrenda(e) {
 				data: {
 					"_csrf": $('#token').val(),
 					'FamiliaPrenda': FamiliaPrenda,
-					'Descripcion': Descripcion,
 					'idLookup': idLookup
 					// ,'Descripcion':Descripcion
 				}
@@ -2000,6 +1998,7 @@ function insertar() {
 				confirmButtonColor: '#17a2b8',
 				customClass: 'swal-wide',
 			});
+			listarComposiciones();
 			//	mostrar();
 			//composicionescuidados();
 		});
