@@ -15,7 +15,7 @@ $(document).ready(function () {
 });
 ////////////////////
 
-//////////////////////////////
+
 function listarcuidadosjson() {
 	$.ajax({
 		method: "GET",
@@ -2186,7 +2186,7 @@ function bajarComposicion(idbaja) {
 					"_csrf": $('#token').val(),
 					'idcatalogo': id
 
-					// ,'Descripcion':Descripcion
+					
 				}
 
 			}).done(function (data) {
@@ -2263,8 +2263,7 @@ function agregarCuidado() {
 				type: "POST",
 				url: "/guardarcatalogo",
 
-				//processData: false,  // Important!
-				// contentType: false,
+				
 				data: data,
 				processData: false,
 				contentType: false,
@@ -3020,7 +3019,7 @@ function bajarComposicion1(idbaja) {
 					"_csrf": $('#token').val(),
 					'idcatalogo': id
 
-					// ,'Descripcion':Descripcion
+					
 				}
 
 			}).done(function (data) {
