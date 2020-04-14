@@ -2101,59 +2101,43 @@ function composicionescuidados() {
 }
 
 function editarComposicion(e) {
-	var descr = e.getAttribute("descripcion");
-
+	var idcomposicion = e.getAttribute("idlookup");
+	console.log(idcomposicion);
+	listarcuidadosjson2(idcomposicion);
+	//////////////
+	listarcuidadosjson();
 	Swal.fire({
-		title: 'Editar Composición',
-		html: '<div class="row">' +
+		title: 'Editar composición',
+		html: '<div class="row" id="composicioncuidado">' +
+			'<div id="hola" class="form-group col-sm-12">' +
 			'<div class="form-group col-sm-12">' +
-			'<label for="pedidonom">Nombre composicón</label>' +
-			'<input type="text" value="' + e.getAttribute("nombre") + '" class="form-control" id="nombre" placeholder="Polylicra">' +
+			'<label for="pedidonom">Nombre de composición</label>' +
+			'<input type="text" value="' + e.getAttribute("nombre") + '" class="form-control" id="composicion" placeholder="Polylicra">' +
+			'<input type="hidden" value=" ' + e.getAttribute("idlookup") + ' " class="swal2-input" id="composicionmm" placeholder="Parisina">' +
 			'</div>' +
-			'<div class="form-group col-sm-12">' +
-
-			'<input type="hidden" value=" ' + e.getAttribute("idlookup") + ' " class="swal2-input" id="idlookup" placeholder="Parisina">' +
-			'</div>' +
-			'<div class="form-group col-sm-12">' +
+			'<div class="form-group col-sm-12" id="selectcuidados">' +
 			'<label for="pedidonom">Instrucciones de cuidado</label>' +
-			'<select class="form-control" id="composicionInstrucciones">' +
-			'<option>Lavado a mano</option>' +
-			'</select>' +
+
 			'</div>' +
 			'<div class="form-group col-sm-12">' +
-			'<button class="btn btn-primary btn-block" id="agregarInstrucciones">Agregar</button>' +
+			'<button class="btn btn-primary btn-block" id="agregarInstrucciones" onclick="insertar()">Agregar</button>' +
 			'</div>' +
-			'<div class="form-group col-sm-12">' +
+			'<div class="form-group col-sm-12" id="selectcuidados2">' +
 			'<label for="pedidonom">Listado de indicaciones</label>' +
-			'<table class="table">' +
-			'<thead>' +
-			'<tr>' +
-			'<th scope="col">Clave</th>' +
-			'<th scope="col">Nombre</th>' +
-			'<th scope="col"></th>' +
-			'</tr>' +
-			'</thead>' +
-			'<tbody>' +
-			'<tr>' +
-			'<th scope="row">INSTR0001</th>' +
-			'<td>Lavar a mano</td>' +
-			'<td><button class="btn btn-danger btn-circle btn-sm"><i class="fas fa-minus"></i></button></td>' +
-			'</tr>' +
-			'</tbody>' +
-			'</table>' +
+			'</div>' +
 			'</div>' +
 			'</div>',
 		showCancelButton: true,
 		cancelButtonColor: '#6C757D',
-		cancelButtonText: 'Cancelar',
-		confirmButtonText: 'Actualizar',
-		confirmButtonColor: '#FFC107',
+		cancelButtonText: 'Cerrar',
+		confirmButtonText: 'Actualizar nombre de composición',
+		confirmButtonColor: '#17a2b8',
 		customClass: 'swal-wide',
 	}).then((result) => {
-		if (result.value && document.getElementById("nombre").value && document.getElementById("idlookup").value) {
-			var FamiliaComposicion = document.getElementById("nombre").value;
+		if (result.value && document.getElementById("composicion").value && document.getElementById("composicionmm").value) {
+			var FamiliaComposicion = document.getElementById("composicion").value;
 
-			var idLookup = document.getElementById("idlookup").value;
+			var idLookup = document.getElementById("composicionmm").value;
 			$.ajax({
 				type: "POST",
 				url: "/editarcatalogo",
