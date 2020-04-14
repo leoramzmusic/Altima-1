@@ -13,7 +13,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "alt_produccion_orden")
-public class ProduccionOrden implements Serializable {
+public class ProduccionDetallePedido implements Serializable {
 
 	/**
 	 * 
@@ -21,10 +21,10 @@ public class ProduccionOrden implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="id_orden")
+	@Column(name="id_detalle_pedido")
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
-	private Long idOrden;
+	private Long idDetallePedido;
 	
 	@Column(name="id_pedido")
 	private Long idPedido;
@@ -92,12 +92,12 @@ public class ProduccionOrden implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public Long getIdOrden() {
-		return idOrden;
+	public Long getIdDetallePedido() {
+		return idDetallePedido;
 	}
 
-	public void setIdOrden(Long idOrden) {
-		this.idOrden = idOrden;
+	public void setIdDetallePedido(Long idDetallePedido) {
+		this.idDetallePedido = idDetallePedido;
 	}
 
 	public Long getIdPedido() {
