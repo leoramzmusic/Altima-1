@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "alt_produccion_orden")
+@Table(name = "alt_produccion_detalle_pedido")
 public class ProduccionDetallePedido implements Serializable {
 
 	/**
@@ -58,7 +58,22 @@ public class ProduccionDetallePedido implements Serializable {
 	
 	@Column(name="estatus")
 	private String estatus;
-	
+
+	public Long getIdDetallePedido() {
+		return idDetallePedido;
+	}
+
+	public void setIdDetallePedido(Long idDetallePedido) {
+		this.idDetallePedido = idDetallePedido;
+	}
+
+	public Long getIdPedido() {
+		return idPedido;
+	}
+
+	public void setIdPedido(Long idPedido) {
+		this.idPedido = idPedido;
+	}
 
 	public Long getIdTela() {
 		return idTela;
@@ -90,22 +105,6 @@ public class ProduccionDetallePedido implements Serializable {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
-	}
-
-	public Long getIdDetallePedido() {
-		return idDetallePedido;
-	}
-
-	public void setIdDetallePedido(Long idDetallePedido) {
-		this.idDetallePedido = idDetallePedido;
-	}
-
-	public Long getIdPedido() {
-		return idPedido;
-	}
-
-	public void setIdPedido(Long idPedido) {
-		this.idPedido = idPedido;
 	}
 
 	public String getIdText() {
@@ -161,4 +160,5 @@ public class ProduccionDetallePedido implements Serializable {
 	}
 	
 
+	
 }
