@@ -109,12 +109,11 @@
         <label for="status">Estampado</label>
         <select required class="form-control selectCustom"  th:field="*{tela.estampado}" data-live-search="true">
         	<option value="">Selecciona uno...</option>
-            <option value ="1">Estampado 1</option>
-            <option value ="2">Estampado 2</option>
-            <option value ="3">Estampado 3</option>
-            <option value ="4">Estampado 4</option>
-            <option value ="5">Estampado 5</option>
-            <option value ="6">Estampado 6</option>
+            <option value ="Rayas verticales">Rayas verticales</option>
+            <option value ="Rayas horizontales">Rayas horizontales</option>
+            <option value ="Cuadros">Cuadros</option>
+            <option value ="Fantasia">Fantasia</option>
+            <option value ="Liso">Liso</option>
         </select>
         </select>
     </div>
@@ -232,9 +231,10 @@
                     <label for="mainImageTela"><img th:src="@{'/uploads/telas/' + ${tela.foto}}"  th:onerror="this.src='/dist/img/preview.png'" alt="Placeholder" id="serviceImageTela" class="placeholder img-thumbnail" aria-describedby="imagePreviewHelp" /></label>
                     <small id="imagePreviewHelpTela" class="form-text text-muted">Previsualizaci&oacute;n de la imagen</small>
                 </div>
-                <div class="col">
+               <div class="col">
                     <label for="mainImageTela">Tela</label>
                     <div class="input-group mb-3">
+                        <input type="file"  name="imagenTela" th:value="*{tela.foto}"  class="form-control border p-1" id="mainImageTela"  />
                         <div class="input-group-append">
                             <span class="input-group-text bg-danger text-danger pointer" id="clearUploadTela"><i class="fas fa-times"></i></span>
                         </div>

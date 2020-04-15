@@ -27,7 +27,7 @@
 	 console.log("hola humano yo soy el id que mandas de control de produccionS "+id);
 		$.ajax({
 		    method: "GET",
-		    url: "/listar-trazos/"+id,
+		    url: "/listar-procesos/"+id+"/1",
 		    success: (data) => {
 		    	$('#quitar').remove();
 		    	$('#quitar2').remove();
@@ -37,7 +37,7 @@
 		    	$('#contenedorTabla').append(
 		    			
 		    			"<div class='modal-body' id='quitar'>" +
-		    			"<button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#aux'>Nuevo Trazo</button>"+
+		    			"<button type='button'  onclick='nuevo("+id+",1)' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#aux'>Nuevo Trazo</button>"+
 		    			"<table class='table table-striped table-bordered' id='idtable'>" +
 	                                        "<thead>" +
 	                                            "<tr>" +
@@ -188,7 +188,7 @@
 	 console.log("corte "+id);
 		$.ajax({
 		    method: "GET",
-		    url: "/listar-cortes/"+id,
+		    url: "/listar-procesos/"+id+"/2",
 		    success: (data) => {
 		    	$('#quitar').remove();
 		    	$('#quitar2').remove();
@@ -196,7 +196,7 @@
 		    	$('#quitar4').remove();
 		    	$('#quitar5').remove();
 		    	$('#contenedorTabla').append("<div class='modal-body' id='quitar2'>" +		    			
-		    			"<button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#aux'>Nuevo Corte</button>"+
+		    			"<button type='button'  onclick='nuevo("+id+",2)' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#aux'>Nuevo Corte</button>"+
 		    			"<table class='table table-striped table-bordered' id='idtable2'>" +
 	                                        "<thead>" +
 	                                            "<tr>" +
@@ -348,7 +348,7 @@
 	 console.log("corte "+id);
 		$.ajax({
 		    method: "GET",
-		    url: "/listar-confecciones/"+id,
+		    url: "/listar-procesos/"+id+"/3",
 		    success: (data) => {
 		    	$('#quitar').remove();
 		    	$('#quitar2').remove();
@@ -356,7 +356,7 @@
 		    	$('#quitar4').remove();
 		    	$('#quitar5').remove();
 		    	$('#contenedorTabla').append("<div class='modal-body' id='quitar3'>" +		    			
-		    			"<button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#aux'>Nueva Cofección</button>"+
+		    			"<button type='button' onclick='nuevo("+id+",3)'class='btn btn-primary btn-lg' data-toggle='modal' data-target='#aux'>Nueva Cofección</button>"+
 		    			"<table class='table table-striped table-bordered' id='idtable3'>" +
 	                                        "<thead>" +
 	                                            "<tr>" +
@@ -508,7 +508,7 @@
 	 console.log("corte "+id);
 		$.ajax({
 		    method: "GET",
-		    url: "/listar-planchados/"+id,
+		    url: "/listar-procesos/"+id+"/4",
 		    success: (data) => {
 		    	$('#quitar').remove();
 		    	$('#quitar2').remove();
@@ -516,7 +516,7 @@
 		    	$('#quitar4').remove();
 		    	$('#quitar5').remove();
 		    	$('#contenedorTabla').append("<div class='modal-body' id='quitar4'>" +		    			
-		    			"<button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#aux'>Nuevo Planchado</button>"+
+		    			"<button type='button' onclick='nuevo("+id+",4)' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#aux'>Nuevo Planchado</button>"+
 		    			"<table class='table table-striped table-bordered' id='idtable4'>" +
 	                                        "<thead>" +
 	                                            "<tr>" +
@@ -666,7 +666,7 @@
 	 console.log("corte "+id);
 		$.ajax({
 		    method: "GET",
-		    url: "/listar-terminados/"+id,
+		    url: "/listar-procesos/"+id+"/5",
 		    success: (data) => {
 		    	$('#quitar').remove();
 		    	$('#quitar2').remove();
@@ -674,7 +674,7 @@
 		    	$('#quitar4').remove();
 		    	$('#quitar5').remove();
 		    	$('#contenedorTabla').append("<div class='modal-body' id='quitar5'>" +		    			
-		    			"<button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#aux'>Nuevo Terminado</button>"+
+		    			"<button type='button' onclick='nuevo("+id+",5)' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#aux'>Nuevo Terminado</button>"+
 		    			"<table class='table table-striped table-bordered' id='idtable5'>" +
 	                                        "<thead>" +
 	                                            "<tr>" +
@@ -803,51 +803,54 @@
  
 //Agregar procreso
  function agregar() {
- 	      if (document.getElementById("operador").value &&
- 	    		  document.getElementById("f1").value &&
- 	    		  document.getElementById("f2").value) {
- 			      var operador=document.getElementById("operador").value;
- 			      var f1=document.getElementById("f1").value;
- 			      var f2=document.getElementById("f2").value;
- 			      var id=document.getElementById("id_muestra").value;
- 			      var tipo=document.getElementById("tipo").value;
- 	    	 console.log($('#token').val());
- 			   $.ajax({
- 	        type: "POST",
- 	        url: "/guardartrazo",
- 	        data: { 
- 	        	 "_csrf": $('#token').val(),
- 	        	'operador': operador,
- 	        	'f1': f1,
- 	        	'f2': f2,
- 	        	'id': id, 
- 	        	'tipo': tipo
- 	        }
- 	    })
- 	    .done(function( data ) { 	
- 	    	if (tipo =="trazo"){ listarTrazos(id);}
- 	    	if (tipo =="corte"){ listarCorte(id);}
- 	    	if (tipo =="confeccion"){ listarConfeccion(id);}
- 	    	if (tipo =="planchado"){ listarPlanchado(id);}
- 	    	if (tipo =="terminado"){ listarTerminado(id);}
- 	    	
- 	    	
-   });
- 	        Swal.fire({
- 	          position: 'center',
- 	          icon: 'success',
- 	          title: 'Insertado correctamente',
- 	          showConfirmButton: false,
- 	          timer: 1250
- 	        })
- 	      }
- 	      
- 	    $("#aux").modal('hide');//ocultamos el modal
- 	    
- 	   document.getElementById('operador').options.selectedIndex = 0;
- 	  document.getElementById("f1").value ="";
- 	 document.getElementById("f2").value ="";
-   }
+      if (document.getElementById("operador").value ||
+    		  document.getElementById("f1").value ||
+    		  document.getElementById("f2").value ||
+    		  document.getElementById("muestra").value ) {
+		      var operador=document.getElementById("operador").value;
+		      var f1=document.getElementById("f1").value;
+		      var f2=document.getElementById("f2").value;
+		      var id=document.getElementById("id_muestra").value;
+		      var tipo=document.getElementById("tipo").value;
+		      var muestra=document.getElementById("muestra").value;
+		      
+    	 console.log("La muestra es "+muestra);
+		   $.ajax({
+        type: "POST",
+        url: "/guardar-proceso",
+        data: { 
+        	 "_csrf": $('#token').val(),
+        	'operador': operador,
+        	'f1': f1,
+        	'f2': f2,
+        	'id': muestra, 
+        	'tipo': tipo
+        }
+    })
+    .done(function( data ) { 	
+    	if (tipo =="trazo"){ listarTrazos(id);}
+    	if (tipo =="corte"){ listarCorte(id);}
+    	if (tipo =="confeccion"){ listarConfeccion(id);}
+    	if (tipo =="planchado"){ listarPlanchado(id);}
+    	if (tipo =="terminado"){ listarTerminado(id);}
+    	
+    	
+});
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Insertado correctamente',
+          showConfirmButton: false,
+          timer: 1250
+        })
+      }
+      
+    $("#aux").modal('hide');//ocultamos el modal
+    
+   document.getElementById('operador').options.selectedIndex = 0;
+  document.getElementById("f1").value ="";
+ document.getElementById("f2").value ="";
+}
  
  
  // poner en play
@@ -1072,3 +1075,57 @@
 		    }
 	}
 	)}
+ 
+ 
+ 
+ function nuevo(id, tipo) {
+	 
+	 console.log(tipo);
+	 $('#operador').remove();
+	 $('#muestra').remove();
+	 $('#contenedorOperador').append(
+                 "<select class='swal2-input' id='operador' name='operador'>"+
+                     "<option value=''>Seleccione a un operador</option>"+
+                 "</select>"+"</div>");
+	 $('#contenedorMuestra').append(
+             "<select class='swal2-input' id='muestra' name='muestra'>"+
+                 "<option value=''>Seleccione a un muestra</option>"+
+             "</select>"+"</div>");
+	 $.ajax({  
+		    method: "GET",
+		    url: "/operadores",
+		    success: (data) => {
+		    	$.each(data, function(key, val) {
+		    		$('#operador').append('<option value="' + val[0] + '">'+val[1]+'</option>');})
+		    },
+		    error: (e) => {
+		    }
+	})
+	if ( tipo== 1){
+		$.ajax({  
+		    method: "GET",
+		    url: "/orden-pedidos/"+id,
+		    success: (data) => {
+		    	$.each(data, function(key, val) {
+		    		$('#muestra').append('<option value="' + val[0] + '">'+val[1]+'</option>');})
+		    },
+		    error: (e) => {
+		    }
+		})	
+	}
+	 
+	 if ( tipo> 1){
+			$.ajax({  
+			    method: "GET",
+			    url: "/terminados/"+id+"/"+tipo,
+			    success: (data) => {
+			    	$.each(data, function(key, val) {
+			    		$('#muestra').append('<option value="' + val[0] + '">'+val[1]+'</option>');})
+			    },
+			    error: (e) => {
+			    }
+			})	
+		}
+		
+ }
+ 

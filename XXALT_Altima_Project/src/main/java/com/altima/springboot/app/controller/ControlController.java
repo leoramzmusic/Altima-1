@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.altima.springboot.app.models.entity.ControlHora;
 import com.altima.springboot.app.models.entity.ControlProduccionMuestra;
 import com.altima.springboot.app.models.service.IControlProduccionMuestraService;
+import com.altima.springboot.app.models.service.IProduccionDetalleService;
 
 @CrossOrigin(origins = { "*" })
 @Controller
@@ -29,41 +30,46 @@ public class ControlController {
 	@Autowired
 	private  IControlProduccionMuestraService DCPM;
 	
+	@Autowired
+	private  IProduccionDetalleService Orden;
+	
 	protected final Log logger = LogFactory.getLog(this.getClass());
 	@GetMapping("/control-de-produccion")
 	//@RequestMapping(value = "/control-de-produccion", method = RequestMethod.GET)
 	//@ResponseBody
 	public String listControlProduccion(Model model) {		
 		
-		model.addAttribute("operador", DCPM.Operadores());
+		//model.addAttribute("operador", DCPM.Operadores());
 		
 		model.addAttribute("pedidos", DCPM.ListarPedidos());
 		return "control-de-produccion";
 	}
 	
-	@RequestMapping(value = "/listar-trazos/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/listar-procesos/{id}/{tipo}", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Object []> listar_trazos(@PathVariable(value="id") Long id) {	
-		
-		System.out.println("Soy el id"+id);
-		
-		return  DCPM.OperacionesTrazo(id);
+	public List<Object []> listar_trazos(@PathVariable(value="id") Long id , @PathVariable(value="tipo") String tipo) {	
+		return  DCPM.Operaciones(id,tipo);
 	}
 	
-	@RequestMapping(value = "/listar-cortes/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/operadores", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Object []> listar_cortes(@PathVariable(value="id") Long id) {		
-		
-		return  DCPM.OperacionesCorte(id);	
+	public List<Object []> operadores() {		
+		return  DCPM.Operadores();
 	}
 	
-	
-	@RequestMapping(value = "/listar-confecciones/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/orden-pedidos/{id}", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Object []> listar_confecciones(@PathVariable(value="id") Long id) {		
+	public List<Object []> OrdenesTrazo(@PathVariable(value="id") Long id) {		
 		
-		return  DCPM.OperacionesCofeccion(id);	
+		return Orden.ListarMuestrasTrazo(id);
 	}
+	
+	@RequestMapping(value = "/terminados/{id}/{tipo}", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Object []> trazo_terminados(@PathVariable(value="id") Long id , @PathVariable(value="tipo") Long tipo) {		
+		return  Orden.Terminados(id, tipo);
+	}
+	
 	//erik
 	
 	@RequestMapping(value = "/listar-horas/{id}", method = RequestMethod.GET)
@@ -73,29 +79,7 @@ public class ControlController {
 		return  DCPM.ContadorHoras(id);	
 	}
 	
-	
-	@RequestMapping(value = "/listar-planchados/{id}", method = RequestMethod.GET)
-	@ResponseBody
-	public List<Object []> listar_planchados(@PathVariable(value="id") Long id) {		
-		
-		return  DCPM.OperacionesPlanchado(id);
-	}
-	
-	@RequestMapping(value = "/listar-terminados/{id}", method = RequestMethod.GET)
-	@ResponseBody
-	public List<Object []> listar_terminado(@PathVariable(value="id") Long id) {		
-		
-		return  DCPM.OperacionesTerminado(id);
-	}
-	
-	@RequestMapping(value = "/operadores", method = RequestMethod.GET)
-	@ResponseBody
-	public List<Object []> operadores() {		
-		return  DCPM.Operadores();
-	}
-	
-	
-	@PostMapping("/guardartrazo")
+	@PostMapping("/guardar-proceso")
 	public String guardacatalogo(String operador,String f1 ,String f2,Long id,String tipo ,HttpServletRequest request) throws ParseException {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Date date = new Date();

@@ -70,83 +70,22 @@ public class ControlProduccionMuestraServiceImpl implements IControlProduccionMu
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
-	public List<Object []> OperacionesTrazo(Long id) {
+	public List<Object []> Operaciones(Long id, String tipo) {
 		// TODO Auto-generated method stub
-		List<Object[]> re= em.createNativeQuery("select persona.nombre_persona , Date_format(muestra.fecha_recepcion,'%Y/%M/%d %h:%i:%s %p'),Date_format(muestra.fecha_entrega,'%Y/%M/%d %h:%i:%s %p'), TIMESTAMPDIFF(DAY, muestra.fecha_recepcion, muestra.fecha_entrega), muestra.id_control_produccion_muestra, muestra.estatus_tiempo\r\n" + 
-				"				from alt_hr_empleado as empleado, alt_control_produccion_muestra  as muestra, alt_hr_persona as persona \r\n" + 
+		List<Object[]> re= em.createNativeQuery("select CONCAT (persona.nombre_persona ,'-> ', orden.id_text) , Date_format(muestra.fecha_recepcion,'%Y/%M/%d %h:%i:%s %p'),Date_format(muestra.fecha_entrega,'%Y/%M/%d %h:%i:%s %p'), TIMESTAMPDIFF(DAY, muestra.fecha_recepcion, muestra.fecha_entrega), muestra.id_control_produccion_muestra, muestra.estatus_tiempo\r\n" + 
+				"				from alt_hr_empleado as empleado, alt_control_produccion_muestra  as muestra, alt_hr_persona as persona, alt_produccion_detalle_pedido as orden \r\n" + 
 				"				where 1=1\r\n" + 
 				"				and empleado.id_empleado=muestra.id_operario \r\n" + 
 				"				and empleado.id_persona=persona.id_persona \r\n" + 
-				"				and muestra.tipo=1 \r\n" + 
-				
-				"				and muestra.id_pedido="+id).getResultList();
+				"				and muestra.tipo="+tipo+" \r\n" + 
+				"				and muestra.id_pedido = orden.id_detalle_pedido \r\n" + 
+                "				and orden.id_pedido="+id).getResultList();
 		return re;
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	@Transactional
-	public List<Object[]> OperacionesCorte(Long id) {
-		// TODO Auto-generated method stub
-		List<Object[]> re= em.createNativeQuery("select persona.nombre_persona , Date_format(muestra.fecha_recepcion,'%Y/%M/%d %h:%i:%s %p'),Date_format(muestra.fecha_entrega,'%Y/%M/%d %h:%i:%s %p'), TIMESTAMPDIFF(DAY, muestra.fecha_recepcion, muestra.fecha_entrega), muestra.id_control_produccion_muestra, muestra.estatus_tiempo\r\n" + 
-				"from alt_hr_empleado as empleado, alt_control_produccion_muestra  as muestra, alt_hr_persona as persona\r\n" + 
-				"where 1=1\r\n" + 
-				"and empleado.id_empleado=muestra.id_operario\r\n" + 
-				"and empleado.id_persona=persona.id_persona\r\n" + 
-				"and muestra.tipo=2\r\n" + 
-				
-				"and muestra.id_pedido="+id).getResultList();
-		return re;
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	@Transactional
-	public List<Object[]> OperacionesCofeccion(Long id) {
-		// TODO Auto-generated method stub
-		List<Object[]> re= em.createNativeQuery("select persona.nombre_persona , Date_format(muestra.fecha_recepcion,'%Y/%M/%d %h:%i:%s %p'),Date_format(muestra.fecha_entrega,'%Y/%M/%d %h:%i:%s %p'), TIMESTAMPDIFF(DAY, muestra.fecha_recepcion, muestra.fecha_entrega), muestra.id_control_produccion_muestra, muestra.estatus_tiempo\r\n" + 
-				"from alt_hr_empleado as empleado, alt_control_produccion_muestra  as muestra, alt_hr_persona as persona\r\n" + 
-				"where 1=1\r\n" + 
-				"and empleado.id_empleado=muestra.id_operario\r\n" + 
-				"and empleado.id_persona=persona.id_persona\r\n" + 
-				"and muestra.tipo=3\r\n" + 
-				
-				"and muestra.id_pedido="+id).getResultList();
-		return re;
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	@Transactional
-	public List<Object[]> OperacionesPlanchado(Long id) {
-		// TODO Auto-generated method stub
-		List<Object[]> re= em.createNativeQuery("select persona.nombre_persona , Date_format(muestra.fecha_recepcion,'%Y/%M/%d %h:%i:%s %p'),Date_format(muestra.fecha_entrega,'%Y/%M/%d %h:%i:%s %p'), TIMESTAMPDIFF(DAY, muestra.fecha_recepcion, muestra.fecha_entrega), muestra.id_control_produccion_muestra, muestra.estatus_tiempo\r\n" + 
-				"from alt_hr_empleado as empleado, alt_control_produccion_muestra  as muestra, alt_hr_persona as persona\r\n" + 
-				"where 1=1\r\n" + 
-				"and empleado.id_empleado=muestra.id_operario\r\n" + 
-				"and empleado.id_persona=persona.id_persona\r\n" + 
-				"and muestra.tipo=4\r\n" + 
-				
-				"and muestra.id_pedido="+id).getResultList();
-		return re;
-	}
 	
 	
-	@SuppressWarnings("unchecked")
-	@Override
-	@Transactional
-	public List<Object[]> OperacionesTerminado(Long id) {
-		// TODO Auto-generated method stub
-		List<Object[]> re= em.createNativeQuery("select persona.nombre_persona , Date_format(muestra.fecha_recepcion,'%Y/%M/%d %h:%i:%s %p'),Date_format(muestra.fecha_entrega,'%Y/%M/%d %h:%i:%s %p'), TIMESTAMPDIFF(DAY, muestra.fecha_recepcion, muestra.fecha_entrega), muestra.id_control_produccion_muestra, muestra.estatus_tiempo\r\n" + 
-				"from alt_hr_empleado as empleado, alt_control_produccion_muestra  as muestra, alt_hr_persona as persona\r\n" + 
-				"where 1=1\r\n" + 
-				"and empleado.id_empleado=muestra.id_operario\r\n" + 
-				"and empleado.id_persona=persona.id_persona\r\n" + 
-				"and muestra.tipo=5\r\n" + 
-				
-				"and muestra.id_pedido="+id).getResultList();
-		return re;
-	}
+	
 
 	@Override
 	public void saveHora(ControlHora DisenioControlHora) {
@@ -205,19 +144,19 @@ public class ControlProduccionMuestraServiceImpl implements IControlProduccionMu
 	@Transactional
 	public List<Object[]> ListarPedidos() {
 		List<Object[]> re= em.createNativeQuery("select\r\n" + 
-				"	pedido.id_pedido,\r\n" + 
-				"	pedido.id_text,\r\n" + 
-				"	pedido.fecha_creacion_pedido, \r\n" + 
-				"	pedido.descripcion_pedido, \r\n" + 
-				"	( IFNULL((select(CASE \r\n" + 
-				"						WHEN muestra.tipo = 1 THEN 'Trazo' \r\n" + 
-				"						WHEN muestra.tipo = 2 THEN 'Corte' \r\n" + 
-				"						WHEN muestra.tipo = 3 THEN 'Confección' \r\n" + 
-				"						WHEN muestra.tipo = 4 THEN 'Planchado' \r\n" + 
-				"						WHEN muestra.tipo = 5 THEN 'Terminado' \r\n" + 
-				"						ELSE 'Nuevo' \r\n" + 
-				"						END  )from alt_control_produccion_muestra as muestra where muestra.estatus_tiempo ='Play' and muestra.id_pedido= pedido.id_pedido  LIMIT 1), 'Sin proceso asignado')) as proceso \r\n" + 
-				"	from alt_pedido as pedido").getResultList();
+				"					pedido.id_pedido, \r\n" + 
+				"					pedido.id_text, \r\n" + 
+				"					pedido.fecha_creacion, \r\n" + 
+				"					pedido.descripcion, \r\n" + 
+				"					( IFNULL((select(CASE \r\n" + 
+				"										WHEN muestra.tipo = 1 THEN 'Trazo' \r\n" + 
+				"										WHEN muestra.tipo = 2 THEN 'Corte'\r\n" + 
+				"										WHEN muestra.tipo = 3 THEN 'Confección' \r\n" + 
+				"										WHEN muestra.tipo = 4 THEN 'Planchado'\r\n" + 
+				"										WHEN muestra.tipo = 5 THEN 'Terminado' \r\n" + 
+				"										ELSE 'Nuevo'\r\n" + 
+				"										END  )from alt_control_produccion_muestra as muestra where muestra.estatus_tiempo ='Play' and muestra.id_pedido= pedido.id_pedido  LIMIT 1), 'Sin proceso asignado')) as proceso\r\n" + 
+				"				from 	alt_produccion_pedido as pedido").getResultList();
 		return re;
 	}
 	

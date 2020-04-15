@@ -61,36 +61,47 @@
 
 <div class="modal fade" id="aux" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-		<div class="modal-content">
+		<div class="modal-content" >
 			
 			<div class="modal-body">
 				<!-- Tab panes -->
 				<div class="tab-content">
-					<div class="row">
-						<div class="form-group col-sm-4">
+					<div class="row"  id ="contenedorSelect">
+						
+						<div class="form-group col-sm-6" id ="contenedorOperador">
 							<label for="pedidonom">Operador</label> 
-							<br> 
+							
 							<select class="swal2-input" id="operador" name="operador">
 								<option value="">Seleccion a un operador</option>
-								<option 
-									th:each="operador: ${operador}"
-									th:value="${operador[0]}" th:text="${operador[1]}">
-								</option>
+								
 							</select>
 						</div>
-						<div class="form-group col-sm-4">
-							<label for="pedidonom">Fecha de recepcion</label> 
-							<input type="datetime-local" class="swal2-input" id="f1" name="f1">
+						
+						<div class="form-group col-sm-6" id ="contenedorMuestra">
+							<label for="pedidonom">Muestra</label>  
+							<select class="swal2-input"  id="muestra"  name="muestra"  >
+								<option value="">Seleccion a una muestra</option>
+							</select>
 						</div>
-						<div class="form-group col-sm-4">
-							<label for="pedidonom">Fecha de entrega</label> 
-							<input type="datetime-local" class="swal2-input" id="f2" name="f2">
+						
+						
 						</div>
-						<input type="hidden" name="id_muestra" id="id_muestra">
-						<input type="hidden"  name="tipo" id="tipo">
-						<div class="form-group col-sm-12">
-       						<button onclick="agregar()"  class="btn btn-primary next-step float-right" type="button">Guardar</button>
-      					</div>
+						<div class="row">
+						
+							<div class="form-group col-sm-6">
+								<label for="pedidonom">Fecha de recepcion</label> 
+								<input type="datetime-local" class="swal2-input" id="f1" name="f1">
+							</div>
+							<div class="form-group col-sm-6">
+								<label for="pedidonom">Fecha de entrega</label> 
+								<input type="datetime-local" class="swal2-input" id="f2" name="f2">
+							</div>
+							<input type="hidden" name="id_muestra" id="id_muestra">
+							<input type="hidden"  name="tipo" id="tipo">
+							
+								<div class="form-group col-sm-12">
+		       						<button onclick="agregar()"  class="btn btn-primary next-step float-right" type="button">Guardar</button>
+		      					</div>
 					</div>
 				</div>
 			</div>

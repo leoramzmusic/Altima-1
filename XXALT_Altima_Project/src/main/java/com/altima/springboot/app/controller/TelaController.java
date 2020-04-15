@@ -119,7 +119,7 @@ public class TelaController {
 				fc.setCreadoPor(auth.getName());
 				fc.setActualizadoPor("null");
 				fc.setFechaCreacion(hourdateFormat.format(date));
-				fc.setUltimaFechaModificacion(hourdateFormat.format(date));;
+				fc.setUltimaFechaModificacion(hourdateFormat.format(date));
 				fc.setComposicion(vect[i]);
 				ComposicionTelaService.save(fc);
 			}
@@ -140,6 +140,7 @@ public class TelaController {
 			disenioTelaService.borrarBotonesTela(tela.getIdTela());
 			disenioTelaService.borrarComposicionTela(tela.getIdTela());
 			disenioTelaService.borrarForroTela(tela.getIdTela());
+			tela.setUltimaFechaModificacion(hourdateFormat.format(date));
 			if (!imagenTela.isEmpty()){
 				if ( tela.getFoto() != null && tela.getFoto().length() > 0) {
 
@@ -288,4 +289,8 @@ public class TelaController {
         .addFlashAttribute("icon", "success");
 		  return "redirect:/materiales";
 	}
+	
+	
+	
+	
 }

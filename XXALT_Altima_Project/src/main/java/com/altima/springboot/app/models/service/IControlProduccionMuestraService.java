@@ -11,12 +11,12 @@ public interface IControlProduccionMuestraService {
 	void delete(Long id);
 	ControlProduccionMuestra findOne(Long id);
 	List<Object []> Operadores();
-	List<Object []> OperacionesTrazo(Long id);
-	List<Object []> OperacionesCorte(Long id);
-	List<Object []> OperacionesCofeccion(Long id);
-	List<Object []> OperacionesPlanchado(Long id);
 	
-	List<Object []> OperacionesTerminado(Long id);
+	
+	List<Object []> Operaciones(Long id, String tipo);
+	
+	
+
 	
 	List<Object []> ContadorHoras(Long id);
 	
