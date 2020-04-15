@@ -75,18 +75,18 @@
         <div class="form-group p-3 border p-2 rounded m-3">
             <div class="row">
                 <div class="col-sm-3 text-center pt-2 border-right">
-                    <label for="mainImageForro"><img th:src="@{'/uploads/forros/' + *{foto}}"  th:onerror="this.src='/dist/img/preview.png'" alt="Placeholder" id="serviceImageTela" class="placeholder img-thumbnail" aria-describedby="imagePreviewHelp" /></label>
-                    <small id="imagePreviewHelpTela" class="form-text text-muted">Previsualizaci&oacute;n de la imagen</small>
+                    <label for="mainImageForro"><img th:src="@{'/uploads/forros/'+*{foto}}"  th:onerror="this.src='/dist/img/preview.png'" alt="Placeholder" id="serviceImageForro" class="placeholder img-thumbnail" aria-describedby="imagePreviewHelp" /></label>
+                    <small id="imagePreviewHelpForro" class="form-text text-muted">Previsualizaci&oacute;n de la imagen</small>
                 </div>
                 <div class="col">
-                    <label for="mainImageForro">Tela</label>
+                    <label for="mainImageForro">Forro</label>
                     <div class="input-group mb-3">
                         <input type="file" name="imagenForro" class="form-control border p-1" id="mainImageForro"  />
                         <div class="input-group-append">
-                            <span class="input-group-text bg-danger text-danger pointer" id="clearUploadTela"><i class="fas fa-times"></i></span>
+                            <span class="input-group-text bg-danger text-danger pointer" id="clearUploadForro"><i class="fas fa-times"></i></span>
                         </div>
                     </div>
-                    <small id="imageHelpTela" class="form-text text-muted">Selecciona la foto que desea subir.</small>
+                    <small id="imageHelpForro" class="form-text text-muted">Selecciona la foto que desea subir.</small>
                 </div>
             </div>
         </div>

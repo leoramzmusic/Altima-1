@@ -63,37 +63,36 @@ public class ForroController {
 		Date date = new Date();
 		DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		
 		if ( forro.getIdForro() == null || forro.getEstatusForro().equals("0")){
-			
-			System.out.println("Entra if de id null y estatus forro 0 forro");
-			forro.setIdText("FORRO");
-			forro.setCreadoPor(auth.getName());
-			
-			forro.setIdUnidadMedida(Long.valueOf(1));
-			forro.setConsumoPromedioForro("null");
-			forro.setExistenciaForro("1");
-			
 			if (forro.getIdForro() == null) {
+				forro.setIdText("FORRO");
+				forro.setCreadoPor(auth.getName());
+				forro.setIdUnidadMedida(Long.valueOf(1));
+				forro.setConsumoPromedioForro("null");
+				forro.setExistenciaForro("1");
 				forro.setFechaCreacion(hourdateFormat.format(date));
+				forro.setUltimaFechaModificacion(hourdateFormat.format(date));
+				forro.setEstatus("1");
+				forro.setEstatusForro("0");
+				forro.setFoto("imagen");
+				forroService.save(forro);
+				forro.setIdText("FORRO"+forro.getIdForro()+100);
 				redirectAttrs
 	            .addFlashAttribute("title", "Forro guardado correctamente")
 	            .addFlashAttribute("icon", "success");
 			}
 			else {
+				forro.setIdUnidadMedida(Long.valueOf(1));
+				forro.setFoto("imagen");
+				forro.setUltimaFechaModificacion(hourdateFormat.format(date));
+				forro.setActualizadoPor(auth.getName());
+				forroService.save(forro);
 					redirectAttrs
 		            .addFlashAttribute("title", "Forro editado correctamente")
 		            .addFlashAttribute("icon", "success");
 			}
 		
-			
-			forro.setUltimaFechaModificacion(hourdateFormat.format(date));
-			forro.setEstatus("1");
-			forro.setEstatusForro("0");
-			forro.setFoto("Sin imagen");
-			forroService.save(forro);
 			ComposicionForroService.deleteLista(forro.getIdForro());
-			
 			if ( composicion.length()>1) {
 			String [] vect = composicion.split(",");
 			String [] vect2 = idComposicion.split(",");
@@ -113,10 +112,8 @@ public class ForroController {
 		else {
 			if (!imagenForro.isEmpty()){
 				if ( forro.getFoto() != null && forro.getFoto().length() > 0) {
-
 					UploadService.deleteForro(forro.getFoto());
 				}
-				
 				String uniqueFilename = null;
 				try {
 					uniqueFilename = UploadService.copyForro(imagenForro);
@@ -126,10 +123,8 @@ public class ForroController {
 				}
 				forro.setFoto(uniqueFilename);
 			}
-			
 			ComposicionForroService.deleteLista(forro.getIdForro());
-			forro.setEstatus("1");
-			forro.setFechaCreacion(hourdateFormat.format(date));
+			forro.setActualizadoPor(auth.getName());
 			forro.setUltimaFechaModificacion(hourdateFormat.format(date));
 			forroService.save(forro);
 			
