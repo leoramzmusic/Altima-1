@@ -1,8 +1,11 @@
 <div class="col-12">
     <!-- Default box -->
+    <img src="/dist/img/logo.png" class="d-none d-print-block" id="logo" style="width: 200px; height: 100px;background-color: black;margin:auto;">
     <div class="card">
-        <div class="card-header bg-dark">
-            <h3 class="card-title">Consulta de forro</h3>
+        
+        <div class="card-header bg-dark" id="cab">
+            <h3 class="card-title">Consulta de Material</h3>&nbsp
+            <button id="btnimp" class="btn btn-primary d-print-none" onclick="printmaterial();"><i class="fas fa-print"></i></button>
         </div>
         <div class="card-body">
             <table class="table table-borderless">
@@ -10,38 +13,38 @@
                     <tr>
                         <th colspan="3">Clave:</th>
                         <th colspan="3">Nombre:</th>
-                        <th colspan="3">Tama&ntilde;o:</th>
-                        <th colspan="3">Unidad de medida:</th>
+                        <th colspan="3">Tipo de material:</th>
+                        <th colspan="3">Color:</th>
+                        <th colspan="3">Tamaño:</th>
                     </tr>
                     <tr>
-                        <td colspan="3">TEL0001</td>
-                        <td colspan="3">Tela Gold Prime</td>
-                        <td colspan="3">Mediano</td>
-                        <td colspan="3">Pieza</td>
+                        <td th:text="${material[0]}" colspan="3"></td>
+                        <td th:text="${material[1]}" colspan="3"></td>
+                        <td th:text="${material[2]}" colspan="3"></td>
+                        <td colspan="3"><text th:text="${material[3]}+' '"></text><i class="fas fa-tint" th:style="'color:'+${material[12]}+';font-size: 20px;'"></i></td>
+                        <td th:text="${material[4]}" colspan="3"></td>
                     </tr>
                     <tr>
-                        <th colspan="12">Descripci&oacute;n:</th>
-                    </tr>
-                    <tr>
-                        <td colspan="12">Tela dorada con toques negros la cual tiene una simetria perfecta para combinaciones con entretela</td>
-                    </tr>
-                    <tr>
-                        <th colspan="3">Proceso:</th>
+                        <th colspan="3">Unidad de Medida:</th>
                         <th colspan="3">Modelo:</th>
-                        <th colspan="3">Precio unitario:</th>
-                        <th colspan="3">Clasificaci&oacute;n:</th>
+                        <th colspan="3">Proceso al que aplica:</th>
+                        <th colspan="3">Precio Unitario:</th>
+                        <th colspan="3">Clasificación:</th>
                     </tr>
                     <tr>
-                        <td colspan="3">PRO0001 Proceso 1</td>
-                        <td colspan="3">Abrigo</td>
-                        <td colspan="3">1500</td>
-                        <td colspan="3">No recuerdo</td>
+                        <td th:text="${material[5]}" colspan="3"></td>
+                        <td th:text="${material[6]}" colspan="3"></td>
+                        <td th:text="${material[7]}" colspan="3"></td>
+                        <td th:text="${material[8]}" colspan="3"></td>
+                        <td th:text="${material[9]}" colspan="3"></td>
                     </tr>
                     <tr>
-                        <th colspan="12">Marcas:</th>
+                        <th colspan="5">Proveedores:</th>
+                        <th><th>Descripci&oacute;n:</th></th>
                     </tr>
                     <tr>
-                        <td colspan="12">Adidas, Nike, Joma</td>
+                        <td th:text="${material[10]}" colspan="6"></td>
+                        <td th:text="${material[11]}" colspan="8"></td>
                     </tr>
                 </thead>
             </table>
@@ -50,3 +53,8 @@
     </div>
     <!-- /.card -->
 </div>
+<script>
+    function printmaterial(){
+        window.print();
+    }
+</script>

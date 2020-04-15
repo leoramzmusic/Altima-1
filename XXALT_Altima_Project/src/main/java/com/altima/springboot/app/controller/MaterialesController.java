@@ -25,6 +25,7 @@ import com.altima.springboot.app.models.entity.DisenioTela;
 import com.altima.springboot.app.models.service.IDisenioFamiliaComposicionForroService;
 import com.altima.springboot.app.models.service.IDisenioFamiliaComposicionTelaService;
 import com.altima.springboot.app.models.service.IDisenioForroService;
+import com.altima.springboot.app.models.service.IDisenioLookupService;
 import com.altima.springboot.app.models.service.IDisenioMaterialService;
 //import com.altima.springboot.app.models.service.IDisenioProcesoService;
 import com.altima.springboot.app.models.service.IDisenioTelaService;
@@ -43,6 +44,7 @@ public class MaterialesController {
 	private IDisenioForroService forroService;
 	@Autowired
 	private IDisenioTelaService disenioTelaService;
+
 	
 	
 	@GetMapping("/materiales") 
@@ -59,8 +61,18 @@ public class MaterialesController {
 		return "materiales";
 	}
 	
-	@GetMapping("detalle-material") 
-	public String infoMaterials() {
+	@GetMapping("detalle-material/{tipo}/{id}") 
+	public String infoMaterials(@PathVariable("id") Long id,@PathVariable("tipo") String tipo, Model model) {
+		if(tipo.equals("material")){
+			model.addAttribute("tipo","material");
+			model.addAttribute("material",disenioMaterialService.findByIdMaterial(id));
+		}
+		else if(tipo.equals("tela")){
+			model.addAttribute("tipo","tela");
+		}
+		else if(tipo.equals("forro")){
+			model.addAttribute("tipo","forro");
+		}
 		return "detalle-material";
 	}
 	

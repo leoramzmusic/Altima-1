@@ -178,6 +178,12 @@ public class DisenioMaterialServiceImpl implements IDisenioMaterialService {
 	public List<Object> findAllByTipoMaterial(Long id) {
 		// TODO Auto-generated method stub
 		return em.createQuery("SELECT idMaterial, nombreMaterial FROM DisenioMaterial WHERE idTipoMaterial="+id+" AND estatus = 1 order by nombreMaterial").getResultList();
-	}	
+	}
+
+	@Override
+	public Object findByIdMaterial(Long id) {
+		// TODO Auto-generated method stub
+		return em.createNativeQuery("Select adm.id_text,adm.nombre_material,adl5.nombre_lookup nl6,adl6.nombre_lookup nl1,adm.tamanio,adl2.nombre_lookup nl2,adm.modelo,adl1.nombre_lookup nl3,adm.precio_unitario,adl4.nombre_lookup nl4,adl3.nombre_lookup nl5,adm.descripcion_material,adl6.atributo_1 from alt_disenio_material adm INNER JOIN alt_disenio_lookup adl1 on adm.id_proceso=adl1.id_lookup and adl1.tipo_lookup='Proceso' INNER JOIN alt_disenio_lookup adl2 on adm.id_unidad_medida=adl2.id_lookup and adl2.tipo_lookup='Unidad Medida' INNER JOIN alt_disenio_lookup adl3 on adm.id_marca=adl3.id_lookup and adl3.tipo_lookup='Marca' INNER JOIN alt_disenio_lookup adl4 on adm.id_clasificacion=adl4.id_lookup and adl4.tipo_lookup='Clasificación' INNER JOIN alt_disenio_lookup adl5 on adm.id_tipo_material=adl5.id_lookup and adl5.tipo_lookup='Material' INNER JOIN alt_disenio_lookup adl6 on adm.id_color=adl6.id_lookup and adl6.tipo_lookup='Color' where adm.id_material="+id).getSingleResult();
+	}
 
 }

@@ -111,7 +111,7 @@
                                                         
                                                         
 
-                                                        <a class="btn btn-info btn-circle btn-sm text-white popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Detalles"><i class="fas fa-info"></i></a>
+                                                        <a class="btn btn-info btn-circle btn-sm text-white popoverxd" th:href="@{/detalle-material/material/}+${mt[0]}" data-container="body" data-toggle="popover" data-placement="top" data-content="Detalles"><i class="fas fa-info"></i></a>
                                                         
                                                         
                                                         
@@ -167,8 +167,8 @@
             Swal.fire({
 
                 position: 'center',
-                icon: /*[[${icon}]]*/ ,
-                title: /*[[${title}]]*/ ,
+                icon: /*[[${icon}]]*/ 'default',
+                title: /*[[${title}]]*/ 'default',
                 showConfirmButton: false,
                 timer: 2500
             });
