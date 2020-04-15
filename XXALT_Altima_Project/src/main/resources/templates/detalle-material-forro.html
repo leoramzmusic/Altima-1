@@ -1,32 +1,36 @@
-<div class="col-12">
-    <!-- Default box -->
-    <div class="card">
-        <div class="card-header bg-dark">
-            <h3 class="card-title">Consulta de forro</h3>
-        </div>
         <div class="card-body">
+            <table id="mytablef" class="table">
+                <tr>
+                    <th>Forro Composicion</th>
+                    <th style="display:none;">Famila Composicion</th>
+                    <th>Famila Composicion</th>
+
+                </tr>
+            <thead>
+                <tbody>
+                                                <tr th:each="listForroComposicon: ${listForroComposicon}">
+                                                
+                                                    <td th:text="${listForroComposicon[0]}"></td>
+                                                    <td  style="display:none;"th:text="${listForroComposicon[1]}"></td>
+                                                    <td  th:text="${listForroComposicon[2]}"></td>                                               
+                                                </tr>     
+                </tbody>
+            </table>
             <table class="table table-borderless">
-                <thead>
+                <thead> 
                     <tr>
                         <th colspan="6">Clave:</th>
                         <th colspan="6">Nombre:</th>
-                        <th colspan="6">Composici&oacute;n:</th>
+                        <th colspan="6">Ancho:</th>
+                        <th colspan="6">Descripci&oacute;n:</th>
                     </tr>
                     <tr>
-                        <td colspan="6">TEL0001</td>
-                        <td colspan="6">Tela Gold Prime</td>
-                        <td colspan="6">50% Algodon 50% Poliester</td>
-                    </tr>
-                    <tr>
-                        <th colspan="12">Descripci&oacute;n:</th>
-                    </tr>
-                    <tr>
-                        <td colspan="12">Tela dorada con toques negros la cual tiene una simetria perfecta para combinaciones con entretela</td>
+                        <td colspan="6" th:text="${forro.idText}"></td>
+                        <td colspan="6" th:text="${forro.nombreForro}"></td>
+                        <td colspan="6" th:text="${forro.anchoForro}"></td>
+                        <td colspan="6" th:text="${forro.descripcionForro}"></td>
                     </tr>
                 </thead>
             </table>
         </div>
         <!-- /.card-body -->
-    </div>
-    <!-- /.card -->
-</div>

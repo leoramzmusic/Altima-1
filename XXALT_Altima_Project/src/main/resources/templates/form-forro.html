@@ -47,13 +47,13 @@
 	
 	<div class="form-group col-sm-6">
         <label for="razonEmpresa">Descripci&oacute;n</label>
-        <input type="text" th:field="*{descripcionForro}"  class="form-control" id="forroDescripcion" placeholder="Descripción" required>
+        <input type="text" th:field="*{descripcionForro}"  class="form-control" id="forroDescripcion" placeholder="Descripci&oacute;n" required>
     </div>
     
     
     <div class="form-group col-sm-6">
         <label for="rfcEmpresa">Ancho(m)</label>
-        <input th:field="*{anchoForro}"  type="number" min="1"  class="form-control"  placeholder="1.2" required>
+        <input th:field="*{anchoForro}"  type="number" min="1" step="any" class="form-control"  placeholder="1.2" required>
     </div>
     
     <div th:if="*{estatusForro  == '1'}" class="form-group col-sm-6">

@@ -111,8 +111,9 @@
                                                         
                                                         
 
-                                                        <a class="btn btn-info btn-circle btn-sm text-white popoverxd" th:href="@{/detalle-material/material/}+${mt[0]}" data-container="body" data-toggle="popover" data-placement="top" data-content="Detalles"><i class="fas fa-info"></i></a>
-                                                        
+                                                        <a class="btn btn-info btn-circle btn-sm text-white popoverxd" th:unless="${mt[3] == 'Forro' || mt[3] == 'Tela'  }" th:href="@{/detalle-material/material/}+${mt[0]}" data-container="body" data-toggle="popover" data-placement="top" data-content="Detalles"><i class="fas fa-info"></i></a>
+                                                        <a class="btn btn-info btn-circle btn-sm text-white popoverxd" th:if="${mt[3] == 'Tela'}" th:href="@{/detalle-material/tela/}+${mt[0]}" data-container="body" data-toggle="popover" data-placement="top" data-content="Detalles"><i class="fas fa-info"></i></a>
+                                                        <a class="btn btn-info btn-circle btn-sm text-white popoverxd" th:if="${mt[3] == 'Forro'}" th:href="@{/detalle-material/forro/}+${mt[0]}" data-container="body" data-toggle="popover" data-placement="top" data-content="Detalles"><i class="fas fa-info"></i></a>
                                                         
                                                         
                                                         

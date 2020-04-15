@@ -65,12 +65,25 @@ public class MaterialesController {
 	public String infoMaterials(@PathVariable("id") Long id,@PathVariable("tipo") String tipo, Model model) {
 		if(tipo.equals("material")){
 			model.addAttribute("tipo","material");
+			model.addAttribute("h3", "Consulta de Material");
+			DisenioMaterial dm;
+			dm = disenioMaterialService.findOne(id);
+			model.addAttribute("h2",dm.getNombreMaterial());
 			model.addAttribute("material",disenioMaterialService.findByIdMaterial(id));
+			
 		}
 		else if(tipo.equals("tela")){
+			model.addAttribute("h3", "Consulta de Tela");
+			model.addAttribute("listTelaComposicon", disenioTelaService.ComposicionTelaMN(id));
 			model.addAttribute("tipo","tela");
 		}
 		else if(tipo.equals("forro")){
+			model.addAttribute("h3", "Consulta de Forro");
+			DisenioForro forro;
+			forro=forroService.findOne(id);
+			model.addAttribute("forro", forro);
+			model.addAttribute("listForroComposicon", disenioTelaService.ComposicionForroMN(id));
+			model.addAttribute("h2",forro.getNombreForro());
 			model.addAttribute("tipo","forro");
 		}
 		return "detalle-material";
