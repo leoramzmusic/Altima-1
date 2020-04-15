@@ -622,7 +622,7 @@ function listarCuidados() {
 					"<tr>" +
 					"<td>" + data[i].idText + "</td>",
 					"<td>" + data[i].nombreLookup + "</td>",
-					"<td> <img class='img-thumbnail rounded float-left' style='max-width: 75%; ' src='/uploads/cuidados/" + data[i].atributo1 + "' /> </td>",
+					"<td> <img class='img-thumbnail rounded float-left' style='width: 50px; height: 50px;' src='/uploads/cuidados/" + data[i].atributo1 + "' /> </td>",
 					"<td style='text-align: center;'>" +
 					"<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button> " +
 					"</td>",
