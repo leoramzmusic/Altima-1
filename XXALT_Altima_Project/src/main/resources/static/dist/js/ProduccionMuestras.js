@@ -70,7 +70,7 @@
 		        	if (data[i][5]=='Play'){
 		        		a = [
 							"<tr>" +
-							"<td>" + data[i][0] + "</td>",
+							"<td> <a class='text-primary'href='#' onclick='listarHoras("+data[i][4]+", 1)' > "+ data[i][0]+"</a> </td>",
 							"<td>" + data[i][1]+ "</td>",
 							"<td>" + data[i][2] + "</td>",
 							"<td>" + data[i][5]+ "</td>",		
@@ -85,7 +85,7 @@
 		        	if (data[i][5]=='Pausa'){
 		        		a = [
 							"<tr>" +
-							"<td>" + data[i][0] + "</td>",
+							"<td> <a class='text-primary'href='#' onclick='listarHoras("+data[i][4]+", 1)' > "+ data[i][0]+"</a> </td>",
 							"<td>" + data[i][1]+ "</td>",
 							"<td>" + data[i][2] + "</td>",
 							"<td>" + data[i][5]+ "</td>",		
@@ -100,7 +100,7 @@
 		        	if (data[i][5]=='Stop'){
 		        		a = [
 							"<tr>" +
-							"<td>" + data[i][0] + "</td>",
+							"<td> <a class='text-primary'href='#' onclick='listarHoras("+data[i][4]+", 1)' > "+ data[i][0]+"</a> </td>",
 							"<td>" + data[i][1]+ "</td>",
 							"<td>" + data[i][2] + "</td>",
 							"<td>" + data[i][5]+ "</td>",		
@@ -157,8 +157,7 @@
 		    }
 	}
 	)}
- 
- 
+
  function listarCorte(id) {
 	 document.getElementById("id_muestra").value = id;
 	 document.getElementById("tipo").value = "corte";
@@ -229,7 +228,7 @@
 		        	if (data[i][5]=='Play'){
 		        		a = [
 							"<tr>" +
-							"<td>" + data[i][0] + "</td>",
+							"<td> <a class='text-primary'href='#' onclick='listarHoras("+data[i][4]+", 2)' > "+ data[i][0]+"</a> </td>",
 							"<td>" + data[i][1]+ "</td>",
 							"<td>" + data[i][2] + "</td>",
 							"<td>" + data[i][5]+ "</td>",		
@@ -244,7 +243,7 @@
 		        	if (data[i][5]=='Pausa'){
 		        		a = [
 							"<tr>" +
-							"<td>" + data[i][0] + "</td>",
+							"<td> <a class='text-primary'href='#' onclick='listarHoras("+data[i][4]+", 2)' > "+ data[i][0]+"</a> </td>",
 							"<td>" + data[i][1]+ "</td>",
 							"<td>" + data[i][2] + "</td>",
 							"<td>" + data[i][5]+ "</td>",		
@@ -259,7 +258,7 @@
 		        	if (data[i][5]=='Stop'){
 		        		a = [
 							"<tr>" +
-							"<td>" + data[i][0] + "</td>",
+							"<td> <a class='text-primary'href='#' onclick='listarHoras("+data[i][4]+", 2)' > "+ data[i][0]+"</a> </td>",
 							"<td>" + data[i][1]+ "</td>",
 							"<td>" + data[i][2] + "</td>",
 							"<td>" + data[i][5]+ "</td>",		
@@ -316,8 +315,6 @@
 		    }
 	}
 	)}
- 
- 
  
  function listarConfeccion(id) {
 	 document.getElementById("id_muestra").value = id;
@@ -389,7 +386,7 @@
 		        	if (data[i][5]=='Play'){
 		        		a = [
 							"<tr>" +
-							"<td>" + data[i][0] + "</td>",
+							"<td> <a class='text-primary'href='#' onclick='listarHoras("+data[i][4]+", 3)' > "+ data[i][0]+"</a> </td>",
 							"<td>" + data[i][1]+ "</td>",
 							"<td>" + data[i][2] + "</td>",
 							"<td>" + data[i][5]+ "</td>",		
@@ -404,7 +401,7 @@
 		        	if (data[i][5]=='Pausa'){
 		        		a = [
 							"<tr>" +
-							"<td>" + data[i][0] + "</td>",
+							"<td> <a class='text-primary'href='#' onclick='listarHoras("+data[i][4]+", 3)' > "+ data[i][0]+"</a> </td>",
 							"<td>" + data[i][1]+ "</td>",
 							"<td>" + data[i][2] + "</td>",
 							"<td>" + data[i][5]+ "</td>",		
@@ -419,7 +416,7 @@
 		        	if (data[i][5]=='Stop'){
 		        		a = [
 							"<tr>" +
-							"<td>" + data[i][0] + "</td>",
+							"<td> <a class='text-primary'href='#' onclick='listarHoras("+data[i][4]+", 3)' > "+ data[i][0]+"</a> </td>",
 							"<td>" + data[i][1]+ "</td>",
 							"<td>" + data[i][2] + "</td>",
 							"<td>" + data[i][5]+ "</td>",		
@@ -476,8 +473,6 @@
 		    }
 	}
 	)}
- 
- 
  
  function listarPlanchado(id) {
 	 document.getElementById("id_muestra").value = id;
@@ -549,7 +544,7 @@
 		        	if (data[i][5]=='Play'){
 		        		a = [
 							"<tr>" +
-							"<td>" + data[i][0] + "</td>",
+							"<td> <a class='text-primary'href='#' onclick='listarHoras("+data[i][4]+", 4)' > "+ data[i][0]+"</a> </td>",
 							"<td>" + data[i][1]+ "</td>",
 							"<td>" + data[i][2] + "</td>",
 							"<td>" + data[i][5]+ "</td>",		
@@ -564,7 +559,7 @@
 		        	if (data[i][5]=='Pausa'){
 		        		a = [
 							"<tr>" +
-							"<td>" + data[i][0] + "</td>",
+							"<td> <a class='text-primary'href='#' onclick='listarHoras("+data[i][4]+", 4)' > "+ data[i][0]+"</a> </td>",
 							"<td>" + data[i][1]+ "</td>",
 							"<td>" + data[i][2] + "</td>",
 							"<td>" + data[i][5]+ "</td>",		
@@ -579,8 +574,7 @@
 		        	if (data[i][5]=='Stop'){
 		        		a = [
 							"<tr>" +
-							"<td>" + data[i][0] + "</td>",
-							"<td>" + data[i][1]+ "</td>",
+							"<td>" + data[i][0] + "</td>","<td> <a class='text-primary'href='#' onclick='listarHoras("+data[i][4]+", 4)' > "+ data[i][0]+"</a> </td>","<td>" + data[i][1]+ "</td>",
 							"<td>" + data[i][2] + "</td>",
 							"<td>" + data[i][5]+ "</td>",		
 							" <td>"+
@@ -707,7 +701,7 @@
 		        	if (data[i][5]=='Play'){
 		        		a = [
 							"<tr>" +
-							"<td>" + data[i][0] + "</td>",
+							"<td> <a class='text-primary'href='#' onclick='listarHoras("+data[i][4]+", 5)' > "+ data[i][0]+"</a> </td>",
 							"<td>" + data[i][1]+ "</td>",
 							"<td>" + data[i][2] + "</td>",
 							"<td>" + data[i][5]+ "</td>",		
@@ -722,7 +716,7 @@
 		        	if (data[i][5]=='Pausa'){
 		        		a = [
 							"<tr>" +
-							"<td>" + data[i][0] + "</td>",
+							"<td> <a class='text-primary'href='#' onclick='listarHoras("+data[i][4]+", 5)' > "+ data[i][0]+"</a> </td>",
 							"<td>" + data[i][1]+ "</td>",
 							"<td>" + data[i][2] + "</td>",
 							"<td>" + data[i][5]+ "</td>",		
@@ -737,7 +731,7 @@
 		        	if (data[i][5]=='Stop'){
 		        		a = [
 							"<tr>" +
-							"<td>" + data[i][0] + "</td>",
+							"<td> <a class='text-primary'href='#' onclick='listarHoras("+data[i][4]+", 5)' > "+ data[i][0]+"</a> </td>",
 							"<td>" + data[i][1]+ "</td>",
 							"<td>" + data[i][2] + "</td>",
 							"<td>" + data[i][5]+ "</td>",		
@@ -803,10 +797,13 @@
  
 //Agregar procreso
  function agregar() {
-      if (document.getElementById("operador").value ||
-    		  document.getElementById("f1").value ||
-    		  document.getElementById("f2").value ||
-    		  document.getElementById("muestra").value ) {
+      if (document.getElementById("operador").value &&
+    		  document.getElementById("f1").value &&
+    		  document.getElementById("f2").value &&
+    		  document.getElementById("muestra").value &&
+    		  $('#f2').val() > $('#f1').val()
+    		  
+      ) {
 		      var operador=document.getElementById("operador").value;
 		      var f1=document.getElementById("f1").value;
 		      var f2=document.getElementById("f2").value;
@@ -843,13 +840,22 @@
           showConfirmButton: false,
           timer: 1250
         })
+        $("#aux").modal('hide');//ocultamos el modal
+        
+        document.getElementById('operador').options.selectedIndex = 0;
+       document.getElementById("f1").value ="";
+      document.getElementById("f2").value ="";
+      }else {
+    	  Swal.fire({
+              position: 'center',
+              icon: 'warning',
+              title: 'Datos Incorrectos',
+              showConfirmButton: false,
+              timer: 1250
+            })
       }
       
-    $("#aux").modal('hide');//ocultamos el modal
     
-   document.getElementById('operador').options.selectedIndex = 0;
-  document.getElementById("f1").value ="";
- document.getElementById("f2").value ="";
 }
  
  
@@ -994,10 +1000,10 @@
   }
  
  
- function listarHoras(id) {
+ function listarHoras(id, tipo) {
 		$.ajax({
 		    method: "GET",
-		    url: "/listar-horas/"+id,
+		    url: "/listar-horas/"+id+"/"+tipo,
 		    success: (data) => {
 		    	$('#quitarContador').remove();
 		    	$('#contenedorTablaContador').append(
@@ -1069,11 +1075,13 @@
 	                    }
 	                }
 	            });
+			    $('#Contador').modal('show');
 		    },
 		    error: (e) => {
 		        // location.reload();nnn
 		    }
 	}
+		
 	)}
  
  
@@ -1084,11 +1092,11 @@
 	 $('#operador').remove();
 	 $('#muestra').remove();
 	 $('#contenedorOperador').append(
-                 "<select class='swal2-input' id='operador' name='operador'>"+
+                 "<select class='swal2-input' id='operador' name='operador' required='required'>"+
                      "<option value=''>Seleccione a un operador</option>"+
                  "</select>"+"</div>");
 	 $('#contenedorMuestra').append(
-             "<select class='swal2-input' id='muestra' name='muestra'>"+
+             "<select class='swal2-input' id='muestra' name='muestra' required='required'>"+
                  "<option value=''>Seleccione a un muestra</option>"+
              "</select>"+"</div>");
 	 $.ajax({  
