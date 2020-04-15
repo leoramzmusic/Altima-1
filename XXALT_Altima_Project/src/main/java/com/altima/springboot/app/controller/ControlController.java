@@ -72,11 +72,11 @@ public class ControlController {
 	
 	//erik
 	
-	@RequestMapping(value = "/listar-horas/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/listar-horas/{id}/{tipo}", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Object []> listar_horas(@PathVariable(value="id") Long id) {		
+	public List<Object []> listar_horas(@PathVariable(value="id") Long id,  @PathVariable(value="tipo") String tipo) {		
 		
-		return  DCPM.ContadorHoras(id);	
+		return  DCPM.ContadorHoras(id,tipo);	
 	}
 	
 	@PostMapping("/guardar-proceso")
