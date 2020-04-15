@@ -164,7 +164,7 @@ function listarMarcas() {
 			new $.fn.dataTable.FixedHeader(tablaMarcas);
 		},
 		error: (e) => {
-			// location.reload();
+	
 		}
 	})
 }
@@ -250,7 +250,7 @@ function listarColores() {
 			new $.fn.dataTable.FixedHeader(tablaColores);
 		},
 		error: (e) => {
-			// location.reload();
+		
 		}
 	})
 }
@@ -335,7 +335,7 @@ function listarTrazos() {
 			new $.fn.dataTable.FixedHeader(tablaTrazos);
 		},
 		error: (e) => {
-			// location.reload();
+		
 		}
 	})
 }
@@ -420,7 +420,7 @@ function listarPrendas() {
 			new $.fn.dataTable.FixedHeader(tablaPrendas);
 		},
 		error: (e) => {
-			// location.reload();
+
 		}
 	})
 }
@@ -505,7 +505,7 @@ function listarGeneros() {
 			new $.fn.dataTable.FixedHeader(tablaGeneros);
 		},
 		error: (e) => {
-			// location.reload();
+		
 		}
 	})
 }
@@ -590,7 +590,7 @@ function listarComposiciones() {
 			new $.fn.dataTable.FixedHeader(tablaComponer);
 		},
 		error: (e) => {
-			// location.reload();
+		
 		}
 	})
 }
@@ -676,7 +676,7 @@ function listarCuidados() {
 			new $.fn.dataTable.FixedHeader(tablaCuidados);
 		},
 		error: (e) => {
-			// location.reload();
+		
 		}
 	})
 }
@@ -760,7 +760,7 @@ function listarMedidas() {
 			});
 		},
 		error: (e) => {
-			// location.reload();
+			
 		}
 	})
 }
@@ -846,7 +846,7 @@ function listarMateriales() {
 			new $.fn.dataTable.FixedHeader(tablaMateriales);
 		},
 		error: (e) => {
-			// location.reload();
+		
 		}
 	})
 }
@@ -932,7 +932,7 @@ function listarMarcadores() {
 			new $.fn.dataTable.FixedHeader(tablaMarcador);
 		},
 		error: (e) => {
-			// location.reload();
+		
 		}
 	})
 }
@@ -1017,7 +1017,7 @@ function listarComposiciones1() {
 			new $.fn.dataTable.FixedHeader(tablaMarcador);
 		},
 		error: (e) => {
-			// location.reload();
+		
 		}
 	})
 }
