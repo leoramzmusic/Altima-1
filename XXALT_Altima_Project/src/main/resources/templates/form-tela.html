@@ -7,7 +7,7 @@
     <div class="form-group col-md-6">
         <label for="status">Composici&oacute;n</label>
         <select id="telaFamcomposicion" name="telaFamcomposicion" class="form-control selectCustom" data-live-search="true">
-        	<option value="">Selecciona uno...</option>
+        	<option value="" >Selecciona uno...</option>
         	<option th:each="lisCom: ${lisCom}"
 			th:value="${lisCom.idLookup}" th:text="${lisCom.nombreLookup}"></option>
             
@@ -314,7 +314,8 @@ function guardar(){
     	var nFilas = $("#mytable tr").length;
     	$("#adicionados").append(nFilas - 1);
     	//le resto 1 para no contar la fila del header
-    	document.getElementById('telaFamcomposicion').options.selectedIndex = 0;
+  	 	document.getElementById("telaFamcomposicion").value = '';
+  		$('#telaFamcomposicion').change();
     	document.getElementById("telaComposicion").value ="";
     	}
 	}  
@@ -331,8 +332,14 @@ function eliminar(t) {
 function arreglo() {
 	var compo="";
 	var idfam="";
+	var contador=0;
+	
 	$('#mytable tr').each(function () {
 		compo=$(this).find('td').eq(0).html()+","+compo;
+		if ( $(this).find('td').eq(0).html() != null ){
+				var suma = $(this).find('td').eq(0).html();
+				contador = (Number(contador) +Number(suma));
+			}
 		idfam= $(this).find('td').eq(1).html()+","+idfam;
 	  	document.getElementById("txtTabla").value = compo;
 	  	document.getElementById("txtTabla2").value = idfam;
@@ -343,8 +350,17 @@ function arreglo() {
 		id=$(this).find('td').eq(1).html()+","+id;
 	  document.getElementById("id_prendas").value = id;
 	 });
-	
-		
+		if (contador != 100 ){
+			Swal.fire({
+		          position: 'center',
+		          icon: 'error',
+		          title: 'Error es posible que el porcentaje no cumpla con el  100 % ',
+		          showConfirmButton: false,
+		          timer: 1300
+		        });
+			
+			$("#telaForm").preventDefault();
+		}
 	}
 	
 function guardarPrenda(){
