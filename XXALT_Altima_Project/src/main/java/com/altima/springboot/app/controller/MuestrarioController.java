@@ -9,7 +9,7 @@ public class MuestrarioController {
 	public String Inventario() {
 		return "inventario";
 	}
-
+	
 	@GetMapping("/agregar-inventario")
 	public String agregarInventario() {
 		return "agregar-inventario";

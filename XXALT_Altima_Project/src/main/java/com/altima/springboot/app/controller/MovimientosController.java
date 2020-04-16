@@ -5,13 +5,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MovimientosController {
-
-	@GetMapping("/movimientos") 
+	
+	@GetMapping("/movimientos")
 	public String listExits() {
 		return "movimientos";
 	}
 	
-	@GetMapping("/historico-de-muestras") 
+	@GetMapping("/historico-de-muestras")
 	public String listHistorial() {
 		return "historico-de-muestras";
 	}

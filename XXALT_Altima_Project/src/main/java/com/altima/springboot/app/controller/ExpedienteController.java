@@ -6,22 +6,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ExpedienteController {
 	
-	@GetMapping("/expediente") 
+	@GetMapping("/expediente")
 	public String expediente() {
 		return "expediente";
 	}
 	
-	@GetMapping("/agregar-expediente") 
+	@GetMapping("/agregar-expediente")
 	public String agregarExpediente() {
 		return "agregar-expediente";
 	}
 	
-	@GetMapping("/agregar-expediente-empleados") 
+	@GetMapping("/agregar-expediente-empleados")
 	public String agregarEmpleadosExpediente() {
 		return "agregar-expediente-empleados";
 	}
 	
-	@GetMapping("/detalle-expediente") 
+	@GetMapping("/detalle-expediente")
 	public String detalleExpediente() {
 		return "detalle-expediente";
 	}

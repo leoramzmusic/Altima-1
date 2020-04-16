@@ -1,8 +1,6 @@
 package com.altima.springboot.app.controller;
 
 import java.net.MalformedURLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.altima.springboot.app.models.entity.DisenioMaterial;
 import com.altima.springboot.app.models.entity.DisenioPrenda;
-import com.altima.springboot.app.models.entity.DisenioRuta;
 import com.altima.springboot.app.models.service.IDisenioFamiliaPrendaService;
 import com.altima.springboot.app.models.service.IDisenioLookupService;
 import com.altima.springboot.app.models.service.IDisenioMaterialService;
@@ -27,7 +21,6 @@ import com.altima.springboot.app.models.service.IDisenioPrendaMarcadorService;
 import com.altima.springboot.app.models.service.IDisenioPrendaService;
 import com.altima.springboot.app.models.service.IDisenioRutaService;
 import com.altima.springboot.app.models.service.IUploadService;
-
 
 @Controller
 public class PrendasController {
@@ -44,26 +37,24 @@ public class PrendasController {
 	@Autowired
 	IDisenioLookupService disenioLookupService;
 	@Autowired
-	private IDisenioPrendaMarcadorService disenioPrendaMarcadorService; 
+	private IDisenioPrendaMarcadorService disenioPrendaMarcadorService;
 	
-	@GetMapping("prendas") 
-	public String listClothes(Model model, Map<String, Object> m) throws InterruptedException 
-	{
-		model.addAttribute("prendas",disenioPrendaService.findAll());
+	@GetMapping("prendas")
+	public String listClothes(Model model, Map<String, Object> m) throws InterruptedException {
+		model.addAttribute("prendas", disenioPrendaService.findAll());
 		model.addAttribute("tipos", disenioMaterialService.findAllFamiliaPrenda());
-
+		
 		return "prendas";
 	}
 	
-	@GetMapping("detalle-prenda") 
+	@GetMapping("detalle-prenda")
 	public String infoClothes() {
-
+		
 		return "detalle-prenda";
 	}
 	
-	@GetMapping("agregar-prenda") 
-	public String addClothes(Model model, Map<String, Object> m) 
-	{
+	@GetMapping("agregar-prenda")
+	public String addClothes(Model model, Map<String, Object> m) {
 		DisenioPrenda prenda = new DisenioPrenda();
 		
 		model.addAttribute("familias", disenioMaterialService.findAllFamiliaPrenda());
@@ -74,11 +65,9 @@ public class PrendasController {
 		m.put("accion", "prospecto");
 		return "agregar-confirmar-prenda";
 	}
-
-	@RequestMapping(value= "/confirmar-prenda/{id}")
-	public String confirmar(@PathVariable (value="id") Long id, Model model, Map<String, Object> m) 
-	{
-		System.out.println("entre al confirmar jsjs: " + id);
+	
+	@RequestMapping(value = "/confirmar-prenda/{id}")
+	public String confirmar(@PathVariable(value = "id") Long id, Model model, Map<String, Object> m) {
 		DisenioPrenda disenio = new DisenioPrenda();
 		DisenioPrenda prenda = disenioPrendaService.findOne(id);
 		model.addAttribute("marcadores", disenioLookupService.findByTipoLookup("Marcador"));
@@ -91,13 +80,11 @@ public class PrendasController {
 		return "agregar-confirmar-prenda";
 	}
 	
-	@RequestMapping(value= "/editar-prenda/{id}")
-	public String editar(@PathVariable (value="id") Long id, Model model, Map<String, Object> m) 
-	{
-		System.out.println("entre al editar jsjs: " + id);
+	@RequestMapping(value = "/editar-prenda/{id}")
+	public String editar(@PathVariable(value = "id") Long id, Model model, Map<String, Object> m) {
 		DisenioPrenda disenio = new DisenioPrenda();
 		DisenioPrenda prenda = disenioPrendaService.findOne(id);
-
+		
 		model.addAttribute("marcadores", disenioLookupService.findByTipoLookup("Marcador"));
 		model.addAttribute("prendasmarcadores", disenioPrendaMarcadorService.findByIdPrenda(id));
 		model.addAttribute("familias", disenioMaterialService.findAllFamiliaPrenda());
@@ -107,14 +94,13 @@ public class PrendasController {
 		model.addAttribute("patronajesPrenda", disenioMaterialService.findAllPatronajeFromPrenda(id));
 		model.addAttribute("prenda", prenda);
 		m.put("disenio", disenio);
-
-		System.out.println("sale de esta vaina");
+		
 		return "editar-prenda";
 	}
 	
 	@GetMapping(value = "/uploads/prendas/{filename:.+}")
 	public ResponseEntity<Resource> verFoto(@PathVariable String filename) {
-
+		
 		Resource recurso = null;
 		try {
 			recurso = uFileService.load(filename);
@@ -122,10 +108,10 @@ public class PrendasController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
 		return ResponseEntity.ok()
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
 				.body(recurso);
 	}
-
+	
 }
