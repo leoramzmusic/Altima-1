@@ -379,6 +379,7 @@ function ValidarTerceraPestana(id) {
 
 function ValidarCuartaPestana() {
 	var j=0;
+	var validacion=true;
 	$('#CuerpoPatronaje tr').each(function () {
 		j++;
 	});
@@ -391,12 +392,32 @@ function ValidarCuartaPestana() {
 		console.log("aqui si jala");
 		$('#AlertaCuartaPestana').css('display', 'none');
 		$('#CuerpoPatronaje tr').each(function () {
-			_id=$(this).find('td').eq(0).html();
-			var temp = {id: $(this).find('td').eq(0).html(), cantidadTela: $('#CantidadTela'+$(this).find('td').eq(0).html()).val(), cantidadForro: $('#CantidadForro'+$(this).find('td').eq(0).html()).val(), cantidadEntretela: $('#CantidadEntretela'+$(this).find('td').eq(0).html()).val() };
-			objeto_patronajes.push(temp);
+			console.log($('#CantidadTela'+$(this).find('td').eq(0).html()).val());
+			if($('#CantidadTela'+$(this).find('td').eq(0).html()).val()=="" || $('#CantidadForro'+$(this).find('td').eq(0).html()).val()==""||$('#CantidadEntretela'+$(this).find('td').eq(0).html()).val()==""){
+				Swal.fire({
+					icon: 'error',
+					title: 'Error',
+					text: 'Todos los campos deben de estar llenos!'
+				  })
+				  
+						objeto_patronajes=[];
+						console.log("que pedo con esta pus "+objeto_patronajes);
+						validacion=false;
+						return true;
+			}
+			if(validacion===true)
+			{
+				_id=$(this).find('td').eq(0).html();
+				var temp = {id: $(this).find('td').eq(0).html(), cantidadTela: $('#CantidadTela'+$(this).find('td').eq(0).html()).val(), cantidadForro: $('#CantidadForro'+$(this).find('td').eq(0).html()).val(), cantidadEntretela: $('#CantidadEntretela'+$(this).find('td').eq(0).html()).val() };
+				objeto_patronajes.push(temp);
+			}
 		});
-		$('#SiguienteCuartaPestana').click();
-		$('#BotonBloquearGuardar').prop('disabled', true);
+		if(validacion===true)
+		{
+			$('#SiguienteCuartaPestana').click();
+			$('#BotonBloquearGuardar').prop('disabled', true);	
+		}
+
 	}
 }
 

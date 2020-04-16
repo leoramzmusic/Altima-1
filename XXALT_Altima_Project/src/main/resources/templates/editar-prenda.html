@@ -181,7 +181,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-sm-12">
-                                                                    <button type="button" class="btn btn-primary float-right" onclick="ValidarPrimerPestana()">Siguiente</button>
+                                                                    <button type="button" class="btn btn-primary float-right" onclick="ValidarPrimerPestana();">Siguiente</button>
                                                                     <button type="button" class="btn btn-primary next-step float-right" id="SiguientePrimeraPestana" style="display: none">Siguiente</button>
                                                                     <br>
                                                                     <button type="submit" id="FormImagenes" style="border: none"></button>
@@ -468,6 +468,7 @@
         <script src="/dist/js/UploadImage.js"></script>
         <!-- select2 -->
         <script src="/dist/js/select2.min.js"></script>
+        <script th:src="@{/dist/js/sweetalert.js}"></script>
         <!-- Script para guardar Prenda -->
         <script src="/dist/js/AgregarPrenda.js"></script>
         <script th:inline="javascript">
