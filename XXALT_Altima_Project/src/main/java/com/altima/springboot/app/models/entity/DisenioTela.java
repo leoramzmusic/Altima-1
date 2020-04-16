@@ -97,6 +97,17 @@ public class DisenioTela implements Serializable{
 	
 	@Column(name="estatus_tela")
 	private String estatusTela;
+	
+	
+	
+
+	public String getIdTextProspecto() {
+		return idTextProspecto;
+	}
+
+	public void setIdTextProspecto(String idTextProspecto) {
+		this.idTextProspecto = idTextProspecto;
+	}
 
 	public Long getIdTela() {
 		return idTela;

@@ -113,6 +113,26 @@ public class DisenioMaterial implements Serializable{
 	@Column(name="id_color")
 
 	private Long idColor;
+	
+	
+	
+	
+
+	public String getEstatusMaterial() {
+		return estatusMaterial;
+	}
+
+	public void setEstatusMaterial(String estatusMaterial) {
+		this.estatusMaterial = estatusMaterial;
+	}
+
+	public String getIdTextProspecto() {
+		return idTextProspecto;
+	}
+
+	public void setIdTextProspecto(String idTextProspecto) {
+		this.idTextProspecto = idTextProspecto;
+	}
 
 	public Long getIdMaterial() {
 		return idMaterial;

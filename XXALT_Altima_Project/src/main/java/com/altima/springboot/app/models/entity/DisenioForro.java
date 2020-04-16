@@ -72,6 +72,16 @@ public class DisenioForro implements Serializable{
 	@Column(name="estatus_forro")
 	private String estatusForro;
 
+	
+	
+	public String getIdTextProspecto() {
+		return idTextProspecto;
+	}
+
+	public void setIdTextProspecto(String idTextProspecto) {
+		this.idTextProspecto = idTextProspecto;
+	}
+
 	public Long getIdForro() {
 		return idForro;
 	}
