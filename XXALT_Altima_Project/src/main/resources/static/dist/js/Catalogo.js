@@ -13,7 +13,7 @@ $(document).ready(function () {
 	listarComposiciones1();
 
 });
-////////////////////
+
 
 
 function listarcuidadosjson() {
@@ -35,7 +35,7 @@ function listarcuidadosjson() {
 			}
 
 
-		} ///////////////
+		} 
 
 	});
 
@@ -1205,28 +1205,57 @@ function agregarColor() {
 		if (result.value && document.getElementById("color").value) {
 			var Color = document.getElementById("color").value;
 			var CodigoColor = document.getElementById("codigocolor").value;
+			
+			
 			$.ajax({
-				type: "POST",
-				url: "/guardarcatalogo",
+				type: "GET",
+				url: "/verifduplicado",
 				data: {
-					"_csrf": $('#token').val(),
-					'Color': Color,
-					'CodigoColor': CodigoColor
-					// ,'Descripcion':Descripcion
+					'Lookup': Color
+				
+					
 				}
 
 			}).done(function (data) {
-				listarColores();
+				if(data==false){
+				
+					$.ajax({
+						type: "POST",
+						url: "/guardarcatalogo",
+						data: {
+							"_csrf": $('#token').val(),
+							'Color': Color,
+							'CodigoColor': CodigoColor
+							
+						}
+
+					}).done(function (data) {
+						listarColores();
+					});
+					Swal.fire({
+						position: 'center',
+						icon: 'success',
+						title: 'Insertado correctamente',
+						showConfirmButton: false,
+						timer: 1250
+					})
+					///  window.setTimeout(function(){location.reload()}, 2000);
+					}///fin segundoif
+				else{
+					Swal.fire({
+						position: 'center',
+						icon: 'error',
+						title: 'registro duplicado no se ha insertado',
+						showConfirmButton: false,
+						timer: 1250
+					})
+					
+				}
 			});
-			Swal.fire({
-				position: 'center',
-				icon: 'success',
-				title: 'Insertado correctamente',
-				showConfirmButton: false,
-				timer: 1250
-			})
-			///  window.setTimeout(function(){location.reload()}, 2000);
-		}
+		
+			
+			
+		}/////fin primer if
 	})
 }
 // Editar color
@@ -1365,6 +1394,22 @@ function agregarTrazo() {
 	}).then((result) => {
 		if (result.value && document.getElementById("trazo").value) {
 			var Trazo = document.getElementById("trazo").value;
+			
+			////////////
+			$.ajax({
+				type: "GET",
+				url: "/verifduplicado",
+				data: {
+					'Lookup': Trazo
+				
+					// ,'Descripcion':Descripcion
+				}
+
+			}).done(function (data) {
+				if(data==false){
+			///////////
+			
+			
 			$.ajax({
 				type: "POST",
 				url: "/guardarcatalogo",
@@ -1384,8 +1429,20 @@ function agregarTrazo() {
 				showConfirmButton: false,
 				timer: 1250
 			})
+				}
+				else{
+					Swal.fire({
+						position: 'center',
+						icon: 'error',
+						title: 'registro duplicado no se ha insertado',
+						showConfirmButton: false,
+						timer: 1250
+					})
+					
+				}
+			});
 
-		}
+		}///////////
 	})
 }
 // Editar Trazo
@@ -1518,7 +1575,20 @@ function agregarPrenda() {
 	}).then((result) => {
 		if (result.value && document.getElementById("familia").value) {
 			var FamiliaPrenda = document.getElementById("familia").value;
+            /////////////////
+			
+			$.ajax({
+				type: "GET",
+				url: "/verifduplicado",
+				data: {
+					'Lookup': FamiliaPrenda
+				
+					// ,'Descripcion':Descripcion
+				}
 
+			}).done(function (data) {
+				if(data==false){
+			///////////////////
 			$.ajax({
 				type: "POST",
 				url: "/guardarcatalogo",
@@ -1540,8 +1610,20 @@ function agregarPrenda() {
 				showConfirmButton: false,
 				timer: 1250
 			})
+				}///fin segundoif
+				else{
+					Swal.fire({
+						position: 'center',
+						icon: 'error',
+						title: 'registro duplicado no se ha insertado',
+						showConfirmButton: false,
+						timer: 1250
+					})
+					
+				}
+			});
 
-		}
+		}///////////
 	})
 }
 
@@ -1676,6 +1758,19 @@ function agregarGenero() {
 	}).then((result) => {
 		if (result.value && document.getElementById("genero").value) {
 			var Genero = document.getElementById("genero").value;
+			////////////////
+			$.ajax({
+				type: "GET",
+				url: "/verifduplicado",
+				data: {
+					'Lookup': Genero
+				
+					// ,'Descripcion':Descripcion
+				}
+
+			}).done(function (data) {
+				if(data==false){
+			/////////////
 			$.ajax({
 				type: "POST",
 				url: "/guardarcatalogo",
@@ -1696,6 +1791,18 @@ function agregarGenero() {
 				showConfirmButton: false,
 				timer: 1250
 			})
+				}///fin segundoif
+				else{
+					Swal.fire({
+						position: 'center',
+						icon: 'error',
+						title: 'registro duplicado no se ha insertado',
+						showConfirmButton: false,
+						timer: 1250
+					})
+					
+				}
+			});
 
 		}
 	})
@@ -1951,6 +2058,19 @@ function insertar() {
 			Composicion = null;
 		}
 
+		//////////////////
+		$.ajax({
+			type: "GET",
+			url: "/verifduplicado",
+			data: {
+				'Lookup': Composicion
+			
+				// ,'Descripcion':Descripcion
+			}
+
+		}).done(function (data) {
+			if(data==false){
+		///////////////////
 		$.ajax({
 			type: "POST",
 			url: "/composicioncuidadorest",
@@ -2001,6 +2121,19 @@ function insertar() {
 			listarComposiciones();
 			//	mostrar();
 			//composicionescuidados();
+		});
+		
+			}///fin segundoif
+			else{
+				Swal.fire({
+					position: 'center',
+					icon: 'error',
+					title: 'registro duplicado no se ha insertado',
+					showConfirmButton: false,
+					timer: 1250
+				})
+				
+			}
 		});
 		/* Swal.fire({
             position: 'center',
@@ -2258,6 +2391,19 @@ function agregarCuidado() {
 
 			// Create an FormData object 
 			var data = new FormData(form);
+			//////////////////////
+			$.ajax({
+				type: "GET",
+				url: "/verifduplicado",
+				data: {
+					'Lookup': Cuidado
+				
+					// ,'Descripcion':Descripcion
+				}
+
+			}).done(function (data) {
+				if(data==false){
+			//////////////////
 			$.ajax({
 				type: "POST",
 				url: "/guardarcatalogo",
@@ -2279,6 +2425,19 @@ function agregarCuidado() {
 				showConfirmButton: false,
 				timer: 1250
 			})
+			
+				}///fin segundoif
+				else{
+					Swal.fire({
+						position: 'center',
+						icon: 'error',
+						title: 'registro duplicado no se ha insertado',
+						showConfirmButton: false,
+						timer: 1250
+					})
+					
+				}
+			});
 			//  window.setTimeout(function(){location.reload()}, 2000);
 		} /*else {
 			Swal.fire({
@@ -2433,6 +2592,19 @@ function agregarMedida() {
 		if (result.value && document.getElementById("medida").value && document.getElementById("simbolo").value) {
 			var Medida = document.getElementById("medida").value;
 			var Simbolo = document.getElementById("simbolo").value;
+			///////////////////
+			$.ajax({
+				type: "GET",
+				url: "/verifduplicado",
+				data: {
+					'Lookup': Medida
+				
+					// ,'Descripcion':Descripcion
+				}
+
+			}).done(function (data) {
+				if(data==false){
+			////////////////
 
 			$.ajax({
 				type: "POST",
@@ -2455,6 +2627,19 @@ function agregarMedida() {
 				showConfirmButton: false,
 				timer: 1250
 			})
+			
+				}///fin segundoif
+				else{
+					Swal.fire({
+						position: 'center',
+						icon: 'error',
+						title: 'registro duplicado no se ha insertado',
+						showConfirmButton: false,
+						timer: 1250
+					})
+					
+				}
+			});
 			//  window.setTimeout(function(){location.reload()}, 2000);
 		} /*else {
 			Swal.fire({
@@ -2612,7 +2797,19 @@ function agregarMaterial() {
 	}).then((result) => {
 		if (result.value && document.getElementById("material").value) {
 			var Material = document.getElementById("material").value;
+			////////////
+			$.ajax({
+				type: "GET",
+				url: "/verifduplicado",
+				data: {
+					'Lookup': Material
+				
+					// ,'Descripcion':Descripcion
+				}
 
+			}).done(function (data) {
+				if(data==false){
+			//////////////
 
 			$.ajax({
 				type: "POST",
@@ -2634,6 +2831,19 @@ function agregarMaterial() {
 				showConfirmButton: false,
 				timer: 1250
 			})
+			
+				}///fin segundoif
+				else{
+					Swal.fire({
+						position: 'center',
+						icon: 'error',
+						title: 'registro duplicado no se ha insertado',
+						showConfirmButton: false,
+						timer: 1250
+					})
+					
+				}
+			});
 			//  window.setTimeout(function(){location.reload()}, 2000);
 		}
 	})
@@ -2775,7 +2985,20 @@ function agregarMarcador() {
 	}).then((result) => {
 		if (result.value && document.getElementById("marcador").value) {
 			var Marcador = document.getElementById("marcador").value;
+			///////////////
+			$.ajax({
+				type: "GET",
+				url: "/verifduplicado",
+				data: {
+					'Lookup': Marcador
+				
+					// ,'Descripcion':Descripcion
+				}
 
+			}).done(function (data) {
+				if(data==false){
+			
+			//////////////////
 
 			$.ajax({
 				type: "POST",
@@ -2797,6 +3020,19 @@ function agregarMarcador() {
 				showConfirmButton: false,
 				timer: 1250
 			})
+			
+				}///fin segundoif
+				else{
+					Swal.fire({
+						position: 'center',
+						icon: 'error',
+						title: 'registro duplicado no se ha insertado',
+						showConfirmButton: false,
+						timer: 1250
+					})
+					
+				}
+			});
 			//  window.setTimeout(function(){location.reload()}, 2000);
 		}
 	})
@@ -2917,7 +3153,19 @@ function agregarComposicion1() {
 	}).then((result) => {
 		if (result.value && document.getElementById("composicion1").value) {
 			var Composicion = document.getElementById("composicion1").value;
+			////////////////
+			$.ajax({
+				type: "GET",
+				url: "/verifduplicado",
+				data: {
+					'Lookup': Composicion
+				
+					// ,'Descripcion':Descripcion
+				}
 
+			}).done(function (data) {
+				if(data==false){
+			///////////////
 
 			$.ajax({
 				type: "POST",
@@ -2939,6 +3187,19 @@ function agregarComposicion1() {
 				showConfirmButton: false,
 				timer: 1250
 			})
+			
+				}///fin segundoif
+				else{
+					Swal.fire({
+						position: 'center',
+						icon: 'error',
+						title: 'registro duplicado no se ha insertado',
+						showConfirmButton: false,
+						timer: 1250
+					})
+					
+				}
+			});
 			//  window.setTimeout(function(){location.reload()}, 2000);
 		}
 	})

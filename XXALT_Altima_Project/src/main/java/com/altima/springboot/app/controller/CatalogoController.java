@@ -16,6 +16,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -64,6 +65,13 @@ public class CatalogoController {
 		return ResponseEntity.ok()
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
 				.body(recurso);
+	}
+	
+	@RequestMapping(value = "/verifduplicado", method = RequestMethod.GET)
+	@ResponseBody
+	public boolean verificaduplicado(String Lookup) {
+        return catalogo.findDuplicate(Lookup);
+		
 	}
 
 	@RequestMapping(value = "/marcas", method = RequestMethod.GET)
@@ -180,7 +188,7 @@ public class CatalogoController {
 		if (Marca != null) {
 			DisenioLookup marca = new DisenioLookup();
 			marca.setIdText("MAR004");
-			marca.setNombreLookup(Marca);
+			marca.setNombreLookup(StringUtils.capitalize(Marca));
 			marca.setTipoLookup("Marca");
 			marca.setCreadoPor(auth.getName());
 			marca.setFechaCreacion(date);
@@ -211,7 +219,7 @@ public class CatalogoController {
 				color.setIdText("COL00" + (cont + 1));
 			}
 
-			color.setNombreLookup(Color);
+			color.setNombreLookup(StringUtils.capitalize(Color));
 			color.setTipoLookup("Color");
 			color.setCreadoPor(auth.getName());
 			color.setFechaCreacion(date);
@@ -241,7 +249,7 @@ public class CatalogoController {
 				piezatrazo.setIdText("PZTR00" + (cont + 1));
 			}
 
-			piezatrazo.setNombreLookup(PiezaTrazo);
+			piezatrazo.setNombreLookup(StringUtils.capitalize(PiezaTrazo));
 			piezatrazo.setTipoLookup("Pieza Trazo");
 			piezatrazo.setCreadoPor(auth.getName());
 			piezatrazo.setFechaCreacion(date);
@@ -270,7 +278,7 @@ public class CatalogoController {
 				familiaprenda.setIdText("FAMPR00" + (cont + 1));
 			}
 
-			familiaprenda.setNombreLookup(FamiliaPrenda);
+			familiaprenda.setNombreLookup(StringUtils.capitalize(FamiliaPrenda));
 			familiaprenda.setTipoLookup("Familia Prenda");
 			familiaprenda.setCreadoPor(auth.getName());
 			familiaprenda.setFechaCreacion(date);
@@ -300,7 +308,7 @@ public class CatalogoController {
 				familiagenero.setIdText("FAMGE00" + (cont + 1));
 			}
 
-			familiagenero.setNombreLookup(FamiliaGenero);
+			familiagenero.setNombreLookup(StringUtils.capitalize(FamiliaGenero));
 			familiagenero.setTipoLookup("Familia Genero");
 			familiagenero.setCreadoPor(auth.getName());
 			familiagenero.setFechaCreacion(date);
@@ -331,7 +339,7 @@ public class CatalogoController {
 				instruccioncuidado.setIdText("INSTRCU00" + (cont + 1));
 			}
 
-			instruccioncuidado.setNombreLookup(InstruccionCuidado);
+			instruccioncuidado.setNombreLookup(StringUtils.capitalize(InstruccionCuidado));
 			instruccioncuidado.setTipoLookup("Instruccion Cuidado");
 			instruccioncuidado.setCreadoPor(auth.getName());
 			instruccioncuidado.setFechaCreacion(date);
@@ -369,7 +377,7 @@ public class CatalogoController {
 				unidadmedida.setIdText("UMED00" + (cont + 1));
 			}
 
-			unidadmedida.setNombreLookup(UnidadMedida);
+			unidadmedida.setNombreLookup(StringUtils.capitalize(UnidadMedida));
 			unidadmedida.setTipoLookup("Unidad Medida");
 			unidadmedida.setDescripcionLookup(Simbolo);
 			unidadmedida.setCreadoPor(auth.getName());
@@ -400,7 +408,7 @@ public class CatalogoController {
 				material.setIdText("MAT00" + (cont + 1));
 			}
 
-			material.setNombreLookup(Material);
+			material.setNombreLookup(StringUtils.capitalize(Material));
 			material.setTipoLookup("Material");
 			material.setCreadoPor(auth.getName());
 			material.setFechaCreacion(date);
@@ -430,7 +438,7 @@ public class CatalogoController {
 				marcador.setIdText("MARC00" + (cont + 1));
 			}
 
-			marcador.setNombreLookup(Marcador);
+			marcador.setNombreLookup(StringUtils.capitalize(Marcador));
 			marcador.setTipoLookup("Marcador");
 			marcador.setCreadoPor(auth.getName());
 			marcador.setFechaCreacion(date);
@@ -459,7 +467,7 @@ public class CatalogoController {
 				composicion.setIdText("COMP00" + (cont + 1));
 			}
 
-			composicion.setNombreLookup(Composicion);
+			composicion.setNombreLookup(StringUtils.capitalize(Composicion));
 			composicion.setTipoLookup("Composicion");
 			composicion.setCreadoPor(auth.getName());
 			composicion.setFechaCreacion(date);

@@ -189,6 +189,21 @@ public class CatalogoServiceImpl implements ICatalogoService {
 		return (DisenioLookup) em.createQuery("from DisenioLookup where tipo_lookup='Color' ORDER BY idLookup DESC").setMaxResults(1).getSingleResult();
 	}
 	
+	@Override
+	@Transactional
+	public boolean findDuplicate(String Lookup){
+		boolean duplicate;
+		@SuppressWarnings("unchecked")
+		List<DisenioLookup> result = em.createQuery("from DisenioLookup where nombreLookup='"+Lookup+"'").getResultList();
+		if(result.isEmpty()) {
+			duplicate=false;
+		}
+		else {
+			duplicate=true;
+		}
+		 return duplicate;
+	}
+	
 	
 
 }
