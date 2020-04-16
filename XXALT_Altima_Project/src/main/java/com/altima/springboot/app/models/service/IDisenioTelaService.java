@@ -43,4 +43,5 @@ public interface IDisenioTelaService {
 	void saveTelaPrenda(DisenioTelaPrenda telaPrenda);
 	public void borrarTelaPrenda( Long id);
 	public List<Object []> VistaTelaPrenda( Long id);
+	Object findPrendaById(Long id);
 }

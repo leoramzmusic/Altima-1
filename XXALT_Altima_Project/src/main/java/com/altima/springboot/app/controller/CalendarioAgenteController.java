@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class CalendarioAgenteController {
-	@GetMapping("agenda-agente") 
+	@GetMapping("agenda-agente")
 	public String calendarAgente() {
-
+		
 		return "agenda-agente";
 	}
 }

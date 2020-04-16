@@ -28,78 +28,74 @@ public class ClienteSucursalController {
 	private IComercialClienteSucursalService SucursalService;
 	protected final Log logger = LogFactory.getLog(this.getClass());
 	
-	@GetMapping("/sucursales/{id}") 
-	public String listClients(@PathVariable(value="id") Long id , Map<String,Object> model, RedirectAttributes redirectAttrs) {
+	@GetMapping("/sucursales/{id}")
+	public String listClients(@PathVariable(value = "id") Long id, Map<String, Object> model,
+			RedirectAttributes redirectAttrs) {
 		ComercialCliente cliente = null;
-		cliente=ClienteService.findOne(id);
-		model.put("cliente",cliente);
-		model.put("sucursales",SucursalService.ClienteSucursales(id) );
+		cliente = ClienteService.findOne(id);
+		model.put("cliente", cliente);
+		model.put("sucursales", SucursalService.ClienteSucursales(id));
 		return "sucursales";
 	}
 	
-	
-	@GetMapping("/agregar-sucursal/{id}") 
-	public String crearCliente(@PathVariable(value="id") Long id, Map<String, Object> model) {
+	@GetMapping("/agregar-sucursal/{id}")
+	public String crearCliente(@PathVariable(value = "id") Long id, Map<String, Object> model) {
 		ComercialCliente cliente = null;
-		cliente=ClienteService.findOne(id);
+		cliente = ClienteService.findOne(id);
 		ComercialClienteSucursal sucursal = new ComercialClienteSucursal();
-		HrDireccion  direccion = new HrDireccion ();
-		model.put("sucursal",sucursal);
-		model.put("cliente",cliente);
+		HrDireccion direccion = new HrDireccion();
+		model.put("sucursal", sucursal);
+		model.put("cliente", cliente);
 		model.put("direccion", direccion);
 		model.put("subtitulo", "Nueva");
 		return "agregar-sucursal";
 	}
 	
 	@GetMapping("/guardar-sucursal")
-	public String guardarCliente(ComercialClienteSucursal sucursal , HrDireccion direccion,RedirectAttributes redirectAttrs) {
+	public String guardarCliente(ComercialClienteSucursal sucursal, HrDireccion direccion,
+			RedirectAttributes redirectAttrs) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
-		if (sucursal.getIdClienteSucursal()== null && direccion.getIdDireccion()== null) {
+		if (sucursal.getIdClienteSucursal() == null && direccion.getIdDireccion() == null) {
 			DireccionService.save(direccion);
-			direccion.setIdText("DIR"+direccion.getIdDireccion());
+			direccion.setIdText("DIR" + direccion.getIdDireccion());
 			direccion.setCreadoPor(auth.getName());
 			DireccionService.save(direccion);
-			//Guardamos los datos de la sucursal.
+			// Guardamos los datos de la sucursal.
 			sucursal.setIdDireccion(direccion.getIdDireccion());
 			SucursalService.save(sucursal);
-			sucursal.setSIdText("SUC"+sucursal.getNoSucursal());
+			sucursal.setSIdText("SUC" + sucursal.getNoSucursal());
 			sucursal.setSCreadoPor(auth.getName());
 			sucursal.setIdDireccion(direccion.getIdDireccion());
-			redirectAttrs
-            .addFlashAttribute("title", "Sucursal guardada correctamente")
-            .addFlashAttribute("icon", "success");
+			redirectAttrs.addFlashAttribute("title", "Sucursal guardada correctamente").addFlashAttribute("icon", "success");
 			SucursalService.save(sucursal);
-		}
-		else {	
+		} else {
 			direccion.setActualizadoPor(auth.getName());
 			direccion.setUltimaFechaModificacion(new Date());
 			sucursal.setSActualizadoPor(auth.getName());
-			sucursal.setSUltimaFechaModificacion(new Date ());
-			redirectAttrs
-            .addFlashAttribute("title", "Sucursal editada correctamente")
-            .addFlashAttribute("icon", "success");
+			sucursal.setSUltimaFechaModificacion(new Date());
+			redirectAttrs.addFlashAttribute("title", "Sucursal editada correctamente").addFlashAttribute("icon", "success");
 			DireccionService.save(direccion);
-			SucursalService.save(sucursal);   
+			SucursalService.save(sucursal);
 		}
 		
-		return "redirect:sucursales/"+sucursal.getIdCliente();
+		return "redirect:sucursales/" + sucursal.getIdCliente();
 	}
 	
 	@GetMapping("/editar-sucursal/{id}")
-	public String editar(@PathVariable(value="id") Long id , Map<String,Object> model) {
+	public String editar(@PathVariable(value = "id") Long id, Map<String, Object> model) {
 		
 		ComercialCliente cliente = null;
 		HrDireccion direccion = null;
 		ComercialClienteSucursal sucursal = null;
-		sucursal=SucursalService.findOne(id);
-		direccion=DireccionService.findOne(sucursal.getIdDireccion());
-		cliente=ClienteService.findOne(sucursal.getIdClienteSucursal());
-		model.put("sucursal",sucursal);
-		model.put("cliente",cliente);
+		sucursal = SucursalService.findOne(id);
+		direccion = DireccionService.findOne(sucursal.getIdDireccion());
+		cliente = ClienteService.findOne(sucursal.getIdClienteSucursal());
+		model.put("sucursal", sucursal);
+		model.put("cliente", cliente);
 		model.put("direccion", direccion);
 		model.put("subtitulo", "Editar");
 		
-		return"agregar-sucursal";   
+		return "agregar-sucursal";
 	}
 }

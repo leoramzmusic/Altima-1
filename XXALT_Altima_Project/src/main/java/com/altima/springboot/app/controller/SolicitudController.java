@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class SolicitudController {
 	
-	@GetMapping("/mensajeria") 
+	@GetMapping("/mensajeria")
 	public String listForms() {
 		return "mensajeria";
 	}
 	
-	@GetMapping("/generar-solicitud") 
+	@GetMapping("/generar-solicitud")
 	public String generateForms() {
 		return "generar-solicitud";
 	}
-
+	
 }

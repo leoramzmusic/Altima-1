@@ -141,6 +141,7 @@ public class TelaController {
 			disenioTelaService.borrarComposicionTela(tela.getIdTela());
 			disenioTelaService.borrarForroTela(tela.getIdTela());
 			tela.setUltimaFechaModificacion(hourdateFormat.format(date));
+			tela.setActualizadoPor(auth.getName());
 			if (!imagenTela.isEmpty()){
 				if ( tela.getFoto() != null && tela.getFoto().length() > 0) {
 

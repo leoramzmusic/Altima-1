@@ -40,9 +40,23 @@
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
-                    <div th:if="${tipo=='tela'}" class="row" th:insert="detalle-material-tela"></div>
-                    <div th:if="${tipo=='forro'}" class="row" th:insert="detalle-material-forro"></div>
-                    <div th:if="${tipo=='material'}" class="row" th:insert="detalle-material-general"></div>
+                    <div class="col-12">
+                        <!-- Default box -->
+                        <img src="/dist/img/logo.png" class="d-none d-print-block" id="logo" style="width: 200px; height: 100px;background-color: black;">
+                        <h2 class="d-none d-print-block" style=" text-align:center;" th:text="${h2}"></h2>
+                        <div class="card">
+                            
+                            <div class="card-header bg-dark d-print-none" id="cab" >
+                                <h3 class="card-title" th:text="${h3}"></h3>&nbsp
+                                <button id="btnimp" class="btn btn-primary d-print-none" onclick="printmaterial();"><i class="fas fa-print"></i></button>
+                            </div>
+                            
+                                <div th:if="${tipo=='tela'}" class="row" th:insert="detalle-material-tela"></div>
+                                <div th:if="${tipo=='forro'}" class="row" th:insert="detalle-material-forro"></div>
+                                <div th:if="${tipo=='material'}" class="row" th:insert="detalle-material-general"></div>
+                        </div>
+                
+                    </div>
                 </div>
             </section>
             <!-- /.content -->
@@ -55,6 +69,11 @@
 
     <!-- jQuery -->
     <div th:replace="navegacion-scripts"></div>
+    <script>
+        function printmaterial(){
+            window.print();
+        }
+    </script>
     <script>
 		function changeClassById() {
 			document.getElementById("menuDiseno").className = "nav-item has-treeview menu-open";

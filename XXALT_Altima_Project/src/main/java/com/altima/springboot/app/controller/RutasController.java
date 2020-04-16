@@ -17,7 +17,7 @@ public class RutasController {
 	IDisenioRutaService disenioruta;
 	
 	@GetMapping("/rutas") 
-	public String listRutas(Model m ) {
+	public String listRutas(Model m) {
 		m.addAttribute("lookupsProcesos", disenioLookup.findByTipoLookup("Proceso"));
 		return "rutas";
 	}

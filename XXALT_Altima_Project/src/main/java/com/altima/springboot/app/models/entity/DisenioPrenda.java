@@ -38,6 +38,9 @@ public class DisenioPrenda implements Serializable {
 
 	@Column(name = "id_text")
 	private String idText;
+	
+	@Column(name = "id_text_prospecto")
+	private String idTextProspecto;
 
 	@Column(name = "creado_por")
 	private String creadoPor;
@@ -134,6 +137,32 @@ public class DisenioPrenda implements Serializable {
 
 	@Column(name = "estatus")
 	private Long estatus;
+	
+	
+
+	public String getIdTextProspecto() {
+		return idTextProspecto;
+	}
+
+	public void setIdTextProspecto(String idTextProspecto) {
+		this.idTextProspecto = idTextProspecto;
+	}
+
+	public String getIdMarcador() {
+		return idMarcador;
+	}
+
+	public void setIdMarcador(String idMarcador) {
+		this.idMarcador = idMarcador;
+	}
+
+	public String getIdRuta() {
+		return idRuta;
+	}
+
+	public void setIdRuta(String idRuta) {
+		this.idRuta = idRuta;
+	}
 
 	public Long getIdPrenda() {
 		return idPrenda;

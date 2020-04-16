@@ -17,18 +17,16 @@ public class LoginController {
 	@Autowired
 	JpaUserDetailsService jpaUserDetailsService;
 	
-	
 	@GetMapping("/login")
-	public String login(@RequestParam(value="error", required=false) String error,
-			@RequestParam(value="logout", required = false) String logout,
-			Model model, Principal principal, RedirectAttributes flash) {
-		if(error != null) {
-			System.out.println("++++++"+jpaUserDetailsService.getX()+"++++++");
-			if(jpaUserDetailsService.getX()==null) {
-				System.out.println("entra alv");
-				model.addAttribute("error","El usuario o la contraseña son incorrectos");
-			}
-			else model.addAttribute("error", jpaUserDetailsService.getX());
+	public String login(@RequestParam(value = "error", required = false) String error,
+			@RequestParam(value = "logout", required = false) String logout, Model model, Principal principal,
+			RedirectAttributes flash) {
+		if (error != null) {
+			System.out.println("++++++" + jpaUserDetailsService.getX() + "++++++");
+			if (jpaUserDetailsService.getX() == null) {
+				model.addAttribute("error", "El usuario o la contraseña son incorrectos");
+			} else
+				model.addAttribute("error", jpaUserDetailsService.getX());
 		}
 		return "login";
 	}

@@ -65,7 +65,7 @@
 			
 			<div class="modal-body">
 				<!-- Tab panes -->
-				<div class="tab-content">
+				<form class="tab-content">
 					<div class="row"  id ="contenedorSelect">
 						
 						<div class="form-group col-sm-6" id ="contenedorOperador">
@@ -90,20 +90,20 @@
 						
 							<div class="form-group col-sm-6">
 								<label for="pedidonom">Fecha de recepcion</label> 
-								<input type="datetime-local" class="swal2-input" id="f1" name="f1">
+								<input type="datetime-local" class="swal2-input" id="f1" name="f1"  required="required">
 							</div>
 							<div class="form-group col-sm-6">
 								<label for="pedidonom">Fecha de entrega</label> 
-								<input type="datetime-local" class="swal2-input" id="f2" name="f2">
+								<input type="datetime-local" class="swal2-input" id="f2" name="f2" required="required">
 							</div>
 							<input type="hidden" name="id_muestra" id="id_muestra">
 							<input type="hidden"  name="tipo" id="tipo">
 							
 								<div class="form-group col-sm-12">
-		       						<button onclick="agregar()"  class="btn btn-primary next-step float-right" type="button">Guardar</button>
+		       						<button onclick="agregar()"  class="btn btn-primary next-step float-right" type="submit">Guardar</button>
 		      					</div>
 					</div>
-				</div>
+				</form>
 			</div>
 		</div>
 	</div>

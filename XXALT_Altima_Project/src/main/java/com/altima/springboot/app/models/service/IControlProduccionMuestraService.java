@@ -18,7 +18,7 @@ public interface IControlProduccionMuestraService {
 	
 
 	
-	List<Object []> ContadorHoras(Long id);
+	List<Object []> ContadorHoras(Long id, String tipo);
 	
 	void saveHora(ControlHora DisenioControlHora);
 	ControlHora findOneHora(Long id);
