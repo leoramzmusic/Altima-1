@@ -6,12 +6,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.altima.springboot.app.models.entity.DisenioLookup;
-import com.altima.springboot.app.repository.ReporteCatalogoRepository;
-
 
 @Service
 public class CatalogoReporteServiceImpl implements ReporteCatalogoService {
@@ -19,54 +16,43 @@ public class CatalogoReporteServiceImpl implements ReporteCatalogoService {
 	@PersistenceContext
 	private EntityManager em;
 	
-	@Autowired
-	private ReporteCatalogoRepository reporteCatalogoRepository;
-	
-	
-	
-	
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
-	public List<DisenioLookup> findFiltroReporte(String cata, String palabra, String fecha1, String fecha2){
-		 return em.createQuery("from DisenioLookup  where tipoLookup = '"+cata+"'\r\n" + 
-		 		"and nombreLookup like '%"+palabra+"%'  and fechaCreacion BETWEEN '"+fecha1+"' and '"+fecha2+"'").getResultList();
+	public List<DisenioLookup> findFiltroReporte(String cata, String palabra, String fecha1, String fecha2) {
+		return em.createQuery("from DisenioLookup  where tipoLookup = '" + cata + "'\r\n" + "and nombreLookup like '%"
+				+ palabra + "%'  and fechaCreacion BETWEEN '" + fecha1 + "' and '" + fecha2 + "'").getResultList();
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
-	public List<DisenioLookup> findFiltroReporteSinpalabra(String cata,String fecha1, String fecha2){
-		 return em.createQuery("from DisenioLookup  where tipoLookup = '"+cata+"'\r\n" + 
-		 		 " and fechaCreacion BETWEEN '"+fecha1+"' and '"+fecha2+"'").getResultList();
-	}
-	
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	@Transactional
-	public List<DisenioLookup> findFiltroReporteSinFechas(String cata, String palabra){
-		 return em.createQuery("from DisenioLookup  where tipoLookup = '"+cata+"'\r\n" + 
-		 		"and nombreLookup like '%"+palabra+"%'").getResultList();
+	public List<DisenioLookup> findFiltroReporteSinpalabra(String cata, String fecha1, String fecha2) {
+		return em.createQuery("from DisenioLookup  where tipoLookup = '" + cata + "'\r\n" + " and fechaCreacion BETWEEN '"
+				+ fecha1 + "' and '" + fecha2 + "'").getResultList();
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
-	public List<DisenioLookup> findFiltroReporteSinFePa(String cata){
-		 return em.createQuery("from DisenioLookup  where tipoLookup = '"+cata+"'").getResultList();
+	public List<DisenioLookup> findFiltroReporteSinFechas(String cata, String palabra) {
+		return em
+				.createQuery(
+						"from DisenioLookup  where tipoLookup = '" + cata + "'\r\n" + "and nombreLookup like '%" + palabra + "%'")
+				.getResultList();
 	}
-	
-	
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
-	public List<String[]> findAllLookup(){
+	public List<DisenioLookup> findFiltroReporteSinFePa(String cata) {
+		return em.createQuery("from DisenioLookup  where tipoLookup = '" + cata + "'").getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<String[]> findAllLookup() {
 		return em.createNativeQuery("SELECT DISTINCT tipo_lookup  FROM alt_disenio_lookup ").getResultList();
 	}
-
-	
-	
-
 }

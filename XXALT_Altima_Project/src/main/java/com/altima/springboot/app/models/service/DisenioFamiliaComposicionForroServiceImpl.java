@@ -15,31 +15,31 @@ import com.altima.springboot.app.repository.DisenioFamiliaComposicionForroReposi
 
 @Service
 public class DisenioFamiliaComposicionForroServiceImpl implements IDisenioFamiliaComposicionForroService {
-
-
+	
 	@Autowired
 	private DisenioFamiliaComposicionForroRepository repository;
 	
 	@PersistenceContext
 	private EntityManager em;
+	
 	@Override
 	public List<DisenioFamiliaComposicionForro> findAll() {
 		return (List<DisenioFamiliaComposicionForro>) repository.findAll();
-	
+		
 	}
-
+	
 	@Override
 	public void save(DisenioFamiliaComposicionForro DisenioFamiliaComposicionForro) {
 		repository.save(DisenioFamiliaComposicionForro);
-
+		
 	}
-
+	
 	@Override
 	public void delete(Long id) {
 		repository.deleteById(id);
-
+		
 	}
-
+	
 	@Override
 	public DisenioFamiliaComposicionForro findOne(Long id) {
 		// TODO Auto-generated method stub
@@ -50,8 +50,8 @@ public class DisenioFamiliaComposicionForroServiceImpl implements IDisenioFamili
 	@Transactional
 	public void deleteLista(Long id) {
 		
-		Query query = em.createNativeQuery("delete from alt_disenio_familia_composicion_forro \r\n" + 
-				"WHERE alt_disenio_familia_composicion_forro.id_forro="+id);
+		Query query = em.createNativeQuery("delete from alt_disenio_familia_composicion_forro \r\n"
+				+ "WHERE alt_disenio_familia_composicion_forro.id_forro=" + id);
 		
 		query.executeUpdate();
 		

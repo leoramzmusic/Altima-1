@@ -11,49 +11,50 @@ import org.springframework.transaction.annotation.Transactional;
 import com.altima.springboot.app.models.entity.DisenioCalidad;
 import com.altima.springboot.app.repository.DisenioCalidadRepository;
 
-
 @Service
 public class DisenioCalidadServiceImpl implements IDisenioCalidadService {
 	@Autowired
 	private DisenioCalidadRepository repository;
 	@Autowired
 	private EntityManager em;
+	
 	@Override
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	public List<DisenioCalidad> findAll() {
 		// TODO Auto-generated method stub
 		return (List<DisenioCalidad>) repository.findAll();
 	}
-
+	
 	@Override
 	@Transactional
 	public void save(DisenioCalidad diseniocalidad) {
 		// TODO Auto-generated method stub
 		repository.save(diseniocalidad);
-
+		
 	}
-
+	
 	@Override
 	@Transactional
 	public void delete(Long id) {
 		// TODO Auto-generated method stub
 		repository.deleteById(id);
 	}
-
+	
 	@Override
 	@Transactional
 	public DisenioCalidad findOne(Long id) {
 		// TODO Auto-generated method stub
 		return repository.findById(id).orElse(null);
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<Object> findAllWithIdTextTela() {
 		// TODO Auto-generated method stub
-		return em.createNativeQuery("select calidad.id_calidad, calidad.id_text, tela.id_text as text, calidad.estatus from alt_disenio_calidad as calidad\r\n" + 
-										"INNER JOIN alt_disenio_tela tela ON calidad.id_tela = tela.id_tela\r\n" + 
-										"ORDER BY calidad.id_text").getResultList();
+		return em.createNativeQuery(
+				"select calidad.id_calidad, calidad.id_text, tela.id_text as text, calidad.estatus from alt_disenio_calidad as calidad\r\n"
+						+ "INNER JOIN alt_disenio_tela tela ON calidad.id_tela = tela.id_tela\r\n" + "ORDER BY calidad.id_text")
+				.getResultList();
 	}
 }
