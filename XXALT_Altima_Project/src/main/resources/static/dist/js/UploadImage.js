@@ -187,3 +187,72 @@ function uploadPreview(input) {
 		    uploadPreviewTela($('#mainImageTela'));
 		  }
 		});
+		
+		
+		
+		
+		
+		
+		
+		//Forro FORRO
+		function uploadPreviewForro(input) {
+			  if (input.files && input.files[0]) {
+			    var reader = new FileReader();
+
+			    reader.onload = function(e) {
+			      if (e.target.result.trim().length == 0) {
+			        $('#serviceImageForro').attr('src', 'http://catawbabrewing.com/wp-content/themes/catawba/images/placeholder.png');
+			      } else {
+			        $('#serviceImageForro').attr('src', e.target.result);
+			      }
+			    }
+
+			    reader.readAsDataURL(input.files[0]);
+			  }
+			}
+
+			function uploadPreviewExtForro(input) {
+			  if (input.trim().length == 0) {
+			    var previewSrc = '{{CSS_URL}}/images/placeholder.jpg';
+			  } else {
+			    var previewSrc = input;
+			  }
+
+			  $('#serviceImageForro').attr('src', previewSrc);
+			}
+
+			function resetUploadPreviewForro() {
+			  if (!$('#previousImageForro').val()) {
+			    $('#serviceImageForro').attr('src', 'http://catawbabrewing.com/wp-content/themes/catawba/images/placeholder.png');
+			  } else {
+			    $('#serviceImageForro').attr('src', '{{PROD_IMG}}/'.$('#previousImageForro').val());
+			  }
+			}
+
+			$("#mainImageForro").change(function() {
+			  uploadPreviewForro(this);
+			});
+
+			$('[name="mainImgExtForro"]').on('change', function() {
+			  uploadPreviewExtForro(this.value);
+			});
+
+			$('#clearUploadForro').on('click', function() {
+			  $('#mainImageForro').val('');
+
+			  if ($('#imgExtForro').val().trim().length == 0) {
+			    resetUploadPreviewForro();
+			  } else {
+			    uploadPreviewExtForro($('#imgExt').val());
+			  }
+			});
+
+			$('#clearUploadExtForro').on('click', function() {
+			  $('#imgExtForro').val('');
+
+			  if (!$('#mainImageForro').val()) {
+			    resetUploadPreviewForro();
+			  } else {
+			    uploadPreviewForro($('#mainImageForro'));
+			  }
+			});

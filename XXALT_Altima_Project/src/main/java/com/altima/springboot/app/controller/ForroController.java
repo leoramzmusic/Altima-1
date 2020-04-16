@@ -76,7 +76,7 @@ public class ForroController {
 				forro.setEstatusForro("0");
 				forro.setFoto("imagen");
 				forroService.save(forro);
-				forro.setIdText("FORRO"+forro.getIdForro()+100);
+				forro.setIdText("FORRO"+(forro.getIdForro()+100));
 				redirectAttrs
 	            .addFlashAttribute("title", "Forro guardado correctamente")
 	            .addFlashAttribute("icon", "success");

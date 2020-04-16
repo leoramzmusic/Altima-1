@@ -231,7 +231,7 @@
                     <label for="mainImageTela"><img th:src="@{'/uploads/telas/' + ${tela.foto}}"  th:onerror="this.src='/dist/img/preview.png'" alt="Placeholder" id="serviceImageTela" class="placeholder img-thumbnail" aria-describedby="imagePreviewHelp" /></label>
                     <small id="imagePreviewHelpTela" class="form-text text-muted">Previsualizaci&oacute;n de la imagen</small>
                 </div>
-               <div class="col">
+               <div class="col"> 
                     <label for="mainImageTela">Tela</label>
                     <div class="input-group mb-3">
                         <input type="file"  name="imagenTela" th:value="*{tela.foto}"  class="form-control border p-1" id="mainImageTela"  />
