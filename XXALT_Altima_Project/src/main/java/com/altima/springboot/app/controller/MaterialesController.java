@@ -73,7 +73,9 @@ public class MaterialesController {
 			
 		}
 		else if(tipo.equals("tela")){
+			model.addAttribute("listVistaTelaPrenda", disenioTelaService.VistaTelaPrenda(id));
 			model.addAttribute("h3", "Consulta de Tela");
+			model.addAttribute("tela", disenioTelaService.findPrendaById(id));
 			model.addAttribute("listTelaComposicon", disenioTelaService.ComposicionTelaMN(id));
 			model.addAttribute("tipo","tela");
 		}
@@ -85,6 +87,9 @@ public class MaterialesController {
 			model.addAttribute("listForroComposicon", disenioTelaService.ComposicionForroMN(id));
 			model.addAttribute("h2",forro.getNombreForro());
 			model.addAttribute("tipo","forro");
+		}
+		else{
+			return "redirect:/materiales";
 		}
 		return "detalle-material";
 	}
