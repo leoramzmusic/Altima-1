@@ -38,6 +38,9 @@ public class DisenioPrenda implements Serializable {
 
 	@Column(name = "id_text")
 	private String idText;
+	
+	@Column(name = "id_text_prospecto")
+	private String idTextProspecto;
 
 	@Column(name = "creado_por")
 	private String creadoPor;

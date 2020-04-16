@@ -74,7 +74,6 @@ public class DisenioMaterial implements Serializable{
 	@Column(name="tamanio")
 	
 	private String tamanio;
-	
 
 	@Column(name="id_marca")
 	
@@ -88,7 +87,6 @@ public class DisenioMaterial implements Serializable{
 	
    	private String  nombreMaterial ;
     
-
 	@Column(name="modelo_proveedor")
 	
 	private String modeloProveedor;
@@ -100,6 +98,13 @@ public class DisenioMaterial implements Serializable{
 	@Column(name="estatus")
 
 	private String estatus;
+	
+	@Column(name="estatus_material")
+
+	private String estatusMaterial;
+	
+	@Column(name = "id_text_prospecto")
+	private String idTextProspecto;
 	
 	@Column(name="id_tipo_material")
 
@@ -128,6 +133,8 @@ public class DisenioMaterial implements Serializable{
 	public String getIdText() {
 		return idText;
 	}
+	
+	
 
 	public void setIdText(String idText) {
 		this.idText = idText;
