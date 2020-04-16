@@ -125,12 +125,13 @@ public class AgregarPrendaRestController {
 
 			System.out.println("eliminare losdemas porque voy a editar ");
 		}
-
-		for (String marcador_split : objeto_marcadores.split(",")) {
-			DisenioPrendaMarcador dpm = new DisenioPrendaMarcador();
-			dpm.setIdMarcador(Long.parseLong(marcador_split));
-			dpm.setIdPrenda(dp.getIdPrenda());
-			disenioPrendaMarcadorService.save(dpm);
+		if(objeto_marcadores.equals(null)){
+			for (String marcador_split : objeto_marcadores.split(",")) {
+				DisenioPrendaMarcador dpm = new DisenioPrendaMarcador();
+				dpm.setIdMarcador(Long.parseLong(marcador_split));
+				dpm.setIdPrenda(dp.getIdPrenda());
+				disenioPrendaMarcadorService.save(dpm);
+			}
 		}
 		System.out.println("dios porfa que si jale "+dp.getIdPrenda());
 		prendaService.save(dp);
@@ -163,7 +164,8 @@ public class AgregarPrendaRestController {
 			dpp.setCantidadTela(patronaje.get("cantidadTela").toString());
 			dpp.setCantidadForro(patronaje.get("cantidadForro").toString());
 			dpp.setCantidadEntretela(patronaje.get("cantidadEntretela").toString());
-			System.out.println(patronaje.get("id").toString());
+			System.out.println("id= "+patronaje.get("id").toString()+" tela= "+patronaje.get("cantidadTela").toString()+" cantidadForro= "+patronaje.get("cantidadForro").toString()+" entretela= "+patronaje.get("cantidadEntretela").toString());
+
 			prendaPatronajeService.save(dpp);
 		}
 
