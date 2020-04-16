@@ -50,9 +50,14 @@ public class DisenioForro implements Serializable{
 	@Column(name="nombre_forro")
 	private String nombreForro;
 	
-	
 	@Column(name="ancho_forro")
 	private String anchoForro;
+	
+	@Column(name="color")
+	private String color;
+	
+	@Column(name="codigo_color")
+	private String codigo_coolor;
 	
 	@Column(name="id_unidad_medida")
 	private Long idUnidadMedida;
@@ -74,6 +79,22 @@ public class DisenioForro implements Serializable{
 
 	
 	
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public String getCodigo_coolor() {
+		return codigo_coolor;
+	}
+
+	public void setCodigo_coolor(String codigo_coolor) {
+		this.codigo_coolor = codigo_coolor;
+	}
+
 	public String getIdTextProspecto() {
 		return idTextProspecto;
 	}

@@ -350,16 +350,26 @@ function arreglo() {
 		id=$(this).find('td').eq(1).html()+","+id;
 	  document.getElementById("id_prendas").value = id;
 	 });
-		if (contador != 100 ){
-			Swal.fire({
-		          position: 'center',
-		          icon: 'error',
-		          title: 'Error es posible que el porcentaje no cumpla con el  100 % ',
-		          showConfirmButton: false,
-		          timer: 1300
-		        });
+	
+		var form = document.getElementById("telaForm");
+		
+		form.onsubmit = function(e){
 			
-			$("#telaForm").preventDefault();
+			if(contador == 100){
+			}else{
+				
+				document.telaForm.telaComposicion.focus()
+				Swal.fire({
+			          position: 'center',
+			          icon: 'error',
+			          title: 'Error es posible que el porcentaje no cumpla con el  100 % ',
+			          showConfirmButton: false,
+			          timer: 1300
+			        });
+				
+			e.preventDefault();
+			
+			}
 		}
 	}
 	
