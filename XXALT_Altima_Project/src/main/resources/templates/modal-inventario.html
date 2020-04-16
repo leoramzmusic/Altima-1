@@ -1,9 +1,12 @@
 <div id="infoInventario" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-body">
-                <img class="img-fluid" src="https://www.dhresource.com/600x600/f2/albu/g9/M00/78/23/rBVaVV00MKyAdHLpAAmgDrTaVxk801.jpg" alt="">
+          
+<div class="modal-body" th:each="mt:${listInventario}" >
+                <img class="img-fluid" th:src="@{'/uploads/telas/' + ${mt[8]}}" alt=" no jalo">
             </div>
+          
+          
         </div>
     </div>
 </div>
