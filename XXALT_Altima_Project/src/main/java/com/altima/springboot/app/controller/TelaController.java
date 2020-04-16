@@ -89,7 +89,7 @@ public class TelaController {
 				tela.setEstatusTela("0");// estatus para la aprobacion de la tela
 				tela.setIdUnidadMedida("61");
 				disenioTelaService.save(tela);
-				tela.setIdText("TELA"+(tela.getIdTela()+100));
+				tela.setIdText("PROSTE"+(tela.getIdTela()+100));
 				disenioTelaService.save(tela);
 				redirectAttrs
 	            .addFlashAttribute("title", "Tela guardada correctamente")
@@ -137,6 +137,7 @@ public class TelaController {
 			}
 		}
 		else {
+			tela.setIdText("TELA"+(tela.getIdTela()+100));
 			disenioTelaService.borrarBotonesTela(tela.getIdTela());
 			disenioTelaService.borrarComposicionTela(tela.getIdTela());
 			disenioTelaService.borrarForroTela(tela.getIdTela());

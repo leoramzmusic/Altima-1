@@ -42,7 +42,7 @@
     </div>
 	<div class="form-group col-sm-6">
         <label for="razonEmpresa">Nombre</label>
-        <input type="text" th:field="*{nombreForro}" class="form-control" id="forroDescripcion" placeholder="Forro Hueso" required>
+        <input type="text" th:field="*{nombreForro}" class="form-control" id="forroNombre" placeholder="Forro Hueso" required>
     </div>
 	
 	<div class="form-group col-sm-6">
@@ -51,9 +51,18 @@
     </div>
     
     
-    <div class="form-group col-sm-6">
+    <div class="form-group col-sm-4">
         <label for="rfcEmpresa">Ancho(m)</label>
         <input th:field="*{anchoForro}"  type="number" min="1" step="any" class="form-control"  placeholder="1.2" required>
+    </div>
+    <div class="form-group col-sm-4">
+        <label for="status">Color</label>
+        <input type="text" th:field="*{color}" required class="form-control" placeholder="Rojo">
+    </div>
+    
+    <div class="form-group col-sm-4">
+        <label for="status">Codigo Color</label>
+        <input required th:field="*{codigo_coolor}" type="color"  class="form-control" placeholder="Codigo Color">
     </div>
     
     <div th:if="*{estatusForro  == '1'}" class="form-group col-sm-6">
@@ -158,7 +167,8 @@ function guardarf(){
 		    	$("#adicionadosf").append(nFilas - 1);
 		    	//le resto 1 para no contar la fila del header
 		    	document.getElementById("telaComposicionf").value ="";
-		    	document.getElementById("telaFamcomposicionf").value = "";
+		    	document.getElementById("telaFamcomposicionf").value = '';
+		  		$('#telaFamcomposicionf').change();
     		}
 	}
 	   
@@ -182,8 +192,13 @@ function arreglof() {
 	valores=new Array();
 	var compof="";
 	var idfamf="" ;
+	var contadorf=0;
 	$('#mytablef tr').each(function () {
 		compof=$(this).find('td').eq(0).html()+","+compof;
+		if ( $(this).find('td').eq(0).html() != null ){
+			var sumaf = $(this).find('td').eq(0).html();
+			contadorf = (Number(contadorf) +Number(sumaf));
+		}
 		
 		idfamf= $(this).find('td').eq(1).html()+","+idfamf;
 	      
@@ -191,9 +206,25 @@ function arreglof() {
 	  document.getElementById("txtTablaf").value = compof;
 	  document.getElementById("txtTabla2f").value = idfamf;
 	  
-	  
-	  
 	 });
+	
+	var formf = document.getElementById("forroForm");
+	formf.onsubmit = function(e){
+		if(contadorf == 100){
+		}else{
+			document.forroForm.telaComposicionf.focus()
+			Swal.fire({
+		          position: 'center',
+		          icon: 'error',
+		          title: 'Error es posible que el porcentaje no cumpla con el  100 % ',
+		          showConfirmButton: false,
+		          timer: 1300
+		        });
+			
+		e.preventDefault();
+		
+		}
+	}
 	
 	}
 

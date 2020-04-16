@@ -321,19 +321,16 @@ function guardar(){
 	}  
 }
 function eliminar(t) {
-	
-	  var td = t.parentNode;
+	var td = t.parentNode;
     var tr = td.parentNode;
     var table = tr.parentNode;
     table.removeChild(tr);
-	 
 	}
 	
 function arreglo() {
 	var compo="";
 	var idfam="";
 	var contador=0;
-	
 	$('#mytable tr').each(function () {
 		compo=$(this).find('td').eq(0).html()+","+compo;
 		if ( $(this).find('td').eq(0).html() != null ){
@@ -344,20 +341,15 @@ function arreglo() {
 	  	document.getElementById("txtTabla").value = compo;
 	  	document.getElementById("txtTabla2").value = idfam;
 	 });
-	
 	var id="";
 	$('#mytablePrenda tr').each(function () {
 		id=$(this).find('td').eq(1).html()+","+id;
 	  document.getElementById("id_prendas").value = id;
 	 });
-	
 		var form = document.getElementById("telaForm");
-		
 		form.onsubmit = function(e){
-			
 			if(contador == 100){
 			}else{
-				
 				document.telaForm.telaComposicion.focus()
 				Swal.fire({
 			          position: 'center',
