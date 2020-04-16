@@ -125,8 +125,10 @@ public class AgregarPrendaRestController {
 
 			System.out.println("eliminare losdemas porque voy a editar ");
 		}
-		if(objeto_marcadores.equals(null)){
+		System.out.println("aqui quedo "+objeto_marcadores);
+		if(!objeto_marcadores.equals(null)||objeto_marcadores.equals("")){
 			for (String marcador_split : objeto_marcadores.split(",")) {
+
 				DisenioPrendaMarcador dpm = new DisenioPrendaMarcador();
 				dpm.setIdMarcador(Long.parseLong(marcador_split));
 				dpm.setIdPrenda(dp.getIdPrenda());
