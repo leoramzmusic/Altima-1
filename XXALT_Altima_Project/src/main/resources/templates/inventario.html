@@ -69,88 +69,35 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>1</td>
-												<td>340005XLMS0111</td>
-												<td>Abrigo</td>
-												<td>3400</td>
-												<td>05</td>
-												<td>XL</td>
-												<td>MS011</td>
-												<td>Unisex</td>
-												<td>$150.00</td>
+								 <tr th:each="mt:${listInventario}">
+											
+										
+                                                <td th:text="${mt[0]}"></td>
+                                                <td th:text="${mt[1]}"></td>
+											    <td th:text="${mt[2]}"></td>
+											    <td > En duro </td>
+											    <td th:text="${mt[3]}"></td>
+											    <td th:text="${mt[4]}"></td>  
+											    <td th:text="${mt[5]}"></td>
+											    <td th:text="${mt[6]}"></td>
+											    <td th:text="${mt[7]}"></td>
 												<td class="tdcenter">
 													<button data-toggle="modal" data-target="#infoInventario" class="btn btn-info btn-circle btn-sm"><i class="fas fa-image"></i></button>
 												</td>
-												<td>Aprobado</td>
+												<td th:text="${mt[9]}"></td>
+											
+												
+												
 												<td class="tdcenter">
 													<button onclick="bajaInventario()" class="btn btn-danger btn-circle btn-sm text-white popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Dar de baja"><i class="fas fa-caret-down"></i></button>
 													<a onclick="activaInventario()" class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Reactivar"><i class="fas fa-caret-up"></i></a>
 													<a href="" class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="modal" data-target="#editarImagenMuestra" data-placement="top" data-content="Editar imagen"><i class="fas fa-pen"></i></a>
 												</td>
 											</tr>
-											<tr>
-												<td>2</td>
-												<td>340005XLMS0112</td>
-												<td>Abrigo</td>
-												<td>3400</td>
-												<td>05</td>
-												<td>XL</td>
-												<td>MS011</td>
-												<td>Unisex</td>
-												<td>$150.00</td>
-												<td class="tdcenter">
-													<button data-toggle="modal" data-target="#infoInventario" class="btn btn-info btn-circle btn-sm text-white"><i class="fas fa-image"></i></button>
-												</td>
-												<td>Aprobado</td>
-												<td class="tdcenter">
-													<button onclick="bajaInventario()" class="btn btn-danger btn-circle btn-sm text-white popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Dar de baja"><i class="fas fa-caret-down"></i></button>
-													<a onclick="activaInventario()" class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Reactivar"><i class="fas fa-caret-up"></i></a>
-													<a href="" class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="modal" data-target="#editarImagenMuestra" data-placement="top" data-content="Editar imagen"><i class="fas fa-pen"></i></a>
-												</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>340005XLMS0113</td>
-												<td>Abrigo</td>
-												<td>3400</td>
-												<td>05</td>
-												<td>XL</td>
-												<td>MS011</td>
-												<td>Unisex</td>
-												<td>$150.00</td>
-												<td class="tdcenter">
-													<button data-toggle="modal" data-target="#infoInventario" class="btn btn-info btn-circle btn-sm text-white"><i class="fas fa-image"></i></button>
-												</td>
-												<td>Aprobado</td>
-												<td class="tdcenter">
-													<button onclick="bajaInventario()" class="btn btn-danger btn-circle btn-sm text-white popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Dar de baja"><i class="fas fa-caret-down"></i></button>
-													<a onclick="activaInventario()" class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Reactivar"><i class="fas fa-caret-up"></i></a>
-													<a href="" class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="modal" data-target="#editarImagenMuestra" data-placement="top" data-content="Editar imagen"><i class="fas fa-pen"></i></a>
-												</td>
-											</tr>
-											<tr>
-												<td>4</td>
-												<td>340005XLMS0114</td>
-												<td>Abrigo</td>
-												<td>3400</td>
-												<td>05</td>
-												<td>XL</td>
-												<td>MS011</td>
-												<td>Unisex</td>
-												<td>$150.00</td>
-												<td class="tdcenter">
-													<button data-toggle="modal" data-target="#infoInventario" class="btn btn-info btn-circle btn-sm text-white"><i class="fas fa-image"></i></button>
-												</td>
-												<td>Aprobado</td>
-												<td class="tdcenter">
-													<button onclick="bajaInventario()" class="btn btn-danger btn-circle btn-sm text-white popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Dar de baja"><i class="fas fa-caret-down"></i></button>
-													<a onclick="activaInventario()" class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Reactivar"><i class="fas fa-caret-up"></i></a>
-													<a href="" class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="modal" data-target="#editarImagenMuestra" data-placement="top" data-content="Editar imagen"><i class="fas fa-pen"></i></a>
-												</td>
-											</tr>
+											
 										</tbody>
 									</table>
+									
 									<div th:insert="${'modal-inventario'}"></div>
 									<div th:insert="${'modal-inventario-edit'}"></div>
 								</div>
