@@ -190,4 +190,12 @@ public class DisenioMaterialServiceImpl implements IDisenioMaterialService {
 				.getSingleResult();
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object[]> findLastMaterial(Long tipo_material) {
+		
+		return em.createNativeQuery("call alt_idtextprospecto_material('" + tipo_material + "');").getResultList();
+		
+	}
+	
 }
