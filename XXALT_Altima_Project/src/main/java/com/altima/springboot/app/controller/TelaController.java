@@ -79,17 +79,18 @@ public class TelaController {
 		
 		if ( tela.getIdTela()== null || tela.getEstatusTela().equals("0") ) {
 			System.out.println("Entra if de id null y estatus tela 0 forro");
-			tela.setIdCalidad(Long.valueOf(1));
-			tela.setIdText("Tela");
-			tela.setCreadoPor(auth.getName());
+			
 			if ( tela.getIdTela() == null) {
+				tela.setIdText(null);
+				tela.setIdCalidad(Long.valueOf(1));
+				tela.setCreadoPor(auth.getName());
 				tela.setFechaCreacion(hourdateFormat.format(date));
 				tela.setUltimaFechaModificacion(null);
 				tela.setEstatus("1"); //Estatus para ver el registro en el sistema
 				tela.setEstatusTela("0");// estatus para la aprobacion de la tela
 				tela.setIdUnidadMedida("61");
 				disenioTelaService.save(tela);
-				tela.setIdText("PROSTE"+(tela.getIdTela()+100));
+				tela.setIdTextProspecto("PROSTE"+(tela.getIdTela()+100));
 				disenioTelaService.save(tela);
 				redirectAttrs
 	            .addFlashAttribute("title", "Tela guardada correctamente")
