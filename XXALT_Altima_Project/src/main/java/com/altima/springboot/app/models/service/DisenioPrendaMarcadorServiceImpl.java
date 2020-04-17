@@ -56,7 +56,7 @@ public class DisenioPrendaMarcadorServiceImpl implements IDisenioPrendaMarcadorS
 	@Transactional
 	public void deleteByIdPrenda(Long id) {
 		// TODO Auto-generated method stub
-		em.createNativeQuery("DELETE FROM alt_desenio_prenda_marcador WHERE id_prenda = " + id).executeUpdate();
+		em.createNativeQuery("DELETE FROM alt_disenio_prenda_marcador WHERE id_prenda = " + id).executeUpdate();
 		;
 	}
 	

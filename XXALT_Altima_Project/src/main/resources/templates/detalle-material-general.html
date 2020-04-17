@@ -1,42 +1,36 @@
 
         <div class="card-body">
+        <div class="row d-none d-print-block">
+                                <table class="table table-borderless table-sm">
+                                    <thead>
+                                        <tr style=" border: 1px solid #dddddd;border-right-width:0px;border-left-width:0px;border-top-width:0px;">
+                                            <td style="width: 30%"><img class="h-50" src="/dist/img/logo.png"></td>
+                                            <td style="width: 40%; font-size: 30px;" class="text-center"><strong>Reporte de Material</strong></td>
+                                            <td style="width: 30%" class="text-right"><a class="fechaReporteMaterial"></a></td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
             <table class="table table-borderless">
                 <thead>
                     <tr>
-                        <th colspan="3">Clave:</th>
-                        <th colspan="3">Nombre:</th>
-                        <th colspan="3">Tipo de material:</th>
-                        <th colspan="3">Color:</th>
-                        <th colspan="3">Tamaño:</th>
+                        <td style="width: 33%"><strong>Clave:</strong> <a th:text="${material[0]}"></a></td>
+                        <td style="width: 34%"><strong>Nombre:</strong> <a th:text="${material[1]}"></a></td>
+                        <td style="width: 33%"><strong>Tipo de material:</strong> <a th:text="${material[2]}"></a></td>
                     </tr>
                     <tr>
-                        <td th:text="${material[0]}" colspan="3"></td>
-                        <td th:text="${material[1]}" colspan="3"></td>
-                        <td th:text="${material[2]}" colspan="3"></td>
-                        <td colspan="3"><text th:text="${material[3]}+' '"></text><i class="fas fa-tint" th:style="'color:'+${material[12]}+';font-size: 20px;'"></i></td>
-                        <td th:text="${material[4]}" colspan="3"></td>
+                        <td ><strong>Color:</strong> <a th:text="${material[3]}"></a> <i class="fas fa-tint" th:style="'color:'+${material[12]}+';font-size: 20px;'"></i></td>
+                        <td><strong>Tamaño:</strong> <a th:text="${material[4]}"></a> <a th:text="${material[5]}"></a></td>
+                         <td><strong>Modelo:</strong> <a th:text="${material[6]}"></a></td>
                     </tr>
                     <tr>
-                        <th colspan="3">Unidad de Medida:</th>
-                        <th colspan="3">Modelo:</th>
-                        <th colspan="3">Proceso al que aplica:</th>
-                        <th colspan="3">Precio Unitario:</th>
-                        <th colspan="3">Clasificación:</th>
+                        <td><strong>Proceso al que aplica:</strong> <a th:text="${material[7]}"></a></td>
+                        <td><strong>Precio Unitario:</strong> $<a th:text="${material[8]}"></a>.00</td>
+                        <td><strong>Uso:</strong> <a th:text="${material[9]}"></a></td>
                     </tr>
                     <tr>
-                        <td th:text="${material[5]}" colspan="3"></td>
-                        <td th:text="${material[6]}" colspan="3"></td>
-                        <td th:text="${material[7]}" colspan="3"></td>
-                        <td th:text="${material[8]}" colspan="3"></td>
-                        <td th:text="${material[9]}" colspan="3"></td>
-                    </tr>
-                    <tr>
-                        <th colspan="5">Proveedores:</th>
-                        <th><th>Descripci&oacute;n:</th></th>
-                    </tr>
-                    <tr>
-                        <td th:text="${material[10]}" colspan="6"></td>
-                        <td th:text="${material[11]}" colspan="8"></td>
+                        <td><strong>Proveedores:</strong> <a th:text="${material[10]}"></a></td>
+                        <td><strong>Descripci&oacute;n:</strong> <a th:text="${material[11]}"></a></td>
                     </tr>
                 </thead>
             </table>

@@ -25,12 +25,6 @@ public class MuestrarioController {
 		System.out.println("Si esta entrando al controller");	
 		return "inventario";
 	}
-
-	
-	@GetMapping("/agregar-inventario")
-	public String agregarInventario() {
-		return "agregar-inventario";
-	}
 	
 	@GetMapping("/catalogos-muestrario")
 	public String listCatalogo() {

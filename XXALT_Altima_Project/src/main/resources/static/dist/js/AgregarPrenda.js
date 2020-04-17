@@ -119,9 +119,7 @@ function RecogerDatosTerceraParte() {
 	});
 	return id;
 }
-function SacarListaMateriales() {
-	console.log(objeto_patronajes);
-}
+
 
 //Funcion para agregar un nuevo Material desde la vista agregar-confirmar prenda y editar-prenda
 function AgregarElementoListaMateriales() {
@@ -203,154 +201,7 @@ function CambiarCantidadMaterial(identidad) {
 	objeto_materiales[CambiarCantidad].cantidad = 0;
 	objeto_materiales[CambiarCantidad].cantidad = cantidad;
 	console.log(objeto_materiales[CambiarCantidad]);
-}
-function AgregarElementoListaPatronaje() {
-	//Se recogen variables
 
-	$('#BotonAgregarPatronaje').prop('disabled', true);
-	var id = $('#ListaPatronaje').val();
-	var nombre = "Jsjjs";
-	var cantidadTela = $('#CantidadTela').val();
-	var cantidadForro = $('#CantidadForro').val();
-	var cantidadEntretela = $('#CantidadEntretela').val();
-
-
-	//Este es un boolean para saber si ya se encontro un registro parecido
-	var EncontreUnPatronajeIgual = false;
-	//Si ya existe un registro asi en el objeto que tenemos, se le suma uno a la cantidad.
-	for (k = 0; k < objeto_patronajes.length; k++) {
-		console.log("solo pa guiar");
-		if (objeto_patronajes[k].id == id) {
-			console.log("casi seguro que no es here");
-			EncontreUnPatronajeIgual = true;
-			$('#BotonAgregarPatronaje').prop('disabled', false);
-			console.log("si coincidio");
-
-			$('#QuitarFilaPatronaje-' + objeto_patronajes[k].identidad).remove();
-			$('#ListaPatronaje').val(objeto_patronajes[k].id).change();
-			$('#CantidadTela').val(objeto_patronajes[k].cantidadTela);
-			$('#CantidadForro').val(objeto_patronajes[k].cantidadForro);
-			$('#CantidadEntretela').val(objeto_patronajes[k].cantidadEntretela);
-			objeto_patronajes.splice(k, 1);
-			console.log(objeto_patronajes);
-		}
-	}
-
-
-	if (!EncontreUnPatronajeIgual) {
-		//Solicitud Ajax para obtener los demas campos.
-		console.log("yo digo que aqui vale ñonga");
-		$.ajax({
-			type: "GET",
-			url: "/detalle_patronaje",
-			data: { id },
-			success: (data) => {
-				console.log("si es succes");
-				console.log(data);
-				$('#BotonAgregarPatronaje').prop('disabled', false);
-				var identidad = data[0] + '_' + data[1];
-				var temp = { identidad: identidad, id: data[0], cantidadTela: cantidadTela, cantidadForro: cantidadForro, cantidadEntretela: cantidadEntretela };
-				objeto_patronajes.push(temp);
-
-				$('#CuerpoPatronaje').append("<tr id='QuitarFilaPatronaje-" + identidad + "'>" +
-					"<th scope='row'>" + data[1] + "</th>" +
-					"<td>" + data[2] + "</td>" +
-					"<td>" + cantidadTela + "</td>" +
-					"<td>" + cantidadForro + "</td>" +
-					"<td>" + cantidadEntretela + "</td>" +
-					"<td class='tdcenter'>" +
-					"<button class='btn btn-warning rounded-circle' onclick=\"EditarPatronajeExistente(\'" + identidad + "\');\"	>" +
-					"<i class='fas fa-edit fa-sm'></i>" +
-					"</button>" +
-					"</td>" +
-					"<td class='tdcenter'>" +
-					"<button href='#' class='btn btn-danger rounded-circle' onclick=\"QuitarPatronaje(\'" + identidad + "\');\"	>" +
-					"<i class='fas fa-minus fa-sm'></i>" +
-					"</button>" +
-					"</td>" +
-					"</tr>");
-
-				$('#CantidadTela').val(0);
-				$('#CantidadForro').val(0);
-				$('#CantidadEntretela').val(0);
-
-			},
-			error: (e) => {
-				console.log(e);
-			}
-		});
-
-	}//Cierra el if
-
-}
-
-
-
-function AgregarElementoListaPatronaje2() {
-	//Se recogen variables
-
-	$('#BotonAgregarPatronaje').prop('disabled', true);
-	var id = $('#ListaPatronaje').val();
-	var nombre = "Jsjjs";
-	var cantidadTela = $('#CantidadTela').val();
-	var cantidadForro = $('#CantidadForro').val();
-	var cantidadEntretela = $('#CantidadEntretela').val();
-
-	//Solicitud Ajax para obtener los demas campos.
-	$.ajax({
-		type: "GET",
-		url: "/detalle_patronaje",
-		data: { id },
-		success: (data) => {
-			console.log("esto traje del controller");
-			console.log(data);
-			$('#BotonAgregarPatronaje').prop('disabled', false);
-			var identidad = data[0] + '_' + data[1];
-			var temp = { id: data[0], idText: data[1], cantidadTela: cantidadTela, cantidadForro: cantidadForro, cantidadEntretela: cantidadEntretela, idPatronaje: data[0] };
-			objeto_patronajes.push(temp);
-
-			$('#CuerpoPatronaje').append("<tr id='QuitarFilaPatronaje-" + identidad + "'>" +
-				"<th scope='row'>" + data[1] + "</th>" +
-				"<td>" + data[2] + "</td>" +
-				"<td>" + cantidadTela + "</td>" +
-				"<td>" + cantidadForro + "</td>" +
-				"<td>" + cantidadEntretela + "</td>" +
-				"<td class='tdcenter'>" +
-				"<button class='btn btn-warning rounded-circle' onclick=\"EditarPatronajeExistente(\'" + identidad + "\');\"	>" +
-				"<i class='fas fa-edit fa-sm'></i>" +
-				"</button>" +
-				"</td>" +
-				"<td class='tdcenter'>" +
-				"<button class='btn btn-danger rounded-circle' onclick=\"QuitarPatronaje(\'" + identidad + "\');\"	>" +
-				"<i class='fas fa-minus fa-sm'></i>" +
-				"</button>" +
-				"</td>" +
-				"</tr>");
-			console.log("asi quedaba mi objeto patronajes");
-			console.log(objeto_patronajes);
-			objeto_patronajes = objeto_patronajes;
-			$('#ListaPatronaje').val("");
-			$('#CantidadTela').val("");
-			$('#CantidadForro').val("");
-			$('#CantidadEntretela').val("");
-
-			$('#BotonAgregar').css('display', 'block');
-			$('#BotonEditar').css('display', 'none');
-			console.log(objeto_patronajes);
-
-		},
-		error: (e) => {
-			console.log(e);
-		}
-	});
-}
-
-
-
-function QuitarPatronaje(identidad) {
-	$('#QuitarFilaPatronaje-' + identidad).remove();
-	var removeIndex = objeto_patronajes.map(function (item) { return item.identidad; }).indexOf(identidad);
-	objeto_patronajes.splice(removeIndex, 1);
 }
 
 
@@ -527,16 +378,46 @@ function ValidarTerceraPestana(id) {
 }
 
 function ValidarCuartaPestana() {
-	if (objeto_patronajes.length === 0) {
+	var j=0;
+	var validacion=true;
+	$('#CuerpoPatronaje tr').each(function () {
+		j++;
+	});
+	console.log("var j="+j);
+	if (j== 0) {
 		$('#AlertaCuartaPestana').css('display', 'block');
 	}
 	else {
 		//Se deshabilita el boton
 		console.log("aqui si jala");
 		$('#AlertaCuartaPestana').css('display', 'none');
-		$('#SiguienteCuartaPestana').click();
-		$('#BotonBloquearGuardar').prop('disabled', true);
-		console.log('le di clic');
+		$('#CuerpoPatronaje tr').each(function () {
+			console.log($('#CantidadTela'+$(this).find('td').eq(0).html()).val());
+			if($('#CantidadTela'+$(this).find('td').eq(0).html()).val()=="" || $('#CantidadForro'+$(this).find('td').eq(0).html()).val()==""||$('#CantidadEntretela'+$(this).find('td').eq(0).html()).val()==""){
+				Swal.fire({
+					icon: 'error',
+					title: 'Error',
+					text: 'Todos los campos deben de estar llenos!'
+				  })
+				  
+						objeto_patronajes=[];
+						console.log("que pedo con esta pus "+objeto_patronajes);
+						validacion=false;
+						return true;
+			}
+			if(validacion===true)
+			{
+				_id=$(this).find('td').eq(0).html();
+				var temp = {id: $(this).find('td').eq(0).html(), cantidadTela: $('#CantidadTela'+$(this).find('td').eq(0).html()).val(), cantidadForro: $('#CantidadForro'+$(this).find('td').eq(0).html()).val(), cantidadEntretela: $('#CantidadEntretela'+$(this).find('td').eq(0).html()).val() };
+				objeto_patronajes.push(temp);
+			}
+		});
+		if(validacion===true)
+		{
+			$('#SiguienteCuartaPestana').click();
+			$('#BotonBloquearGuardar').prop('disabled', true);	
+		}
+
 	}
 }
 
@@ -552,43 +433,6 @@ function ValidarCantidadesPatronaje() {
 	}
 }
 
-//Este valida que las cantidades del patronaje no esten nulas cuando se edita una prenda
-function ValidarCantidadesPatronaje2() {
-	if ($('#CantidadTela').val() != "" && $('#CantidadForro').val() != "" && $('#CantidadEntretela').val() != "") {
-		$('#AlertaCantidadesPatronaje').css('display', 'none');
-		AgregarElementoListaPatronaje2();
-	}
-	else {
-		$('#AlertaCantidadesPatronaje').css('display', 'block');
-	}
-}
-
-function EditarPatronajeExistente(id) {
-	console.log(id);
-	for (j = 0; j < objeto_patronajes.length; j++) {
-		console.log("buscando");
-		if (objeto_patronajes[j].idPatronaje == id) {
-			$('#' + objeto_patronajes[j].idText).remove();
-			$('#ListaPatronaje').val(objeto_patronajes[j].id).change();
-			$('#CantidadTela').val(objeto_patronajes[j].cantidadTela);
-			$('#CantidadForro').val(objeto_patronajes[j].cantidadForro);
-			$('#CantidadEntretela').val(objeto_patronajes[j].cantidadEntretela);
-
-			$('#BotonAgregar').css('display', 'none');
-			$('#BotonEditar').css('display', 'block');
-			objeto_patronajes.splice(j, 1);
-		}
-	}
-}
-
-function EliminarPatronajeExistente(id) {
-	for (i = 0; i < objeto_patronajes.length; i++) {
-		if (objeto_patronajes[i].idPatronaje == id) {
-			$('#' + objeto_patronajes[i].idText).remove();
-			objeto_patronajes.splice(i, 1);
-		}
-	}
-}
 
 //Funciones para limpiar inputs
 function LimpiarInput1() {
@@ -607,12 +451,78 @@ function guardarMarcador() {
 	var _id = document.getElementById("marcador_").value;
 	var _text = document.getElementById("marcador_").options[document.getElementById("marcador_").selectedIndex].text;
 	var fila = "<tr><td style='display: none;'>" + _id + "</td><td>" + _text + "</td><td>" + '<button type="button" name="remove" id="' + _id + '"onclick="eliminarMarcador(this)" class="btn btn-danger btn_remove">Quitar</button></td></tr>';
+	var campo_id;
+	$('#tablita tr').each(function () {
+		if($(this).find('td').eq(0).html()!=null){
+			console.log("entra1");
+			if(campo_id==null){
+				campo_id=$(this).find('td').eq(0).html()
+			}
+			else{
+				campo_id=$(this).find('td').eq(0).html()+","+campo_id;
+			}
+		}
+	});
+	if(campo_id!=null){
+		console.log("entra2 "+campo_id);
+		for(var j=0;j<=campo_id.split(",").length;j++){
 
+			if(_id==campo_id.split(",")[j]){
+				console.log("entra3 "+_id);
+				return false;
+			}
+		}
+	}
 	var btn = document.createElement("TR");
 	btn.innerHTML = fila;
 	document.getElementById("tablita").appendChild(btn);
 }
 function eliminarMarcador(t) {
+	var td = t.parentNode;
+	var tr = td.parentNode;
+	var table = tr.parentNode;
+	table.removeChild(tr);
+}
+
+function guardarPatronaje() {
+
+	var _id = document.getElementById("ListaPatronaje").value;
+	var _text = document.getElementById("ListaPatronaje").options[document.getElementById("ListaPatronaje").selectedIndex].text;
+	var fila = "<tr><td style='display: none;'>" +_id + "</td>"+
+		"<td>" + _text + "</td>"+
+		"<td>" + '<input type="number" class="form-control" placeholder="10" id="CantidadTela'+_id+'">' + "</td>"+
+		"<td>" + '<input type="number" class="form-control" placeholder="10" id="CantidadForro'+_id+'">' + "</td>"+
+		"<td>" + '<input type="number" class="form-control" placeholder="10" id="CantidadEntretela'+_id+'">' + "</td>"+
+		"<td class='tdcenter'>" +'<button type="button" name="remove" id="' +_id + '"onclick="eliminarPatronaje(this)" class="btn btn-danger btn_remove">Quitar</button></td>'+
+
+		'</tr>';
+	var campo_id;
+	$('#CuerpoPatronaje tr').each(function () {
+		if($(this).find('td').eq(0).html()!=null){
+			console.log("entra1");
+			if(campo_id==null){
+				campo_id=$(this).find('td').eq(0).html()
+			}
+			else{
+				campo_id=$(this).find('td').eq(0).html()+","+campo_id;
+			}
+		}
+	});
+	if(campo_id!=null){
+		console.log("entra2 "+campo_id);
+		for(var j=0;j<=campo_id.split(",").length;j++){
+
+			if(_id==campo_id.split(",")[j]){
+				console.log("entra3 "+_id);
+				return false;
+			}
+		}
+	}
+	var btn = document.createElement("TR");
+	btn.innerHTML = fila;
+	document.getElementById("CuerpoPatronaje").appendChild(btn);
+}
+function eliminarPatronaje(t) {
 	var td = t.parentNode;
 	var tr = td.parentNode;
 	var table = tr.parentNode;
