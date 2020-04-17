@@ -293,9 +293,9 @@ public class ControlController {
 
 	}
 
-	@GetMapping("/agregar-muestra")
+	@GetMapping("/agregar-control-muestra")
 	public String agregarMuestra() {
-		return "agregar-muestra";
+		return "agregar-control-muestra";
 	}
 
 	
