@@ -22,6 +22,7 @@ import com.altima.springboot.app.models.entity.DisenioLookup;
 import com.altima.springboot.app.models.entity.DisenioPruebaEncogimientoLavado;
 import com.altima.springboot.app.models.entity.DisenioPruebaLavadoContaminacionCostura;
 import com.altima.springboot.app.models.entity.DisenioTela;
+import com.altima.springboot.app.models.service.DisenioLookupServiceImpl;
 import com.altima.springboot.app.models.service.IDisenioCalidadService;
 import com.altima.springboot.app.models.service.IDisenioLookupService;
 import com.altima.springboot.app.models.service.IDisenioMaterialService;
@@ -68,7 +69,20 @@ public class CalidadRestController {
 	
 	@RequestMapping(value = "/listarEntretelas", method = RequestMethod.GET)
 	public List<Object> listarEntretelas() {
-		return materialService.findAllByTipoMaterial(111L);
+		List<DisenioLookup> lookupEntretela = disenioLookup.findByTipoLookup("Material");
+		Long variable=0L;
+		for (DisenioLookup i: lookupEntretela) {
+			if (i.getNombreLookup().equalsIgnoreCase("Entretela")) {
+				variable = i.getIdLookup();
+			}
+		}
+		if(variable==null) {
+			return null;
+		}
+		else {
+			System.out.println(variable);
+		return materialService.findAllByTipoMaterial(variable);
+		}
 	}
 	
 	@RequestMapping(value = "/listarTipoAguja", method = RequestMethod.GET)
