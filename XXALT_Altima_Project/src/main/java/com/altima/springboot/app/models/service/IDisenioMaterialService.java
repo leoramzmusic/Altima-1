@@ -47,5 +47,7 @@ public interface IDisenioMaterialService {
 	List<Object> findAllByTipoMaterial(Long id);
 
 	Object findByIdMaterial(Long id);
+
+	List<Object[]> findLastMaterial(Long tipo_material);
 }
 
