@@ -72,6 +72,10 @@
 													data-toggle="tab" aria-controls="complete" role="tab"><i
 														class="flaticon-019-pattern-1"></i>&nbsp;Piezas de
 														patronaje</a></li>
+														<li role="presentation" class="nav-item"><a
+													href="#consumo" class="nav-link disabled"
+													data-toggle="tab" aria-controls="complete" role="tab"><i class="fas fa-tshirt"></i>
+													&nbsp;Consumo por talla</a></li>
 											</ul>
 											<!-- <form th:action="@{/prendas}" method="post"
 												th:object="${disenio}">-->
@@ -379,9 +383,9 @@
                                                                         <tr>
                                                                             <th scope="col" style='display: none;'>Id</th>
                                                                             <th scope="col">Nombre</th>
-                                                                            <th scope="col">Cantidad de tela</th>
-                                                                            <th scope="col">Cantidad de forro</th>
-                                                                            <th scope="col">Cantidad de entretela</th>
+                                                                            <th scope="col" class="text-center">Tela<br>N&uacute;mero de piezas</th>
+                                                                            <th scope="col" class="text-center">Forro<br>N&uacute;mero de piezas</th>
+                                                                            <th scope="col" class="text-center">Entretela<br>N&uacute;mero de piezas</th>
                                                                             <th scope="col">Quitar</th>
                                                                         </tr>
                                                                     </thead>
@@ -432,9 +436,89 @@
 														</ul>
 													</div>
 													</div>
+													<div class="tab-pane" role="tabpanel" id="consumo">
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group">
+                                                                    <label>Lista de tallas</label>
+                                                                    <select placeholder="Elige una prenda" id="ListaPatronaje">
+                                                                        <option>XL</option>
+                                                                        <option>L</option>
+                                                                        <option>M</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <label>&nbsp;</label>
+                                                                <div class="form-group">
+                                                                    <div id="BotonAgregar">
+                                                                        <button class="btn btn-primary btn-block">
+                                                                            <i class="fas fa-plus fa-sm"></i> Agregar
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <table class="table table-striped table-bordered">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col">Nombre</th>
+                                                                            <th scope="col">Cantidad de tela</th>
+                                                                            <th scope="col">Cantidad de forro</th>
+                                                                            <th scope="col">Cantidad de entretela</th>
+                                                                            <th scope="col">Largo</th>
+                                                                            <th scope="col">Quitar</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>XL</td>
+                                                                            <td><input type="number" class="form-control" placeholder="10"></td>
+                                                                            <td><input type="number" class="form-control" placeholder="10"></td>
+                                                                            <td><input type="number" class="form-control" placeholder="10"></td>
+                                                                            <td><input type="number" class="form-control" placeholder="10"></td>
+                                                                            <td class="tdcenter">
+                                                                                <button class="btn btn-danger">Quitar
+                                                                                </button>
+                                                                            </td>
+                                                                        </tr>
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row float-right">
+                                                            <ul class="float-right">
+                                                                <li class="list-inline-item">
+                                                                    <button type="button" class="btn btn-primary">Guardar</button>
+                                                                    <button type="button" class="btn btn-primary next-step">Guardar</button>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+														<br><br><br>
+														<div class="row float-right" id="AlertaCuartaPestana" style="display: none; color: red;">
+														<ul class="float-right">
+															<li class="list-inline-item">
+																<div class="float-right">
+																	<label>Debes agregar al menos un elemento.</label>
+																</div>
+															</li>
+														</ul>
+													</div>
+													<div class="row float-right" id=AlertaCantidadesPatronaje style="display: none; color: red !important">
+														<ul class="float-right">
+															<li class="list-inline-item">
+																<div class="float-right">
+																	<label>Debes agregar las cantidades.</label>
+																</div>
+															</li>
+														</ul>
+													</div>
+													</div>
 													<div class="clearfix"></div>
 												</div>
-											</form>
+											<!-- /form-->
 										</section>
 									</div>
 								</div>
