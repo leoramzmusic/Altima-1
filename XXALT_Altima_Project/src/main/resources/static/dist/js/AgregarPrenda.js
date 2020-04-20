@@ -244,8 +244,6 @@ function Guardar() {
 		},
 		success: (data) => {
 			console.log(data);
-
-
 			$.ajax({
 				type: "POST",
 				url: "/guardar_final",

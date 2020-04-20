@@ -90,7 +90,7 @@ public class TelaController {
 				tela.setEstatusTela("0");// estatus para la aprobacion de la tela
 				tela.setIdUnidadMedida("61");
 				disenioTelaService.save(tela);
-				tela.setIdTextProspecto("PROSTE"+(tela.getIdTela()+100));
+				tela.setIdTextProspecto("PROSTEL"+(tela.getIdTela()+10000));
 				disenioTelaService.save(tela);
 				redirectAttrs
 	            .addFlashAttribute("title", "Tela guardada correctamente")
@@ -138,7 +138,7 @@ public class TelaController {
 			}
 		}
 		else {
-			tela.setIdText("TELA"+(tela.getIdTela()+100));
+			tela.setIdText("TELA"+(tela.getIdTela()+10000));
 			disenioTelaService.borrarBotonesTela(tela.getIdTela());
 			disenioTelaService.borrarComposicionTela(tela.getIdTela());
 			disenioTelaService.borrarForroTela(tela.getIdTela());

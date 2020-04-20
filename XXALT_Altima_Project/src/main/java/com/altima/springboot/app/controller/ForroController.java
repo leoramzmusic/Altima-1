@@ -75,7 +75,7 @@ public class ForroController {
 				forro.setEstatusForro("0");
 				forro.setFoto("imagen");
 				forroService.save(forro);
-				forro.setIdTextProspecto("PROFO"+(forro.getIdForro()+100));
+				forro.setIdTextProspecto("PROSFOR"+(forro.getIdForro()+10000));
 				forroService.save(forro);
 				redirectAttrs
 	            .addFlashAttribute("title", "Forro guardado correctamente")
@@ -110,7 +110,7 @@ public class ForroController {
 			} 	
 		}
 		else {
-			forro.setIdText("FO"+(forro.getIdForro()+100));
+			forro.setIdText("FORRO"+(forro.getIdForro()+10000));
 			if (!imagenForro.isEmpty()){
 				if ( forro.getFoto() != null && forro.getFoto().length() > 0) {
 					UploadService.deleteForro(forro.getFoto());
