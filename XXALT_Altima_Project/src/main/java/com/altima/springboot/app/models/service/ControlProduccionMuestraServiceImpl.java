@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.altima.springboot.app.models.entity.ControlHora;
 import com.altima.springboot.app.models.entity.ControlProduccionMuestra;
+import com.altima.springboot.app.models.entity.DisenioLookup;
 import com.altima.springboot.app.repository.ControlHoraRepository;
 import com.altima.springboot.app.repository.ControlProduccionMuestraRepository;
 
@@ -51,6 +52,13 @@ public class ControlProduccionMuestraServiceImpl implements IControlProduccionMu
 	public ControlProduccionMuestra findOne(Long id) {
 		// TODO Auto-generated method stub
 		return repository.findById(id).orElse(null);
+	}
+	
+	
+	@Override
+	public ControlProduccionMuestra findOne2(String id) {
+		// TODO Auto-generated method stub
+		return repository.findById(Long.parseLong(id)).orElse(null);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -160,5 +168,28 @@ public class ControlProduccionMuestraServiceImpl implements IControlProduccionMu
 				+ "WHERE alt_control_produccion_muestra.tipo=" + tipo).getSingleResult().toString();
 		return Integer.parseInt(re);
 		
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<DisenioLookup> findAllPrenda() {
+		// TODO Auto-generated method stub
+		return em.createQuery("from DisenioLookup where tipo_lookup='Familia Prenda'").getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Transactional(readOnly=true)
+	@Override
+	public List<Object[]> PausarMuestras(Long id, String tipo) {
+		
+		List<Object []> re = em.createNativeQuery("SELECT  muestra.id_pedido FROM alt_control_produccion_muestra as muestra , alt_produccion_detalle_pedido as pedido \r\n" + 
+				"WHERE 1=1\r\n" + 
+				"and muestra.id_pedido= pedido.id_detalle_pedido\r\n" + 
+				"and muestra.estatus_tiempo='Play'\r\n" + 
+				"and muestra.tipo="+tipo+"\r\n" + 
+				"and pedido.id_pedido="+id).getResultList();
+		
+		return re;
 	}
 }

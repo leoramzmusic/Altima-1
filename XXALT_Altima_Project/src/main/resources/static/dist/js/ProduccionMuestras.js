@@ -37,7 +37,11 @@
 		    	$('#contenedorTabla').append(
 		    			
 		    			"<div class='modal-body' id='quitar'>" +
-		    			"<button type='button'  onclick='nuevo("+id+",1)' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#aux'>Nuevo Trazo</button>"+
+		    			"<div class='form-group col-sm-12'>" +
+		    			"<button type='button'  onclick='nuevo("+id+",1)' class='btn btn-primary' data-toggle='modal' data-target='#aux'>Nuevo Trazo</button>"+
+   						"<button onclick='PausarTodo("+id+", 1)' class='btn btn-danger next-step float-right' type='button'>Pausar Todo</button>"+
+  					"</div>"+
+		    				
 		    			"<table class='table table-striped table-bordered' id='idtable'>" +
 	                                        "<thead>" +
 	                                            "<tr>" +
@@ -194,8 +198,14 @@
 		    	$('#quitar3').remove();
 		    	$('#quitar4').remove();
 		    	$('#quitar5').remove();
-		    	$('#contenedorTabla').append("<div class='modal-body' id='quitar2'>" +		    			
-		    			"<button type='button'  onclick='nuevo("+id+",2)' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#aux'>Nuevo Corte</button>"+
+		    	$('#contenedorTabla').append(
+		    			"<div class='modal-body' id='quitar'>" +
+		    			"<div class='form-group col-sm-12'>" +
+		    			"<button type='button'  onclick='nuevo("+id+",2)' class='btn btn-primary' data-toggle='modal' data-target='#aux'>Nuevo Corte</button>"+
+   						"<button onclick='PausarTodo("+id+", 2)' class='btn btn-danger next-step float-right' type='button'>Pausar Todo</button>"+
+  					"</div>"+
+		    				
+		    			
 		    			"<table class='table table-striped table-bordered' id='idtable2'>" +
 	                                        "<thead>" +
 	                                            "<tr>" +
@@ -352,8 +362,16 @@
 		    	$('#quitar3').remove();
 		    	$('#quitar4').remove();
 		    	$('#quitar5').remove();
-		    	$('#contenedorTabla').append("<div class='modal-body' id='quitar3'>" +		    			
-		    			"<button type='button' onclick='nuevo("+id+",3)'class='btn btn-primary btn-lg' data-toggle='modal' data-target='#aux'>Nueva Cofección</button>"+
+		    	$('#contenedorTabla').append(
+
+		    			
+		    			"<div class='modal-body' id='quitar'>" +
+		    			"<div class='form-group col-sm-12'>" +
+		    			"<button type='button'  onclick='nuevo("+id+",3)' class='btn btn-primary' data-toggle='modal' data-target='#aux'>Nueva Confección</button>"+
+   						"<button onclick='PausarTodo("+id+", 3)' class='btn btn-danger next-step float-right' type='button'>Pausar Todo</button>"+
+  					"</div>"+
+		    				
+		    			
 		    			"<table class='table table-striped table-bordered' id='idtable3'>" +
 	                                        "<thead>" +
 	                                            "<tr>" +
@@ -510,8 +528,16 @@
 		    	$('#quitar3').remove();
 		    	$('#quitar4').remove();
 		    	$('#quitar5').remove();
-		    	$('#contenedorTabla').append("<div class='modal-body' id='quitar4'>" +		    			
-		    			"<button type='button' onclick='nuevo("+id+",4)' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#aux'>Nuevo Planchado</button>"+
+		    	$('#contenedorTabla').append(
+		    			
+
+		    			
+		    			"<div class='modal-body' id='quitar'>" +
+		    			"<div class='form-group col-sm-12'>" +
+		    			"<button type='button'  onclick='nuevo("+id+",4)' class='btn btn-primary' data-toggle='modal' data-target='#aux'>Nuevo Planchado</button>"+
+   						"<button onclick='PausarTodo("+id+", 4)' class='btn btn-danger next-step float-right' type='button'>Pausar Todo</button>"+
+  					"</div>"+
+		    				
 		    			"<table class='table table-striped table-bordered' id='idtable4'>" +
 	                                        "<thead>" +
 	                                            "<tr>" +
@@ -667,8 +693,16 @@
 		    	$('#quitar3').remove();
 		    	$('#quitar4').remove();
 		    	$('#quitar5').remove();
-		    	$('#contenedorTabla').append("<div class='modal-body' id='quitar5'>" +		    			
-		    			"<button type='button' onclick='nuevo("+id+",5)' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#aux'>Nuevo Terminado</button>"+
+		    	$('#contenedorTabla').append(
+		    			
+
+		    			
+		    			"<div class='modal-body' id='quitar'>" +
+		    			"<div class='form-group col-sm-12'>" +
+		    			"<button type='button'  onclick='nuevo("+id+",5)' class='btn btn-primary' data-toggle='modal' data-target='#aux'>Nuevo Terminado</button>"+
+   						"<button onclick='PausarTodo("+id+", 5)' class='btn btn-danger next-step float-right' type='button'>Pausar Todo</button>"+
+  					"</div>"+
+		    				
 		    			"<table class='table table-striped table-bordered' id='idtable5'>" +
 	                                        "<thead>" +
 	                                            "<tr>" +
@@ -788,11 +822,7 @@
 		    }
 	}
 	)}
-//Habilitar form de SweetAlert2
- $('#detalles-proceso').on('shown.bs.modal', function() {
-      $(document).off('focusin.modal');
-  });
- // //////////////////////7
+///7
  
  
 //Agregar procreso
@@ -801,15 +831,15 @@
     		  document.getElementById("f1").value &&
     		  document.getElementById("f2").value &&
     		  document.getElementById("muestra").value &&
-    		  $('#f2').val() > $('#f1').val()
-    		  
-      ) {
+    		  $('#f2').val() > $('#f1').val()  ) {
+    	  var selectValue = $("#muestra").val() || [];
+    	  selectValue.join(", ");
 		      var operador=document.getElementById("operador").value;
 		      var f1=document.getElementById("f1").value;
 		      var f2=document.getElementById("f2").value;
 		      var id=document.getElementById("id_muestra").value;
 		      var tipo=document.getElementById("tipo").value;
-		      var muestra=document.getElementById("muestra").value;
+		      var muestra= new String (selectValue);
 		      
     	 console.log("La muestra es "+muestra);
 		   $.ajax({
@@ -832,7 +862,7 @@
     	if (tipo =="terminado"){ listarTerminado(id);}
     	
     	
-});
+    	});
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -846,6 +876,7 @@
        document.getElementById("f1").value ="";
       document.getElementById("f2").value ="";
       }else {
+    	 
     	  Swal.fire({
               position: 'center',
               icon: 'warning',
@@ -853,6 +884,8 @@
               showConfirmButton: false,
               timer: 1250
             })
+            
+              
       }
       
     
@@ -1090,14 +1123,18 @@
 	 
 	 console.log(tipo);
 	 $('#operador').remove();
-	 $('#muestra').remove();
+	 $('#contenedorMuestra').remove();
 	 $('#contenedorOperador').append(
                  "<select class='swal2-input' id='operador' name='operador' required='required'>"+
                      "<option value=''>Seleccione a un operador</option>"+
                  "</select>"+"</div>");
-	 $('#contenedorMuestra').append(
-             "<select class='swal2-input' id='muestra' name='muestra' required='required'>"+
-                 "<option value=''>Seleccione a un muestra</option>"+
+	 $('#contenedorSelect').append(
+			 
+			 "<div class='form-group col-sm-6' id ='contenedorMuestra'>"+
+			 "<label for='pedidonom'>Muestra</label>"+
+			 "<br><br>"+	
+             "<select  class='selectpicker' multiple    id='muestra' name='muestra' required='required'>"+
+                 
              "</select>"+"</div>");
 	 $.ajax({  
 		    method: "GET",
@@ -1116,7 +1153,8 @@
 		    success: (data) => {
 		    	$.each(data, function(key, val) {
 		    		$('#muestra').append('<option value="' + val[0] + '">'+val[1]+'</option>');})
-		    },
+		    		 $('.selectpicker').selectpicker(["refresh"]);
+		    } , 
 		    error: (e) => {
 		    }
 		})	
@@ -1129,11 +1167,57 @@
 			    success: (data) => {
 			    	$.each(data, function(key, val) {
 			    		$('#muestra').append('<option value="' + val[0] + '">'+val[1]+'</option>');})
+			    		$('.selectpicker').selectpicker(["refresh"]);
 			    },
 			    error: (e) => {
 			    }
 			})	
 		}
-		
+	
  }
  
+ 
+ 
+ function PausarTodo(id , id2){
+	 var tipo=document.getElementById("tipo").value;
+    Swal.fire({
+      title: '¿Deseas pausar todo?',
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonColor: '#6C757D',
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Comenzar',
+      confirmButtonColor:'#FFC107',
+    }).then((result) => {
+      if (result.value && id!=null) {
+    	 
+    		console.log(id);
+    	  $.ajax({
+    	      type: "POST",
+    	      url: "/PausarTodo",  
+    	      data: { 
+    	      	 "_csrf": $('#token').val(),
+    	      	'id': id,
+        	  	'tipo': id2
+    	  	
+    	      	// ,'Descripcion':Descripcion
+    	      }
+    	     
+    	  }).done(function(data){
+    		 
+    		  if (tipo =="trazo"){ listarTrazos(id2);}
+     	    	if (tipo =="corte"){ listarCorte(id2);}
+     	    	if (tipo =="confeccion"){ listarConfeccion(id2);}
+     	    	if (tipo =="planchado"){ listarPlanchado(id2);}
+     	    	if (tipo =="terminado"){ listarTerminado(id2);}
+    	  });
+    	      Swal.fire({
+    	        position: 'center',
+    	        icon: 'success',
+    	        title: 'Procesos pausados correctamente',
+    	        showConfirmButton: false,
+    	        timer: 1250
+    	      })
+      }//////////////termina result value
+    })
+  }
