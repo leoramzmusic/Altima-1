@@ -113,7 +113,7 @@ public class CalidadRestController {
 			disenioCalidad.setFechaCreacion(formattedDate);
 			disenioCalidad.setUltimaFechaModificacion(formattedDate);
 			disenioCalidad.setEstatus("0");
-			disenioCalidad.setIdTela(Long.valueOf(palabras[0]));
+			disenioCalidad.setIdMaterial(Long.valueOf(palabras[0]));
 			CalidadService.save(disenioCalidad);
 			disenioCalidad.setIdText("CAL" + (disenioCalidad.getIdCalidad() + 100000));
 			CalidadService.save(disenioCalidad);
@@ -244,7 +244,7 @@ public class CalidadRestController {
 			disenioCalidad.setFechaCreacion(formattedDate);
 			disenioCalidad.setUltimaFechaModificacion(formattedDate);
 			disenioCalidad.setEstatus("0");
-			disenioCalidad.setIdTela(Long.valueOf(palabras[0]));
+			disenioCalidad.setIdMaterial(Long.valueOf(palabras[0]));
 			CalidadService.save(disenioCalidad);
 			disenioCalidad.setIdText("CAL" + (disenioCalidad.getIdCalidad() + 100000));
 			CalidadService.save(disenioCalidad);
@@ -351,7 +351,7 @@ public class CalidadRestController {
 			disenioCalidad.setFechaCreacion(formattedDate);
 			disenioCalidad.setUltimaFechaModificacion(formattedDate);
 			disenioCalidad.setEstatus("0");
-			disenioCalidad.setIdTela(Long.valueOf(palabras[0]));
+			disenioCalidad.setIdMaterial(Long.valueOf(palabras[0]));
 			CalidadService.save(disenioCalidad);
 			disenioCalidad.setIdText("CAL" + (disenioCalidad.getIdCalidad() + 100000));
 			CalidadService.save(disenioCalidad);
@@ -425,7 +425,7 @@ public class CalidadRestController {
 			disenioCalidad.setUltimaFechaModificacion(formattedDate);
 			disenioCalidad.setEstatus("0");
 			disenioCalidad.setEstatus("0");
-			disenioCalidad.setIdTela(Long.valueOf(palabras[0]));
+			disenioCalidad.setIdMaterial(Long.valueOf(palabras[0]));
 			CalidadService.save(disenioCalidad);
 			disenioCalidad.setIdText("CAL" + (disenioCalidad.getIdCalidad() + 100000));
 			CalidadService.save(disenioCalidad);

@@ -60,7 +60,7 @@ public class CalidadController {
 		List<DisenioPruebaEncogimientoLavado> pruebasEL = pruebaEncogiLavado.findAllByCalidad(id);
 		List<DisenioPruebaLavadoContaminacionCostura> pruebasLCC = pruebaContaCostura.findAllByCalidad(id);
 		DisenioCalidad Calidad = disenioCalidad.findOne(id);
-		model.addAttribute("idTela", Calidad.getIdTela());
+		model.addAttribute("idTela", Calidad.getIdMaterial());
 		model.addAttribute("idCalidad", id);
 		model.addAttribute("readtela", "true");
 		if (pruebaContaCostura.ifExist(id) == 1 || pruebaEncogiLavado.ifExist(id) == 1) {
