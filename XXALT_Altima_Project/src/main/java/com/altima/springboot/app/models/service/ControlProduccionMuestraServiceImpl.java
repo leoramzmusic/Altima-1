@@ -183,7 +183,7 @@ public class ControlProduccionMuestraServiceImpl implements IControlProduccionMu
 	@Override
 	public List<Object[]> PausarMuestras(Long id, String tipo) {
 		
-		List<Object []> re = em.createNativeQuery("SELECT  muestra.id_pedido FROM alt_control_produccion_muestra as muestra , alt_produccion_detalle_pedido as pedido \r\n" + 
+		List<Object []> re = em.createNativeQuery("SELECT   muestra.id_control_produccion_muestra FROM alt_control_produccion_muestra as muestra , alt_produccion_detalle_pedido as pedido \r\n" + 
 				"WHERE 1=1\r\n" + 
 				"and muestra.id_pedido= pedido.id_detalle_pedido\r\n" + 
 				"and muestra.estatus_tiempo='Play'\r\n" + 

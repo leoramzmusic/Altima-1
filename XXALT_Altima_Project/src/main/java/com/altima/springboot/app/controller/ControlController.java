@@ -409,20 +409,23 @@ System.out.println("Los id son :"+id);
 	
 	@PostMapping("/PausarTodo")
 	public String PausarTodo(Long id , String tipo ,  HttpServletRequest request) {	
+		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		List<Object []> aux = DCPM.PausarMuestras(id, tipo);
 		@SuppressWarnings("rawtypes")
 		Iterator iterador = aux.listIterator(); 
 		Date date = new Date();
 		DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		
 		while( iterador.hasNext() ) {
 			ControlProduccionMuestra muestra;
 			muestra=DCPM.findOne(Long.valueOf(iterador.next().toString()));
+			
 			muestra.setEstatusTiempo("Pausa");
-			muestra.setUltimaFechaModificacion(hourdateFormat.format(date));
 			muestra.setUltimaFechaModificacion(hourdateFormat.format(date));
 			muestra.setActualizadoPor(auth.getName());
 			DCPM.save(muestra);
+			
 			
 			ControlHora hora ;
 			Integer id2= DCPM.Pausa(muestra.getIdControlProduccionMuestra());

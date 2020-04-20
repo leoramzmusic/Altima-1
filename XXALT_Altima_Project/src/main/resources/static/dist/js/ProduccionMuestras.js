@@ -1191,7 +1191,7 @@
     }).then((result) => {
       if (result.value && id!=null) {
     	 
-    		console.log(id);
+    		console.log("los id que reviso son;"+id +","+id2);
     	  $.ajax({
     	      type: "POST",
     	      url: "/PausarTodo",  
@@ -1205,11 +1205,11 @@
     	     
     	  }).done(function(data){
     		 
-    		  if (tipo =="trazo"){ listarTrazos(id2);}
-     	    	if (tipo =="corte"){ listarCorte(id2);}
-     	    	if (tipo =="confeccion"){ listarConfeccion(id2);}
-     	    	if (tipo =="planchado"){ listarPlanchado(id2);}
-     	    	if (tipo =="terminado"){ listarTerminado(id2);}
+    		  if (tipo =="trazo"){ listarTrazos(id);}
+     	    	if (tipo =="corte"){ listarCorte(id);}
+     	    	if (tipo =="confeccion"){ listarConfeccion(id);}
+     	    	if (tipo =="planchado"){ listarPlanchado(id);}
+     	    	if (tipo =="terminado"){ listarTerminado(id);}
     	  });
     	      Swal.fire({
     	        position: 'center',
