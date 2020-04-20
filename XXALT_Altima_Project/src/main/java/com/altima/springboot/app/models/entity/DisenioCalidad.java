@@ -34,6 +34,9 @@ public class DisenioCalidad implements Serializable{
 	@Column(name="id_tela")
 	private Long idTela;
 	
+	@Column(name="id_material")
+	private Long idMaterial;
+
 	@Column(name="creado_por")
 	private String creadoPor;
 	
@@ -69,6 +72,14 @@ public class DisenioCalidad implements Serializable{
 
 	public String getIdText() {
 		return idText;
+	}
+	
+	public Long getIdMaterial() {
+		return idMaterial;
+	}
+
+	public void setIdMaterial(Long idMaterial) {
+		this.idMaterial = idMaterial;
 	}
 
 	public void setIdText(String idText) {

@@ -36,6 +36,7 @@ public class CalidadController {
 	@GetMapping("/calidad")
 	public String listCalidad(Model model) {
 		// si se ocupa este metodo
+		model.addAttribute("listCalidades",disenioCalidad.findAllWithIdTextTela());
 		return "calidad";
 	}
 	

@@ -107,7 +107,32 @@
 											</tr>
 										</thead>
 										</tbody>
-										<tbody id="contenidoTablaCalidad">
+											<tr th:each="calidades:${listCalidades}">
+												<td th:text="${calidades[1]}"></td>
+												<td th:text="${calidades[2]}"></td>
+												<td th:text="${calidades[4]}"></td>
+												<td class="tdcenter"><a class="btn btn-info popoverxd text-white" data-container="body" data-placement="top" data-html="true"
+													data-content="<strong>Prueba de encogimiento: </strong>En proceso<br>
+																  <strong>Prueba de lavado y pilling: </strong>En proceso<br>
+																  <strong>Prueba de costura: </strong>Terminada<br>
+																  <strong>Prueba de contaminaci&oacute;n: </strong>En proceso"
+													style="border-radius: 35%;"><i class="fas fa-info fa-sm"></i></a>&nbsp;
+												</td>
+												<td th:text="${calidades[5]==0}?'En Proceso':'Terminada'"></td>
+												<td class="tdcenter">
+													<a  th:href="${calidades[3]==null}? @{detalle-calidad/}+${calidades[0]}: @{calidad}" class="btn btn-info text-white">
+														<i class="fas fa-info-circle"></i> Ver m&aacute;s detalles
+													</a>&nbsp;
+												</td>						
+												<td class="tdcenter">
+													<a class="btn btn-warning popoverxd" th:href="${calidades[3]==null}? @{/calidad-nueva-prueba/}+${calidades[0]}: @{calidad}" data-container="body" data-placement="top" data-content="Editar" style="border-radius: 35%;">
+														<i class="fas fa-pen fa-sm"></i>
+													</a>&nbsp;
+												</td>
+											</tr>
+										
+										
+										<tbody>
 									</table>
 								</div>
 								<!-- /.card-body -->
