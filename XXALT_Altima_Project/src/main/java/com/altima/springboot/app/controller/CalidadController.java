@@ -36,12 +36,18 @@ public class CalidadController {
 	@GetMapping("/calidad")
 	public String listCalidad(Model model) {
 		// si se ocupa este metodo
+		model.addAttribute("listCalidades",disenioCalidad.findAllWithIdTextTela());
 		return "calidad";
 	}
 	
 	@GetMapping("calidad-nueva-prueba")
 	public String addCalidad() {
 		return "calidad-nueva-prueba";
+	}
+	
+	@GetMapping("calidad-nueva-prueba-otro")
+	public String addCalidadOtro() {
+		return "calidad-nueva-prueba-otro";
 	}
 	
 	@GetMapping("detalle-calidad")

@@ -60,29 +60,44 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<div class="container-fluid">
-					<div class="row mb-2">
-						<div class="col-sm-6">
-							<h1>
-								Calidad <a th:href="${'calidad-nueva-prueba'}"><button
-										class="bt btn-primary popoverxd" data-container="body"
-										data-toggle="popover" data-placement="right"
-										data-content="Agregar" style="border-radius: 100%;">
-										<i class="fas fa-plus fa-sm"></i>
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>
+								Calidad <a data-toggle="modal" data-target="#modalCalidad"><button
+										class="bt btn-primary btn-circle btn-sm popoverxd" data-container="body"
+										data-placement="right"
+										data-content="Agregar">
+										<i class="fas fa-plus"></i>
 									</button></a>
 							</h1>
-						</div>
-						<div class="col-sm-6">
-							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-								<li class="breadcrumb-item active">Dise&ntilde;o</li>
-								<li class="breadcrumb-item active">Calidad</li>
-							</ol>
-						</div>
-					</div>
-				</div>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                                <li class="breadcrumb-item active">Dise&ntilde;o</li>
+                                <li class="breadcrumb-item active">Calidad</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
 				<!-- /.container-fluid -->
 			</section>
-
+			<div class="modal fade" id="modalCalidad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Material para realizar pruebas</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-footer">
+                            <a th:href="${'calidad-nueva-prueba'}" class="btn btn-primary mr-auto">Tela / Forro</a>
+                            <a th:href="${'calidad-nueva-prueba-otro'}" class="btn btn-primary">Otro material</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 			<!-- Main content -->
 			<section class="content">
 				<div class="container-fluid">
@@ -107,7 +122,32 @@
 											</tr>
 										</thead>
 										</tbody>
-										<tbody id="contenidoTablaCalidad">
+											<tr th:each="calidades:${listCalidades}">
+												<td th:text="${calidades[1]}"></td>
+												<td th:text="${calidades[2]}"></td>
+												<td th:text="${calidades[4]}"></td>
+												<td class="tdcenter"><a class="btn btn-info popoverxd text-white" data-container="body" data-placement="top" data-html="true"
+													data-content="<strong>Prueba de encogimiento: </strong>En proceso<br>
+																  <strong>Prueba de lavado y pilling: </strong>En proceso<br>
+																  <strong>Prueba de costura: </strong>Terminada<br>
+																  <strong>Prueba de contaminaci&oacute;n: </strong>En proceso"
+													style="border-radius: 35%;"><i class="fas fa-info fa-sm"></i></a>&nbsp;
+												</td>
+												<td th:text="${calidades[5]==0}?'En Proceso':'Terminada'"></td>
+												<td class="tdcenter">
+													<a  th:href="${calidades[3]==null}? @{detalle-calidad/}+${calidades[0]}: @{calidad}" class="btn btn-info text-white">
+														<i class="fas fa-info-circle"></i> Ver m&aacute;s detalles
+													</a>&nbsp;
+												</td>						
+												<td class="tdcenter">
+													<a class="btn btn-warning popoverxd" th:href="${calidades[3]==null}? @{/calidad-nueva-prueba/}+${calidades[0]}: @{calidad}" data-container="body" data-placement="top" data-content="Editar" style="border-radius: 35%;">
+														<i class="fas fa-pen fa-sm"></i>
+													</a>&nbsp;
+												</td>
+											</tr>
+										
+										
+										<tbody>
 									</table>
 								</div>
 								<!-- /.card-body -->
