@@ -53,8 +53,12 @@ public class DisenioCalidadServiceImpl implements IDisenioCalidadService {
 	public List<Object> findAllWithIdTextTela() {
 		// TODO Auto-generated method stub
 		return em.createNativeQuery(
-				"select calidad.id_calidad, calidad.id_text, tela.id_text as text, calidad.estatus from alt_disenio_calidad as calidad\r\n"
-						+ "INNER JOIN alt_disenio_tela tela ON calidad.id_tela = tela.id_tela\r\n" + "ORDER BY calidad.id_text")
+				"select calidad.id_calidad, calidad.id_text, tela.id_text as text, calidad.id_material, tela.nombre_tela, calidad.estatus from alt_disenio_calidad as calidad\r\n" + 
+				"						INNER JOIN alt_disenio_tela tela ON calidad.id_tela = tela.id_tela\r\n" + 
+				"UNION\r\n" + 
+				"SELECT calidad.id_calidad, calidad.id_text, material.id_text, calidad.id_material, material.nombre_material, calidad.estatus from alt_disenio_calidad as calidad\r\n" + 
+				"						INNER JOIN alt_disenio_material material ON calidad.id_material = material.id_material\r\n" + 
+				"						where material.calidad = 1")
 				.getResultList();
 	}
 }
