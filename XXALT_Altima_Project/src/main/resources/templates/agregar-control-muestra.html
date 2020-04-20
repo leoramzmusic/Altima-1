@@ -72,31 +72,35 @@
                                 <div class="card-body">
                                     <form class="row">
                                         <div class="form-group col-sm-4">
-                                            <label for="prendaInventario">Prenda</label>
-                                            <select class="form-control" id="prendaInventario">
+                                            <label for="prendaControlMuestra">Prenda</label>
+                                            <select class="form-control" id="prendaControlMuestra">
                                                 <option>Blusa</option>
                                                 <option>Abrigo</option>
                                                 <option>Vestido</option>
                                             </select>
                                         </div>
                                         <div class="form-group col-sm-4">
-                                            <label for="modeloInventario">Modelo</label>
-                                            <input type="text" class="form-control" id="modeloInventario" placeholder="Especificar">
+                                            <label for="modeloControlMuestra">Modelo</label>
+                                            <input type="text" class="form-control" id="modeloControlMuestra" placeholder="Especificar">
                                         </div>
                                         <div class="form-group col-sm-4">
-                                            <label for="costoInventario">Costo</label>
-                                            <input type="number" class="form-control" id="costoInventario" placeholder="1500.00">
+                                            <label for="costoControlMuestra">Costo</label>
+                                            <input type="number" class="form-control" id="costoControlMuestra" placeholder="1500.00">
                                         </div>
-                                        <div class="form-group col-sm-4">
-                                            <label for="generoInventario">G&eacute;nero</label>
-                                            <select class="form-control" id="generoInventario">
+                                        <div class="form-group col-sm-3">
+                                            <label for="cantidadControlMuestra">Cantidad</label>
+                                            <input type="number" class="form-control" id="cantidadControlMuestra" placeholder="1500.00">
+                                        </div>
+                                        <div class="form-group col-sm-3">
+                                            <label for="generoControlMuestra">G&eacute;nero</label>
+                                            <select class="form-control" id="generoControlMuestra">
                                                 <option>Femenino</option>
                                                 <option>Masculino</option>
                                             </select>
                                         </div>
-                                        <div class="form-group col-sm-4">
-                                            <label for="largoInventario">Talla</label>
-                                            <select class="form-control" id="largoInventario">
+                                        <div class="form-group col-sm-3">
+                                            <label for="largoControlMuestra">Talla</label>
+                                            <select class="form-control" id="largoControlMuestra">
                                                 <option>1</option>
                                                 <option>2</option>
                                                 <option>3</option>
@@ -106,9 +110,9 @@
                                                 <option>7</option>
                                             </select>
                                         </div>
-                                        <div class="form-group col-sm-4">
-                                            <label for="tallaInventario">Largo</label>
-                                            <select class="form-control" id="tallaInventario">
+                                        <div class="form-group col-sm-3">
+                                            <label for="tallaControlMuestra">Largo</label>
+                                            <select class="form-control" id="tallaControlMuestra">
                                                 <option>XC</option>
                                                 <option>C</option>
                                                 <option>R</option>
@@ -116,35 +120,41 @@
                                                 <option>XL</option>
                                             </select>
                                         </div>
-                                        <div class="col-sm-12">
-                                            <div class="form-group p-3 border p-2 rounded m-3">
-                                                <div class="row">
-                                                    <div class="col-sm-3 text-center pt-2 border-right">
-                                                        <label for="mainImage1">
-                                                            <img src="/uploads/prendas/null" alt="Placeholder" id="blah1" class="placeholder img-thumbnail" aria-describedby="imagePreviewHelp1" onerror="this.src=&#39;/dist/img/preview.png&#39;" /></label>
-                                                        <small id="imagePreviewHelp1" class="form-text text-muted">Previsualizaci&oacute;n
-																				de la imagen</small>
-                                                    </div>
-                                                    <div class="col">
-                                                        <label for="mainImage1">Imagen</label>
-                                                        <div class="input-group mb-3">
-                                                            <input type="file" class="form-control border p-1" id="file" name="file" />
-                                                            <div class="input-group-append">
-                                                                <span class="input-group-text bg-danger text-danger pointer" onclick="LimpiarInput1()">
-																						<i class="fas fa-times"></i>
-																					</span>
-                                                            </div>
-                                                        </div>
-                                                        <small id="imageHelp1" class="form-text text-muted">Selecciona la foto que desea subir.</small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <input type="hidden" id="estatusInventario" value="1">
+                                        <input type="hidden" id="estatusControlMuestra" value="1">
                                         <div class="form-group col-sm-12">
                                             <a class="btn btn-primary text-white next-step float-right">Agregar</a>
                                         </div>
                                     </form>
+                                    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Prenda</th>
+      <th scope="col">Modelo</th>
+      <th scope="col">Costo</th>
+      <th scope="col">Cantidad</th>
+      <th scope="col">G&eacute;nero</th>
+      <th scope="col">Talla</th>
+      <th scope="col">Largo</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Abrigo</th>
+      <td>Modelo 1</td>
+      <td>1500.00</td>
+      <td>5</td>
+      <td>Masculino</td>
+      <td>1</td>
+      <td>XL</td>
+      <td><button class="btn btn-danger btn-circle btn-sm"><i class="fas fa-minus"></i></button></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div class="form-group col-sm-12">
+                                            <a class="btn btn-primary text-white next-step float-right">Agregar</a>
+                                        </div>
                                 </div>
                                 <!-- /.card-body -->
                             </div>

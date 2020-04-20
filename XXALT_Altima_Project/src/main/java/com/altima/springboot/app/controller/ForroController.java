@@ -29,7 +29,6 @@ import com.altima.springboot.app.models.entity.DisenioMaterial;
 //import com.altima.springboot.app.models.entity.DisenioProceso;
 import com.altima.springboot.app.models.entity.DisenioTela;
 import com.altima.springboot.app.models.service.IDisenioFamiliaComposicionForroService;
-import com.altima.springboot.app.models.service.IDisenioFamiliaComposicionTelaService;
 import com.altima.springboot.app.models.service.IDisenioForroService;
 import com.altima.springboot.app.models.service.IDisenioMaterialService;
 //import com.altima.springboot.app.models.service.IDisenioProcesoService;
@@ -65,18 +64,19 @@ public class ForroController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if ( forro.getIdForro() == null || forro.getEstatusForro().equals("0")){
 			if (forro.getIdForro() == null) {
-				forro.setIdText("FORRO");
+				forro.setIdText(null);
 				forro.setCreadoPor(auth.getName());
 				forro.setIdUnidadMedida(Long.valueOf(1));
 				forro.setConsumoPromedioForro("null");
 				forro.setExistenciaForro("1");
 				forro.setFechaCreacion(hourdateFormat.format(date));
-				forro.setUltimaFechaModificacion(hourdateFormat.format(date));
+				forro.setUltimaFechaModificacion(null);
 				forro.setEstatus("1");
 				forro.setEstatusForro("0");
 				forro.setFoto("imagen");
 				forroService.save(forro);
-				forro.setIdText("PROSFO"+(forro.getIdForro()+100));
+				forro.setIdTextProspecto("PROFO"+(forro.getIdForro()+100));
+				forroService.save(forro);
 				redirectAttrs
 	            .addFlashAttribute("title", "Forro guardado correctamente")
 	            .addFlashAttribute("icon", "success");
@@ -110,7 +110,7 @@ public class ForroController {
 			} 	
 		}
 		else {
-			forro.setIdText("FORRO"+(forro.getIdForro()+100));
+			forro.setIdText("FO"+(forro.getIdForro()+100));
 			if (!imagenForro.isEmpty()){
 				if ( forro.getFoto() != null && forro.getFoto().length() > 0) {
 					UploadService.deleteForro(forro.getFoto());

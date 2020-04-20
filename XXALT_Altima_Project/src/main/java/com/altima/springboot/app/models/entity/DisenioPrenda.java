@@ -138,7 +138,18 @@ public class DisenioPrenda implements Serializable {
 	@Column(name = "estatus")
 	private Long estatus;
 	
+	@Column(name = "prenda_local")
+	private String prendaLocal;
 	
+	
+
+	public String getPrendaLocal() {
+		return prendaLocal;
+	}
+
+	public void setPrendaLocal(String prendaLocal) {
+		this.prendaLocal = prendaLocal;
+	}
 
 	public String getIdTextProspecto() {
 		return idTextProspecto;

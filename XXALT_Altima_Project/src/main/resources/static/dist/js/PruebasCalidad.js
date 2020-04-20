@@ -9,13 +9,27 @@ function listarTabla(){
 				var a="";
 			    var b = [];
 			    var estatus;
+			    var validadorEditar;
+			    var validadorDetalles;
+			    
 			    console.log(data);
 			    for (i in data){
-			    	estatus = (data[i][3]=='0')?'En Proceso':'Terminada';
+			    	estatus = (data[i][5]=='0')?'En Proceso':'Terminada';
+			    	if (data[i][3]==null){
+			    		validadorEditar= "href='/calidad-nueva-prueba/"+data[i][0]+"'";
+			    		validadorDetalles = "href='detalle-calidad/"+data[i][0]+"'";
+			    	}
+			    	else{
+			    		validadorEditar= "href='/calidad'";
+			    		validadorDetalles = "href='/calidad'";
+			    	}
+			    	
+			    	
 			    	a += 
 			    		"<tr>"+
 			    		"<td>"+data[i][1]+"</td>"+
 						"<td>"+data[i][2]+"</td>"+
+						"<td>"+data[i][4]+"</td>"+
 						"<td class='tdcenter'><a"+
 							" class='btn btn-info popoverxd text-white'"+
 							" data-container='body' data-placement='top' data-html='true'"+
@@ -23,12 +37,12 @@ function listarTabla(){
 							" style='border-radius: 35%;'><i class='fas fa-info fa-sm'></i></a>&nbsp;"+
 						"</td>"+
 						"<td>"+estatus+"</td>"+
-						"<td class='tdcenter'><a href='detalle-calidad/"+data[i][0]+"'"+
+						"<td class='tdcenter'><a "+validadorDetalles+
 							" class='btn btn-info text-white'><i"+
 								" class='fas fa-info-circle'></i> Ver m&aacute;s detalles</a>&nbsp;"+
 						"</td>"+
 						"<td class='tdcenter'><a"+
-							" class='btn btn-warning popoverxd' data-container='body' href='/calidad-nueva-prueba/"+data[i][0]+"'"+
+							" class='btn btn-warning popoverxd' data-container='body' "+validadorEditar+
 							" data-placement='top' data-content='Editar'"+
 							" style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></a>&nbsp;"+
 						"</td>"+

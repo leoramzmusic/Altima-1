@@ -114,9 +114,19 @@ public class DisenioMaterial implements Serializable{
 
 	private Long idColor;
 	
+	@Column(name="calidad")
+	private String calidad;
 	
 	
 	
+
+	public String getCalidad() {
+		return calidad;
+	}
+
+	public void setCalidad(String calidad) {
+		this.calidad = calidad;
+	}
 
 	public String getEstatusMaterial() {
 		return estatusMaterial;
@@ -154,8 +164,6 @@ public class DisenioMaterial implements Serializable{
 		return idText;
 	}
 	
-	
-
 	public void setIdText(String idText) {
 		this.idText = idText;
 	}
