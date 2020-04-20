@@ -30,10 +30,7 @@ public class DisenioCalidad implements Serializable{
 	
 	@Column(name="id_text")
 	private String idText;
-	
-	@Column(name="id_tela")
-	private Long idTela;
-	
+
 	@Column(name="id_material")
 	private Long idMaterial;
 
@@ -51,15 +48,53 @@ public class DisenioCalidad implements Serializable{
 	
 	@Column(name="estatus")
 	private String estatus;
+	
+	@Column(name="tipo_material")
+	private String tipoMaterial;
 
+	@Column(name="durabilidad")
+	private String durabilidad;
+	
+	@Column(name="resistencia")
+	private String resistencia;
+	
+	@Column(name="archivo_ruta")
+	private String archivoRuta;
 	
 	
-	public Long getIdTela() {
-		return idTela;
+	
+	
+
+	public String getDurabilidad() {
+		return durabilidad;
 	}
 
-	public void setIdTela(Long idTela) {
-		this.idTela = idTela;
+	public void setDurabilidad(String durabilidad) {
+		this.durabilidad = durabilidad;
+	}
+
+	public String getResistencia() {
+		return resistencia;
+	}
+
+	public void setResistencia(String resistencia) {
+		this.resistencia = resistencia;
+	}
+
+	public String getArchivoRuta() {
+		return archivoRuta;
+	}
+
+	public void setArchivoRuta(String archivoRuta) {
+		this.archivoRuta = archivoRuta;
+	}
+
+	public String getTipoMaterial() {
+		return tipoMaterial;
+	}
+
+	public void setTipoMaterial(String tipoMaterial) {
+		this.tipoMaterial = tipoMaterial;
 	}
 
 	public Long getIdCalidad() {
