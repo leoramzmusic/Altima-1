@@ -103,6 +103,40 @@
 		style: 'border border-bootstrap'
 	});
 	</script>
+	  <script>
+  function selected(){
+	  var texto=document.getElementById("cla");
+	  var valordeltexto=texto.options[texto.selectedIndex].text;
+	  console.log("aqui esta el valor del select");
+	  console.log(valordeltexto);
+	
+	  
+	 
+	  if(valordeltexto == "Independiente del color de la tela"){
+		  console.log("si entra ");
+
+          document.getElementById("test2").style.display="block";
+          document.getElementById("test1").style.display="none";
+         
+		
+	  }else{
+		  
+		  
+          document.getElementById("test2").style.display="none";
+          document.getElementById("test1").style.display="block";
+          document.getElementById("idColor1").value = "0";
+          console.log("no pelo ");
+   
+		  
+	  }
+	  
+  }
+  
+  
+
+
+        </script>
+	
      <script th:inline="javascript">
 	/*<![CDATA[*/
 
@@ -154,6 +188,10 @@
 	
 	<script>
 	
+	
+	
+ 
+	
 	function cargar_pagina(){
 		
 		console.log(definitiva);
@@ -187,7 +225,11 @@
                    break;
        
                   default:
-                		console.log("entro a la fubncion defautl");
+                        console.log("entro a la fubncion defautl");
+
+                        
+                        
+                        
             	  
                   
                   

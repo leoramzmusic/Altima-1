@@ -1,139 +1,141 @@
+<form class="row" style="display: none;" id="materialForm" th:object="${material}" th:action="@{/guardar}"
+    method="post">
 
 
 
-<form class="row" style="display: none;" id="materialForm"  th:object="${material}" th:action="@{/guardar}" method="post">
-    
-    
-    
-    
+
     <div class="form-group col-sm-3">
-        <label   for="nombreMaterial">Nombre del  Material</label>
-        <input type="text"   th:field="*{nombreMaterial}" class="form-control" id="nombreMaterial" placeholder="Nombre del material...">
+        <label for="nombreMaterial">Nombre del Material</label>
+        <input type="text" th:field="*{nombreMaterial}" class="form-control" id="nombreMaterial"
+            placeholder="Nombre del material...">
     </div>
-    
-      <div class="form-group col-sm-3">
-        <label   for="idTipoMaterial">Tipo de Material</label>
-         <select  class="form-control selectCustom"   th:field="*{idTipoMaterial}"  id="idTipoMaterial" data-live-search="true">
-                    <option th:each="listLookupsMat:${listLookupsMat}"
-            	
-                    th:value="${listLookupsMat[0]}"
-                    th:text="${listLookupsMat[1]}"
-            
-            />
-           
-            
-        </select>
-    </div>
-    
-    
-    
-      <div class="form-group col-sm-3">
-        <label   for="idColor">Color</label>
-         <select  class="form-control selectCustom"   th:field="*{idColor}"  id="idColor1" data-live-search="true">
-                    <option th:each="listLookupsCol:${listLookupsCol}"
-            		th:data-content="@{<i class='fa fa-tint'}+@{style='color:}+${listLookupsCol[3]}+@{;'></i>}+'             '+${listLookupsCol[1]}"
-                    th:value="${listLookupsCol[0]}"
-                    
-            
-            />
-           
-            
+
+    <div class="form-group col-sm-3">
+        <label for="idTipoMaterial">Tipo de Material</label>
+        <select class="form-control selectCustom" th:field="*{idTipoMaterial}" id="idTipoMaterial"
+            data-live-search="true">
+            <option th:each="listLookupsMat:${listLookupsMat}" th:value="${listLookupsMat[0]}"
+                th:text="${listLookupsMat[1]}" />
+
+
         </select>
     </div>
 
 
-    
-    
-     <div class="form-group col-sm-3">
-        <label    for="tamanio">Tama&ntilde;o</label>
-          <input type="number"  th:field="*{tamanio}" class="form-control" id="tamanio" placeholder="Tama&ntilde;o">
-    </div>
-    
-    
+
     <div class="form-group col-sm-3">
-        <label   for="idUnidadMedida">Unidad medida</label>
-         <select  class="form-control selectCustom"  th:field="*{idUnidadMedida}"  id="idUnidadMedida" data-live-search="true">
-                    <option th:each="listLookupsMed:${listLookupsMed}"
-            
-                    th:value="${listLookupsMed[0]}"
-                    th:text="${listLookupsMed[1]}"
-            
-            />
-           
-            
+        <label for="idClasificacion">Clasificaci&oacute;n</label>
+        <select class="form-control selectCustom" onchange="selected(this.value);" th:field="*{idClasificacion}"
+            id="cla" data-live-search="true">
+            <option th:each="listLookupsClasificacion:${listLookupsClasificacion}"
+                th:value="${listLookupsClasificacion[0]}" th:text="${listLookupsClasificacion[1]}" />
+
+
         </select>
     </div>
-    
-    
+
+
+
+
+
+
+
     <div class="form-group col-sm-3">
-        <label    for="materialModelo">Modelo</label>
+        <label for="tamanio">Tama&ntilde;o</label>
+        <input type="number" th:field="*{tamanio}" class="form-control" id="tamanio" placeholder="Tama&ntilde;o">
+    </div>
+
+
+    <div class="form-group col-sm-3">
+        <label for="idUnidadMedida">Unidad medida</label>
+        <select class="form-control selectCustom" th:field="*{idUnidadMedida}" id="idUnidadMedida"
+            data-live-search="true">
+            <option th:each="listLookupsMed:${listLookupsMed}" th:value="${listLookupsMed[0]}"
+                th:text="${listLookupsMed[1]}" />
+
+
+        </select>
+    </div>
+
+
+    <div class="form-group col-sm-3">
+        <label for="materialModelo">Modelo</label>
         <input type="text" th:field="*{modelo}" class="form-control" id="materialModelo" placeholder="Abrigo">
     </div>
     <div class="form-group col-sm-3">
-        <label   for="idProceso"  >Proceso al que aplica</label>
-        <select  class="form-control selectCustom"  th:field="*{idProceso}" id="idProceso" data-live-search="true">
-                <option th:each="listClaveProceso:${listClaveProceso}"
-            
-                    th:value="${listClaveProceso[0]}"
-                    th:text="${listClaveProceso[1]}"
-            
-            />
-            
+        <label for="idProceso">Proceso al que aplica</label>
+        <select class="form-control selectCustom" th:field="*{idProceso}" id="idProceso" data-live-search="true">
+            <option th:each="listClaveProceso:${listClaveProceso}" th:value="${listClaveProceso[0]}"
+                th:text="${listClaveProceso[1]}" />
+
         </select>
     </div>
     <div class="form-group col-sm-3">
-        <label    for="precioUnitario">Precio Unitario</label>
-        <input type="number"  step="0.01" th:field="*{precioUnitario}"  class="form-control" id="precioUnitario" placeholder="100.00">
+        <label for="precioUnitario">Precio Unitario</label>
+        <input type="number" step="0.01" th:field="*{precioUnitario}" class="form-control" id="precioUnitario"
+            placeholder="100.00">
     </div>
-    
-    
-    
-    
-    
-      <div class="form-group col-sm-3">
-        <label   for="idClasificacion">Clasificaci&oacute;n</label>
-         <select class="form-control selectCustom"  th:field="*{idClasificacion}" id="idClasificacion" data-live-search="true">
-                    <option th:each="listLookupsClasificacion:${listLookupsClasificacion}"
+
+
+
+
+
+
+
+
+
+    <div class="form-group col-sm-3">
+        <label for="idcolor">Color</label>
+        <div id="test1" display="none" >
             
-                    th:value="${listLookupsClasificacion[0]}"
-                    th:text="${listLookupsClasificacion[1]}"
-            
-            />
+            <select class="form-control  " name="" id="" disabled="disabled">
+
+                <option disabled value="">Selecciona una opcion</option>
+            </select>
+
+        </div>
+
+        <div id="test2">
+
+
            
-            
-        </select>
+            <select class="form-control selectCustom" th:field="*{idColor}" id="idColor1" data-live-search="true">
+                    <option value="0">Selecciona un color</option>
+                <option th:each="listLookupsCol:${listLookupsCol}"
+                    th:data-content="@{<i class='fa fa-tint'}+@{style='color:}+${listLookupsCol[3]}+@{;'></i>}+'             '+${listLookupsCol[1]}"
+                    th:value="${listLookupsCol[0]}" />
+
+
+            </select>
+        </div>
     </div>
-    
-    
-    
-    
-    
-    
-    
-    
-   
+
+
+
+
+
+
+
+
     <div class="form-group col-sm-3">
         <label for="idMarca">Proveedores</label>
-        <select  class="form-control selectCustom" id="idMarca"  th:field="*{idMarca}" data-live-search="true">
-            <option th:each="listLookupsMar:${listLookupsMar}"
-            
-                    th:value="${listLookupsMar[0]}"
-                    th:text="${listLookupsMar[1]}"
-            
-            />
-           
+        <select class="form-control selectCustom " id="idMarca" th:field="*{idMarca}" data-live-search="true">
+            <option th:each="listLookupsMar:${listLookupsMar}" th:value="${listLookupsMar[0]}"
+                th:text="${listLookupsMar[1]}" />
+
         </select>
     </div>
     <div class="form-group col-sm-3">
-        <label   for="materialDescripcion">Observaciones</label>
-        <textarea  type="text"   th:field="*{descripcionMaterial}" class="form-control" id="materialDescripcion" placeholder="Opcional"> </textarea>
+        <label for="materialDescripcion">Observaciones</label>
+        <textarea type="text" th:field="*{descripcionMaterial}" class="form-control" id="materialDescripcion"
+            placeholder="Opcional"> </textarea>
     </div>
     <input type="hidden" class="form-control" id="materialEstatus" value="0">
     <div class="form-group col-sm-12">
-    <a th:href="@{/materiales}" class="btn btn-danger">Cancelar</a>
+        <a th:href="@{/materiales}" class="btn btn-danger">Cancelar</a>
         <button type="submit" class="btn btn-primary next-step float-right">Agregar</button>
     </div>
-    
-    
-     <input type="hidden"   th:field="*{idMaterial}">
+
+
+    <input type="hidden" th:field="*{idMaterial}">
 </form>
