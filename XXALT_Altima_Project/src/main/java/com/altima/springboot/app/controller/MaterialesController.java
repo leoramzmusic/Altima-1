@@ -116,6 +116,7 @@ public class MaterialesController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (material.getIdMaterial() == null || material.getIdMaterial() <= 0) {
 			material.setCreadoPor(auth.getName());
+			
 			disenioMaterialService.save(material);
 			if (disenioMaterialService.findLastMaterial(material.getIdTipoMaterial()).size() > 1) {
 				Object[] vat = disenioMaterialService.findLastMaterial(material.getIdTipoMaterial()).get(1);
@@ -138,6 +139,12 @@ public class MaterialesController {
 			redirectAttrs.addFlashAttribute("title", "Material Insertado Correctamente").addFlashAttribute("icon",
 					"success");
 		} else {
+			
+			
+			System.out.println("aqui esta el id"+ material.getIdMaterial());
+			material= disenioMaterialService.findOne(material.getIdMaterial());
+		
+			
 			material.setCreadoPor(material.getCreadoPor());
 			material.setIdText("MAE" + (material.getIdMaterial() + 1000));
 			material.setEstatus("1");
