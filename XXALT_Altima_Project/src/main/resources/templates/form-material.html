@@ -4,13 +4,13 @@
 
 
 
-    <div class="form-group col-sm-3">
+    <div class="form-group col-sm-6">
         <label for="nombreMaterial">Nombre del Material</label>
         <input type="text" th:field="*{nombreMaterial}" class="form-control" id="nombreMaterial"
             placeholder="Nombre del material...">
     </div>
 
-    <div class="form-group col-sm-3">
+    <div class="form-group col-sm-6">
         <label for="idTipoMaterial">Tipo de Material</label>
         <select class="form-control selectCustom" th:field="*{idTipoMaterial}" id="idTipoMaterial"
             data-live-search="true">
@@ -23,8 +23,8 @@
 
 
 
-    <div class="form-group col-sm-3">
-        <label for="idClasificacion">Clasificaci&oacute;n</label>
+    <div class="form-group col-sm-6">
+        <label for="idClasificacion">Uso</label>
         <select class="form-control selectCustom" onchange="selected(this.value);" th:field="*{idClasificacion}"
             id="cla" data-live-search="true">
             <option th:each="listLookupsClasificacion:${listLookupsClasificacion}"
@@ -33,58 +33,13 @@
 
         </select>
     </div>
-
-
-
-
-
-
-
-    <div class="form-group col-sm-3">
-        <label for="tamanio">Tama&ntilde;o</label>
-        <input type="number" th:field="*{tamanio}" class="form-control" id="tamanio" placeholder="Tama&ntilde;o">
-    </div>
-
-
-    <div class="form-group col-sm-3">
-        <label for="idUnidadMedida">Unidad medida</label>
-        <select class="form-control selectCustom" th:field="*{idUnidadMedida}" id="idUnidadMedida"
-            data-live-search="true">
-            <option th:each="listLookupsMed:${listLookupsMed}" th:value="${listLookupsMed[0]}"
-                th:text="${listLookupsMed[1]}" />
-
-
-        </select>
-    </div>
-
-
-    <div class="form-group col-sm-3">
-        <label for="materialModelo">Modelo</label>
-        <input type="text" th:field="*{modelo}" class="form-control" id="materialModelo" placeholder="Abrigo">
-    </div>
-    <div class="form-group col-sm-3">
-        <label for="idProceso">Proceso al que aplica</label>
-        <select class="form-control selectCustom" th:field="*{idProceso}" id="idProceso" data-live-search="true">
-            <option th:each="listClaveProceso:${listClaveProceso}" th:value="${listClaveProceso[0]}"
-                th:text="${listClaveProceso[1]}" />
-
-        </select>
-    </div>
-    <div class="form-group col-sm-3">
-        <label for="precioUnitario">Precio Unitario</label>
-        <input type="number" step="0.01" th:field="*{precioUnitario}" class="form-control" id="precioUnitario"
-            placeholder="100.00">
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="form-group col-sm-3">
+    
+    
+    
+    
+    
+    
+        <div class="form-group col-sm-6">
         <label for="idcolor">Color</label>
         <div id="test1" display="none" >
             
@@ -112,12 +67,16 @@
 
 
 
+    
 
 
 
 
 
-    <div class="form-group col-sm-3">
+
+
+
+    <div class="form-group col-sm-6">
         <label for="idMarca">Proveedores</label>
         <select class="form-control selectCustom " id="idMarca" th:field="*{idMarca}" data-live-search="true">
             <option th:each="listLookupsMar:${listLookupsMar}" th:value="${listLookupsMar[0]}"
@@ -125,11 +84,72 @@
 
         </select>
     </div>
+
+    <div class="form-group col-sm-6">
+        <label for="precioUnitario">Precio Unitario</label>
+        <input type="number" step="0.01" th:field="*{precioUnitario}" class="form-control" id="precioUnitario"
+            placeholder="100.00">
+    </div>
     <div class="form-group col-sm-3">
+        <label for="materialModelo">Clave del proceso</label>
+        <input type="text" th:field="*{modelo}" class="form-control" id="materialModelo" placeholder="PROC001">
+    </div>
+    <div class="form-group col-sm-3">
+        <label for="idProceso">Proceso al que aplica</label>
+        <select class="form-control selectCustom" th:field="*{idProceso}" id="idProceso" data-live-search="true">
+            <option th:each="listClaveProceso:${listClaveProceso}" th:value="${listClaveProceso[0]}"
+                th:text="${listClaveProceso[1]}" />
+
+        </select>
+    </div>
+
+
+
+
+
+
+    <div class="form-group col-sm-3">
+        <label for="idUnidadMedida">Unidad medida</label>
+        <select class="form-control selectCustom" th:field="*{idUnidadMedida}" id="idUnidadMedida"
+            data-live-search="true">
+            <option th:each="listLookupsMed:${listLookupsMed}" th:value="${listLookupsMed[0]}"
+                th:text="${listLookupsMed[1]}" />
+
+
+        </select>
+    </div>
+
+
+
+
+    <div class="form-group col-sm-3">
+        <label for="tamanio">Tama&ntilde;o</label>
+        <input type="number" th:field="*{tamanio}" class="form-control" id="tamanio" placeholder="Tama&ntilde;o">
+    </div>
+
+
+
+
+    <div class="form-group col-sm-12">
         <label for="materialDescripcion">Observaciones</label>
         <textarea type="text" th:field="*{descripcionMaterial}" class="form-control" id="materialDescripcion"
             placeholder="Opcional"> </textarea>
     </div>
+    
+    
+    
+     <div class="form-group col-sm-12 text-center">
+      
+         <label></label>
+       <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+         <input type="checkbox" value="1" class="custom-control-input" id="calidad" th:field="*{calidad}" >
+         <label class="custom-control-label" for="calidad"> &iquest;Hacer Pruebas de Calidad? </label>
+        </div>
+   
+    </div>
+    
+    
+    
     <input type="hidden" class="form-control" id="materialEstatus" value="0">
     <div class="form-group col-sm-12">
         <a th:href="@{/materiales}" class="btn btn-danger">Cancelar</a>

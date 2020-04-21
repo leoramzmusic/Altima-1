@@ -7,6 +7,7 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed sidebar-collapse">
+	<input type="hidden" name="_csrf" id="token"  th:value="${_csrf.token}"/>
 	<!-- Site wrapper -->
 	<div class="wrapper">
 		<!-- Navbar -->
@@ -67,87 +68,22 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>FOL001</td>
-												<td>Altima</td>
-												<td>Juan Jose Origel</td>
-												<td></td>
-												<td></td>
+											<tr th:each="movimiento:${listMovimientos}">
+												<td th:text="${movimiento[1]}"></td>
+												<td th:text="${movimiento[3]==null || movimiento[4]==null}?${movimiento[2]}:${movimiento[2]}+' '+${movimiento[3]}+' '+${movimiento[4]}"></td>
+												<td th:text="${movimiento[5]}"></td>
+												<td th:text="${movimiento[6]==null}?'':${movimiento[6]}"></td>
+												<td th:text="${movimiento[7]==null}?'':${movimiento[7]}"></td>
 												<td class="tdcenter">
-													<button data-target="#infoTraspaso" data-toggle="modal" class="btn btn-info btn-circle btn-sm text-white"><i class="fas fa-info"></i></button>
+													<button data-target="#infoTraspaso" data-toggle="modal" class="btn btn-info btn-circle btn-sm text-white" onclick="detalleMuestras('+${movimiento[0]}+')"><i class="fas fa-info"></i></button>
 												</td>
-												<td>Pendiente de recoger</td>
+												<td th:text="${movimiento[8]}"></td>
 												<td class="tdcenter">
-													<a onclick="entregarSolicitud()" class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Entregado a vendedor"><i class="fas fa-user-check"></i></a>
-                                    				<a onclick="cancelarSolicitud()" class="btn btn-danger btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Cancelar"><i class="fas fa-times"></i></a>
+													<a th:if="${movimiento[8]=='Pendiente de recoger'}" th:onclick="'javascript:entregarSolicitud('+${movimiento[0]}+')'" class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Entregado a vendedor"><i class="fas fa-user-check"></i></a>
+                                    				<a th:if="${movimiento[8]=='Pendiente de recoger'}" th:onclick="'javascript:cancelarSolicitud('+${movimiento[0]}+')'" class="btn btn-danger btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Cancelar"><i class="fas fa-times"></i></a>
+                                    				<a th:if="${movimiento[8]=='Entregado a vendedor'}" th:onclick="'javascript:devueltoSolicitud('+${movimiento[0]}+')'" class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Devuelto"><i class="fas fa-check"></i></a>
+                                    				<a th:if="${movimiento[8]=='Prestado a empresa'}" data-target="#devolucionTraspaso" data-toggle="modal" class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Entregado"><i class="fas fa-check"></i></a>
                                     			</td>
-											</tr>
-											<tr>
-												<td>FOL002</td>
-												<td>Altima</td>
-												<td>Fabian Lavalle</td>
-												<td></td>
-												<td></td>
-												<td class="tdcenter">
-													<button data-target="#infoTraspaso" data-toggle="modal" class="btn btn-info btn-circle btn-sm text-white"><i class="fas fa-info"></i></button>
-												</td>
-												<td>Cancelado</td>
-												<td class="tdcenter">
-												</td>
-											</tr>
-											<tr>
-												<td>FOL003</td>
-												<td>Altima</td>
-												<td>Pedro Sola</td>
-												<td>05/01/2020 14:00</td>
-												<td></td>
-												<td class="tdcenter">
-													<button data-target="#infoTraspaso" data-toggle="modal" class="btn btn-info btn-circle btn-sm text-white"><i class="fas fa-info"></i></button>
-												</td>
-												<td>Entregado a vendendor</td>
-												<td class="tdcenter">
-													<a onclick="devueltoSolicitud()" class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Devuelto"><i class="fas fa-check"></i></a>
-												</td>
-											</tr>
-											<tr>
-												<td>FOL004</td>
-												<td>Altima</td>
-												<td>Pati Chapoy</td>
-												<td>06/01/2020 16:00</td>
-												<td>08/01/2020 10:00</td>
-												<td class="tdcenter">
-													<button data-target="#infoTraspaso" data-toggle="modal" class="btn btn-info btn-circle btn-sm text-white"><i class="fas fa-info"></i></button>
-												</td>
-												<td>Devuelto</td>
-												<td class="tdcenter">
-												</td>
-											</tr>
-											<tr>
-												<td>FOL005</td>
-												<td>Altima</td>
-												<td>Andrea Legarreta</td>
-												<td>09/01/2020 16:00</td>
-												<td>15/01/2020 10:00</td>
-												<td class="tdcenter">
-													<button data-target="#infoTraspaso" data-toggle="modal" class="btn btn-info btn-circle btn-sm text-white"><i class="fas fa-info"></i></button>
-												</td>
-												<td>Devuelto con recargos</td>
-												<td class="tdcenter">
-												</td>
-											</tr>
-											<tr>
-												<td>FOL006</td>
-												<td>Altima</td>
-												<td>Eugenio Derbez</td>
-												<td>10/01/2020 16:00</td>
-												<td>18/01/2020 10:00</td>
-												<td class="tdcenter">
-													<button data-target="#infoTraspaso" data-toggle="modal" class="btn btn-info btn-circle btn-sm text-white"><i class="fas fa-info"></i></button>
-												</td>
-												<td>Prestado a empresa</td>
-												<td class="tdcenter">
-													<a data-target="#devolucionTraspaso" data-toggle="modal" class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Entregado"><i class="fas fa-check"></i></a>
-												</td>
 											</tr>
 										</tbody>
 									</table>
@@ -173,42 +109,9 @@
 	<script src="/dist/js/confirmacionesMovimientos.js"></script>
      <script>
         $(document).ready(function() {
-            $('#tablaTraspasoinfo').DataTable({
-                "ordering": false,
-                "pageLength": 5,
-                "lengthMenu": [
-                    [5, 10, 25, 50, 100],
-                    [5, 10, 25, 50, 100]
-                ],
-                "language": {
-                    "sProcessing": "Procesando...",
-                    "sLengthMenu": "Mostrar _MENU_ registros",
-                    "sZeroRecords": "No se encontraron resultados",
-                    "sEmptyTable": "Ningún dato disponible en esta tabla =(",
-                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                    "sInfoPostFix": "",
-                    "sSearch": "Buscar:",
-                    "sUrl": "",
-                    "sInfoThousands": ",",
-                    "sLoadingRecords": "Cargando...",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                    },
-                    "buttons": {
-                        "copy": "Copiar",
-                        "colvis": "Visibilidad"
-                    }
-                }
-            });
+            listarTabla();
+            listarEmpresas();
+            listarMuestras();
 
         });
     </script>

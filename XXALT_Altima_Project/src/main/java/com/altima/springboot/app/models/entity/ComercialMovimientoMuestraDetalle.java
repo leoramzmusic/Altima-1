@@ -29,12 +29,23 @@ public class ComercialMovimientoMuestraDetalle implements Serializable {
 	@Column(name="id_detalle_pedido")
 	private Long idDetallePedido;
 	
+	@Column(name="codigo_barras")
+	private String codigoBarras;
+	
 	@Column(name="id_movimiento")
 	private Long idMovimiento;
 	
 	@Column(name="nombre_muestra")
 	private String nombreMuestra;
 	
+	public String getCodigoBarras() {
+		return codigoBarras;
+	}
+
+	public void setCodigoBarras(String codigoBarras) {
+		this.codigoBarras = codigoBarras;
+	}
+
 	@Column(name="fecha_salida")
 	private String fecha_salida;
 	

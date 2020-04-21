@@ -1,9 +1,45 @@
         <div class="card-body">
+        <div class="row d-none d-print-block">
+                                <table class="table table-borderless table-sm">
+                                    <thead>
+                                        <tr style=" border: 1px solid #dddddd;border-right-width:0px;border-left-width:0px;border-top-width:0px;">
+                                            <td style="width: 30%"><img class="h-50" src="/dist/img/logo.png"></td>
+                                            <td style="width: 40%; font-size: 30px;" class="text-center"><strong>Reporte de Material</strong></td>
+                                            <td style="width: 30%" class="text-right"><a class="fechaReporteMaterial"></a></td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+            
+            <table class="table table-borderless">
+                <thead> 
+                    <tr>
+                        <th style="widh:50%">Nombre:</th>
+                        <th style="widh:50%">Clave:</th>
+                    </tr>
+                    <tr>
+                        <td th:text="${forro.nombreForro}"></td>
+                        <td th:text="${forro.idText}"></td>
+                    </tr>
+                </thead>
+            </table>
+            <table class="table table-borderless">
+                <thead> 
+                    <tr>
+                        <th style="widh:50%">Ancho:</th>
+                        <th style="widh:50%">Color:</th>
+                    </tr>
+                    <tr>
+                        <td th:text="${forro.anchoForro}"></td>
+                        <td>Azul</td>
+                    </tr>
+                </thead>
+            </table>
             <table id="mytablef" class="table table-borderless">
                 <tr>
                     <th>Forro Composicion</th>
                     <th style="display:none;">Famila Composicion</th>
-                    <th>Famila Composicion</th>
+                    <th>Familia Composicion</th>
 
                 </tr>
             <thead>
@@ -19,16 +55,9 @@
             <table class="table table-borderless">
                 <thead> 
                     <tr>
-                        <th colspan="6">Clave:</th>
-                        <th colspan="6">Nombre:</th>
-                        <th colspan="6">Ancho:</th>
                         <th colspan="6">Descripci&oacute;n:</th>
                     </tr>
-                    <tr>
-                        <td colspan="6" th:text="${forro.idText}"></td>
-                        <td colspan="6" th:text="${forro.nombreForro}"></td>
-                        <td colspan="6" th:text="${forro.anchoForro}"></td>
-                        <td colspan="6" th:text="${forro.descripcionForro}"></td>
+                        <td colspan="12" th:text="${forro.descripcionForro}"></td>
                     </tr>
                 </thead>
             </table>

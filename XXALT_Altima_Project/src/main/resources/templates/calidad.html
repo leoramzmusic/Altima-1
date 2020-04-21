@@ -63,12 +63,7 @@
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <h1>
-								Calidad <a data-toggle="modal" data-target="#modalCalidad"><button
-										class="bt btn-primary btn-circle btn-sm popoverxd" data-container="body"
-										data-placement="right"
-										data-content="Agregar">
-										<i class="fas fa-plus"></i>
-									</button></a>
+								Calidad 
 							</h1>
                         </div>
                         <div class="col-sm-6">
@@ -82,22 +77,6 @@
                 </div>
 				<!-- /.container-fluid -->
 			</section>
-			<div class="modal fade" id="modalCalidad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Material para realizar pruebas</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-footer">
-                            <a th:href="${'calidad-nueva-prueba'}" class="btn btn-primary mr-auto">Tela / Forro</a>
-                            <a th:href="${'calidad-nueva-prueba-otro'}" class="btn btn-primary">Otro material</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
 			<!-- Main content -->
 			<section class="content">
 				<div class="container-fluid">
@@ -112,8 +91,8 @@
 									<table class="table tablexd table-striped table-bordered">
 										<thead>
 											<tr>
-												<th>Folio</th>
 												<th>Clave</th>
+												
 												<th>Nombre</th>
 												<th>Pruebas</th>
 												<th>Estatus</th>
@@ -124,8 +103,8 @@
 										</tbody>
 											<tr th:each="calidades:${listCalidades}">
 												<td th:text="${calidades[1]}"></td>
-												<td th:text="${calidades[2]}"></td>
-												<td th:text="${calidades[4]}"></td>
+												
+												<td th:text="${calidades[3]}"></td>
 												<td class="tdcenter"><a class="btn btn-info popoverxd text-white" data-container="body" data-placement="top" data-html="true"
 													data-content="<strong>Prueba de encogimiento: </strong>En proceso<br>
 																  <strong>Prueba de lavado y pilling: </strong>En proceso<br>
@@ -133,16 +112,24 @@
 																  <strong>Prueba de contaminaci&oacute;n: </strong>En proceso"
 													style="border-radius: 35%;"><i class="fas fa-info fa-sm"></i></a>&nbsp;
 												</td>
-												<td th:text="${calidades[5]==0}?'En Proceso':'Terminada'"></td>
+												<td >Pendiente</td>
 												<td class="tdcenter">
-													<a  th:href="${calidades[3]==null}? @{detalle-calidad/}+${calidades[0]}: @{calidad}" class="btn btn-info text-white">
+													<a  th:href="${calidades[0]==null}? @{detalle-calidad/}+${calidades[0]}: @{calidad}" class="btn btn-info text-white">
 														<i class="fas fa-info-circle"></i> Ver m&aacute;s detalles
 													</a>&nbsp;
 												</td>						
 												<td class="tdcenter">
-													<a class="btn btn-warning popoverxd" th:href="${calidades[3]==null}? @{/calidad-nueva-prueba/}+${calidades[0]}: @{calidad}" data-container="body" data-placement="top" data-content="Editar" style="border-radius: 35%;">
+													<a class="btn btn-warning popoverxd" th:href="@{/calidad-nueva-prueba/tela/}+${calidades[0]}"  th:if="${calidades[4]=='Tela'}" data-container="body" data-placement="top" data-content="Editar" style="border-radius: 35%;">
 														<i class="fas fa-pen fa-sm"></i>
-													</a>&nbsp;
+													</a>
+													<a class="btn btn-warning popoverxd" th:href="@{/calidad-nueva-prueba/forro/}+${calidades[0]}"  th:if="${calidades[4]=='Forro'}" data-container="body" data-placement="top" data-content="Editar" style="border-radius: 35%;">
+														<i class="fas fa-pen fa-sm"></i>
+													</a>
+													<a class="btn btn-warning popoverxd" th:href="@{/calidad-nueva-prueba-otro/}+${calidades[0]}"  th:if="${calidades[4]=='Material'}" data-container="body" data-placement="top" data-content="Editar" style="border-radius: 35%;">
+														<i class="fas fa-pen fa-sm"></i>
+													</a>
+													<a onclick="aceptarCalidad()" class="btn btn-success text-white btn-circle btn-sm popoverxd" data-container="body" data-placement="top" data-content="Aprobar"><i class="fas fa-check"></i></a>
+													<a onclick="rechazarCalidad()" class="btn btn-danger text-white btn-circle btn-sm popoverxd" data-container="body" data-placement="top" data-content="Rechazar"><i class="fas fa-times"></i></a>
 												</td>
 											</tr>
 										
@@ -239,6 +226,7 @@
 			console.log('Esto es una computadora');
 		}
 	</script>
+	<script src="dist/js/calidadConfirmaciones.js"></script>
 </body>
 
 </html>
