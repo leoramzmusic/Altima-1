@@ -113,9 +113,16 @@ public class MaterialesController {
 
 	@PostMapping("/guardar")
 	public String guardarMaterial(@ModelAttribute DisenioMaterial material, RedirectAttributes redirectAttrs) {
+		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		
+		
 		if (material.getIdMaterial() == null || material.getIdMaterial() <= 0) {
 			material.setCreadoPor(auth.getName());
+			if (material.getCalidad()=="null") {
+				material.setCalidad("0");
+				
+			}
 			
 			disenioMaterialService.save(material);
 			if (disenioMaterialService.findLastMaterial(material.getIdTipoMaterial()).size() > 1) {
@@ -135,16 +142,24 @@ public class MaterialesController {
 			material.setEstatusMaterial("0");
 			material.setIdText("MAE" + (material.getIdMaterial() + 1000));
 			material.setEstatus("1");
+			
+			if (material.getCalidad()=="null") {
+				material.setCalidad("0");
+				
+			}
 			disenioMaterialService.save(material);
 			redirectAttrs.addFlashAttribute("title", "Material Insertado Correctamente").addFlashAttribute("icon",
 					"success");
 		} else {
 			
 			
-			System.out.println("aqui esta el id"+ material.getIdMaterial());
-			material= disenioMaterialService.findOne(material.getIdMaterial());
+			//System.out.println("aqui esta el id"+ material.getIdMaterial());
+			//material= disenioMaterialService.findOne(material.getIdMaterial());
 		
-			
+			if (material.getCalidad()=="null") {
+				material.setCalidad("0");
+				
+			}
 			material.setCreadoPor(material.getCreadoPor());
 			material.setIdText("MAE" + (material.getIdMaterial() + 1000));
 			material.setEstatus("1");
