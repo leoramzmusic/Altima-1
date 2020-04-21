@@ -116,14 +116,18 @@ public class MaterialesController {
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
-		
-		if (material.getIdMaterial() == null || material.getIdMaterial() <= 0) {
-			material.setCreadoPor(auth.getName());
-			if (material.getCalidad()=="null") {
+		 System.out.println("la calidad guardar1" + material.getCalidad());
+			if (material.getCalidad()==null) {
 				material.setCalidad("0");
+				
 				
 			}
 			
+		
+		
+		if (material.getIdMaterial() == null || material.getIdMaterial() <= 0) {
+			material.setCreadoPor(auth.getName());
+			material.setEstatusMaterial("0");
 			disenioMaterialService.save(material);
 			if (disenioMaterialService.findLastMaterial(material.getIdTipoMaterial()).size() > 1) {
 				Object[] vat = disenioMaterialService.findLastMaterial(material.getIdTipoMaterial()).get(1);
@@ -143,10 +147,9 @@ public class MaterialesController {
 			material.setIdText("MAE" + (material.getIdMaterial() + 1000));
 			material.setEstatus("1");
 			
-			if (material.getCalidad()=="null") {
-				material.setCalidad("0");
-				
-			}
+			System.out.println("la calidad guardar2" + material.getCalidad());
+			
+		
 			disenioMaterialService.save(material);
 			redirectAttrs.addFlashAttribute("title", "Material Insertado Correctamente").addFlashAttribute("icon",
 					"success");
@@ -156,10 +159,6 @@ public class MaterialesController {
 			//System.out.println("aqui esta el id"+ material.getIdMaterial());
 			//material= disenioMaterialService.findOne(material.getIdMaterial());
 		
-			if (material.getCalidad()=="null") {
-				material.setCalidad("0");
-				
-			}
 			material.setCreadoPor(material.getCreadoPor());
 			material.setIdText("MAE" + (material.getIdMaterial() + 1000));
 			material.setEstatus("1");

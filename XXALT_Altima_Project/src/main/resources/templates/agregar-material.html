@@ -194,7 +194,28 @@
 	
 	function cargar_pagina(){
 		
-		  document.getElementById("test2").style.display="none";
+	
+		document.getElementById("test2").style.display="none";
+		
+		
+		var texto=document.getElementById("cla");
+		  var valordeltexto=texto.options[texto.selectedIndex].text;
+		  console.log("aqui esta el valor del select");
+		  console.log(valordeltexto);
+		
+		
+		
+		if(valordeltexto == "Independiente del color de la tela"){
+			  console.log("si entra ");
+
+	          document.getElementById("test2").style.display="block";
+	          document.getElementById("test1").style.display="none";
+	         
+			
+		  }
+		
+		
+		
 		
 		console.log(definitiva);
 		
