@@ -167,8 +167,8 @@ public class UploadServiceImpl implements IUploadService {
 	private final static String UPLOADS_FOLDER = "uploads/cuidados";
 
 	@Override
-	public Resource loadcuidados(String filename) throws MalformedURLException {
-		Path pathFoto = getPathcuidados(filename);
+	public Resource loadfile(String filename) throws MalformedURLException {
+		Path pathFoto = getPathfile(filename);
 		log.info("pathFoto: " + pathFoto);
 
 		Resource recurso = new UrlResource(pathFoto.toUri());
@@ -180,9 +180,9 @@ public class UploadServiceImpl implements IUploadService {
 	}
 
 	@Override
-	public String copycuidados(MultipartFile file) throws IOException {
+	public String copyfile(MultipartFile file) throws IOException {
 		String uniqueFilename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
-		Path rootPath = getPathcuidados(uniqueFilename);
+		Path rootPath = getPathfile(uniqueFilename);
 
 		log.info("rootPath: " + rootPath);
 
@@ -192,7 +192,7 @@ public class UploadServiceImpl implements IUploadService {
 	}
 
 	@Override
-	public boolean deletecuidados(String filename) {
+	public boolean deletefile(String filename) {
 		if (filename != null && filename.length() > 0) {
 			Path rootPath = getPath(filename);
 			File archivo = rootPath.toFile();
@@ -206,12 +206,12 @@ public class UploadServiceImpl implements IUploadService {
 		return false;
 	}
 
-	public Path getPathcuidados(String filename) {
+	public Path getPathfile(String filename) {
 		return Paths.get(UPLOADS_FOLDER).resolve(filename).toAbsolutePath();
 	}
 
 	@Override
-	public void initcuidados() throws IOException {
+	public void initfile() throws IOException {
 		// TODO Auto-generated method stub
 		Files.createDirectory(Paths.get(UPLOADS_FOLDER));
 	}

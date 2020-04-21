@@ -57,7 +57,7 @@ public class CatalogoController {
 		Resource recurso = null;
 
 		try {
-			recurso = uploadFileService.loadcuidados(filename);
+			recurso = uploadFileService.loadfile(filename);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
@@ -346,7 +346,7 @@ public class CatalogoController {
 			instruccioncuidado.setEstatus(1);
 			String uniqueFilename = null;
 			try {
-				uniqueFilename = uploadFileService.copycuidados(iconocuidado);
+				uniqueFilename = uploadFileService.copyfile(iconocuidado);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
