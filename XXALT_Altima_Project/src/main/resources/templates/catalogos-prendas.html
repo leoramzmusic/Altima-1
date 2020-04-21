@@ -1,23 +1,23 @@
 <!-- small box -->
 <html xmlns:th="http://www.thymeleaf.org">
-<div class="small-box bg-info">
+<div class="small-box bg-warning">
     <div class="inner">
         <h3>Fam. Prendas</h3>
-        <button data-toggle="modal" data-target="#detallePrenda" class="btn btn-link" style="color: #ffffff!important; padding-left: 1px;"><i class="fas fa-info-circle"></i> Detalle</button>
+        <button data-toggle="modal" data-target="#detallePrenda" class="btn btn-link text-dark" style="padding-left: 1px;"><i class="fas fa-info-circle"></i> Detalle</button>
     </div>
     <div class="icon">
         <i class="ion ion-network"></i>
     </div>
     <a class="small-box-footer">
-        <button onclick="agregarPrenda()" class="btn btn-link" style="color: #ffffff!important">Agregar <i class="fas fa-plus-circle"></i></button>
+        <button onclick="agregarPrenda()" class="btn btn-link text-dark">Agregar <i class="fas fa-plus-circle"></i></button>
     </a>
 </div>
 <!-- Modal Familia de prendas Tabla -->
 <div class="modal fade" id="detallePrenda" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document" id="modalPrendaMobile">
         <div class="modal-content" id="contenedorTabla4">
-            <div class="modal-header bg-info">
-                <h5 class="modal-title" id="exampleModalLongTitle">Familia de prendas <button onclick="agregarPrenda()" class="btn btn-light popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Agregar" style="border-radius: 35%;color: #17a2b8!important"><i class="fas fa-plus fa-sm"></i></button></h5>
+            <div class="modal-header bg-warning">
+                <h5 class="modal-title" id="exampleModalLongTitle">Familia de prendas <button onclick="agregarPrenda()" class="btn btn-dark btn-circle btn-sm popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Agregar"><i class="fas fa-plus text-warning"></i></button></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

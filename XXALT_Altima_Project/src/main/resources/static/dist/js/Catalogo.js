@@ -182,9 +182,8 @@ function listarColores() {
 				"<tr>" +
 				"<th>Clave</th>" +
 				"<th>Nombre</th>" +
-				"<th></th>" +
-				"<th>Cambios</th>" +
-				"<th></th>" +
+				"<th>Color</th>" +
+				"<th>Acciones</th>" +
 				"</tr>" +
 				"</thead>" +
 				"</table>" + "</div>");
@@ -197,12 +196,10 @@ function listarColores() {
 					"<td>" + data[i].idText + "</td>",
 					"<td>" + data[i].nombreLookup + "</td>",
 					"<td> <input type='color' value=" + data[i].atributo1 + " disabled> </td>",
-					"<td style='text-align: center;'>" +
-					"<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button> " +
-					"</td>",
-					" <td style='text-align: center;''>" +
-					" <button id='" + data[i].idLookup + "' value='" + data[i].nombreLookup + "' color='" + data[i].atributo1 + "' class='btn btn-warning popoverxd edit_data_color' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button> " +
-					"<button onclick='bajarColor(" + data[i].idLookup + ")' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button> " +
+					"<td style='text-align: center'>" +
+					"<button class='btn btn-info btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020'><i class='fas fa-info'></i></button> " +
+					" <button id='" + data[i].idLookup + "' value='" + data[i].nombreLookup + "' color='" + data[i].atributo1 + "' class='btn btn-warning btn-circle btn-sm popoverxd edit_data_color' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar'><i class='fas fa-pen'></i></button> " +
+					"<button onclick='bajarColor(" + data[i].idLookup + ")' class='btn btn-danger btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja'><i class='fas fa-caret-down'></i></button> " +
 					"</td>" +
 
 					"<tr>"
@@ -213,6 +210,12 @@ function listarColores() {
 				"data": b,
 				"ordering": true,
 				"pageLength": 5,
+				"drawCallback": function() {
+				    $('.popoverxd').popover({
+		                container: 'body',
+		                trigger: 'hover'
+		            });
+				  },
 				"responsive": true,
 				"lengthMenu": [
 					[5, 10, 25, 50, 100],
@@ -268,9 +271,7 @@ function listarTrazos() {
 				"<tr>" +
 				"<th>Clave</th>" +
 				"<th>Nombre</th>" +
-
-				"<th>Cambios</th>" +
-				"<th></th>" +
+				"<th>Acciones</th>" +
 				"</tr>" +
 				"</thead>" +
 				"</table>" + "</div>");
@@ -283,11 +284,9 @@ function listarTrazos() {
 					"<td>" + data[i].idText + "</td>",
 					"<td>" + data[i].nombreLookup + "</td>",
 					"<td style='text-align: center;'>" +
-					"<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button> " +
-					"</td>",
-					" <td style='text-align: center;''>" +
-					" <button id='" + data[i].idLookup + "' value='" + data[i].nombreLookup + "' class='btn btn-warning popoverxd edit_data_trazo' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button> " +
-					"<button onclick='bajarTrazo(" + data[i].idLookup + ")' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button> " +
+					"<button class='btn btn-info btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020'><i class='fas fa-info'></i></button> " +
+					"<button id='" + data[i].idLookup + "' value='" + data[i].nombreLookup + "' class='btn btn-warning btn-circle btn-sm popoverxd edit_data_trazo' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar'><i class='fas fa-pen'></i></button> " +
+					"<button onclick='bajarTrazo(" + data[i].idLookup + ")' class='btn btn-danger btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja'><i class='fas fa-caret-down'></i></button> " +
 					"</td>" +
 
 					"<tr>"
@@ -298,6 +297,12 @@ function listarTrazos() {
 				"data": b,
 				"ordering": true,
 				"pageLength": 5,
+				"drawCallback": function() {
+				    $('.popoverxd').popover({
+		                container: 'body',
+		                trigger: 'hover'
+		            });
+				  },
 				"responsive": true,
 				"lengthMenu": [
 					[5, 10, 25, 50, 100],
@@ -353,9 +358,7 @@ function listarPrendas() {
 				"<tr>" +
 				"<th>Clave</th>" +
 				"<th>Nombre</th>" +
-
-				"<th>Cambios</th>" +
-				"<th></th>" +
+				"<th>Acciones</th>" +
 				"</tr>" +
 				"</thead>" +
 				"</table>" + "</div>");
@@ -368,11 +371,9 @@ function listarPrendas() {
 					"<td>" + data[i].idText + "</td>",
 					"<td>" + data[i].nombreLookup + "</td>",
 					"<td style='text-align: center;'>" +
-					"<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button> " +
-					"</td>",
-					" <td style='text-align: center;''>" +
-					"<button onclick='editarPrenda(this);' idlookup='" + data[i].idLookup + "' nombre='" + data[i].nombreLookup + "' descripcion='" + data[i].descripcion + "' class='btn btn-warning popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button> " +
-					"<button onclick='bajarPrenda(" + data[i].idLookup + ")' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button> " +
+					"<button class='btn btn-info btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020'><i class='fas fa-info'></i></button> " +
+					"<button onclick='editarPrenda(this);' idlookup='" + data[i].idLookup + "' nombre='" + data[i].nombreLookup + "' descripcion='" + data[i].descripcion + "' class='btn btn-warning btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar'><i class='fas fa-pen'></i></button> " +
+					"<button onclick='bajarPrenda(" + data[i].idLookup + ")' class='btn btn-danger btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja'><i class='fas fa-caret-down'></i></button> " +
 					"</td>" +
 
 					"<tr>"
@@ -384,6 +385,12 @@ function listarPrendas() {
 				"ordering": true,
 				"pageLength": 5,
 				"responsive": true,
+				"drawCallback": function() {
+				    $('.popoverxd').popover({
+		                container: 'body',
+		                trigger: 'hover'
+		            });
+				  },
 				"lengthMenu": [
 					[5, 10, 25, 50, 100],
 					[5, 10, 25, 50, 100]
@@ -438,9 +445,7 @@ function listarGeneros() {
 				"<tr>" +
 				"<th>Clave</th>" +
 				"<th>Nombre</th>" +
-
-				"<th>Cambios</th>" +
-				"<th></th>" +
+				"<th>Acciones</th>" +
 				"</tr>" +
 				"</thead>" +
 				"</table>" + "</div>");
@@ -453,11 +458,9 @@ function listarGeneros() {
 					"<td>" + data[i].idText + "</td>",
 					"<td>" + data[i].nombreLookup + "</td>",
 					"<td style='text-align: center;'>" +
-					"<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button> " +
-					"</td>",
-					" <td style='text-align: center;''>" +
-					"<button onclick='editarGenero(this);' idlookup='" + data[i].idLookup + "' nombre='" + data[i].nombreLookup + "'  class='btn btn-warning popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button> " +
-					"<button onclick='bajarGenero(" + data[i].idLookup + ")' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button> " +
+					"<button class='btn btn-info btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020'><i class='fas fa-info'></i></button> " +
+						"<button onclick='editarGenero(this);' idlookup='" + data[i].idLookup + "' nombre='" + data[i].nombreLookup + "'  class='btn btn-warning btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar'><i class='fas fa-pen'></i></button> " +
+					"<button onclick='bajarGenero(" + data[i].idLookup + ")' class='btn btn-danger btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja'><i class='fas fa-caret-down'></i></button> " +
 					"</td>" +
 
 					"<tr>"
@@ -469,6 +472,12 @@ function listarGeneros() {
 				"ordering": true,
 				"pageLength": 5,
 				"responsive": true,
+				"drawCallback": function() {
+				    $('.popoverxd').popover({
+		                container: 'body',
+		                trigger: 'hover'
+		            });
+				  },
 				"lengthMenu": [
 					[5, 10, 25, 50, 100],
 					[5, 10, 25, 50, 100]
@@ -523,9 +532,7 @@ function listarComposiciones() {
 				"<tr>" +
 				"<th>Clave</th>" +
 				"<th>Nombre</th>" +
-
-				"<th>Cambios</th>" +
-				"<th></th>" +
+				"<th>Acciones</th>" +
 				"</tr>" +
 				"</thead>" +
 				"</table>" + "</div>");
@@ -538,11 +545,9 @@ function listarComposiciones() {
 					"<td>" + data[i].idText + "</td>",
 					"<td>" + data[i].nombreLookup + "</td>",
 					"<td style='text-align: center;'>" +
-					"<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button> " +
-					"</td>",
-					" <td style='text-align: center;''>" +
-					"<button onclick='editarComposicion(this);' idlookup='" + data[i].idLookup + "' nombre='" + data[i].nombreLookup + "'  class='btn btn-warning popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button> " +
-					"<button onclick='bajarComposicion(" + data[i].idLookup + ")' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button> " +
+					"<button class='btn btn-info btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020'><i class='fas fa-info'></i></button> " +
+					"<button onclick='editarComposicion(this);' idlookup='" + data[i].idLookup + "' nombre='" + data[i].nombreLookup + "'  class='btn btn-warning btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar'><i class='fas fa-pen'></i></button> " +
+					"<button onclick='bajarComposicion(" + data[i].idLookup + ")' class='btn btn-circle btn-sm btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja'><i class='fas fa-caret-down'></i></button> " +
 					"</td>" +
 
 					"<tr>"
@@ -554,6 +559,12 @@ function listarComposiciones() {
 				"ordering": true,
 				"pageLength": 5,
 				"responsive": true,
+				"drawCallback": function() {
+				    $('.popoverxd').popover({
+		                container: 'body',
+		                trigger: 'hover'
+		            });
+				  },
 				"lengthMenu": [
 					[5, 10, 25, 50, 100],
 					[5, 10, 25, 50, 100]
@@ -608,9 +619,8 @@ function listarCuidados() {
 				"<tr>" +
 				"<th>Clave</th>" +
 				"<th>Nombre</th>" +
-				"<th></th>" +
-				"<th>Cambios</th>" +
-				"<th></th>" +
+				"<th>S&iacute;mbolo</th>" +
+				"<th>Acciones</th>" +
 				"</tr>" +
 				"</thead>" +
 				"</table>" + "</div>");
@@ -624,11 +634,9 @@ function listarCuidados() {
 					"<td>" + data[i].nombreLookup + "</td>",
 					"<td> <img class='img-thumbnail rounded float-left' style='width: 50px; height: 50px;' src='/uploads/cuidados/" + data[i].atributo1 + "' /> </td>",
 					"<td style='text-align: center;'>" +
-					"<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button> " +
-					"</td>",
-					" <td style='text-align: center;''>" +
-					"<button onclick='editarCuidado(this);' idlookup='" + data[i].idLookup + "' nombre='" + data[i].nombreLookup + "'  class='btn btn-warning popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button> " +
-					"<button onclick='bajarCuidado(" + data[i].idLookup + ")' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button> " +
+					"<button class='btn btn-info btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020'><i class='fas fa-info'></i></button> " +
+					"<button onclick='editarCuidado(this);' idlookup='" + data[i].idLookup + "' nombre='" + data[i].nombreLookup + "'  class='btn btn-warning btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar'><i class='fas fa-pen'></i></button> " +
+					"<button onclick='bajarCuidado(" + data[i].idLookup + ")' class='btn btn-danger btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja'><i class='fas fa-caret-down'></i></button> " +
 					"</td>" +
 
 					"<tr>"
@@ -640,6 +648,12 @@ function listarCuidados() {
 				"ordering": true,
 				"pageLength": 5,
 				"responsive": true,
+				"drawCallback": function() {
+				    $('.popoverxd').popover({
+		                container: 'body',
+		                trigger: 'hover'
+		            });
+				  }, 
 				"lengthMenu": [
 					[5, 10, 25, 50, 100],
 					[5, 10, 25, 50, 100]
@@ -695,8 +709,7 @@ function listarMedidas() {
 				"<th>Clave</th>" +
 				"<th>Nombre</th>" +
 				"<th>Símbolo</th>" +
-				"<th>Cambios</th>" +
-				"<th></th>" +
+				"<th>Acciones</th>" +
 				"</tr>" +
 				"</thead>" +
 				"</table>" + "</div>");
@@ -709,12 +722,11 @@ function listarMedidas() {
 					"<td>" + data[i].idText + "</td>",
 					"<td>" + data[i].nombreLookup + "</td>",
 					"<td>" + data[i].descripcionLookup + "</td>",
-					"<td style='text-align: center;'>" +
-					"<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button> " +
-					"</td>",
-					" <td style='text-align: center;''>" +
-					"<button onclick='editarMedida(this);' idlookup='" + data[i].idLookup + "' nombre='" + data[i].nombreLookup + "' simbolo='" + data[i].descripcionLookup + "' class='btn btn-warning popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button> " +
-					"<button onclick='bajarMedida(" + data[i].idLookup + ")' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button> " +
+					"<td class='text-center'>" +
+					"<button class='btn btn-info btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020'><i class='fas fa-info'></i></button> " +
+					
+					"<button onclick='editarMedida(this);' idlookup='" + data[i].idLookup + "' nombre='" + data[i].nombreLookup + "' simbolo='" + data[i].descripcionLookup + "' class='btn btn-warning btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar'><i class='fas fa-pen'></i></button> " +
+					"<button onclick='bajarMedida(" + data[i].idLookup + ")' class='btn btn-danger btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja'><i class='fas fa-caret-down'></i></button> " +
 					"</td>" +
 
 					"<tr>"
@@ -725,6 +737,12 @@ function listarMedidas() {
 				"data": b,
 				"ordering": true,
 				"pageLength": 5,
+				"drawCallback": function() {
+				    $('.popoverxd').popover({
+				    	container: 'body',
+		                trigger: 'hover'
+				    });
+				  },
 				"lengthMenu": [
 					[5, 10, 25, 50, 100],
 					[5, 10, 25, 50, 100]
@@ -779,9 +797,7 @@ function listarMateriales() {
 				"<tr>" +
 				"<th>Clave</th>" +
 				"<th>Nombre</th>" +
-
-				"<th>Cambios</th>" +
-				"<th></th>" +
+				"<th>Acciones</th>" +
 				"</tr>" +
 				"</thead>" +
 				"</table>" + "</div>");
@@ -794,11 +810,9 @@ function listarMateriales() {
 					"<td>" + data[i].idText + "</td>",
 					"<td>" + data[i].nombreLookup + "</td>",
 					"<td style='text-align: center;'>" +
-					"<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button> " +
-					"</td>",
-					" <td style='text-align: center;''>" +
-					"<button onclick='editarMaterial(this);' idlookup='" + data[i].idLookup + "' nombre='" + data[i].nombreLookup + "'  class='btn btn-warning popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button> " +
-					"<button onclick='bajarMaterial(" + data[i].idLookup + ")' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button> " +
+					"<button class='btn btn-info btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020'><i class='fas fa-info'></i></button> " +
+					"<button onclick='editarMaterial(this);' idlookup='" + data[i].idLookup + "' nombre='" + data[i].nombreLookup + "'  class='btn btn-warning btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar'><i class='fas fa-pen'></i></button> " +
+					"<button onclick='bajarMaterial(" + data[i].idLookup + ")' class='btn btn-danger btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja'><i class='fas fa-caret-down'></i></button> " +
 					"</td>" +
 
 					"<tr>"
@@ -810,6 +824,12 @@ function listarMateriales() {
 				"ordering": true,
 				"pageLength": 5,
 				"responsive": true,
+				"drawCallback": function() {
+				    $('.popoverxd').popover({
+		                container: 'body',
+		                trigger: 'hover'
+		            });
+				  },
 				"lengthMenu": [
 					[5, 10, 25, 50, 100],
 					[5, 10, 25, 50, 100]
@@ -865,9 +885,7 @@ function listarMarcadores() {
 				"<tr>" +
 				"<th>Clave</th>" +
 				"<th>Nombre</th>" +
-
-				"<th>Cambios</th>" +
-				"<th></th>" +
+				"<th>Acciones</th>" +
 				"</tr>" +
 				"</thead>" +
 				"</table>" + "</div>");
@@ -880,11 +898,9 @@ function listarMarcadores() {
 					"<td>" + data[i].idText + "</td>",
 					"<td>" + data[i].nombreLookup + "</td>",
 					"<td style='text-align: center;'>" +
-					"<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button> " +
-					"</td>",
-					" <td style='text-align: center;''>" +
-					"<button onclick='editarMarcador(this);' idlookup='" + data[i].idLookup + "' nombre='" + data[i].nombreLookup + "'  class='btn btn-warning popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button> " +
-					"<button onclick='bajarMarcador(" + data[i].idLookup + ")' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button> " +
+					"<button class='btn btn-circle btn-sm btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020'><i class='fas fa-info'></i></button> " +
+					"<button onclick='editarMarcador(this);' idlookup='" + data[i].idLookup + "' nombre='" + data[i].nombreLookup + "'  class='btn btn-warning btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar'><i class='fas fa-pen'></i></button> " +
+					"<button onclick='bajarMarcador(" + data[i].idLookup + ")' class='btn btn-danger btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja'><i class='fas fa-caret-down'></i></button> " +
 					"</td>" +
 
 					"<tr>"
@@ -896,6 +912,12 @@ function listarMarcadores() {
 				"ordering": true,
 				"pageLength": 5,
 				"responsive": true,
+				"drawCallback": function() {
+				    $('.popoverxd').popover({
+		                container: 'body',
+		                trigger: 'hover'
+		            });
+				  },
 				"lengthMenu": [
 					[5, 10, 25, 50, 100],
 					[5, 10, 25, 50, 100]
@@ -950,9 +972,7 @@ function listarComposiciones1() {
 				"<tr>" +
 				"<th>Clave</th>" +
 				"<th>Nombre</th>" +
-
-				"<th>Cambios</th>" +
-				"<th></th>" +
+				"<th>Acciones</th>" +
 				"</tr>" +
 				"</thead>" +
 				"</table>" + "</div>");
@@ -965,11 +985,9 @@ function listarComposiciones1() {
 					"<td>" + data[i].idText + "</td>",
 					"<td>" + data[i].nombreLookup + "</td>",
 					"<td style='text-align: center;'>" +
-					"<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button> " +
-					"</td>",
-					" <td style='text-align: center;''>" +
-					"<button onclick='editarComposicion1(this);' idlookup='" + data[i].idLookup + "' nombre='" + data[i].nombreLookup + "'  class='btn btn-warning popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button> " +
-					"<button onclick='bajarComposicion1(" + data[i].idLookup + ")' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button> " +
+					"<button class='btn btn-info btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020'><i class='fas fa-info'></i></button> " +
+					"<button onclick='editarComposicion1(this);' idlookup='" + data[i].idLookup + "' nombre='" + data[i].nombreLookup + "'  class='btn btn-warning btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar'><i class='fas fa-pen'></i></button> " +
+					"<button onclick='bajarComposicion1(" + data[i].idLookup + ")' class='btn btn-danger btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja'><i class='fas fa-caret-down'></i></button> " +
 					"</td>" +
 
 					"<tr>"
@@ -981,6 +999,12 @@ function listarComposiciones1() {
 				"ordering": true,
 				"pageLength": 5,
 				"responsive": true,
+				"drawCallback": function() {
+				    $('.popoverxd').popover({
+		                container: 'body',
+		                trigger: 'hover'
+		            });
+				  },
 				"lengthMenu": [
 					[5, 10, 25, 50, 100],
 					[5, 10, 25, 50, 100]
@@ -1200,7 +1224,7 @@ function agregarColor() {
 		cancelButtonColor: '#6C757D',
 		cancelButtonText: 'Cancelar',
 		confirmButtonText: 'Agregar',
-		confirmButtonColor: '#FFC107',
+		confirmButtonColor: '#dc3545',
 	}).then((result) => {
 		if (result.value && document.getElementById("color").value) {
 			var Color = document.getElementById("color").value;
@@ -1281,7 +1305,7 @@ $(document).on('click', '.edit_data_color', function () {
 		cancelButtonColor: '#6C757D',
 		cancelButtonText: 'Cancelar',
 		confirmButtonText: 'Actualizar',
-		confirmButtonColor: '#DC3545',
+		confirmButtonColor: '#dc3545',
 	}).then((result) => {
 		if (result.value && document.getElementById("color").value) {
 			var Color = document.getElementById("color").value;
@@ -1321,7 +1345,7 @@ function bajarColor(idbaja) {
 		cancelButtonColor: '#6C757D',
 		cancelButtonText: 'Cancelar',
 		confirmButtonText: 'Dar de baja',
-		confirmButtonColor: '#FFC107',
+		confirmButtonColor: '#dc3545',
 	}).then((result) => {
 		if (result.value && id != null) {
 
@@ -1390,7 +1414,7 @@ function agregarTrazo() {
 		cancelButtonColor: '#6C757D',
 		cancelButtonText: 'Cancelar',
 		confirmButtonText: 'Agregar',
-		confirmButtonColor: '#28A745',
+		confirmButtonColor: '#17a2b8',
 	}).then((result) => {
 		if (result.value && document.getElementById("trazo").value) {
 			var Trazo = document.getElementById("trazo").value;
@@ -1465,7 +1489,7 @@ $(document).on('click', '.edit_data_trazo', function () {
 		cancelButtonColor: '#6C757D',
 		cancelButtonText: 'Cancelar',
 		confirmButtonText: 'Actualizar',
-		confirmButtonColor: '#28A745',
+		confirmButtonColor: '#17a2b8',
 	}).then((result) => {
 		if (result.value && document.getElementById("trazo").value) {
 			var Trazo = document.getElementById("trazo").value;
@@ -1503,7 +1527,7 @@ function bajarTrazo(idbaja) {
 		cancelButtonColor: '#6C757D',
 		cancelButtonText: 'Cancelar',
 		confirmButtonText: 'Dar de baja',
-		confirmButtonColor: '#FFC107',
+		confirmButtonColor: '#17a2b8',
 	}).then((result) => {
 		if (result.value && id != null) {
 
@@ -1571,7 +1595,7 @@ function agregarPrenda() {
 		cancelButtonColor: '#6C757D',
 		cancelButtonText: 'Cancelar',
 		confirmButtonText: 'Agregar',
-		confirmButtonColor: '#17a2b8',
+		confirmButtonColor: '#ffc107',
 	}).then((result) => {
 		if (result.value && document.getElementById("familia").value) {
 			var FamiliaPrenda = document.getElementById("familia").value;
@@ -1648,7 +1672,7 @@ function editarPrenda(e) {
 		cancelButtonColor: '#6C757D',
 		cancelButtonText: 'Cancelar',
 		confirmButtonText: 'Actualizar',
-		confirmButtonColor: '#FFC107',
+		confirmButtonColor: '#ffc107',
 	}).then((result) => {
 		if (result.value && document.getElementById("nombre").value && document.getElementById("idlookup").value) {
 			var FamiliaPrenda = document.getElementById("nombre").value;
@@ -1723,7 +1747,7 @@ function reactivarPrenda() {
 		cancelButtonColor: '#6C757D',
 		cancelButtonText: 'Cancelar',
 		confirmButtonText: 'Activar',
-		confirmButtonColor: '#17A2B8',
+		confirmButtonColor: '#ffc107',
 	}).then((result) => {
 		if (result.value) {
 			Swal.fire({
@@ -1754,7 +1778,7 @@ function agregarGenero() {
 		cancelButtonColor: '#6C757D',
 		cancelButtonText: 'Cancelar',
 		confirmButtonText: 'Agregar',
-		confirmButtonColor: '#17a2b8',
+		confirmButtonColor: '#dc3545',
 	}).then((result) => {
 		if (result.value && document.getElementById("genero").value) {
 			var Genero = document.getElementById("genero").value;
@@ -1829,7 +1853,7 @@ function editarGenero(e) {
 		cancelButtonColor: '#6C757D',
 		cancelButtonText: 'Cancelar',
 		confirmButtonText: 'Actualizar',
-		confirmButtonColor: '#FFC107',
+		confirmButtonColor: '#dc3545',
 	}).then((result) => {
 		if (result.value && document.getElementById("nombre").value && document.getElementById("idlookup").value) {
 			var FamiliaGenero = document.getElementById("nombre").value;
@@ -1869,7 +1893,7 @@ function bajarGenero(idbaja) {
 		cancelButtonColor: '#6C757D',
 		cancelButtonText: 'Cancelar',
 		confirmButtonText: 'Dar de baja',
-		confirmButtonColor: '#FFC107',
+		confirmButtonColor: '#dc3545',
 	}).then((result) => {
 		if (result.value && id != null) {
 			$.ajax({
@@ -1905,7 +1929,7 @@ function reactivarGenero() {
 		cancelButtonColor: '#6C757D',
 		cancelButtonText: 'Cancelar',
 		confirmButtonText: 'Activar',
-		confirmButtonColor: '#DC3545',
+		confirmButtonColor: '#dc3545',
 	}).then((result) => {
 		if (result.value) {
 			Swal.fire({
@@ -1938,7 +1962,7 @@ function agregarComposicion() {
 
 			'</div>' +
 			'<div class="form-group col-sm-12">' +
-			'<button class="btn btn-primary btn-block" id="agregarInstrucciones" onclick="insertar()">Agregar</button>' +
+			'<button class="btn btn-danger btn-block" id="agregarInstrucciones" onclick="insertar()">Agregar</button>' +
 			'</div>' +
 			'<div class="form-group col-sm-12" id="tabla">' +
 			'<label for="pedidonom">Listado de indicaciones</label>' +
@@ -1960,8 +1984,8 @@ function agregarComposicion() {
 		showCancelButton: false,
 		cancelButtonColor: '#6C757D',
 		cancelButtonText: 'Cancelar',
-		confirmButtonText: 'Cerrar',
-		confirmButtonColor: '#17a2b8',
+		confirmButtonText: 'Confirmar',
+		confirmButtonColor: '#dc3545',
 		customClass: 'swal-wide',
 	}).then((result) => {
 		listarComposiciones();
@@ -2017,8 +2041,8 @@ function bajarcomposicioncuidado(idbaja) {
 				showCancelButton: false,
 				cancelButtonColor: '#6C757D',
 				cancelButtonText: 'Cancelar',
-				confirmButtonText: 'Finalizar',
-				confirmButtonColor: '#17a2b8',
+				confirmButtonText: 'Confirmar',
+				confirmButtonColor: '#dc3545',
 				customClass: 'swal-wide',
 			});
 
@@ -2252,7 +2276,7 @@ function editarComposicion(e) {
 
 			'</div>' +
 			'<div class="form-group col-sm-12">' +
-			'<button class="btn btn-primary btn-block" id="agregarInstrucciones" onclick="insertar()">Agregar</button>' +
+			'<button class="btn btn-danger btn-block" id="agregarInstrucciones" onclick="insertar()">Agregar</button>' +
 			'</div>' +
 			'<div class="form-group col-sm-12" id="selectcuidados2">' +
 			'<label for="pedidonom">Listado de indicaciones</label>' +
@@ -2263,7 +2287,7 @@ function editarComposicion(e) {
 		cancelButtonColor: '#6C757D',
 		cancelButtonText: 'Cerrar',
 		confirmButtonText: 'Actualizar nombre de composición',
-		confirmButtonColor: '#17a2b8',
+		confirmButtonColor: '#dc3545',
 		customClass: 'swal-wide',
 	}).then((result) => {
 		if (result.value && document.getElementById("composicion").value && document.getElementById("composicionmm").value) {
@@ -2300,13 +2324,13 @@ function editarComposicion(e) {
 function bajarComposicion(idbaja) {
 	var id = idbaja;
 	Swal.fire({
-		title: '¿Deseas dar de baja la composicion?',
+		title: '¿Deseas dar de baja la familia de composici&oacute;n?',
 		icon: 'warning',
 		showCancelButton: true,
 		cancelButtonColor: '#6C757D',
 		cancelButtonText: 'Cancelar',
 		confirmButtonText: 'Dar de baja',
-		confirmButtonColor: '#FFC107',
+		confirmButtonColor: '#dc3545',
 	}).then((result) => {
 		if (result.value && id != null) {
 
@@ -2382,7 +2406,7 @@ function agregarCuidado() {
 		cancelButtonColor: '#6C757D',
 		cancelButtonText: 'Cancelar',
 		confirmButtonText: 'Agregar',
-		confirmButtonColor: '#17a2b8',
+		confirmButtonColor: '#28a745',
 	}).then((result) => {
 		if (result.value && document.getElementById("cuidado").value && document.getElementById("iconocuidado").value) {
 			var Cuidado = document.getElementById("cuidado").value;
@@ -2474,7 +2498,7 @@ function editarCuidado(e) {
 		cancelButtonColor: '#6C757D',
 		cancelButtonText: 'Cancelar',
 		confirmButtonText: 'Actualizar',
-		confirmButtonColor: '#FFC107',
+		confirmButtonColor: '#28a745',
 	}).then((result) => {
 		if (result.value && document.getElementById("nombre").value && document.getElementById("idlookup").value) {
 			var InstruccionCuidado = document.getElementById("nombre").value;
@@ -2514,7 +2538,7 @@ function bajarCuidado(idbaja) {
 		cancelButtonColor: '#6C757D',
 		cancelButtonText: 'Cancelar',
 		confirmButtonText: 'Dar de baja',
-		confirmButtonColor: '#FFC107',
+		confirmButtonColor: '#28a745',
 	}).then((result) => {
 		if (result.value && id != null) {
 
@@ -2552,7 +2576,7 @@ function reactivarCuidado() {
 		cancelButtonColor: '#6C757D',
 		cancelButtonText: 'Cancelar',
 		confirmButtonText: 'Activar',
-		confirmButtonColor: '#DC3545',
+		confirmButtonColor: '#28a745',
 	}).then((result) => {
 		if (result.value) {
 			Swal.fire({
@@ -2680,7 +2704,7 @@ function editarMedida(e) {
 		cancelButtonColor: '#6C757D',
 		cancelButtonText: 'Cancelar',
 		confirmButtonText: 'Actualizar',
-		confirmButtonColor: '#FFC107',
+		confirmButtonColor: '#17a2b8',
 	}).then((result) => {
 		if (result.value && document.getElementById("nombre").value && document.getElementById("idlookup").value && document.getElementById("simbolo").value) {
 			var Medida = document.getElementById("nombre").value;
@@ -2717,13 +2741,13 @@ function editarMedida(e) {
 function bajarMedida(idbaja) {
 	var id = idbaja;
 	Swal.fire({
-		title: '¿Deseas dar de baja el cuidado?',
+		title: '¿Deseas dar de baja la medida?',
 		icon: 'warning',
 		showCancelButton: true,
 		cancelButtonColor: '#6C757D',
 		cancelButtonText: 'Cancelar',
 		confirmButtonText: 'Dar de baja',
-		confirmButtonColor: '#FFC107',
+		confirmButtonColor: '#17a2b8',
 	}).then((result) => {
 		if (result.value && id != null) {
 
@@ -2745,7 +2769,7 @@ function bajarMedida(idbaja) {
 			Swal.fire({
 				position: 'center',
 				icon: 'success',
-				title: 'dado de baja correctamente',
+				title: 'Dada de baja correctamente',
 				showConfirmButton: false,
 				timer: 1250
 			})
@@ -2872,7 +2896,7 @@ function editarMaterial(e) {
 		cancelButtonColor: '#6C757D',
 		cancelButtonText: 'Cancelar',
 		confirmButtonText: 'Actualizar',
-		confirmButtonColor: '#FFC107',
+		confirmButtonColor: '#17a2b8',
 	}).then((result) => {
 		if (result.value && document.getElementById("nombre").value && document.getElementById("idlookup").value) {
 			var Material = document.getElementById("nombre").value;
@@ -2913,7 +2937,7 @@ function bajarMaterial(idbaja) {
 		cancelButtonColor: '#6C757D',
 		cancelButtonText: 'Cancelar',
 		confirmButtonText: 'Dar de baja',
-		confirmButtonColor: '#FFC107',
+		confirmButtonColor: '#17a2b8',
 	}).then((result) => {
 		if (result.value && id != null) {
 			$.ajax({
@@ -2941,7 +2965,7 @@ function bajarMaterial(idbaja) {
 	})
 }
 // Reactivar familia de genero
-function reactivarCuidado() {
+function reactivarMaterial() {
 	Swal.fire({
 		title: '¿Deseas reactivar la familia de género?',
 		icon: 'warning',
@@ -2949,7 +2973,7 @@ function reactivarCuidado() {
 		cancelButtonColor: '#6C757D',
 		cancelButtonText: 'Cancelar',
 		confirmButtonText: 'Activar',
-		confirmButtonColor: '#DC3545',
+		confirmButtonColor: '#17a2b8',
 	}).then((result) => {
 		if (result.value) {
 			Swal.fire({
@@ -2981,7 +3005,7 @@ function agregarMarcador() {
 		cancelButtonColor: '#6C757D',
 		cancelButtonText: 'Cancelar',
 		confirmButtonText: 'Agregar',
-		confirmButtonColor: '#17a2b8',
+		confirmButtonColor: '#ffc107',
 	}).then((result) => {
 		if (result.value && document.getElementById("marcador").value) {
 			var Marcador = document.getElementById("marcador").value;
@@ -3149,7 +3173,7 @@ function agregarComposicion1() {
 		cancelButtonColor: '#6C757D',
 		cancelButtonText: 'Cancelar',
 		confirmButtonText: 'Agregar',
-		confirmButtonColor: '#17a2b8',
+		confirmButtonColor: '#28a745',
 	}).then((result) => {
 		if (result.value && document.getElementById("composicion1").value) {
 			var Composicion = document.getElementById("composicion1").value;
@@ -3228,7 +3252,7 @@ function editarComposicion1(e) {
 		cancelButtonColor: '#6C757D',
 		cancelButtonText: 'Cancelar',
 		confirmButtonText: 'Actualizar',
-		confirmButtonColor: '#FFC107',
+		confirmButtonColor: '#28a745',
 	}).then((result) => {
 		if (result.value && document.getElementById("nombre").value && document.getElementById("idlookup").value) {
 			var Composicion = document.getElementById("nombre").value;
@@ -3263,13 +3287,13 @@ function editarComposicion1(e) {
 function bajarComposicion1(idbaja) {
 	var id = idbaja;
 	Swal.fire({
-		title: '¿Deseas dar de baja el marcador?',
+		title: '¿Deseas dar de baja la composici&oacute;n?',
 		icon: 'warning',
 		showCancelButton: true,
 		cancelButtonColor: '#6C757D',
 		cancelButtonText: 'Cancelar',
 		confirmButtonText: 'Dar de baja',
-		confirmButtonColor: '#FFC107',
+		confirmButtonColor: '#28a745',
 	}).then((result) => {
 		if (result.value && id != null) {
 			$.ajax({

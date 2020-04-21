@@ -1,23 +1,23 @@
 <!-- small box -->
 <html xmlns:th="http://www.thymeleaf.org">
-<div class="small-box bg-primary">
+<div class="small-box bg-warning">
     <div class="inner">
         <h3>Marcadores</h3>
-        <button data-toggle="modal" data-target="#detalleMarcador" class="btn btn-link" style="color: #ffffff!important; padding-left: 1px;"><i class="fas fa-info-circle"></i> Detalle</button>
+        <button data-toggle="modal" data-target="#detalleMarcador" class="btn btn-link text-dark" style="padding-left: 1px;"><i class="fas fa-info-circle"></i> Detalle</button>
     </div>
     <div class="icon">
         <i class="ion ion-easel"></i>
     </div>
     <a class="small-box-footer">
-        <button onclick="agregarMarcador()" class="btn btn-link" style="color: #ffffff!important">Agregar <i class="fas fa-plus-circle"></i></button>
+        <button onclick="agregarMarcador()" class="btn btn-link text-dark">Agregar <i class="fas fa-plus-circle"></i></button>
     </a>
 </div>
 <!-- Modal Marcas Tabla -->
 <div class="modal fade" id="detalleMarcador" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document" id="modalMarcadorMobile">
         <div class="modal-content" id="contenedorTabla10">
-            <div class="modal-header bg-primary">
-                <h5 class="modal-title" id="exampleModalLongTitle">Marcador <button onclick="agregarMarcador()" class="btn btn-light popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Agregar" style="border-radius: 35%;color: #007bff"><i class="fas fa-plus fa-sm"></i></button></h5>
+            <div class="modal-header bg-warning">
+                <h5 class="modal-title" id="exampleModalLongTitle">Marcador <button onclick="agregarMarcador()" class="btn btn-dark btn-circle btn-sm popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Agregar"><i class="fas fa-plus text-warning"></i></button></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
