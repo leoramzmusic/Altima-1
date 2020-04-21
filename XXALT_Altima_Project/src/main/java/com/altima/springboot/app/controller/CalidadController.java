@@ -40,10 +40,6 @@ public class CalidadController {
 		return "calidad";
 	}
 	
-	@GetMapping("calidad-nueva-prueba")
-	public String addCalidad() {
-		return "calidad-nueva-prueba";
-	}
 	
 	@GetMapping("calidad-nueva-prueba-otro")
 	public String addCalidadOtro() {
@@ -55,8 +51,8 @@ public class CalidadController {
 		return "detalle-calidad";
 	}
 	
-	@RequestMapping(value = "calidad-nueva-prueba/{id}", method = RequestMethod.GET)
-	public String addPruebaCalidad(@PathVariable(name = "id") Long id, Model model) {
+	@RequestMapping(value = "calidad-nueva-prueba/{tipo}/{id}", method = RequestMethod.GET)
+	public String addPruebaCalidad(@PathVariable(name = "id") Long id,@PathVariable(name = "tipo") String tipo, Model model) {
 		List<DisenioPruebaEncogimientoLavado> pruebasEL = pruebaEncogiLavado.findAllByCalidad(id);
 		List<DisenioPruebaLavadoContaminacionCostura> pruebasLCC = pruebaContaCostura.findAllByCalidad(id);
 		DisenioCalidad Calidad = disenioCalidad.findOne(id);
