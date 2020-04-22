@@ -144,11 +144,22 @@ public class MaterialesController {
 				material.setIdTextProspecto("PROSP" + prefijo.toUpperCase() + "0010");
 			}
 			material.setEstatusMaterial("0");
-			material.setIdText("MAE" + (material.getIdMaterial() + 1000));
+			if (disenioMaterialService.findLastMaterial(material.getIdTipoMaterial()).size() > 1) {
+				Object[] vat = disenioMaterialService.findLastMaterial(material.getIdTipoMaterial()).get(1);
+				String var = (String) vat[2];
+				String var1 = (String) vat[5];
+				String prefijo = var1.substring(0, 3);
+				String[] part = var.split("(?<=\\D)(?=\\d)");
+				Integer cont = Integer.parseInt(part[1]);
+				material.setIdText( prefijo.toUpperCase() + "00" + (cont + 1));
+			} else {
+				Object[] vat = disenioMaterialService.findLastMaterial(material.getIdTipoMaterial()).get(0);
+				String var = (String) vat[5];
+				String prefijo = var.substring(0, 3);
+				material.setIdText( prefijo.toUpperCase() + "0010");
+			}
+		
 			material.setEstatus("1");
-			
-			System.out.println("la calidad guardar2" + material.getCalidad());
-			
 		
 			disenioMaterialService.save(material);
 			redirectAttrs.addFlashAttribute("title", "Material Insertado Correctamente").addFlashAttribute("icon",
@@ -160,8 +171,24 @@ public class MaterialesController {
 			//material= disenioMaterialService.findOne(material.getIdMaterial());
 		
 			material.setCreadoPor(material.getCreadoPor());
-			material.setIdText("MAE" + (material.getIdMaterial() + 1000));
+
 			material.setEstatus("1");
+			
+			
+			if (disenioMaterialService.findLastMaterial(material.getIdTipoMaterial()).size() > 1) {
+				Object[] vat = disenioMaterialService.findLastMaterial(material.getIdTipoMaterial()).get(1);
+				String var = (String) vat[2];
+				String var1 = (String) vat[5];
+				String prefijo = var1.substring(0, 3);
+				String[] part = var.split("(?<=\\D)(?=\\d)");
+				Integer cont = Integer.parseInt(part[1]);
+				material.setIdText( prefijo.toUpperCase() + "00" + (cont + 1));
+			} else {
+				Object[] vat = disenioMaterialService.findLastMaterial(material.getIdTipoMaterial()).get(0);
+				String var = (String) vat[5];
+				String prefijo = var.substring(0, 3);
+				material.setIdText( prefijo.toUpperCase() + "0010");
+			}
 
 			material.setActualizadoPor(auth.getName());
 			disenioMaterialService.save(material);
