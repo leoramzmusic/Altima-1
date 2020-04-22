@@ -50,14 +50,37 @@ public class CalidadController {
 	public String infoCalidad() {
 		return "detalle-calidad";
 	}
+
+	@GetMapping("calidad-nueva-prueba/{tipo}/{id}")
+	public String addCalidad(@PathVariable(name = "id") Long id,@PathVariable(name = "tipo") String tipo, Model model) {
+		String tipoint;
+		if(tipo.equals("tela")){
+			tipoint="1";
+		}
+		else if(tipo.equals("forro")){
+			tipoint="3";
+		}
+		else{
+			return "redirect:/calidad-nueva-prueba/"+tipo+"/"+id;
+		}
+		if(!disenioCalidad.findOneById(id, tipoint).equals(null)){
+			addPruebaCalidad(disenioCalidad.findOneById(id, tipoint).getIdCalidad(),id,tipoint,model);
+		}
+		model.addAttribute("tipoMaterial", tipoint);
+		System.out.println(disenioCalidad.findOneById(id, "1").getIdText());
+		model.addAttribute("idMaterial", id);
+		return "calidad-nueva-prueba";
+	}
 	
-	@RequestMapping(value = "calidad-nueva-prueba/{tipo}/{id}", method = RequestMethod.GET)
-	public String addPruebaCalidad(@PathVariable(name = "id") Long id,@PathVariable(name = "tipo") String tipo, Model model) {
+
+	public String addPruebaCalidad(Long idC,Long id,String tipo, Model model) {
 		List<DisenioPruebaEncogimientoLavado> pruebasEL = pruebaEncogiLavado.findAllByCalidad(id);
 		List<DisenioPruebaLavadoContaminacionCostura> pruebasLCC = pruebaContaCostura.findAllByCalidad(id);
-		DisenioCalidad Calidad = disenioCalidad.findOne(id);
-		model.addAttribute("idTela", Calidad.getIdMaterial());
-		model.addAttribute("idCalidad", id);
+		//DisenioCalidad Calidad = disenioCalidad.findOne(id);
+		//model.addAttribute("idTela", Calidad.getIdMaterial());
+		//model.addAttribute("idCalidad", id);
+		model.addAttribute("idMaterial", id);
+		model.addAttribute("tipoMaterial", tipo);
 		model.addAttribute("readtela", "true");
 		if (pruebaContaCostura.ifExist(id) == 1 || pruebaEncogiLavado.ifExist(id) == 1) {
 			

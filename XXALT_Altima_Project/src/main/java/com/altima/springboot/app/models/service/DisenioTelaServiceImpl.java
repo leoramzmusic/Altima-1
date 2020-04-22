@@ -224,6 +224,6 @@ public class DisenioTelaServiceImpl implements IDisenioTelaService {
 	}
 	@Override
 	public Object findPrendaById(Long id){
-		return em.createNativeQuery("SELECT adt.id_text,adt.nombre_tela,adl1.nombre_lookup n1,adt.ancho,adt.costo_por_metro,adt.estampado,adt.color,adt.codigo_color,adl3.nombre_lookup n2,adt.indicacion FROM alt_disenio_tela adt INNER JOIN alt_disenio_lookup adl1 ON	adl1.id_lookup = adt.id_familia_composicion AND adl1.tipo_lookup = 'Familia Composicion' LEFT JOIN alt_disenio_lookup adl2 ON adl2.id_lookup=adt.id_proveedor AND adl2.tipo_lookup='Marca' LEFT JOIN alt_disenio_lookup adl3 on adl3.id_lookup=adt.id_unidad_medida and adl3.tipo_lookup='Unidad Medida' where adt.id_tela="+id).getSingleResult();
+		return em.createNativeQuery("SELECT adt.id_text,adt.nombre_tela,adl1.nombre_lookup n1,adt.ancho,adt.costo_por_metro,adt.estampado,adt.color,adt.codigo_color,adl3.nombre_lookup n2,adt.indicacion FROM alt_disenio_tela adt INNER JOIN alt_disenio_lookup adl1 ON	adl1.id_lookup = adt.id_familia_composicion AND adl1.tipo_lookup = 'Familia Composicion' LEFT JOIN alt_disenio_lookup adl2 ON adl2.id_lookup=adt.id_proveedor AND adl2.tipo_lookup='Marca' LEFT	 JOIN alt_disenio_lookup adl3 on adl3.id_lookup=adt.id_unidad_medida and adl3.tipo_lookup='Unidad Medida' where adt.id_tela="+id).getSingleResult();
 	}
 }

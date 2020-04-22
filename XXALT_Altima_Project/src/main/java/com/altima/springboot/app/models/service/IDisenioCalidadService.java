@@ -16,4 +16,6 @@ public interface IDisenioCalidadService {
 	
 	public List<Object> findAllWithIdTextTela();
 
+	public DisenioCalidad findOneById(Long id ,String tipo);
+
 }

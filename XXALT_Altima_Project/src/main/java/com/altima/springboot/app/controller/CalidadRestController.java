@@ -108,12 +108,14 @@ public class CalidadRestController {
 		DecimalFormat df = new DecimalFormat("0.##", separadoresPersonalizados);
 		
 		if (palabras[24].equals("") || palabras[24] == null) {
+			System.out.println("para checar si entra");
 			disenioCalidad.setCreadoPor(auth.getName());
 			disenioCalidad.setActualizadoPor(auth.getName());
 			disenioCalidad.setFechaCreacion(formattedDate);
 			disenioCalidad.setUltimaFechaModificacion(formattedDate);
 			disenioCalidad.setEstatus("0");
-			disenioCalidad.setIdMaterial(Long.valueOf(palabras[0]));
+			disenioCalidad.setIdMaterial(Long.valueOf(palabras[26]));
+			disenioCalidad.setTipoMaterial(palabras[27]);
 			CalidadService.save(disenioCalidad);
 			disenioCalidad.setIdText("CAL" + (disenioCalidad.getIdCalidad() + 100000));
 			CalidadService.save(disenioCalidad);
@@ -244,7 +246,8 @@ public class CalidadRestController {
 			disenioCalidad.setFechaCreacion(formattedDate);
 			disenioCalidad.setUltimaFechaModificacion(formattedDate);
 			disenioCalidad.setEstatus("0");
-			disenioCalidad.setIdMaterial(Long.valueOf(palabras[0]));
+			disenioCalidad.setIdMaterial(Long.valueOf(palabras[14]));
+			disenioCalidad.setTipoMaterial(palabras[15]);
 			CalidadService.save(disenioCalidad);
 			disenioCalidad.setIdText("CAL" + (disenioCalidad.getIdCalidad() + 100000));
 			CalidadService.save(disenioCalidad);
@@ -351,7 +354,8 @@ public class CalidadRestController {
 			disenioCalidad.setFechaCreacion(formattedDate);
 			disenioCalidad.setUltimaFechaModificacion(formattedDate);
 			disenioCalidad.setEstatus("0");
-			disenioCalidad.setIdMaterial(Long.valueOf(palabras[0]));
+			disenioCalidad.setIdMaterial(Long.valueOf(palabras[10]));
+			disenioCalidad.setTipoMaterial(palabras[11]);
 			CalidadService.save(disenioCalidad);
 			disenioCalidad.setIdText("CAL" + (disenioCalidad.getIdCalidad() + 100000));
 			CalidadService.save(disenioCalidad);
@@ -425,7 +429,8 @@ public class CalidadRestController {
 			disenioCalidad.setUltimaFechaModificacion(formattedDate);
 			disenioCalidad.setEstatus("0");
 			disenioCalidad.setEstatus("0");
-			disenioCalidad.setIdMaterial(Long.valueOf(palabras[0]));
+			disenioCalidad.setIdMaterial(Long.valueOf(palabras[7]));
+			disenioCalidad.setTipoMaterial(palabras[8]);
 			CalidadService.save(disenioCalidad);
 			disenioCalidad.setIdText("CAL" + (disenioCalidad.getIdCalidad() + 100000));
 			CalidadService.save(disenioCalidad);

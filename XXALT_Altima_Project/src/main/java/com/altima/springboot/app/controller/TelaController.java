@@ -88,7 +88,7 @@ public class TelaController {
 				tela.setUltimaFechaModificacion(null);
 				tela.setEstatus("1"); //Estatus para ver el registro en el sistema
 				tela.setEstatusTela("0");// estatus para la aprobacion de la tela
-				tela.setIdUnidadMedida("61");
+				tela.setIdUnidadMedida("1");
 				disenioTelaService.save(tela);
 				tela.setIdTextProspecto("PROSTEL"+(tela.getIdTela()+10000));
 				disenioTelaService.save(tela);

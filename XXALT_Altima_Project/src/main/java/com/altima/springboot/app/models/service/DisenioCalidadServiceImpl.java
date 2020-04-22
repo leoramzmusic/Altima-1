@@ -46,6 +46,13 @@ public class DisenioCalidadServiceImpl implements IDisenioCalidadService {
 		// TODO Auto-generated method stub
 		return repository.findById(id).orElse(null);
 	}
+
+	@Override
+	@Transactional
+	public DisenioCalidad findOneById(Long id,String tipo) {
+		// TODO Auto-generated method stub
+		return repository.findOneByParams(id,tipo);
+	}
 	
 	@SuppressWarnings("unchecked")
 	@Override

@@ -250,7 +250,8 @@ function PruebasEncogimiento(){
 	var observacionesReultPlanchaVapor= $('#observacionesReultPlanchaVapor').val();
 	var idCalidad = $('#idCalidadEnco').val();
 	var valordeReferencia = " ";
-	
+	var idMaterial = $('#idMaterial').val();
+	var tipoMaterial = $('#tipoMaterial').val();
 	var datos = [tipoTela,
 				operario, 
 				frealizacion,
@@ -276,7 +277,9 @@ function PruebasEncogimiento(){
 				diferenciaTramaPlanchaVapor,
 				observacionesReultPlanchaVapor,
 				idCalidad,
-				valordeReferencia];
+				valordeReferencia,
+				idMaterial,
+				tipoMaterial];
 	var dato = datos.toString();
 	console.log(datos);
 	$.ajax({
@@ -329,8 +332,8 @@ function PruebasLavado(){
 	var observacionesReultPilling= $('#observacionesReultPilling').val();
 	var idCalidad = $('#idCalidadLavado').val();
 	var valordeReferencia = " ";
-
-	
+	var idMaterial = $('#idMaterial').val();
+	var tipoMaterial = $('#tipoMaterial').val();
 	var datos =[tipoTela,
 				operario,
 				frealizacion,
@@ -344,7 +347,9 @@ function PruebasLavado(){
 				pilling,
 				observacionesReultPilling,
 				idCalidad,
-				valordeReferencia];
+				valordeReferencia,
+				idMaterial,
+				tipoMaterial];
 	var dato = datos.toString();
 	console.log(datos);
 	$.ajax({
@@ -383,8 +388,8 @@ function PruebaCostura(){
 	var observacionesRasgado= $('#observacionesRasgado').val();
 	var idCalidad = $('#idCalidadCostura').val();
 	var valordeReferencia = " ";
-	
-	
+	var idMaterial = $('#idMaterial').val();
+	var tipoMaterial = $('#tipoMaterial').val();
 	var datos =[tipoTela,
 				operario,
 				frealizacion,
@@ -394,7 +399,9 @@ function PruebaCostura(){
 				Rasgado,
 				observacionesRasgado,
 				idCalidad,
-				valordeReferencia];
+				valordeReferencia,
+				idMaterial,
+				tipoMaterial];
 	var dato = datos.toString();
 	console.log(datos);
 	$.ajax({	  
@@ -430,14 +437,17 @@ function PruebaContaminacion() {
 	var idCalidad = $('#idCalidadEnco').val();
 	console.log(idCalidad);
 	var valordeReferencia = " ";
-	
+	var idMaterial = $('#idMaterial').val();
+	var tipoMaterial = $('#tipoMaterial').val();
 	var datos= [tipoTela,
 				operarioContaminacion,
 				frealizacionContaminacion,
 				calidadContaminacion,
 				observacionesReultSolidez,
 				idCalidad,
-				valordeReferencia];
+				valordeReferencia,
+				idMaterial,
+				tipoMaterial];
 	var dato = datos.toString();
 	console.log(datos);
 $.ajax({	  
