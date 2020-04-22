@@ -74,12 +74,12 @@ public class CalidadController {
 	}
 	
 
-	public String addPruebaCalidad(Long idC,Long id,String tipo, Model model) {
+	public String addPruebaCalidad(Long id,Long idM,String tipo, Model model) {
 		List<DisenioPruebaEncogimientoLavado> pruebasEL = pruebaEncogiLavado.findAllByCalidad(id);
 		List<DisenioPruebaLavadoContaminacionCostura> pruebasLCC = pruebaContaCostura.findAllByCalidad(id);
-		DisenioCalidad Calidad = disenioCalidad.findOne(idC);
+		DisenioCalidad Calidad = disenioCalidad.findOne(id);
 		//model.addAttribute("idTela", Calidad.getIdMaterial());
-		model.addAttribute("idCalidad", idC);
+		model.addAttribute("idCalidad", id);
 		model.addAttribute("idMaterial", id);
 		model.addAttribute("tipoMaterial", tipo);
 		model.addAttribute("readtela", "true");

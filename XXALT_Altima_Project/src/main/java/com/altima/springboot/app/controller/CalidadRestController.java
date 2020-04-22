@@ -115,6 +115,7 @@ public class CalidadRestController {
 			disenioCalidad.setUltimaFechaModificacion(formattedDate);
 			disenioCalidad.setEstatus("0");
 			disenioCalidad.setIdMaterial(Long.valueOf(palabras[26]));
+			System.out.print("aqui esta el tipo "+palabras[27]);
 			disenioCalidad.setTipoMaterial(palabras[27]);
 			CalidadService.save(disenioCalidad);
 			disenioCalidad.setIdText("CAL" + (disenioCalidad.getIdCalidad() + 100000));
