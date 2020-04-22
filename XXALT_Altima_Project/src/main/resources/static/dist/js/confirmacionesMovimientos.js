@@ -204,43 +204,155 @@ function agregarMiniTabla(tablaMuestra){
   
   
 
-function listarTabla(){
-	$('#tablaTraspasoinfo').DataTable({
-        "ordering": false,
-        "pageLength": 5,
-        "lengthMenu": [
-            [5, 10, 25, 50, 100],
-            [5, 10, 25, 50, 100]
-        ],
-        "language": {
-            "sProcessing": "Procesando...",
-            "sLengthMenu": "Mostrar _MENU_ registros",
-            "sZeroRecords": "No se encontraron resultados",
-            "sEmptyTable": "Ningún dato disponible en esta tabla =(",
-            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-            "sInfoPostFix": "",
-            "sSearch": "Buscar:",
-            "sUrl": "",
-            "sInfoThousands": ",",
-            "sLoadingRecords": "Cargando...",
-            "oPaginate": {
-                "sFirst": "Primero",
-                "sLast": "Último",
-                "sNext": "Siguiente",
-                "sPrevious": "Anterior"
-            },
-            "oAria": {
-                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-            },
-            "buttons": {
-                "copy": "Copiar",
-                "colvis": "Visibilidad"
-            }
-        }
-    });
+function detalleMuestras(id){
+	$('#borrarTabla').remove();
+	$('#crearTabla').append("<div class='modal-body' id='borrarTabla'>" +
+								"<div class='form-check'>" +
+									"<input type='checkbox' class='form-check-input' id='selectAll'>" +
+									"<label class='form-check-label' for='selectAll'>Seleccionar todo</label>" +
+								"</div>" +
+								"<br>" +
+								"<table class='table table-striped table-bordered' id='tablaTraspasoinfo'>" +
+									"<thead>" +
+										"<tr>" +
+											"<th></th>" +
+											"<th>C&oacute;digo de barras</th>" +
+											"<th>Muestra</th>" +
+											"<th>Fecha de salida</th>" +
+											"<th>Entregado por</th>" +
+											"<th>Fecha de devoluci&oacute;n</th>" +
+											"<th>Recibido por</th>" +
+											"<th>Recargos(d&iacute;as)</th>" +
+											"<th>Estatus</th>" +
+										"</tr>" +
+									"</thead>" +
+								"</table>" +
+							"</div>");
+	
+	$.ajax({
+		
+		method:"POST",
+		url: "/listDetalleMuestras",
+		data:{
+			"_csrf": $('#token').val(),
+			idMovi:id
+		},
+		success:(data) => {
+		/* lista de estatus en la tabla de muestras
+		 * 
+		 * 1 = "Pendiente de recoger"
+		 * 2 = "Cancelado"
+		 * 3 = "Devuelto"
+		 * 4 = "Entregado a vendedor" con checkBox en la tabla
+		 * 5 = "Entregado a vendedor" sin checkBox en la tabla
+		 * 6 = "Traspaso" con checkBox en la tabla
+		 * 7 = "Traspaso" sin checkBox en la tabla
+		 * 8 = "Prestado a empresa" con checkBox en la tabla
+		 * 9 = "Prestado a empresa" sin checkBox en la tabla
+		 * 10= "Devuelto con recargos"
+		 **********/
+			var a;
+		    var b = [];
+			
+			for (i in data){
+				console.log(data);
+				var check;
+				var estatus;
+				var validador1 = data[i].fecha_salida;
+				var validador2 = data[i].entregadaPor;
+				var validador3 = data[i].fecha_devolucion;
+				var validador4 = data[i].recibidaPor;
+				var validador5 = data[i].recargos;
+				if(data[i].fecha_salida==null){validador1="";}
+				if(data[i].entregadaPor==null){validador2="";}
+				if(data[i].fecha_devolucion==null){validador3="";}
+				if(data[i].recibidaPor==null){validador4="";}
+				if(data[i].recargos==null){validador5="";}
+					
+				if(data[i].estatus== 4 || data[i].estatus== 6 || data[i].estatus== 8){
+					check="<td class='tdcenter' id='checks'>" +
+          			"<div class='form-check'>" +
+          				"<input class='form-check-input' type='checkbox' name='checkmuestra"+data[i].idMovimientoMuestraDetalle+"' value="+data[i].idMovimientoMuestraDetalle+">" +
+          			"</div></td>";
+					lista[i]= data[i].idMovimientoMuestraDetalle;
+				}
+				else{
+					check="<td id='check'></td>";
+				}
+				
+				if(data[i].estatus==1) {estatus="Pendiente de recoger";}
+				if(data[i].estatus==2) {estatus="Cancelado";}
+				if(data[i].estatus==3) {estatus="Devuelto";}
+				if(data[i].estatus==4) {estatus="Entregado a vendedor";}
+				if(data[i].estatus==5) {estatus="Entregado a vendedor";}
+				if(data[i].estatus==6) {estatus="Traspaso";}
+				if(data[i].estatus==7) {estatus="Traspaso";}
+				if(data[i].estatus==8) {estatus="Prestado a empresa";}
+				if(data[i].estatus==9) {estatus="Prestado a empresa";}
+				if(data[i].estatus==10){estatus="Devuelto con recargos";}
+				
+				a= ["<tr>"+
+			    		check,
+						"<td>"+data[i].codigoBarras+"</td>",
+						"<td>"+data[i].nombreMuestra+"</td>",
+						"<td>"+validador1+"</td>",
+						"<td>"+validador2+"</td>",
+						"<td>"+validador3+"</td>",
+						"<td>"+validador4+"</td>",
+						"<td>"+validador5+"</td>",
+						"<td>"+estatus+"</td>"+
+					"<tr>"];
+				b.push(a);
+			}
+			//$('#tablaTraspasoinfo').append(a);
+			$('#tablaTraspasoinfo').DataTable({
+				"data":	b,
+		        "ordering": false,
+		        "pageLength": 5,
+		        "lengthMenu": [
+		            [5, 10, 25, 50, 100],
+		            [5, 10, 25, 50, 100]
+		        ],
+		        "language": {
+		            "sProcessing": "Procesando...",
+		            "sLengthMenu": "Mostrar _MENU_ registros",
+		            "sZeroRecords": "No se encontraron resultados",
+		            "sEmptyTable": "Ningún dato disponible en esta tabla =(",
+		            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+		            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+		            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+		            "sInfoPostFix": "",
+		            "sSearch": "Buscar:",
+		            "sUrl": "",
+		            "sInfoThousands": ",",
+		            "sLoadingRecords": "Cargando...",
+		            "oPaginate": {
+		                "sFirst": "Primero",
+		                "sLast": "Último",
+		                "sNext": "Siguiente",
+		                "sPrevious": "Anterior"
+		            },
+		            "oAria": {
+		                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+		                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+		            },
+		            "buttons": {
+		                "copy": "Copiar",
+		                "colvis": "Visibilidad"
+		            }
+		        }
+		    });
+			
+			
+			
+		},
+		error: (e) =>{
+			
+		}
+	})	
+	
+	
+	$('#infoTraspaso').modal('toggle');
 }
 
 
@@ -274,7 +386,7 @@ function cancelarSolicitud(idMovimiento){
 				})
 		    Swal.fire(
 		      'Correcto',
-		      'Solicitud cancelado correctamente',
+		      'Solicitud cancelada correctamente',
 		      'success'
 		    )
 		  }
@@ -355,7 +467,36 @@ function devueltoSolicitud(idMovimiento){
 		  }
 		});
 }
-function devueltoIndividualSolicitud(idMovimiento){
+
+
+function devueltoIndividualSolicitud(tablaTraspasoinfo){
+	console.log(" entra a este sweet");
+	var table = document.getElementById(tablaTraspasoinfo);
+	var equis;
+	var contador = 0;
+	var listaMuestras = [];
+	var filtered = lista.filter(function(el) { return el; });
+	
+	console.log(filtered);
+	foreach(table, 'tr', function(row) {
+		
+		if($('#checks')){
+			if($('input:checkbox[name=checkmuestra'+filtered[contador]+']:checked')){
+				
+				equis = $('input:checkbox[name=checkmuestra'+filtered[contador]+']:checked').val();
+				console.log(equis);
+				contador++;
+				listaMuestras[contador]=equis;
+			}
+		}
+
+		console.log("entra al foreach");
+	});
+	
+	filtered = listaMuestras.filter(function(el) { return el; });
+	console.log(filtered);
+	var dato = filtered.toString();
+
 	Swal.fire({
 		  title: '¿Muestras devueltas?',
 		  icon: 'warning',
@@ -365,7 +506,19 @@ function devueltoIndividualSolicitud(idMovimiento){
 		  confirmButtonText: 'Confirmar',
 		  cancelButtonText: 'Cancelar'
 		}).then((result) => {
-		  if (result.value) {
+		  if (result.value) { 
+			$.ajax({
+				method:"POST",
+				url:"/devolverIndividual",
+				data:{
+					"_csrf": $('#token').val(),
+					idMuestras:	dato			
+				},
+				success:(data) => {
+					
+					location.href = "/movimientos";
+				}
+			});
 		    Swal.fire(
 		      'Correcto',
 		      'Muestras devueltas correctamente',
@@ -374,9 +527,37 @@ function devueltoIndividualSolicitud(idMovimiento){
 		  }
 		});
 }
-function prestamoSolicitud(idMovimiento){
+
+
+function prestamoSolicitud(tablaTraspasoinfo){
+	var table = document.getElementById(tablaTraspasoinfo);
+	var equis;
+	var contador = 0;
+	var listaMuestras = [];
+	var filtered = lista.filter(function(el) { return el; });
+	
+	console.log(filtered);
+	foreach(table, 'tr', function(row) {
+		
+		if($('#checks')){
+			if($('input:checkbox[name=checkmuestra'+filtered[contador]+']:checked')){
+				
+				equis = $('input:checkbox[name=checkmuestra'+filtered[contador]+']:checked').val();
+				console.log(equis);
+				contador++;
+				listaMuestras[contador]=equis;
+			}
+		}
+
+		console.log("entra al foreach");
+	});
+	
+	filtered = listaMuestras.filter(function(el) { return el; });
+	console.log(filtered);
+	var dato = filtered.toString();
+
 	Swal.fire({
-		  title: '¿Muestras prestadas a la empresa?',
+		  title: '¿Muestras prestadas a empresa?',
 		  icon: 'warning',
 		  showCancelButton: true,
 		  confirmButtonColor: '#3085d6',
@@ -385,6 +566,79 @@ function prestamoSolicitud(idMovimiento){
 		  cancelButtonText: 'Cancelar'
 		}).then((result) => {
 		  if (result.value) {
+			$.ajax({
+				method:"POST",
+				url:"/prestamoEmpresa",
+				data:{
+					"_csrf": $('#token').val(),
+					idMuestras:	dato			
+				},
+				success:(data) => {
+					
+					location.href = "/movimientos";
+				}
+			});
+		    Swal.fire(
+		      'Correcto',
+		      'Actualizaci&oacute;n correcta',
+		      'success'
+		    )
+		  }
+		});
+}
+
+function traspasoSolicitud(tablaTraspasoinfo){
+	var table = document.getElementById(tablaTraspasoinfo);
+	var equis;
+	var contador = 0;
+	var listaMuestras = [];
+	var filtered = lista.filter(function(el) { return el; });
+	var vendedorTraspaso = $('#vendedorTraspaso').val();
+	
+	console.log(filtered);
+	foreach(table, 'tr', function(row) {
+		
+		if($('#checks')){
+			if($('input:checkbox[name=checkmuestra'+filtered[contador]+']:checked')){
+				
+				equis = $('input:checkbox[name=checkmuestra'+filtered[contador]+']:checked').val();
+				console.log(equis);
+				contador++;
+				listaMuestras[contador]=equis;
+			}
+		}
+
+		console.log("entra al foreach");
+	});
+	
+	filtered = listaMuestras.filter(function(el) { return el; });
+	console.log(filtered);
+	var dato = filtered.toString();
+
+	Swal.fire({
+		  title: '¿Seguro que desea Traspasar?',
+		  icon: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: 'Confirmar',
+		  cancelButtonText: 'Cancelar'
+		}).then((result) => {
+		  if (result.value) {
+			  
+			$.ajax({
+				method:"POST",
+				url:"/traspasoSolicitud",
+				data:{
+					"_csrf": $('#token').val(),
+					idMuestras:	dato,
+					nuevoVendedor: vendedorTraspaso
+				},
+				success:(data) => {
+					
+					location.href = "/movimientos";
+				}
+			});
 		    Swal.fire(
 		      'Correcto',
 		      'Actualizaci&oacute;n correcta',

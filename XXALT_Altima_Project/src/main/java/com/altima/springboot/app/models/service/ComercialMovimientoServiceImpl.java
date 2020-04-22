@@ -26,8 +26,14 @@ public class ComercialMovimientoServiceImpl implements IComercialMovimientoServi
 	public void save(ComercialMovimiento movimiento) {
 		repository.save(movimiento);
 	}
-
 	
+	@Override
+	@Transactional
+	public ComercialMovimiento findOne(Long id) {
+		
+		return em.find(ComercialMovimiento.class, id);
+	}
+
 	@Override
 	@Transactional
 	public List<Object> listarMuestras() {
@@ -54,14 +60,5 @@ public class ComercialMovimientoServiceImpl implements IComercialMovimientoServi
 										"from alt_comercial_movimiento as movimiento\r\n" + 
 										"INNER JOIN alt_comercial_cliente cliente ON movimiento.empresa = id_cliente ORDER BY movimiento.id_text").getResultList();
 	}
-	
-	@Override
-	@Transactional
-	public ComercialMovimiento findOne(Long id) {
-		
-		return em.find(ComercialMovimiento.class, id);
-	}
-	
-	
 
 }

@@ -75,14 +75,15 @@
 												<td th:text="${movimiento[6]==null}?'':${movimiento[6]}"></td>
 												<td th:text="${movimiento[7]==null}?'':${movimiento[7]}"></td>
 												<td class="tdcenter">
-													<button data-target="#infoTraspaso" data-toggle="modal" class="btn btn-info btn-circle btn-sm text-white" onclick="detalleMuestras('+${movimiento[0]}+')"><i class="fas fa-info"></i></button>
+													<button data-target="#infoTraspaso" class="btn btn-info btn-circle btn-sm text-white" th:onclick="'javascript:detalleMuestras('+${movimiento[0]}+')'"><i class="fas fa-info"></i></button>
 												</td>
 												<td th:text="${movimiento[8]}"></td>
 												<td class="tdcenter">
-													<a th:if="${movimiento[8]=='Pendiente de recoger'}" th:onclick="'javascript:entregarSolicitud('+${movimiento[0]}+')'" class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Entregado a vendedor"><i class="fas fa-user-check"></i></a>
+													<a th:if="${movimiento[8]=='Pendiente de recoger'}" th:onclick="'javascript:entregarSolicitud('+${movimiento[0]}+')'" class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Entregar a vendedor"><i class="fas fa-user-check"></i></a>
                                     				<a th:if="${movimiento[8]=='Pendiente de recoger'}" th:onclick="'javascript:cancelarSolicitud('+${movimiento[0]}+')'" class="btn btn-danger btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Cancelar"><i class="fas fa-times"></i></a>
-                                    				<a th:if="${movimiento[8]=='Entregado a vendedor'}" th:onclick="'javascript:devueltoSolicitud('+${movimiento[0]}+')'" class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Devuelto"><i class="fas fa-check"></i></a>
-                                    				<a th:if="${movimiento[8]=='Prestado a empresa'}" data-target="#devolucionTraspaso" data-toggle="modal" class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Entregado"><i class="fas fa-check"></i></a>
+                                    				<a th:if="${movimiento[8]=='Entregado a vendedor'}" th:onclick="'javascript:devueltoSolicitud('+${movimiento[0]}+')'" class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Devolver"><i class="fas fa-check"></i></a>
+                                    				<a th:if="${movimiento[8]=='Devolución parcial'}" th:onclick="'javascript:devueltoSolicitud('+${movimiento[0]}+')'" class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Devolver"><i class="fas fa-check"></i></a>
+                                    				<a th:if="${movimiento[8]=='Prestamo empresa'}" th:onclick="'javascript:devueltoSolicitud('+${movimiento[0]}+')'" class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Devolver"><i class="fas fa-check"></i></a>
                                     			</td>
 											</tr>
 										</tbody>
@@ -109,7 +110,7 @@
 	<script src="/dist/js/confirmacionesMovimientos.js"></script>
      <script>
         $(document).ready(function() {
-            listarTabla();
+
             listarEmpresas();
             listarMuestras();
 
@@ -122,6 +123,7 @@
 	$('#menuMuestrario').addClass('menu-open');
 	$('#navMuestrario').addClass('active');
 	$('#navMuestrario2').addClass('active');
+	var lista=[];
 	</script>
 </body>
 </html>
