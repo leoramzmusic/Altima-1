@@ -63,11 +63,12 @@ public class CalidadController {
 		else{
 			return "redirect:/calidad-nueva-prueba/"+tipo+"/"+id;
 		}
-		if(!disenioCalidad.findOneById(id, tipoint).equals(null)){
+		try {
 			addPruebaCalidad(disenioCalidad.findOneById(id, tipoint).getIdCalidad(),id,tipoint,model);
+		} catch (Exception e) {
+			System.out.println("nuevo: "+e);
 		}
 		model.addAttribute("tipoMaterial", tipoint);
-		System.out.println(disenioCalidad.findOneById(id, "1").getIdText());
 		model.addAttribute("idMaterial", id);
 		return "calidad-nueva-prueba";
 	}
