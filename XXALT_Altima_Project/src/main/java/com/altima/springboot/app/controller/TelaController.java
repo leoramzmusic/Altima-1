@@ -97,7 +97,7 @@ public class TelaController {
 	            .addFlashAttribute("icon", "success");
 			}
 			else {
-				tela.setIdUnidadMedida("61");
+				tela.setIdUnidadMedida("1");
 				tela.setActualizadoPor(auth.getName());
 				tela.setUltimaFechaModificacion(hourdateFormat.format(date));
 				disenioTelaService.save(tela);
