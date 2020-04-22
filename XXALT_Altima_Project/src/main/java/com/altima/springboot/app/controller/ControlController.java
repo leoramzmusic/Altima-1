@@ -19,12 +19,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.altima.springboot.app.models.entity.ControlHora;
 import com.altima.springboot.app.models.entity.ControlProduccionMuestra;
+import com.altima.springboot.app.models.entity.DisenioLookup;
 import com.altima.springboot.app.models.entity.DisenioPrenda;
 import com.altima.springboot.app.models.entity.ProduccionDetallePedido;
 import com.altima.springboot.app.models.entity.ProduccionPedido;
@@ -222,7 +220,7 @@ System.out.println("Los id son :"+id);
 		if ( tipo.equals("terminado")) {
 			
 			
-System.out.println("Los id son :"+id);
+				System.out.println("Los id son :"+id);
 			
 			if ( (id != null) && (!id.equals("")) ){
 				String [] array = id.split(",");
@@ -409,11 +407,11 @@ System.out.println("Los id son :"+id);
 		prenda.setDescripcionPrenda(talla);
 		prenda.setIdMarcador("1");
 		prenda.setEstatus(Long.valueOf(1));
-		prenda.setPrendaLocal("1");
+		prenda.setPrendaLocal("0");
 		prenda.setCreadoPor(auth.getName());
 		prenda.setFechaCreacion(hourdateFormat.format(date));
 		Prenda.save(prenda);
-		prenda.setIdText("PrendaForanea"+(prenda.getIdPrenda()+100));
+		prenda.setIdText("PRE"+(prenda.getIdPrenda()+1000));
 		Prenda.save(prenda);
 		
 		if (idPedido.equals("0")) {
@@ -421,21 +419,21 @@ System.out.println("Los id son :"+id);
 			pedido.setIdCliente(Long.valueOf(1));
 			pedido.setEstatus("1");
 			pedido.setCantidad(cantidad);
-			pedido.setDescripcion("Probando...");
+			pedido.setDescripcion(" ");
 			pedido.setCreadoPor(auth.getName());
 			pedido.setFechaCreacion(hourdateFormat.format(date));
 			pedido.setActualizadoPor(auth.getName());
 			pedido.setUltimaFechaModificacion(hourdateFormat.format(date));
 			pedido.setIdText("Pedido");
 			Pedido.save(pedido);
-			pedido.setIdText("PEDIDO"+(pedido.getIdPedido()+100));
+			pedido.setIdText("PED"+(pedido.getIdPedido()+1000));
 			Pedido.save(pedido);
 			idPedido=Long.toString(pedido.getIdPedido());
 		}
 		
 		else {
 			ProduccionPedido pedido =Pedido.findOne(Long.valueOf(idPedido));
-			pedido.setCantidad(Integer.toString( ( Integer.parseInt(pedido.getCantidad())+Integer.parseInt(cantidad))));
+			pedido.setCantidad(Integer.toString( ( Integer.parseInt(pedido.getCantidad())+Integer.parseInt(cantidad))) );
 			Pedido.save(pedido);
 		}
 		ProduccionDetallePedido orden = new ProduccionDetallePedido();
@@ -458,7 +456,11 @@ System.out.println("Los id son :"+id);
 		orden.setCantidad(cantidad);
 		Orden.save(orden);
 		
+		ProduccionPedido pedido = Pedido.findOne(Long.valueOf(idPedido));
 		
+		
+		orden.setIdText("SUB"+(pedido.getIdPedido()+1000)+"-"+orden.getIdDetallePedido());
+		Orden.save(orden);
 		// LISTAR
 		
 		
@@ -467,10 +469,37 @@ System.out.println("Los id son :"+id);
 		 
 	}
 	
+	
+	@RequestMapping(value = "/prenda-ordenes/{id}", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Object []> PrendaOrdenes(@PathVariable(value="id") Long id) {		
+		
+		return  Orden.PrendaOrdenes(id);
+	}
+	
 	@RequestMapping(value = "/aux/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public String aux (@PathVariable(value="id") String id ) {		
 		return  id;
+	}
+	
+	
+	@PostMapping("/bajaorden")
+	public String bajacatalogo(Long id) {
+		System.out.println("Soy baja orden el id es: "+id);
+		String idPedido;
+		ProduccionDetallePedido orden;
+		orden=Orden.findOne(id);
+		orden.setEstatus("0");
+		Orden.save(orden);
+		ProduccionPedido pedido = Pedido.findOne(Long.valueOf(orden.getIdPedido()));
+		
+		pedido.setCantidad(Integer.toString( ( Integer.parseInt(pedido.getCantidad())-Integer.parseInt(orden.getCantidad()))));
+		Pedido.save(pedido);
+		
+		idPedido= Long.toString(orden.getIdPedido());
+		return "redirect:aux/"+idPedido;
+
 	}
 	
 
