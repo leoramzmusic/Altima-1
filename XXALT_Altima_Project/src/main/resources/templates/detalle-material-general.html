@@ -14,23 +14,27 @@
             <table class="table table-borderless">
                 <thead>
                     <tr>
-                        <td style="width: 33%"><strong>Clave:</strong> <a th:text="${material[0]}"></a></td>
-                        <td style="width: 34%"><strong>Nombre:</strong> <a th:text="${material[1]}"></a></td>
-                        <td style="width: 33%"><strong>Tipo de material:</strong> <a th:text="${material[2]}"></a></td>
+                        <td style="width: 50%"><strong>Clave:</strong> <a th:text="${material[0]}"></a></td>
+                        <td style="width: 50%"><strong>Nombre:</strong> <a th:text="${material[1]}"></a></td>
                     </tr>
                     <tr>
-                        <td ><strong>Color:</strong> <a th:text="${material[3]}"></a> <i class="fas fa-tint" th:style="'color:'+${material[12]}+';font-size: 20px;'"></i></td>
-                        <td><strong>Tamaño:</strong> <a th:text="${material[4]}"></a> <a th:text="${material[5]}"></a></td>
-                         <td><strong>Modelo:</strong> <a th:text="${material[6]}"></a></td>
-                    </tr>
-                    <tr>
+                        <td><strong>Tipo de material:</strong> <a th:text="${material[2]}"></a></td>
                         <td><strong>Proceso al que aplica:</strong> <a th:text="${material[7]}"></a></td>
-                        <td><strong>Precio Unitario:</strong> $<a th:text="${material[8]}"></a>.00</td>
-                        <td><strong>Uso:</strong> <a th:text="${material[9]}"></a></td>
+                    </tr>
+                    <tr>
+                    	<td><strong>Modelo:</strong> <a th:text="${material[6]}"></a></td>
+                    	<td><strong>Tamaño:</strong> <a th:text="${material[4]}"></a> <a th:text="${material[5]}"></a></td>
+                    </tr>
+                    <tr>
+                    	<td><strong>Uso:</strong> <a th:text="${material[9]}"></a></td>
+                        <td ><strong>Color:</strong> <a th:text="${material[3]}"></a> <i class="fas fa-tint" th:style="'color:'+${material[12]}+';font-size: 20px;'"></i></td>
                     </tr>
                     <tr>
                         <td><strong>Proveedores:</strong> <a th:text="${material[10]}"></a></td>
-                        <td><strong>Descripci&oacute;n:</strong> <a th:text="${material[11]}"></a></td>
+                        <td><strong>Precio Unitario:</strong> $<a th:text="${material[8]}"></a>.00</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Descripci&oacute;n:</strong> <a th:text="${material[11]}"></a></td>
                     </tr>
                 </thead>
             </table>

@@ -1,3 +1,21 @@
+.navbar-altima{
+	background-color:#1B1B1B!important;
+}
+
+.sidebar-altima{
+	background-color:#1B1B1B!important;
+}
+.sidebar-altima-gris{
+	background-color:#A3A3A3!important;
+}
+.rojo-altima{
+	color:#AF232A;
+}
+.active-red{
+	color:#FFFFFF;
+	background-color:#AF232A;
+}
+
  .modal-catalogo-info {
      max-width: 96% !important;
 }
@@ -144,4 +162,15 @@ div.dataTables_wrapper {
     
     .swal-wide{
     width:850px !important;
+}
+.navImage{
+	max-width: 20%;
+	margin-left: 233px;
+}
+@media only screen and (max-width: 600px) {
+  .navImage {
+  max-width:35%;
+    margin-right:13px;
+    margin-left:70px;
+  }
 }
