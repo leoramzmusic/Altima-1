@@ -74,6 +74,20 @@ public class ProduccionDetallePedido implements Serializable {
 	@Column(name="estatus")
 	private String estatus;
 	
+	@Column(name="cantidad")
+	private String cantidad;
+	
+	
+	
+	
+	public String getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(String cantidad) {
+		this.cantidad = cantidad;
+	}
+	
 	public Long getIdPrenda() {
 		return idPrenda;
 	}
