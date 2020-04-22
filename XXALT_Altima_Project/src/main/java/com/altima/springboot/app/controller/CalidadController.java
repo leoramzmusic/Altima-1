@@ -79,7 +79,7 @@ public class CalidadController {
 		List<DisenioPruebaLavadoContaminacionCostura> pruebasLCC = pruebaContaCostura.findAllByCalidad(id);
 		DisenioCalidad Calidad = disenioCalidad.findOne(idC);
 		//model.addAttribute("idTela", Calidad.getIdMaterial());
-		model.addAttribute("idCalidad", id);
+		model.addAttribute("idCalidad", idC);
 		model.addAttribute("idMaterial", id);
 		model.addAttribute("tipoMaterial", tipo);
 		model.addAttribute("readtela", "true");
