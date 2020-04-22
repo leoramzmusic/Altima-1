@@ -25,12 +25,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.altima.springboot.app.models.entity.ControlHora;
 import com.altima.springboot.app.models.entity.ControlProduccionMuestra;
-import com.altima.springboot.app.models.entity.DisenioForro;
-import com.altima.springboot.app.models.entity.DisenioMaterialTela;
 import com.altima.springboot.app.models.entity.DisenioPrenda;
+import com.altima.springboot.app.models.entity.ProduccionDetallePedido;
+import com.altima.springboot.app.models.entity.ProduccionPedido;
 import com.altima.springboot.app.models.service.IControlProduccionMuestraService;
 import com.altima.springboot.app.models.service.IDisenioPrendaService;
 import com.altima.springboot.app.models.service.IProduccionDetalleService;
+import com.altima.springboot.app.models.service.IProduccionPedidoService;
 
 @CrossOrigin(origins = { "*" })
 @Controller
@@ -43,6 +44,9 @@ public class ControlController {
 	
 	@Autowired
 	private IDisenioPrendaService Prenda;
+	
+	@Autowired
+	private IProduccionPedidoService Pedido;
 	
 	protected final Log logger = LogFactory.getLog(this.getClass());
 	@GetMapping("/control-de-produccion")
@@ -258,7 +262,6 @@ System.out.println("Los id son :"+id);
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Date date = new Date();
-		
 		DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		ControlProduccionMuestra muestra;
 		muestra=DCPM.findOne(idproceso);
@@ -383,29 +386,94 @@ System.out.println("Los id son :"+id);
 
 	@GetMapping("/agregar-control-muestra")
 	public String agregarMuestra(Model model) {
-		DisenioPrenda prenda = new DisenioPrenda();
-		model.addAttribute("prenda", prenda);
 		model.addAttribute("listPrendas", DCPM.findAllPrenda());
 		return "agregar-control-muestra";
 	}
 
 	@PostMapping("/guardar-prenda-foranea")
-	public String guardar_prenda_foranea(
-			DisenioPrenda prenda,
-			@RequestParam(value="file", required=false) MultipartFile file,
-			RedirectAttributes redirectAttrs) {
+	public String guardar_prenda_foranea(String familia,String nombre ,String precio,
+			String cantidad,String talla,String largo,String idPedido,HttpServletRequest request) {
 		
-			
-			
+		
+		System.out.println("La id pedido es "+idPedido);
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Date date = new Date();
+		DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		
+		DisenioPrenda prenda = new DisenioPrenda();
+		prenda.setIdFamiliaPrenda(Long.valueOf(familia));
+		prenda.setNombrePrenda(nombre);
+		prenda.setPrecio(precio);
+		prenda.setTipoLargo(largo);
+		prenda.setDescripcionPrenda(talla);
+		prenda.setIdMarcador("1");
+		prenda.setEstatus(Long.valueOf(1));
+		prenda.setPrendaLocal("1");
+		prenda.setCreadoPor(auth.getName());
+		prenda.setFechaCreacion(hourdateFormat.format(date));
+		Prenda.save(prenda);
+		prenda.setIdText("PrendaForanea"+(prenda.getIdPrenda()+100));
+		Prenda.save(prenda);
+		
+		if (idPedido.equals("0")) {
+			ProduccionPedido pedido = new ProduccionPedido();
+			pedido.setIdCliente(Long.valueOf(1));
+			pedido.setEstatus("1");
+			pedido.setCantidad(cantidad);
+			pedido.setDescripcion("Probando...");
+			pedido.setCreadoPor(auth.getName());
+			pedido.setFechaCreacion(hourdateFormat.format(date));
+			pedido.setActualizadoPor(auth.getName());
+			pedido.setUltimaFechaModificacion(hourdateFormat.format(date));
+			pedido.setIdText("Pedido");
+			Pedido.save(pedido);
+			pedido.setIdText("PEDIDO"+(pedido.getIdPedido()+100));
+			Pedido.save(pedido);
+			idPedido=Long.toString(pedido.getIdPedido());
+		}
+		
+		else {
+			ProduccionPedido pedido =Pedido.findOne(Long.valueOf(idPedido));
+			pedido.setCantidad(Integer.toString( ( Integer.parseInt(pedido.getCantidad())+Integer.parseInt(cantidad))));
+			Pedido.save(pedido);
+		}
+		ProduccionDetallePedido orden = new ProduccionDetallePedido();
+		orden.setIdPedido(Long.valueOf(idPedido));
+		orden.setIdTela(Long.valueOf(1));
+		orden.setTalla(talla);
+		orden.setLargo(largo);
+		orden.setDescripcion("probando ando...");
+		orden.setIdText("ORDEN");
+		orden.setCreadoPor(auth.getName());
+		orden.setActualizadoPor(auth.getName());
+		orden.setUltimaFechaModificacion(hourdateFormat.format(date));
+		orden.setUltimaFechaModificacion(hourdateFormat.format(date));
+		orden.setIdInventario(null);
+		orden.setEstatus_confeccion("Corrrecto");
+		orden.setEstatus("1");
+		orden.setIdPrenda(prenda.getIdPrenda());
+		orden.setIdFamiliaGenero(Long.valueOf(familia));
+		orden.setCosto(precio);
+		orden.setCantidad(cantidad);
+		Orden.save(orden);
+		
+		
+		// LISTAR
+		
+		
 	
-	return "";
+		return "redirect:aux/"+idPedido;
+		 
 	}
-
+	
+	@RequestMapping(value = "/aux/{id}", method = RequestMethod.GET)
+	@ResponseBody
+	public String aux (@PathVariable(value="id") String id ) {		
+		return  id;
+	}
 	
 
-	
-	
-	
 	
 	@PostMapping("/PausarTodo")
 	public String PausarTodo(Long id , String tipo ,  HttpServletRequest request) {	
