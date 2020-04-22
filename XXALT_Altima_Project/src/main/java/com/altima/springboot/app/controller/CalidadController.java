@@ -77,9 +77,9 @@ public class CalidadController {
 	public String addPruebaCalidad(Long idC,Long id,String tipo, Model model) {
 		List<DisenioPruebaEncogimientoLavado> pruebasEL = pruebaEncogiLavado.findAllByCalidad(id);
 		List<DisenioPruebaLavadoContaminacionCostura> pruebasLCC = pruebaContaCostura.findAllByCalidad(id);
-		//DisenioCalidad Calidad = disenioCalidad.findOne(id);
+		DisenioCalidad Calidad = disenioCalidad.findOne(idC);
 		//model.addAttribute("idTela", Calidad.getIdMaterial());
-		//model.addAttribute("idCalidad", id);
+		model.addAttribute("idCalidad", id);
 		model.addAttribute("idMaterial", id);
 		model.addAttribute("tipoMaterial", tipo);
 		model.addAttribute("readtela", "true");
