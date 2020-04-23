@@ -55,7 +55,7 @@ public class ProduccionDetalleServiceImpl  implements IProduccionDetalleService 
 				"where not exists\r\n" + 
 				"   (select muestra.id_pedido from alt_control_produccion_muestra as muestra\r\n" + 
 				"     where muestra.id_pedido= pedido.id_detalle_pedido and muestra.tipo=1)\r\n" + 
-				"     \r\n" + 
+				"      and pedido.estatus='1' \r\n" + 
 				"     and pedido.id_pedido="+id).getResultList();
 		return re;
 	}
@@ -65,6 +65,20 @@ public class ProduccionDetalleServiceImpl  implements IProduccionDetalleService 
 	@Transactional
 	public List<Object []> Terminados(Long id, Long tipo) {
 		// TODO Auto-generated method stub
+		
+		System.out.println("select orden.id_detalle_pedido, orden.id_text from alt_produccion_detalle_pedido as orden  \r\n" + 
+				"								where 1=1 \r\n" + 
+				"								and  EXISTS (select muestra.id_pedido from alt_control_produccion_muestra as muestra \r\n" + 
+				"								           where 1=1\r\n" + 
+				"								           and muestra.id_pedido= orden.id_detalle_pedido\r\n" + 
+				"								           and orden.id_pedido="+id+" \r\n" + 
+				"								           and muestra.estatus_tiempo='Stop' \r\n" + 
+				"								           and muestra.tipo="+(tipo-1)+") \r\n" + 
+				"				                and not  exists\r\n" + 
+				"								   			(select muestra.id_pedido from alt_control_produccion_muestra as muestra \r\n" + 
+				"								     		where muestra.id_pedido= orden.id_detalle_pedido and muestra.tipo="+tipo+")\r\n" + 
+				"								     and orden.id_pedido="+id);
+		
 		List<Object[]> re= em.createNativeQuery("select orden.id_detalle_pedido, orden.id_text from alt_produccion_detalle_pedido as orden  \r\n" + 
 				"								where 1=1 \r\n" + 
 				"								and  EXISTS (select muestra.id_pedido from alt_control_produccion_muestra as muestra \r\n" + 
@@ -79,6 +93,25 @@ public class ProduccionDetalleServiceImpl  implements IProduccionDetalleService 
 				"								     and orden.id_pedido="+id).getResultList();
 		return re;
 	}
-
+	
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<Object []> PrendaOrdenes(Long id) {
+		// TODO Auto-generated method stub
+		List<Object[]> re= em.createNativeQuery("select lookup.nombre_lookup, prenda.nombre_prenda, orden.costo, orden.cantidad, orden.talla, orden.largo, orden.id_detalle_pedido\r\n" + 
+				"from alt_disenio_lookup as lookup,\r\n" + 
+				"	 alt_disenio_prenda as prenda, \r\n" + 
+				"     alt_produccion_detalle_pedido  as orden,\r\n" + 
+				"     alt_produccion_pedido as pedido\r\n" + 
+				"where 1=1\r\n" + 
+				"and lookup.id_lookup= prenda.id_familia_prenda\r\n" + 
+				"and pedido.id_pedido=orden.id_pedido\r\n" + 
+				"and prenda.id_prenda = orden.id_prenda\r\n" + 
+				"and orden.estatus='1'\r\n" + 
+				"and pedido.id_pedido="+id).getResultList();
+		return re;
+	}
 	
 }

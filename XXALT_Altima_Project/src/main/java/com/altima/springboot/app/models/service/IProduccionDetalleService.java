@@ -19,5 +19,7 @@ public interface IProduccionDetalleService {
 	List<Object []> ListarMuestrasTrazo(Long id);
 	
 	List <Object []> Terminados(Long id, Long tipo);
+	
+	List <Object []> PrendaOrdenes(Long id);
 
 }

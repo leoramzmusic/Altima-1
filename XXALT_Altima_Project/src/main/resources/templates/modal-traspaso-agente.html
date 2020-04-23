@@ -12,9 +12,12 @@
         <div class="form-group col-sm-12">
 		    <label for="vendedorTraspaso" style="color:#212529">Vendedor</label>
 		    <select class="form-control" id="vendedorTraspaso">
-		      <option>Juan Jose Origel</option>
-		      <option>Manuel Fuentes</option>
-		      <option>Fabian Lavalle</option>
+	      	   <option value="error">Selecciones uno...</option>
+			   <option value="Roberto Soliz">Roberto Soliz</option>
+			   <option value="M&oacute;nica Perez">M&oacute;nica Perez</option>
+			   <option value="Pedro Lopez">Pedro Lopez</option>
+			   <option value="Amanda Miguel">Amanda Miguel</option>
+			   <option value="Carlos D&iacute;az">Carlos D&iacute;az</option>
 		    </select>
 		  </div>
 		  <div class="form-group col-sm-12">
@@ -24,7 +27,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Traspasar</button>
+        <button type="button"  onclick="traspasoSolicitud('tablaTraspasoinfo')" class="btn btn-primary">Traspasar</button>
       </div>
     </div>
   </div>

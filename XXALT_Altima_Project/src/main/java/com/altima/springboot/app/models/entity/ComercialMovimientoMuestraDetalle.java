@@ -74,7 +74,7 @@ public class ComercialMovimientoMuestraDetalle implements Serializable {
 	private String actualizadoPor;
 	
 	@Column(name="estatus")
-	private String estatus;
+	private int estatus;
 
 	public Long getIdMovimientoMuestraDetalle() {
 		return IdMovimientoMuestraDetalle;
@@ -180,12 +180,12 @@ public class ComercialMovimientoMuestraDetalle implements Serializable {
 		this.actualizadoPor = actualizadoPor;
 	}
 
-	public String getEstatus() {
+	public int getEstatus() {
 		return estatus;
 	}
 
-	public void setEstatus(String estatus) {
-		this.estatus = estatus;
+	public void setEstatus(int value) {
+		this.estatus = value;
 	}
 
 	public static long getSerialversionuid() {
