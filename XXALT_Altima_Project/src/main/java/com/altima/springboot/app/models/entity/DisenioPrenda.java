@@ -57,9 +57,6 @@ public class DisenioPrenda implements Serializable {
 	@Column(name = "numero_prenda")
 	private String numeroPrenda;
 
-	@Column(name = "nombre_prenda")
-	private String nombrePrenda;
-
 	@Column(name = "descripcion_prenda")
 	private String descripcionPrenda;
 
@@ -131,9 +128,6 @@ public class DisenioPrenda implements Serializable {
 
 	@Column(name = "categoria")
 	private String categoria;
-
-	@Column(name = "combinacion")
-	private String combinacion;
 
 	@Column(name = "estatus")
 	private Long estatus;
@@ -237,14 +231,6 @@ public class DisenioPrenda implements Serializable {
 
 	public void setNumeroPrenda(String numeroPrenda) {
 		this.numeroPrenda = numeroPrenda;
-	}
-
-	public String getNombrePrenda() {
-		return nombrePrenda;
-	}
-
-	public void setNombrePrenda(String nombrePrenda) {
-		this.nombrePrenda = nombrePrenda;
 	}
 
 	public String getDescripcionPrenda() {
@@ -435,13 +421,6 @@ public class DisenioPrenda implements Serializable {
 		this.categoria = categoria;
 	}
 
-	public String getCombinacion() {
-		return combinacion;
-	}
-
-	public void setCombinacion(String combinacion) {
-		this.combinacion = combinacion;
-	}
 
 	public Long getEstatus() {
 		return estatus;
