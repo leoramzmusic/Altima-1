@@ -25,9 +25,6 @@ public class DisenioTela implements Serializable{
 	
 	@Column(name="id_familia_composicion")
 	private Long idFamiliaComposicion;
-
-	@Column(name="id_calidad")
-	private Long idCalidad;
 	
 	@Column(name="id_text")
 	private String idText;
@@ -52,9 +49,6 @@ public class DisenioTela implements Serializable{
 	
 	@Column(name="nombre_tela")
 	private String nombreTela;
-
-	@Column(name="linea_tela")
-	private String lineaTela;
 	
 	@Column(name="ancho")
 	private String ancho;
@@ -62,17 +56,11 @@ public class DisenioTela implements Serializable{
 	@Column(name="id_unidad_medida")
 	private String idUnidadMedida;
 	
-	@Column(name="consumo_promedio")
-	private String consumoPromedio;
-	
 	@Column(name="existencia")
 	private String existencia;
 	
 	@Column(name="indicacion")
 	private String indicacion;
-	
-	@Column(name="consumo")
-	private String consumo;
 	
 	@Column(name="costo_por_metro")
 	private String costoPorMetro;
@@ -123,14 +111,6 @@ public class DisenioTela implements Serializable{
 
 	public void setIdFamiliaComposicion(Long idFamiliaComposicion) {
 		this.idFamiliaComposicion = idFamiliaComposicion;
-	}
-
-	public Long getIdCalidad() {
-		return idCalidad;
-	}
-
-	public void setIdCalidad(Long idCalidad) {
-		this.idCalidad = idCalidad;
 	}
 
 	public String getIdText() {
@@ -189,13 +169,6 @@ public class DisenioTela implements Serializable{
 		this.nombreTela = nombreTela;
 	}
 
-	public String getLineaTela() {
-		return lineaTela;
-	}
-
-	public void setLineaTela(String lineaTela) {
-		this.lineaTela = lineaTela;
-	}
 
 	public String getAncho() {
 		return ancho;
@@ -213,13 +186,6 @@ public class DisenioTela implements Serializable{
 		this.idUnidadMedida = idUnidadMedida;
 	}
 
-	public String getConsumoPromedio() {
-		return consumoPromedio;
-	}
-
-	public void setConsumoPromedio(String consumoPromedio) {
-		this.consumoPromedio = consumoPromedio;
-	}
 
 	public String getExistencia() {
 		return existencia;
@@ -237,13 +203,6 @@ public class DisenioTela implements Serializable{
 		this.indicacion = indicacion;
 	}
 
-	public String getConsumo() {
-		return consumo;
-	}
-
-	public void setConsumo(String consumo) {
-		this.consumo = consumo;
-	}
 
 	public String getCostoPorMetro() {
 		return costoPorMetro;
