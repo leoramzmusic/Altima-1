@@ -2398,7 +2398,7 @@ function agregarCuidado() {
 			'<input type="text" class="swal2-input" name="InstruccionCuidado" required id="cuidado" placeholder="Lavar a mano">' +
 			'<label for="pedidonom">Icono instrucción de cuidado</label>' +
 			'<input required type="file" class="swal2-input" name="iconocuidado" id="iconocuidado" placeholder="Lavar a mano">' +
-			'<input type="hidden" value=' + token + ' name="_csrf">' +
+			'<input type="hidden" value="' + token + '" name="_csrf">' +
 			'</div>' +
 			'</div>' +
 			'</form>',
@@ -2412,9 +2412,7 @@ function agregarCuidado() {
 			var Cuidado = document.getElementById("cuidado").value;
 			var iconocuidado = document.getElementById("iconocuidado").files[0].name;
 			var form = $('#fileUploadForm')[0];
-
-			// Create an FormData object 
-			var data = new FormData(form);
+			
 			//////////////////////
 			$.ajax({
 				type: "GET",
@@ -2428,12 +2426,11 @@ function agregarCuidado() {
 			}).done(function (data) {
 				if(data==false){
 			//////////////////
+			var data1 = new FormData(form);
 			$.ajax({
 				type: "POST",
 				url: "/guardarcatalogo",
-
-				
-				data: data,
+				data: data1,
 				processData: false,
 				contentType: false,
 				cache: false,
