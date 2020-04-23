@@ -82,7 +82,6 @@ public class TelaController {
 			
 			if ( tela.getIdTela() == null) {
 				tela.setIdText(null);
-				tela.setIdCalidad(Long.valueOf(1));
 				tela.setCreadoPor(auth.getName());
 				tela.setFechaCreacion(hourdateFormat.format(date));
 				tela.setUltimaFechaModificacion(null);
