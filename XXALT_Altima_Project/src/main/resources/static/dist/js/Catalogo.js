@@ -112,7 +112,7 @@ function listarMarcas() {
 					"<td>" + data[i].idText + "</td>",
 					"<td>" + data[i].nombreLookup + "</td>",
 					"<td style='text-align: center;'>" +
-					"<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button> " +
+					"<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:"+data[i].creadoPor+"</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button> " +
 					"</td>",
 					" <td style='text-align: center;''>" +
 					" <button id='" + data[i].idLookup + "' value='" + data[i].nombreLookup + "' class='btn btn-warning popoverxd edit_data' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button> " +
@@ -190,14 +190,14 @@ function listarColores() {
 			var a;
 			var b = [];
 			for (i in data) {
-
+				var creacion =data[i].actualizadoPor==null?"":data[i].actualizadoPor;
 				a = [
 					"<tr>" +
 					"<td>" + data[i].idText + "</td>",
 					"<td>" + data[i].nombreLookup + "</td>",
 					"<td> <input type='color' value=" + data[i].atributo1 + " disabled> </td>",
 					"<td style='text-align: center'>" +
-					"<button class='btn btn-info btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020'><i class='fas fa-info'></i></button> " +
+					"<button class='btn btn-info btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por: </strong>"+data[i].creadoPor+" <br /><strong>Fecha de creación:</strong> "+data[i].fechaCreacion+"<br><strong>Modificado por:</strong>"+creacion+"<br><strong>Fecha de modicación:</strong>"+data[i].ultimaFechaModificacion+"'><i class='fas fa-info'></i></button> " +
 					" <button id='" + data[i].idLookup + "' value='" + data[i].nombreLookup + "' color='" + data[i].atributo1 + "' class='btn btn-warning btn-circle btn-sm popoverxd edit_data_color' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar'><i class='fas fa-pen'></i></button> " +
 					"<button onclick='bajarColor(" + data[i].idLookup + ")' class='btn btn-danger btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja'><i class='fas fa-caret-down'></i></button> " +
 					"</td>" +
@@ -278,13 +278,13 @@ function listarTrazos() {
 			var a;
 			var b = [];
 			for (i in data) {
-
+				var creacion =data[i].actualizadoPor==null?"":data[i].actualizadoPor;
 				a = [
 					"<tr>" +
 					"<td>" + data[i].idText + "</td>",
 					"<td>" + data[i].nombreLookup + "</td>",
 					"<td style='text-align: center;'>" +
-					"<button class='btn btn-info btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020'><i class='fas fa-info'></i></button> " +
+					"<button class='btn btn-info btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por: </strong>"+data[i].creadoPor+" <br /><strong>Fecha de creación:</strong> "+data[i].fechaCreacion+"<br><strong>Modificado por:</strong>"+creacion+"<br><strong>Fecha de modicación:</strong>"+data[i].ultimaFechaModificacion+"'><i class='fas fa-info'></i></button> " +
 					"<button id='" + data[i].idLookup + "' value='" + data[i].nombreLookup + "' class='btn btn-warning btn-circle btn-sm popoverxd edit_data_trazo' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar'><i class='fas fa-pen'></i></button> " +
 					"<button onclick='bajarTrazo(" + data[i].idLookup + ")' class='btn btn-danger btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja'><i class='fas fa-caret-down'></i></button> " +
 					"</td>" +
@@ -365,13 +365,13 @@ function listarPrendas() {
 			var a;
 			var b = [];
 			for (i in data) {
-
+				var creacion =data[i].actualizadoPor==null?"":data[i].actualizadoPor;
 				a = [
 					"<tr>" +
 					"<td>" + data[i].idText + "</td>",
 					"<td>" + data[i].nombreLookup + "</td>",
 					"<td style='text-align: center;'>" +
-					"<button class='btn btn-info btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020'><i class='fas fa-info'></i></button> " +
+					"<button class='btn btn-info btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por: </strong>"+data[i].creadoPor+" <br /><strong>Fecha de creación:</strong> "+data[i].fechaCreacion+"<br><strong>Modificado por:</strong>"+creacion+"<br><strong>Fecha de modicación:</strong>"+data[i].ultimaFechaModificacion+"'><i class='fas fa-info'></i></button> " +
 					"<button onclick='editarPrenda(this);' idlookup='" + data[i].idLookup + "' nombre='" + data[i].nombreLookup + "' descripcion='" + data[i].descripcion + "' class='btn btn-warning btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar'><i class='fas fa-pen'></i></button> " +
 					"<button onclick='bajarPrenda(" + data[i].idLookup + ")' class='btn btn-danger btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja'><i class='fas fa-caret-down'></i></button> " +
 					"</td>" +
@@ -452,13 +452,13 @@ function listarGeneros() {
 			var a;
 			var b = [];
 			for (i in data) {
-
+				var creacion =data[i].actualizadoPor==null?"":data[i].actualizadoPor;
 				a = [
 					"<tr>" +
 					"<td>" + data[i].idText + "</td>",
 					"<td>" + data[i].nombreLookup + "</td>",
 					"<td style='text-align: center;'>" +
-					"<button class='btn btn-info btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020'><i class='fas fa-info'></i></button> " +
+					"<button class='btn btn-info btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por: </strong>"+data[i].creadoPor+" <br /><strong>Fecha de creación:</strong> "+data[i].fechaCreacion+"<br><strong>Modificado por:</strong>"+creacion+"<br><strong>Fecha de modicación:</strong>"+data[i].ultimaFechaModificacion+"'><i class='fas fa-info'></i></button> " +
 						"<button onclick='editarGenero(this);' idlookup='" + data[i].idLookup + "' nombre='" + data[i].nombreLookup + "'  class='btn btn-warning btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar'><i class='fas fa-pen'></i></button> " +
 					"<button onclick='bajarGenero(" + data[i].idLookup + ")' class='btn btn-danger btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja'><i class='fas fa-caret-down'></i></button> " +
 					"</td>" +
@@ -539,13 +539,13 @@ function listarComposiciones() {
 			var a;
 			var b = [];
 			for (i in data) {
-
+				var creacion =data[i].actualizadoPor==null?"":data[i].actualizadoPor;
 				a = [
 					"<tr>" +
 					"<td>" + data[i].idText + "</td>",
 					"<td>" + data[i].nombreLookup + "</td>",
 					"<td style='text-align: center;'>" +
-					"<button class='btn btn-info btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020'><i class='fas fa-info'></i></button> " +
+					"<button class='btn btn-info btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por: </strong>"+data[i].creadoPor+" <br /><strong>Fecha de creación:</strong> "+data[i].fechaCreacion+"<br><strong>Modificado por:</strong>"+creacion+"<br><strong>Fecha de modicación:</strong>"+data[i].ultimaFechaModificacion+"'><i class='fas fa-info'></i></button> " +
 					"<button onclick='editarComposicion(this);' idlookup='" + data[i].idLookup + "' nombre='" + data[i].nombreLookup + "'  class='btn btn-warning btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar'><i class='fas fa-pen'></i></button> " +
 					"<button onclick='bajarComposicion(" + data[i].idLookup + ")' class='btn btn-circle btn-sm btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja'><i class='fas fa-caret-down'></i></button> " +
 					"</td>" +
@@ -627,14 +627,14 @@ function listarCuidados() {
 			var a;
 			var b = [];
 			for (i in data) {
-
+				var creacion =data[i].actualizadoPor==null?"":data[i].actualizadoPor;
 				a = [
 					"<tr>" +
 					"<td>" + data[i].idText + "</td>",
 					"<td>" + data[i].nombreLookup + "</td>",
 					"<td> <img class='img-thumbnail rounded float-left' style='width: 50px; height: 50px;' src='/uploads/cuidados/" + data[i].atributo1 + "' /> </td>",
 					"<td style='text-align: center;'>" +
-					"<button class='btn btn-info btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020'><i class='fas fa-info'></i></button> " +
+					"<button class='btn btn-info btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por: </strong>"+data[i].creadoPor+" <br /><strong>Fecha de creación:</strong> "+data[i].fechaCreacion+"<br><strong>Modificado por:</strong>"+creacion+"<br><strong>Fecha de modicación:</strong>"+data[i].ultimaFechaModificacion+"'><i class='fas fa-info'></i></button> " +
 					"<button onclick='editarCuidado(this);' idlookup='" + data[i].idLookup + "' nombre='" + data[i].nombreLookup + "'  class='btn btn-warning btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar'><i class='fas fa-pen'></i></button> " +
 					"<button onclick='bajarCuidado(" + data[i].idLookup + ")' class='btn btn-danger btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja'><i class='fas fa-caret-down'></i></button> " +
 					"</td>" +
@@ -716,14 +716,14 @@ function listarMedidas() {
 			var a;
 			var b = [];
 			for (i in data) {
-
+				var creacion =data[i].actualizadoPor==null?"":data[i].actualizadoPor;
 				a = [
 					"<tr>" +
 					"<td>" + data[i].idText + "</td>",
 					"<td>" + data[i].nombreLookup + "</td>",
 					"<td>" + data[i].descripcionLookup + "</td>",
 					"<td class='text-center'>" +
-					"<button class='btn btn-info btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020'><i class='fas fa-info'></i></button> " +
+					"<button class='btn btn-info btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por: </strong>"+data[i].creadoPor+" <br /><strong>Fecha de creación:</strong> "+data[i].fechaCreacion+"<br><strong>Modificado por:</strong>"+creacion+"<br><strong>Fecha de modicación:</strong>"+data[i].ultimaFechaModificacion+"'><i class='fas fa-info'></i></button> " +
 					
 					"<button onclick='editarMedida(this);' idlookup='" + data[i].idLookup + "' nombre='" + data[i].nombreLookup + "' simbolo='" + data[i].descripcionLookup + "' class='btn btn-warning btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar'><i class='fas fa-pen'></i></button> " +
 					"<button onclick='bajarMedida(" + data[i].idLookup + ")' class='btn btn-danger btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja'><i class='fas fa-caret-down'></i></button> " +
@@ -804,13 +804,13 @@ function listarMateriales() {
 			var a;
 			var b = [];
 			for (i in data) {
-
+				var creacion =data[i].actualizadoPor==null?"":data[i].actualizadoPor;
 				a = [
 					"<tr>" +
 					"<td>" + data[i].idText + "</td>",
 					"<td>" + data[i].nombreLookup + "</td>",
 					"<td style='text-align: center;'>" +
-					"<button class='btn btn-info btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020'><i class='fas fa-info'></i></button> " +
+					"<button class='btn btn-info btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por: </strong>"+data[i].creadoPor+" <br /><strong>Fecha de creación:</strong> "+data[i].fechaCreacion+"<br><strong>Modificado por:</strong>"+creacion+"<br><strong>Fecha de modicación:</strong>"+data[i].ultimaFechaModificacion+"'><i class='fas fa-info'></i></button> " +
 					"<button onclick='editarMaterial(this);' idlookup='" + data[i].idLookup + "' nombre='" + data[i].nombreLookup + "'  class='btn btn-warning btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar'><i class='fas fa-pen'></i></button> " +
 					"<button onclick='bajarMaterial(" + data[i].idLookup + ")' class='btn btn-danger btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja'><i class='fas fa-caret-down'></i></button> " +
 					"</td>" +
@@ -892,13 +892,13 @@ function listarMarcadores() {
 			var a;
 			var b = [];
 			for (i in data) {
-
+				var creacion =data[i].actualizadoPor==null?"":data[i].actualizadoPor;
 				a = [
 					"<tr>" +
 					"<td>" + data[i].idText + "</td>",
 					"<td>" + data[i].nombreLookup + "</td>",
 					"<td style='text-align: center;'>" +
-					"<button class='btn btn-circle btn-sm btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020'><i class='fas fa-info'></i></button> " +
+					"<button class='btn btn-info btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por: </strong>"+data[i].creadoPor+" <br /><strong>Fecha de creación:</strong> "+data[i].fechaCreacion+"<br><strong>Modificado por:</strong>"+creacion+"<br><strong>Fecha de modicación:</strong>"+data[i].ultimaFechaModificacion+"'><i class='fas fa-info'></i></button> " +
 					"<button onclick='editarMarcador(this);' idlookup='" + data[i].idLookup + "' nombre='" + data[i].nombreLookup + "'  class='btn btn-warning btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar'><i class='fas fa-pen'></i></button> " +
 					"<button onclick='bajarMarcador(" + data[i].idLookup + ")' class='btn btn-danger btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja'><i class='fas fa-caret-down'></i></button> " +
 					"</td>" +
@@ -979,13 +979,13 @@ function listarComposiciones1() {
 			var a;
 			var b = [];
 			for (i in data) {
-
+				var creacion =data[i].actualizadoPor==null?"":data[i].actualizadoPor;
 				a = [
 					"<tr>" +
 					"<td>" + data[i].idText + "</td>",
 					"<td>" + data[i].nombreLookup + "</td>",
 					"<td style='text-align: center;'>" +
-					"<button class='btn btn-info btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020'><i class='fas fa-info'></i></button> " +
+					"<button class='btn btn-info btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por: </strong>"+data[i].creadoPor+" <br /><strong>Fecha de creación:</strong> "+data[i].fechaCreacion+"<br><strong>Modificado por:</strong>"+creacion+"<br><strong>Fecha de modicación:</strong>"+data[i].ultimaFechaModificacion+"'><i class='fas fa-info'></i></button> " +
 					"<button onclick='editarComposicion1(this);' idlookup='" + data[i].idLookup + "' nombre='" + data[i].nombreLookup + "'  class='btn btn-warning btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar'><i class='fas fa-pen'></i></button> " +
 					"<button onclick='bajarComposicion1(" + data[i].idLookup + ")' class='btn btn-danger btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja'><i class='fas fa-caret-down'></i></button> " +
 					"</td>" +
