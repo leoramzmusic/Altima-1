@@ -100,7 +100,7 @@ public class ProduccionDetalleServiceImpl  implements IProduccionDetalleService 
 	@Transactional
 	public List<Object []> PrendaOrdenes(Long id) {
 		// TODO Auto-generated method stub
-		List<Object[]> re= em.createNativeQuery("select lookup.nombre_lookup, prenda.nombre_prenda, orden.costo, orden.cantidad, orden.talla, orden.largo, orden.id_detalle_pedido\r\n" + 
+		List<Object[]> re= em.createNativeQuery("select lookup.nombre_lookup, prenda.descripcion_prenda, orden.costo, orden.cantidad, orden.talla, orden.largo, orden.id_detalle_pedido\r\n" + 
 				"from alt_disenio_lookup as lookup,\r\n" + 
 				"	 alt_disenio_prenda as prenda, \r\n" + 
 				"     alt_produccion_detalle_pedido  as orden,\r\n" + 

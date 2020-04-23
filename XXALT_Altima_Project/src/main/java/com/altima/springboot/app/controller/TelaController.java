@@ -247,7 +247,7 @@ public class TelaController {
 				model.addAttribute("lisFam",disenioTelaService.findAllFamilaComposicion());
 				model.addAttribute("lisCom",disenioTelaService.findAllComposicion());
 				model.addAttribute("listForro",forroService.ForrosSelect(id)); 
-				model.addAttribute("listBoton", disenioTelaService.findAllBotones(id));
+				
 				model.addAttribute("listColor", disenioTelaService.findAllColores());
 				model.addAttribute("listPrendas", disenioTelaService.findAllPrenda());
 				
@@ -256,7 +256,10 @@ public class TelaController {
 		
 		model.addAttribute("listTelaComposicon", disenioTelaService.ComposicionTelaMN(id));
 		
-		model.addAttribute("listBtnSelec", disenioTelaService.BonotesSeleccionados(id));
+		// Consulta de botones 
+		model.addAttribute("listBtnSelec", disenioTelaService.BonotesSeleccionados(id));// botones ya seleccionados
+		model.addAttribute("listBoton", disenioTelaService.findAllBotones(id));// botones sin seleccionar
+		
 		model.addAttribute("listForroSelec", disenioTelaService.ForrosSeleccionados(id));
 		
 		model.addAttribute("listVistaTelaPrenda", disenioTelaService.VistaTelaPrenda(id));

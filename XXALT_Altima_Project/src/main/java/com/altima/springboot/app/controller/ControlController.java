@@ -401,9 +401,9 @@ System.out.println("Los id son :"+id);
 		
 		DisenioPrenda prenda = new DisenioPrenda();
 		prenda.setIdFamiliaPrenda(Long.valueOf(familia));
+		prenda.setDescripcionPrenda(nombre);
 		prenda.setPrecio(precio);
 		prenda.setTipoLargo(largo);
-		prenda.setDescripcionPrenda(talla);
 		prenda.setIdMarcador("1");
 		prenda.setEstatus(Long.valueOf(1));
 		prenda.setPrendaLocal("0");

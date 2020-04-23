@@ -121,13 +121,13 @@
     <div th:if="*{tela.estatusTela =='1'}" class="form-group col-sm-4">
         <label for="status">Calidad</label>
         
-         <input required type="text" th:field="*{tela.idCalidad}" class="form-control" placeholder="Calidad">
+         <input required type="text"  class="form-control" placeholder="Calidad">
        
     </div>
     
     <div th:if="*{tela.estatusTela =='1'}" class="form-group col-sm-4">
         <label for="status">Linea Tela</label>
-        <input required type="text" th:field="*{tela.lineaTela}" class="form-control" placeholder="Linea">
+        <input required type="text"  class="form-control" placeholder="Linea">
     </div>
     
     <div th:if="*{tela.estatusTela =='1'}" class="form-group col-sm-4">
@@ -145,12 +145,12 @@
     <div th:if="*{tela.estatusTela =='1'}" class="form-group col-sm-4">
         <label for="status">Consumo</label>
         
-        <input type="text" required th:field="*{tela.consumo}" class="form-control" placeholder="Consumo">
+        <input type="text" required class="form-control" placeholder="Consumo">
     </div>
     
     <div th:if="*{tela.estatusTela =='1'}" class="form-group col-sm-4">
         <label for="status">Consumo promedio</label>      
-        <input type="text" required th:field="*{tela.consumoPromedio}" class="form-control" placeholder="Consumo promedio">
+        <input type="text" required  class="form-control" placeholder="Consumo promedio">
     </div>
     
 <!--     <div th:if="*{tela.estatusTela != null}" class="form-group col-sm-4"> -->
@@ -183,9 +183,9 @@
         </select>
     </div>
     
-    <div th:if="*{tela.estatusTela =='1'}"  class="form-group col-sm-6">
-        <label for="status">Botones</label>
-        <select required  class="selectCustom" data-live-search="true" multiple  name="botones" >
+    <div th:if="*{tela.estatusTela =='1'}"  class="form-group col-sm-4">
+        <label for="status">Botones</label><br>
+        <select required  class="form-control selectCustom" data-live-search="true" multiple  name="botones" >
         
         <option th:each="listBtnSelec: ${listBtnSelec}"
 			th:value="${listBtnSelec[0]}" th:text="${listBtnSelec[1]}" selected ></option>
@@ -195,9 +195,45 @@
         </select>
     </div>
      
-     <div th:if="*{tela.estatusTela =='1'}"  class="form-group col-sm-6">
+     <div th:if="*{tela.estatusTela =='1'}"  class="form-group col-sm-4">
         <label for="status">Forro</label>
-        <select required class="selectCustom" multiple data-live-search="true" name="forros">
+        <select required class="form-control selectCustom" multiple data-live-search="true" name="forros">
+        <option th:each="listForroSelec: ${listForroSelec}"
+			th:value="${listForroSelec[0]}" th:text="${listForroSelec[1]}" selected ></option>
+         
+        <option th:each="listForro: ${listForro}"
+			th:value="${listForro[0]}" th:text="${listForro[1]}" ></option>
+			</select>
+    </div>
+    
+    
+     <div th:if="*{tela.estatusTela =='1'}"  class="form-group col-sm-4">
+        <label for="status">Hilos</label>
+        <select required class="form-control selectCustom" multiple data-live-search="true" name="forros">
+        <option th:each="listForroSelec: ${listForroSelec}"
+			th:value="${listForroSelec[0]}" th:text="${listForroSelec[1]}" selected ></option>
+         
+        <option th:each="listForro: ${listForro}"
+			th:value="${listForro[0]}" th:text="${listForro[1]}" ></option>
+			</select>
+    </div>
+    
+    
+     <div th:if="*{tela.estatusTela =='1'}"  class="form-group col-sm-4">
+        <label for="status">Cierres</label>
+        <select required class="form-control selectCustom" multiple data-live-search="true" name="forros">
+        <option th:each="listForroSelec: ${listForroSelec}"
+			th:value="${listForroSelec[0]}" th:text="${listForroSelec[1]}" selected ></option>
+         
+        <option th:each="listForro: ${listForro}"
+			th:value="${listForro[0]}" th:text="${listForro[1]}" ></option>
+			</select>
+    </div>
+    
+    
+     <div th:if="*{tela.estatusTela =='1'}"  class="form-group col-sm-4">
+        <label for="status">Adornos</label>
+        <select required class="form-control selectCustom" multiple data-live-search="true" name="forros">
         <option th:each="listForroSelec: ${listForroSelec}"
 			th:value="${listForroSelec[0]}" th:text="${listForroSelec[1]}" selected ></option>
          
