@@ -61,6 +61,7 @@ public class PrendasController {
 		model.addAttribute("materiales", disenioMaterialService.findAllForCreate());
 		model.addAttribute("patronajes", disenioMaterialService.findLookUps());
 		model.addAttribute("rutas", disenioRutaService.findAll());
+		model.addAttribute("marcadores", disenioLookupService.findByTipoLookup("Marcador"));
 		m.put("prenda", prenda);
 		m.put("accion", "prospecto");
 		return "agregar-confirmar-prenda";

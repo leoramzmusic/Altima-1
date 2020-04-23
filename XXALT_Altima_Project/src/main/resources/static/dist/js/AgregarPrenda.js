@@ -207,7 +207,6 @@ function CambiarCantidadMaterial(identidad) {
 
 
 function Guardar() {
-	console.log("que pedo que pedo");
 	if (CambiarImgFrente == true && CambiarImgEspalda == true) {
 		$('#FormImagenes').click();
 	}
@@ -230,8 +229,6 @@ function Guardar() {
 
 	var token = $('#token').val();
 	var header = $('#token').val();
-	console.log(objeto_patronajes);
-	console.log("entre al guardar");
 
 
 	//Solicitud Ajax

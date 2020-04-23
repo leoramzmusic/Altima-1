@@ -119,7 +119,7 @@
                                                             <div class="col-sm-2" style="font-size: 15px;">
                                                                 <div class="form-group" style="margin-top: 45px;">
                                                                     <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                                                                        <input type="checkbox" class="custom-control-input" id="combi" th:checked="${prenda.combinacion == '1'}">
+                                                                        <input type="checkbox" class="custom-control-input" id="combi" ><!--  th:checked="${prenda.combinacion == '1'}" -->
                                                                         <label class="custom-control-label" for="combi">Lleva combinaci&oacute;n
                                                                         </label>
                                                                     </div>
@@ -143,7 +143,7 @@
                                                                     <div class="form-group p-3 border p-2 rounded m-3">
                                                                         <div class="row">
                                                                             <div class="col-sm-3 text-center pt-2 border-right">
-                                                                                <label for="mainImage1"> <img th:src="@{'/uploads/prendas/' + ${prenda.dibujoFrente}}" alt="Placeholder" id="blah1" class="placeholder img-thumbnail" aria-describedby="imagePreviewHelp1" th:onerror="this.src='/dist/img/preview.png'" /></label> <small id="imagePreviewHelp1" class="form-text text-muted">Previsualizaci&oacute;n
+                                                                                <label for="mainImage1"> <img th:src="@{'/uploads/prendas/' + ${prenda.dibujoEspalda}}" alt="Placeholder" id="blah1" class="placeholder img-thumbnail" aria-describedby="imagePreviewHelp1" th:onerror="this.src='/dist/img/preview.png'" /></label> <small id="imagePreviewHelp1" class="form-text text-muted">Previsualizaci&oacute;n
 																					de la imagen</small>
                                                                             </div>
                                                                             <div class="col">
@@ -165,7 +165,7 @@
                                                                     <div class="form-group p-3 border p-2 rounded m-3">
                                                                         <div class="row">
                                                                             <div class="col-sm-3 text-center pt-2 border-right">
-                                                                                <label for="mainImage"><img th:src="@{'/uploads/prendas/' + ${prenda.dibujoEspalda}}" alt="Placeholder" id="blah2" class="placeholder img-thumbnail" aria-describedby="imagePreviewHelp" th:onerror="this.src='/dist/img/preview.png'" /></label> <small id="imagePreviewHelp" class="form-text text-muted">Previsualizaci&oacute;n
+                                                                                <label for="mainImage"><img th:src="@{'/uploads/prendas/' + ${prenda.dibujoFrente}}" alt="Placeholder" id="blah2" class="placeholder img-thumbnail" aria-describedby="imagePreviewHelp" th:onerror="this.src='/dist/img/preview.png'" /></label> <small id="imagePreviewHelp" class="form-text text-muted">Previsualizaci&oacute;n
 																					de la imagen</small>
                                                                             </div>
                                                                             <div class="col">
@@ -368,15 +368,15 @@
                                                     </div>
                                                     <div class="tab-pane" role="tabpanel" id="complete">
                                                         <div class="row">
-                                                            <div class="col-sm-12">
+                                                            <div class="col-sm-10">
                                                                 <div class="form-group">
                                                                     <label>Lista de piezas de patronaje</label>
-                                                                    <select placeholder="Elige una prenda" id="ListaPatronaje">
+                                                                    <select placeholder="Elige una prenda" id="ListaPatronaje" class="form-control">
                                                                         <option th:each="patronajes : ${patronajes}" th:value="${patronajes[0]}" th:text="${patronajes[2]}"></option>
                                                                     </select>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-sm-3">
+                                                            <div class="col-sm-2">
                                                                 <label>&nbsp;</label>
                                                                 <div class="form-group">
                                                                     <div id="BotonAgregar" style="display: block">
@@ -421,7 +421,7 @@
                                                             <ul class="float-right">
                                                                 <li class="list-inline-item">
                                                                     <button type="button" class="btn btn-primary" onclick="ValidarCuartaPestana()">Guardar</button>
-                                                                    <button type="button" class="btn btn-primary next-step" style="display: none" id="SiguienteCuartaPestana" onclick="Guardar()">Guardar</button>
+                                                                    <button type="button" class="btn btn-primary" style="display: none" id="SiguienteCuartaPestana" onclick="Guardar()">Guardar</button>
                                                                 </li>
                                                             </ul>
                                                         </div>

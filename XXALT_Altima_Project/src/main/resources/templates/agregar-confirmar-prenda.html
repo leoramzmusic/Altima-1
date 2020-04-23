@@ -84,10 +84,10 @@
 												<div class="tab-content py-2">
 													<div class="tab-pane active" role="tabpanel" id="step1">
 														<div class="row">
-															<div class="col-sm-12">
+															<div class="col-sm-4">
 																<div class="form-group">
 																	<label>Tipo de prenda</label> 
-																	<select placeholder="Elige un tipo de prenda" id="TipoPrenda">
+																	<select placeholder="Elige un tipo de prenda" id="TipoPrenda" class="form-control">
 																		<option value=""></option>
 																		<option th:each="familia: ${familias}" th:value="${familia[0]}" 
 																		th:text="${familia[1]}" th:selected="${familia[0] == prenda.idFamiliaPrenda}"></option>
@@ -96,20 +96,15 @@
 															</div>
 															<div class="col-sm-4">
 																<div class="form-group">
-																	<label style="font-size: 15px;">Nombre de la prenda</label> <input type="text" class="form-control" placeholder="Blusa" th:field="*{nombrePrenda}" id="NombrePrenda">
-																</div>
-															</div>
-															<div class="col-sm-4">
-																<div class="form-group">
 																	<label style="font-size: 15px;">Descripci&oacute;n
 																		de la prenda</label> <input type="text" class="form-control"
-																		placeholder="CH9192" th:field="*{descripcionPrenda}" id="DescripcionPrenda">
+																		placeholder="Descripcion de Prenda" th:field="*{descripcionPrenda}" id="DescripcionPrenda">
 																</div>
 															</div>
 															<div class="col-sm-4">
 																<div class="form-group">
 																	<label style="font-size: 15px;">Nota especial</label> <input
-																		type="text" class="form-control" placeholder="CH9192"  th:field="*{notaEspecial}" id="NotaEspecial">
+																		type="text" class="form-control" placeholder="Nota de Prenda"  th:field="*{notaEspecial}" id="NotaEspecial">
 																</div>
 															</div>
 															
@@ -122,24 +117,21 @@
 																</div>
 															</div>
 															<div class="col-sm-2" style="font-size: 15px;">
-																<div class="form-group" style="margin-top: 45px;">
-																	<div
-																		class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-																		<input type="checkbox" class="custom-control-input"
-																			id="combi" th:checked="${prenda.combinacion == '1'}"> <label
-																			class="custom-control-label" for="combi">Lleva
-																			combinaci&oacute;n</label>
-																	</div>
-																</div>
 																<div class="form-group">
-																	<div
-																		class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+																<label>&nbsp;</label>
+																	<div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
 																		<input type="checkbox" class="custom-control-input"
 																			id="ticket" th:checked="${prenda.imprimirEtiquetas == '1'}"> <label
 																			class="custom-control-label" for="ticket">Imprimir
 																			ticket</label>
 																	</div>
 																</div>
+																<div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+																		<input type="checkbox" class="custom-control-input" id="combi"> <label
+																			class="custom-control-label" for="combi">Lleva
+																			combinaci&oacute;n</label>
+																	</div>
+																	<!--  th:checked="${prenda.combinacion == '1'}" -->
 															</div>
 														</div>
 														
@@ -151,7 +143,7 @@
 																	<div class="row">
 																		<div class="col-sm-3 text-center pt-2 border-right">
 																			<label for="mainImage1">
-																				<img th:src="@{'/uploads/prendas/' + ${prenda.dibujoFrente}}" alt="Placeholder" id="blah1" class="placeholder img-thumbnail"
+																				<img th:src="@{'/uploads/prendas/' + ${prenda.dibujoEspalda}}" alt="Placeholder" id="blah1" class="placeholder img-thumbnail"
 																				aria-describedby="imagePreviewHelp1" th:onerror="this.src='/dist/img/preview.png'"/></label> 
 																				<small id="imagePreviewHelp1" class="form-text text-muted">Previsualizaci&oacute;n
 																				de la imagen</small>
@@ -175,7 +167,7 @@
 																<div class="form-group p-3 border p-2 rounded m-3">
 																	<div class="row">
 																		<div class="col-sm-3 text-center pt-2 border-right">
-																			<label for="mainImage"><img th:src="@{'/uploads/prendas/' + ${prenda.dibujoEspalda}}" alt="Placeholder" id="blah2" class="placeholder img-thumbnail"
+																			<label for="mainImage"><img th:src="@{'/uploads/prendas/' + ${prenda.dibujoFrente}}" alt="Placeholder" id="blah2" class="placeholder img-thumbnail"
 																				aria-describedby="imagePreviewHelp" th:onerror="this.src='/dist/img/preview.png'"/></label> 
 																				<small id="imagePreviewHelp" class="form-text text-muted">Previsualizaci&oacute;n
 																				de la imagen</small>
@@ -298,7 +290,7 @@
 															<div class="col-sm-10">
 																<div class="form-group">
 																	<label>Lista de materiales</label>
-																	<select placeholder="Elige una prenda" id="ListaDeMateriales">
+																	<select placeholder="Elige una prenda" id="ListaDeMateriales" class="form-control">
 																			<option th:each="materiales : ${materiales}" th:value="${materiales[0]}" th:text="${materiales[1]}"></option>
 																			
 																	</select>
@@ -359,15 +351,15 @@
 													</div>
 													<div class="tab-pane" role="tabpanel" id="complete">
                                                         <div class="row">
-                                                            <div class="col-sm-12">
+                                                            <div class="col-sm-10">
                                                                 <div class="form-group">
                                                                     <label>Lista de piezas de patronaje</label>
-                                                                    <select placeholder="Elige una prenda" id="ListaPatronaje">
+                                                                    <select placeholder="Elige una prenda" id="ListaPatronaje" class="form-control">
                                                                         <option th:each="patronajes : ${patronajes}" th:value="${patronajes[0]}" th:text="${patronajes[2]}"></option>
                                                                     </select>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-sm-3">
+                                                            <div class="col-sm-2">
                                                                 <label>&nbsp;</label>
                                                                 <div class="form-group">
                                                                     <div id="BotonAgregar" style="display: block">
@@ -412,7 +404,7 @@
                                                             <ul class="float-right">
                                                                 <li class="list-inline-item">
                                                                     <button type="button" class="btn btn-primary" onclick="ValidarCuartaPestana()">Guardar</button>
-                                                                    <button type="button" class="btn btn-primary next-step" style="display: none" id="SiguienteCuartaPestana" onclick="Guardar()">Guardar</button>
+                                                                    <button type="button" class="btn btn-primary" style="display: none" id="SiguienteCuartaPestana" onclick="Guardar()">Guardar</button>
                                                                 </li>
                                                             </ul>
                                                         </div>
