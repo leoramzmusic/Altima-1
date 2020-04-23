@@ -86,8 +86,43 @@ public class DisenioTela implements Serializable{
 	@Column(name="estatus_tela")
 	private String estatusTela;
 	
+	@Column(name="auxiliar_1")
+	private String auxiliar_1;
+	
+	@Column(name="auxiliar_2")
+	private String auxiliar_2;
+	
+	@Column(name="auxiliar_3")
+	private String auxiliar_3;
 	
 	
+	
+	
+	
+
+	public String getAuxiliar_1() {
+		return auxiliar_1;
+	}
+
+	public void setAuxiliar_1(String auxiliar_1) {
+		this.auxiliar_1 = auxiliar_1;
+	}
+
+	public String getAuxiliar_2() {
+		return auxiliar_2;
+	}
+
+	public void setAuxiliar_2(String auxiliar_2) {
+		this.auxiliar_2 = auxiliar_2;
+	}
+
+	public String getAuxiliar_3() {
+		return auxiliar_3;
+	}
+
+	public void setAuxiliar_3(String auxiliar_3) {
+		this.auxiliar_3 = auxiliar_3;
+	}
 
 	public String getIdTextProspecto() {
 		return idTextProspecto;
