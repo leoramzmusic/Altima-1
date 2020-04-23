@@ -507,23 +507,35 @@ function devueltoIndividualSolicitud(tablaTraspasoinfo){
 		  cancelButtonText: 'Cancelar'
 		}).then((result) => {
 		  if (result.value) { 
-			$.ajax({
-				method:"POST",
-				url:"/devolverIndividual",
-				data:{
-					"_csrf": $('#token').val(),
-					idMuestras:	dato			
-				},
-				success:(data) => {
-					
-					location.href = "/movimientos";
-				}
-			});
-		    Swal.fire(
-		      'Correcto',
-		      'Muestras devueltas correctamente',
-		      'success'
-		    )
+			  if(dato.length==0){
+				  Swal.fire({
+						icon: 'error',
+						title: 'Error',
+						text: 'Debe seleccionar al menos un registro',
+						showConfirmButton: false,
+				        timer: 3500
+					  })
+				  
+			  }
+			  else{
+				$.ajax({
+					method:"POST",
+					url:"/devolverIndividual",
+					data:{
+						"_csrf": $('#token').val(),
+						idMuestras:	dato			
+					},
+					success:(data) => {
+						
+						location.href = "/movimientos";
+					}
+				});
+			    Swal.fire(
+			      'Correcto',
+			      'Muestras devueltas correctamente',
+			      'success'
+			    )
+			  }
 		  }
 		});
 }
@@ -566,25 +578,37 @@ function prestamoSolicitud(tablaTraspasoinfo){
 		  cancelButtonText: 'Cancelar'
 		}).then((result) => {
 		  if (result.value) {
-			$.ajax({
-				method:"POST",
-				url:"/prestamoEmpresa",
-				data:{
-					"_csrf": $('#token').val(),
-					idMuestras:	dato			
-				},
-				success:(data) => {
-					
-					location.href = "/movimientos";
-				}
+			  if(dato.length==0){
+				  Swal.fire({
+						icon: 'error',
+						title: 'Error',
+						text: 'Debe seleccionar al menos un registro',
+						showConfirmButton: false,
+				        timer: 3500
+				  })
+			  }
+			  else{
+				  $.ajax({
+						method:"POST",
+						url:"/prestamoEmpresa",
+						data:{
+							"_csrf": $('#token').val(),
+							idMuestras:	dato			
+						},
+						success:(data) => {
+							
+							location.href = "/movimientos";
+						}
+					});
+				    Swal.fire(
+				      'Correcto',
+				      'Actualizaci&oacute;n correcta',
+				      'success'
+				    )
+				  }
+		  		}
 			});
-		    Swal.fire(
-		      'Correcto',
-		      'Actualizaci&oacute;n correcta',
-		      'success'
-		    )
-		  }
-		});
+			  
 }
 
 function traspasoSolicitud(tablaTraspasoinfo){
@@ -625,25 +649,64 @@ function traspasoSolicitud(tablaTraspasoinfo){
 		  cancelButtonText: 'Cancelar'
 		}).then((result) => {
 		  if (result.value) {
+			  if(dato.length==0){
+				  Swal.fire({
+						icon: 'error',
+						title: 'Error',
+						text: 'Debe seleccionar al menos un registro',
+						showConfirmButton: false,
+				        timer: 3500
+				  })
+			  }
+			  else{
 			  
-			$.ajax({
-				method:"POST",
-				url:"/traspasoSolicitud",
-				data:{
-					"_csrf": $('#token').val(),
-					idMuestras:	dato,
-					nuevoVendedor: vendedorTraspaso
-				},
-				success:(data) => {
-					
-					location.href = "/movimientos";
-				}
-			});
-		    Swal.fire(
-		      'Correcto',
-		      'Actualizaci&oacute;n correcta',
-		      'success'
-		    )
+				$.ajax({
+					method:"POST",
+					url:"/traspasoSolicitud",
+					data:{
+						"_csrf": $('#token').val(),
+						idMuestras:	dato,
+						nuevoVendedor: vendedorTraspaso
+					},
+					success:(data) => {
+						
+						location.href = "/movimientos";
+					}
+				});
+			    Swal.fire(
+			      'Correcto',
+			      'Actualizaci&oacute;n correcta',
+			      'success'
+			    )
+			  }
 		  }
 		});
+}
+
+function selectAllCheck(table){
+	
+	var checkbox = document.getElementById('selectAll');
+	var data = $('#tablaTraspasoinfo').DataTable().rows().data();
+    
+	checkbox.addEventListener("change", validaCheckbox, false);
+	function validaCheckbox(){
+		
+	  var checked = checkbox.checked;
+	  
+	  
+		  if(checked){
+		      // Iterate each checkbox
+			  data.each(function () {
+				  
+				$(':checkbox').checked = true; 
+				console.log("lo pone a true todo");
+			  });
+		  } else {
+			  data.each(function () {
+
+				$(':checkbox').checked = false; 
+				console.log("lo pone a false todo");
+			  });
+		  }
+	}
 }
