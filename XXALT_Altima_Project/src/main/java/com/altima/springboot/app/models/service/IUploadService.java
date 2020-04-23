@@ -36,5 +36,21 @@ public interface IUploadService {
 	public boolean deletefile(String filename);
 
 	public void initfile() throws IOException;
+	
+	
+	
+	public Resource loadMaterial(String filename) throws MalformedURLException;
+	
+	public String copyMaterial(MultipartFile file1) throws IOException;
+	
+	public boolean deleteMaterial(String filename);
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

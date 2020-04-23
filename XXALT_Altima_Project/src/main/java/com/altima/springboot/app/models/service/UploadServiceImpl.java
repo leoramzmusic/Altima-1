@@ -24,6 +24,9 @@ public class UploadServiceImpl implements IUploadService {
 	private final static String folderTelas = "uploads/telas";
 
 	private final static String folderForros = "uploads/forros";
+	
+	
+	private final static String folderMaterial = "uploads/material";
 
 	@Override
 	public Resource load(String filename) throws MalformedURLException {
@@ -160,6 +163,56 @@ public class UploadServiceImpl implements IUploadService {
 		return Paths.get(folderForros).resolve(filename).toAbsolutePath();
 
 	}
+	
+	
+	/* MATERIALES */
+	
+	public Path getPathMaterial(String filename) {
+		return Paths.get(folderMaterial).resolve(filename).toAbsolutePath();
+
+	}
+	
+	
+	
+	
+	@Override
+	public Resource loadMaterial(String filename) throws MalformedURLException {
+		Path pathFoto = getPathMaterial(filename);
+		Resource recurso = null;
+
+		recurso = new UrlResource(pathFoto.toUri());
+		if (!recurso.exists() && !recurso.isReadable()) {
+			throw new RuntimeException("Error: No se puede cargar la imagen " + pathFoto.toString());
+		}
+
+		return recurso;
+	}
+
+	@Override
+	public String copyMaterial(MultipartFile file) throws IOException {
+		String uniqueFilename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+		Path rootPath = getPathMaterial(uniqueFilename);
+		Files.copy(file.getInputStream(), rootPath);
+		return uniqueFilename;
+	}
+
+	@Override
+	public boolean deleteMaterial(String filename) {
+		Path rootPath = getPathMaterial(filename);
+		File archivo = rootPath.toFile();
+
+		if (archivo.exists() && archivo.canRead()) {
+			if (archivo.delete()) {
+			}
+		}
+		return true;
+	}
+	
+	
+	
+	
+	
+	
 
 	/* imagenes de lookup cuidados */
 	private final Logger log = LoggerFactory.getLogger(getClass());

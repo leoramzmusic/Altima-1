@@ -256,3 +256,73 @@ function uploadPreview(input) {
 			    uploadPreviewForro($('#mainImageForro'));
 			  }
 			});
+			
+			
+			
+			
+			
+			//Material
+			
+			function uploadPreviewMaterial(input) {
+				  if (input.files && input.files[0]) {
+				    var reader = new FileReader();
+
+				    reader.onload = function(e) {
+				      if (e.target.result.trim().length == 0) {
+				        $('#serviceImageMaterial').attr('src', 'http://catawbabrewing.com/wp-content/themes/catawba/images/placeholder.png');
+				      } else {
+				        $('#serviceImageMaterial').attr('src', e.target.result);
+				      }
+				    }
+
+				    reader.readAsDataURL(input.files[0]);
+				  }
+				}
+
+				function uploadPreviewExtMaterial(input) {
+				  if (input.trim().length == 0) {
+				    var previewSrc = '{{CSS_URL}}/images/placeholder.jpg';
+				  } else {
+				    var previewSrc = input;
+				  }
+
+				  $('#serviceImageMaterial').attr('src', previewSrc);
+				}
+
+				function resetUploadPreviewMaterial() {
+				  if (!$('#previousImageMaterial').val()) {
+				    $('#serviceImageMaterial').attr('src', 'http://catawbabrewing.com/wp-content/themes/catawba/images/placeholder.png');
+				  } else {
+				    $('#serviceImageMaterial').attr('src', '{{PROD_IMG}}/'.$('#previousImageMaterial').val());
+				  }
+				}
+
+				$("#mainImageMaterial").change(function() {
+				  uploadPreviewMaterial(this);
+				});
+
+				$('[name="mainImgExtMaterial"]').on('change', function() {
+				  uploadPreviewExtMaterial(this.value);
+				});
+
+				$('#clearUploadMaterial').on('click', function() {
+				  $('#mainImageMaterial').val('');
+
+				  if ($('#imgExtMaterial').val().trim().length == 0) {
+				    resetUploadPreviewMaterial();
+				  } else {
+				    uploadPreviewExtMaterial($('#imgExt').val());
+				  }
+				});
+
+				$('#clearUploadExtMaterial').on('click', function() {
+				  $('#imgExtMaterial').val('');
+
+				  if (!$('#mainImageMaterial').val()) {
+				    resetUploadPreviewMaterial();
+				  } else {
+				    uploadPreviewMaterial($('#mainImageMaterial'));
+				  }
+				});
+				
+				

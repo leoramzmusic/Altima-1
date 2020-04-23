@@ -1,4 +1,4 @@
-<form class="row" style="display: none;" id="materialForm" th:object="${material}" th:action="@{/guardar}"
+<form class="row" style="display: none;" id="materialForm" th:object="${material}" th:action="@{/guardar}" enctype="multipart/form-data"
     method="post">
 
 
@@ -138,7 +138,7 @@
     
     
     
-     <div class="form-group col-sm-12 text-center">
+     <div class="form-group col-sm-6 text-center">
       
          <label></label>
        <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
@@ -147,6 +147,40 @@
         </div>
    
     </div>
+    
+    
+    
+    
+     <div class="form-group col-sm-6 ">
+      
+         <div class="row">
+                <div class="col-sm-3 text-center pt-2 border-right">
+                    <label for="mainImageMaterial"><img th:src="@{'/uploads/material/' + *{imagen}}"  th:onerror="this.src='/dist/img/preview.png'" alt="Placeholder" id="serviceImageMaterial" class="placeholder img-thumbnail" aria-describedby="imagePreviewHelp" /></label>
+                    <small id="imagePreviewHelpMaterial" class="form-text text-muted">Previsualizaci&oacute;n de la imagen</small>
+                </div>
+               <div class="col"> 
+                    <label for="mainImagenMaterial">Material</label>
+                    <div class="input-group mb-3">
+                        <input type="file"  name="imagenMaterial" th:value="*{imagen}"  class="form-control border p-1" id="mainImageMaterial"  />
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-danger text-danger pointer" id="clearUploadMaterial"><i class="fas fa-times"></i></span>
+                        </div>
+                    </div>
+                    <small id="imageHelpMaterial" class="form-text text-muted">Selecciona la foto que desea subir.</small>
+                </div>
+            </div>
+   
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+      
+        <input  type="hidden" th:field="*{imagen}">
  
      <input type="hidden" class="form-control" id="estatusMaterial" th:field="*{estatusMaterial}">
      <input type="hidden" class="form-control" id="creadoPor" th:field="*{creadoPor}">

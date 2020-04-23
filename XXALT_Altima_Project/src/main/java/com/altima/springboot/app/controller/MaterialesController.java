@@ -1,7 +1,12 @@
 package com.altima.springboot.app.controller;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -11,6 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.altima.springboot.app.models.entity.DisenioForro;
@@ -23,6 +30,7 @@ import com.altima.springboot.app.models.service.IDisenioForroService;
 import com.altima.springboot.app.models.service.IDisenioMaterialService;
 //import com.altima.springboot.app.models.service.IDisenioProcesoService;
 import com.altima.springboot.app.models.service.IDisenioTelaService;
+import com.altima.springboot.app.models.service.IUploadService;
 
 @CrossOrigin(origins = { "*" })
 @Controller
@@ -35,6 +43,9 @@ public class MaterialesController {
 	private IDisenioForroService forroService;
 	@Autowired
 	private IDisenioTelaService disenioTelaService;
+	
+	@Autowired
+	private IUploadService UploadService;
 
 	@GetMapping("/materiales")
 	public String listMateriales(Model model) {
@@ -112,9 +123,12 @@ public class MaterialesController {
 	}
 
 	@PostMapping("/guardar")
-	public String guardarMaterial(@ModelAttribute DisenioMaterial material, RedirectAttributes redirectAttrs) {
+	public String guardarMaterial(@ModelAttribute DisenioMaterial material, RedirectAttributes redirectAttrs,
+			@RequestParam(value="imagenMaterial", required=false) MultipartFile imagenMaterial) {
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		
+	
 		
 		 System.out.println("la calidad guardar1" + material.getCalidad());
 			if (material.getCalidad()==null) {
@@ -124,10 +138,29 @@ public class MaterialesController {
 			}
 			
 		
+			
+		
 		
 		if (material.getIdMaterial() == null || material.getIdMaterial() <= 0) {
 			material.setCreadoPor(auth.getName());
 			material.setEstatusMaterial("0");
+			
+			if (!imagenMaterial.isEmpty()){
+				if ( material.getImagen() != null && material.getImagen().length() > 0) {
+					UploadService.deleteMaterial(material.getImagen());
+				}
+				String uniqueFilename = null;
+				try {
+					uniqueFilename = UploadService.copyMaterial(imagenMaterial);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				material.setImagen(uniqueFilename);
+			}
+			
+			//aqui acaba lo de la imagen
+			
 			disenioMaterialService.save(material);
 			if (disenioMaterialService.findLastMaterial(material.getIdTipoMaterial()).size() > 1) {
 				Object[] vat = disenioMaterialService.findLastMaterial(material.getIdTipoMaterial()).get(1);
@@ -160,6 +193,21 @@ public class MaterialesController {
 			}
 		
 			material.setEstatus("1");
+			
+			if (!imagenMaterial.isEmpty()){
+				if ( material.getImagen() != null && material.getImagen().length() > 0) {
+					UploadService.deleteMaterial(material.getImagen());
+				}
+				String uniqueFilename = null;
+				try {
+					uniqueFilename = UploadService.copyMaterial(imagenMaterial);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				material.setImagen(uniqueFilename);
+			}
+			//aqui acaba lo de la imagen
 		
 			disenioMaterialService.save(material);
 			redirectAttrs.addFlashAttribute("title", "Material Insertado Correctamente").addFlashAttribute("icon",
@@ -191,6 +239,20 @@ public class MaterialesController {
 			}
 
 			material.setActualizadoPor(auth.getName());
+			
+			if (!imagenMaterial.isEmpty()){
+				if ( material.getImagen() != null && material.getImagen().length() > 0) {
+					UploadService.deleteMaterial(material.getImagen());
+				}
+				String uniqueFilename = null;
+				try {
+					uniqueFilename = UploadService.copyMaterial(imagenMaterial);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				material.setImagen(uniqueFilename);
+			}
 			disenioMaterialService.save(material);
 			redirectAttrs.addFlashAttribute("title", "Material Actualizado Correctamente").addFlashAttribute("icon",
 					"success");
@@ -245,6 +307,23 @@ public class MaterialesController {
 		disenioMaterialService.save(material);
 
 		return "redirect:/materiales";
+	}
+	
+	
+	@GetMapping(value = "/uploads/material/{filename:.+}")
+	public ResponseEntity<Resource> verFoto(@PathVariable String filename) {
+
+		Resource recurso = null;
+		try {
+			recurso = UploadService.loadMaterial(filename);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return ResponseEntity.ok()
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
+				.body(recurso);
 	}
 
 }
