@@ -107,18 +107,28 @@ public class DisenioMaterial implements Serializable{
 	private String idTextProspecto;
 	
 	@Column(name="id_tipo_material")
-
 	private Long idTipoMaterial;
 	
 	@Column(name="id_color")
-
 	private Long idColor;
 	
 	@Column(name="calidad")
 	private String calidad;
 	
+	@Column(name="imagen")
+	private String imagen;
 	
 	
+	
+
+	
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
 
 	public String getCalidad() {
 		return calidad;
