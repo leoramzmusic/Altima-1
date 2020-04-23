@@ -185,7 +185,7 @@
     
     <div th:if="*{tela.estatusTela =='1'}"  class="form-group col-sm-6">
         <label for="status">Botones</label>
-        <select required  class="selectCustom" multiple  name="botones" >
+        <select required  class="selectCustom" data-live-search="true" multiple  name="botones" >
         
         <option th:each="listBtnSelec: ${listBtnSelec}"
 			th:value="${listBtnSelec[0]}" th:text="${listBtnSelec[1]}" selected ></option>
@@ -197,7 +197,7 @@
      
      <div th:if="*{tela.estatusTela =='1'}"  class="form-group col-sm-6">
         <label for="status">Forro</label>
-        <select required class="selectCustom" multiple  name="forros">
+        <select required class="selectCustom" multiple data-live-search="true" name="forros">
         <option th:each="listForroSelec: ${listForroSelec}"
 			th:value="${listForroSelec[0]}" th:text="${listForroSelec[1]}" selected ></option>
          
