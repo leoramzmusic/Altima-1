@@ -62,9 +62,6 @@ public class DisenioForro implements Serializable{
 	@Column(name="id_unidad_medida")
 	private Long idUnidadMedida;
 	
-	@Column(name="consumo_promedio_forro")
-	private String consumoPromedioForro;
-	
 	@Column(name="existencia_forro")
 	private String existenciaForro;
 	
@@ -77,8 +74,41 @@ public class DisenioForro implements Serializable{
 	@Column(name="estatus_forro")
 	private String estatusForro;
 
+	@Column(name="auxiliar_1")
+	private String auxiliar1;
+	
+	@Column(name="auxiliar_2")
+	private String auxiliar2;
+	
+	@Column(name="auxiliar_3")
+	private String auxiliar3;
 	
 	
+	
+	public String getAuxiliar1() {
+		return auxiliar1;
+	}
+
+	public void setAuxiliar1(String auxiliar1) {
+		this.auxiliar1 = auxiliar1;
+	}
+
+	public String getAuxiliar2() {
+		return auxiliar2;
+	}
+
+	public void setAuxiliar2(String auxiliar2) {
+		this.auxiliar2 = auxiliar2;
+	}
+
+	public String getAuxiliar3() {
+		return auxiliar3;
+	}
+
+	public void setAuxiliar3(String auxiliar3) {
+		this.auxiliar3 = auxiliar3;
+	}
+
 	public String getColor() {
 		return color;
 	}
@@ -183,14 +213,6 @@ public class DisenioForro implements Serializable{
 		this.idUnidadMedida = idUnidadMedida;
 	}
 
-	public String getConsumoPromedioForro() {
-		return consumoPromedioForro;
-	}
-
-	public void setConsumoPromedioForro(String consumoPromedioForro) {
-		this.consumoPromedioForro = consumoPromedioForro;
-	}
-
 	public String getExistenciaForro() {
 		return existenciaForro;
 	}
@@ -233,7 +255,6 @@ public class DisenioForro implements Serializable{
 		int result = 1;
 		result = prime * result + ((actualizadoPor == null) ? 0 : actualizadoPor.hashCode());
 		result = prime * result + ((anchoForro == null) ? 0 : anchoForro.hashCode());
-		result = prime * result + ((consumoPromedioForro == null) ? 0 : consumoPromedioForro.hashCode());
 		result = prime * result + ((creadoPor == null) ? 0 : creadoPor.hashCode());
 		result = prime * result + ((descripcionForro == null) ? 0 : descripcionForro.hashCode());
 		result = prime * result + ((estatus == null) ? 0 : estatus.hashCode());
@@ -267,11 +288,6 @@ public class DisenioForro implements Serializable{
 			if (other.anchoForro != null)
 				return false;
 		} else if (!anchoForro.equals(other.anchoForro))
-			return false;
-		if (consumoPromedioForro == null) {
-			if (other.consumoPromedioForro != null)
-				return false;
-		} else if (!consumoPromedioForro.equals(other.consumoPromedioForro))
 			return false;
 		if (creadoPor == null) {
 			if (other.creadoPor != null)
