@@ -204,6 +204,10 @@ function agregarMiniTabla(tablaMuestra){
   
 
 function detalleMuestras(id){
+	$('#vendedorTraspasoCodigo').val((Math.floor(Math.random() * (10 - 1)) + 1)+""+
+									 (Math.floor(Math.random() * (10 - 1)) + 1)+""+
+									 (Math.floor(Math.random() * (10 - 1)) + 1)+""+
+									 (Math.floor(Math.random() * (10 - 1)) + 1));
 	$('#borrarTabla').remove();
 	$('#crearTabla').append("<div class='modal-body' id='borrarTabla'>" +
 								"<div class='form-check'>" +
@@ -689,5 +693,3 @@ function selectAllCheck(table){
 		data.$("input[type='checkbox']").attr('checked', $(this.checked));  
     });
 }
-
-
