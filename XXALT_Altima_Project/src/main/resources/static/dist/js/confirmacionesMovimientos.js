@@ -61,11 +61,11 @@ function agregarMiniTabla(tablaMuestra){
 	}
 	
 	else{
-		
 		foreach(table, 'tr:not(:first-child)', function(row) {
-			
-			if ($('#idMuestras').val()==result){
+
+			if ($('#idMuestras'+result+'').val()==result){
 				validador=1;
+				
 				Swal.fire({
 					icon: 'error',
 					title: 'Error',
@@ -92,11 +92,10 @@ function agregarMiniTabla(tablaMuestra){
 													(ceros + data[3]).slice(-3)+"</td>" +
 		                                    "<td id='nombreMuestra'>" + data[0] + "</td>" +
 		                                    "<td class='tdcenter'>" +
-		                                    	"<input type='hidden' id='idMuestras' value='"+data[3]+"'>" +
+		                                    	"<input type='hidden' id='idMuestras"+data[3]+"' class='idMuestras' value='"+data[3]+"'>" +
 		                                        "<a class='btn btn-danger btn-circle btn-sm text-white popoverxd' id='borrar' data-container='body' data-placement='top' data-content='Remover'><i class='fas fa-minus'></i></a>" +
 		                                    "</td>" +
 		                                "</tr>");
-					console.log($('#codigoBarras').text());
 				},
 				error: (e) => {
 				}
@@ -156,7 +155,7 @@ function agregarMiniTabla(tablaMuestra){
 		   foreach(table, 'tr:not(:first-child)', function(row) {
 			   
 			if(validacion==true){
-	         var record = {codigoBarras: $('#codigoBarras').text(), nombreMuestra: $('#nombreMuestra').text(), idmuestra: $('#idMuestras').val()};
+	         var record = {codigoBarras: $('#codigoBarras').text(), nombreMuestra: $('#nombreMuestra').text(), idmuestra: $('.idMuestras').val()};
 	         datosJson.push(record);
 	  	   console.log("entro correctamente");
 			}
@@ -208,7 +207,7 @@ function detalleMuestras(id){
 	$('#borrarTabla').remove();
 	$('#crearTabla').append("<div class='modal-body' id='borrarTabla'>" +
 								"<div class='form-check'>" +
-									"<input type='checkbox' class='form-check-input' id='selectAll'>" +
+									"<input type='checkbox' class='form-check-input' id='selectAll' onclick='selectAllCheck()'>" +
 									"<label class='form-check-label' for='selectAll'>Seleccionar todo</label>" +
 								"</div>" +
 								"<br>" +
@@ -308,7 +307,7 @@ function detalleMuestras(id){
 			$('#tablaTraspasoinfo').DataTable({
 				"data":	b,
 		        "ordering": false,
-		        "pageLength": 5,
+		        "pageLength": 100,
 		        "lengthMenu": [
 		            [5, 10, 25, 50, 100],
 		            [5, 10, 25, 50, 100]
@@ -471,14 +470,14 @@ function devueltoSolicitud(idMovimiento){
 
 function devueltoIndividualSolicitud(tablaTraspasoinfo){
 	console.log(" entra a este sweet");
-	var table = document.getElementById(tablaTraspasoinfo);
 	var equis;
 	var contador = 0;
 	var listaMuestras = [];
 	var filtered = lista.filter(function(el) { return el; });
+	var data = $('#tablaTraspasoinfo').DataTable().rows().data();
 	
 	console.log(filtered);
-	foreach(table, 'tr', function(row) {
+	 data.each(function (value) {
 		
 		if($('#checks')){
 			if($('input:checkbox[name=checkmuestra'+filtered[contador]+']:checked')){
@@ -542,14 +541,14 @@ function devueltoIndividualSolicitud(tablaTraspasoinfo){
 
 
 function prestamoSolicitud(tablaTraspasoinfo){
-	var table = document.getElementById(tablaTraspasoinfo);
 	var equis;
 	var contador = 0;
 	var listaMuestras = [];
 	var filtered = lista.filter(function(el) { return el; });
+	var data = $('#tablaTraspasoinfo').DataTable().rows().data();
 	
 	console.log(filtered);
-	foreach(table, 'tr', function(row) {
+	 data.each(function (value) {
 		
 		if($('#checks')){
 			if($('input:checkbox[name=checkmuestra'+filtered[contador]+']:checked')){
@@ -612,16 +611,16 @@ function prestamoSolicitud(tablaTraspasoinfo){
 }
 
 function traspasoSolicitud(tablaTraspasoinfo){
-	var table = document.getElementById(tablaTraspasoinfo);
 	var equis;
 	var contador = 0;
 	var listaMuestras = [];
 	var filtered = lista.filter(function(el) { return el; });
 	var vendedorTraspaso = $('#vendedorTraspaso').val();
+	var data = $('#tablaTraspasoinfo').DataTable().rows().data();
 	
 	console.log(filtered);
-	foreach(table, 'tr', function(row) {
-		
+	 data.each(function (value) {
+		console.log(value);
 		if($('#checks')){
 			if($('input:checkbox[name=checkmuestra'+filtered[contador]+']:checked')){
 				
@@ -669,44 +668,26 @@ function traspasoSolicitud(tablaTraspasoinfo){
 						nuevoVendedor: vendedorTraspaso
 					},
 					success:(data) => {
-						
 						location.href = "/movimientos";
 					}
 				});
-			    Swal.fire(
-			      'Correcto',
-			      'Actualizaci&oacute;n correcta',
-			      'success'
-			    )
+			    Swal.fire({
+			    		text: 'Correcto',
+			    		text:'Actualización correcta',
+			    		icon:'success',
+			    		timer: 3500
+			    })
 			  }
 		  }
 		});
 }
 
 function selectAllCheck(table){
-	
-	var checkbox = document.getElementById('selectAll');
-	var data = $('#tablaTraspasoinfo').DataTable().rows().data();
+	var data = $('#tablaTraspasoinfo').DataTable();
     
-	checkbox.addEventListener("change", validaCheckbox, false);
-	function validaCheckbox(){
-		
-	  var checked = checkbox.checked;
-	  
-	  
-		  if(checked){
-		      // Iterate each checkbox
-			  data.each(function () {
-				  
-				$(':checkbox').checked = true; 
-				console.log("lo pone a true todo");
-			  });
-		  } else {
-			  data.each(function () {
-
-				$(':checkbox').checked = false; 
-				console.log("lo pone a false todo");
-			  });
-		  }
-	}
+	$("#selectAll").on("change", function(){
+		data.$("input[type='checkbox']").attr('checked', $(this.checked));  
+    });
 }
+
+

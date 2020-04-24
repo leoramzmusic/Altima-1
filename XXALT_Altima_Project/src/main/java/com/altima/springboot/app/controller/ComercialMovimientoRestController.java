@@ -384,7 +384,7 @@ public class ComercialMovimientoRestController {
 	
 	@SuppressWarnings("unused")
 	@RequestMapping(value="/traspasoSolicitud", method = RequestMethod.POST)
-	public void traspasoSolicitud(@RequestParam("idMuestras")String muestrasDevolver,
+	public Long traspasoSolicitud(@RequestParam("idMuestras")String muestrasDevolver,
 								  @RequestParam("nuevoVendedor")String vendedor) {
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -393,12 +393,12 @@ public class ComercialMovimientoRestController {
 		LocalDate localDate = LocalDate.now();
 		DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 		String formattedDate = localDate + " " + dateFormat.format(date);
-		
 		String[] listaids;
 		listaids = muestrasDevolver.split(",");
+		ComercialMovimientoMuestraDetalle muestra = moviDetalleService.findOne(Long.parseLong(listaids[0]));
 
 		for (String i :listaids) {
-			ComercialMovimientoMuestraDetalle muestra = moviDetalleService.findOne(Long.parseLong(i));
+			muestra = moviDetalleService.findOne(Long.parseLong(i));
 			
 			muestra.setEstatus(muestra.getEstatus()+1);
 			moviDetalleService.save(muestra);
@@ -424,5 +424,8 @@ public class ComercialMovimientoRestController {
 				movimientoService.save(movimientoEntity);
 			}	
 		}
+		
+		return muestra.getIdMovimiento();
 	}
+	
 }
