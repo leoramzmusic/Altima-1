@@ -67,7 +67,7 @@ public class ForroController {
 				forro.setIdText(null);
 				forro.setCreadoPor(auth.getName());
 				forro.setIdUnidadMedida(Long.valueOf(1));
-				forro.setConsumoPromedioForro("null");
+				//forro.setConsumoPromedioForro("null");
 				forro.setExistenciaForro("1");
 				forro.setFechaCreacion(hourdateFormat.format(date));
 				forro.setUltimaFechaModificacion(null);

@@ -114,9 +114,12 @@
 												</td>
 												<td >Pendiente</td>
 												<td class="tdcenter">
-													<a  th:href="${calidades[0]==null}? @{detalle-calidad/}+${calidades[0]}: @{calidad}" class="btn btn-info text-white">
+													<a  th:if="${calidades[4]=='Tela'}" th:href="@{detalle-calidad/tela/}+${calidades[0]}" class="btn btn-info text-white">
 														<i class="fas fa-info-circle"></i> Ver m&aacute;s detalles
-													</a>&nbsp;
+													</a>
+													<a  th:if="${calidades[4]=='Forro'}" th:href="@{detalle-calidad/forro/}+${calidades[0]}" class="btn btn-info text-white">
+														<i class="fas fa-info-circle"></i> Ver m&aacute;s detalles
+													</a>
 												</td>						
 												<td class="tdcenter">
 													<a class="btn btn-warning popoverxd" th:href="@{/calidad-nueva-prueba/tela/}+${calidades[0]}"  th:if="${calidades[4]=='Tela'}" data-container="body" data-placement="top" data-content="Editar" style="border-radius: 35%;">
