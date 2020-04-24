@@ -67,7 +67,6 @@ public class ForroController {
 				forro.setIdText(null);
 				forro.setCreadoPor(auth.getName());
 				forro.setIdUnidadMedida(Long.valueOf(1));
-				//forro.setConsumoPromedioForro("null");
 				forro.setExistenciaForro("1");
 				forro.setFechaCreacion(hourdateFormat.format(date));
 				forro.setUltimaFechaModificacion(null);
@@ -186,6 +185,8 @@ public class ForroController {
 		forro=forroService.findOne(id);
 		model.addAttribute("forro", forro);
 		model.addAttribute("listForroComposicon", disenioTelaService.ComposicionForroMN(id));
+		model.addAttribute("listForrosAutori", forroService.forrosAutorizados());
+		
 		System.out.println("Entra a la consulta de forro composicion");
 		
 		

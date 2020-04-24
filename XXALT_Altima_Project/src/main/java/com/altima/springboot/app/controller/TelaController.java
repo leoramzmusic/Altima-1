@@ -69,6 +69,9 @@ public class TelaController {
 			@RequestParam("txtTabla") String composicion,
 			@RequestParam("txtTabla2") String idComposicion,
 			@RequestParam(value="botones" , required=false) String botones,
+			@RequestParam( value="hilos" , required=false) String hilos,
+			@RequestParam( value="cierres" , required=false) String cierres,
+			@RequestParam( value="adornos" , required=false) String adornos,
 			@RequestParam( value="forros" , required=false) String forros,
 			@RequestParam( value="id_prendas" , required=false) String id_prendas,
 			@RequestParam(value="imagenTela", required=false) MultipartFile imagenTela,
@@ -177,13 +180,44 @@ public class TelaController {
 					DisenioMaterialTela tm = new DisenioMaterialTela();
 					tm.setIdTela(tela.getIdTela());
 					tm.setIdMaterial(Long.valueOf(array[i]));
-					
-					tm.setIdText("text");
-					tm.setTipo(String.valueOf(i+1));
-					
+					tm.setTipo("boton");
 					MaterialService.save(tm);
 				}
 			}
+			
+			if ( (hilos != null) && (!hilos.equals("")) ){
+				String [] array = hilos.split(",");
+				for(int i= 0 ; i<array.length;i++) {
+					DisenioMaterialTela tm = new DisenioMaterialTela();
+					tm.setIdTela(tela.getIdTela());
+					tm.setIdMaterial(Long.valueOf(array[i]));
+					tm.setTipo("hilos");
+					MaterialService.save(tm);
+				}
+			}
+			
+			if ( (cierres != null) && (!cierres.equals("")) ){
+				String [] array = cierres.split(",");
+				for(int i= 0 ; i<array.length;i++) {
+					DisenioMaterialTela tm = new DisenioMaterialTela();
+					tm.setIdTela(tela.getIdTela());
+					tm.setIdMaterial(Long.valueOf(array[i]));
+					tm.setTipo("cierre");
+					MaterialService.save(tm);
+				}
+			}
+			
+			if ( (adornos != null) && (!adornos.equals("")) ){
+				String [] array = adornos.split(",");
+				for(int i= 0 ; i<array.length;i++) {
+					DisenioMaterialTela tm = new DisenioMaterialTela();
+					tm.setIdTela(tela.getIdTela());
+					tm.setIdMaterial(Long.valueOf(array[i]));
+					tm.setTipo("adorno");
+					MaterialService.save(tm);
+				}
+			}
+			
 			
 			if ( composicion.length()>1) {
 				String [] vect = composicion.split(",");
@@ -245,24 +279,48 @@ public class TelaController {
 				DisenioForro forro = new DisenioForro();
 				model.addAttribute("forro", forro);
 				model.addAttribute("lisFam",disenioTelaService.findAllFamilaComposicion());
-				model.addAttribute("lisCom",disenioTelaService.findAllComposicion());
-				model.addAttribute("listForro",forroService.ForrosSelect(id)); 
+				
+				
 				
 				model.addAttribute("listColor", disenioTelaService.findAllColores());
-				model.addAttribute("listPrendas", disenioTelaService.findAllPrenda());
+				
 				
 				
 			
 		
-		model.addAttribute("listTelaComposicon", disenioTelaService.ComposicionTelaMN(id));
+		
+		
+		
+		//Consulta de las composiciones
+		model.addAttribute("lisCom",disenioTelaService.findAllComposicion());//Composiciones disponibles
+		model.addAttribute("listTelaComposicon", disenioTelaService.ComposicionTelaMN(id));//Composiciones seleccionadas
 		
 		// Consulta de botones 
-		model.addAttribute("listBtnSelec", disenioTelaService.BonotesSeleccionados(id));// botones ya seleccionados
-		model.addAttribute("listBoton", disenioTelaService.findAllBotones(id));// botones sin seleccionar
+		model.addAttribute("listBtnSelec", disenioTelaService.materialesSeleccionados(id,"boton"));// botones ya seleccionados
+		model.addAttribute("listBoton", disenioTelaService.materialesDisponibles(id, "boton"));// botones sin seleccionar
 		
+		// Consulta de hilos
+		model.addAttribute("listHiloSelec", disenioTelaService.materialesSeleccionados(id,"hilo"));// hilo ya seleccionados
+		model.addAttribute("listHilo", disenioTelaService.materialesDisponibles(id, "hilo"));// hilo sin seleccionar
+		
+		// Consulta de cierre
+		model.addAttribute("listCierreSelec", disenioTelaService.materialesSeleccionados(id,"cierre"));// cierre ya seleccionados
+		model.addAttribute("listCierre", disenioTelaService.materialesDisponibles(id, "cierre"));// cierre sin seleccionar
+		
+		// Consulta de adornos
+		model.addAttribute("listAdornoSelec", disenioTelaService.materialesSeleccionados(id,"adorno"));// cierre ya seleccionados
+		model.addAttribute("listAdorno", disenioTelaService.materialesDisponibles(id, "adorno"));// cierre sin seleccionar
+		
+		// Consulta para telas auxiliares (telas autorizadas)
+		model.addAttribute("listTela", disenioTelaService.TelasAutorizadas());//telas autorizadas
+		
+		//Consulta de forro 
 		model.addAttribute("listForroSelec", disenioTelaService.ForrosSeleccionados(id));
+		model.addAttribute("listForro",forroService.ForrosSelect(id)); 
 		
-		model.addAttribute("listVistaTelaPrenda", disenioTelaService.VistaTelaPrenda(id));
+		// prendas
+		model.addAttribute("listPrendas", disenioTelaService.findAllPrenda());// prendas autorizadas
+		model.addAttribute("listVistaTelaPrenda", disenioTelaService.VistaTelaPrenda(id));// telas seleccionadas 
 		model.addAttribute("tela", tela);
 		
 		return"agregar-material";   

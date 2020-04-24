@@ -95,33 +95,31 @@ public class DisenioTela implements Serializable{
 	@Column(name="auxiliar_3")
 	private String auxiliar3;
 	
-	
-	
-	
+
 	
 
-	public String getAuxiliar_1() {
+	public String getAuxiliar1() {
 		return auxiliar1;
 	}
 
-	public void setAuxiliar_1(String auxiliar_1) {
-		this.auxiliar1 = auxiliar_1;
+	public void setAuxiliar1(String auxiliar1) {
+		this.auxiliar1 = auxiliar1;
 	}
 
-	public String getAuxiliar_2() {
+	public String getAuxiliar2() {
 		return auxiliar2;
 	}
 
-	public void setAuxiliar_2(String auxiliar_2) {
-		this.auxiliar2 = auxiliar_2;
+	public void setAuxiliar2(String auxiliar2) {
+		this.auxiliar2 = auxiliar2;
 	}
 
-	public String getAuxiliar_3() {
+	public String getAuxiliar3() {
 		return auxiliar3;
 	}
 
-	public void setAuxiliar_3(String auxiliar_3) {
-		this.auxiliar3 = auxiliar_3;
+	public void setAuxiliar3(String auxiliar3) {
+		this.auxiliar3 = auxiliar3;
 	}
 
 	public String getIdTextProspecto() {

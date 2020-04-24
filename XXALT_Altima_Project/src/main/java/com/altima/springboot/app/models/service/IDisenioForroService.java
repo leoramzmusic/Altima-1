@@ -15,5 +15,7 @@ public interface IDisenioForroService {
 	DisenioForro findOne(Long id);
 	
 	List<Object []> ForrosSelect(Long id);
+	
+	List<DisenioForro> forrosAutorizados();
 
 }

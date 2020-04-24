@@ -21,9 +21,9 @@
      <div class="form-group col-sm-12">
         <table id="mytablef" class="table table-striped">
         	<tr>
-    			<th>Forro Composicion</th>
-    			<th style="display:none;">Famila Composicion</th>
-    			<th>Famila Composicion</th>
+    			<th>Porcentaje</th>
+    			<th style="display:none;"></th>
+    			<th>Composicion</th>
     			<th>Eliminar</th>
 
   			</tr>
@@ -65,19 +65,51 @@
         <input required th:field="*{codigo_coolor}" type="color"  class="form-control" placeholder="Codigo Color">
     </div>
     
-    <div th:if="*{estatusForro  == '1'}" class="form-group col-sm-6">
-        <label for="rfcEmpresa">Unidad de medida</label>
-        <input th:field="*{idUnidadMedida}"  type="number" min="1"  class="form-control"  placeholder="1.2" required>
+    <div th:if="*{estatusForro  == '1'}" class="form-group col-sm-6">      
+        <label for="status">Unidad de medida</label>
+        <select required class="form-control selectCustom"   th:field="*{idUnidadMedida}" data-live-search="true">
+       <option th:each="listLookupsMed:${listLookupsMed}"
+            
+                    th:value="${listLookupsMed[0]}"
+                    th:text="${listLookupsMed[1]}"
+            
+            />
+            </select>
     </div>
     
-    <div th:if="*{estatusForro  == '1'}"  class="form-group col-sm-6">
-        <label for="rfcEmpresa">Consumo promedio</label>
-        <input th:field="*{consumoPromedioForro}"  type="number" min="1"  class="form-control"  placeholder="1.2" required>
-    </div>
+    
     
     <div th:if="*{estatusForro  == '1'}"  class="form-group col-sm-6">
         <label for="rfcEmpresa">Existencias</label>
         <input th:field="*{existenciaForro}"  type="number" min="0"  class="form-control"  placeholder="10" required>
+    </div>
+    
+    <div th:if="*{estatusForro  == '1'}"  class="form-group col-sm-4">
+        <label for="status">Forro Opcional 1</label>
+        <select required class="form-control" data-live-search="true" th:field="*{auxiliar1}">
+        	<option value=""  selected>Selecciona una..</option>
+         	<option th:each="listForrosAutori: ${listForrosAutori}"
+			th:value="${listForrosAutori.idForro}" th:text="${listForrosAutori.nombreForro}"></option>   
+		</select>
+    </div>
+    
+    
+    <div th:if="*{estatusForro  == '1'}"  class="form-group col-sm-4">
+        <label for="status">Forro Opcional 2</label>
+        <select required class="form-control" data-live-search="true" th:field="*{auxiliar2}">
+        	<option value=""  selected>Selecciona una..</option>
+         	<option th:each="listForrosAutori: ${listForrosAutori}"
+			th:value="${listForrosAutori.idForro}" th:text="${listForrosAutori.nombreForro}"></option>
+		</select>
+    </div>
+    
+    <div th:if="*{estatusForro  == '1'}"  class="form-group col-sm-4">
+        <label for="status">Forro Opcional 3</label>
+        <select required class="form-control" data-live-search="true" th:field="*{auxiliar3}">
+        	<option value=""  selected>Selecciona una..</option>
+         	<option th:each="listForrosAutori: ${listForrosAutori}"
+			th:value="${listForrosAutori.idForro}" th:text="${listForrosAutori.nombreForro}"></option>
+		</select>
     </div>
     
     <div  th:if="*{estatusForro == '1'}" class="col-sm-12">

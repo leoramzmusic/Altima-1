@@ -10,6 +10,14 @@ public interface IDisenioTelaService {
 	
 	List<Object[]> findAllBotones(Long id );
 	
+	//Materiales(boton, cierre ,adornos de acuerdo al tipo )
+	List<Object[]> materialesDisponibles(Long id, String tipo );
+	//Materiales ya seleccionados (botone,cierre,adorno)
+	List<Object []> materialesSeleccionados(Long id, String tipo );
+	
+	//telas opciones.
+	List<Object []> TelasAutorizadas();
+	
 	List<DisenioLookup> findAllColores();
 	
 	List<DisenioLookup> findAllFamilaComposicion();
