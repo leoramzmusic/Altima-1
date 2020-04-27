@@ -191,7 +191,7 @@ public class TelaController {
 					DisenioMaterialTela tm = new DisenioMaterialTela();
 					tm.setIdTela(tela.getIdTela());
 					tm.setIdMaterial(Long.valueOf(array[i]));
-					tm.setTipo("hilos");
+					tm.setTipo("hilo");
 					MaterialService.save(tm);
 				}
 			}

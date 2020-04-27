@@ -71,7 +71,7 @@ public class DisenioTelaServiceImpl implements IDisenioTelaService {
 		
 		
 		List<Object[]> re= em.createNativeQuery("SELECT material.id_material,CONCAT(material.id_text,' ',material.nombre_material,' ',\r\n" + 
-				"(select lookup2.nombre_lookup from alt_disenio_lookup as lookup2 where 1=1 and lookup2.id_lookup=material.id_color) ) As inf \r\n" + 
+				"ifnull((select lookup2.nombre_lookup from alt_disenio_lookup as lookup2 where 1=1 and lookup2.id_lookup=material.id_color),'Sin color') ) As inf \r\n" + 
 				"from alt_disenio_material as material, alt_disenio_lookup as lookup \r\n" + 
 				"								where 1=1\r\n" + 
 				"								and material.id_tipo_material= lookup.id_lookup\r\n" + 
@@ -101,7 +101,7 @@ public class DisenioTelaServiceImpl implements IDisenioTelaService {
 		
 		
 		List<Object[]> re= em.createNativeQuery("select MT.id_material, CONCAT(material.id_text,' ',material.nombre_material,' ',\r\n" + 
-				"				(select lookup2.nombre_lookup from alt_disenio_lookup as lookup2 where 1=1 and lookup2.id_lookup=material.id_color) ) As inf\r\n" + 
+				"				ifnull((select lookup2.nombre_lookup from alt_disenio_lookup as lookup2 where 1=1 and lookup2.id_lookup=material.id_color),'Sin color') ) As inf\r\n" + 
 				"												from alt_disenio_material_tela as MT, alt_disenio_material as material\r\n" + 
 				"												where 1=1\r\n" + 
 				"												and MT.id_material=material.id_material\r\n" + 
