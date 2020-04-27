@@ -213,9 +213,9 @@ function PruebasEncogimiento(){
 	var operario= $('#operarioEncogi').val();
 	var frealizacion= $('#fechaRealizacionEncogi').val();
 	
-//===================variables de Pruebas de vapor=======================
+//===================variables de Pruebas de Fusión=======================
 	var entretela= $('#entretelaEncogi').val();
-	var adherencia= $('#adherenciaEncogi').val();
+	var adherencia= $('input:radio[name=fusionAdherencia]:checked').val();
 	var proveedor= $('#proveedorEncogi').val();
 	var temperatura= $('#temperaturaPruebaVapor').val();
 	var tiempo= $('#tiempoPruebaVapor').val();
@@ -229,16 +229,7 @@ function PruebasEncogimiento(){
 	//var finalTramaMedPruebaVapor= $('#finalTramaMedPruebaVapor').val();
 	var observacionesReultPruebaVapor= $('#observacionesReultPruebaVapor').val();
 
-//===================variables de Pruebas de fusión=======================
-	var medidaHiloPruebaFusion= $('#medidaHiloPruebaFusion').val();
-	var medidaTramaPruebaFusion= $('#medidaTramaPruebaFusion').val();
-	//resultado
-	var diferenciaHiloPruebaFusion= $('#diferenciaHiloPruebaFusion').val();
-	//var finalHiloMedPruebaFusion= $('#finalHiloMedPruebaFusion').val();
-	var diferenciaTramaPruebaFusion= $('#diferenciaTramaPruebaFusion').val();
-	//var finalTramaMedPruebaFusion= $('#finalTramaMedPruebaFusion').val();
-	var observacionesReultPruebaFusion= $('#observacionesReultPruebaFusion').val();
-
+	
 //===================variables de Plancha de vapor=======================
 	var medidaHiloPlanchaVapor= $('#medidaHiloPlanchaVapor').val();
 	var medidaTramaPlanchaVapor= $('#medidaTramaPlanchaVapor').val();
@@ -249,6 +240,7 @@ function PruebasEncogimiento(){
 	//var finalTramaMedPlanchaVapor= $('#finalTramaMedPlanchaVapor').val();
 	var observacionesReultPlanchaVapor= $('#observacionesReultPlanchaVapor').val();
 	var idCalidad = $('#idCalidadEnco').val();
+	
 	var valordeReferencia = " ";
 	var idMaterial = $('#idMaterial').val();
 	var tipoMaterial = $('#tipoMaterial').val();
@@ -266,11 +258,6 @@ function PruebasEncogimiento(){
 				diferenciaHiloPruebaVapor,
 				diferenciaTramaPruebaVapor,
 				observacionesReultPruebaVapor,
-				medidaHiloPruebaFusion,
-				medidaTramaPruebaFusion,
-				diferenciaHiloPruebaFusion,
-				diferenciaTramaPruebaFusion,
-				observacionesReultPruebaFusion,
 				medidaHiloPlanchaVapor,
 				medidaTramaPlanchaVapor,
 				diferenciaHiloPlanchaVapor,
@@ -382,7 +369,6 @@ function PruebaCostura(){
 //===================variables de Prueba de costura=======================
 	var tipoAguja = $('#tipoAguja').val();
 	var Deslizamiento = $('input:radio[name=decisionDeslizamiento]:checked').val();
-	var observacionesDeslizamiento= $('#observacionesDeslizamiento').val();
 	
 	var Rasgado = $('input:radio[name=decisionRasgado]:checked').val();
 	var observacionesRasgado= $('#observacionesRasgado').val();
@@ -487,10 +473,6 @@ function ValidacionEncogimiento() {
         && $('#finalTramaPruebaVapor').val() != ""
         && $('#diferenciaHiloPruebaVapor').val() != ""
         && $('#diferenciaTramaPruebaVapor').val() != ""
-        && $('#medidaHiloPruebaFusion').val() != ""
-        && $('#medidaTramaPruebaFusion').val() != ""
-        && $('#diferenciaHiloPruebaFusion').val() != ""
-        && $('#diferenciaTramaPruebaFusion').val() != ""
         && $('#medidaHiloPlanchaVapor').val() != ""
         && $('#medidaTramaPlanchaVapor').val() != ""
         && $('#diferenciaHiloPlanchaVapor').val() != ""

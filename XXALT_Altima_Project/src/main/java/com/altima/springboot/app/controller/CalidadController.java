@@ -73,6 +73,13 @@ public class CalidadController {
 		} catch (Exception e) {
 			System.out.println("nuevo: "+e);
 		}
+		if(tipo.equals("forro")) {
+			System.out.println("si esta entrando aqui");
+			model.addAttribute("forro", "true");
+		}
+		else {
+			model.addAttribute("forro", "false");
+		}
 		model.addAttribute("tipoMaterial", tipo(tipo));
 		model.addAttribute("idMaterial", id);
 		return "calidad-nueva-prueba";
@@ -88,10 +95,12 @@ public class CalidadController {
 		model.addAttribute("idMaterial", id);
 		model.addAttribute("tipoMaterial", tipo);
 		model.addAttribute("readtela", "true");
+		
+		
 		if (pruebaContaCostura.ifExist(id) == 1 || pruebaEncogiLavado.ifExist(id) == 1) {
 			
 			for (DisenioPruebaEncogimientoLavado u : pruebasEL) {
-				if (u.getTipoPrueba().equalsIgnoreCase("Prueba de Vapor")) {
+				if (u.getTipoPrueba().equalsIgnoreCase("Prueba de Fusión")) {
 					// model.addAttribute("read", "true");
 					model.addAttribute("operarioEncogi", u.getCreadoPor());
 					model.addAttribute("fechaRealizacionEncogi", u.getFechaRealizacion().replace(" ", "T"));
@@ -111,15 +120,7 @@ public class CalidadController {
 					model.addAttribute("entretelas", u.getEntretelaPruebaVapor());
 					// model.addAttribute("displa", "true");
 				}
-				if (u.getTipoPrueba().equalsIgnoreCase("Prueba de Fusión")) {
-					model.addAttribute("medidaHiloPruebaFusion", u.getMedidaInicialHilo());
-					model.addAttribute("medidaTramaPruebaFusion", u.getMedidaInicialTrama());
-					model.addAttribute("diferenciaHiloPruebaFusion", u.getMedidaFinalHilo());
-					model.addAttribute("finalHiloMedPruebaFusion", u.getDiferenciaMedidaHilo());
-					model.addAttribute("diferenciaTramaPruebaFusion", u.getMedidaFinalTrama());
-					model.addAttribute("finalTramaMedPruebaFusion", u.getDiferenciaMedidaTrama());
-					model.addAttribute("observacionesReultPruebaFusion", u.getObservacionesResultados());
-				}
+				
 				if (u.getTipoPrueba().equalsIgnoreCase("Plancha con Vapor")) {
 					model.addAttribute("medidaHiloPlanchaVapor", u.getMedidaInicialHilo());
 					model.addAttribute("medidaTramaPlanchaVapor", u.getMedidaInicialTrama());
@@ -176,7 +177,7 @@ public class CalidadController {
 					model.addAttribute("operarioCostura", cc.getCreadoPor());
 					model.addAttribute("fechaRealizacionCostura", cc.getFechaRealizacion().replace(" ", "T"));
 					// model.addAttribute("readCostura", "true");
-					model.addAttribute("observacionesDeslizamiento", cc.getObservacionesResultados());
+					model.addAttribute("observacionesRasgado", cc.getObservacionesResultados());
 					// model.addAttribute("displaCostura", "true");
 					model.addAttribute("aguja", cc.getTipoAguja());
 					
@@ -186,13 +187,7 @@ public class CalidadController {
 					if (cc.getDeslizamientoTela().equals("no")) {
 						model.addAttribute("checkNDeslizamiento", "true");
 					}
-				}
-				
-				if (cc.getTipoPrueba().equalsIgnoreCase("Rasgado de Tela")) {
-					// model.addAttribute("readCostura", "true");
-					model.addAttribute("observacionesRasgado", cc.getObservacionesResultados());
-					// model.addAttribute("displaCostura", "true");
-					
+
 					if (cc.getRasgadoTela().equals("si")) {
 						model.addAttribute("checkSCostura", "true");
 					}
@@ -239,7 +234,7 @@ public class CalidadController {
 			if (pruebaContaCostura.ifExist(id) == 1 || pruebaEncogiLavado.ifExist(id) == 1) {
 			
 				for (DisenioPruebaEncogimientoLavado u : pruebasEL) {
-					if (u.getTipoPrueba().equalsIgnoreCase("Prueba de Vapor")) {
+					if (u.getTipoPrueba().equalsIgnoreCase("Prueba de Fusión")) {
 						
 						model.addAttribute("adherenciaEnco", u.getAdherenciaPruebaVapor());
 						model.addAttribute("proveedorEncogi", u.getProveedorPruebaVapor());
@@ -259,14 +254,7 @@ public class CalidadController {
 						model.addAttribute("diferenciaTramaPruebaVapor", u.getDiferenciaMedidaTrama());
 						model.addAttribute("observacionesReultPruebaVapor", u.getObservacionesResultados());
 					}
-					if (u.getTipoPrueba().equalsIgnoreCase("Prueba de Fusion")
-							|| u.getTipoPrueba().equalsIgnoreCase("Prueba de Fusión")) {
-						model.addAttribute("finalHiloMedFusion", u.getMedidaFinalHilo());
-						model.addAttribute("diferenciaHiloFusion", u.getDiferenciaMedidaHilo());
-						model.addAttribute("finalTramaMedFusion", u.getMedidaFinalTrama());
-						model.addAttribute("diferenciaTramaFusion", u.getDiferenciaMedidaTrama());
-						model.addAttribute("observacionesReultFusion", u.getObservacionesResultados());
-					}
+
 					if (u.getTipoPrueba().equalsIgnoreCase("Plancha con Vapor")) {
 						model.addAttribute("finalHiloMedPlanchaVapor", u.getMedidaFinalHilo());
 						model.addAttribute("diferenciaHiloPlanchaVapor", u.getDiferenciaMedidaHilo());
@@ -299,19 +287,12 @@ public class CalidadController {
 					}
 					
 					if (cc.getTipoPrueba().equalsIgnoreCase("Resultado costura")) {
-						model.addAttribute("observacionesDeslizamiento", cc.getObservacionesResultados());
-						model.addAttribute("Deslizamiento", cc.getDeslizamientoTela());
-						
-						if (cc.getDeslizamientoTela().equals("no")) {
-							model.addAttribute("checkNDeslizamiento", "true");
-						}
-					}
-					
-					if (cc.getTipoPrueba().equalsIgnoreCase("Rasgado de Tela")) {
 						model.addAttribute("observacionescostura", cc.getObservacionesResultados());
+						model.addAttribute("Deslizamiento", cc.getDeslizamientoTela());
 						model.addAttribute("Costura", cc.getRasgadoTela());
 						
 					}
+
 					
 					if (cc.getTipoPrueba().equalsIgnoreCase("Resultado de contaminación")
 							|| cc.getTipoPrueba().equalsIgnoreCase("Resultado de contaminacion")) {

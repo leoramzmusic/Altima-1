@@ -29,8 +29,28 @@
         </div>
     </div>
     <div class="col-sm-12">
-	    <hr><h4>Descripci&oacute;n:<strong> Prueba de vapor</strong></h4>
+	    <hr><h4>Descripci&oacute;n:<strong> Prueba de Fusi&oacute;n</strong></h4>
     </div>
+    
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label style="font-size: 15px;">Adherencia</label>
+       		<div class="custom-control custom-radio">
+                <input class="custom-control-input" type="radio" value="buena" id="buena" name="fusionAdherencia" th:disabled="${readFusion}" th:checked="${checkBFusion}">
+                <label for="buena" class="custom-control-label">Buena</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input class="custom-control-input" type="radio" value="regular" id="regular" name="fusionAdherencia" th:disabled="${readFusion}" th:checked="${checkRFusion}">
+                <label for="regular" class="custom-control-label">Regular</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input class="custom-control-input" type="radio" value="mala" id="mala" name="fusionAdherencia" th:disabled="${readFusion}" th:checked="${checkMFusion}">
+                <label for="mala" class="custom-control-label">Mala</label>
+            </div>
+            
+        </div>
+    </div>
+    
     <div class="col-sm-4">
         <div class="form-group">
             <label for="status">Entretela</label>
@@ -39,12 +59,7 @@
             </select>
         </div>
     </div>
-    <div class="col-sm-4">
-        <div class="form-group">
-            <label style="font-size: 15px;">Adherencia</label>
-            <input type="text" class="form-control" id="adherenciaEncogi" th:value="${adherenciaEncogi}" placeholder="23.2" th:readonly="${read}">
-        </div>
-    </div>
+    
     <div class="col-sm-4">
         <div class="form-group">
             <label for="status">Proveedor</label>
@@ -118,54 +133,6 @@
 	  <div class="form-group">
 	    <label style="font-size: 15px;">Observaciones</label>
 	    <textarea class="form-control" id="observacionesReultPruebaVapor" rows="3" placeholder="Especificar" th:readonly="${read}" th:text="${observacionesReultPruebaVapor}"></textarea>
-	  </div>
-    </div>
-    <div class="col-sm-12">
-	    <hr><h4>Descripci&oacute;n:<strong> Prueba de fusi&oacute;n</strong></h4>
-    </div>
-    <div class="col-sm-6">
-        <div class="form-group">
-            <label style="font-size: 15px;">Medida final del hilo</label>
-            <input type="number" class="form-control" id="medidaHiloPruebaFusion" placeholder="23.2" th:readonly="${read}" th:value="${medidaHiloPruebaFusion}">
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="form-group">
-            <label style="font-size: 15px;">Medida final de la trama</label>
-            <input type="number" class="form-control" id="medidaTramaPruebaFusion" placeholder="23.2" th:readonly="${read}" th:value="${medidaTramaPruebaFusion}">
-        </div>
-    </div>
-    <div class="col-sm-12">
-	    <h5>Resultado</h5>
-    </div>
-    <div class="col-sm-3">
-        <div class="form-group">
-            <label style="font-size: 15px;">Diferencia hilo</label>
-            <input type="number" class="form-control" id="diferenciaHiloPruebaFusion" placeholder="23.2" th:readonly="${read}" th:value="${diferenciaHiloPruebaFusion}">
-        </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="form-group">
-            <label style="font-size: 15px;">(100cm/_____cm)</label>
-            <input type="text" class="form-control" id="finalHiloMedPruebaFusion" placeholder="23.2" readonly="readonly" th:value="${finalHiloMedPruebaFusion==null}?'':${finalHiloMedPruebaFusion}+'%'">
-        </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="form-group">
-            <label style="font-size: 15px;">Diferencia trama</label>
-            <input type="number" class="form-control" id="diferenciaTramaPruebaFusion" placeholder="23.2" th:readonly="${read}" th:value="${diferenciaTramaPruebaFusion}">
-        </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="form-group">
-            <label style="font-size: 15px;">(100cm/_____cm)</label>
-            <input type="text" class="form-control" id="finalTramaMedPruebaFusion" placeholder="23.2" readonly="readonly" th:value="${finalTramaMedPruebaFusion==null}?'':${finalTramaMedPruebaFusion}+'%'">
-        </div>
-    </div>
-    <div class="col-sm-12">
-	  <div class="form-group">
-	    <label style="font-size: 15px;">Observaciones</label>
-	    <textarea class="form-control" id="observacionesReultPruebaFusion" rows="3" placeholder="Especificar" th:readonly="${read}" th:text="${observacionesReultPruebaFusion}"></textarea>
 	  </div>
     </div>
     <div class="col-sm-12">
