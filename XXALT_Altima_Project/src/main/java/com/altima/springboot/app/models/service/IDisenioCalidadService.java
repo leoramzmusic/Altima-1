@@ -18,4 +18,6 @@ public interface IDisenioCalidadService {
 
 	public DisenioCalidad findOneById(Long id ,String tipo);
 
+	DisenioCalidad findPruebaCalidadOtro(Long idmaterial);
+
 }
