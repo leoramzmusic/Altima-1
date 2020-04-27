@@ -32,6 +32,8 @@ public class CalidadController {
 	IDisenioLookupService disenioLookup;
 	@Autowired
 	IDisenioMaterialService materialService;
+	@Autowired
+	private IUploadService uploadFileService;
 
 	private String tipo(String tipo){
 		String tipoint="tipo";
@@ -52,10 +54,63 @@ public class CalidadController {
 		return "calidad";
 	}
 	
-	
-	@GetMapping("calidad-nueva-prueba-otro")
-	public String addCalidadOtro() {
+	@RequestMapping(value = "/calidad-nueva-prueba-otro")
+	public String crear(Map<String, Object> model, Locale locale) {
+		DisenioCalidad diseniocalidad = new DisenioCalidad();
+		model.put("diseniocalidad", diseniocalidad);
 		return "calidad-nueva-prueba-otro";
+	}
+
+	@RequestMapping(value = "calidad-nueva-prueba-otro/{id}")
+	public String addCalidadOtro(@PathVariable("id") Long id, Model model, Map<String, Object> m,RedirectAttributes redirectAttrs) {
+		DisenioCalidad diseniocalidad = null;
+		model.addAttribute("idMaterial", id);
+		try {
+			diseniocalidad = disenioCalidad.findPruebaCalidadOtro(id);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		if (diseniocalidad == null) {
+			diseniocalidad = new DisenioCalidad();
+			diseniocalidad.setIdMaterial(id);
+		}
+		m.put("diseniocalidad", diseniocalidad);
+		return "calidad-nueva-prueba-otro";
+	}
+
+	@RequestMapping(value = "/calidad-nueva-prueba-otro", method = RequestMethod.POST)
+	public String addCalidadOtroPrueba(Model model, @RequestParam("file") MultipartFile archivoRuta,
+			@Valid DisenioCalidad diseniocalidad, SessionStatus status,RedirectAttributes redirectAttrs ) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		try {
+			DisenioCalidad dc1 = disenioCalidad.findOne(diseniocalidad.getIdCalidad());
+			diseniocalidad.setArchivoRuta(dc1.getArchivoRuta());
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+		if (!archivoRuta.isEmpty()) {
+			if (diseniocalidad.getIdCalidad() != null && diseniocalidad.getArchivoRuta() != null
+					&& diseniocalidad.getArchivoRuta().length() > 0) {
+				uploadFileService.delete(diseniocalidad.getArchivoRuta());
+			}
+			String uniqueFilename = null;
+			try {
+				uniqueFilename = uploadFileService.copyfile(archivoRuta);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			diseniocalidad.setArchivoRuta(uniqueFilename);
+		}
+		diseniocalidad.setIdText("CAL"+100000+diseniocalidad.getIdCalidad());
+		diseniocalidad.setCreadoPor(auth.getName());
+		diseniocalidad.setTipoMaterial("2");
+		diseniocalidad.setEstatus("1");
+		redirectAttrs.addFlashAttribute("title", "Prueba de calidad guardada correctamente").addFlashAttribute("icon", "success"); 
+		disenioCalidad.save(diseniocalidad);
+		return "redirect:calidad";
 	}
 	
 	@GetMapping("detalle-calidad")
