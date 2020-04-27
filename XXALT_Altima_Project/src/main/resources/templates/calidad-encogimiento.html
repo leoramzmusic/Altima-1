@@ -8,10 +8,8 @@
     </div>
     <div class="col-sm-4">
         <div class="form-group">
-            <label>Tela</label>
-            <select class="form-control idtelas" id="tela" disabled th:value="${tela}">
-                <option>Selecciona uno...</option>
-            </select>
+            <label th:text="${tipoMaterial}==1?'Tela':Forro"></label>
+            <input type="text" class="form-control idtelas" id="tela" readonly th:value="${tela}">
         </div>
     </div>
     <div class="col-sm-4">

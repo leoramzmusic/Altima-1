@@ -23,10 +23,12 @@ import com.altima.springboot.app.models.entity.DisenioCalidad;
 import com.altima.springboot.app.models.entity.DisenioPruebaEncogimientoLavado;
 import com.altima.springboot.app.models.entity.DisenioPruebaLavadoContaminacionCostura;
 import com.altima.springboot.app.models.service.IDisenioCalidadService;
+import com.altima.springboot.app.models.service.IDisenioForroService;
 import com.altima.springboot.app.models.service.IDisenioLookupService;
 import com.altima.springboot.app.models.service.IDisenioMaterialService;
 import com.altima.springboot.app.models.service.IDisenioPruebaEncogimientoLavadoService;
 import com.altima.springboot.app.models.service.IDisenioPruebaLavadoContaminacionCosturaService;
+import com.altima.springboot.app.models.service.IDisenioTelaService;
 import com.altima.springboot.app.models.service.IUploadService;
 
 @Controller
@@ -40,6 +42,10 @@ public class CalidadController {
 	IDisenioPruebaLavadoContaminacionCosturaService pruebaContaCostura;
 	@Autowired
 	IDisenioLookupService disenioLookup;
+	@Autowired
+	IDisenioTelaService disenioTela;
+	@Autowired
+	IDisenioForroService disenioForro;
 	@Autowired
 	IDisenioMaterialService materialService;
 	@Autowired
@@ -142,10 +148,14 @@ public class CalidadController {
 		if(tipo.equals("forro")) {
 			System.out.println("si esta entrando aqui");
 			model.addAttribute("forro", "true");
+			model.addAttribute("tela", disenioForro.findOne(id).getNombreForro());
 		}
 		else {
 			model.addAttribute("forro", "false");
+			model.addAttribute("tela", disenioTela.findOne(id).getNombreTela());
 		}
+		
+		
 		model.addAttribute("tipoMaterial", tipo(tipo));
 		model.addAttribute("idMaterial", id);
 		return "calidad-nueva-prueba";
