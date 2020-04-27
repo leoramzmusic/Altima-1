@@ -12,7 +12,7 @@
                 <div class="modal-body row">
                     <div class="form-group col-sm-6">
                         <label for="vendedorMovimiento">Vendedor</label>
-                        <select class="form-control vendedorMovi" id="vendedorMovi">
+                        <select class="form-control vendedorMovi selectCustom" id="vendedorMovi" data-live-search="true">
                         	<option value="error">Selecciones uno...</option>
 							   <option value="Roberto Soliz">Roberto Soliz</option>
 							   <option value="M&oacute;nica Perez">M&oacute;nica Perez</option>
@@ -23,15 +23,15 @@
                     </div>
                     <div class="form-group col-sm-6">
                         <label for="empresaMovimiento">Empresa</label>
-                        <select class="form-control" id="empresaMovi">
-                            <option value="error">Seleccione uno...</option>
+                        <select class="form-control selectCustom" id="empresaMovi" data-live-search="true">
+                            <option value="error">Selecciona uno...</option>
 
                         </select>
                     </div>
                     <div class="form-group col-sm-11">
                         <label for="prendaMovimiento">Muestra</label>
-                        <select class="form-control" id="prendaMovi">
-                            <option value="error">Selecciones uno...</option>
+                        <select class="form-control selectCustom" id="prendaMovi" data-live-search="true">
+                            <option value="error">Selecciona uno...</option>
                         </select>
                     </div>
                     <div class="form-group col-sm-1">
@@ -44,6 +44,8 @@
                                 <tr>
                                     <th>C&oacute;digo de barras</th>
                                     <th>Prendas</th>
+                                    <th>Modelo Prenda</th>
+                                    <th>C&oacute;digo Tela</th>
                                     <th></th>
 
                                 </tr>
