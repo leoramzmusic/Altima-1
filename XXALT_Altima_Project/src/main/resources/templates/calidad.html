@@ -133,6 +133,9 @@
 													</a>
 													<a onclick="aceptarCalidad()" class="btn btn-success text-white btn-circle btn-sm popoverxd" data-container="body" data-placement="top" data-content="Aprobar"><i class="fas fa-check"></i></a>
 													<a onclick="rechazarCalidad()" class="btn btn-danger text-white btn-circle btn-sm popoverxd" data-container="body" data-placement="top" data-content="Rechazar"><i class="fas fa-times"></i></a>
+												        <a th:if="${#strings.contains(calidades[6],'pdf')}" class="btn btn-dark text-white btn-circle btn-sm popoverxd" th:href="@{/uploads/cuidados/}+${calidades[6]}"  download data-container="body" data-placement="top" data-content="Descargar PDF">
+														<i class="fas fa-file-download fa-sm"></i>
+													</a>
 												</td>
 											</tr>
 										
