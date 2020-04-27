@@ -62,4 +62,14 @@ public class DisenioCalidadServiceImpl implements IDisenioCalidadService {
 		return em.createNativeQuery("call alt_pr_calidad")
 				.getResultList();
 	}
+	
+	@Override
+	@Transactional
+	public DisenioCalidad findPruebaCalidadOtro(Long idmaterial) {
+		// TODO Auto-generated method stub
+		return  (DisenioCalidad) em.createQuery("from DisenioCalidad where idMaterial="+idmaterial+" and tipoMaterial=2").getSingleResult();
+				
+	}
+	
+	
 }
