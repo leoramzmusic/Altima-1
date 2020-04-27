@@ -1,14 +1,23 @@
 package com.altima.springboot.app.controller;
 
+import java.io.IOException;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.altima.springboot.app.models.entity.DisenioCalidad;
 import com.altima.springboot.app.models.entity.DisenioPruebaEncogimientoLavado;
@@ -18,6 +27,7 @@ import com.altima.springboot.app.models.service.IDisenioLookupService;
 import com.altima.springboot.app.models.service.IDisenioMaterialService;
 import com.altima.springboot.app.models.service.IDisenioPruebaEncogimientoLavadoService;
 import com.altima.springboot.app.models.service.IDisenioPruebaLavadoContaminacionCosturaService;
+import com.altima.springboot.app.models.service.IUploadService;
 
 @Controller
 public class CalidadController {
@@ -55,14 +65,14 @@ public class CalidadController {
 	}
 	
 	@RequestMapping(value = "/calidad-nueva-prueba-otro")
-	public String crear(Map<String, Object> model, Locale locale) {
+	public String crear(Model model) {
 		DisenioCalidad diseniocalidad = new DisenioCalidad();
-		model.put("diseniocalidad", diseniocalidad);
+		model.addAttribute("diseniocalidad", diseniocalidad);
 		return "calidad-nueva-prueba-otro";
 	}
 
 	@RequestMapping(value = "calidad-nueva-prueba-otro/{id}")
-	public String addCalidadOtro(@PathVariable("id") Long id, Model model, Map<String, Object> m,RedirectAttributes redirectAttrs) {
+	public String addCalidadOtro(@PathVariable("id") Long id, Model model,RedirectAttributes redirectAttrs) {
 		DisenioCalidad diseniocalidad = null;
 		model.addAttribute("idMaterial", id);
 		try {
@@ -74,7 +84,7 @@ public class CalidadController {
 			diseniocalidad = new DisenioCalidad();
 			diseniocalidad.setIdMaterial(id);
 		}
-		m.put("diseniocalidad", diseniocalidad);
+		model.addAttribute("diseniocalidad", diseniocalidad);
 		return "calidad-nueva-prueba-otro";
 	}
 
