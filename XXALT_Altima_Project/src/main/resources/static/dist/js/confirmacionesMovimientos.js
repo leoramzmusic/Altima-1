@@ -221,6 +221,8 @@ function detalleMuestras(id){
 											"<th></th>" +
 											"<th>C&oacute;digo de barras</th>" +
 											"<th>Muestra</th>" +
+											"<th>Modelo Prenda</th>" +
+											"<th>C&oacute;digo Tela</th>" +
 											"<th>Fecha de salida</th>" +
 											"<th>Entregado por</th>" +
 											"<th>Fecha de devoluci&oacute;n</th>" +
@@ -298,6 +300,8 @@ function detalleMuestras(id){
 			    		check,
 						"<td>"+data[i].codigoBarras+"</td>",
 						"<td>"+data[i].nombreMuestra+"</td>",
+						"<td>Por definir</td>", 
+						"<td>Por definir</td>", 
 						"<td>"+validador1+"</td>",
 						"<td>"+validador2+"</td>",
 						"<td>"+validador3+"</td>",
@@ -310,39 +314,46 @@ function detalleMuestras(id){
 			//$('#tablaTraspasoinfo').append(a);
 			$('#tablaTraspasoinfo').DataTable({
 				"data":	b,
-		        "ordering": false,
-		        "pageLength": 100,
-		        "lengthMenu": [
-		            [5, 10, 25, 50, 100],
-		            [5, 10, 25, 50, 100]
-		        ],
-		        "language": {
-		            "sProcessing": "Procesando...",
-		            "sLengthMenu": "Mostrar _MENU_ registros",
-		            "sZeroRecords": "No se encontraron resultados",
-		            "sEmptyTable": "Ningún dato disponible en esta tabla =(",
-		            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-		            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-		            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-		            "sInfoPostFix": "",
-		            "sSearch": "Buscar:",
-		            "sUrl": "",
-		            "sInfoThousands": ",",
-		            "sLoadingRecords": "Cargando...",
-		            "oPaginate": {
-		                "sFirst": "Primero",
-		                "sLast": "Último",
-		                "sNext": "Siguiente",
-		                "sPrevious": "Anterior"
-		            },
-		            "oAria": {
-		                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-		                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-		            },
-		            "buttons": {
-		                "copy": "Copiar",
-		                "colvis": "Visibilidad"
-		            }
+				"ordering": false,
+	            "pageLength": 5,
+	            "responsive": true,
+	            "drawCallback": function() {
+	                $('.popoverxd').popover({
+	                    container: 'body',
+	                    trigger: 'hover'
+	                });
+	              },
+	            "lengthMenu": [
+	                [5, 10, 25, 50, 100],
+	                [5, 10, 25, 50, 100]
+	            ],
+	            "language": {
+	                "sProcessing": "Procesando...",
+	                "sLengthMenu": "Mostrar _MENU_ registros",
+	                "sZeroRecords": "No se encontraron resultados",
+	                "sEmptyTable": "Ningún dato disponible en esta tabla =(",
+	                "sInfo": "Del _START_ al _END_ de un total de _TOTAL_ registros",
+	                "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+	                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+	                "sInfoPostFix": "",
+	                "sSearch": "Buscar:",
+	                "sUrl": "",
+	                "sInfoThousands": ",",
+	                "sLoadingRecords": "Cargando...",
+	                "oPaginate": {
+	                    "sFirst": "Primero",
+	                    "sLast": "Último",
+	                    "sNext": "Siguiente",
+	                    "sPrevious": "Anterior"
+	                },
+	                "oAria": {
+	                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+	                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+	                },
+	                "buttons": {
+	                    "copy": "Copiar",
+	                    "colvis": "Visibilidad"
+	                }
 		        }
 		    });
 			
