@@ -113,11 +113,13 @@ public class CalidadController {
 			}
 			diseniocalidad.setArchivoRuta(uniqueFilename);
 		}
-		diseniocalidad.setIdText("CAL"+100000+diseniocalidad.getIdCalidad());
+		
 		diseniocalidad.setCreadoPor(auth.getName());
 		diseniocalidad.setTipoMaterial("2");
 		diseniocalidad.setEstatus("1");
 		redirectAttrs.addFlashAttribute("title", "Prueba de calidad guardada correctamente").addFlashAttribute("icon", "success"); 
+		disenioCalidad.save(diseniocalidad);
+		diseniocalidad.setIdText("CAL"+100000+diseniocalidad.getIdCalidad());
 		disenioCalidad.save(diseniocalidad);
 		return "redirect:calidad";
 	}
