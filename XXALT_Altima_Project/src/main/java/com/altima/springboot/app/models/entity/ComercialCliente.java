@@ -82,6 +82,57 @@ public class ComercialCliente implements Serializable {
 	
 	@Column(name="estatus")
 	private String estatus;
+	
+	@Column(name="imagen")
+	private String imagen;
+	
+	@Column(name="puesto_contacto")
+	private String puestoContacto;
+	
+	@Column(name="nombre_contacto")
+	private String nombreContacto;
+	
+	@Column(name="estatus_cliente")
+	private String estatusCliente;
+	
+	
+	
+	
+	
+	
+	
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+	public String getPuestoContacto() {
+		return puestoContacto;
+	}
+
+	public void setPuestoContacto(String puestoContacto) {
+		this.puestoContacto = puestoContacto;
+	}
+
+	public String getNombreContacto() {
+		return nombreContacto;
+	}
+
+	public void setNombreContacto(String nombreContacto) {
+		this.nombreContacto = nombreContacto;
+	}
+
+	public String getEstatusCliente() {
+		return estatusCliente;
+	}
+
+	public void setEstatusCliente(String estatusCliente) {
+		this.estatusCliente = estatusCliente;
+	}
 
 	public Long getIdCliente() {
 		return idCliente;
