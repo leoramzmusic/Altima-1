@@ -69,11 +69,11 @@ public class ControlController {
 		return  DCPM.Operadores();
 	}
 	
-	@RequestMapping(value = "/orden-pedidos/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/orden-pedidos/{id}/{tipo}", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Object []> OrdenesTrazo(@PathVariable(value="id") Long id) {		
+	public List<Object []> OrdenesTrazo(@PathVariable(value="id") Long id , @PathVariable(value="tipo") String tipo) {		
 		
-		return Orden.ListarMuestrasTrazo(id);
+		return Orden.ListarMuestras(id,tipo);
 	}
 	
 	@RequestMapping(value = "/terminados/{id}/{tipo}", method = RequestMethod.GET)
@@ -107,7 +107,7 @@ public class ControlController {
 					System.out.println("Soy un trazo");
 					ControlProduccionMuestra muestra = new ControlProduccionMuestra();
 					Integer contador = DCPM.Contador("1");
-					muestra.setIdText("TRAZO"+(100+contador+1));
+					muestra.setIdText("TRAZ"+(100+contador+1));
 					muestra.setIdPedido(Long.parseLong(array[i]));
 					muestra.setFechaRecepcion(f1+":00");
 					muestra.setFechaEntrega(f2+":00");
@@ -135,7 +135,7 @@ public class ControlController {
 					System.out.println(""+array[i]);
 					ControlProduccionMuestra muestra = new ControlProduccionMuestra();
 					Integer contador = DCPM.Contador("2");
-					muestra.setIdText("TRAZO"+(100+contador+1));
+					muestra.setIdText("CORT"+(100+contador+1));
 					muestra.setIdPedido(Long.parseLong(array[i]));
 					muestra.setFechaRecepcion(f1+":00");
 					muestra.setFechaEntrega(f2+":00");
@@ -164,7 +164,7 @@ public class ControlController {
 					System.out.println("Soy un trazo");
 					ControlProduccionMuestra muestra = new ControlProduccionMuestra();
 					Integer contador = DCPM.Contador("3");
-					muestra.setIdText("TRAZO"+(100+contador+1));
+					muestra.setIdText("CONFE"+(100+contador+1));
 					muestra.setIdPedido(Long.parseLong(array[i]));
 					muestra.setFechaRecepcion(f1+":00");
 					muestra.setFechaEntrega(f2+":00");
@@ -197,7 +197,7 @@ System.out.println("Los id son :"+id);
 					System.out.println("Soy un trazo");
 					ControlProduccionMuestra muestra = new ControlProduccionMuestra();
 					Integer contador = DCPM.Contador("4");
-					muestra.setIdText("TRAZO"+(100+contador+1));
+					muestra.setIdText("PLAN"+(100+contador+1));
 					muestra.setIdPedido(Long.parseLong(array[i]));
 					muestra.setFechaRecepcion(f1+":00");
 					muestra.setFechaEntrega(f2+":00");
@@ -231,7 +231,7 @@ System.out.println("Los id son :"+id);
 					System.out.println("Soy un trazo");
 					ControlProduccionMuestra muestra = new ControlProduccionMuestra();
 					Integer contador = DCPM.Contador("5");
-					muestra.setIdText("TRAZO"+(100+contador+1));
+					muestra.setIdText("TERM"+(100+contador+1));
 					muestra.setIdPedido(Long.parseLong(array[i]));
 					muestra.setFechaRecepcion(f1+":00");
 					muestra.setFechaEntrega(f2+":00");
@@ -250,6 +250,44 @@ System.out.println("Los id son :"+id);
 			
 			System.out.println("Soy un terminado");
 		}
+		
+		
+		
+		
+		if ( tipo.equals("terminadoF")) {
+			
+			
+			System.out.println("Los id son :"+id);
+		
+		if ( (id != null) && (!id.equals("")) ){
+			String [] array = id.split(",");
+			for(int i= 0 ; i<array.length;i++) {
+			
+				System.out.println(""+array[i]);
+				
+				System.out.println("Soy terminado de foraneo");
+				ControlProduccionMuestra muestra = new ControlProduccionMuestra();
+				Integer contador = DCPM.Contador("5");
+				muestra.setIdText("TERM"+(100+contador+1));
+				muestra.setIdPedido(Long.parseLong(array[i]));
+				muestra.setFechaRecepcion(f1+":00");
+				muestra.setFechaEntrega(f2+":00");
+				muestra.setIdOperario(operador);
+				muestra.setTipo("5");
+				muestra.setCreadoPor(auth.getName());
+				muestra.setActualizadoPor("Null");
+				muestra.setFechaCreacion(hourdateFormat.format(date));
+				muestra.setUltimaFechaModificacion(hourdateFormat.format(date));
+				muestra.setEstatusTiempo("Nuevo");
+				DCPM.save(muestra);
+
+			}
+		}
+		
+		
+		System.out.println("Soy un terminado");
+	}
+		
 		
 		return "redirect:control-de-produccion";
 
@@ -327,6 +365,18 @@ System.out.println("Los id son :"+id);
 			DCPM.saveHora(hora);
 		}
 		
+		
+		if ( tipo.equals("terminadoF")) {
+			System.out.println("Soy un trazo");
+			ControlHora hora = new ControlHora();
+			hora.setIdControlProduccionMuestra(muestra.getIdControlProduccionMuestra());
+			hora.setFechaInicio(hourdateFormat.format(date));
+			hora.setEstatus("Play");
+			hora.setTipo("5");
+			hora.setCreadoPor(auth.getName());
+			hora.setFechaCreacion(hourdateFormat.format(date));
+			DCPM.saveHora(hora);
+		}
 		return "redirect:control-de-produccion";
 
 	}
@@ -418,7 +468,7 @@ System.out.println("Los id son :"+id);
 			pedido.setIdCliente(Long.valueOf(1));
 			pedido.setEstatus("1");
 			pedido.setCantidad(cantidad);
-			pedido.setDescripcion(" ");
+			pedido.setDescripcion("Foráneo");
 			pedido.setCreadoPor(auth.getName());
 			pedido.setFechaCreacion(hourdateFormat.format(date));
 			pedido.setActualizadoPor(auth.getName());
@@ -435,32 +485,38 @@ System.out.println("Los id son :"+id);
 			pedido.setCantidad(Integer.toString( ( Integer.parseInt(pedido.getCantidad())+Integer.parseInt(cantidad))) );
 			Pedido.save(pedido);
 		}
-		ProduccionDetallePedido orden = new ProduccionDetallePedido();
-		orden.setIdPedido(Long.valueOf(idPedido));
-		orden.setIdTela(Long.valueOf(1));
-		orden.setTalla(talla);
-		orden.setLargo(largo);
-		orden.setDescripcion("probando ando...");
-		orden.setIdText("ORDEN");
-		orden.setCreadoPor(auth.getName());
-		orden.setActualizadoPor(auth.getName());
-		orden.setUltimaFechaModificacion(hourdateFormat.format(date));
-		orden.setUltimaFechaModificacion(hourdateFormat.format(date));
-		orden.setIdInventario(null);
-		orden.setEstatus_confeccion("Corrrecto");
-		orden.setEstatus("1");
-		orden.setIdPrenda(prenda.getIdPrenda());
-		orden.setIdFamiliaGenero(Long.valueOf(familia));
-		orden.setCosto(precio);
-		orden.setCantidad(cantidad);
-		Orden.save(orden);
 		
-		ProduccionPedido pedido = Pedido.findOne(Long.valueOf(idPedido));
+		for (int i =1 ; i <= Integer.parseInt(cantidad) ;i++) {
+			System.out.println("El valor del indicador es: -->"+i+"<--");
+			
+			ProduccionDetallePedido orden = new ProduccionDetallePedido();
+			orden.setIdPedido(Long.valueOf(idPedido));
+			orden.setIdTela(Long.valueOf(1));
+			orden.setTalla(talla);
+			orden.setLargo(largo);
+			orden.setDescripcion("probando ando...");
+			orden.setIdText("ORDEN");
+			orden.setCreadoPor(auth.getName());
+			orden.setActualizadoPor(null);
+			orden.setUltimaFechaModificacion(hourdateFormat.format(date));
+			//orden.setUltimaFechaModificacion(hourdateFormat.format(date));
+			orden.setIdInventario(null);
+			orden.setEstatus_confeccion("Corrrecto");
+			orden.setEstatus("1");
+			orden.setIdPrenda(prenda.getIdPrenda());
+			orden.setIdFamiliaGenero(Long.valueOf(familia));
+			orden.setCosto(precio);
+			orden.setCantidad( Integer.toString(1));
+			Orden.save(orden);
+			
+			ProduccionPedido pedido = Pedido.findOne(Long.valueOf(idPedido));
+			
+			
+			orden.setIdText("SUB"+(pedido.getIdPedido()+1000)+"-"+orden.getIdDetallePedido());
+			Orden.save(orden);
+			// LISTAR
+		}
 		
-		
-		orden.setIdText("SUB"+(pedido.getIdPedido()+1000)+"-"+orden.getIdDetallePedido());
-		Orden.save(orden);
-		// LISTAR
 		
 		
 	
@@ -483,13 +539,18 @@ System.out.println("Los id son :"+id);
 	}
 	
 	
-	@PostMapping("/bajaorden")
-	public String bajacatalogo(Long id) {
+	/*@PostMapping("/bajaorden")
+	public String bajacatalogo(Long id ) {
 		System.out.println("Soy baja orden el id es: "+id);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Date date = new Date();
+		DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		String idPedido;
 		ProduccionDetallePedido orden;
 		orden=Orden.findOne(id);
 		orden.setEstatus("0");
+		orden.setActualizadoPor(auth.getName());
+		orden.setUltimaFechaModificacion(hourdateFormat.format(date));
 		Orden.save(orden);
 		ProduccionPedido pedido = Pedido.findOne(Long.valueOf(orden.getIdPedido()));
 		
@@ -497,6 +558,28 @@ System.out.println("Los id son :"+id);
 		Pedido.save(pedido);
 		
 		idPedido= Long.toString(orden.getIdPedido());
+		return "redirect:aux/"+idPedido;
+
+	}*/
+	
+	
+	
+	
+	@PostMapping("/bajaorden")
+	public String bajacatalogo(String idPrenda, String idPedido,String talla,String largo, String costo, String cantidad) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Date date = new Date();
+		DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		
+	
+		
+		Orden.bajasOrdenes(hourdateFormat.format(date), auth.getName(), idPrenda, idPedido, talla, largo, costo);
+		ProduccionPedido pedido = Pedido.findOne(Long.valueOf(idPedido));
+		pedido.setCantidad(Integer.toString( ( Integer.parseInt(pedido.getCantidad())-Integer.parseInt(cantidad))));
+		pedido.setActualizadoPor(auth.getName());
+		pedido.setUltimaFechaModificacion(hourdateFormat.format(date));
+		Pedido.save(pedido);
+	
 		return "redirect:aux/"+idPedido;
 
 	}

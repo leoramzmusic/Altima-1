@@ -860,7 +860,8 @@
     	if (tipo =="confeccion"){ listarConfeccion(id);}
     	if (tipo =="planchado"){ listarPlanchado(id);}
     	if (tipo =="terminado"){ listarTerminado(id);}
-    	
+    	if (tipo =="terminadoF"){ listarTerminadosF(id);}
+    
     	
     	});
         Swal.fire({
@@ -930,6 +931,7 @@
    	    	if (tipo =="confeccion"){ listarConfeccion(id2);}
    	    	if (tipo =="planchado"){ listarPlanchado(id2);}
    	    	if (tipo =="terminado"){ listarTerminado(id2);}
+   	    	if (tipo =="terminadoF"){ listarTerminadosF(id2);}
     	  });
     	      Swal.fire({
     	        position: 'center',
@@ -975,6 +977,7 @@
      	    	if (tipo =="confeccion"){ listarConfeccion(id2);}
      	    	if (tipo =="planchado"){ listarPlanchado(id2);}
      	    	if (tipo =="terminado"){ listarTerminado(id2);}
+     	    	if (tipo =="terminadoF"){ listarTerminadosF(id2);}
     	  });
     	      Swal.fire({
     	        position: 'center',
@@ -1020,6 +1023,8 @@
      	    	if (tipo =="confeccion"){ listarConfeccion(id2);}
      	    	if (tipo =="planchado"){ listarPlanchado(id2);}
      	    	if (tipo =="terminado"){ listarTerminado(id2);}
+     	    	
+     	    	if (tipo =="terminadoF"){ listarTerminadosF(id2);}
     	  });
     	      Swal.fire({
     	        position: 'center',
@@ -1133,7 +1138,7 @@
 			 "<div class='form-group col-sm-6' id ='contenedorMuestra'>"+
 			 "<label for='pedidonom'>Muestra</label>"+
 			 "<br><br>"+	
-             "<select  class='selectpicker' multiple    id='muestra' name='muestra' required='required'>"+
+             "<select  class='form-control selectpicker' multiple  data-live-search='true' id='muestra' name='muestra' required='required'>"+
                  
              "</select>"+"</div>");
 	 $.ajax({  
@@ -1149,7 +1154,7 @@
 	if ( tipo== 1){
 		$.ajax({  
 		    method: "GET",
-		    url: "/orden-pedidos/"+id,
+		    url: "/orden-pedidos/"+id+"/1",
 		    success: (data) => {
 		    	$.each(data, function(key, val) {
 		    		$('#muestra').append('<option value="' + val[0] + '">'+val[1]+'</option>');})
@@ -1210,6 +1215,10 @@
      	    	if (tipo =="confeccion"){ listarConfeccion(id);}
      	    	if (tipo =="planchado"){ listarPlanchado(id);}
      	    	if (tipo =="terminado"){ listarTerminado(id);}
+     	    	
+     	    	if (tipo =="terminado"){ listarTerminado(id);}
+     	    	
+     	    	if (tipo =="terminadoF"){ listarTerminadosF(id);}
     	  });
     	      Swal.fire({
     	        position: 'center',
@@ -1221,3 +1230,207 @@
       }//////////////termina result value
     })
   }
+ 
+ 
+ function listarTerminadosF(id) {
+	 document.getElementById("id_muestra").value = id;
+	 document.getElementById("tipo").value = "terminadoF";
+	 $('#menu').remove();
+	 
+	 console.log("hola humano yo soy el id que mandas de control de produccionS "+id);
+		$.ajax({
+		    method: "GET",
+		    url: "/listar-procesos/"+id+"/5",
+		    success: (data) => {
+		    	$('#quitar').remove();
+		    	$('#quitar2').remove();
+		    	$('#quitar3').remove();
+		    	$('#quitar4').remove();
+		    	$('#quitar5').remove();
+		    	$('#contenedorTabla').append(
+		    			
+		    			"<div class='modal-body' id='quitar'>" +
+		    			"<div class='form-group col-sm-12'>" +
+		    			"<button type='button'  onclick='nuevoF("+id+",5)' class='btn btn-primary' data-toggle='modal' data-target='#aux'>Nuevo Terminado</button>"+
+   						"<button onclick='PausarTodo("+id+",5)' class='btn btn-danger next-step float-right' type='button'>Pausar Todo</button>"+
+  					"</div>"+
+		    				
+		    			"<table class='table table-striped table-bordered' id='idtable'>" +
+	                                        "<thead>" +
+	                                            "<tr>" +
+	                                                "<th>Operario</th>" +
+	                                                "<th>Fecha de recepcion</th>" +
+	                                                "<th>Fecha de entrega</th>" +
+	                                                "<th>En:</th>" +
+	                                                "<th>Controles</th>" +
+	                                            "</tr>" +
+	                                        "</thead>" +
+	                                    "</table>" + "</div>");
+		        var a;
+		        var b = [];
+		        for (i in data){
+		        	if (data[i][5]=='Nuevo'){
+		        		a = [
+							"<tr>" +
+							"<td>" + data[i][0] + "</td>",
+							"<td>" + data[i][1]+ "</td>",
+							"<td>" + data[i][2] + "</td>",
+							"<td>" + data[i][5]+ "</td>",
+							"<td>"+
+							"<button onclick='play("+data[i][4]+","+id+" )' id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-play text-success'>  </i></button>&nbsp;"+
+							"<button style='border-radius: 35%;'> <i class='fa fa-pause'></i> </i></button>&nbsp;"+
+							"<button  style='border-radius: 35%;'> <i class='fa fa-stop'></i></button>&nbsp;"+
+							"</td>"+
+							"<tr>"
+							];
+		        	}
+		        	if (data[i][5]=='Play'){
+		        		a = [
+							"<tr>" +
+							"<td> <a class='text-primary'href='#' onclick='listarHoras("+data[i][4]+", 5)' > "+ data[i][0]+"</a> </td>",
+							"<td>" + data[i][1]+ "</td>",
+							"<td>" + data[i][2] + "</td>",
+							"<td>" + data[i][5]+ "</td>",		
+							" <td>"+
+							" <button style='border-radius: 35%;'> <i class='fa fa-play'></i> </button>&nbsp;"+
+							" <button onclick='pausa("+data[i][4]+","+id+" )' id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-pause text-warning'>  </i></button>&nbsp;"+
+							"<button  onclick='stop("+data[i][4]+","+id+" )'  style='border-radius: 35%;'><i class='fas fa-stop text-danger'></i></button>&nbsp;"+
+							"</td>"+
+							"<tr>"
+							];
+		        	}
+		        	if (data[i][5]=='Pausa'){
+		        		a = [
+							"<tr>" +
+							"<td> <a class='text-primary'href='#' onclick='listarHoras("+data[i][4]+", 5)' > "+ data[i][0]+"</a> </td>",
+							"<td>" + data[i][1]+ "</td>",
+							"<td>" + data[i][2] + "</td>",
+							"<td>" + data[i][5]+ "</td>",		
+							" <td>"+
+							" <button onclick='play("+data[i][4]+","+id+" )' id='"+data[i][4]+"' value='"+data[i][4]+"' style='border-radius: 35%;'> <i class='fas fa-play text-success'>  </i></button>&nbsp;"+
+							"<button style='border-radius: 35%;'> <i class='fa fa-pause'></i> </i></button>&nbsp;"+
+							"<button  style='border-radius: 35%;'> <i class='fa fa-stop'></i></button>&nbsp;"+
+							"</td>"+
+							"<tr>"
+							];
+		        	}
+		        	if (data[i][5]=='Stop'){
+		        		a = [
+							"<tr>" +
+							"<td> <a class='text-primary'href='#' onclick='listarHoras("+data[i][4]+", 5)' > "+ data[i][0]+"</a> </td>",
+							"<td>" + data[i][1]+ "</td>",
+							"<td>" + data[i][2] + "</td>",
+							"<td>" + data[i][5]+ "</td>",		
+							" <td>"+
+							" <button style='border-radius: 35%;'> <i class='fa fa-play'></i> </button>&nbsp;"+
+							"<button style='border-radius: 35%;'> <i class='fa fa-pause'></i> </i></button>&nbsp;"+
+							"<button  style='border-radius: 35%;'> <i class='fa fa-stop'></i></button>&nbsp;"+
+							"</td>"+
+							"<tr>"
+							];
+		        	}
+						b.push(a);	
+		        }	        
+			    var tabla = $('#idtable').DataTable({
+	            	"data":b,
+	                "ordering": true,
+	                "pageLength": 5,
+	                "lengthMenu": [
+	                    [5, 10, 25, 50, 10],
+	                    [5, 10, 25, 50, 10]
+	                ],
+	                "language": {
+	                    "sProcessing": "Procesando...",
+	                    "sLengthMenu": "Mostrar _MENU_ registros",
+	                    "sZeroRecords": "No se encontraron resultados",
+	                    "sEmptyTable": "Ningún dato disponible en esta tabla =(",
+	                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+	                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+	                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+	                    "sInfoPostFix": "",
+	                    "sSearch": "Buscar:",
+	                    "sUrl": "",
+	                    "sInfoThousands": ",",
+	                    "sLoadingRecords": "Cargando...",
+	                    "oPaginate": {
+	                        "sFirst": "Primero",
+	                        "sLast": "Último",
+	                        "sNext": "Siguiente",
+	                        "sPrevious": "Anterior"
+	                    },
+	                    "oAria": {
+	                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+	                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+	                    },
+	                    "buttons": {
+	                        "copy": "Copiar",
+	                        "colvis": "Visibilidad"
+	                    }
+	                }
+	            });
+		    },
+		    error: (e) => {
+		        // location.reload();
+		    }
+	}
+	)}
+ 
+ 
+ 
+ 
+ function nuevoF(id, tipo) {
+	 
+	 console.log(tipo);
+	 $('#operador').remove();
+	 $('#contenedorMuestra').remove();
+	 $('#contenedorOperador').append(
+                 "<select class='swal2-input' id='operador' name='operador' required='required'>"+
+                     "<option value=''>Seleccione a un operador</option>"+
+                 "</select>"+"</div>");
+	 $('#contenedorSelect').append(
+			 
+			 "<div class='form-group col-sm-6' id ='contenedorMuestra'>"+
+			 "<label for='pedidonom'>Muestra</label>"+
+			 "<br><br>"+	
+             "<select  class='form-control selectpicker' multiple  data-live-search='true' id='muestra' name='muestra' required='required'>"+
+                 
+             "</select>"+"</div>");
+	 $.ajax({  
+		    method: "GET",
+		    url: "/operadores",
+		    success: (data) => {
+		    	$.each(data, function(key, val) {
+		    		$('#operador').append('<option value="' + val[0] + '">'+val[1]+'</option>');})
+		    },
+		    error: (e) => {
+		    }
+	})
+	if ( tipo== 1){
+		$.ajax({  
+		    method: "GET",
+		    url: "/orden-pedidos/"+id+"/5",
+		    success: (data) => {
+		    	$.each(data, function(key, val) {
+		    		$('#muestra').append('<option value="' + val[0] + '">'+val[1]+'</option>');})
+		    		 $('.selectpicker').selectpicker(["refresh"]);
+		    } , 
+		    error: (e) => {
+		    }
+		})	
+	}
+	 
+	 if ( tipo> 1){
+			$.ajax({  
+			    method: "GET",
+			    url: "/terminados/"+id+"/"+tipo,
+			    success: (data) => {
+			    	$.each(data, function(key, val) {
+			    		$('#muestra').append('<option value="' + val[0] + '">'+val[1]+'</option>');})
+			    		$('.selectpicker').selectpicker(["refresh"]);
+			    },
+			    error: (e) => {
+			    }
+			})	
+		}
+	
+ }

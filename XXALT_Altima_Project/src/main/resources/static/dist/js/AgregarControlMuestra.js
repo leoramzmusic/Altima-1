@@ -64,10 +64,17 @@
 }
  
 //Dar de orden
- function bajarOrden(idbaja) {
+ 
+ ////necesito en este orde String idPrenda,String idPedido,String talla,String largo,String costo
+ function bajarOrden(idPrenda, idPedido,talla,largo,costo,cantidad) {
 	 
-	 console.log(idbaja);
- 	var id = idbaja;
+	 console.log("EL id de la prenda es-->"+idPrenda);
+	 console.log("EL id de la pedido es-->"+idPedido);
+	 console.log("La talla es-->"+talla);
+	 console.log("El largo es-->"+largo);
+	 console.log("El costo es-->"+costo);
+	 console.log("La cantiad es-->"+cantidad);
+ 	
  	Swal.fire({
  		title: '¿Deseas dar de baja orden?',
  		icon: 'warning',
@@ -77,13 +84,18 @@
  		confirmButtonText: 'Dar de baja',
  		confirmButtonColor: '#17a2b8',
  	}).then((result) => {
- 		if (result.value && id != null) {
+ 		if (1==1) {
  			$.ajax({
  				type: "POST",
  				url: "/bajaorden",
  				data: {
  					"_csrf": $('#token').val(),
- 					'id': id
+ 					'idPrenda':idPrenda, 
+ 					'idPedido':idPedido,
+ 					'talla':talla,
+ 					'largo':largo,
+ 					'costo':costo,
+ 					'cantidad':cantidad
 
  					// ,'Descripcion':Descripcion
  				}
@@ -137,9 +149,9 @@
 						"<td>" + data[i][1]+ "</td>",
 						"<td>" + data[i][2]+ "</td>",
 						"<td>" + data[i][3]+ "</td>",
-						"<td>" + data[i][4]+ "</td>",
+						"<td>" + data[i][4]+ "</td>",//necesito en este orde String idPrenda,String idPedido,String talla,String largo,String costo, String cantidad por subpedido
 						"<td>" + data[i][5]+ "</td>",
-						"<td style='text-align: center;'> <button  onclick='bajarOrden(" + data[i][6] + ")'  class='btn btn-danger btn-circle btn-sm'> <i class='fas fa-minus'></i></button></td>",
+						"<td style='text-align: center;'> <button  onclick='bajarOrden("+data[i][7]+","+data[i][8]+","+data[i][4]+","+'"'+""+data[i][5]+""+'"'+","+data[i][2]+" , "+data[i][3]+")'  class='btn btn-danger btn-circle btn-sm'> <i class='fas fa-minus'></i></button></td>",
 						"<tr>"
 					];
 					b.push(a);

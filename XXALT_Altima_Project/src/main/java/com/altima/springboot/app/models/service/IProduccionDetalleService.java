@@ -16,10 +16,19 @@ public interface IProduccionDetalleService {
 	
 	// comienzan las consultas
 	
-	List<Object []> ListarMuestrasTrazo(Long id);
+	List<Object []> ListarMuestras(Long id , String tipo);
 	
 	List <Object []> Terminados(Long id, Long tipo);
 	
 	List <Object []> PrendaOrdenes(Long id);
+	
+	//dar de baja las ordenes
+	void bajasOrdenes (String fecha,
+			String edito,
+			String idPrenda,
+			String idPedido,
+			String talla,
+			String largo,
+			String costo);
 
 }
