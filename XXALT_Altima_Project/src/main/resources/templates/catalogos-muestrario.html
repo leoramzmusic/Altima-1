@@ -2,441 +2,507 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<div th:replace="navegacion-head"></div>
-<title>Cat&aacute;logo De Muestrario | Altima</title>
-<link rel="stylesheet" href="/dist/css/bootstrap-select.min.css">
+    <div th:replace="navegacion-head"></div>
+    <title>Cat&aacute;logo De Muestrario | Altima</title>
+    <link rel="stylesheet" href="/dist/css/bootstrap-select.min.css">
 </head>
-
 <body class="hold-transition sidebar-mini layout-fixed sidebar-collapse">
-	<!-- Site wrapper -->
-	<div class="wrapper">
-		<!-- Navbar -->
-		<div th:insert="navegacion-nav"></div>
-		<!-- /.navbar -->
-		<!-- Modal -->
-		<div th:insert="navegacion-logout"></div>
-		<!-- Main Sidebar Container -->
-		<div th:insert="navegacion-aside"></div>
+    <!-- Site wrapper -->
+    <div class="wrapper">
+        <!-- Navbar -->
+        <div th:insert="navegacion-nav"></div>
+        <!-- /.navbar -->
+        <!-- Modal -->
+        <div th:insert="navegacion-logout"></div>
+        <!-- Main Sidebar Container -->
+        <div th:insert="navegacion-aside"></div>
 
-		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper">
-			<!-- Content Header (Page header) -->
-			<section class="content-header">
-				<div class="container-fluid">
-					<div class="row mb-2">
-						<div class="col-sm-6">
-							<h1>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>
 								Cat&aacute;logos <a class="btn btn-primary btn-circle btn-sm popoverxd text-white" data-container="body" data-target="#cartCatalogo" data-toggle="modal" data-placement="right" data-content="Ir al pedido"><i class="fas fa-shopping-cart" style="margin-left:-2px;"></i></a>
 							</h1>
-							<div th:insert="modal-catalogo-cart"></div>
-						</div>
-						<div class="col-sm-6">
-							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-								<li class="breadcrumb-item active">Muestrario</li>
-								<li class="breadcrumb-item active">Cat&aacute;logos</li>
-							</ol>
-						</div>
-					</div>
-				</div>
-				<!-- /.container-fluid -->
-			</section>
+                            <div th:insert="modal-catalogo-cart"></div>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                                <li class="breadcrumb-item active">Muestrario</li>
+                                <li class="breadcrumb-item active">Cat&aacute;logos</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </section>
 
-			<!-- Main content -->
-    <section class="content">
+            <!-- Main content -->
+            <section class="content">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <div id="filters" class="button-group btn-group" role="group">
+                            <button class="btn btn-danger is-checked" data-filter="*" style="border-radius:0px">Todas</button>
+                            <button class="btn btn-primary" data-filter=".abrigo">Abrigo</button>
+                            <button class="btn btn-primary" data-filter=".camisa">Camisa</button>
+                            <button class="btn btn-primary" data-filter=".pantalon" style="border-radius:0px">Pantal&oacute;n</button>
+                        </div>
+                    </div>
+                    <input type="text" id="quicksearch" class="form-control" placeholder="Search" />
+                </div>
 
-      <!-- Default box -->
-      <div class="card card-solid">
-        <div class="card-body pb-0">
-          <div class="row d-flex align-items-stretch">
-            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-              <div class="card bg-light">
-                <div class="card-header text-muted border-bottom-0">
-                  Stock: 9
-                </div>
-                <div class="card-body pt-0">
-                  <div class="row">
-                    <div class="col-7">
-                      <h2 class="lead"><strong>Prenda: </strong>PRE0001</h2>
-                      <h2 class="lead"><strong>Modelo: </strong>MOD0001</h2>
-                      <h2 class="lead"><strong>Tela: </strong>TEL0001</h2>
-                      <h2 class="lead"><strong>Talla: </strong>TAL0001</h2>
+                <!-- Default box -->
+                <div class="card card-solid">
+                    <div class="card-body pb-0">
+                        <div class="grid">
+                            <div class="row d-flex align-items-stretch">
+                                <div class="element-item camisa col-12 col-sm-6 col-md-4 d-flex align-items-stretch" data-category="camisa">
+                                    <div class="card bg-light">
+                                        <div class="card-header text-muted border-bottom-0">
+                                            Stock: 9
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="row">
+                                                <div class="col-7">
+                                                    <h2 class="lead"><strong>Prenda: </strong>Camisa azul</h2>
+                                                    <h2 class="lead"><strong>Modelo: </strong>MOD0001</h2>
+                                                    <h2 class="lead"><strong>Tela: </strong>TEL0001</h2>
+                                                    <h2 class="lead"><strong>Talla: </strong>TAL0001</h2>
+                                                </div>
+                                                <div class="col-5 text-center">
+                                                    <a data-toggle="modal" data-target="#imagenCatalogo">
+                                                        <img src="https://i.pinimg.com/originals/1a/30/ba/1a30bafc0af4e1000c49f63170645926.jpg" alt="" class="img-circle img-fluid">
+                                                    </a>
+                                                    <div id="imagenCatalogo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-body">
+                                                                    <img class="img-fluid" src="https://i.pinimg.com/originals/1a/30/ba/1a30bafc0af4e1000c49f63170645926.jpg" alt="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <div class="text-right">
+                                                <a href="#" class="btn bg-teal btn-circle btn-sm popoverxd" data-toggle="popover" data-html="true" data-container="body" data-placement="top" data-content="A&ntilde;adir al carrito">
+                                                    <i class="fas fa-plus"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="element-item abrigo col-12 col-sm-6 col-md-4 d-flex align-items-stretch" data-category="abrigo">
+                                    <div class="card bg-light">
+                                        <div class="card-header text-muted border-bottom-0">
+                                            Stock: 9
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="row">
+                                                <div class="col-7">
+                                                    <h2 class="lead"><strong>Prenda: </strong>Abrigo rosa</h2>
+                                                    <h2 class="lead"><strong>Modelo: </strong>MOD0002</h2>
+                                                    <h2 class="lead"><strong>Tela: </strong>TEL0002</h2>
+                                                    <h2 class="lead"><strong>Talla: </strong>TAL0002</h2>
+                                                </div>
+                                                <div class="col-5 text-center">
+                                                    <a data-toggle="modal" data-target="#imagenCatalogo5">
+                                                        <img src="https://cdn.shopify.com/s/files/1/2808/3316/products/50103278_1_1024x1024.jpg?v=1566582759" alt="" class="img-circle img-fluid">
+                                                    </a>
+                                                    <div id="imagenCatalogo5" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-body">
+                                                                    <img class="img-fluid" src="https://cdn.shopify.com/s/files/1/2808/3316/products/50103278_1_1024x1024.jpg?v=1566582759" alt="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <div class="text-right">
+                                                <a href="#" class="btn bg-teal btn-circle btn-sm popoverxd" data-toggle="popover" data-html="true" data-container="body" data-placement="top" data-content="A&ntilde;adir al carrito">
+                                                    <i class="fas fa-plus"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="element-item abrigo col-12 col-sm-6 col-md-4 d-flex align-items-stretch" data-category="abrigo">
+                                    <div class="card bg-light">
+                                        <div class="card-header text-muted border-bottom-0">
+                                            Stock: 9
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="row">
+                                                <div class="col-7">
+                                                    <h2 class="lead"><strong>Prenda: </strong>Abrigo gris</h2>
+                                                    <h2 class="lead"><strong>Modelo: </strong>MOD0003</h2>
+                                                    <h2 class="lead"><strong>Tela: </strong>TEL0003</h2>
+                                                    <h2 class="lead"><strong>Talla: </strong>TAL0003</h2>
+                                                </div>
+                                                <div class="col-5 text-center">
+                                                    <a data-toggle="modal" data-target="#imagenCatalogo6">
+                                                        <img src="https://cdn.shopify.com/s/files/1/2808/3316/products/50103316_1_1024x1024.jpg?v=1571186914" alt="" class="img-circle img-fluid">
+                                                    </a>
+                                                    <div id="imagenCatalogo6" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-body">
+                                                                    <img class="img-fluid" src="https://cdn.shopify.com/s/files/1/2808/3316/products/50103316_1_1024x1024.jpg?v=1571186914" alt="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <div class="text-right">
+                                                <a href="#" class="btn bg-teal btn-circle btn-sm popoverxd" data-toggle="popover" data-html="true" data-container="body" data-placement="top" data-content="A&ntilde;adir al carrito">
+                                                    <i class="fas fa-plus"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="element-item camisa col-12 col-sm-6 col-md-4 d-flex align-items-stretch" data-category="camisa">
+                                    <div class="card bg-light">
+                                        <div class="card-header text-muted border-bottom-0">
+                                            Stock: 9
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="row">
+                                                <div class="col-7">
+                                                    <h2 class="lead"><strong>Prenda: </strong>Camisa mezclilla</h2>
+                                                    <h2 class="lead"><strong>Modelo: </strong>MOD0004</h2>
+                                                    <h2 class="lead"><strong>Tela: </strong>TEL0004</h2>
+                                                    <h2 class="lead"><strong>Talla: </strong>TAL0004</h2>
+                                                </div>
+                                                <div class="col-5 text-center">
+                                                    <a data-toggle="modal" data-target="#imagenCatalogo1">
+                                                        <img src="https://www.dhresource.com/0x0/f2/albu/g10/M01/4A/19/rBVaWVzBkrOAZq_CAATbeZjgU70288.jpg" alt="" class="img-circle img-fluid">
+                                                    </a>
+                                                    <div id="imagenCatalogo1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-body">
+                                                                    <img class="img-fluid" src="https://www.dhresource.com/0x0/f2/albu/g10/M01/4A/19/rBVaWVzBkrOAZq_CAATbeZjgU70288.jpg" alt="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <div class="text-right">
+                                                <a href="#" class="btn bg-teal btn-circle btn-sm popoverxd" data-toggle="popover" data-html="true" data-container="body" data-placement="top" data-content="A&ntilde;adir al carrito">
+                                                    <i class="fas fa-plus"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="element-item pantalon col-12 col-sm-6 col-md-4 d-flex align-items-stretch" data-category="pantalon">
+                                    <div class="card bg-light">
+                                        <div class="card-header text-muted border-bottom-0">
+                                            Stock: 9
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="row">
+                                                <div class="col-7">
+                                                    <h2 class="lead"><strong>Prenda: </strong>Pantalon cafe</h2>
+                                                    <h2 class="lead"><strong>Modelo: </strong>MOD0005</h2>
+                                                    <h2 class="lead"><strong>Tela: </strong>TEL0005</h2>
+                                                    <h2 class="lead"><strong>Talla: </strong>TAL0005</h2>
+                                                </div>
+                                                <div class="col-5 text-center">
+                                                    <a data-toggle="modal" data-target="#imagenCatalogo10">
+                                                        <img src="https://resources.sears.com.mx/medios-plazavip/fotos/productos_sears1/original/3060616.jpg" alt="" class="img-circle img-fluid">
+                                                    </a>
+                                                    <div id="imagenCatalogo10" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-body">
+                                                                    <img class="img-fluid" src="https://resources.sears.com.mx/medios-plazavip/fotos/productos_sears1/original/3060616.jpg" alt="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <div class="text-right">
+                                                <a href="#" class="btn bg-teal btn-circle btn-sm popoverxd" data-toggle="popover" data-html="true" data-container="body" data-placement="top" data-content="A&ntilde;adir al carrito">
+                                                    <i class="fas fa-plus"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="element-item camisa col-12 col-sm-6 col-md-4 d-flex align-items-stretch" data-category="camisa">
+                                    <div class="card bg-light">
+                                        <div class="card-header text-muted border-bottom-0">
+                                            Stock: 9
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="row">
+                                                <div class="col-7">
+                                                    <h2 class="lead"><strong>Prenda: </strong>Camisa roja cuadros</h2>
+                                                    <h2 class="lead"><strong>Modelo: </strong>MOD0006</h2>
+                                                    <h2 class="lead"><strong>Tela: </strong>TEL0006</h2>
+                                                    <h2 class="lead"><strong>Talla: </strong>TAL0006</h2>
+                                                </div>
+                                                <div class="col-5 text-center">
+                                                    <a data-toggle="modal" data-target="#imagenCatalogo2">
+                                                        <img src="https://www.dhresource.com/0x0/f2/albu/g9/M01/3C/C9/rBVaVVxMUPuAfJUxAAIqKHbOr30075.jpg" alt="" class="img-circle img-fluid">
+                                                    </a>
+                                                    <div id="imagenCatalogo2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-body">
+                                                                    <img class="img-fluid" src="https://www.dhresource.com/0x0/f2/albu/g9/M01/3C/C9/rBVaVVxMUPuAfJUxAAIqKHbOr30075.jpg" alt="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <div class="text-right">
+                                                <a href="#" class="btn bg-teal btn-circle btn-sm popoverxd" data-toggle="popover" data-html="true" data-container="body" data-placement="top" data-content="A&ntilde;adir al carrito">
+                                                    <i class="fas fa-plus"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="element-item pantalon col-12 col-sm-6 col-md-4 d-flex align-items-stretch" data-category="pantalon">
+                                    <div class="card bg-light">
+                                        <div class="card-header text-muted border-bottom-0">
+                                            Stock: 9
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="row">
+                                                <div class="col-7">
+                                                    <h2 class="lead"><strong>Prenda: </strong>Pantalon mezclilla</h2>
+                                                    <h2 class="lead"><strong>Modelo: </strong>MOD0007</h2>
+                                                    <h2 class="lead"><strong>Tela: </strong>TEL0007</h2>
+                                                    <h2 class="lead"><strong>Talla: </strong>TAL0007</h2>
+                                                </div>
+                                                <div class="col-5 text-center">
+                                                    <a data-toggle="modal" data-target="#imagenCatalogo9">
+                                                        <img src="https://industrialjaguar.com/Productos/117-large_default/pantalon-mezclilla-14-oz.jpg" alt="" class="img-circle img-fluid">
+                                                    </a>
+                                                    <div id="imagenCatalogo9" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-body">
+                                                                    <img class="img-fluid" src="https://industrialjaguar.com/Productos/117-large_default/pantalon-mezclilla-14-oz.jpg" alt="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <div class="text-right">
+                                                <a href="#" class="btn bg-teal btn-circle btn-sm popoverxd" data-toggle="popover" data-html="true" data-container="body" data-placement="top" data-content="A&ntilde;adir al carrito">
+                                                    <i class="fas fa-plus"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="element-item camisa col-12 col-sm-6 col-md-4 d-flex align-items-stretch" data-category="camisa">
+                                    <div class="card bg-light">
+                                        <div class="card-header text-muted border-bottom-0">
+                                            Stock: 9
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="row">
+                                                <div class="col-7">
+                                                    <h2 class="lead"><strong>Prenda: </strong>Camisa rosa</h2>
+                                                    <h2 class="lead"><strong>Modelo: </strong>MOD0008</h2>
+                                                    <h2 class="lead"><strong>Tela: </strong>TEL0008</h2>
+                                                    <h2 class="lead"><strong>Talla: </strong>TAL0008</h2>
+                                                </div>
+                                                <div class="col-5 text-center">
+                                                    <a data-toggle="modal" data-target="#imagenCatalogo3">
+                                                        <img src="https://cdn.shopify.com/s/files/1/0639/4559/products/Rosa_M.Larga_3000x.jpg?v=1583940175" alt="" class="img-circle img-fluid">
+                                                    </a>
+                                                    <div id="imagenCatalogo3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-body">
+                                                                    <img class="img-fluid" src="https://cdn.shopify.com/s/files/1/0639/4559/products/Rosa_M.Larga_3000x.jpg?v=1583940175" alt="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <div class="text-right">
+                                                <a href="#" class="btn bg-teal btn-circle btn-sm popoverxd" data-toggle="popover" data-html="true" data-container="body" data-placement="top" data-content="A&ntilde;adir al carrito">
+                                                    <i class="fas fa-plus"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="element-item abrigo col-12 col-sm-6 col-md-4 d-flex align-items-stretch" data-category="abrigo">
+                                    <div class="card bg-light">
+                                        <div class="card-header text-muted border-bottom-0">
+                                            Stock: 9
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="row">
+                                                <div class="col-7">
+                                                    <h2 class="lead"><strong>Prenda: </strong>Abrigo cafe</h2>
+                                                    <h2 class="lead"><strong>Modelo: </strong>MOD0009</h2>
+                                                    <h2 class="lead"><strong>Tela: </strong>TEL0009</h2>
+                                                    <h2 class="lead"><strong>Talla: </strong>TAL0009</h2>
+                                                </div>
+                                                <div class="col-5 text-center">
+                                                    <a data-toggle="modal" data-target="#imagenCatalogo7">
+                                                        <img src="https://www.bel-cashmere.com/wp-content/uploads/2016/09/8759_1.jpg" alt="" class="img-circle img-fluid">
+                                                    </a>
+                                                    <div id="imagenCatalogo7" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-body">
+                                                                    <img class="img-fluid" src="https://www.bel-cashmere.com/wp-content/uploads/2016/09/8759_1.jpg" alt="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <div class="text-right">
+                                                <a href="#" class="btn bg-teal btn-circle btn-sm popoverxd" data-toggle="popover" data-html="true" data-container="body" data-placement="top" data-content="A&ntilde;adir al carrito">
+                                                    <i class="fas fa-plus"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-5 text-center">
-                    <a data-toggle="modal" data-target="#imagenCatalogo">
-                      <img src="https://www.dhresource.com/600x600/f2/albu/g9/M00/78/23/rBVaVV00MKyAdHLpAAmgDrTaVxk801.jpg" alt="" class="img-circle img-fluid">
-                    </a>
-                    <div id="imagenCatalogo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					  <div class="modal-dialog modal-dialog-centered">
-					    <div class="modal-content">
-					        <div class="modal-body">
-		                    	<img class="img-fluid" src="https://www.dhresource.com/600x600/f2/albu/g9/M00/78/23/rBVaVV00MKyAdHLpAAmgDrTaVxk801.jpg" alt="">
-		                	</div>
-					    </div>
-					  </div>
-					</div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <nav aria-label="Contacts Page Navigation">
+                            <ul class="pagination justify-content-center m-0">
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                <li class="page-item"><a class="page-link" href="#">6</a></li>
+                                <li class="page-item"><a class="page-link" href="#">7</a></li>
+                                <li class="page-item"><a class="page-link" href="#">8</a></li>
+                            </ul>
+                        </nav>
                     </div>
-                  </div>
+                    <!-- /.card-footer -->
                 </div>
-                <div class="card-footer">
-                  <div class="text-right">
-                    <a href="#" class="btn bg-teal btn-circle btn-sm popoverxd" data-toggle="popover" data-html="true" data-container="body" data-placement="top" data-content="A&ntilde;adir al carrito">
-                      <i class="fas fa-plus"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-              <div class="card bg-light">
-                <div class="card-header text-muted border-bottom-0">
-                  Stock: 9
-                </div>
-                <div class="card-body pt-0">
-                  <div class="row">
-                    <div class="col-7">
-                      <h2 class="lead"><strong>Prenda: </strong>PRE0001</h2>
-                      <h2 class="lead"><strong>Modelo: </strong>MOD0001</h2>
-                      <h2 class="lead"><strong>Tela: </strong>TEL0001</h2>
-                      <h2 class="lead"><strong>Talla: </strong>TAL0001</h2>
-                    </div>
-                    <div class="col-5 text-center">
-                    <a data-toggle="modal" data-target="#imagenCatalogo">
-                      <img src="https://www.dhresource.com/600x600/f2/albu/g9/M00/78/23/rBVaVV00MKyAdHLpAAmgDrTaVxk801.jpg" alt="" class="img-circle img-fluid">
-                    </a>
-                    <div id="imagenCatalogo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					  <div class="modal-dialog modal-dialog-centered">
-					    <div class="modal-content">
-					        <div class="modal-body">
-		                    	<img class="img-fluid" src="https://www.dhresource.com/600x600/f2/albu/g9/M00/78/23/rBVaVV00MKyAdHLpAAmgDrTaVxk801.jpg" alt="">
-		                	</div>
-					    </div>
-					  </div>
-					</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <div class="text-right">
-                    <a href="#" class="btn bg-teal btn-circle btn-sm popoverxd" data-toggle="popover" data-html="true" data-container="body" data-placement="top" data-content="A&ntilde;adir al carrito">
-                      <i class="fas fa-plus"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-              <div class="card bg-light">
-                <div class="card-header text-muted border-bottom-0">
-                  Stock: 9
-                </div>
-                <div class="card-body pt-0">
-                  <div class="row">
-                    <div class="col-7">
-                      <h2 class="lead"><strong>Prenda: </strong>PRE0001</h2>
-                      <h2 class="lead"><strong>Modelo: </strong>MOD0001</h2>
-                      <h2 class="lead"><strong>Tela: </strong>TEL0001</h2>
-                      <h2 class="lead"><strong>Talla: </strong>TAL0001</h2>
-                    </div>
-                    <div class="col-5 text-center">
-                    <a data-toggle="modal" data-target="#imagenCatalogo">
-                      <img src="https://www.dhresource.com/600x600/f2/albu/g9/M00/78/23/rBVaVV00MKyAdHLpAAmgDrTaVxk801.jpg" alt="" class="img-circle img-fluid">
-                    </a>
-                    <div id="imagenCatalogo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					  <div class="modal-dialog modal-dialog-centered">
-					    <div class="modal-content">
-					        <div class="modal-body">
-		                    	<img class="img-fluid" src="https://www.dhresource.com/600x600/f2/albu/g9/M00/78/23/rBVaVV00MKyAdHLpAAmgDrTaVxk801.jpg" alt="">
-		                	</div>
-					    </div>
-					  </div>
-					</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <div class="text-right">
-                    <a href="#" class="btn bg-teal btn-circle btn-sm popoverxd" data-toggle="popover" data-html="true" data-container="body" data-placement="top" data-content="A&ntilde;adir al carrito">
-                      <i class="fas fa-plus"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-              <div class="card bg-light">
-                <div class="card-header text-muted border-bottom-0">
-                  Stock: 9
-                </div>
-                <div class="card-body pt-0">
-                  <div class="row">
-                    <div class="col-7">
-                      <h2 class="lead"><strong>Prenda: </strong>PRE0001</h2>
-                      <h2 class="lead"><strong>Modelo: </strong>MOD0001</h2>
-                      <h2 class="lead"><strong>Tela: </strong>TEL0001</h2>
-                      <h2 class="lead"><strong>Talla: </strong>TAL0001</h2>
-                    </div>
-                    <div class="col-5 text-center">
-                    <a data-toggle="modal" data-target="#imagenCatalogo">
-                      <img src="https://www.dhresource.com/600x600/f2/albu/g9/M00/78/23/rBVaVV00MKyAdHLpAAmgDrTaVxk801.jpg" alt="" class="img-circle img-fluid">
-                    </a>
-                    <div id="imagenCatalogo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					  <div class="modal-dialog modal-dialog-centered">
-					    <div class="modal-content">
-					        <div class="modal-body">
-		                    	<img class="img-fluid" src="https://www.dhresource.com/600x600/f2/albu/g9/M00/78/23/rBVaVV00MKyAdHLpAAmgDrTaVxk801.jpg" alt="">
-		                	</div>
-					    </div>
-					  </div>
-					</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <div class="text-right">
-                    <a href="#" class="btn bg-teal btn-circle btn-sm popoverxd" data-toggle="popover" data-html="true" data-container="body" data-placement="top" data-content="A&ntilde;adir al carrito">
-                      <i class="fas fa-plus"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-              <div class="card bg-light">
-                <div class="card-header text-muted border-bottom-0">
-                  Stock: 9
-                </div>
-                <div class="card-body pt-0">
-                  <div class="row">
-                    <div class="col-7">
-                      <h2 class="lead"><strong>Prenda: </strong>PRE0001</h2>
-                      <h2 class="lead"><strong>Modelo: </strong>MOD0001</h2>
-                      <h2 class="lead"><strong>Tela: </strong>TEL0001</h2>
-                      <h2 class="lead"><strong>Talla: </strong>TAL0001</h2>
-                    </div>
-                    <div class="col-5 text-center">
-                    <a data-toggle="modal" data-target="#imagenCatalogo">
-                      <img src="https://www.dhresource.com/600x600/f2/albu/g9/M00/78/23/rBVaVV00MKyAdHLpAAmgDrTaVxk801.jpg" alt="" class="img-circle img-fluid">
-                    </a>
-                    <div id="imagenCatalogo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					  <div class="modal-dialog modal-dialog-centered">
-					    <div class="modal-content">
-					        <div class="modal-body">
-		                    	<img class="img-fluid" src="https://www.dhresource.com/600x600/f2/albu/g9/M00/78/23/rBVaVV00MKyAdHLpAAmgDrTaVxk801.jpg" alt="">
-		                	</div>
-					    </div>
-					  </div>
-					</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <div class="text-right">
-                    <a href="#" class="btn bg-teal btn-circle btn-sm popoverxd" data-toggle="popover" data-html="true" data-container="body" data-placement="top" data-content="A&ntilde;adir al carrito">
-                      <i class="fas fa-plus"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-              <div class="card bg-light">
-                <div class="card-header text-muted border-bottom-0">
-                  Stock: 9
-                </div>
-                <div class="card-body pt-0">
-                  <div class="row">
-                    <div class="col-7">
-                      <h2 class="lead"><strong>Prenda: </strong>PRE0001</h2>
-                      <h2 class="lead"><strong>Modelo: </strong>MOD0001</h2>
-                      <h2 class="lead"><strong>Tela: </strong>TEL0001</h2>
-                      <h2 class="lead"><strong>Talla: </strong>TAL0001</h2>
-                    </div>
-                    <div class="col-5 text-center">
-                    <a data-toggle="modal" data-target="#imagenCatalogo">
-                      <img src="https://www.dhresource.com/600x600/f2/albu/g9/M00/78/23/rBVaVV00MKyAdHLpAAmgDrTaVxk801.jpg" alt="" class="img-circle img-fluid">
-                    </a>
-                    <div id="imagenCatalogo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					  <div class="modal-dialog modal-dialog-centered">
-					    <div class="modal-content">
-					        <div class="modal-body">
-		                    	<img class="img-fluid" src="https://www.dhresource.com/600x600/f2/albu/g9/M00/78/23/rBVaVV00MKyAdHLpAAmgDrTaVxk801.jpg" alt="">
-		                	</div>
-					    </div>
-					  </div>
-					</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <div class="text-right">
-                    <a href="#" class="btn bg-teal btn-circle btn-sm popoverxd" data-toggle="popover" data-html="true" data-container="body" data-placement="top" data-content="A&ntilde;adir al carrito">
-                      <i class="fas fa-plus"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-              <div class="card bg-light">
-                <div class="card-header text-muted border-bottom-0">
-                  Stock: 9
-                </div>
-                <div class="card-body pt-0">
-                  <div class="row">
-                    <div class="col-7">
-                      <h2 class="lead"><strong>Prenda: </strong>PRE0001</h2>
-                      <h2 class="lead"><strong>Modelo: </strong>MOD0001</h2>
-                      <h2 class="lead"><strong>Tela: </strong>TEL0001</h2>
-                      <h2 class="lead"><strong>Talla: </strong>TAL0001</h2>
-                    </div>
-                    <div class="col-5 text-center">
-                    <a data-toggle="modal" data-target="#imagenCatalogo">
-                      <img src="https://www.dhresource.com/600x600/f2/albu/g9/M00/78/23/rBVaVV00MKyAdHLpAAmgDrTaVxk801.jpg" alt="" class="img-circle img-fluid">
-                    </a>
-                    <div id="imagenCatalogo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					  <div class="modal-dialog modal-dialog-centered">
-					    <div class="modal-content">
-					        <div class="modal-body">
-		                    	<img class="img-fluid" src="https://www.dhresource.com/600x600/f2/albu/g9/M00/78/23/rBVaVV00MKyAdHLpAAmgDrTaVxk801.jpg" alt="">
-		                	</div>
-					    </div>
-					  </div>
-					</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <div class="text-right">
-                    <a href="#" class="btn bg-teal btn-circle btn-sm popoverxd" data-toggle="popover" data-html="true" data-container="body" data-placement="top" data-content="A&ntilde;adir al carrito">
-                      <i class="fas fa-plus"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-              <div class="card bg-light">
-                <div class="card-header text-muted border-bottom-0">
-                  Stock: 9
-                </div>
-                <div class="card-body pt-0">
-                  <div class="row">
-                    <div class="col-7">
-                      <h2 class="lead"><strong>Prenda: </strong>PRE0001</h2>
-                      <h2 class="lead"><strong>Modelo: </strong>MOD0001</h2>
-                      <h2 class="lead"><strong>Tela: </strong>TEL0001</h2>
-                      <h2 class="lead"><strong>Talla: </strong>TAL0001</h2>
-                    </div>
-                    <div class="col-5 text-center">
-                    <a data-toggle="modal" data-target="#imagenCatalogo">
-                      <img src="https://www.dhresource.com/600x600/f2/albu/g9/M00/78/23/rBVaVV00MKyAdHLpAAmgDrTaVxk801.jpg" alt="" class="img-circle img-fluid">
-                    </a>
-                    <div id="imagenCatalogo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					  <div class="modal-dialog modal-dialog-centered">
-					    <div class="modal-content">
-					        <div class="modal-body">
-		                    	<img class="img-fluid" src="https://www.dhresource.com/600x600/f2/albu/g9/M00/78/23/rBVaVV00MKyAdHLpAAmgDrTaVxk801.jpg" alt="">
-		                	</div>
-					    </div>
-					  </div>
-					</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <div class="text-right">
-                    <a href="#" class="btn bg-teal btn-circle btn-sm popoverxd" data-toggle="popover" data-html="true" data-container="body" data-placement="top" data-content="A&ntilde;adir al carrito">
-                      <i class="fas fa-plus"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-              <div class="card bg-light">
-                <div class="card-header text-muted border-bottom-0">
-                  Stock: 9
-                </div>
-                <div class="card-body pt-0">
-                  <div class="row">
-                    <div class="col-7">
-                      <h2 class="lead"><strong>Prenda: </strong>PRE0001</h2>
-                      <h2 class="lead"><strong>Modelo: </strong>MOD0001</h2>
-                      <h2 class="lead"><strong>Tela: </strong>TEL0001</h2>
-                      <h2 class="lead"><strong>Talla: </strong>TAL0001</h2>
-                    </div>
-                    <div class="col-5 text-center">
-                    <a data-toggle="modal" data-target="#imagenCatalogo">
-                      <img src="https://www.dhresource.com/600x600/f2/albu/g9/M00/78/23/rBVaVV00MKyAdHLpAAmgDrTaVxk801.jpg" alt="" class="img-circle img-fluid">
-                    </a>
-                    <div id="imagenCatalogo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					  <div class="modal-dialog modal-dialog-centered">
-					    <div class="modal-content">
-					        <div class="modal-body">
-		                    	<img class="img-fluid" src="https://www.dhresource.com/600x600/f2/albu/g9/M00/78/23/rBVaVV00MKyAdHLpAAmgDrTaVxk801.jpg" alt="">
-		                	</div>
-					    </div>
-					  </div>
-					</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <div class="text-right">
-                    <a href="#" class="btn bg-teal btn-circle btn-sm popoverxd" data-toggle="popover" data-html="true" data-container="body" data-placement="top" data-content="A&ntilde;adir al carrito">
-                      <i class="fas fa-plus"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+                <!-- /.card -->
+
+            </section>
+            <!-- /.content -->
         </div>
-        <!-- /.card-body -->
-        <div class="card-footer">
-          <nav aria-label="Contacts Page Navigation">
-            <ul class="pagination justify-content-center m-0">
-              <li class="page-item active"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">4</a></li>
-              <li class="page-item"><a class="page-link" href="#">5</a></li>
-              <li class="page-item"><a class="page-link" href="#">6</a></li>
-              <li class="page-item"><a class="page-link" href="#">7</a></li>
-              <li class="page-item"><a class="page-link" href="#">8</a></li>
-            </ul>
-          </nav>
-        </div>
-        <!-- /.card-footer -->
-      </div>
-      <!-- /.card -->
+        <!-- /.content-wrapper -->
 
-    </section>
-    <!-- /.content -->
-		</div>
-		<!-- /.content-wrapper -->
+        <div th:insert="navegacion-footer"></div>
+    </div>
+    <!-- ./wrapper -->
 
-		<div th:insert="navegacion-footer"></div>
-	</div>
-	<!-- ./wrapper -->
+    <div th:replace="navegacion-scripts"></div>
+    <script src="/dist/js/bootstrap-select.min.js"></script>
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+    <script>
+        $('.selectCustom').selectpicker({
+            style: 'border border-bootstrap'
+        });
+    </script>
+    <script>
+        $('#iComercial').removeClass('text-primary');
+        $('#menuComercial').addClass('menu-open');
+        $('#navComercial').addClass('active');
+        $('#menuMuestrario').addClass('menu-open');
+        $('#navMuestrario').addClass('active');
+        $('#navMuestrario3').addClass('active');
+    </script>
+    <script>
+        // quick search regex
+        var qsRegex;
+        var buttonFilter;
 
-	<div th:replace="navegacion-scripts"></div>
-	<script src="/dist/js/bootstrap-select.min.js"></script>
-	
-	<script>
-	$('.selectCustom').selectpicker({
-		style: 'border border-bootstrap'
-	});
-	</script>
-	<script>
-	$('#iComercial').removeClass('text-primary');
-	$('#menuComercial').addClass('menu-open');
-	$('#navComercial').addClass('active');
-	$('#menuMuestrario').addClass('menu-open');
-	$('#navMuestrario').addClass('active');
-	$('#navMuestrario3').addClass('active');
-	</script>
+        // init Isotope
+        var $grid = $('.grid').isotope({
+            itemSelector: '.element-item',
+            layoutMode: 'fitRows',
+            filter: function() {
+                var $this = $(this);
+                var searchResult = qsRegex ? $this.text().match(qsRegex) : true;
+                var buttonResult = buttonFilter ? $this.is(buttonFilter) : true;
+                return searchResult && buttonResult;
+            }
+        });
+
+        $('#filters').on('click', 'button', function() {
+            buttonFilter = $(this).attr('data-filter');
+            $grid.isotope();
+        });
+
+        // use value of search field to filter
+        var $quicksearch = $('#quicksearch').keyup(debounce(function() {
+            qsRegex = new RegExp($quicksearch.val(), 'gi');
+            $grid.isotope();
+        }));
+
+        // change is-checked class on buttons
+        $('.btn-group').each(function(i, buttonGroup) {
+            var $buttonGroup = $(buttonGroup);
+            $buttonGroup.on('click', 'button', function() {
+                $buttonGroup.find('.is-checked').removeClass('is-checked');
+                $(this).addClass('is-checked');
+            });
+        });
+
+        // debounce so filtering doesn't happen every millisecond
+        function debounce(fn, threshold) {
+            var timeout;
+            threshold = threshold || 100;
+            return function debounced() {
+                clearTimeout(timeout);
+                var args = arguments;
+                var _this = this;
+
+                function delayed() {
+                    fn.apply(_this, args);
+                }
+                timeout = setTimeout(delayed, threshold);
+            };
+        }
+    </script>
 
 </body>
+
 </html>
