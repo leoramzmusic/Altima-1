@@ -26,11 +26,10 @@
             <input type="datetime-local" class="form-control" id="fechaRealizacionEncogi" placeholder="23.2" th:readonly="${read}" th:value="${fechaRealizacionEncogi}">
         </div>
     </div>
-    <div class="col-sm-12">
+    <div class="col-sm-12" th:style="${forro}=='true'?'display: none;':''">
 	    <hr><h4>Descripci&oacute;n:<strong> Prueba de Fusi&oacute;n</strong></h4>
     </div>
-    
-    <div class="col-sm-4">
+    <div class="col-sm-4" th:style="${forro}=='true'?'display: none;':''">
         <div class="form-group">
             <label style="font-size: 15px;">Adherencia</label>
        		<div class="custom-control custom-radio">
@@ -49,7 +48,7 @@
         </div>
     </div>
     
-    <div class="col-sm-4">
+    <div class="col-sm-4" th:style="${forro}=='true'?'display: none;':''">
         <div class="form-group">
             <label for="status">Entretela</label>
             <select class="form-control" id="entretelaEncogi" name="entretelaPeque" th:disabled="${read}" th:value="${entretelaEncogi}">
@@ -58,7 +57,7 @@
         </div>
     </div>
     
-    <div class="col-sm-4">
+    <div class="col-sm-4" th:style="${forro}=='true'?'display: none;':''">
         <div class="form-group">
             <label for="status">Proveedor</label>
             <select class="form-control" id="proveedorEncogi" name="proveedor" th:disabled="${read}" th:value="${proveedorEncogi}">
@@ -70,71 +69,71 @@
             </select>
         </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-4" th:style="${forro}=='true'?'display: none;':''">
         <div class="form-group">
             <label style="font-size: 15px;">Temperatura</label>
             <input type="number" class="form-control" id="temperaturaPruebaVapor" placeholder="23.2" th:readonly="${read}" th:value="${temperaturaPruebaVapor}">
         </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-4" th:style="${forro}=='true'?'display: none;':''">
         <div class="form-group">
             <label style="font-size: 15px;">Tiempo (minutos)</label>
             <input type="number" class="form-control" id="tiempoPruebaVapor" placeholder="5" th:readonly="${read}" th:value="${tiempoPruebaVapor}">
         </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-4" th:style="${forro}=='true'?'display: none;':''">
         <div class="form-group">
             <label style="font-size: 15px;">Presi&oacute;n</label>
             <input type="number" class="form-control" id="presionPruebaVapor" placeholder="23.2" th:readonly="${read}" th:value="${presionPruebaVapor}">
         </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-6" th:style="${forro}=='true'?'display: none;':''">
         <div class="form-group">
             <label style="font-size: 15px;">Medida final del hilo</label>
             <input type="number" class="form-control" id="medidaHiloPruebaVapor" placeholder="23.2" th:readonly="${read}" th:value="${medidaHiloPruebaVapor}">
         </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-6" th:style="${forro}=='true'?'display: none;':''">
         <div class="form-group">
             <label style="font-size: 15px;">Medida final de la trama</label>
             <input type="number" class="form-control" id="finalTramaPruebaVapor" placeholder="23.2" th:readonly="${read}" th:value="${finalTramaPruebaVapor}">
         </div>
     </div>
-    <div class="col-sm-12">
+    <div class="col-sm-12" th:style="${forro}=='true'?'display: none;':''">
 	    <h5>Resultado</h5>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-3" th:style="${forro}=='true'?'display: none;':''">
         <div class="form-group">
             <label style="font-size: 15px;">Diferencia hilo</label>
             <input type="number" class="form-control" id="diferenciaHiloPruebaVapor" placeholder="23.2" th:readonly="${read}" th:value="${diferenciaHiloPruebaVapor}">
         </div>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-3" th:style="${forro}=='true'?'display: none;':''">
         <div class="form-group">
             <label style="font-size: 15px;">(100cm/_____cm)</label>
             <input type="text" class="form-control" id="finalHiloMedPruebaVapor" placeholder="23.2" readonly="readonly" th:value="${finalHiloMedPruebaVapor==null}?'':${finalHiloMedPruebaVapor}+'%'">
         </div>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-3" th:style="${forro}=='true'?'display: none;':''">
         <div class="form-group">
             <label style="font-size: 15px;">Diferencia trama</label>
             <input type="number" class="form-control" id="diferenciaTramaPruebaVapor" placeholder="23.2" th:readonly="${read}" th:value="${diferenciaTramaPruebaVapor}">
         </div>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-3" th:style="${forro}=='true'?'display: none;':''"> 
         <div class="form-group">
             <label style="font-size: 15px;">(100cm/_____cm)</label>
             <input type="text" class="form-control" id="finalTramaMedPruebaVapor" placeholder="23.2" readonly="readonly" th:value="${finalTramaMedPruebaVapor==null}?'':${finalTramaMedPruebaVapor}+'%'">
         </div>
     </div>
-    <div class="col-sm-12">
+    <div class="col-sm-12" th:style="${forro}=='true'?'display: none;':''">
 	  <div class="form-group">
 	    <label style="font-size: 15px;">Observaciones</label>
 	    <textarea class="form-control" id="observacionesReultPruebaVapor" rows="3" placeholder="Especificar" th:readonly="${read}" th:text="${observacionesReultPruebaVapor}"></textarea>
 	  </div>
     </div>
     <div class="col-sm-12">
-	    <hr><h4>Descripci&oacute;n:<strong> Plancha con vapor</strong></h4>
+	    <hr><h4>Descripci&oacute;n:<strong> vapor</strong></h4>
     </div>
     <div class="col-sm-6">
         <div class="form-group">

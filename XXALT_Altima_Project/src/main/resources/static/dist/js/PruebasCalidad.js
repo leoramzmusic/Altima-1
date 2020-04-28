@@ -454,36 +454,64 @@ $.ajax({
 
 // ============Validaciones de datos==================
 function ValidacionEncogimiento() {
-    if ($('#operarioEncogi').val() != ""
-        && $('#fechaRealizacionEncogi').val() != ""
-        && $('#entretelaEncogi').val() != ""
-        && $('#adherenciaEncogi').val() != ""
-        && $('#proveedorEncogi').val() != ""
-        && $('#temperaturaPruebaVapor').val() != ""
-        && $('#tiempoPruebaVapor').val() != ""
-        && $('#presionPruebaVapor').val() != ""
-        && $('#medidaHiloPruebaVapor').val() != ""
-        && $('#finalTramaPruebaVapor').val() != ""
-        && $('#diferenciaHiloPruebaVapor').val() != ""
-        && $('#diferenciaTramaPruebaVapor').val() != ""
-        && $('#medidaHiloPlanchaVapor').val() != ""
-        && $('#medidaTramaPlanchaVapor').val() != ""
-        && $('#diferenciaHiloPlanchaVapor').val() != ""
-        && $('#diferenciaTramaPlanchaVapor').val() != ""
-    ) {
-        $('#AlertaPestanaEncogimiento').css('display', 'none');
-        $('#enlaceEncogimiento').click();
-        Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Insertado correctamente',
-            showConfirmButton: false,
-            timer: 1550
-        })
-        
+   var tipoMaterial= $('#tipoMaterial').val();
+    if(tipoMaterial==1){
+		if ($('#operarioEncogi').val() != ""
+	        && $('#fechaRealizacionEncogi').val() != ""
+	        && $('#entretelaEncogi').val() != ""
+	        && $('#adherenciaEncogi').val() != ""
+	        && $('#proveedorEncogi').val() != ""
+	        && $('#temperaturaPruebaVapor').val() != ""
+	        && $('#tiempoPruebaVapor').val() != ""
+	        && $('#presionPruebaVapor').val() != ""
+	        && $('#medidaHiloPruebaVapor').val() != ""
+	        && $('#finalTramaPruebaVapor').val() != ""
+	        && $('#diferenciaHiloPruebaVapor').val() != ""
+	        && $('#diferenciaTramaPruebaVapor').val() != ""
+	        && $('#medidaHiloPlanchaVapor').val() != ""
+	        && $('#medidaTramaPlanchaVapor').val() != ""
+	        && $('#diferenciaHiloPlanchaVapor').val() != ""
+	        && $('#diferenciaTramaPlanchaVapor').val() != ""
+	    ) {
+	        $('#AlertaPestanaEncogimiento').css('display', 'none');
+	        $('#enlaceEncogimiento').click();
+	        Swal.fire({
+	            position: 'center',
+	            icon: 'success',
+	            title: 'Insertado correctamente',
+	            showConfirmButton: false,
+	            timer: 1550
+	        })
+	        
+	    }
+	    else {
+	        $('#AlertaPestanaEncogimiento').css('display', 'block');
+	    }
+	
     }
-    else {
-        $('#AlertaPestanaEncogimiento').css('display', 'block');
+    
+    else{
+    	if ($('#operarioEncogi').val() != ""
+	        && $('#fechaRealizacionEncogi').val() != ""
+	        && $('#medidaHiloPlanchaVapor').val() != ""
+	        && $('#medidaTramaPlanchaVapor').val() != ""
+	        && $('#diferenciaHiloPlanchaVapor').val() != ""
+	        && $('#diferenciaTramaPlanchaVapor').val() != ""
+	    ) {
+	        $('#AlertaPestanaEncogimiento').css('display', 'none');
+	        $('#enlaceEncogimiento').click();
+	        Swal.fire({
+	            position: 'center',
+	            icon: 'success',
+	            title: 'Insertado correctamente',
+	            showConfirmButton: false,
+	            timer: 1550
+	        })
+	        
+	    }
+	    else {
+	        $('#AlertaPestanaEncogimiento').css('display', 'block');
+	    }
     }
 }
 

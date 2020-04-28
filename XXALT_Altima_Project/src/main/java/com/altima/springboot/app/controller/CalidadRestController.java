@@ -96,9 +96,9 @@ public class CalidadRestController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		DisenioPruebaEncogimientoLavado PruebaEncoLavado = new DisenioPruebaEncogimientoLavado();
 		DisenioCalidad disenioCalidad = new DisenioCalidad();
-		double resultHilo = ((Double.parseDouble(palabras[11]) * 100 / Double.parseDouble(palabras[9])) - 100);
-		double resultTrama = ((Double.parseDouble(palabras[12]) * 100 / Double.parseDouble(palabras[10])) - 100);
 		Calendar cal = Calendar.getInstance();
+		double resultHilo;
+		double resultTrama;
 		Date date = cal.getTime();
 		LocalDate localDate = LocalDate.now();
 		DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
@@ -142,6 +142,9 @@ public class CalidadRestController {
 			PruebaEncoLavado = EncogimientoLavado.findByTipoPrueba("Prueba de Fusión", Long.valueOf(palabras[19]));
 		}
 		
+		if(palabras[22].equals("1")) {
+		resultHilo = ((Double.parseDouble(palabras[11]) * 100 / Double.parseDouble(palabras[9])) - 100);
+		resultTrama = ((Double.parseDouble(palabras[12]) * 100 / Double.parseDouble(palabras[10])) - 100);
 		PruebaEncoLavado.setCreadoPor(palabras[1]);
 		PruebaEncoLavado.setFechaRealizacion(palabras[2].replace("T", " "));
 		PruebaEncoLavado.setEntretelaPruebaVapor(palabras[3]);
@@ -161,18 +164,20 @@ public class CalidadRestController {
 		PruebaEncoLavado.setEstatus("1");
 		
 		EncogimientoLavado.save(PruebaEncoLavado);
+		}
+		
 		
 		if (palabras[19].equals("") || palabras[19] == null) {
 			PruebaEncoLavado = new DisenioPruebaEncogimientoLavado();
 			PruebaEncoLavado.setIdCalidad(disenioCalidad.getIdCalidad());
 		} else if (palabras[19] != null && EncogimientoLavado.ifExist(Long.valueOf(palabras[19])) == 0
-				|| EncogimientoLavado.ifExistLavado(Long.valueOf(palabras[19]), "Plancha con Vapor") == 0) {
+				|| EncogimientoLavado.ifExistLavado(Long.valueOf(palabras[19]), "Vapor") == 0) {
 			PruebaEncoLavado = new DisenioPruebaEncogimientoLavado();
 			PruebaEncoLavado.setIdCalidad(Long.valueOf(palabras[19]));
 		}
 		
 		else {
-			PruebaEncoLavado = EncogimientoLavado.findByTipoPrueba("Plancha con Vapor", Long.valueOf(palabras[19]));
+			PruebaEncoLavado = EncogimientoLavado.findByTipoPrueba("Vapor", Long.valueOf(palabras[19]));
 		}
 		resultHilo = ((Double.parseDouble(palabras[16]) * 100 / Double.parseDouble(palabras[14])) - 100);
 		resultTrama = ((Double.parseDouble(palabras[17]) * 100 / Double.parseDouble(palabras[15])) - 100);
@@ -186,7 +191,7 @@ public class CalidadRestController {
 		PruebaEncoLavado.setMedidaFinalTrama(palabras[17]);
 		PruebaEncoLavado.setDiferenciaMedidaTrama(String.valueOf(df.format(resultTrama)));
 		PruebaEncoLavado.setObservacionesResultados(palabras[18]);
-		PruebaEncoLavado.setTipoPrueba("Plancha con Vapor");
+		PruebaEncoLavado.setTipoPrueba("Vapor");
 		PruebaEncoLavado.setEstatus("1");
 		
 		EncogimientoLavado.save(PruebaEncoLavado);
@@ -231,7 +236,8 @@ public class CalidadRestController {
 			
 			if (LavadoContaCostura.ifExistContaCostura(Long.valueOf(palabras[11]), "Resultado Costura") == 1
 					&& LavadoContaCostura.ifExistContaCostura(Long.valueOf(palabras[11]), "Resultado de Contaminación") == 1
-					&& EncogimientoLavado.ifExistLavado(Long.valueOf(palabras[11]), "Prueba de Fusión") == 1) {
+					&& (EncogimientoLavado.ifExistLavado(Long.valueOf(palabras[11]), "Prueba de Fusión") == 1
+						|| EncogimientoLavado.ifExistLavado(Long.valueOf(palabras[11]), "Vapor") == 1)) {
 				
 				disenioCalidad = CalidadService.findOne(Long.valueOf(palabras[11]));
 				disenioCalidad.setEstatus("1");
@@ -316,7 +322,8 @@ public class CalidadRestController {
 			
 			if (EncogimientoLavado.ifExistLavado(Long.valueOf(palabras[7]), "Prueba de Lavado") == 1
 					&& LavadoContaCostura.ifExistContaCostura(Long.valueOf(palabras[7]), "Resultado de Contaminación") == 1
-					&& EncogimientoLavado.ifExistLavado(Long.valueOf(palabras[7]), "Prueba de Fusión") == 1) {
+					&& (EncogimientoLavado.ifExistLavado(Long.valueOf(palabras[7]), "Prueba de Fusión") == 1
+						|| EncogimientoLavado.ifExistLavado(Long.valueOf(palabras[11]), "Vapor") == 1)) {
 				
 				disenioCalidad = CalidadService.findOne(Long.valueOf(palabras[7]));
 				disenioCalidad.setEstatus("1");
@@ -370,7 +377,8 @@ public class CalidadRestController {
 			
 			if (EncogimientoLavado.ifExistLavado(Long.valueOf(palabras[5]), "Prueba de Lavado") == 1
 					&& LavadoContaCostura.ifExistContaCostura(Long.valueOf(palabras[5]), "Resultado Costura") == 1
-					&& EncogimientoLavado.ifExistLavado(Long.valueOf(palabras[5]), "Prueba de Fusión") == 1) {
+					&& (EncogimientoLavado.ifExistLavado(Long.valueOf(palabras[5]), "Prueba de Fusión") == 1
+						|| EncogimientoLavado.ifExistLavado(Long.valueOf(palabras[11]), "Vapor") == 1)) {
 				
 				disenioCalidad = CalidadService.findOne(Long.valueOf(palabras[5]));
 				disenioCalidad.setEstatus("1");
