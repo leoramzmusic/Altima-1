@@ -50,6 +50,9 @@ public class ComercialClienteSucursal implements Serializable{
 	@Column(name="contacto_sucursal") 
 	private String ContactoSucursal;
 	
+	@Column(name="puesto_contacto")
+	private String puestoContacto;
+	
 	@Column(name="creado_por")
 	private String SCreadoPor;
 
@@ -69,8 +72,38 @@ public class ComercialClienteSucursal implements Serializable{
 	@Column(name="observacion")
 	private String SObservacion;
 	
+	@Column(name="estatus")
+	private String estatus;
 	
 	
+	
+	
+	
+	
+	public String getPuestoContacto() {
+		return puestoContacto;
+	}
+
+
+
+	public void setPuestoContacto(String puestoContacto) {
+		this.puestoContacto = puestoContacto;
+	}
+
+
+
+	public String getEstatus() {
+		return estatus;
+	}
+
+
+
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
+	}
+
+
+
 	public Long getIdClienteSucursal() {
 		return IdClienteSucursal;
 	}

@@ -50,33 +50,8 @@ public class HrSucursal implements Serializable{
 	@Column(name="estatus")
 	private String estatus;
 	
-	@Column(name="puesto_contacto")
-	private String puestoContacto;
-	
-	@Column(name="nombre_contacto")
-	private String nombreContacto;
-	
-	
-	
-	
-	
-	
 
-	public String getPuestoContacto() {
-		return puestoContacto;
-	}
 
-	public void setPuestoContacto(String puestoContacto) {
-		this.puestoContacto = puestoContacto;
-	}
-
-	public String getNombreContacto() {
-		return nombreContacto;
-	}
-
-	public void setNombreContacto(String nombreContacto) {
-		this.nombreContacto = nombreContacto;
-	}
 
 	public Long getIdSucursal() {
 		return idSucursal;
