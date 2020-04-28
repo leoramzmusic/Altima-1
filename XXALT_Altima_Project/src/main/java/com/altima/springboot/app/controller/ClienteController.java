@@ -159,4 +159,10 @@ public class ClienteController {
 				.body(recurso);
 	}
 	
+	@GetMapping(value="/facturacion-clientes")
+	public String facturacionClientes()
+	{
+		return"facturacion-clientes";
+	}
+	
 }
