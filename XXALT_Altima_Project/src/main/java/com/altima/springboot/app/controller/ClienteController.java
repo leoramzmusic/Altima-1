@@ -2,6 +2,8 @@ package com.altima.springboot.app.controller;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 import org.apache.commons.logging.Log;
@@ -194,7 +196,8 @@ public class ClienteController {
 	public String guardarCliente(ComercialClienteFactura factura, HrDireccion direccion,
 			RedirectAttributes redirectAttrs) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		
+		Date date = new Date();
+		DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		System.out.println("Hola soy  facturacion");
 		
 		if (factura.getIdClienteFactura() == null && direccion.getIdDireccion() == null) {
@@ -205,20 +208,23 @@ public class ClienteController {
 			DireccionService.save(direccion);
 			// Guardamos los datos de la facturacion   ClienteService.save(cliente);
 			
+			factura.setCreadoPor(auth.getName());
+			factura.setActualizadoPor(auth.getName());
+			factura.setFechaCreacion(hourdateFormat.format(date));
+			factura.setUltimaFechaModificacion(hourdateFormat.format(date));
 			factura.setIdDireccion(direccion.getIdDireccion());
 			factura.setEstatus("1");
 			ClienteService.saveFactura(factura);
 			factura.setIdText("FAC" + factura.getIdClienteFactura() );
-			factura.setCreadoPor(auth.getName());
-			factura.setIdDireccion(direccion.getIdDireccion());
-			redirectAttrs.addFlashAttribute("title", "Sucursal guardada correctamente").addFlashAttribute("icon", "success");
 			ClienteService.saveFactura(factura);
+			redirectAttrs.addFlashAttribute("title", "Sucursal guardada correctamente").addFlashAttribute("icon", "success");
+			
 		} else {
 			direccion.setActualizadoPor(auth.getName());
 			direccion.setUltimaFechaModificacion(new Date());
 			factura.setEstatus("1");
 			factura.setActualizadoPor(auth.getName());
-			factura.setUltimaFechaModificacion(new Date());
+			factura.setUltimaFechaModificacion(hourdateFormat.format(date));
 			factura.setEstatus("1");
 			redirectAttrs.addFlashAttribute("title", "Sucursal editada correctamente").addFlashAttribute("icon", "success");
 			DireccionService.save(direccion);
@@ -229,18 +235,27 @@ public class ClienteController {
 	}
 	
 	
-	/*
+	
 	@GetMapping("/editar-facturacion/{id}")
-	public String editar(@PathVariable(value = "id") Long id, Map<String, Object> model) {
-		ComercialCliente cliente = null;
+	public String editar_facturacion(@PathVariable(value = "id") Long id, Map<String, Object> model) {
+		ComercialClienteFactura factura = null;
 		HrDireccion direccion;
-		cliente = ClienteService.findOne(id);
-		direccion = DireccionService.findOne(cliente.getIdDireccion());
-		model.put("cliente", cliente);
+		ComercialCliente cliente = null;
+		
+		factura = ClienteService.findOneFactura(id);
+		direccion = DireccionService.findOne(factura.getIdDireccion());
+		
+		cliente = ClienteService.findOne(factura.getIdCliente());
+		model.put("factura", factura);
 		model.put("direccion", direccion);
-		model.put("estatus", Integer.parseInt(cliente.getTipoCliente()));
-		model.put("subtitulo", "Editar Cliente");
-		return "agregar-cliente";
-	}*/
+		model.put("cliente", cliente);
+		model.put("subtitulo", "Editar Factura");
+		
+		
+		
+		
+		
+		return "facturacion-clientes";
+	}
 	
 }

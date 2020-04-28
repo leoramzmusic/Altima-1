@@ -48,14 +48,10 @@ public class ComercialClienteFactura implements Serializable{
 	private String actualizadoPor;
 	
 	@Column(name="fecha_creacion")
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern="yyyy-mm-dd")
-	private Date fechaCreacion;
+	private String fechaCreacion;
 	
 	@Column(name="ultima_fecha_modificacion")
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern="yyyy-mm-dd")
-	private Date ultimaFechaModificacion;
+	private String ultimaFechaModificacion;
 	
 	@Column(name="estatus")
 	private String estatus;
@@ -128,19 +124,19 @@ public class ComercialClienteFactura implements Serializable{
 		this.actualizadoPor = actualizadoPor;
 	}
 
-	public Date getFechaCreacion() {
+	public String getFechaCreacion() {
 		return fechaCreacion;
 	}
 
-	public void setFechaCreacion(Date fechaCreacion) {
+	public void setFechaCreacion(String fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
 
-	public Date getUltimaFechaModificacion() {
+	public String getUltimaFechaModificacion() {
 		return ultimaFechaModificacion;
 	}
 
-	public void setUltimaFechaModificacion(Date ultimaFechaModificacion) {
+	public void setUltimaFechaModificacion(String ultimaFechaModificacion) {
 		this.ultimaFechaModificacion = ultimaFechaModificacion;
 	}
 
