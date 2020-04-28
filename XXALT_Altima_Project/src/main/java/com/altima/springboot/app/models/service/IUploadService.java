@@ -47,6 +47,13 @@ public interface IUploadService {
 	
 	
 	
+	//Clientes
+	public Resource loadCliente(String filename) throws MalformedURLException;
+	
+	public String copyCliente(MultipartFile file1) throws IOException;
+	
+	public boolean deleteCliente(String filename);
+	
 	
 	
 	

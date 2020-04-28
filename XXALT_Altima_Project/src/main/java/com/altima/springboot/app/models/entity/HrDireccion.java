@@ -74,8 +74,8 @@ public class HrDireccion implements Serializable{
 	private Date ultimaFechaModificacion;
 	
 	@Column(name="estatus")
-	@NotBlank
-	private String estatus;
+
+	private Integer estatus;
 
 	
 	        
@@ -289,7 +289,7 @@ public class HrDireccion implements Serializable{
 
 
 
-	public String getEstatus() {
+	public Integer getEstatus() {
 		return estatus;
 	}
 
@@ -297,7 +297,7 @@ public class HrDireccion implements Serializable{
 
 
 
-	public void setEstatus(String estatus) {
+	public void setEstatus(Integer estatus) {
 		this.estatus = estatus;
 	}
 

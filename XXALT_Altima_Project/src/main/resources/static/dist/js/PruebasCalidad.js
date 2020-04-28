@@ -308,13 +308,9 @@ function PruebasLavado(){
 	//var finalTramaMedPlanchaVapor= $('#finalTramaMedPruebaLavado').val();
 	var observacionesReultPlanchaVapor= $('#observacionesReultPruebaLavado').val();
 	
-//===================variables de Prueba de solidez y color=======================
+//===================variables de Prueba de solidez/color/Pilling=======================
 	
-	var calidad = $('input:radio[name=calidad]:checked').val();
-	var observacionesReultSolidez= $('#observacionesReultSolidez').val();
-
-//===================variables de Prueba de pilling=======================
-	
+	var calidad = $('input:radio[name=calidadLavado]:checked').val();	
 	var pilling = $('input:radio[name=decision]:checked').val();
 	var observacionesReultPilling= $('#observacionesReultPilling').val();
 	var idCalidad = $('#idCalidadLavado').val();
@@ -330,7 +326,6 @@ function PruebasLavado(){
 				diferenciaTramaPlanchaVapor,
 				observacionesReultPlanchaVapor,
 				calidad,
-				observacionesReultSolidez,
 				pilling,
 				observacionesReultPilling,
 				idCalidad,
@@ -459,51 +454,77 @@ $.ajax({
 
 // ============Validaciones de datos==================
 function ValidacionEncogimiento() {
-    if ($('#tela').val() != ""
-        && $('#operarioEncogi').val() != ""
-        && $('#fechaRealizacionEncogi').val() != ""
-        && $('#entretelaEncogi').val() != ""
-        && $('#adherenciaEncogi').val() != ""
-        && $('#proveedorEncogi').val() != ""
-        && $('#temperaturaPruebaVapor').val() != ""
-        && $('#tiempoPruebaVapor').val() != ""
-        && $('#presionPruebaVapor').val() != ""
-        && $('#medidaHiloPruebaVapor').val() != ""
-        && $('#finalTramaPruebaVapor').val() != ""
-        && $('#diferenciaHiloPruebaVapor').val() != ""
-        && $('#diferenciaTramaPruebaVapor').val() != ""
-        && $('#medidaHiloPlanchaVapor').val() != ""
-        && $('#medidaTramaPlanchaVapor').val() != ""
-        && $('#diferenciaHiloPlanchaVapor').val() != ""
-        && $('#diferenciaTramaPlanchaVapor').val() != ""
-    ) {
-        $('#AlertaPestanaEncogimiento').css('display', 'none');
-        $('#enlaceEncogimiento').click();
-        Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Insertado correctamente',
-            showConfirmButton: false,
-            timer: 1550
-        })
-        
+   var tipoMaterial= $('#tipoMaterial').val();
+    if(tipoMaterial==1){
+		if ($('#operarioEncogi').val() != ""
+	        && $('#fechaRealizacionEncogi').val() != ""
+	        && $('#entretelaEncogi').val() != ""
+	        && $('#adherenciaEncogi').val() != ""
+	        && $('#proveedorEncogi').val() != ""
+	        && $('#temperaturaPruebaVapor').val() != ""
+	        && $('#tiempoPruebaVapor').val() != ""
+	        && $('#presionPruebaVapor').val() != ""
+	        && $('#medidaHiloPruebaVapor').val() != ""
+	        && $('#finalTramaPruebaVapor').val() != ""
+	        && $('#diferenciaHiloPruebaVapor').val() != ""
+	        && $('#diferenciaTramaPruebaVapor').val() != ""
+	        && $('#medidaHiloPlanchaVapor').val() != ""
+	        && $('#medidaTramaPlanchaVapor').val() != ""
+	        && $('#diferenciaHiloPlanchaVapor').val() != ""
+	        && $('#diferenciaTramaPlanchaVapor').val() != ""
+	    ) {
+	        $('#AlertaPestanaEncogimiento').css('display', 'none');
+	        $('#enlaceEncogimiento').click();
+	        Swal.fire({
+	            position: 'center',
+	            icon: 'success',
+	            title: 'Insertado correctamente',
+	            showConfirmButton: false,
+	            timer: 1550
+	        })
+	        
+	    }
+	    else {
+	        $('#AlertaPestanaEncogimiento').css('display', 'block');
+	    }
+	
     }
-    else {
-        $('#AlertaPestanaEncogimiento').css('display', 'block');
+    
+    else{
+    	if ($('#operarioEncogi').val() != ""
+	        && $('#fechaRealizacionEncogi').val() != ""
+	        && $('#medidaHiloPlanchaVapor').val() != ""
+	        && $('#medidaTramaPlanchaVapor').val() != ""
+	        && $('#diferenciaHiloPlanchaVapor').val() != ""
+	        && $('#diferenciaTramaPlanchaVapor').val() != ""
+	    ) {
+	        $('#AlertaPestanaEncogimiento').css('display', 'none');
+	        $('#enlaceEncogimiento').click();
+	        Swal.fire({
+	            position: 'center',
+	            icon: 'success',
+	            title: 'Insertado correctamente',
+	            showConfirmButton: false,
+	            timer: 1550
+	        })
+	        
+	    }
+	    else {
+	        $('#AlertaPestanaEncogimiento').css('display', 'block');
+	    }
     }
 }
 
 function ValidacionLavado() {
-    if ($('#telas').val() != ""
-        && $('#operarioLavado').val() != ""
+    if ($('#operarioLavado').val() != ""
         && $('#fechaRealizacionLavado').val() != ""
         && $('#medidaHiloPruebaLavado').val() != ""
         && $('#medidaTramaPruebaLavado').val() != ""
         && $('#diferenciaHiloPruebaLavado').val() != ""
         && $('#diferenciaTramaPruebaLavado').val() != ""
-        && $('input:radio[name=calidad]:checked').val() == "buena"
-        || $('input:radio[name=calidad]:checked').val() == "regular"
-        || $('input:radio[name=calidad]:checked').val() == "mala"
+        && $('input:radio[name=calidadLavado]:checked').val() == "buena"
+        || $('input:radio[name=calidadLavado]:checked').val() == "regular"
+        || $('input:radio[name=calidadLavado]:checked').val() == "mala"
         && $('input:radio[name=decision]:checked').val() == "si"
         || $('input:radio[name=decision]:checked').val() == "no"
     ) {
@@ -524,8 +545,7 @@ function ValidacionLavado() {
 }
 
 function ValidacionCostura() {
-    if ($('#telass').val() != ""
-        && $('#operarioCostura').val() != ""
+    if ($('#operarioCostura').val() != ""
         && $('#fechaRealizacionCostura').val() != ""
         && $('#tipoAguja').val() != ""
 
@@ -552,8 +572,7 @@ function ValidacionCostura() {
 }
 
 function ValidacionContaminacion() {
-    if ($('#telasss').val() != ""
-        && $('#operarioContaminacion').val() != ""
+    if ($('#operarioContaminacion').val() != ""
         && $('#fechaRealizacionContaminacion').val() != ""
 
         && $('input:radio[name=calidadConta]:checked').val() == "buena"

@@ -9,9 +9,8 @@
     </div>
     <div class="col-sm-4">
         <div class="form-group">
-            <label th:text="${tipoMaterial}==1?'Tela':Forro"></label>
+            <label th:text="${tipoMaterial}==1?'Tela':'Forro'"></label>
             <input type="text" class="form-control idtelas" id="telas" readonly th:value="${tela}">
-
         </div>
     </div>
     <div class="col-sm-4">
@@ -85,23 +84,17 @@
         <div class="form-group">
             <label>Calidad</label>
             <div class="custom-control custom-radio">
-                <input class="custom-control-input" type="radio" value="buena" id="buena" name="calidad" th:disabled="${readLavado}" th:checked="${checkBLavado}">
-                <label for="buena" class="custom-control-label">Buena</label>
+                <input class="custom-control-input" type="radio" value="buena" id="buenaLavado" name="calidadLavado" th:disabled="${readLavado}" th:checked="${checkBLavado}">
+                <label for="buenaLavado" class="custom-control-label">Buena</label>
             </div>
             <div class="custom-control custom-radio">
-                <input class="custom-control-input" type="radio" value="regular" id="regular" name="calidad" th:disabled="${readLavado}" th:checked="${checkRLavado}">
-                <label for="regular" class="custom-control-label">Regular</label>
+                <input class="custom-control-input" type="radio" value="regular" id="regularLavado" name="calidadLavado" th:disabled="${readLavado}" th:checked="${checkRLavado}">
+                <label for="regularLavado" class="custom-control-label">Regular</label>
             </div>
             <div class="custom-control custom-radio">
-                <input class="custom-control-input" type="radio" value="mala" id="mala" name="calidad" th:disabled="${readLavado}" th:checked="${checkMLavado}">
-                <label for="mala" class="custom-control-label">Mala</label>
+                <input class="custom-control-input" type="radio" value="mala" id="malaLavado" name="calidadLavado" th:disabled="${readLavado}" th:checked="${checkMLavado}">
+                <label for="malaLavado" class="custom-control-label">Mala</label>
             </div>
-        </div>
-    </div>
-    <div class="col-sm-12">
-        <div class="form-group">
-            <label style="font-size: 15px;">Observaciones</label>
-            <textarea class="form-control" id="observacionesReultSolidez" rows="3" placeholder="Especificar" th:readonly="${readLavado}" th:text="${observacionesReultSolidez}"></textarea>
         </div>
     </div>
     <div class="col-sm-12">

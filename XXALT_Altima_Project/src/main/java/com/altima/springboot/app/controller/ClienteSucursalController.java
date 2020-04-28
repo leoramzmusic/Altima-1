@@ -57,12 +57,14 @@ public class ClienteSucursalController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
 		if (sucursal.getIdClienteSucursal() == null && direccion.getIdDireccion() == null) {
+			direccion.setEstatus(1);
 			DireccionService.save(direccion);
 			direccion.setIdText("DIR" + direccion.getIdDireccion());
 			direccion.setCreadoPor(auth.getName());
 			DireccionService.save(direccion);
 			// Guardamos los datos de la sucursal.
 			sucursal.setIdDireccion(direccion.getIdDireccion());
+			sucursal.setEstatus("1");
 			SucursalService.save(sucursal);
 			sucursal.setSIdText("SUC" + sucursal.getNoSucursal());
 			sucursal.setSCreadoPor(auth.getName());
@@ -72,8 +74,10 @@ public class ClienteSucursalController {
 		} else {
 			direccion.setActualizadoPor(auth.getName());
 			direccion.setUltimaFechaModificacion(new Date());
+			sucursal.setEstatus("1");
 			sucursal.setSActualizadoPor(auth.getName());
 			sucursal.setSUltimaFechaModificacion(new Date());
+			sucursal.setEstatus("1");
 			redirectAttrs.addFlashAttribute("title", "Sucursal editada correctamente").addFlashAttribute("icon", "success");
 			DireccionService.save(direccion);
 			SucursalService.save(sucursal);
