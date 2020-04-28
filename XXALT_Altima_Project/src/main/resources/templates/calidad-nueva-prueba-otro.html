@@ -85,25 +85,31 @@
                                         <div class="form-group col-sm-6" bis_skin_checked="1">
                                             <label for="durabilidadOtroMaterial">Durabilidad</label>
                                             <div class="custom-control custom-radio">
-                                                <input class="custom-control-input" type="radio" th:field="*{durabilidad}" value="1">
-                                                <label for="durabilidad1" class="custom-control-label">Si</label>
-                                                
-                                                   
+                                                <input class="custom-control-input" type="radio" th:field="*{durabilidad}" value="Bueno">
+                                                <label for="durabilidad1" class="custom-control-label">Bueno</label>
                                             </div>
                                             <div class="custom-control custom-radio" bis_skin_checked="1">
-                                                <input class="custom-control-input" type="radio" th:field="*{durabilidad}"  value="0">
-                                                <label for="durabilidad2" class="custom-control-label">No</label>
+                                                <input class="custom-control-input" type="radio" th:field="*{durabilidad}"  value="Regular">
+                                                <label for="durabilidad2" class="custom-control-label">Regular</label>
+                                            </div>
+                                            <div class="custom-control custom-radio" bis_skin_checked="1">
+                                                <input class="custom-control-input" type="radio" th:field="*{durabilidad}"  value="Malo">
+                                                <label for="durabilidad3" class="custom-control-label">Malo</label>
                                             </div>
                                         </div>
                                         <div class="form-group col-sm-6" bis_skin_checked="1">
                                             <label for="resistenciaOtroMaterial">Resistencia</label>
                                             <div class="custom-control custom-radio" bis_skin_checked="1">
-                                                <input class="custom-control-input" type="radio" th:field="*{resistencia}" value="1">
-                                                <label for="resistencia1" class="custom-control-label">Si</label>
+                                                <input class="custom-control-input" type="radio" th:field="*{resistencia}" value="Bueno">
+                                                <label for="resistencia1" class="custom-control-label">Bueno</label>
                                             </div>
                                             <div class="custom-control custom-radio" bis_skin_checked="1">
-                                                <input class="custom-control-input" type="radio" th:field="*{resistencia}" value="0">
-                                                <label for="resistencia2" class="custom-control-label">No</label>
+                                                <input class="custom-control-input" type="radio" th:field="*{resistencia}" value="Regular">
+                                                <label for="resistencia2" class="custom-control-label">Regular</label>
+                                            </div>
+                                            <div class="custom-control custom-radio" bis_skin_checked="1">
+                                                <input class="custom-control-input" type="radio" th:field="*{resistencia}" value="Malo">
+                                                <label for="resistencia3" class="custom-control-label">Malo</label>
                                             </div>
                                         </div>
 										<button type="submit" class="btn btn-primary next-step float-right">Guardar</button>
