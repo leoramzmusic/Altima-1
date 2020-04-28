@@ -308,13 +308,9 @@ function PruebasLavado(){
 	//var finalTramaMedPlanchaVapor= $('#finalTramaMedPruebaLavado').val();
 	var observacionesReultPlanchaVapor= $('#observacionesReultPruebaLavado').val();
 	
-//===================variables de Prueba de solidez y color=======================
+//===================variables de Prueba de solidez/color/Pilling=======================
 	
-	var calidad = $('input:radio[name=calidad]:checked').val();
-	var observacionesReultSolidez= $('#observacionesReultSolidez').val();
-
-//===================variables de Prueba de pilling=======================
-	
+	var calidad = $('input:radio[name=calidadLavado]:checked').val();	
 	var pilling = $('input:radio[name=decision]:checked').val();
 	var observacionesReultPilling= $('#observacionesReultPilling').val();
 	var idCalidad = $('#idCalidadLavado').val();
@@ -330,7 +326,6 @@ function PruebasLavado(){
 				diferenciaTramaPlanchaVapor,
 				observacionesReultPlanchaVapor,
 				calidad,
-				observacionesReultSolidez,
 				pilling,
 				observacionesReultPilling,
 				idCalidad,
@@ -459,8 +454,7 @@ $.ajax({
 
 // ============Validaciones de datos==================
 function ValidacionEncogimiento() {
-    if ($('#tela').val() != ""
-        && $('#operarioEncogi').val() != ""
+    if ($('#operarioEncogi').val() != ""
         && $('#fechaRealizacionEncogi').val() != ""
         && $('#entretelaEncogi').val() != ""
         && $('#adherenciaEncogi').val() != ""
@@ -494,16 +488,15 @@ function ValidacionEncogimiento() {
 }
 
 function ValidacionLavado() {
-    if ($('#telas').val() != ""
-        && $('#operarioLavado').val() != ""
+    if ($('#operarioLavado').val() != ""
         && $('#fechaRealizacionLavado').val() != ""
         && $('#medidaHiloPruebaLavado').val() != ""
         && $('#medidaTramaPruebaLavado').val() != ""
         && $('#diferenciaHiloPruebaLavado').val() != ""
         && $('#diferenciaTramaPruebaLavado').val() != ""
-        && $('input:radio[name=calidad]:checked').val() == "buena"
-        || $('input:radio[name=calidad]:checked').val() == "regular"
-        || $('input:radio[name=calidad]:checked').val() == "mala"
+        && $('input:radio[name=calidadLavado]:checked').val() == "buena"
+        || $('input:radio[name=calidadLavado]:checked').val() == "regular"
+        || $('input:radio[name=calidadLavado]:checked').val() == "mala"
         && $('input:radio[name=decision]:checked').val() == "si"
         || $('input:radio[name=decision]:checked').val() == "no"
     ) {
@@ -524,8 +517,7 @@ function ValidacionLavado() {
 }
 
 function ValidacionCostura() {
-    if ($('#telass').val() != ""
-        && $('#operarioCostura').val() != ""
+    if ($('#operarioCostura').val() != ""
         && $('#fechaRealizacionCostura').val() != ""
         && $('#tipoAguja').val() != ""
 
@@ -552,8 +544,7 @@ function ValidacionCostura() {
 }
 
 function ValidacionContaminacion() {
-    if ($('#telasss').val() != ""
-        && $('#operarioContaminacion').val() != ""
+    if ($('#operarioContaminacion').val() != ""
         && $('#fechaRealizacionContaminacion').val() != ""
 
         && $('input:radio[name=calidadConta]:checked').val() == "buena"
