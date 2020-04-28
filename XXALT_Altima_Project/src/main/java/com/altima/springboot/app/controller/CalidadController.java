@@ -1,11 +1,15 @@
 package com.altima.springboot.app.controller;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -67,6 +71,22 @@ public class CalidadController {
 	public String listCalidad(Model model) {
 		model.addAttribute("listCalidades",disenioCalidad.findAllWithIdTextTela());
 		return "calidad";
+	}
+	
+	@GetMapping(value = "/uploads/calidadpdf/{filename:.+}")
+	public ResponseEntity<Resource> descargarpdf(@PathVariable String filename) {
+
+		Resource recurso = null;
+
+		try {
+			recurso = uploadFileService.loadfile(filename);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+
+		return ResponseEntity.ok()
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
+				.body(recurso);
 	}
 	
 	@RequestMapping(value = "/calidad-nueva-prueba-otro")
