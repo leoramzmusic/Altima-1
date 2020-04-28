@@ -228,4 +228,19 @@ public class ClienteController {
 		return "redirect:facturacion-clientes/" + factura.getIdCliente();
 	}
 	
+	
+	/*
+	@GetMapping("/editar-facturacion/{id}")
+	public String editar(@PathVariable(value = "id") Long id, Map<String, Object> model) {
+		ComercialCliente cliente = null;
+		HrDireccion direccion;
+		cliente = ClienteService.findOne(id);
+		direccion = DireccionService.findOne(cliente.getIdDireccion());
+		model.put("cliente", cliente);
+		model.put("direccion", direccion);
+		model.put("estatus", Integer.parseInt(cliente.getTipoCliente()));
+		model.put("subtitulo", "Editar Cliente");
+		return "agregar-cliente";
+	}*/
+	
 }
