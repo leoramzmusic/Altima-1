@@ -19,6 +19,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "alt_comercial_cliente_factura")
 public class ComercialClienteFactura implements Serializable{
 
+	
+
 	/**
 	 * 
 	 */
@@ -64,7 +66,97 @@ public class ComercialClienteFactura implements Serializable{
 	@Column(name="rfc_factura")
 	private String rfcFactura;
 	
-	
+	public Long getIdClienteFactura() {
+		return idClienteFactura;
+	}
+
+	public void setIdClienteFactura(Long idClienteFactura) {
+		this.idClienteFactura = idClienteFactura;
+	}
+
+	public Long getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(Long idCliente) {
+		this.idCliente = idCliente;
+	}
+
+	public Long getIdDireccion() {
+		return idDireccion;
+	}
+
+	public void setIdDireccion(Long idDireccion) {
+		this.idDireccion = idDireccion;
+	}
+
+	public String getIdText() {
+		return idText;
+	}
+
+	public void setIdText(String idText) {
+		this.idText = idText;
+	}
+
+	public String getCreadoPor() {
+		return creadoPor;
+	}
+
+	public void setCreadoPor(String creadoPor) {
+		this.creadoPor = creadoPor;
+	}
+
+	public String getActualizadoPor() {
+		return actualizadoPor;
+	}
+
+	public void setActualizadoPor(String actualizadoPor) {
+		this.actualizadoPor = actualizadoPor;
+	}
+
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+
+	public Date getUltimaFechaModificacion() {
+		return ultimaFechaModificacion;
+	}
+
+	public void setUltimaFechaModificacion(Date ultimaFechaModificacion) {
+		this.ultimaFechaModificacion = ultimaFechaModificacion;
+	}
+
+	public String getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
+	}
+
+	public String getCuentaContable() {
+		return cuentaContable;
+	}
+
+	public void setCuentaContable(String cuentaContable) {
+		this.cuentaContable = cuentaContable;
+	}
+
+	public String getRfcFactura() {
+		return rfcFactura;
+	}
+
+	public void setRfcFactura(String rfcFactura) {
+		this.rfcFactura = rfcFactura;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	
 	
 	
