@@ -381,7 +381,6 @@ function PruebaCostura(){
 				frealizacion,
 				tipoAguja,
 				Deslizamiento,
-				observacionesDeslizamiento,
 				Rasgado,
 				observacionesRasgado,
 				idCalidad,

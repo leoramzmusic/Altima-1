@@ -200,7 +200,17 @@ public class CalidadController {
 					// model.addAttribute("read", "true");
 					model.addAttribute("operarioEncogi", u.getCreadoPor());
 					model.addAttribute("fechaRealizacionEncogi", u.getFechaRealizacion().replace(" ", "T"));
-					model.addAttribute("adherenciaEncogi", u.getAdherenciaPruebaVapor());
+					
+					if (u.getAdherenciaPruebaVapor().equals("buena")) {
+						model.addAttribute("checkBFusion", "true");
+					}
+					if (u.getAdherenciaPruebaVapor().equals("regular")) {
+						model.addAttribute("checkRFusion", "true");
+					}
+					if (u.getAdherenciaPruebaVapor().equals("mala")) {
+						model.addAttribute("checkMFusion", "true");
+					}
+					
 					model.addAttribute("proveedorEncogi", u.getProveedorPruebaVapor());
 					model.addAttribute("temperaturaPruebaVapor", u.getTemperaturaPruebaVapor());
 					model.addAttribute("tiempoPruebaVapor", u.getTiempoPrueba());
