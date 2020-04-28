@@ -81,7 +81,7 @@ public class ComercialCliente implements Serializable {
 	private Long IdDireccion;
 	
 	@Column(name="estatus")
-	private String estatus;
+	private Integer estatus;
 	
 	@Column(name="imagen")
 	private String imagen;
@@ -93,7 +93,7 @@ public class ComercialCliente implements Serializable {
 	private String nombreContacto;
 	
 	@Column(name="estatus_cliente")
-	private String estatusCliente;
+	private Integer estatusCliente;
 	
 	
 	
@@ -126,11 +126,11 @@ public class ComercialCliente implements Serializable {
 		this.nombreContacto = nombreContacto;
 	}
 
-	public String getEstatusCliente() {
+	public Integer getEstatusCliente() {
 		return estatusCliente;
 	}
 
-	public void setEstatusCliente(String estatusCliente) {
+	public void setEstatusCliente(Integer estatusCliente) {
 		this.estatusCliente = estatusCliente;
 	}
 
@@ -270,11 +270,11 @@ public class ComercialCliente implements Serializable {
 		IdDireccion = idDireccion;
 	}
 
-	public String getEstatus() {
+	public Integer getEstatus() {
 		return estatus;
 	}
 
-	public void setEstatus(String estatus) {
+	public void setEstatus(Integer estatus) {
 		this.estatus = estatus;
 	}
 

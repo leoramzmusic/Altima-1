@@ -27,6 +27,8 @@ public class UploadServiceImpl implements IUploadService {
 	
 	
 	private final static String folderMaterial = "uploads/material";
+	
+	private final static String folderClientes = "uploads/clientes";
 
 	@Override
 	public Resource load(String filename) throws MalformedURLException {
@@ -274,5 +276,45 @@ public class UploadServiceImpl implements IUploadService {
 		// TODO Auto-generated method stub
 		Files.createDirectory(Paths.get(UPLOADS_FOLDER));
 	}
+	
+	
+/* CLIENTES */
+	
+	public Path getPathCliente(String filename) {
+		return Paths.get(folderClientes).resolve(filename).toAbsolutePath();
 
+	}
+		
+	@Override
+	public Resource loadCliente(String filename) throws MalformedURLException {
+		Path pathFoto = getPathCliente(filename);
+		Resource recurso = null;
+
+		recurso = new UrlResource(pathFoto.toUri());
+		if (!recurso.exists() && !recurso.isReadable()) {
+			throw new RuntimeException("Error: No se puede cargar la imagen " + pathFoto.toString());
+		}
+
+		return recurso;
+	}
+
+	@Override
+	public String copyCliente(MultipartFile file) throws IOException {
+		String uniqueFilename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+		Path rootPath = getPathCliente(uniqueFilename);
+		Files.copy(file.getInputStream(), rootPath);
+		return uniqueFilename;
+	}
+
+	@Override
+	public boolean deleteCliente(String filename) {
+		Path rootPath = getPathCliente(filename);
+		File archivo = rootPath.toFile();
+
+		if (archivo.exists() && archivo.canRead()) {
+			if (archivo.delete()) {
+			}
+		}
+		return true;
+	}
 }

@@ -71,32 +71,32 @@
                                     <form class="row" th:action="@{/guardar-sucursal}" autocomplete="off">
                                         <div class="form-group col-sm-6">
                                             <label for="clienteEmpresa" >Nombre de la sucursal</label>
-                                            <input type="text" th:field="*{sucursal.NombreSucursal}" class="form-control" id="clienteEmpresa" placeholder="Altima Uniformes">
+                                            <input type="text" th:field="*{sucursal.NombreSucursal}" class="form-control" id="clienteEmpresa" placeholder="Altima Uniformes" required>
                                         </div>
                                         <div class="form-group col-sm-6">
                                             <label for="razonEmpresa">R.F.C</label>
-                                            <input type="text" th:field="*{sucursal.RfcSucursal}" class="form-control" id="razonEmpresa" placeholder="S.A. de C.V.">
+                                            <input type="text" th:field="*{sucursal.RfcSucursal}" class="form-control"  placeholder="IHB123124HF3" required>
                                         </div>
                                         <div class="form-group col-sm-2">
                                             <label for="rfcEmpresa">No. Sucursal</label>
-                                            <input type="text" th:field="*{sucursal.NoSucursal}" class="form-control" id="rfcEmpresa" placeholder="IHB123124HF3">
+                                            <input type="number" min="0" th:field="*{sucursal.NoSucursal}" class="form-control"  placeholder="100" required>
                                         </div>
                                         <div class="form-group col-sm-8">
                                             <label for="direccionEmpresa">Calle</label>
-                                            <input type="text" th:field="*{direccion.calle}" class="form-control" id="direccionEmpresa" placeholder="Av. 1ro de Mayo">
+                                            <input type="text" th:field="*{direccion.calle}" class="form-control"  placeholder="Av. 1ro de Mayo" required>
                                         </div>
                                         <div class="form-group col-sm-1">
                                             <label for="direccionExt">No. Ext.</label>
-                                            <input type="text" th:field="*{direccion.NumeroExt}" class="form-control" id="direccionExt" placeholder="63">
+                                            <input type="number" min="0" th:field="*{direccion.NumeroExt}" class="form-control" id="direccionExt" placeholder="63" required>
                                         </div>
                                         <div class="form-group col-sm-1">
                                             <label for="direccionInt">No. Int.</label>
-                                            <input type="text" th:field="*{direccion.NumeroInt}"  class="form-control" id="direccionInt" placeholder="12">
+                                            <input type="number" min="0" th:field="*{direccion.NumeroInt}"  class="form-control" id="direccionInt" placeholder="12">
                                         </div>
                                         
                                         <div class="form-group col-sm-3">
                                             <label for="estadoEmpresa">Estado</label>
-                                            <select th:field="*{direccion.estado}" class="form-control">
+                                            <select th:field="*{direccion.estado}" class="form-control" required>
                                             	<option value="">Seleccione uno...</option>
       											<option value="Aguascalientes">Aguascalientes</option>
 										      	<option value="Baja California">Baja California</option>
@@ -135,29 +135,35 @@
                                         </div>
                                         <div class="form-group col-sm-3">
                                             <label for="municipioEmpresa">Municipio</label>
-                                            <input type="text"  th:field="*{direccion.municipio}" class="form-control">
+                                            <input type="text"  th:field="*{direccion.municipio}" placeholder=" Ecatepec" class="form-control" required>
                                         </div>
                                         <div class="form-group col-sm-6">
                                             <label for="coloniaEmpresa">Colonia</label>
-                                            <input type="text" th:field="*{direccion.colonia}" class="form-control" id="coloniaEmpresa" placeholder="8 de Agosto">
+                                            <input type="text" th:field="*{direccion.colonia}" class="form-control" id="coloniaEmpresa" placeholder="8 de Agosto" required>
                                         </div>
                                         <div class="form-group col-sm-4">
                                             <label for="cpEmpresa">C&oacute;digo postal</label>
-                                            <input type="text" th:field="*{direccion.codigoPostal}" class="form-control" id="cpEmpresa" placeholder="90688">
+                                            <input type="number" min="0" th:field="*{direccion.codigoPostal}" class="form-control" id="cpEmpresa" placeholder="90688" required>
+                                        </div>
+                                        
+                                        <div class="form-group col-sm-4">
+                                            <label for="correoEmpresa">Contacto</label>
+                                            <input type="text" th:field="*{sucursal.ContactoSucursal}" class="form-control"  placeholder="Juan Perez" required>
+                                        </div>
+                                         <div class="form-group col-sm-4">
+                                            <label for="correoEmpresa">Puesto</label>
+                                            <input type="text" th:field="*{sucursal.puestoContacto}" class="form-control"  placeholder="Gerente General" required>
                                         </div>
                                         <div class="form-group col-sm-4">
                                             <label for="telefonoEmpresa">Tel&eacute;fono</label>
-                                            <input type="text" th:field="*{sucursal.TelefonoSucursal}" class="form-control" id="telefonoEmpresa" placeholder="52-72-96-26">
+                                            <input type="text" th:field="*{sucursal.TelefonoSucursal}" class="form-control" id="telefonoEmpresa" placeholder="52-72-96-26" required>
                                         </div>
-                                        <div class="form-group col-sm-4">
-                                            <label for="correoEmpresa">Contacto</label>
-                                            <input type="email" th:field="*{sucursal.ContactoSucursal}" class="form-control" id="correoEmpresa" placeholder="altima@correo.com">
-                                        </div>
+                                        
                                        
                                         
                                         <div class="form-group col-sm-8">
                                             <label for="correoEmpresa">Obervación:</label>
-                                            <input type="text" th:field="*{sucursal.SObservacion}"  class="form-control" id="observacionEmpresa" placeholder="Observación...">
+                                            <input type="text" th:field="*{sucursal.SObservacion}"  class="form-control" id="observacionEmpresa" placeholder="Observación..." required>
                                         </div>
                                 		<input  type="hidden" th:field="*{sucursal.IdClienteSucursal}">
                                         <input  type="hidden" th:field="*{sucursal.SIdText}">
@@ -165,6 +171,7 @@
                                         <input  type="hidden" th:field="*{sucursal.SActualizadoPor}">
                                         <input  type="hidden" th:field="*{sucursal.SFechaCreacion}">
                                         <input  type="hidden" th:field="*{sucursal.SUltimaFechaModificacion}">
+                                        <input  type="hidden" th:field="*{sucursal.estatus}">
                                         <input  type="hidden" name="IdCliente" th:value="*{cliente.IdCliente}">
                                         
                                         <input  type="hidden" th:field="*{direccion.idDireccion}">
@@ -173,6 +180,7 @@
                                         <input  type="hidden" th:field="*{direccion.actualizadoPor}">
                                         <input  type="hidden" th:field="*{direccion.fechaCreacion}">
                                         <input  type="hidden" th:field="*{direccion.ultimaFechaModificacion}">
+                                        <input  type="hidden" th:field="*{direccion.estatus}">
                                         
                                         <div class="form-group col-sm-12">
                                             <input type="submit" class="btn btn-primary next-step float-right" value="Guardar">
