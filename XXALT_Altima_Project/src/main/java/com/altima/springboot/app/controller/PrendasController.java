@@ -63,7 +63,7 @@ public class PrendasController {
 		model.addAttribute("rutas", disenioRutaService.findAll());
 		model.addAttribute("marcadores", disenioLookupService.findByTipoLookup("Marcador"));
 		m.put("prenda", prenda);
-		m.put("accion", "prospecto");
+		m.put("accion", "agregar");
 		return "agregar-confirmar-prenda";
 	}
 	
@@ -94,9 +94,10 @@ public class PrendasController {
 		model.addAttribute("patronajes", disenioMaterialService.findLookUps());
 		model.addAttribute("patronajesPrenda", disenioMaterialService.findAllPatronajeFromPrenda(id));
 		model.addAttribute("prenda", prenda);
+		m.put("accion", "editar");
 		m.put("disenio", disenio);
 		
-		return "editar-prenda";
+		return "agregar-confirmar-prenda";
 	}
 	
 	@GetMapping(value = "/uploads/prendas/{filename:.+}")

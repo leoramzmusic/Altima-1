@@ -14,48 +14,13 @@ $(document).ready(function () {
 
 });
 
-function readURL(input) {
-	if (input.files && input.files[0]) {
-		var reader = new FileReader();
-
-		reader.onload = function (e) {
-			$('#blah1').attr('src', e.target.result);
-		}
-
-		reader.readAsDataURL(input.files[0]); // convert to base64 string
-	}
-}
-
-function readURL2(input) {
-	if (input.files && input.files[0]) {
-		var reader = new FileReader();
-
-		reader.onload = function (e) {
-			$('#blah2').attr('src', e.target.result);
-		}
-
-		reader.readAsDataURL(input.files[0]); // convert to base64 string
-	}
-}
-
-$("#file").change(function () {
-	readURL(this);
-	console.log("cambio");
-});
-
-$("#file2").change(function () {
-	readURL2(this);
-	console.log("cambio");
-});
-
 function RecogerDatosPrimeraParte() {
-	var today = new Date();
-	var actual = today.getFullYear() + '-' + today.getMonth() + '-' + today.getDate() + ' ' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+	//var today = new Date();
+	//var actual = today.getFullYear() + '-' + today.getMonth() + '-' + today.getDate() + ' ' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
 	objeto_prenda['idFamiliaPrenda'] = $('#TipoPrenda').val();
 	objeto_prenda['creadoPor'] = "Adan";
 	objeto_prenda['actualizadoPor'] = "Adan";
 	objeto_prenda['numeroPrenda'] = "1";
-	objeto_prenda['nombrePrenda'] = $('#NombrePrenda').val();
 	objeto_prenda['descripcionPrenda'] = $('#DescripcionPrenda').val();
 	objeto_prenda['tipoPrenda'] = $('#TipoPrenda').val();
 	objeto_prenda['detallePrenda'] = $('#DetallePrenda').val();
@@ -73,21 +38,14 @@ function RecogerDatosPrimeraParte() {
 	objeto_prenda['modeloBoton'] = "Ninguno";
 	objeto_prenda['estatusRecepcionMuestra'] = "Ninguno";
 	objeto_prenda['devolucion'] = "";
-
 	objeto_prenda['precioMprod'] = 0.0;
 	objeto_prenda['precioMmuestra'] = 0.0;
 	objeto_prenda['categoria'] = "Ninguna";
-
 	objeto_prenda['totalPrendas'] = 0;
 	objeto_prenda['mostrar'] = "Ninguna";
 	objeto_prenda['idLookup'] = 0;
 	objeto_prenda['idLookup2'] = 0;
 	objeto_prenda['idLookup3'] = 0;
-
-
-
-
-
 
 	if ($('#combi').is(':checked')) {
 		objeto_prenda['combinacion'] = "1";
@@ -102,6 +60,8 @@ function RecogerDatosPrimeraParte() {
 		objeto_prenda['imprimirEtiquetas'] = "0";
 	}
 }
+
+
 function RecogerDatosSegundaParte() {
 	objeto_prenda['detalleConfeccion'] = $('#DetalleConfeccion').val();
 	//Campo en duro de lo de los marcadores, cambiarlo posteriormente.
@@ -207,6 +167,7 @@ function CambiarCantidadMaterial(identidad) {
 
 
 function Guardar() {
+	/*
 	if (CambiarImgFrente == true && CambiarImgEspalda == true) {
 		$('#FormImagenes').click();
 	}
@@ -221,106 +182,104 @@ function Guardar() {
 
 	if (CambiarImgFrente != true && CambiarImgEspalda == true) {
 		$('#FormImagenEspalda').click();
+	}*/
+	
+	RecogerDatosPrimeraParte();
+	RecogerDatosSegundaParte();
+
+
+	var token = $('#token').val();
+	var header = $('#token').val();
+	
+
+	if(accion == "editar")
+	{
+		console.log(objeto_prenda);
+		//Solicitud Ajax
+		$.ajax({
+			type: "POST",
+			url: "/editar_prenda",
+			data: {
+				"_csrf": $('#token').val(),
+				"disenioprenda": JSON.stringify(objeto_prenda)
+			},
+			success: (data) => {
+				console.log(data);
+				console.log(prendasmarcadores);
+				$.ajax({
+					type: "POST",
+					url: "/guardar_final",
+					data: {
+						"_csrf": $('#token').val(),
+						"objeto_materiales": JSON.stringify(objeto_materiales),
+						"objeto_patronajes": JSON.stringify(objeto_patronajes),
+						"objeto_marcadores": JSON.stringify(prendasmarcadores),
+						"accion": accion
+					},
+					success: (data) => {
+						$('#BotonBloquearGuardar').prop('disabled', false);
+						window.location.href = '/prendas';
+					},
+					failure: function (errMsg) {
+						alert(errMsg);
+					}
+				});
+
+			},
+			failure: function (errMsg) {
+				alert(errMsg);
+			}
+		});	
+	}
+	
+	if(accion == "agregar")
+	{
+		//Solicitud Ajax
+		$.ajax({
+			type: "POST",
+			url: "/guardar_prenda",
+			data: {
+				"_csrf": $('#token').val(),
+				"disenioprenda": JSON.stringify(objeto_prenda)
+			},
+			success: (data) => {
+				console.log(data);
+				console.log(RecogerDatosTerceraParte());
+				$.ajax({
+					type: "POST",
+					url: "/guardar_final",
+					data: {
+						"_csrf": $('#token').val(),
+						"objeto_materiales": JSON.stringify(objeto_materiales),
+						"objeto_patronajes": JSON.stringify(objeto_patronajes),
+						"objeto_marcadores": RecogerDatosTerceraParte(),
+						"accion": $('#accionPag').val()
+					},
+					success: (data) => {
+						$('#BotonBloquearGuardar').prop('disabled', false);
+						window.location.href = '/prendas';
+					},
+					failure: function (errMsg) {
+						alert(errMsg);
+					}
+				});
+
+			},
+			failure: function (errMsg) {
+				alert(errMsg);
+			}
+		});	
 	}
 
-	RecogerDatosPrimeraParte();
-	RecogerDatosSegundaParte();
-
-
-	var token = $('#token').val();
-	var header = $('#token').val();
-
-
-	//Solicitud Ajax
-	$.ajax({
-		type: "POST",
-		url: "/guardar_prenda",
-		data: {
-			"_csrf": $('#token').val(),
-			"disenioprenda": JSON.stringify(objeto_prenda)
-		},
-		success: (data) => {
-			console.log(data);
-			$.ajax({
-				type: "POST",
-				url: "/guardar_final",
-				data: {
-					"_csrf": $('#token').val(),
-					"objeto_materiales": JSON.stringify(objeto_materiales),
-					"objeto_patronajes": JSON.stringify(objeto_patronajes),
-					"objeto_marcadores": RecogerDatosTerceraParte(),
-					"accion": $('#accionPag').val()
-				},
-				success: (data) => {
-					console.log('final');
-
-					if (CambiarImgFrente != true || CambiarImgEspalda != true) {
-						window.location.href = '/prendas';
-					}
-
-					$('#BotonBloquearGuardar').prop('disabled', false);
-				},
-				failure: function (errMsg) {
-					alert(errMsg);
-				}
-			});
-
-		},
-		failure: function (errMsg) {
-			alert(errMsg);
-		}
-	});
 }
 
-function EnviarInfoProspecto() {
-	RecogerDatosPrimeraParte();
-	RecogerDatosSegundaParte();
-
-	var token = $('#token').val();
-	var header = $('#token').val();
-	console.log(objeto_materiales);
-	$('#FormImagenes').click();
 
 
-	//Solicitud Ajax
-	$.ajax({
-		type: "POST",
-		url: "/guardar_prenda",
-		data: {
-			"_csrf": $('#token').val(),
-			"disenioprenda": JSON.stringify(objeto_prenda)
-		},
-		success: (data) => {
-			console.log(data);
-
-
-			$.ajax({
-				type: "GET",
-				url: "/guardar_final_prospecto",
-				data: {
-					"_csrf": $('#token').val()
-				},
-				success: (data) => {
-					console.log('final');
-					$('#BloquearBotonProspecto').prop('disabled', false);
-				},
-				failure: function (errMsg) {
-					alert(errMsg);
-				}
-			});
-
-		},
-		failure: function (errMsg) {
-			alert(errMsg);
-		}
-	});
-}
-
-//Esta valida que los campos esten llenos cuando se va a editar o confirmar una prenda
+//Esta valida que los campos esten llenos dentro de la primer pestaña
 function ValidarPrimerPestana() {
-	if ($('#NombrePrenda').val() != "" && $('#DescripcionPrenda').val() != "" && $('#NotaEspecial').val() != ""
-		&& $('#Ruta').val() != "" && $('#DetallePrenda').val() != "" && $('#TipoPrenda').val() != "") {
-		console.log("entra");
+	if ($('#DescripcionPrenda').val() != "" && $('#NotaEspecial').val() != ""
+		&& $('#DetallePrenda').val() != "" && $('#TipoPrenda').val() != "") 
+	{
 		$('#AlertaPrimerPestana').css('display', 'none');
 		$('#SiguientePrimeraPestana').click();
 	}
@@ -329,26 +288,8 @@ function ValidarPrimerPestana() {
 	}
 }
 
-//Esta valida que los campos esten llenos cuando se va a hacer un prospecto de prenda
-function ValidarPrimerPestana2() {
-	console.log("aqui es donde vale verga");
-	$('#BloquearBotonProspecto').prop('disabled', true);
 
-	if ($('#NombrePrenda').val() != "" && $('#DescripcionPrenda').val() != "" && $('#NotaEspecial').val() != ""
-		&& $('#DetallePrenda').val() != "" && $('#TipoPrenda').val() != "" && $('#file').val() != "" && $('#file2').val() != "") {
-		
-		$('#AlertaPrimerPestana').css('display', 'none');
-		EnviarInfoProspecto();
-		console.log('paso');
-	}
-	else {
-		$('#AlertaPrimerPestana').css('display', 'block');
-		$('#BloquearBotonProspecto').prop('disabled', false);
-		console.log('no paso');
-	}
-}
-
-//Esto solo valida que los campos de la 2da parte esten llenos.
+//Esto solo valida que los campos esten llenos dentro de la segunda pestaña
 function ValidarSegundaPestana() {
 
 	if ($('#DetalleConfeccion').val() != "") {
@@ -361,14 +302,14 @@ function ValidarSegundaPestana() {
 }
 
 //Esto valida que la tercer pestana, de materiales, tenga al menos un material
-function ValidarTerceraPestana(id) {
+function ValidarTerceraPestana() {
 	if (objeto_materiales.length === 0) {
 		$('#AlertaTerceraPestana').css('display', 'block');
 	}
 	else {
 		$('#AlertaTerceraPestana').css('display', 'none');
 		$('#SiguienteTerceraPestana').click();
-		AsignarID(id);
+		//AsignarID(id);
 	}
 }
 
@@ -378,16 +319,13 @@ function ValidarCuartaPestana() {
 	$('#CuerpoPatronaje tr').each(function () {
 		j++;
 	});
-	console.log("var j="+j);
 	if (j== 0) {
 		$('#AlertaCuartaPestana').css('display', 'block');
 	}
 	else {
 		//Se deshabilita el boton
-		console.log("aqui si jala");
 		$('#AlertaCuartaPestana').css('display', 'none');
 		$('#CuerpoPatronaje tr').each(function () {
-			console.log($('#CantidadTela'+$(this).find('td').eq(0).html()).val());
 			if($('#CantidadTela'+$(this).find('td').eq(0).html()).val()=="" || $('#CantidadForro'+$(this).find('td').eq(0).html()).val()==""||$('#CantidadEntretela'+$(this).find('td').eq(0).html()).val()==""){
 				Swal.fire({
 					icon: 'error',
@@ -428,17 +366,6 @@ function ValidarCantidadesPatronaje() {
 	}
 }
 
-
-//Funciones para limpiar inputs
-function LimpiarInput1() {
-	$('#file').val(null);
-	$('#blah1').attr("src", "/dist/img/preview.png");
-}
-
-function LimpiarInput2() {
-	$('#file2').val(null);
-	$('#blah2').attr("src", "/dist/img/preview.png");
-}
 
 //Cambios Uriel ***********************Marcadores
 function guardarMarcador() {
@@ -523,3 +450,55 @@ function eliminarPatronaje(t) {
 	var table = tr.parentNode;
 	table.removeChild(tr);
 }
+
+
+/***
+*
+*	Estas funciones son para las imagenes
+*
+***/
+function readURL(input) {
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+
+		reader.onload = function (e) {
+			$('#blah1').attr('src', e.target.result);
+		}
+
+		reader.readAsDataURL(input.files[0]); // convert to base64 string
+	}
+}
+
+function readURL2(input) {
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+
+		reader.onload = function (e) {
+			$('#blah2').attr('src', e.target.result);
+		}
+
+		reader.readAsDataURL(input.files[0]); // convert to base64 string
+	}
+}
+
+$("#file").change(function () {
+	readURL(this);
+	console.log("cambio");
+});
+
+$("#file2").change(function () {
+	readURL2(this);
+	console.log("cambio");
+});
+
+//Funciones para limpiar inputs
+function LimpiarInput1() {
+	$('#file').val(null);
+	$('#blah1').attr("src", "/dist/img/preview.png");
+}
+
+function LimpiarInput2() {
+	$('#file2').val(null);
+	$('#blah2').attr("src", "/dist/img/preview.png");
+}
+
