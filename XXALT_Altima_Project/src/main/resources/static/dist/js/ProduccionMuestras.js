@@ -600,9 +600,10 @@
 		        	if (data[i][5]=='Stop'){
 		        		a = [
 							"<tr>" +
-							"<td>" + data[i][0] + "</td>","<td> <a class='text-primary'href='#' onclick='listarHoras("+data[i][4]+", 4)' > "+ data[i][0]+"</a> </td>","<td>" + data[i][1]+ "</td>",
+							"<td> <a class='text-primary'href='#' onclick='listarHoras("+data[i][4]+", 4)' > "+ data[i][0]+"</a> </td>",
+							"<td>" + data[i][1]+ "</td>",
 							"<td>" + data[i][2] + "</td>",
-							"<td>" + data[i][5]+ "</td>",		
+							"<td>" + data[i][5]+ "</td>",			
 							" <td>"+
 							" <button style='border-radius: 35%;'> <i class='fa fa-play'></i> </button>&nbsp;"+
 							"<button style='border-radius: 35%;'> <i class='fa fa-pause'></i> </i></button>&nbsp;"+
