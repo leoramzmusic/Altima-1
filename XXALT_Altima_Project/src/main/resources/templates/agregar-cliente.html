@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Agregar Pedido | Altima</title>
+    <title>Clientes | Altima</title>
     <link rel="icon" type="image/png" sizes="32x32" th:href="@{/dist/img/favicon.ico}">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,7 +40,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Clientes</h1>
+                            <h1>Clientes <a th:href="@{/clientes}" class="btn btn-danger btn-circle btn-sm popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Regresar"><i class="fas fa-arrow-left"></i></a></h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -74,15 +74,15 @@
                                         </select>
                                     </div>
                                     <form class="row" style="display: none;" id="moral" th:method="post" th:action="@{/guardar-cliente}" enctype="multipart/form-data" disabled>
-                                        <div class="form-group col-sm-6">
+                                        <div class="form-group col-sm-4">
                                             <label for="clienteEmpresa" >Nombre de la empresa</label>
                                             <input type="text" th:field="*{cliente.Nombre}" class="form-control" id="clienteEmpresa" placeholder="Altima Uniformes" required>
                                         </div>
-                                        <div class="form-group col-sm-6">
+                                        <div class="form-group col-sm-4">
                                             <label for="razonEmpresa">Raz&oacute;n social</label>
                                             <input type="text" th:field="*{cliente.RazonSocial}" class="form-control" id="razonEmpresa" placeholder="S.A. de C.V." required>
                                         </div>
-                                        <div class="form-group col-sm-2">
+                                        <div class="form-group col-sm-4">
                                             <label for="rfcEmpresa">R.F.C.</label>
                                             <input type="text" th:field="*{cliente.Rfc}" class="form-control" id="rfcEmpresa" placeholder="IHB123124HF3" required>
                                         </div>
@@ -90,12 +90,19 @@
                                             <label for="direccionEmpresa">Calle</label>
                                             <input type="text" th:field="*{direccion.calle}" class="form-control" id="direccionEmpresa" placeholder="Av. 1ro de Mayo" required>
                                         </div>
+                                        
+										<div class="form-group col-sm-1">
+					                        <div class="custom-control custom-checkbox" style="margin-top:38px">
+					                          <input class="custom-control-input" type="checkbox" id="SN" value="option1">
+					                          <label for="SN" class="custom-control-label">S/N</label>
+					                        </div>
+					                      </div>
                                         <div class="form-group col-sm-1">
                                             <label for="direccionExt">No. Ext.</label>
                                             <input type="text" th:field="*{direccion.NumeroExt}" class="form-control" id="direccionExt" placeholder="63" required>
                                         </div>
-                                        <div class="form-group col-sm-1">
-                                            <label for="direccionInt">No. Int.</label>
+                                        <div class="form-group col-sm-2">
+                                            <label for="direccionInt">No. Int. (opcional)</label>
                                             <input type="text" th:field="*{direccion.NumeroInt}"  class="form-control" id="direccionInt" placeholder="12">
                                         </div>
                                         
@@ -220,23 +227,24 @@
     </div>
                                         
                                         <div class="form-group col-sm-12">
+                                        	<a th:href="@{/clientes}" class="btn btn-danger">Cancelar</a>
                                             <input type="submit" class="btn btn-primary next-step float-right" value="Guardar">
                                         </div>
                                     </form>
                                     <form class="row" style="display: none;" disabled id="fisica" th:method="post" th:action="@{/guardar-cliente}" enctype="multipart/form-data">
-                                        <div class="form-group col-sm-4">
+                                        <div class="form-group col-sm-3">
                                             <label for="nombrePersona">Nombre(s)</label>
                                             <input type="text" th:field="*{cliente.Nombre}" class="form-control" id="nombrePersona" placeholder="Marco" required>
                                         </div>
-                                        <div class="form-group col-sm-4">
+                                        <div class="form-group col-sm-3">
                                             <label for="apPaternoPersona">Apellido Paterno</label>
                                             <input type="text" th:field="*{cliente.ApellidoPaterno}" class="form-control" id="apPaternoPersona" placeholder="Lopez" required>
                                         </div>
-                                        <div class="form-group col-sm-4">
+                                        <div class="form-group col-sm-3">
                                             <label for="apMaternoPersona">Apellido Materno</label>
                                             <input type="text" th:field="*{cliente.ApellidoMaterno}" class="form-control" id="apMaternoPersona" placeholder="Solis" required>
                                         </div>
-                                        <div class="form-group col-sm-2">
+                                        <div class="form-group col-sm-3">
                                             <label for="rfcEmpresa">R.F.C.</label>
                                             <input type="text" th:field="*{cliente.Rfc}" class="form-control" id="rfcEmpresa" placeholder="IHB123124HF3" required>
                                         </div>
@@ -244,13 +252,20 @@
                                             <label for="direccionEmpresa">Calle</label>
                                             <input type="text" th:field="*{direccion.calle}" class="form-control" id="direccionEmpresa" placeholder="Av. 1ro de Mayo No. 126" required>
                                         </div>
+                                        
+										<div class="form-group col-sm-1">
+					                        <div class="custom-control custom-checkbox" style="margin-top:38px">
+					                          <input class="custom-control-input" type="checkbox" id="SN1" value="option2">
+					                          <label for="SN1" class="custom-control-label">S/N</label>
+					                        </div>
+					                      </div>
                                         <div class="form-group col-sm-1">
                                             <label for="direccionExt">No. Ext.</label>
-                                            <input type="text" th:field="*{direccion.NumeroExt}" class="form-control" id="direccionExt" placeholder="63" required>
+                                            <input type="text" th:field="*{direccion.NumeroExt}" class="form-control" id="direccionExt1" placeholder="63" required>
                                         </div>
-                                        <div class="form-group col-sm-1">
-                                            <label for="direccionInt">No. Int.</label>
-                                            <input type="text" th:field="*{direccion.NumeroInt}" class="form-control" id="direccionInt" placeholder="12">
+                                        <div class="form-group col-sm-2">
+                                            <label for="direccionInt">No. Int.(opcional)</label>
+                                            <input type="text" th:field="*{direccion.NumeroInt}" class="form-control" id="direccionInt1" placeholder="12">
                                         </div>
                                         <div class="form-group col-sm-3">
                                             <label for="estadoEmpresa">Estado</label>
@@ -365,6 +380,7 @@
         </div>
     </div>
                                         <div class="form-group col-sm-12">
+                                        <a th:href="@{/clientes}" class="btn btn-danger">Cancelar</a>
                                             <input type="submit" class="btn btn-primary next-step float-right" value="Guardar">
                                         </div>
                                     </form>
@@ -404,6 +420,51 @@
             })
         })
     </script>
+    <script>
+		$('#iComercial').removeClass('text-primary');
+		$('#menuComercial').addClass('menu-open');
+		$('#navComercial').addClass('active');
+		$('#menuVenta').addClass('menu-open');
+		$('#navVenta').addClass('active');
+		$('#navVenta2').addClass('active');
+	</script>
+    <script>
+    $(document).ready(function(){
+        $('#SN').click(function(){
+            if($(this).prop("checked") == true){
+                console.log("Checkbox is checked.");
+                $("#direccionExt").prop('value', '');
+                $("#direccionInt").prop('value', '');
+                $("#direccionExt").prop('disabled', true);
+                $("#direccionInt").prop('disabled', true);
+            }
+            else if($(this).prop("checked") == false){
+                console.log("Checkbox is unchecked.");
+                $("#direccionExt").prop('disabled', false);
+                $("#direccionInt").prop('disabled', false);
+            }
+        });
+    });
+</script>
+<script>
+    $(document).ready(function(){
+        $('#SN1').click(function(){
+            if($(this).prop("checked") == true){
+                console.log("Checkbox is checked.");
+                
+                $("#direccionExt1").prop('value', ''); 
+                $("#direccionInt1").prop('value', '');
+                $("#direccionExt1").prop('disabled', true);
+                $("#direccionInt1").prop('disabled', true);
+            }
+            else if($(this).prop("checked") == false){
+                console.log("Checkbox is unchecked.");
+                $("#direccionExt1").prop('disabled', false);
+                $("#direccionInt1").prop('disabled', false);
+            }
+        });
+    });
+</script>
     <script type="text/javascript">
         function showForm(id) {
             if (id == "selecciona") {

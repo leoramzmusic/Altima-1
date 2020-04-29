@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Agregar Pedido | Altima</title>
+    <title>Clientes | Altima</title>
     <link rel="icon" type="image/png" sizes="32x32" th:href="@{/dist/img/favicon.ico}">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,15 +40,13 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Sucursal</h1>
+                            <h1>Sucursal <a th:href="@{/sucursales/}+ ${cliente.idCliente}" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-arrow-left"></i></a></h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
                                 <li class="breadcrumb-item active">Agentes de venta</li>
                                 <li class="breadcrumb-item active">Clientes</li>
-                                <li class="breadcrumb-item active">Sucursal</li>
-                                <li class="breadcrumb-item active">Nueva Sucursal</li>
                             </ol>
                         </div>
                     </div>
@@ -64,33 +62,39 @@
                             <!-- Default box -->
                             <div class="card">
                                 <div class="card-header bg-dark">
-                                    <h3 class="card-title" th:utext="${subtitulo} +' '+Sucursal +' '+ *{cliente.Nombre}"></h3>
+                                    <h3 class="card-title" th:utext="${subtitulo} +' '+sucursal +' '+ *{cliente.Nombre}"></h3>
                                 </div>
                                 <div class="card-body">
                                 	
                                     <form class="row" th:action="@{/guardar-sucursal}" autocomplete="off">
-                                        <div class="form-group col-sm-6">
+                                        <div class="form-group col-sm-4">
                                             <label for="clienteEmpresa" >Nombre de la sucursal</label>
                                             <input type="text" th:field="*{sucursal.NombreSucursal}" class="form-control" id="clienteEmpresa" placeholder="Altima Uniformes" required>
                                         </div>
-                                        <div class="form-group col-sm-6">
-                                            <label for="razonEmpresa">R.F.C</label>
-                                            <input type="text" th:field="*{sucursal.RfcSucursal}" class="form-control"  placeholder="IHB123124HF3" required>
-                                        </div>
-                                        <div class="form-group col-sm-2">
+                                        <div class="form-group col-sm-4">
                                             <label for="rfcEmpresa">No. Sucursal</label>
                                             <input type="number" min="0" th:field="*{sucursal.NoSucursal}" class="form-control"  placeholder="100" required>
+                                        </div>
+                                        <div class="form-group col-sm-4">
+                                            <label for="razonEmpresa">R.F.C</label>
+                                            <input type="text" th:field="*{sucursal.RfcSucursal}" class="form-control"  placeholder="IHB123124HF3" required>
                                         </div>
                                         <div class="form-group col-sm-8">
                                             <label for="direccionEmpresa">Calle</label>
                                             <input type="text" th:field="*{direccion.calle}" class="form-control"  placeholder="Av. 1ro de Mayo" required>
                                         </div>
                                         <div class="form-group col-sm-1">
+					                        <div class="custom-control custom-checkbox" style="margin-top:38px">
+					                          <input class="custom-control-input" type="checkbox" id="SN1" value="option2">
+					                          <label for="SN1" class="custom-control-label">S/N</label>
+					                        </div>
+					                      </div>
+                                        <div class="form-group col-sm-1">
                                             <label for="direccionExt">No. Ext.</label>
                                             <input type="number" min="0" th:field="*{direccion.NumeroExt}" class="form-control" id="direccionExt" placeholder="63" required>
                                         </div>
-                                        <div class="form-group col-sm-1">
-                                            <label for="direccionInt">No. Int.</label>
+                                        <div class="form-group col-sm-2">
+                                            <label for="direccionInt">No. Int.(opcional)</label>
                                             <input type="number" min="0" th:field="*{direccion.NumeroInt}"  class="form-control" id="direccionInt" placeholder="12">
                                         </div>
                                         
@@ -183,6 +187,7 @@
                                         <input  type="hidden" th:field="*{direccion.estatus}">
                                         
                                         <div class="form-group col-sm-12">
+                                        <a th:href="@{/sucursales/}+ ${cliente.idCliente}" class="btn btn-danger">Cancelar</a>
                                             <input type="submit" class="btn btn-primary next-step float-right" value="Guardar">
                                         </div>
                                     </form>
@@ -221,6 +226,32 @@
             })
         })
     </script>
+    <script>
+		$('#iComercial').removeClass('text-primary');
+		$('#menuComercial').addClass('menu-open');
+		$('#navComercial').addClass('active');
+		$('#menuVenta').addClass('menu-open');
+		$('#navVenta').addClass('active');
+		$('#navVenta2').addClass('active');
+	</script>
+    <script>
+    $(document).ready(function(){
+        $('#SN1').click(function(){
+            if($(this).prop("checked") == true){
+                console.log("Checkbox is checked.");
+                $("#direccionExt").prop('value', '');
+                $("#direccionInt").prop('value', '');
+                $("#direccionExt").prop('disabled', true);
+                $("#direccionInt").prop('disabled', true);
+            }
+            else if($(this).prop("checked") == false){
+                console.log("Checkbox is unchecked.");
+                $("#direccionExt").prop('disabled', false);
+                $("#direccionInt").prop('disabled', false);
+            }
+        });
+    });
+</script>
   
     
 </body>

@@ -40,7 +40,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Clientes</h1>
+                        	<h1>Datos de facturaci&oacute;n <a th:href="@{/facturacion-clientes/}+ ${cliente.idCliente}"><button class="bt btn-danger btn-circle btn-sm popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Regresar"><i class="fas fa-arrow-left"></i></button></a></h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -62,7 +62,7 @@
                             <!-- Default box -->
                             <div class="card">
                                 <div class="card-header bg-dark">
-                                    <h3 class="card-title">Facturaci&oacute;n de datos</h3>
+                                    <h3 class="card-title">Datos</h3>
                                 </div>
                                 <div class="card-body">
                                 	
@@ -79,17 +79,23 @@
                                             <label for="rfcEmpresa">Cuenta contable</label>
                                             <input type="number" min="0" class="form-control" th:field="*{factura.cuentaContableF}" placeholder="100" required>
                                         </div>
-                                        <div class="form-group col-sm-10">
+                                        <div class="form-group col-sm-8">
                                             <label for="direccionEmpresa">Calle</label>
                                             <input type="text" class="form-control" th:field="*{direccion.calle}"  placeholder="Av. 1ro de Mayo" required>
                                         </div>
+										<div class="form-group col-sm-1">
+					                        <div class="custom-control custom-checkbox" style="margin-top:38px">
+					                          <input class="custom-control-input" type="checkbox" id="SN" value="option1">
+					                          <label for="SN" class="custom-control-label">S/N</label>
+					                        </div>
+					                      </div>
                                         <div class="form-group col-sm-1">
                                             <label for="direccionExt">No. Ext.</label>
-                                            <input type="number" min="0" class="form-control" th:field="*{direccion.NumeroExt}" placeholder="63" required>
+                                            <input type="number" min="0" id="extNum" class="form-control" th:field="*{direccion.NumeroExt}" placeholder="63" required>
                                         </div>
-                                        <div class="form-group col-sm-1">
-                                            <label for="direccionInt">No. Int.</label>
-                                            <input type="number" min="0" class="form-control" th:field="*{direccion.NumeroInt}"  placeholder="12">
+                                        <div class="form-group col-sm-2">
+                                            <label for="direccionInt">No. Int. (opcional)</label>
+                                            <input type="number" min="0" id="intNum" class="form-control" th:field="*{direccion.NumeroInt}"  placeholder="12">
                                         </div>
                                         <div class="form-group col-sm-5">
                                             <label for="coloniaEmpresa">Colonia</label>
@@ -151,6 +157,7 @@
 										  </div>
                                         
                                         <div class="form-group col-sm-12">
+                                        	<a th:href="@{/facturacion-clientes/}+ ${cliente.idCliente}" class="btn btn-danger next-step">Cancelar</a>
                                             <input type="submit" class="btn btn-primary next-step float-right" value="Guardar">
                                         </div>
                                         
@@ -201,6 +208,32 @@
     <script th:src="@{/dist/js/demo.js}"></script>
     <!-- SweetAlert -->
     <script th:src="@{/dist/js/sweetalert.js}"></script>
+    <script>
+		$('#iComercial').removeClass('text-primary');
+		$('#menuComercial').addClass('menu-open');
+		$('#navComercial').addClass('active');
+		$('#menuVenta').addClass('menu-open');
+		$('#navVenta').addClass('active');
+		$('#navVenta2').addClass('active');
+	</script>
+    <script>
+    $(document).ready(function(){
+        $('#SN').click(function(){
+            if($(this).prop("checked") == true){
+                console.log("Checkbox is checked.");
+                $("#extNum").prop('value', '');
+                $("#intNum").prop('value', '');
+                $("#extNum").prop('disabled', true);
+                $("#intNum").prop('disabled', true);
+            }
+            else if($(this).prop("checked") == false){
+                console.log("Checkbox is unchecked.");
+                $("#extNum").prop('disabled', false);
+                $("#intNum").prop('disabled', false);
+            }
+        });
+    });
+</script>
     <!-- Popover-->
     <script>
         $(function() {
