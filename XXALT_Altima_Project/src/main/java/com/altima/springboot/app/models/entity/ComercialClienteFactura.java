@@ -30,138 +30,135 @@ public class ComercialClienteFactura implements Serializable{
 	@Column(name="id_cliente_factura")
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
-	private Long idClienteFactura;
+	private Long idClienteFacturaF;
 	
 	@Column(name="id_cliente")
-	private Long idCliente;
+	private Long idClienteF;
 	
 	@Column(name="id_direccion")
-	private Long idDireccion;
+	private Long idDireccionF;
 	
 	@Column(name="id_text")
-	private String idText;
+	private String idTextF;
 	
 	@Column(name="creado_por")
-	private String creadoPor;
+	private String creadoPorF;
 	
 	@Column(name="actualizado_por")
-	private String actualizadoPor;
+	private String actualizadoPorF;
 	
 	@Column(name="fecha_creacion")
-	private String fechaCreacion;
+	private String fechaCreacionF;
 	
 	@Column(name="ultima_fecha_modificacion")
-	private String ultimaFechaModificacion;
+	private String ultimaFechaModificacionF;
 	
 	@Column(name="estatus")
-	private String estatus;
+	private String estatusF;
 	
 	@Column(name="cuenta_contable")
-	private String cuentaContable;
+	private String cuentaContableF;
 	
 	@Column(name="rfc_factura")
-	private String rfcFactura;
+	private String rfcFacturaF;
 	
 	@Column(name="razon_social")
-	private String razon_social;
-	
-	
-	
-	
-	public String getRazon_social() {
-		return razon_social;
+	private String razon_socialF;
+
+	public Long getIdClienteFacturaF() {
+		return idClienteFacturaF;
 	}
 
-	public void setRazon_social(String razon_social) {
-		this.razon_social = razon_social;
+	public void setIdClienteFacturaF(Long idClienteFacturaF) {
+		this.idClienteFacturaF = idClienteFacturaF;
 	}
 
-	public Long getIdClienteFactura() {
-		return idClienteFactura;
+	public Long getIdClienteF() {
+		return idClienteF;
 	}
 
-	public void setIdClienteFactura(Long idClienteFactura) {
-		this.idClienteFactura = idClienteFactura;
+	public void setIdClienteF(Long idClienteF) {
+		this.idClienteF = idClienteF;
 	}
 
-	public Long getIdCliente() {
-		return idCliente;
+	public Long getIdDireccionF() {
+		return idDireccionF;
 	}
 
-	public void setIdCliente(Long idCliente) {
-		this.idCliente = idCliente;
+	public void setIdDireccionF(Long idDireccionF) {
+		this.idDireccionF = idDireccionF;
 	}
 
-	public Long getIdDireccion() {
-		return idDireccion;
+	public String getIdTextF() {
+		return idTextF;
 	}
 
-	public void setIdDireccion(Long idDireccion) {
-		this.idDireccion = idDireccion;
+	public void setIdTextF(String idTextF) {
+		this.idTextF = idTextF;
 	}
 
-	public String getIdText() {
-		return idText;
+	public String getCreadoPorF() {
+		return creadoPorF;
 	}
 
-	public void setIdText(String idText) {
-		this.idText = idText;
+	public void setCreadoPorF(String creadoPorF) {
+		this.creadoPorF = creadoPorF;
 	}
 
-	public String getCreadoPor() {
-		return creadoPor;
+	public String getActualizadoPorF() {
+		return actualizadoPorF;
 	}
 
-	public void setCreadoPor(String creadoPor) {
-		this.creadoPor = creadoPor;
+	public void setActualizadoPorF(String actualizadoPorF) {
+		this.actualizadoPorF = actualizadoPorF;
 	}
 
-	public String getActualizadoPor() {
-		return actualizadoPor;
+	public String getFechaCreacionF() {
+		return fechaCreacionF;
 	}
 
-	public void setActualizadoPor(String actualizadoPor) {
-		this.actualizadoPor = actualizadoPor;
+	public void setFechaCreacionF(String fechaCreacionF) {
+		this.fechaCreacionF = fechaCreacionF;
 	}
 
-	public String getFechaCreacion() {
-		return fechaCreacion;
+	public String getUltimaFechaModificacionF() {
+		return ultimaFechaModificacionF;
 	}
 
-	public void setFechaCreacion(String fechaCreacion) {
-		this.fechaCreacion = fechaCreacion;
+	public void setUltimaFechaModificacionF(String ultimaFechaModificacionF) {
+		this.ultimaFechaModificacionF = ultimaFechaModificacionF;
 	}
 
-	public String getUltimaFechaModificacion() {
-		return ultimaFechaModificacion;
+	public String getEstatusF() {
+		return estatusF;
 	}
 
-	public void setUltimaFechaModificacion(String ultimaFechaModificacion) {
-		this.ultimaFechaModificacion = ultimaFechaModificacion;
+	public void setEstatusF(String estatusF) {
+		this.estatusF = estatusF;
 	}
 
-	public String getEstatus() {
-		return estatus;
+	public String getCuentaContableF() {
+		return cuentaContableF;
 	}
 
-	public void setEstatus(String estatus) {
-		this.estatus = estatus;
+	public void setCuentaContableF(String cuentaContableF) {
+		this.cuentaContableF = cuentaContableF;
 	}
 
-	public String getCuentaContable() {
-		return cuentaContable;
+	public String getRfcFacturaF() {
+		return rfcFacturaF;
 	}
 
-	public void setCuentaContable(String cuentaContable) {
-		this.cuentaContable = cuentaContable;
+	public void setRfcFacturaF(String rfcFacturaF) {
+		this.rfcFacturaF = rfcFacturaF;
 	}
 
-	public String getRfcFactura() {
-		return rfcFactura;
+	public String getRazon_socialF() {
+		return razon_socialF;
 	}
 
-	public void setRfcFactura(String rfcFactura) {
-		this.rfcFactura = rfcFactura;
+	public void setRazon_socialF(String razon_socialF) {
+		this.razon_socialF = razon_socialF;
 	}
 
 	public static long getSerialversionuid() {
@@ -171,8 +168,6 @@ public class ComercialClienteFactura implements Serializable{
 	
 	
 	
-	
-
 	
 
 }

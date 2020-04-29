@@ -22,7 +22,7 @@
     <!-- Google Font: Source Sans Pro -->
     <link th:href="@{https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700}" rel="stylesheet">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed sidebar-collapse"   th:onload="'showForm(' + ${estatus} + ');'"  >
+<body class="hold-transition sidebar-mini layout-fixed sidebar-collapse"    >
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Navbar -->
@@ -69,15 +69,15 @@
                                     <form class="row" th:action="@{/guardar-facturacion}" >
                                         <div class="form-group col-sm-4">
                                             <label for="clienteEmpresa" >Raz&oacute;n social</label>
-                                            <input type="text" class="form-control" th:field="*{factura.razon_social}" placeholder="S.A. de C.V." required>
+                                            <input type="text" class="form-control" th:field="*{factura.razon_socialF}" placeholder="S.A. de C.V." required>
                                         </div>
                                         <div class="form-group col-sm-4">
                                             <label for="razonEmpresa">R.F.C</label>
-                                            <input type="text" class="form-control"  th:field="*{factura.rfcFactura}"  placeholder="IHB123124HF3" required>
+                                            <input type="text" class="form-control"  th:field="*{factura.rfcFacturaF}"  placeholder="IHB123124HF3" required>
                                         </div>
                                         <div class="form-group col-sm-4">
                                             <label for="rfcEmpresa">Cuenta contable</label>
-                                            <input type="number" min="0" class="form-control" th:field="*{factura.cuentaContable}" placeholder="100" required>
+                                            <input type="number" min="0" class="form-control" th:field="*{factura.cuentaContableF}" placeholder="100" required>
                                         </div>
                                         <div class="form-group col-sm-10">
                                             <label for="direccionEmpresa">Calle</label>
@@ -164,13 +164,15 @@
                                         <input  type="hidden" th:field="*{direccion.ultimaFechaModificacion}">
                                         <input  type="hidden" th:field="*{direccion.estatus}">
                                         
-                                        <input  type="hidden" name="IdCliente" th:value="*{cliente.IdCliente}">
+                                        <input  type="hidden" name="IdClienteF" th:value="*{cliente.IdCliente}">
                                         
-                                        <input  type="hidden" th:field="*{factura.idClienteFactura}">
-                                        <input  type="hidden" th:field="*{factura.creadoPor}">
-                                        <input  type="hidden" th:field="*{factura.actualizadoPor}">
-                                        <input  type="hidden" th:field="*{factura.fechaCreacion}">
-                                        <input  type="hidden" th:field="*{factura.ultimaFechaModificacion}">
+                                        <input  type="hidden" th:field="*{factura.idClienteFacturaF}">
+                                        <input  type="hidden" th:field="*{factura.creadoPorF}">
+                                        <input  type="hidden" th:field="*{factura.actualizadoPorF}">
+                                        <input  type="hidden" th:field="*{factura.fechaCreacionF}">
+                                        <input  type="hidden" th:field="*{factura.ultimaFechaModificacionF}">
+                                        <input  type="hidden" th:field="*{factura.idTextF}">
+                                        
                                         
                                     </form>
                                     

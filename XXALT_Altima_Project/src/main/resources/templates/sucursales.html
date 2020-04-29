@@ -82,15 +82,28 @@
                                                 <th>Teléfono</th>
                                                 <th>R.F.C</th>
                                                 <th>Contacto</th>
+                                                <th>Acciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr th:each="sucursal: ${sucursales}">
-                                                <td><a th:href="@{/editar-sucursal/}+ ${sucursal.IdClienteSucursal}" th:text="${sucursal.SIdText}"></a>  </td>
+                                                <td th:text="${sucursal.SIdText}"></td>
                                                 <td th:text="${sucursal.NombreSucursal}"></td>
                                                 <td th:text="${sucursal.TelefonoSucursal}"></td>
                                                 <td th:text="${sucursal.RfcSucursal}"></td>
                                                	<td th:text="${sucursal.ContactoSucursal}"></td>
+                                               	
+                                               	<td class="tdcenter">                                        
+                                                 	<a th:href="@{/editar-sucursal/}+ ${sucursal.IdClienteSucursal}"class="btn btn-warning btn-circle btn-sm popoverxd" 
+                                                         data-container="body" data-toggle="popover"
+                                                          data-placement="top" data-content="Editar"><i class="fas fa-pen"></i></a>
+                                                          
+                                                 	
+                                                 		
+                                               		<a  th:href="@{/delete-sucursal/}+ ${sucursal.IdClienteSucursal}" class="btn btn-danger btn-circle btn-sm btn-delete popoverxd"
+                                                         data-container="body" data-toggle="popover" data-placement="top"
+                                                          data-content="Dar de baja"><i class="fas fa-caret-down"></i></a>
+                                                </td>
                                             </tr>     
                                         </tbody>
                                     </table>
@@ -198,6 +211,32 @@
 	          timer: 1250
 	    });
 	</script>
+	
+	<script>
+		$('.btn-delete').on('click', function (e) {
+		    e.preventDefault();
+		    var href =$(this).attr('href');
+		    $('#bajaSucursalModal #btnDelteYes').attr('href',href);
+		    $('#bajaSucursalModal').modal();
+		});
+		</script>
+	
+	<div class="modal fade" id="bajaSucursalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        ¿Deseas dar de baja la sucursal?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal">Cancelar</button>
+        <a id="btnDelteYes" class="btn btn-primary">Confirmar</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 	
 </body>

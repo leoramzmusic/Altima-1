@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.altima.springboot.app.models.entity.ComercialCliente;
+import com.altima.springboot.app.models.entity.ComercialClienteFactura;
 import com.altima.springboot.app.models.entity.ComercialClienteSucursal;
 import com.altima.springboot.app.models.entity.HrDireccion;
 import com.altima.springboot.app.models.service.IComercialClienteService;
@@ -102,4 +103,19 @@ public class ClienteSucursalController {
 		
 		return "agregar-sucursal";
 	}
+	
+	@GetMapping("delete-sucursal/{id}") 
+	public String delete_sucursal(@PathVariable("id") Long id, RedirectAttributes redirectAttrs) throws Exception {
+		
+		ComercialClienteSucursal sucursal = null;
+		sucursal = SucursalService.findOne(id);
+		sucursal.setEstatus("0");
+		SucursalService.save(sucursal);
+	
+		redirectAttrs
+        .addFlashAttribute("title", "Sucursal elimnada correctamente")
+        .addFlashAttribute("icon", "success");
+		return "redirect:/sucursales/" + sucursal.getIdCliente();
+	}
+	
 }
