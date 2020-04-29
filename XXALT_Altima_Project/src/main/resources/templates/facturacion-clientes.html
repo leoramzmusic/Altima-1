@@ -22,7 +22,7 @@
     <!-- Google Font: Source Sans Pro -->
     <link th:href="@{https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700}" rel="stylesheet">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed sidebar-collapse"   th:onload="'showForm(' + ${estatus} + ');'"  >
+<body class="hold-transition sidebar-mini layout-fixed sidebar-collapse"    >
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Navbar -->
@@ -66,48 +66,48 @@
                                 </div>
                                 <div class="card-body">
                                 	
-                                    <form class="row" th:action="@{/guardar-sucursal}" autocomplete="off">
+                                    <form class="row" th:action="@{/guardar-facturacion}" >
                                         <div class="form-group col-sm-4">
                                             <label for="clienteEmpresa" >Raz&oacute;n social</label>
-                                            <input type="text" class="form-control" id="clienteEmpresa" placeholder="S.A. de C.V." required>
+                                            <input type="text" class="form-control" th:field="*{factura.razon_socialF}" placeholder="S.A. de C.V." required>
                                         </div>
                                         <div class="form-group col-sm-4">
                                             <label for="razonEmpresa">R.F.C</label>
-                                            <input type="text" class="form-control"  placeholder="IHB123124HF3" required>
+                                            <input type="text" class="form-control"  th:field="*{factura.rfcFacturaF}"  placeholder="IHB123124HF3" required>
                                         </div>
                                         <div class="form-group col-sm-4">
                                             <label for="rfcEmpresa">Cuenta contable</label>
-                                            <input type="number" min="0" class="form-control"  placeholder="100" required>
+                                            <input type="number" min="0" class="form-control" th:field="*{factura.cuentaContableF}" placeholder="100" required>
                                         </div>
                                         <div class="form-group col-sm-10">
                                             <label for="direccionEmpresa">Calle</label>
-                                            <input type="text" class="form-control"  placeholder="Av. 1ro de Mayo" required>
+                                            <input type="text" class="form-control" th:field="*{direccion.calle}"  placeholder="Av. 1ro de Mayo" required>
                                         </div>
                                         <div class="form-group col-sm-1">
                                             <label for="direccionExt">No. Ext.</label>
-                                            <input type="number" min="0" class="form-control" id="direccionExt" placeholder="63" required>
+                                            <input type="number" min="0" class="form-control" th:field="*{direccion.NumeroExt}" placeholder="63" required>
                                         </div>
                                         <div class="form-group col-sm-1">
                                             <label for="direccionInt">No. Int.</label>
-                                            <input type="number" min="0" class="form-control" id="direccionInt" placeholder="12">
+                                            <input type="number" min="0" class="form-control" th:field="*{direccion.NumeroInt}"  placeholder="12">
                                         </div>
                                         <div class="form-group col-sm-5">
                                             <label for="coloniaEmpresa">Colonia</label>
-                                            <input type="text" class="form-control" id="coloniaEmpresa" placeholder="8 de Agosto" required>
+                                            <input type="text" class="form-control" th:field="*{direccion.colonia}" placeholder="8 de Agosto" required>
                                         </div>
                                         
                                         
                                         <div class="form-group col-sm-2">
                                             <label for="cpEmpresa">C&oacute;digo postal</label>
-                                            <input type="number" min="0" class="form-control" id="cpEmpresa" placeholder="90688" required>
+                                            <input type="number" min="0" class="form-control"  th:field="*{direccion.codigoPostal}" placeholder="90688" required>
                                         </div>
                                         <div class="form-group col-sm-5">
                                             <label for="municipioEmpresa">Delegaci&oacute;n o Municipio</label>
-                                            <input type="text" placeholder=" Ecatepec" class="form-control" required>
+                                            <input type="text" placeholder=" Ecatepec" th:field="*{direccion.municipio}" class="form-control" required>
                                         </div>
                                         <div class="form-group col-sm-12">
                                             <label for="estadoEmpresa">Estado</label>
-                                            <select class="form-control" required>
+                                            <select class="form-control"  th:field="*{direccion.estado}" required>
                                             	<option value="">Seleccione uno...</option>
       											<option value="Aguascalientes">Aguascalientes</option>
 										      	<option value="Baja California">Baja California</option>
@@ -153,6 +153,27 @@
                                         <div class="form-group col-sm-12">
                                             <input type="submit" class="btn btn-primary next-step float-right" value="Guardar">
                                         </div>
+                                        
+                                        
+                                        
+                                        <input  type="hidden" th:field="*{direccion.idDireccion}">
+                                        <input  type="hidden" th:field="*{direccion.idText}">
+                                        <input  type="hidden" th:field="*{direccion.creadoPor}">
+                                        <input  type="hidden" th:field="*{direccion.actualizadoPor}">
+                                        <input  type="hidden" th:field="*{direccion.fechaCreacion}">
+                                        <input  type="hidden" th:field="*{direccion.ultimaFechaModificacion}">
+                                        <input  type="hidden" th:field="*{direccion.estatus}">
+                                        
+                                        <input  type="hidden" name="IdClienteF" th:value="*{cliente.IdCliente}">
+                                        
+                                        <input  type="hidden" th:field="*{factura.idClienteFacturaF}">
+                                        <input  type="hidden" th:field="*{factura.creadoPorF}">
+                                        <input  type="hidden" th:field="*{factura.actualizadoPorF}">
+                                        <input  type="hidden" th:field="*{factura.fechaCreacionF}">
+                                        <input  type="hidden" th:field="*{factura.ultimaFechaModificacionF}">
+                                        <input  type="hidden" th:field="*{factura.idTextF}">
+                                        
+                                        
                                     </form>
                                     
                                 </div>

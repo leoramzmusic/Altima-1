@@ -1405,7 +1405,7 @@
 		    error: (e) => {
 		    }
 	})
-	if ( tipo== 1){
+	
 		$.ajax({  
 		    method: "GET",
 		    url: "/orden-pedidos/"+id+"/5",
@@ -1417,20 +1417,8 @@
 		    error: (e) => {
 		    }
 		})	
-	}
-	 
-	 if ( tipo> 1){
-			$.ajax({  
-			    method: "GET",
-			    url: "/terminados/"+id+"/"+tipo,
-			    success: (data) => {
-			    	$.each(data, function(key, val) {
-			    		$('#muestra').append('<option value="' + val[0] + '">'+val[1]+'</option>');})
-			    		$('.selectpicker').selectpicker(["refresh"]);
-			    },
-			    error: (e) => {
-			    }
-			})	
-		}
+	
+	 // aki error
+
 	
  }

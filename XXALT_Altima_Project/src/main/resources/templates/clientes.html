@@ -87,7 +87,7 @@
                                         </thead>
                                         <tbody>
                                             <tr th:each="cliente: ${clientes}">
-                                                <td><a th:href="@{/editar-cliente/}+ ${cliente.idCliente}" th:text="${cliente.CidText}"></a>  </td>
+                                                <td th:text="${cliente.CidText}"></td>
                                                 <td th:text="${cliente.Nombre}"></td>
                                                 <td th:text="${cliente.Telefono}"></td>
                                                 <td th:if="${cliente.TipoCliente == '1'}" th:text="Moral"></td>
@@ -100,7 +100,7 @@
                                                 </td>
                                                 <td class="tdcenter">
                                                 <a
-                                                 		th:href="@{/facturacion-clientes}"  class="btn btn-primary btn-circle btn-sm text-white popoverxd" 
+                                                 		th:href="@{/facturacion-clientes/}+ ${cliente.idCliente}"  class="btn btn-primary btn-circle btn-sm text-white popoverxd" 
                                                  		data-container="body" data-placement="top" 
                                                  		data-content="Ver datos de facturaci&oacute;n"><i class="fas fa-file-alt"></i></a>
                                                 </td>
@@ -231,13 +231,13 @@
 		$('.btn-delete').on('click', function (e) {
 		    e.preventDefault();
 		    var href =$(this).attr('href');
-		    $('#bajaMaterialModal #btnDelteYes').attr('href',href);
-		    $('#bajaMaterialModal').modal();
+		    $('#bajaClienteModal #btnDelteYes').attr('href',href);
+		    $('#bajaClienteModal').modal();
 		});
 		</script>
 
 
-<div class="modal fade" id="bajaMaterialModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="bajaClienteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-body">

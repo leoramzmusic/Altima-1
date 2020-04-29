@@ -93,10 +93,10 @@
                                                 <td th:text="${pedidos[3]}"></td>
                                                 <td th:text="${pedidos[4]}"></td>
                                                 
-                                                <td th:if="${pedidos[3] != 'foránea'	}"  class="tdcenter"><a data-target="#detalles-proceso"  th:onclick="'listarTrazos('+${pedidos[0]}+')'"  class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="modal" data-placement="top"
+                                                <td th:if="${pedidos[3] != 'Foráneo'	}"  class="tdcenter"><a data-target="#detalles-proceso"  th:onclick="'listarTrazos('+${pedidos[0]}+')'"  class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="modal" data-placement="top"
 													data-content="Detalles"><i class="fas fa-info"></i></a></td>
 													
-												<td th:if="${pedidos[3] == 'foránea'	}"  class="tdcenter"><a data-target="#detalles-proceso"  th:onclick="'listarTerminadosF('+${pedidos[0]}+')'"  class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="modal" data-placement="top"
+												<td th:if="${pedidos[3] == 'Foráneo'	}"  class="tdcenter"><a data-target="#detalles-proceso"  th:onclick="'listarTerminadosF('+${pedidos[0]}+')'"  class="btn btn-warning btn-circle btn-sm popoverxd" data-container="body" data-toggle="modal" data-placement="top"
 													data-content="Detalles"><i class="fas fa-info"></i></a></td>
                                                 
                                                
