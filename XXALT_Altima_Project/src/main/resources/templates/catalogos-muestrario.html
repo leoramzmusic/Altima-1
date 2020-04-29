@@ -5,7 +5,15 @@
     <div th:replace="navegacion-head"></div>
     <title>Cat&aacute;logo De Muestrario | Altima</title>
     <link rel="stylesheet" href="/dist/css/bootstrap-select.min.css">
+
+    <link href="dist/css/jplist.demo-pages.min.css" rel="stylesheet" type="text/css" />
+    <!-- jPList core js and css  -->
+    <link href="dist/css/jplist.core.min.css" rel="stylesheet" type="text/css" />
+    <link href="dist/css/jplist.textbox-filter.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="dist/css/jplist.pagination-bundle.min.css" rel="stylesheet" type="text/css" />
 </head>
+
 <body class="hold-transition sidebar-mini layout-fixed sidebar-collapse">
     <!-- Site wrapper -->
     <div class="wrapper">
@@ -43,366 +51,256 @@
 
             <!-- Main content -->
             <section class="content">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <div id="filters" class="button-group btn-group" role="group">
-                            <button class="btn btn-danger is-checked" data-filter="*" style="border-radius:0px">Todas</button>
-                            <button class="btn btn-primary" data-filter=".abrigo">Abrigo</button>
-                            <button class="btn btn-primary" data-filter=".camisa">Camisa</button>
-                            <button class="btn btn-primary" data-filter=".pantalon" style="border-radius:0px">Pantal&oacute;n</button>
-                        </div>
-                    </div>
-                    <input type="text" id="quicksearch" class="form-control" placeholder="Search" />
-                </div>
 
                 <!-- Default box -->
                 <div class="card card-solid">
                     <div class="card-body pb-0">
-                        <div class="grid">
-                            <div class="row d-flex align-items-stretch">
-                                <div class="element-item camisa col-12 col-sm-6 col-md-4 d-flex align-items-stretch" data-category="camisa">
-                                    <div class="card bg-light">
-                                        <div class="card-header text-muted border-bottom-0">
-                                            Stock: 9
-                                        </div>
-                                        <div class="card-body pt-0">
-                                            <div class="row">
-                                                <div class="col-7">
-                                                    <h2 class="lead"><strong>Prenda: </strong>Camisa azul</h2>
-                                                    <h2 class="lead"><strong>Modelo: </strong>MOD0001</h2>
-                                                    <h2 class="lead"><strong>Tela: </strong>TEL0001</h2>
-                                                    <h2 class="lead"><strong>Talla: </strong>TAL0001</h2>
-                                                </div>
-                                                <div class="col-5 text-center">
-                                                    <a data-toggle="modal" data-target="#imagenCatalogo">
-                                                        <img src="https://i.pinimg.com/originals/1a/30/ba/1a30bafc0af4e1000c49f63170645926.jpg" alt="" class="img-circle img-fluid">
-                                                    </a>
-                                                    <div id="imagenCatalogo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered">
-                                                            <div class="modal-content">
-                                                                <div class="modal-body">
-                                                                    <img class="img-fluid" src="https://i.pinimg.com/originals/1a/30/ba/1a30bafc0af4e1000c49f63170645926.jpg" alt="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="text-right">
-                                                <a href="#" class="btn bg-teal btn-circle btn-sm popoverxd" data-toggle="popover" data-html="true" data-container="body" data-placement="top" data-content="A&ntilde;adir al carrito">
-                                                    <i class="fas fa-plus"></i>
-                                                </a>
-                                            </div>
+                        <div class="box">
+                            <!--<><><><><><><><><><><><><><><><><><><><><><><><><><> DEMO START <><><><><><><><><><><><><><><><><><><><><><><><><><>-->
+
+                            <div id="demo" class="jplist" style="margin: 20px 0 50px 0">
+
+                                <!-- ios button: show/hide panel -->
+                                <div class="jplist-ios-button">
+                                    <i class="fa fa-sort"></i> jPList Actions
+                                </div>
+
+                                <!-- panel -->
+                                <div class="jplist-panel panel-top">
+
+                                    <!-- items per page dropdown -->
+                                    <div class="jplist-drop-down" data-control-type="items-per-page-drop-down" data-control-name="paging" data-control-action="paging">
+
+                                        <ul>
+                                            <li><span data-number="6" data-default="true"> Mostrar 6 </span></li>
+                                            <li><span data-number="12"> Mostrar 12 </span></li>
+                                            <li><span data-number="24"> Mostrar 24 </span></li>
+                                            <li><span data-number="48"> Mostrar 48 </span></li>
+                                            <li><span data-number="all"> Mostrar todo </span></li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- sort dropdown -->
+                                    <div class="jplist-drop-down" data-control-type="sort-drop-down" data-control-name="sort" data-control-action="sort" data-datetime-format="{month}/{day}/{year}">
+                                        <!-- {year}, {month}, {day}, {hour}, {min}, {sec} -->
+
+                                        <ul>
+                                            <li><span data-path="default">Ordenar por</span></li>
+                                            <li><span data-path=".prenda" data-order="asc" data-type="text">A-Z</span></li>
+                                            <li><span data-path=".prenda" data-order="desc" data-type="text">Z-A</span></li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="jplist-drop-down" data-control-type="filter-drop-down" data-control-name="category-filter" data-control-action="filter">
+									   <ul>
+										  <li><span data-path="default">Todas las prendas</span></li>
+										  <li><span data-path=".camisa">Camisa</span></li>
+										  <li><span data-path=".abrigo">Abrigo</span></li>
+										  <li><span data-path=".pantalon">Pantal&oacute;n</span></li>
+										  <li><span data-path=".saco">Saco</span></li>
+										  <li><span data-path=".blusa">Blusa</span></li>
+									   </ul>
+									</div>	
+
+                                    <!-- filter by title -->
+                                    <div class="text-filter-box">
+
+                                        <i class="fas fa-search  jplist-icon"></i>
+
+                                        <!--[if lt IE 10]>
+                    <div class="jplist-label">Filter by Title:</div>
+                    <![endif]-->
+
+                                        <input class="form-control" data-path=".prenda" type="text" value="" placeholder="Buscar por prenda" data-control-type="textbox" data-control-name="title-filter" data-control-action="filter" />
+                                    </div> 
+
+                                    <!-- pagination results -->
+                                    <div class="jplist-label" data-type="{start} - {end} de {all}" data-control-type="pagination-info" data-control-name="paging" data-control-action="paging">
+                                    </div>
+
+                                    <!-- pagination control -->
+                                    <div class="jplist-pagination col-md-12" style="justify-content: center;" data-control-type="pagination" data-control-name="paging" data-control-action="paging">
+                                    </div>
+
+                                </div>
+
+                                <!-- data -->
+                                <div class="list box text-shadow">
+
+                                    <!-- item 1 -->
+                                    <div class="list-item box col-md-4">
+
+
+                                        <!-- data -->
+                                        <div class="block text-justify">
+                                        	<img class="thumb1 centerImg" src="https://i.ebayimg.com/images/g/4PAAAOSwXgFc9wh~/s-l300.jpg" alt="" title="" />
+                                            <p class="stock"><strong>Stock:</strong> <a>9</a></p>
+                                            <p class="prenda"><strong>Prenda:</strong> <a>Abrigo Gris 02</a></p>
+                                            <p class="desc"><strong>Modelo:</strong> <a>Modelo 001</a></p>
+                                            <p class="tela"><strong>Tela:</strong> <a>Tela 001</a></p>
+                                            <p class="talla"><strong>Talla:</strong> <a>Talla 001</a></p>
+                                            <p class="theme" style="display:none">
+                                                <span class="abrigo"></span>
+                                            </p>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="element-item abrigo col-12 col-sm-6 col-md-4 d-flex align-items-stretch" data-category="abrigo">
-                                    <div class="card bg-light">
-                                        <div class="card-header text-muted border-bottom-0">
-                                            Stock: 9
-                                        </div>
-                                        <div class="card-body pt-0">
-                                            <div class="row">
-                                                <div class="col-7">
-                                                    <h2 class="lead"><strong>Prenda: </strong>Abrigo rosa</h2>
-                                                    <h2 class="lead"><strong>Modelo: </strong>MOD0002</h2>
-                                                    <h2 class="lead"><strong>Tela: </strong>TEL0002</h2>
-                                                    <h2 class="lead"><strong>Talla: </strong>TAL0002</h2>
-                                                </div>
-                                                <div class="col-5 text-center">
-                                                    <a data-toggle="modal" data-target="#imagenCatalogo5">
-                                                        <img src="https://cdn.shopify.com/s/files/1/2808/3316/products/50103278_1_1024x1024.jpg?v=1566582759" alt="" class="img-circle img-fluid">
-                                                    </a>
-                                                    <div id="imagenCatalogo5" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered">
-                                                            <div class="modal-content">
-                                                                <div class="modal-body">
-                                                                    <img class="img-fluid" src="https://cdn.shopify.com/s/files/1/2808/3316/products/50103278_1_1024x1024.jpg?v=1566582759" alt="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="text-right">
-                                                <a href="#" class="btn bg-teal btn-circle btn-sm popoverxd" data-toggle="popover" data-html="true" data-container="body" data-placement="top" data-content="A&ntilde;adir al carrito">
-                                                    <i class="fas fa-plus"></i>
-                                                </a>
-                                            </div>
+
+                                    <!-- item 2 -->
+                                    <div class="list-item box col-md-4">
+                                        <!-- data -->
+                                        <div class="block text-justify">
+                                        	<img class="thumb1 centerImg" src="https://resources.claroshop.com/medios-plazavip/fotos/productos_sears1/original/2911839.jpg" alt="" title="" />
+                                            <p class="stock"><strong>Stock:</strong> <a>9</a></p>
+                                            <p class="prenda"><strong>Prenda:</strong> <a>Camisa Azul 02</a></p>
+                                            <p class="desc"><strong>Modelo:</strong> <a>Modelo 001</a></p>
+                                            <p class="tela"><strong>Tela:</strong> <a>Tela 001</a></p>
+                                            <p class="talla"><strong>Talla:</strong> <a>Talla 001</a></p>
+                                            <p class="theme" style="display:none">
+                                                <span class="camisa"></span>
+                                            </p>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="element-item abrigo col-12 col-sm-6 col-md-4 d-flex align-items-stretch" data-category="abrigo">
-                                    <div class="card bg-light">
-                                        <div class="card-header text-muted border-bottom-0">
-                                            Stock: 9
-                                        </div>
-                                        <div class="card-body pt-0">
-                                            <div class="row">
-                                                <div class="col-7">
-                                                    <h2 class="lead"><strong>Prenda: </strong>Abrigo gris</h2>
-                                                    <h2 class="lead"><strong>Modelo: </strong>MOD0003</h2>
-                                                    <h2 class="lead"><strong>Tela: </strong>TEL0003</h2>
-                                                    <h2 class="lead"><strong>Talla: </strong>TAL0003</h2>
-                                                </div>
-                                                <div class="col-5 text-center">
-                                                    <a data-toggle="modal" data-target="#imagenCatalogo6">
-                                                        <img src="https://cdn.shopify.com/s/files/1/2808/3316/products/50103316_1_1024x1024.jpg?v=1571186914" alt="" class="img-circle img-fluid">
-                                                    </a>
-                                                    <div id="imagenCatalogo6" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered">
-                                                            <div class="modal-content">
-                                                                <div class="modal-body">
-                                                                    <img class="img-fluid" src="https://cdn.shopify.com/s/files/1/2808/3316/products/50103316_1_1024x1024.jpg?v=1571186914" alt="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="text-right">
-                                                <a href="#" class="btn bg-teal btn-circle btn-sm popoverxd" data-toggle="popover" data-html="true" data-container="body" data-placement="top" data-content="A&ntilde;adir al carrito">
-                                                    <i class="fas fa-plus"></i>
-                                                </a>
-                                            </div>
+
+                                    <!-- item 3 -->
+                                    <div class="list-item box col-md-4">
+                                        <!-- data -->
+                                        <div class="block text-justify">
+                                        	<img class="thumb1 centerImg" src="https://resources.sears.com.mx/medios-plazavip/fotos/productos_sears1/original/2934344.jpg" alt="" title="" />
+                                            <p class="stock"><strong>Stock:</strong> <a>9</a></p>
+                                            <p class="prenda"><strong>Prenda:</strong> <a>Pantalon Azul 02</a></p>
+                                            <p class="desc"><strong>Modelo:</strong> <a>Modelo 001</a></p>
+                                            <p class="tela"><strong>Tela:</strong> <a>Tela 001</a></p>
+                                            <p class="talla"><strong>Talla:</strong> <a>Talla 001</a></p>
+                                            <p class="theme" style="display:none">
+                                                <span class="pantalon"></span>
+                                            </p>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="element-item camisa col-12 col-sm-6 col-md-4 d-flex align-items-stretch" data-category="camisa">
-                                    <div class="card bg-light">
-                                        <div class="card-header text-muted border-bottom-0">
-                                            Stock: 9
-                                        </div>
-                                        <div class="card-body pt-0">
-                                            <div class="row">
-                                                <div class="col-7">
-                                                    <h2 class="lead"><strong>Prenda: </strong>Camisa mezclilla</h2>
-                                                    <h2 class="lead"><strong>Modelo: </strong>MOD0004</h2>
-                                                    <h2 class="lead"><strong>Tela: </strong>TEL0004</h2>
-                                                    <h2 class="lead"><strong>Talla: </strong>TAL0004</h2>
-                                                </div>
-                                                <div class="col-5 text-center">
-                                                    <a data-toggle="modal" data-target="#imagenCatalogo1">
-                                                        <img src="https://www.dhresource.com/0x0/f2/albu/g10/M01/4A/19/rBVaWVzBkrOAZq_CAATbeZjgU70288.jpg" alt="" class="img-circle img-fluid">
-                                                    </a>
-                                                    <div id="imagenCatalogo1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered">
-                                                            <div class="modal-content">
-                                                                <div class="modal-body">
-                                                                    <img class="img-fluid" src="https://www.dhresource.com/0x0/f2/albu/g10/M01/4A/19/rBVaWVzBkrOAZq_CAATbeZjgU70288.jpg" alt="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="text-right">
-                                                <a href="#" class="btn bg-teal btn-circle btn-sm popoverxd" data-toggle="popover" data-html="true" data-container="body" data-placement="top" data-content="A&ntilde;adir al carrito">
-                                                    <i class="fas fa-plus"></i>
-                                                </a>
-                                            </div>
+
+                                    <!-- item 4 -->
+                                    <div class="list-item box col-md-4">
+
+                                        <!-- data -->
+                                        <div class="block text-justify">
+                                        	<img class="thumb1 centerImg" src="https://ae01.alicdn.com/kf/H7b376560ebe642f69bfdbbcaf18a1963Y.jpg_q50.jpg" alt="" title="" />
+                                            <p class="stock"><strong>Stock:</strong> <a>9</a></p>
+                                            <p class="prenda"><strong>Prenda:</strong> <a>Camisa azul oscura 02</a></p>
+                                            <p class="desc"><strong>Modelo:</strong> <a>Modelo 001</a></p>
+                                            <p class="tela"><strong>Tela:</strong> <a>Tela 001</a></p>
+                                            <p class="talla"><strong>Talla:</strong> <a>Talla 001</a></p>
+                                            <p class="theme" style="display:none">
+                                                <span class="camisa"></span>
+                                            </p>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="element-item pantalon col-12 col-sm-6 col-md-4 d-flex align-items-stretch" data-category="pantalon">
-                                    <div class="card bg-light">
-                                        <div class="card-header text-muted border-bottom-0">
-                                            Stock: 9
-                                        </div>
-                                        <div class="card-body pt-0">
-                                            <div class="row">
-                                                <div class="col-7">
-                                                    <h2 class="lead"><strong>Prenda: </strong>Pantalon cafe</h2>
-                                                    <h2 class="lead"><strong>Modelo: </strong>MOD0005</h2>
-                                                    <h2 class="lead"><strong>Tela: </strong>TEL0005</h2>
-                                                    <h2 class="lead"><strong>Talla: </strong>TAL0005</h2>
-                                                </div>
-                                                <div class="col-5 text-center">
-                                                    <a data-toggle="modal" data-target="#imagenCatalogo10">
-                                                        <img src="https://resources.sears.com.mx/medios-plazavip/fotos/productos_sears1/original/3060616.jpg" alt="" class="img-circle img-fluid">
-                                                    </a>
-                                                    <div id="imagenCatalogo10" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered">
-                                                            <div class="modal-content">
-                                                                <div class="modal-body">
-                                                                    <img class="img-fluid" src="https://resources.sears.com.mx/medios-plazavip/fotos/productos_sears1/original/3060616.jpg" alt="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="text-right">
-                                                <a href="#" class="btn bg-teal btn-circle btn-sm popoverxd" data-toggle="popover" data-html="true" data-container="body" data-placement="top" data-content="A&ntilde;adir al carrito">
-                                                    <i class="fas fa-plus"></i>
-                                                </a>
-                                            </div>
+
+                                    <!-- item 5 -->
+                                    <div class="list-item box col-md-4">
+                                        <!-- data -->
+                                        <div class="block text-justify">
+                                            <img class="thumb1 centerImg" src="https://static.grainger.com/rp/s/is/image/Grainger/2KVN3_AS01?$glgmain$" alt="" title="" />
+                                            <p class="stock"><strong>Stock:</strong> <a>9</a></p>
+                                            <p class="prenda"><strong>Prenda:</strong> <a>Camisa mezclilla 02</a></p>
+                                            <p class="desc"><strong>Modelo:</strong> <a>Modelo 001</a></p>
+                                            <p class="tela"><strong>Tela:</strong> <a>Tela 001</a></p>
+                                            <p class="talla"><strong>Talla:</strong> <a>Talla 001</a></p>
+                                            <p class="theme" style="display:none">
+                                                <span class="camisa">Camisa</span>
+                                            </p>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="element-item camisa col-12 col-sm-6 col-md-4 d-flex align-items-stretch" data-category="camisa">
-                                    <div class="card bg-light">
-                                        <div class="card-header text-muted border-bottom-0">
-                                            Stock: 9
-                                        </div>
-                                        <div class="card-body pt-0">
-                                            <div class="row">
-                                                <div class="col-7">
-                                                    <h2 class="lead"><strong>Prenda: </strong>Camisa roja cuadros</h2>
-                                                    <h2 class="lead"><strong>Modelo: </strong>MOD0006</h2>
-                                                    <h2 class="lead"><strong>Tela: </strong>TEL0006</h2>
-                                                    <h2 class="lead"><strong>Talla: </strong>TAL0006</h2>
-                                                </div>
-                                                <div class="col-5 text-center">
-                                                    <a data-toggle="modal" data-target="#imagenCatalogo2">
-                                                        <img src="https://www.dhresource.com/0x0/f2/albu/g9/M01/3C/C9/rBVaVVxMUPuAfJUxAAIqKHbOr30075.jpg" alt="" class="img-circle img-fluid">
-                                                    </a>
-                                                    <div id="imagenCatalogo2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered">
-                                                            <div class="modal-content">
-                                                                <div class="modal-body">
-                                                                    <img class="img-fluid" src="https://www.dhresource.com/0x0/f2/albu/g9/M01/3C/C9/rBVaVVxMUPuAfJUxAAIqKHbOr30075.jpg" alt="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="text-right">
-                                                <a href="#" class="btn bg-teal btn-circle btn-sm popoverxd" data-toggle="popover" data-html="true" data-container="body" data-placement="top" data-content="A&ntilde;adir al carrito">
-                                                    <i class="fas fa-plus"></i>
-                                                </a>
-                                            </div>
+
+                                    <!-- item 6 -->
+                                    <div class="list-item box col-md-4">
+                                        <!-- data -->
+                                        <div class="block text-justify">
+                                            <img class="thumb1 centerImg" src="https://cdn.shopify.com/s/files/1/2808/3316/products/50103302_1_1024x1024.jpg?v=1571186750" alt="" title="" />
+                                            <p class="stock"><strong>Stock:</strong> <a>9</a></p>
+                                            <p class="prenda"><strong>Prenda:</strong> <a>Abrigo Rojo con puntos blancos 02</a></p>
+                                            <p class="desc"><strong>Modelo:</strong> <a>Modelo 001</a></p>
+                                            <p class="tela"><strong>Tela:</strong> <a>Tela 001</a></p>
+                                            <p class="talla"><strong>Talla:</strong> <a>Talla 001</a></p>
+                                            <p class="theme" style="display:none">
+                                                <span class="abrigo"></span>
+                                            </p>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="element-item pantalon col-12 col-sm-6 col-md-4 d-flex align-items-stretch" data-category="pantalon">
-                                    <div class="card bg-light">
-                                        <div class="card-header text-muted border-bottom-0">
-                                            Stock: 9
-                                        </div>
-                                        <div class="card-body pt-0">
-                                            <div class="row">
-                                                <div class="col-7">
-                                                    <h2 class="lead"><strong>Prenda: </strong>Pantalon mezclilla</h2>
-                                                    <h2 class="lead"><strong>Modelo: </strong>MOD0007</h2>
-                                                    <h2 class="lead"><strong>Tela: </strong>TEL0007</h2>
-                                                    <h2 class="lead"><strong>Talla: </strong>TAL0007</h2>
-                                                </div>
-                                                <div class="col-5 text-center">
-                                                    <a data-toggle="modal" data-target="#imagenCatalogo9">
-                                                        <img src="https://industrialjaguar.com/Productos/117-large_default/pantalon-mezclilla-14-oz.jpg" alt="" class="img-circle img-fluid">
-                                                    </a>
-                                                    <div id="imagenCatalogo9" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered">
-                                                            <div class="modal-content">
-                                                                <div class="modal-body">
-                                                                    <img class="img-fluid" src="https://industrialjaguar.com/Productos/117-large_default/pantalon-mezclilla-14-oz.jpg" alt="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="text-right">
-                                                <a href="#" class="btn bg-teal btn-circle btn-sm popoverxd" data-toggle="popover" data-html="true" data-container="body" data-placement="top" data-content="A&ntilde;adir al carrito">
-                                                    <i class="fas fa-plus"></i>
-                                                </a>
-                                            </div>
+
+                                    <!-- item 7 -->
+                                    <div class="list-item box col-md-4">
+                                        <!-- data -->
+                                        <div class="block text-justify">
+                                        	<img class="thumb1 centerImg" src="https://resources.claroshop.com/medios-plazavip/fotos/productos_sears1/original/2943845.jpg" alt="" title="" />
+                                            <p class="stock"><strong>Stock:</strong> <a>9</a></p>
+                                            <p class="prenda"><strong>Prenda:</strong> <a>Saco azulado 02</a></p>
+                                            <p class="desc"><strong>Modelo:</strong> <a>Modelo 001</a></p>
+                                            <p class="tela"><strong>Tela:</strong> <a>Tela 001</a></p>
+                                            <p class="talla"><strong>Talla:</strong> <a>Talla 001</a></p>
+                                            <p class="theme" style="display:none">
+                                                <span class="saco"></span>
+                                            </p>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="element-item camisa col-12 col-sm-6 col-md-4 d-flex align-items-stretch" data-category="camisa">
-                                    <div class="card bg-light">
-                                        <div class="card-header text-muted border-bottom-0">
-                                            Stock: 9
-                                        </div>
-                                        <div class="card-body pt-0">
-                                            <div class="row">
-                                                <div class="col-7">
-                                                    <h2 class="lead"><strong>Prenda: </strong>Camisa rosa</h2>
-                                                    <h2 class="lead"><strong>Modelo: </strong>MOD0008</h2>
-                                                    <h2 class="lead"><strong>Tela: </strong>TEL0008</h2>
-                                                    <h2 class="lead"><strong>Talla: </strong>TAL0008</h2>
-                                                </div>
-                                                <div class="col-5 text-center">
-                                                    <a data-toggle="modal" data-target="#imagenCatalogo3">
-                                                        <img src="https://cdn.shopify.com/s/files/1/0639/4559/products/Rosa_M.Larga_3000x.jpg?v=1583940175" alt="" class="img-circle img-fluid">
-                                                    </a>
-                                                    <div id="imagenCatalogo3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered">
-                                                            <div class="modal-content">
-                                                                <div class="modal-body">
-                                                                    <img class="img-fluid" src="https://cdn.shopify.com/s/files/1/0639/4559/products/Rosa_M.Larga_3000x.jpg?v=1583940175" alt="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="text-right">
-                                                <a href="#" class="btn bg-teal btn-circle btn-sm popoverxd" data-toggle="popover" data-html="true" data-container="body" data-placement="top" data-content="A&ntilde;adir al carrito">
-                                                    <i class="fas fa-plus"></i>
-                                                </a>
-                                            </div>
+
+                                    <!-- item 8 -->
+                                    <div class="list-item box col-md-4">
+                                        <!-- data -->
+                                        <div class="block text-justify">
+                                            <img class="thumb1 centerImg" src="https://www.playerasmark.com/wp-content/uploads/2017/10/2.png" alt="" title="" />
+                                            <p class="stock"><strong>Stock:</strong> <a>9</a></p>
+                                            <p class="prenda"><strong>Prenda:</strong> <a>Blusa rosa 02</a></p>
+                                            <p class="desc"><strong>Modelo:</strong> <a>Modelo 001</a></p>
+                                            <p class="tela"><strong>Tela:</strong> <a>Tela 001</a></p>
+                                            <p class="talla"><strong>Talla:</strong> <a>Talla 001</a></p>
+                                            <p class="theme" style="display:none">
+                                                <span class="blusa"></span>
+                                            </p>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="element-item abrigo col-12 col-sm-6 col-md-4 d-flex align-items-stretch" data-category="abrigo">
-                                    <div class="card bg-light">
-                                        <div class="card-header text-muted border-bottom-0">
-                                            Stock: 9
-                                        </div>
-                                        <div class="card-body pt-0">
-                                            <div class="row">
-                                                <div class="col-7">
-                                                    <h2 class="lead"><strong>Prenda: </strong>Abrigo cafe</h2>
-                                                    <h2 class="lead"><strong>Modelo: </strong>MOD0009</h2>
-                                                    <h2 class="lead"><strong>Tela: </strong>TEL0009</h2>
-                                                    <h2 class="lead"><strong>Talla: </strong>TAL0009</h2>
-                                                </div>
-                                                <div class="col-5 text-center">
-                                                    <a data-toggle="modal" data-target="#imagenCatalogo7">
-                                                        <img src="https://www.bel-cashmere.com/wp-content/uploads/2016/09/8759_1.jpg" alt="" class="img-circle img-fluid">
-                                                    </a>
-                                                    <div id="imagenCatalogo7" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered">
-                                                            <div class="modal-content">
-                                                                <div class="modal-body">
-                                                                    <img class="img-fluid" src="https://www.bel-cashmere.com/wp-content/uploads/2016/09/8759_1.jpg" alt="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="text-right">
-                                                <a href="#" class="btn bg-teal btn-circle btn-sm popoverxd" data-toggle="popover" data-html="true" data-container="body" data-placement="top" data-content="A&ntilde;adir al carrito">
-                                                    <i class="fas fa-plus"></i>
-                                                </a>
-                                            </div>
+
+                                    <!-- item 9 -->
+                                    <div class="list-item box col-md-4">
+                                        <!-- data -->
+                                        <div class="block text-justify">
+                                            <img class="thumb1 centerImg" src="https://www.dhresource.com/0x0/f2/albu/g5/M01/91/00/rBVaJFjcZ5CAU8HnAADC0YffTgo681.jpg" alt="" title="" />
+                                            <p class="stock"><strong>Stock:</strong> <a>9</a></p>
+                                            <p class="prenda"><strong>Prenda:</strong> <a>Blusa verde 02</a></p>
+                                            <p class="desc"><strong>Modelo:</strong> <a>Modelo 001</a></p>
+                                            <p class="tela"><strong>Tela:</strong> <a>Tela 001</a></p>
+                                            <p class="talla"><strong>Talla:</strong> <a>Talla 001</a></p>
+                                            <p class="theme" style="display:none">
+                                                <span class="blusa"></span>
+                                            </p>
                                         </div>
                                     </div>
+
+                                    <!-- item 10 -->
+                                    <div class="list-item box col-md-4">
+                                        <!-- data -->
+                                        <div class="block text-justify">
+                                            <img class="thumb1 centerImg" src="https://static.grainger.com/rp/s/is/image/Grainger/6XXM5_AS01?$zmmain$" alt="" title="" />
+                                            <p class="stock"><strong>Stock:</strong> <a>9</a></p>
+                                            <p class="prenda"><strong>Prenda:</strong> <a>Pantalon cafe 02</a></p>
+                                            <p class="desc"><strong>Modelo:</strong> <a>Modelo 001</a></p>
+                                            <p class="tela"><strong>Tela:</strong> <a>Tela 001</a></p>
+                                            <p class="talla"><strong>Talla:</strong> <a>Talla 001</a></p>
+                                            <p class="theme" style="display:none">
+                                                <span class="pantalon"></span>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    
                                 </div>
+
+                                <div class="box jplist-hidden text-shadow align-center">
+                                    <p>No results found</p>
+                                </div>
+
                             </div>
+
+                            <!--<><><><><><><><><><><><><><><><><><><><><><><><><><> DEMO END <><><><><><><><><><><><><><><><><><><><><><><><><><>-->
+
                         </div>
                     </div>
                     <!-- /.card-body -->
@@ -435,7 +333,39 @@
 
     <div th:replace="navegacion-scripts"></div>
     <script src="/dist/js/bootstrap-select.min.js"></script>
-    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+
+    <script src="dist/js/jplist.core.min.js"></script>
+
+    <!-- jPList sort bundle -->
+    <script src="dist/js/jplist.sort-bundle.min.js"></script>
+
+    <!-- jPList textbox filter control -->
+    <script src="dist/js/jplist.textbox-filter.min.js"></script>
+
+    <!-- jPList pagination bundle -->
+    <script src="dist/js/jplist.pagination-bundle.min.js"></script>
+    <!-- filter dropdown bundle -->
+	<script src="dist/js/jplist.filter-dropdown-bundle.min.js"></script>
+    <script>
+        $('document').ready(function() {
+
+            //start jplist
+            $('#demo').jplist({
+                itemsBox: '.list',
+                itemPath: '.list-item',
+                panelPath: '.jplist-panel'
+            });
+
+            //add item to jPList collection in the given index
+            $('#demo').jplist({
+                command: 'add',
+                commandData: {
+                    $item: $(html),
+                    index: 0
+                }
+            });
+        });
+    </script>
     <script>
         $('.selectCustom').selectpicker({
             style: 'border border-bootstrap'
@@ -448,59 +378,6 @@
         $('#menuMuestrario').addClass('menu-open');
         $('#navMuestrario').addClass('active');
         $('#navMuestrario3').addClass('active');
-    </script>
-    <script>
-        // quick search regex
-        var qsRegex;
-        var buttonFilter;
-
-        // init Isotope
-        var $grid = $('.grid').isotope({
-            itemSelector: '.element-item',
-            layoutMode: 'fitRows',
-            filter: function() {
-                var $this = $(this);
-                var searchResult = qsRegex ? $this.text().match(qsRegex) : true;
-                var buttonResult = buttonFilter ? $this.is(buttonFilter) : true;
-                return searchResult && buttonResult;
-            }
-        });
-
-        $('#filters').on('click', 'button', function() {
-            buttonFilter = $(this).attr('data-filter');
-            $grid.isotope();
-        });
-
-        // use value of search field to filter
-        var $quicksearch = $('#quicksearch').keyup(debounce(function() {
-            qsRegex = new RegExp($quicksearch.val(), 'gi');
-            $grid.isotope();
-        }));
-
-        // change is-checked class on buttons
-        $('.btn-group').each(function(i, buttonGroup) {
-            var $buttonGroup = $(buttonGroup);
-            $buttonGroup.on('click', 'button', function() {
-                $buttonGroup.find('.is-checked').removeClass('is-checked');
-                $(this).addClass('is-checked');
-            });
-        });
-
-        // debounce so filtering doesn't happen every millisecond
-        function debounce(fn, threshold) {
-            var timeout;
-            threshold = threshold || 100;
-            return function debounced() {
-                clearTimeout(timeout);
-                var args = arguments;
-                var _this = this;
-
-                function delayed() {
-                    fn.apply(_this, args);
-                }
-                timeout = setTimeout(delayed, threshold);
-            };
-        }
     </script>
 
 </body>
