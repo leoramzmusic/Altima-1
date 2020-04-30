@@ -64,6 +64,19 @@ public class ComercialClienteFactura implements Serializable{
 	
 	@Column(name="razon_social")
 	private String razon_socialF;
+	
+	@Column(name="observacion")
+	private String observacion;
+	
+	
+
+	public String getObservacion() {
+		return observacion;
+	}
+
+	public void setObservacion(String observacion) {
+		this.observacion = observacion;
+	}
 
 	public Long getIdClienteFacturaF() {
 		return idClienteFacturaF;
