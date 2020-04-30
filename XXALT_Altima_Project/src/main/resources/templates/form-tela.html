@@ -172,56 +172,56 @@
 				</select>
 	    </div>
 	    
-	    <div th:if="*{tela.estatusTela =='1'}"  class="form-group col-sm-10">
-	        <label for="status">Botones</label><br>
-        <select required  class="form-control selectCustom" data-live-search="true" multiple  name="botones"  data-max-options="3">
-        
-        <option th:each="listBtnSelec: ${listBtnSelec}"
-			th:value="${listBtnSelec[0]}" th:text="${listBtnSelec[1]}" selected ></option>
-        
-        <option th:each="listBoton: ${listBoton}"
-			th:value="${listBoton[0]}" th:text="${listBoton[1]}"></option>
-        </select>
-    </div>
-    
-     <div th:if="*{tela.estatusTela =='1'}"  class="form-group col-sm-10">
-        <label for="status">Hilos</label>
-        <select  class="form-control selectCustom" multiple data-live-search="true" name="hilos"  data-max-options="3">
-        <option th:each="listHiloSelec: ${listHiloSelec}"
-			th:value="${listHiloSelec[0]}" th:text="${listHiloSelec[1]}" selected ></option>
-         
-        <option th:each="listHilo: ${listHilo}"
-			th:value="${listHilo[0]}" th:text="${listHilo[1]}" ></option>
+		<div class="form-group col-sm-3">
+			<label for="razonEmpresa">Tipo</label>
+			<select id="selecttipom" class="form-control selectCustom" data-live-search="true" ><option selected disabled >Selecciona uno...</option></select>
+		</div>
+		<div class="form-group col-md-3">
+			<label for="status">Material</label>
+			<select id="selectmat"class="form-control selectCustom" data-live-search="true">
+				<option selected disabled >Selecciona uno...</option>			
 			</select>
-    </div>
-    
-    
-     <div th:if="*{tela.estatusTela =='1'}"  class="form-group col-sm-10">
-        <label for="status">Cierres</label>
-        <select required class="form-control selectCustom" multiple data-live-search="true" name="cierres"  data-max-options="3">
-        <option th:each="listCierreSelec: ${listCierreSelec}"
-			th:value="${listCierreSelec[0]}" th:text="${listCierreSelec[1]}" selected ></option>
-         
-        <option th:each="listCierre: ${listCierre}"
-			th:value="${listCierre[0]}" th:text="${listCierre[1]}" ></option>
-			</select>
-    </div>
-    
-    
-     <div th:if="*{tela.estatusTela =='1'}"  class="form-group col-sm-10">
-        <label for="status">Adornos</label>
-        <select  class="form-control selectCustom" autocomplete="true" multiple data-live-search="true" name="adornos"  data-max-options="3">
-        <option th:each="listAdornoSelec: ${listAdornoSelec}"
-			th:value="${listAdornoSelec[0]}" th:text="${listAdornoSelec[1]}" selected ></option>
-         
-        <option th:each="listAdorno: ${listAdorno}"
-			th:value="${listAdorno[0]}" th:text="${listAdorno[1]}" ></option>
-			</select>
-    </div>
-    
-    
-    
-    
+		</div>
+		<div class="form-group col-sm-3">
+			<label for="status">Color</label>
+			<input type="text" id="matcol" class="form-control" placeholder="Rojo">
+		</div>
+		
+		<div class="form-group col-sm-2">
+			<label for="status">Codigo Color</label>
+			
+				
+				<input required  type="color" id="matcod"  class="form-control" placeholder="Codigo Color">
+			</div>
+		 <div class="form-group col-sm-1">
+		 <label for="status">Agregar</label>
+			<button id="addMat"  class="btn btn-info rounded-circle" type="button"><i class="fas fa-plus"></i></button>
+		</div>
+		 <div class="form-group col-sm-12" th:if="*{tela.estatusTela =='1'}">
+			<table  class="table table-striped">
+			<thead>
+				<tr>
+					<th style="display:none;">Id</th>
+					<th style="display:none;">Tipo</th>
+					<th>Material</th>
+					<th>Color</th>
+					<th>Codigo color</th>
+					<th>Eliminar</th>
+	
+				  </tr>
+			  <thead>
+				  <tbody id="tablita">
+					<tr th:each="table : ${tablemat}">
+						<td style="display:none;" th:text="${table[0]}"></td>
+						<td style="display:none;" th:text="${table[1]}"></td>
+						<td th:text="${table[2]}"></td>
+						<td th:text="${table[3]}"></td>
+						<td ><input type="color" th:id="'color'+${table[0]}" disabled th:value="${table[4]}"></td>
+						<td><button type="button" th:id="${table[0]}" name="remove"onclick="eliminarMaterial(this)" class="btn btn-danger btn_remove">Quitar</button></td>
+					</tr>
+				 </tbody>
+			</table>
+		</div>
     <div th:if="*{tela.estatusTela =='1'}"  class="form-group col-sm-4">
         <label for="status">Tela Opcional 1</label>
         <select required class="form-control"  data-live-search="true" th:field="*{tela.auxiliar1}">
@@ -291,8 +291,11 @@
     
     <input name="txtTabla" type="hidden" id="txtTabla" value="">
     <input name="txtTabla2" type="hidden" id="txtTabla2" value="">
-    
-    <input name="id_prendas" type="hidden" id="id_prendas" value="">
+	<input name="id_prendas" type="hidden" id="id_prendas" value="">
+	<input name="idmat" type="hidden" id="idmat" value="">
+	<input name="colormat" type="hidden" id="colormat" value="">
+	<input name="codcolor" type="hidden" id="codcolor" value="">
+	<input name="tipomat" type="hidden" id="tipomat" value="">
     
     <input  type="hidden" th:field="*{tela.idTela}">
     <input  type="hidden" th:field="*{tela.idText}">
@@ -308,6 +311,7 @@
     
 </form>
 <script th:src="@{/dist/js/sweetalert.js}"></script>
+
 <script>
 function guardar(){
 	if( document.getElementById("telaComposicion").value == null || 
@@ -386,6 +390,31 @@ function arreglo() {
 		id=$(this).find('td').eq(1).html()+","+id;
 	  document.getElementById("id_prendas").value = id;
 	 });
+	var idmat="";
+	var color="";
+	var codcolor="";
+	var tipomat="";
+	 $('#tablita tr').each(function () {
+		if(idmat==""){
+				idmat=$(this).find('td').eq(0).html();
+				tipomat=$(this).find('td').eq(1).html();
+				color=$(this).find('td').eq(3).html();
+				codcolor=$('#color'+$(this).find('td').eq(0).html()).val();
+			}
+			else{
+				idmat=$(this).find('td').eq(0).html()+","+idmat;
+				tipomat=$(this).find('td').eq(1).html()+","+tipomat;
+				color= $(this).find('td').eq(3).html()+","+color;
+				codcolor= $('#color'+$(this).find('td').eq(0).html()).val()+","+codcolor;
+			}
+			document.getElementById("idmat").value = idmat;
+			document.getElementById("tipomat").value = tipomat;
+			document.getElementById("colormat").value = color;
+			document.getElementById("codcolor").value = codcolor;
+	 });
+
+
+
 		var form = document.getElementById("telaForm");
 		form.onsubmit = function(e){
 			if(contador == 100){
@@ -403,6 +432,7 @@ function arreglo() {
 			
 			}
 		}
+	
 	}
 	
 function guardarPrenda(){

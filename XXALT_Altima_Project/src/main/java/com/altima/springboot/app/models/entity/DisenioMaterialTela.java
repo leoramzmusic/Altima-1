@@ -39,6 +39,12 @@ public class DisenioMaterialTela implements Serializable{
 	
 	@Column(name="tipo")
 	private String tipo;
+
+	@Column(name="color")
+	private String color;
+
+	@Column(name="codigo_color")
+	private String codigoColor;
 	
 	@Column(name="fecha_creacion")
 	private String fechaCreacion;
@@ -177,6 +183,22 @@ public class DisenioMaterialTela implements Serializable{
 		} else if (!tipo.equals(other.tipo))
 			return false;
 		return true;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public String getCodigocolor() {
+		return codigoColor;
+	}
+
+	public void setCodigocolor(String codigoColor) {
+		this.codigoColor = codigoColor;
 	}
 
 	

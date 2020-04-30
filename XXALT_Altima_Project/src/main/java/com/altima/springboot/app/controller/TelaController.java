@@ -68,6 +68,10 @@ public class TelaController {
 	public String guardar_tela( DisenioTela tela,
 			@RequestParam("txtTabla") String composicion,
 			@RequestParam("txtTabla2") String idComposicion,
+			@RequestParam("idmat") String idmat,
+			@RequestParam("colormat") String colormat,
+			@RequestParam("codcolor") String codcolor,
+			@RequestParam("tipomat") String tipomat,
 			@RequestParam(value="botones" , required=false) String botones,
 			@RequestParam( value="hilos" , required=false) String hilos,
 			@RequestParam( value="cierres" , required=false) String cierres,
@@ -79,7 +83,8 @@ public class TelaController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Date date = new Date();
 		DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		
+		System.out.println("checalos here "+idmat+" "+colormat+" "+codcolor);
+
 		if ( tela.getIdTela()== null || tela.getEstatusTela().equals("0") ) {
 			System.out.println("Entra if de id null y estatus tela 0 forro");
 			
@@ -174,49 +179,22 @@ public class TelaController {
 					TelaForroService.save(tf);	
 				}
 			}
-			if ( (botones != null) && (!botones.equals("")) ){
-				String [] array = botones.split(",");
-				for(int i= 0 ; i<array.length;i++) {
+			if ( (idmat != null) && (!idmat.equals("")) ){
+				String [] idMat = idmat.split(",");
+				String [] colorMat = colormat.split(",");
+				String [] codColor = codcolor.split(",");
+				String [] tipoMat = tipomat.split(",");
+				for(int i= 0 ; i<idMat.length;i++) {
 					DisenioMaterialTela tm = new DisenioMaterialTela();
 					tm.setIdTela(tela.getIdTela());
-					tm.setIdMaterial(Long.valueOf(array[i]));
-					tm.setTipo("boton");
+					tm.setIdMaterial(Long.valueOf(idMat[i]));
+					tm.setColor(colorMat[i]);
+					tm.setCodigocolor(codColor[i]);
+					tm.setTipo(tipoMat[i]);
 					MaterialService.save(tm);
 				}
 			}
-			
-			if ( (hilos != null) && (!hilos.equals("")) ){
-				String [] array = hilos.split(",");
-				for(int i= 0 ; i<array.length;i++) {
-					DisenioMaterialTela tm = new DisenioMaterialTela();
-					tm.setIdTela(tela.getIdTela());
-					tm.setIdMaterial(Long.valueOf(array[i]));
-					tm.setTipo("hilo");
-					MaterialService.save(tm);
-				}
-			}
-			
-			if ( (cierres != null) && (!cierres.equals("")) ){
-				String [] array = cierres.split(",");
-				for(int i= 0 ; i<array.length;i++) {
-					DisenioMaterialTela tm = new DisenioMaterialTela();
-					tm.setIdTela(tela.getIdTela());
-					tm.setIdMaterial(Long.valueOf(array[i]));
-					tm.setTipo("cierre");
-					MaterialService.save(tm);
-				}
-			}
-			
-			if ( (adornos != null) && (!adornos.equals("")) ){
-				String [] array = adornos.split(",");
-				for(int i= 0 ; i<array.length;i++) {
-					DisenioMaterialTela tm = new DisenioMaterialTela();
-					tm.setIdTela(tela.getIdTela());
-					tm.setIdMaterial(Long.valueOf(array[i]));
-					tm.setTipo("adorno");
-					MaterialService.save(tm);
-				}
-			}
+
 			
 			
 			if ( composicion.length()>1) {
@@ -268,6 +246,7 @@ public class TelaController {
 		List<DisenioLookup> listLookupsMat = disenioMaterialService.findListaLookupMat();
 		List<DisenioLookup> listLookupsCol = disenioMaterialService.findListaColor();
 		model.addAttribute("material", material);
+		model.addAttribute("tablemat", MaterialService.findAllById(id));
 		model.addAttribute("listLookupsMed", listLookupsMed);
 		model.addAttribute("listLookupsMar", listLookupsMar);
 		model.addAttribute("listLookupsClasificacion", listLookupsClasificacion);
