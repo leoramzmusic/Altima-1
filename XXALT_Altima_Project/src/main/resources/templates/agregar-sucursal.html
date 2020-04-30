@@ -83,20 +83,40 @@
                                             <label for="direccionEmpresa">Calle</label>
                                             <input type="text" th:field="*{direccion.calle}" class="form-control"  placeholder="Av. 1ro de Mayo" required>
                                         </div>
-                                        <div class="form-group col-sm-1">
+                                        
+                                        <div th:if="*{direccion.NumeroExt != 'S/N'}" class="form-group col-sm-1">
 					                        <div class="custom-control custom-checkbox" style="margin-top:38px">
 					                          <input class="custom-control-input" type="checkbox" id="SN1" value="option2">
 					                          <label for="SN1" class="custom-control-label">S/N</label>
 					                        </div>
-					                      </div>
-                                        <div class="form-group col-sm-1">
+					                     </div>
+					                     
+					                      <div th:if="*{direccion.NumeroExt == 'S/N'}" class="form-group col-sm-1">
+					                        <div class="custom-control custom-checkbox" style="margin-top:38px">
+					                          <input class="custom-control-input" type="checkbox" checked  id="SN1" value="option2">
+					                          <label for="SN1" class="custom-control-label">S/N</label>
+					                        </div>
+					                     </div>
+					                     
+                                        <div th:if="*{direccion.NumeroExt == 'S/N'}" class="form-group col-sm-1">
                                             <label for="direccionExt">No. Ext.</label>
-                                            <input type="number" min="0" th:field="*{direccion.NumeroExt}" class="form-control" id="direccionExt" placeholder="63" required>
+                                            <input type="number" min="0" disabled th:field="*{direccion.NumeroExt}" class="form-control" id="direccionExt" placeholder="63" required>
                                         </div>
-                                        <div class="form-group col-sm-2">
+                                        <div th:if="*{direccion.NumeroExt == 'S/N'}" class="form-group col-sm-2">
                                             <label for="direccionInt">No. Int.(opcional)</label>
-                                            <input type="number" min="0" th:field="*{direccion.NumeroInt}"  class="form-control" id="direccionInt" placeholder="12">
+                                            <input type="number" min="0" disabled  th:field="*{direccion.NumeroInt}"  class="form-control" id="direccionInt" placeholder="12">
                                         </div>
+                                        
+                                        
+                                         <div th:if="*{direccion.NumeroExt != 'S/N'}" class="form-group col-sm-1">
+                                            <label for="direccionExt">No. Ext.</label>
+                                            <input type="number" min="0"  th:field="*{direccion.NumeroExt}" class="form-control" id="direccionExt" placeholder="63" required>
+                                        </div>
+                                        <div th:if="*{direccion.NumeroExt != 'S/N'}" class="form-group col-sm-2">
+                                            <label for="direccionInt">No. Int.(opcional)</label>
+                                            <input type="number" min="0"   th:field="*{direccion.NumeroInt}"  class="form-control" id="direccionInt" placeholder="12">
+                                        </div>
+                                        
                                         
                                         <div class="form-group col-sm-3">
                                             <label for="estadoEmpresa">Estado</label>
@@ -167,7 +187,7 @@
                                         
                                         <div class="form-group col-sm-8">
                                             <label for="correoEmpresa">Obervación:</label>
-                                            <input type="text" th:field="*{sucursal.SObservacion}"  class="form-control" id="observacionEmpresa" placeholder="Observación..." required>
+                                            <input type="text" th:field="*{sucursal.SObservacion}"  class="form-control" id="observacionEmpresa" placeholder="Observación..." >
                                         </div>
                                 		<input  type="hidden" th:field="*{sucursal.IdClienteSucursal}">
                                         <input  type="hidden" th:field="*{sucursal.SIdText}">

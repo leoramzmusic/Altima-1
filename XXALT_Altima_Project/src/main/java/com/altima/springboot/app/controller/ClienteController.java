@@ -65,14 +65,17 @@ public class ClienteController {
 		
 		if (cliente.getIdCliente() == null && direccion.getIdDireccion() == null) {
 			direccion.setEstatus(1);
+			if ( direccion.getNumeroExt()== null || direccion.getNumeroExt().isEmpty()) {
+				direccion.setNumeroExt("S/N");
+			}
 			DireccionService.save(direccion);
 			direccion.setIdText("DIR" + direccion.getIdDireccion());
 			direccion.setCreadoPor(auth.getName());
 			DireccionService.save(direccion);
-			// Guardamos los datos de cliente.
 			
+			// Guardamos los datos de cliente.
 			cliente.setEstatusCliente(0);
-			cliente.setEstatus(1);
+			cliente.setEstatusC(1);
 			ClienteService.save(cliente);
 			cliente.setCidText("CLTE" + cliente.getIdCliente());
 			cliente.setCcreadoPor(auth.getName());
@@ -96,6 +99,9 @@ public class ClienteController {
 			ClienteService.save(cliente);
 			redirectAttrs.addFlashAttribute("title", "Cliente guardado correctamente").addFlashAttribute("icon", "success");
 		} else {
+			if ( direccion.getNumeroExt()== null || direccion.getNumeroExt().isEmpty()) {
+				direccion.setNumeroExt("S/N");
+			}
 			direccion.setActualizadoPor(auth.getName());
 			direccion.setUltimaFechaModificacion(new Date());
 			cliente.setCactualizadoPor(auth.getName());
@@ -139,7 +145,7 @@ public class ClienteController {
 	@GetMapping("delete-cliente/{id}") 
 	public String deleteMaterial(@PathVariable("id") Long id, RedirectAttributes redirectAttrs) throws Exception {
 		ComercialCliente cliente = ClienteService.findOne(id);
-		cliente.setEstatus(0);
+		cliente.setEstatusC(0);
 		ClienteService.save(cliente);
 		redirectAttrs
         .addFlashAttribute("title", "Cliente elimnado correctamente")
@@ -201,6 +207,9 @@ public class ClienteController {
 		System.out.println("Hola soy  facturacion");
 		
 		if (factura.getIdClienteFacturaF() == null && direccion.getIdDireccion() == null) {
+			if ( direccion.getNumeroExt()== null || direccion.getNumeroExt().isEmpty()) {
+				direccion.setNumeroExt("S/N");
+			}
 			direccion.setEstatus(1);
 			DireccionService.save(direccion);
 			direccion.setIdText("DIR" + direccion.getIdDireccion());
@@ -219,6 +228,9 @@ public class ClienteController {
 			redirectAttrs.addFlashAttribute("title", "Facturacion guardada correctamente").addFlashAttribute("icon", "success");
 			
 		} else {
+			if ( direccion.getNumeroExt()== null || direccion.getNumeroExt().isEmpty()) {
+				direccion.setNumeroExt("S/N");
+			}
 			direccion.setActualizadoPor(auth.getName());
 			direccion.setUltimaFechaModificacion(new Date());
 			factura.setEstatusF("1");

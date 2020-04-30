@@ -91,19 +91,37 @@
                                             <input type="text" th:field="*{direccion.calle}" class="form-control" id="direccionEmpresa" placeholder="Av. 1ro de Mayo" required>
                                         </div>
                                         
-										<div class="form-group col-sm-1">
+										<div th:if="*{direccion.NumeroExt != 'S/N'}" class="form-group col-sm-1" >
 					                        <div class="custom-control custom-checkbox" style="margin-top:38px">
 					                          <input class="custom-control-input" type="checkbox" id="SN" value="option1">
 					                          <label for="SN" class="custom-control-label">S/N</label>
 					                        </div>
 					                      </div>
-                                        <div class="form-group col-sm-1">
+					                      
+					                      <div th:if="*{direccion.NumeroExt == 'S/N'}" class="form-group col-sm-1" >
+					                        <div class="custom-control custom-checkbox" style="margin-top:38px">
+					                          <input class="custom-control-input" type="checkbox" checked  id="SN" value="option1" >
+					                          <label for="SN" class="custom-control-label">S/N</label>
+					                        </div>
+					                      </div>
+					                      
+                                        <div  th:if="*{direccion.NumeroExt == 'S/N'}" class="form-group col-sm-1">
                                             <label for="direccionExt">No. Ext.</label>
-                                            <input type="text" th:field="*{direccion.NumeroExt}" class="form-control" id="direccionExt" placeholder="63" required>
+                                            <input type="number" disabled     th:field="*{direccion.NumeroExt}" class="form-control" id="direccionExt" placeholder="63" required>
                                         </div>
-                                        <div class="form-group col-sm-2">
+                                        <div  th:if="*{direccion.NumeroExt == 'S/N'}" class="form-group col-sm-2">
                                             <label for="direccionInt">No. Int. (opcional)</label>
-                                            <input type="text" th:field="*{direccion.NumeroInt}"  class="form-control" id="direccionInt" placeholder="12">
+                                            <input type="text" disabled th:field="*{direccion.NumeroInt}"  class="form-control" id="direccionInt" placeholder="12">
+                                        </div>
+                                        
+                                        
+                                          <div  th:if="*{direccion.NumeroExt != 'S/N'}" class="form-group col-sm-1">
+                                            <label for="direccionExt">No. Ext.</label>
+                                            <input type="number"      th:field="*{direccion.NumeroExt}" class="form-control" id="direccionExt" placeholder="63" required>
+                                        </div>
+                                        <div  th:if="*{direccion.NumeroExt != 'S/N'}" class="form-group col-sm-2">
+                                            <label for="direccionInt">No. Int. (opcional)</label>
+                                            <input type="text"  th:field="*{direccion.NumeroInt}"  class="form-control" id="direccionInt" placeholder="12">
                                         </div>
                                         
                                         <div class="form-group col-sm-3">
@@ -159,7 +177,7 @@
                                         </div>
                                         <div class="form-group col-sm-4">
                                             <label for="telefonoEmpresa">Tel&eacute;fono</label>
-                                            <input type="text" th:field="*{cliente.Telefono}" class="form-control" id="telefonoEmpresa" placeholder="52-72-96-26" required>
+                                            <input type="text" th:field="*{cliente.Telefono}" class="form-control" id="telefonoEmpresa" placeholder="52-72-96-26" required  data-inputmask='"mask": "(999) 999-9999"' data-mask>
                                         </div>
                                         <div class="form-group col-sm-4">
                                             <label for="correoEmpresa">Correo</label>
@@ -193,7 +211,7 @@
                                         <input  type="hidden" th:field="*{cliente.CultimaFechaModificacion}">
                                         <input  type="hidden" th:field="*{cliente.imagen}">
                                         <input  type="hidden" th:field="*{cliente.estatusCliente}">
-                                        <input  type="hidden" th:field="*{cliente.estatus}">
+                                        <input  type="hidden" th:field="*{cliente.estatusC}">
                                         <input  type="hidden" name="TipoCliente" value="1">
                                         
                                         <input  type="hidden" th:field="*{direccion.idDireccion}">
@@ -202,6 +220,7 @@
                                         <input  type="hidden" th:field="*{direccion.actualizadoPor}">
                                         <input  type="hidden" th:field="*{direccion.fechaCreacion}">
                                         <input  type="hidden" th:field="*{direccion.ultimaFechaModificacion}">
+                                        <input  type="hidden" th:field="*{direccion.estatus}">
                                         
                                         
                                          <div class="col-sm-12">
@@ -253,20 +272,49 @@
                                             <input type="text" th:field="*{direccion.calle}" class="form-control" id="direccionEmpresa" placeholder="Av. 1ro de Mayo No. 126" required>
                                         </div>
                                         
-										<div class="form-group col-sm-1">
+										
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        <div th:if="*{direccion.NumeroExt != 'S/N'}" class="form-group col-sm-1" >
 					                        <div class="custom-control custom-checkbox" style="margin-top:38px">
 					                          <input class="custom-control-input" type="checkbox" id="SN1" value="option2">
 					                          <label for="SN1" class="custom-control-label">S/N</label>
 					                        </div>
 					                      </div>
-                                        <div class="form-group col-sm-1">
+					                      
+					                      <div th:if="*{direccion.NumeroExt == 'S/N'}" class="form-group col-sm-1" >
+					                        <div class="custom-control custom-checkbox" style="margin-top:38px">
+					                         <input class="custom-control-input" type="checkbox" checked id="SN1" value="option2">
+					                          <label for="SN1" class="custom-control-label">S/N</label>
+					                        </div>
+					                      </div>
+					                      
+                                        <div  th:if="*{direccion.NumeroExt == 'S/N'}" class="form-group col-sm-1">
                                             <label for="direccionExt">No. Ext.</label>
-                                            <input type="text" th:field="*{direccion.NumeroExt}" class="form-control" id="direccionExt1" placeholder="63" required>
+                                            <input type="number" disabled     th:field="*{direccion.NumeroExt}" class="form-control" id="direccionExt1" placeholder="63" required>
                                         </div>
-                                        <div class="form-group col-sm-2">
-                                            <label for="direccionInt">No. Int.(opcional)</label>
-                                            <input type="text" th:field="*{direccion.NumeroInt}" class="form-control" id="direccionInt1" placeholder="12">
+                                        <div  th:if="*{direccion.NumeroExt == 'S/N'}" class="form-group col-sm-2">
+                                            <label for="direccionInt">No. Int. (opcional)</label>
+                                            <input type="text" disabled th:field="*{direccion.NumeroInt}"  class="form-control" id="direccionInt1" placeholder="12">
                                         </div>
+                                        
+                                        
+                                          <div  th:if="*{direccion.NumeroExt != 'S/N'}" class="form-group col-sm-1">
+                                            <label for="direccionExt">No. Ext.</label>
+                                            <input type="number"      th:field="*{direccion.NumeroExt}" class="form-control" id="direccionExt1" placeholder="63" required>
+                                        </div>
+                                        <div  th:if="*{direccion.NumeroExt != 'S/N'}" class="form-group col-sm-2">
+                                            <label for="direccionInt">No. Int. (opcional)</label>
+                                            <input type="text"  th:field="*{direccion.NumeroInt}"  class="form-control" id="direccionInt1" placeholder="12">
+                                        </div>
+                                        
+                                        
+                                        
+                                        
+                                        
                                         <div class="form-group col-sm-3">
                                             <label for="estadoEmpresa">Estado</label>
                                             <select th:field="*{direccion.estado}" class="form-control" required>
@@ -316,7 +364,7 @@
                                         </div>
                                         <div class="form-group col-sm-4">
                                             <label for="cpEmpresa">C&oacute;digo postal</label>
-                                            <input type="text" class="form-control" id="cpEmpresa" placeholder="90688" required>
+                                            <input type="text" class="form-control" th:field="*{direccion.codigoPostal}" id="cpEmpresa" placeholder="90688" required>
                                         </div>
                                         <div class="form-group col-sm-4">
                                             <label for="telefonoEmpresa">Tel&eacute;fono</label>
@@ -347,7 +395,7 @@
                                         <input  type="hidden" th:field="*{cliente.CultimaFechaModificacion}">
                                         <input  type="hidden" th:field="*{cliente.imagen}">
                                         <input  type="hidden" th:field="*{cliente.estatusCliente}">
-                                        <input  type="hidden" th:field="*{cliente.estatus}">
+                                        <input  type="hidden" th:field="*{cliente.estatusC}">
                                         <input  type="hidden" name="TipoCliente" value="2">
                                         
                                         <input  type="hidden" th:field="*{direccion.idDireccion}">
@@ -356,6 +404,7 @@
                                         <input  type="hidden" th:field="*{direccion.actualizadoPor}">
                                         <input  type="hidden" th:field="*{direccion.fechaCreacion}">
                                         <input  type="hidden" th:field="*{direccion.ultimaFechaModificacion}">
+                                        <input  type="hidden" th:field="*{direccion.estatus}">
                                         
                                         
                                         <div class="col-sm-12">
@@ -430,6 +479,7 @@
 	</script>
     <script>
     $(document).ready(function(){
+    	
         $('#SN').click(function(){
             if($(this).prop("checked") == true){
                 console.log("Checkbox is checked.");
@@ -505,6 +555,5 @@
     </script>
     
    
-    
-   
 </body>
+</html>
