@@ -13,5 +13,7 @@ public interface IDisenioPrendaService {
 	void delete(Long id);
 
 	DisenioPrenda findOne(Long id);
+	
+	String[] getExistencias(Long familiaPrenda);
 
 }

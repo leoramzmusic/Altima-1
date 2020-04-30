@@ -48,7 +48,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Sucursal&nbsp;<a th:href="@{/agregar-sucursal/}+ ${cliente.idCliente}"><button class="btn btn-primary btn-circle btn-sm popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Agregar"><i class="fas fa-plus"></i></button></a> 
+                            <h1>Datos de facturaci&oacute;n <a th:href="@{/agregar-facturacion/}+ ${cliente.idCliente}"><button class="bt btn-primary btn-circle btn-sm popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Agregar"><i class="fas fa-plus"></i></button></a>
                             <a th:href="@{/clientes}"><button class="btn btn-danger btn-circle btn-sm popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Regresar"><i class="fas fa-arrow-left"></i></button></a></h1>
                         </div>
                         <div class="col-sm-6">
@@ -71,36 +71,36 @@
                             <!-- Default box -->
                             <div class="card">
                                 <div class="card-header bg-dark">
-                                    <h3 class="card-title" th:utext="Listado+' '+'de'+' '+Sucursales +' '+ *{cliente.Nombre}"></h3>
+                                    <h3 class="card-title" th:utext="Cliente+': '+ *{cliente.Nombre}"></h3>
                                 </div>
                                 <div class="card-body">
                                    <table class="table tablexd table-striped">
                                         <thead>
                                             <tr>
-                                                <th>No. Sucursal</th>
-                                                <th>Nombre</th>
-                                                <th>Teléfono</th>
-                                                <th>R.F.C</th>
-                                                <th>Contacto</th>
+                                                <th>Folio</th>
+                                                <th>Razon Social</th>
+                                                <th>RFC</th>
+                                                <th>Cuenta</th>
+                                                
                                                 <th>Acciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr th:each="sucursal: ${sucursales}">
-                                                <td th:text="${sucursal.SIdText}"></td>
-                                                <td th:text="${sucursal.NombreSucursal}"></td>
-                                                <td th:text="${sucursal.TelefonoSucursal}"></td>
-                                                <td th:text="${sucursal.RfcSucursal}"></td>
-                                               	<td th:text="${sucursal.ContactoSucursal}"></td>
+                                            <tr th:each="facturas: ${facturas}">
+                                                <td th:text="${facturas.idTextF}"></td>
+                                                <td th:text="${facturas.razon_socialF}"></td>
+                                                <td th:text="${facturas.rfcFacturaF}"></td>
+                                               	<td th:text="${facturas.cuentaContableF}"></td>
                                                	
-                                               	<td class="tdcenter">                                        
-                                                 	<a th:href="@{/editar-sucursal/}+ ${sucursal.IdClienteSucursal}"class="btn btn-warning btn-circle btn-sm popoverxd" 
+                                               	
+                                               	 <td class="tdcenter">                                        
+                                                 	<a th:href="@{/editar-facturacion/}+ ${facturas.idClienteFacturaF}" class="btn btn-warning btn-circle btn-sm popoverxd" 
                                                          data-container="body" data-toggle="popover"
                                                           data-placement="top" data-content="Editar"><i class="fas fa-pen"></i></a>
                                                           
                                                  	
                                                  		
-                                               		<a  th:href="@{/delete-sucursal/}+ ${sucursal.IdClienteSucursal}" class="btn btn-danger btn-circle btn-sm btn-delete popoverxd"
+                                               		<a  th:href="@{/delete-facturacion/}+${facturas.idClienteFacturaF}"class="btn btn-danger btn-circle btn-sm btn-delete popoverxd"
                                                          data-container="body" data-toggle="popover" data-placement="top"
                                                           data-content="Dar de baja"><i class="fas fa-caret-down"></i></a>
                                                 </td>
@@ -211,24 +211,25 @@
 	          timer: 1250
 	    });
 	</script>
-	
+
 	<script>
 		$('.btn-delete').on('click', function (e) {
 		    e.preventDefault();
 		    var href =$(this).attr('href');
-		    $('#bajaSucursalModal #btnDelteYes').attr('href',href);
-		    $('#bajaSucursalModal').modal();
+		    $('#bajaFacturacionModal #btnDelteYes').attr('href',href);
+		    $('#bajaFacturacionModal').modal();
 		});
 		</script>
-	
-	<div class="modal fade" id="bajaSucursalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+
+<div class="modal fade" id="bajaFacturacionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-body">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        ¿Deseas dar de baja la sucursal?
+        ¿Deseas dar de baja la facturacion?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal">Cancelar</button>
@@ -237,8 +238,6 @@
     </div>
   </div>
 </div>
-
-	
 </body>
 
 </html>

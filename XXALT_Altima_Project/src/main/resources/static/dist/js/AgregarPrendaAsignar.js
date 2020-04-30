@@ -1,8 +1,6 @@
 
-	console.log(familias);
 	function AsignarID()
 	{
-		console.log(message);
 		//Solicitud Ajax
 	    $.ajax({
 	        type: "GET",
