@@ -258,8 +258,8 @@ public class AgregarPrendaRestController {
 			e.printStackTrace();
 		}
 
-		this.dp.setDibujoEspalda(uniqueFilename[0]);
-		this.dp.setDibujoFrente(uniqueFilename[1]);
+		//this.dp.setDibujoEspalda(uniqueFilename[0]);
+		//this.dp.setDibujoFrente(uniqueFilename[1]);
 
 		Thread.sleep(2000);
 		response.sendRedirect("/prendas");
@@ -277,7 +277,7 @@ public class AgregarPrendaRestController {
 			e.printStackTrace();
 		}
 
-		this.dp.setDibujoFrente(uniqueFilename);
+		//this.dp.setDibujoFrente(uniqueFilename);
 
 		Thread.sleep(2000);
 		response.sendRedirect("/prendas");
@@ -295,7 +295,7 @@ public class AgregarPrendaRestController {
 			e.printStackTrace();
 		}
 
-		this.dp.setDibujoEspalda(uniqueFilename);
+		//this.dp.setDibujoEspalda(uniqueFilename);
 
 		Thread.sleep(2000);
 		response.sendRedirect("/prendas");

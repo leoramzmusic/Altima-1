@@ -77,26 +77,48 @@
                                         </div>
                                         <div class="form-group col-sm-4">
                                             <label for="rfcEmpresa">Cuenta contable</label>
-                                            <input type="number" min="0" class="form-control" th:field="*{factura.cuentaContableF}" placeholder="100" required>
+                                            <input type="text" class="form-control" th:field="*{factura.cuentaContableF}" placeholder="100" required>
                                         </div>
                                         <div class="form-group col-sm-8">
                                             <label for="direccionEmpresa">Calle</label>
                                             <input type="text" class="form-control" th:field="*{direccion.calle}"  placeholder="Av. 1ro de Mayo" required>
                                         </div>
-										<div class="form-group col-sm-1">
+                                        
+										<div th:if="*{direccion.NumeroExt != 'S/N'}" class="form-group col-sm-1">
 					                        <div class="custom-control custom-checkbox" style="margin-top:38px">
 					                          <input class="custom-control-input" type="checkbox" id="SN" value="option1">
 					                          <label for="SN" class="custom-control-label">S/N</label>
 					                        </div>
-					                      </div>
-                                        <div class="form-group col-sm-1">
+					                    </div>
+					                    
+					                    <div th:if="*{direccion.NumeroExt == 'S/N'}" class="form-group col-sm-1">
+					                        <div class="custom-control custom-checkbox" style="margin-top:38px">
+					                          <input class="custom-control-input" type="checkbox" checked id="SN" value="option1">
+					                          <label for="SN" class="custom-control-label">S/N</label>
+					                        </div>
+					                    </div>
+					                    
+					                    
+                                        <div  th:if="*{direccion.NumeroExt == 'S/N'}" class="form-group col-sm-1">
                                             <label for="direccionExt">No. Ext.</label>
-                                            <input type="number" min="0" id="extNum" class="form-control" th:field="*{direccion.NumeroExt}" placeholder="63" required>
+                                            <input type="number" min="0" disabled id="extNum" class="form-control" th:field="*{direccion.NumeroExt}" placeholder="63" required>
                                         </div>
-                                        <div class="form-group col-sm-2">
+                                        <div  th:if="*{direccion.NumeroExt == 'S/N'}" class="form-group col-sm-2">
                                             <label for="direccionInt">No. Int. (opcional)</label>
-                                            <input type="number" min="0" id="intNum" class="form-control" th:field="*{direccion.NumeroInt}"  placeholder="12">
+                                            <input type="number" min="0" disabled id="intNum" class="form-control" th:field="*{direccion.NumeroInt}"  placeholder="12">
                                         </div>
+                                        
+                                        
+                                         <div  th:if="*{direccion.NumeroExt != 'S/N'}" class="form-group col-sm-1">
+                                            <label for="direccionExt">No. Ext.</label>
+                                            <input type="number" min="0"  id="extNum" class="form-control" th:field="*{direccion.NumeroExt}" placeholder="63" required>
+                                        </div>
+                                        <div  th:if="*{direccion.NumeroExt != 'S/N'}" class="form-group col-sm-2">
+                                            <label for="direccionInt">No. Int. (opcional)</label>
+                                            <input type="number" min="0"  id="intNum" class="form-control" th:field="*{direccion.NumeroInt}"  placeholder="12">
+                                        </div>
+                                        
+                                        
                                         <div class="form-group col-sm-5">
                                             <label for="coloniaEmpresa">Colonia</label>
                                             <input type="text" class="form-control" th:field="*{direccion.colonia}" placeholder="8 de Agosto" required>
@@ -153,7 +175,7 @@
                                         
                                         <div class="form-group col-sm-12">
                                             <label for="correoEmpresa">Indicaciones adicionales (opcional):</label>
-										    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+										    <textarea class="form-control" id="exampleFormControlTextarea1" th:field="*{factura.observacion}"   rows="3"></textarea>
 										  </div>
                                         
                                         <div class="form-group col-sm-12">

@@ -58,6 +58,9 @@ public class ClienteSucursalController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
 		if (sucursal.getIdClienteSucursal() == null && direccion.getIdDireccion() == null) {
+			if ( direccion.getNumeroExt()== null || direccion.getNumeroExt().isEmpty()) {
+				direccion.setNumeroExt("S/N");
+			}
 			direccion.setEstatus(1);
 			DireccionService.save(direccion);
 			direccion.setIdText("DIR" + direccion.getIdDireccion());
@@ -73,6 +76,9 @@ public class ClienteSucursalController {
 			redirectAttrs.addFlashAttribute("title", "Sucursal guardada correctamente").addFlashAttribute("icon", "success");
 			SucursalService.save(sucursal);
 		} else {
+			if ( direccion.getNumeroExt()== null || direccion.getNumeroExt().isEmpty()) {
+				direccion.setNumeroExt("S/N");
+			}
 			direccion.setActualizadoPor(auth.getName());
 			direccion.setUltimaFechaModificacion(new Date());
 			sucursal.setEstatus("1");
@@ -95,7 +101,7 @@ public class ClienteSucursalController {
 		ComercialClienteSucursal sucursal = null;
 		sucursal = SucursalService.findOne(id);
 		direccion = DireccionService.findOne(sucursal.getIdDireccion());
-		cliente = ClienteService.findOne(sucursal.getIdClienteSucursal());
+		cliente = ClienteService.findOne(  Long.parseLong(sucursal.getIdCliente() ) );
 		model.put("sucursal", sucursal);
 		model.put("cliente", cliente);
 		model.put("direccion", direccion);

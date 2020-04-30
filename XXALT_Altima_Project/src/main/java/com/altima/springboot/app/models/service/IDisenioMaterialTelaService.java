@@ -14,4 +14,6 @@ public interface IDisenioMaterialTelaService {
 
 	DisenioMaterialTela findOne(Long id);
 
+	List<Object[]> findAllById(Long id);
+
 }
