@@ -341,6 +341,9 @@ public class ComercialMovimientoRestController {
 		if(moviDetalleService.ifExistCheckBox(muestra.getIdMovimiento()).equals("0")) {
 			ComercialMovimiento movimientoEntity = movimientoService.findOne(muestra.getIdMovimiento());
 			movimientoEntity.setEstatus("Devuelto");
+			movimientoEntity.setActualizadoPor(auth.getName());
+			movimientoEntity.setUltimaFechaModificacion(formattedDate);
+			movimientoEntity.setFecha_entrega(formattedDate);
 			movimientoService.save(movimientoEntity);
 		}
 		
@@ -387,6 +390,8 @@ public class ComercialMovimientoRestController {
 			if(moviDetalleService.ifExistCheckBox(muestra.getIdMovimiento()).equals("1")) {
 				ComercialMovimiento movimientoEntity = movimientoService.findOne(muestra.getIdMovimiento());
 				movimientoEntity.setEstatus("Prestamo empresa");
+				movimientoEntity.setActualizadoPor(auth.getName());
+				movimientoEntity.setUltimaFechaModificacion(formattedDate);
 				movimientoService.save(movimientoEntity);
 			}	
 		}
@@ -433,6 +438,8 @@ public class ComercialMovimientoRestController {
 			if(moviDetalleService.ifExistCheckBox(muestra.getIdMovimiento()).equals("1")) {
 				ComercialMovimiento movimientoEntity = movimientoService.findOne(muestra.getIdMovimiento());
 				movimientoEntity.setEstatus("Traspaso");
+				movimientoEntity.setActualizadoPor(auth.getName());
+				movimientoEntity.setUltimaFechaModificacion(formattedDate);
 				movimientoService.save(movimientoEntity);
 			}	
 		}
