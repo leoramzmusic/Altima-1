@@ -16,6 +16,8 @@ function listarEmpresas(){
 						$('#empresaMovi').append("<option value='"+data[i].idCliente+"'>"+ data[i].nombre + " " + data[i].apellidoPaterno + " " + data[i].apellidoMaterno +"</option>");
 					}
 				}
+				
+				$('#empresaMovi').selectpicker('refresh');
 		    },
 		    error: (e) => {
 		        // location.reload();
@@ -35,9 +37,11 @@ function listarMuestras(){
 														  data[i][1].substring(0,3).toUpperCase()  + 
 														  data[i][2].substring(0,3).toUpperCase()  + 
 														  ("00" + data[i][3]).slice(-3) +
-														  " " +
+														  "___" +
 														  data[i][0] + "</option>");
 			}
+			
+			$('#prendaMovi').selectpicker('refresh');
 		},
 		error: (e) => {
 		}
@@ -86,16 +90,23 @@ function agregarMiniTabla(tablaMuestra){
 					console.log(data);
 					var ceros = "00";
 					$('#tablaMuestra').append("<tr>" +
-		                                    "<td id='codigoBarras'>" +data[0].substring(0,3).toUpperCase()  + 
+		                                    "<td id='codigoBarras"+data[3]+"'>" +data[0].substring(0,3).toUpperCase()  + 
 													data[1].substring(0,3).toUpperCase()  + 
 													data[2].substring(0,3).toUpperCase()  + 
 													(ceros + data[3]).slice(-3)+"</td>" +
-		                                    "<td id='nombreMuestra'>" + data[0] + "</td>" +
+		                                    "<td id='nombreMuestra"+data[3]+"'>" + data[0] + "</td>" +
+		                                    "<td id='modeloPrenda"+data[3]+"'>" + data[4] + "</td>" +
+		                                    "<td id='codigoTela"+data[3]+"'>" + data[5] + "</td>" +
+		                                    
 		                                    "<td class='tdcenter'>" +
 		                                    	"<input type='hidden' id='idMuestras"+data[3]+"' class='idMuestras' value='"+data[3]+"'>" +
 		                                        "<a class='btn btn-danger btn-circle btn-sm text-white popoverxd' id='borrar' data-container='body' data-placement='top' data-content='Remover'><i class='fas fa-minus'></i></a>" +
 		                                    "</td>" +
 		                                "</tr>");
+					listamuestritas.push(data[3]);
+					console.log(listamuestritas);
+					
+					 
 				},
 				error: (e) => {
 				}
@@ -128,14 +139,19 @@ function agregarMiniTabla(tablaMuestra){
 	   }
 	}
   
+  
+
+  
 	function guardarNuevoMovimiento(tablaMuestra) {
 	   var table = document.getElementById(tablaMuestra);
+	   var filas = $("#tablaMuestra").find('tr:not(:first-child)');
 	   var datosJson = [];
 	   var vendedorMovi = $('#vendedorMovi').val();
 	   var empresaMovi = $('#empresaMovi').val();
 	   var prendaMovi = $('#prendaMovi').val();
 	   var validacion=true;
 	   var validador = 0;
+	   var i = 0;
 	   foreach(table, 'tr:not(:first-child)', function(row) {validador=1});
 	   if(vendedorMovi=="error" || empresaMovi=="error" || validador==0){
 		   console.log("faltan datos");
@@ -146,21 +162,21 @@ function agregarMiniTabla(tablaMuestra){
 				showConfirmButton: false,
 		        timer: 3500
 			  })
-			  
 			validacion=false;
-
 	   }
 	   
 	   if (table) {
-		   foreach(table, 'tr:not(:first-child)', function(row) {
-			   
-			if(validacion==true){
-	         var record = {codigoBarras: $('#codigoBarras').text(), nombreMuestra: $('#nombreMuestra').text(), idmuestra: $('.idMuestras').val()};
-	         datosJson.push(record);
-	  	   console.log("entro correctamente");
-			}
-	      });
-			
+		   if(validacion==true){
+			   for(i=0; i<filas.length; i++){
+				   var celdas = $(filas[i]).find("td");
+			       var record = {codigoBarras:  $(celdas[0]).text(), 
+								 nombreMuestra: $(celdas[1]).text(), 
+								 modeloPrenda:  $(celdas[2]).text(), 
+								 codigoTela:    $(celdas[3]).text(), 
+								 idmuestra:		$($(celdas[4]).children("input")[0]).val()};
+		         datosJson.push(record);
+			   }
+		   }
 	   }
 
 	   if(validacion==true){
@@ -300,8 +316,8 @@ function detalleMuestras(id){
 			    		check,
 						"<td>"+data[i].codigoBarras+"</td>",
 						"<td>"+data[i].nombreMuestra+"</td>",
-						"<td>Por definir</td>", 
-						"<td>Por definir</td>", 
+						"<td>"+data[i].modeloPrenda+"</td>", 
+						"<td>"+data[i].codigoTela+"</td>", 
 						"<td>"+validador1+"</td>",
 						"<td>"+validador2+"</td>",
 						"<td>"+validador3+"</td>",

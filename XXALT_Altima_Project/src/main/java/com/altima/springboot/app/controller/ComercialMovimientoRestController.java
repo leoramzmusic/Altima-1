@@ -108,6 +108,8 @@ public class ComercialMovimientoRestController {
 			muestraDetalleEntity.setCodigoBarras(muestra.getString("codigoBarras").toString());
 			muestraDetalleEntity.setIdMovimiento(comercialEntity.getIdMovimiento());
 			muestraDetalleEntity.setNombreMuestra(muestra.getString("nombreMuestra").toString());
+			muestraDetalleEntity.setModeloPrenda(muestra.getString("modeloPrenda").toString());
+			muestraDetalleEntity.setCodigoTela(muestra.getString("codigoTela").toString());
 			muestraDetalleEntity.setFechaCreacion(formattedDate);
 			muestraDetalleEntity.setUltimaFechaModificacion(formattedDate);
 			muestraDetalleEntity.setCreadoPor(auth.getName());

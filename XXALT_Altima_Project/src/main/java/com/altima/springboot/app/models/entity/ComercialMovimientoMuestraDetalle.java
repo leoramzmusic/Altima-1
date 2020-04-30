@@ -38,13 +38,11 @@ public class ComercialMovimientoMuestraDetalle implements Serializable {
 	@Column(name="nombre_muestra")
 	private String nombreMuestra;
 	
-	public String getCodigoBarras() {
-		return codigoBarras;
-	}
-
-	public void setCodigoBarras(String codigoBarras) {
-		this.codigoBarras = codigoBarras;
-	}
+	@Column(name="modelo_prenda")
+	private String modeloPrenda;
+	
+	@Column(name="codigo_tela")
+	private String codigoTela;
 
 	@Column(name="fecha_salida")
 	private String fecha_salida;
@@ -91,6 +89,14 @@ public class ComercialMovimientoMuestraDetalle implements Serializable {
 	public void setIdDetallePedido(Long idDetallePedido) {
 		this.idDetallePedido = idDetallePedido;
 	}
+	
+	public String getCodigoBarras() {
+		return codigoBarras;
+	}
+
+	public void setCodigoBarras(String codigoBarras) {
+		this.codigoBarras = codigoBarras;
+	}
 
 	public Long getIdMovimiento() {
 		return idMovimiento;
@@ -106,6 +112,22 @@ public class ComercialMovimientoMuestraDetalle implements Serializable {
 
 	public void setNombreMuestra(String nombreMuestra) {
 		this.nombreMuestra = nombreMuestra;
+	}
+	
+	public String getModeloPrenda() {
+		return modeloPrenda;
+	}
+
+	public void setModeloPrenda(String modeloPrenda) {
+		this.modeloPrenda = modeloPrenda;
+	}
+
+	public String getCodigoTela() {
+		return codigoTela;
+	}
+
+	public void setCodigoTela(String codigoTela) {
+		this.codigoTela = codigoTela;
 	}
 
 	public String getFecha_salida() {
