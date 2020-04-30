@@ -84,12 +84,6 @@ public class DisenioPrenda implements Serializable {
 	@Column(name = "precio")
 	private String precio;
 
-	@Column(name = "dibujo_frente")
-	private String dibujoFrente;
-
-	@Column(name = "dibujo_espalda")
-	private String dibujoEspalda;
-
 	@Column(name = "precio_local_actual")
 	private String precioLocalActual;
 
@@ -299,22 +293,6 @@ public class DisenioPrenda implements Serializable {
 
 	public void setPrecio(String precio) {
 		this.precio = precio;
-	}
-
-	public String getDibujoFrente() {
-		return dibujoFrente;
-	}
-
-	public void setDibujoFrente(String dibujoFrente) {
-		this.dibujoFrente = dibujoFrente;
-	}
-
-	public String getDibujoEspalda() {
-		return dibujoEspalda;
-	}
-
-	public void setDibujoEspalda(String dibujoEspalda) {
-		this.dibujoEspalda = dibujoEspalda;
 	}
 
 	public String getPrecioLocalActual() {
