@@ -77,7 +77,18 @@ public class ClienteController {
 			cliente.setEstatusCliente(0);
 			cliente.setEstatusC(1);
 			ClienteService.save(cliente);
-			cliente.setCidText("CLTE" + cliente.getIdCliente());
+			
+			Integer contador = ClienteService.Contador(cliente.getTipoCliente());
+			
+			if ( cliente.getTipoCliente().equals("1")) {
+				cliente.setCidText("CLTEM" +(contador+100));
+			}
+			if ( cliente.getTipoCliente().equals("2")) {
+				cliente.setCidText("CLTEF" +(contador+100));
+			}
+			
+			
+			
 			cliente.setCcreadoPor(auth.getName());
 			cliente.setIdDireccion(direccion.getIdDireccion());
 			
@@ -120,10 +131,9 @@ public class ClienteController {
 				}
 				cliente.setImagen(uniqueFilename);
 			}
-			redirectAttrs.addFlashAttribute("title", "Cliente editado correctamente").addFlashAttribute("icon", "success");
-			
 			DireccionService.save(direccion);
 			ClienteService.save(cliente);
+			redirectAttrs.addFlashAttribute("title", "Cliente editado correctamente").addFlashAttribute("icon", "success");
 		}
 		
 		return "redirect:clientes";
@@ -149,6 +159,17 @@ public class ClienteController {
 		ClienteService.save(cliente);
 		redirectAttrs
         .addFlashAttribute("title", "Cliente elimnado correctamente")
+        .addFlashAttribute("icon", "success");
+		  return "redirect:/clientes";
+	}
+	
+	@GetMapping("alta-cliente/{id}") 
+	public String altaMaterial(@PathVariable("id") Long id, RedirectAttributes redirectAttrs) throws Exception {
+		ComercialCliente cliente = ClienteService.findOne(id);
+		cliente.setEstatusC(1);
+		ClienteService.save(cliente);
+		redirectAttrs
+        .addFlashAttribute("title", "Cliente activado correctamente")
         .addFlashAttribute("icon", "success");
 		  return "redirect:/clientes";
 	}

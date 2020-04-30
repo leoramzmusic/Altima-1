@@ -14,6 +14,7 @@ public interface IComercialClienteService {
 	void delete(Long id);
 
 	ComercialCliente findOne(Long id);
+	public Integer Contador (String tipo);
 	
 	
 	

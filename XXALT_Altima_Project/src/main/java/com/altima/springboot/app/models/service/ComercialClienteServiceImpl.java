@@ -29,7 +29,7 @@ public class ComercialClienteServiceImpl implements IComercialClienteService {
 	@Transactional
 	public List<ComercialCliente> findAll() {
 		// TODO Auto-generated method stub
-		return em.createQuery("from ComercialCliente where estatus='1' ORDER BY nombre ").getResultList();
+		return em.createQuery("from ComercialCliente  ORDER BY  tipo_cliente, nombre,estatus").getResultList();
 	}
 	
 	@Override
@@ -48,6 +48,15 @@ public class ComercialClienteServiceImpl implements IComercialClienteService {
 	public ComercialCliente findOne(Long id) {
 		// TODO Auto-generated method stub
 		return repository.findById(id).orElse(null);
+	}
+	
+	@Transactional(readOnly = true)
+	@Override
+	public Integer Contador(String tipo) {
+		
+		String re = em.createNativeQuery("SELECT COUNT(*) FROM alt_comercial_cliente where alt_comercial_cliente.tipo_cliente="+tipo).getSingleResult().toString();
+		return Integer.parseInt(re);
+		
 	}
 
 	

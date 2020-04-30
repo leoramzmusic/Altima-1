@@ -22,7 +22,7 @@
     <!-- Google Font: Source Sans Pro -->
     <link th:href="@{https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700}" rel="stylesheet">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed sidebar-collapse"   th:onload="'showForm(' + ${estatus} + ');'"  >
+<body class="hold-transition sidebar-mini layout-fixed sidebar-collapse"  >
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Navbar -->
@@ -69,19 +69,20 @@
                                     <form class="row" th:action="@{/guardar-sucursal}" autocomplete="off">
                                         <div class="form-group col-sm-4">
                                             <label for="clienteEmpresa" >Nombre de la sucursal</label>
-                                            <input type="text" th:field="*{sucursal.NombreSucursal}" class="form-control" id="clienteEmpresa" placeholder="Altima Uniformes" required>
+                                            <input type="text" maxlength="100" th:field="*{sucursal.NombreSucursal}" onkeyup="capitalizarPrimeraLetra(this);"class="form-control" id="clienteEmpresa" placeholder="Altima Uniformes" required>
                                         </div>
                                         <div class="form-group col-sm-4">
                                             <label for="rfcEmpresa">No. Sucursal</label>
-                                            <input type="number" min="0" th:field="*{sucursal.NoSucursal}" class="form-control"  placeholder="100" required>
+                                            <input type="number" min="1" th:field="*{sucursal.NoSucursal}" onkeyup="capitalizarPrimeraLetra(this);" class="form-control"  placeholder="100" required>
                                         </div>
                                         <div class="form-group col-sm-4">
                                             <label for="razonEmpresa">R.F.C</label>
-                                            <input type="text" th:field="*{sucursal.RfcSucursal}" class="form-control"  placeholder="IHB123124HF3" required>
+                                            <input type="text" th:field="*{sucursal.RfcSucursal}" class="form-control"  id="rfc" onkeyup="mayus(this);" required placeholder="IHB123124HF3" >
+                                      
                                         </div>
                                         <div class="form-group col-sm-8">
                                             <label for="direccionEmpresa">Calle</label>
-                                            <input type="text" th:field="*{direccion.calle}" class="form-control"  placeholder="Av. 1ro de Mayo" required>
+                                            <input type="text" maxlength="45"   th:field="*{direccion.calle}" onkeyup="capitalizarPrimeraLetra(this);" class="form-control"  placeholder="Av. 1ro de Mayo" required>
                                         </div>
                                         
                                         <div th:if="*{direccion.NumeroExt != 'S/N'}" class="form-group col-sm-1">
@@ -110,11 +111,11 @@
                                         
                                          <div th:if="*{direccion.NumeroExt != 'S/N'}" class="form-group col-sm-1">
                                             <label for="direccionExt">No. Ext.</label>
-                                            <input type="number" min="0"  th:field="*{direccion.NumeroExt}" class="form-control" id="direccionExt" placeholder="63" required>
+                                            <input type="number" min="1"  th:field="*{direccion.NumeroExt}" class="form-control" id="direccionExt" placeholder="63" required>
                                         </div>
                                         <div th:if="*{direccion.NumeroExt != 'S/N'}" class="form-group col-sm-2">
                                             <label for="direccionInt">No. Int.(opcional)</label>
-                                            <input type="number" min="0"   th:field="*{direccion.NumeroInt}"  class="form-control" id="direccionInt" placeholder="12">
+                                            <input type="number" min="1"   th:field="*{direccion.NumeroInt}"  class="form-control" id="direccionInt" placeholder="12">
                                         </div>
                                         
                                         
@@ -159,35 +160,35 @@
                                         </div>
                                         <div class="form-group col-sm-3">
                                             <label for="municipioEmpresa">Municipio</label>
-                                            <input type="text"  th:field="*{direccion.municipio}" placeholder=" Ecatepec" class="form-control" required>
+                                            <input type="text" maxlength="45"   th:field="*{direccion.municipio}" onkeyup="capitalizarPrimeraLetra(this);"placeholder=" Ecatepec" class="form-control" required>
                                         </div>
                                         <div class="form-group col-sm-6">
                                             <label for="coloniaEmpresa">Colonia</label>
-                                            <input type="text" th:field="*{direccion.colonia}" class="form-control" id="coloniaEmpresa" placeholder="8 de Agosto" required>
+                                            <input type="text" maxlength="45" th:field="*{direccion.colonia}" onkeyup="capitalizarPrimeraLetra(this);" class="form-control" id="coloniaEmpresa" placeholder="8 de Agosto" required>
                                         </div>
                                         <div class="form-group col-sm-4">
                                             <label for="cpEmpresa">C&oacute;digo postal</label>
-                                            <input type="number" min="0" th:field="*{direccion.codigoPostal}" class="form-control" id="cpEmpresa" placeholder="90688" required>
+                                            <input type="text" maxlength="5"  id="postal" th:field="*{direccion.codigoPostal}" class="form-control"  placeholder="90688" required>
                                         </div>
                                         
                                         <div class="form-group col-sm-4">
                                             <label for="correoEmpresa">Contacto</label>
-                                            <input type="text" th:field="*{sucursal.ContactoSucursal}" class="form-control"  placeholder="Juan Perez" required>
+                                            <input type="text" maxlength="20" th:field="*{sucursal.ContactoSucursal}" onkeyup="capitalizarPrimeraLetra(this);" class="form-control"  placeholder="Juan Perez" required>
                                         </div>
                                          <div class="form-group col-sm-4">
                                             <label for="correoEmpresa">Puesto</label>
-                                            <input type="text" th:field="*{sucursal.puestoContacto}" class="form-control"  placeholder="Gerente General" required>
+                                            <input type="text" maxlength="100" th:field="*{sucursal.puestoContacto}" class="form-control" onkeyup="capitalizarPrimeraLetra(this);"  placeholder="Gerente General" required>
                                         </div>
                                         <div class="form-group col-sm-4">
                                             <label for="telefonoEmpresa">Tel&eacute;fono</label>
-                                            <input type="text" th:field="*{sucursal.TelefonoSucursal}" class="form-control" id="telefonoEmpresa" placeholder="52-72-96-26" required>
+                                            <input type="text" id="phone"  th:field="*{sucursal.TelefonoSucursal}" class="form-control"  placeholder="52-72-96-26" required>
                                         </div>
                                         
                                        
                                         
                                         <div class="form-group col-sm-8">
                                             <label for="correoEmpresa">Obervación:</label>
-                                            <input type="text" th:field="*{sucursal.SObservacion}"  class="form-control" id="observacionEmpresa" placeholder="Observación..." >
+                                            <input type="text" th:field="*{sucursal.SObservacion}"  class="form-control" id="observacionEmpresa" placeholder="Observación..."   onkeyup="capitalizarPrimeraLetra(this);">
                                         </div>
                                 		<input  type="hidden" th:field="*{sucursal.IdClienteSucursal}">
                                         <input  type="hidden" th:field="*{sucursal.SIdText}">
@@ -237,14 +238,48 @@
     <script th:src="@{/dist/js/demo.js}"></script>
     <!-- SweetAlert -->
     <script th:src="@{/dist/js/sweetalert.js}"></script>
+    
+    <!-- InputMask -->
+	<script th:src="@{/plugins/moment/moment.min.js}"></script>
+	<script th:src="@{/plugins/inputmask/min/jquery.inputmask.bundle.min.js}"></script>
     <!-- Popover-->
+    
+    
     <script>
         $(function() {
-            $('.popoverxd').popover({
-                container: 'body',
-                trigger: 'hover'
-            })
+        	//$("#rfc").inputmask("*{12,13	}");
+        	
+        	$("#rfc").inputmask("a{3,4}9{6}*{3}");
+        	$("#postal").inputmask({"mask": "99999"});
+        	$("#phone").inputmask({"mask": "(999)999-9999"});
+        	
+        	
+        	
+       
         })
+        
+         function mayus(e) {
+    	e.value = e.value.toUpperCase();
+		}
+        
+        
+      //instanciamos el elemento input
+        var input = document.getElementById('entrada');
+        //función que capitaliza la primera letra
+        function capitalizarPrimeraLetra(e) {
+          //almacenamos el valor del input
+          var palabra = e.value;
+          //Si el valor es nulo o undefined salimos
+          if(!e.value) return;
+          // almacenamos la mayuscula
+          var mayuscula = palabra.substring(0,1).toUpperCase();
+          //si la palabra tiene más de una letra almacenamos las minúsculas
+          if (palabra.length > 0) {
+            var minuscula = palabra.substring(1).toLowerCase();
+          }
+          //escribimos la palabra con la primera letra mayuscula
+          e.value = mayuscula.concat(minuscula);
+        }
     </script>
     <script>
 		$('#iComercial').removeClass('text-primary');
@@ -272,6 +307,9 @@
         });
     });
 </script>
+
+
+ 
   
     
 </body>

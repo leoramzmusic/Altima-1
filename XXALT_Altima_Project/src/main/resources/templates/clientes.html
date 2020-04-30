@@ -111,9 +111,13 @@
                                                           
                                                  	
                                                  		
-                                               		<a  th:href="@{/delete-cliente/}+ ${cliente.idCliente}" class="btn btn-danger btn-circle btn-sm btn-delete popoverxd"
+                                               		<a  th:if="${cliente.estatusC  == 0}"  th:href="@{/alta-cliente/}+ ${cliente.idCliente}"  class="btn btn-success text-white btn-circle btn-sm btn-alta popoverxd" 
                                                          data-container="body" data-toggle="popover" data-placement="top"
-                                                          data-content="Dar de baja"><i class="fas fa-caret-down"></i></a>
+                                                          data-content="Dar de alta"> <i class="fas fa-sort-up"></i> </a>
+                                                          
+                                                    <a  th:if="${cliente.estatusC  == 1}"  th:href="@{/delete-cliente/}+ ${cliente.idCliente}" class="btn btn-danger btn-circle btn-sm btn-delete popoverxd"
+                                                         data-container="body" data-toggle="popover" data-placement="top"
+                                                          data-content="Dar de baja">  <i class="fas fa-caret-down"></i> </a>
                                                 </td>
                                                
                                             </tr>     
@@ -233,6 +237,15 @@
 		    $('#bajaClienteModal').modal();
 		});
 		</script>
+		
+		<script>
+		$('.btn-alta').on('click', function (e) {
+		    e.preventDefault();
+		    var href =$(this).attr('href');
+		    $('#altaClienteModal #btnDelteYes').attr('href',href);
+		    $('#altaClienteModal').modal();
+		});
+		</script>
 
 
 <div class="modal fade" id="bajaClienteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -251,6 +264,24 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="altaClienteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        ¿Deseas dar de alta al cliente?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal">Cancelar</button>
+        <a id="btnDelteYes" class="btn btn-primary">Confirmar</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 </body>
 
