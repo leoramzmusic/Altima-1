@@ -146,8 +146,14 @@ function listarOperarios(){
 				for (i in data){
 		    	$('.idOperarios').append("<option value='"+data[i][0]+"'>"+data[i][1]+data[i][2]+data[i][3]+"</option>");
 				}
-				var tela = $('#idoperar').val();
-				$('.idOperarios option[value="'+tela+'"]').attr("selected", true);
+				var operario = $('#idoperarEncogi').val();
+				$('#operarioEncogi option[value="'+operario+'"]').attr("selected", true);
+				operario = $('#idoperarLavado').val();
+				$('#operarioLavado option[value="'+operario+'"]').attr("selected", true);
+				operario = $('#idoperarCostura').val();
+				$('#operarioCostura option[value="'+operario+'"]').attr("selected", true);
+				operario = $('#idoperarContaminacion').val();
+				$('#operarioContaminacion option[value="'+operario+'"]').attr("selected", true);
 		    },
 		    error: (e) => {
 		        // location.reload();
