@@ -172,6 +172,8 @@ public class ComercialMovimientoRestController {
 			muestraDetalleEntity.setCodigoBarras(muestra.getCodigoBarras());
 			muestraDetalleEntity.setIdMovimiento(muestra.getIdMovimiento());
 			muestraDetalleEntity.setNombreMuestra(muestra.getNombreMuestra());
+			muestraDetalleEntity.setModeloPrenda(muestra.getModeloPrenda());
+			muestraDetalleEntity.setCodigoTela(muestra.getCodigoTela());
 			muestraDetalleEntity.setFecha_salida(formattedDate);
 			muestraDetalleEntity.setFechaCreacion(formattedDate);
 			muestraDetalleEntity.setUltimaFechaModificacion(formattedDate);
@@ -273,6 +275,8 @@ public class ComercialMovimientoRestController {
 			muestraDetalleEntity.setCodigoBarras(muestra.getCodigoBarras());
 			muestraDetalleEntity.setIdMovimiento(muestra.getIdMovimiento());
 			muestraDetalleEntity.setNombreMuestra(muestra.getNombreMuestra());
+			muestraDetalleEntity.setModeloPrenda(muestra.getModeloPrenda());
+			muestraDetalleEntity.setCodigoTela(muestra.getCodigoTela());
 			muestraDetalleEntity.setActualizadoPor(auth.getName());
 			muestraDetalleEntity.setFecha_salida(muestra.getFecha_salida());
 			muestraDetalleEntity.setFecha_devolucion(formattedDate);
@@ -315,6 +319,8 @@ public class ComercialMovimientoRestController {
 			muestraDetalleEntity.setCodigoBarras(muestra.getCodigoBarras());
 			muestraDetalleEntity.setIdMovimiento(muestra.getIdMovimiento());
 			muestraDetalleEntity.setNombreMuestra(muestra.getNombreMuestra());
+			muestraDetalleEntity.setModeloPrenda(muestra.getModeloPrenda());
+			muestraDetalleEntity.setCodigoTela(muestra.getCodigoTela());
 			muestraDetalleEntity.setActualizadoPor(auth.getName());
 			muestraDetalleEntity.setFecha_salida(muestra.getFecha_salida());
 			muestraDetalleEntity.setFecha_devolucion(formattedDate);
@@ -367,6 +373,8 @@ public class ComercialMovimientoRestController {
 			muestraDetalleEntity.setCodigoBarras(muestra.getCodigoBarras());
 			muestraDetalleEntity.setIdMovimiento(muestra.getIdMovimiento());
 			muestraDetalleEntity.setNombreMuestra(muestra.getNombreMuestra());
+			muestraDetalleEntity.setModeloPrenda(muestra.getModeloPrenda());
+			muestraDetalleEntity.setCodigoTela(muestra.getCodigoTela());
 			muestraDetalleEntity.setActualizadoPor(auth.getName());
 			muestraDetalleEntity.setFecha_salida(formattedDate);
 			muestraDetalleEntity.setEntregadaPor(muestra.getRecibidaPor());
@@ -411,6 +419,8 @@ public class ComercialMovimientoRestController {
 			muestraDetalleEntity.setCodigoBarras(muestra.getCodigoBarras());
 			muestraDetalleEntity.setIdMovimiento(muestra.getIdMovimiento());
 			muestraDetalleEntity.setNombreMuestra(muestra.getNombreMuestra());
+			muestraDetalleEntity.setModeloPrenda(muestra.getModeloPrenda());
+			muestraDetalleEntity.setCodigoTela(muestra.getCodigoTela());
 			muestraDetalleEntity.setActualizadoPor(auth.getName());
 			muestraDetalleEntity.setFecha_salida(formattedDate);
 			muestraDetalleEntity.setEntregadaPor(muestra.getRecibidaPor());
