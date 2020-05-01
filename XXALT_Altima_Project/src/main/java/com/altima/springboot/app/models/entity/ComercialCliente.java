@@ -1,19 +1,15 @@
 package com.altima.springboot.app.models.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.PrePersist;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "alt_comercial_cliente")
@@ -37,15 +33,11 @@ public class ComercialCliente implements Serializable {
 	private String CactualizadoPor;
 	
 	@Column(name="fecha_creacion")
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern="yyyy-mm-dd")
-	private Date CfechaCreacion;
+	private String CfechaCreacion;
 	
 	
 	@Column(name="ultima_fecha_modificacion")
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern="yyyy-mm-dd")
-	private Date CultimaFechaModificacion;
+	private String CultimaFechaModificacion;
 	
 	@Column(name="apellido_paterno")
 	private String ApellidoPaterno;
@@ -166,19 +158,19 @@ public class ComercialCliente implements Serializable {
 		CactualizadoPor = cactualizadoPor;
 	}
 
-	public Date getCfechaCreacion() {
+	public String getCfechaCreacion() {
 		return CfechaCreacion;
 	}
 
-	public void setCfechaCreacion(Date cfechaCreacion) {
+	public void setCfechaCreacion(String cfechaCreacion) {
 		CfechaCreacion = cfechaCreacion;
 	}
 
-	public Date getCultimaFechaModificacion() {
+	public String getCultimaFechaModificacion() {
 		return CultimaFechaModificacion;
 	}
 
-	public void setCultimaFechaModificacion(Date cultimaFechaModificacion) {
+	public void setCultimaFechaModificacion(String cultimaFechaModificacion) {
 		CultimaFechaModificacion = cultimaFechaModificacion;
 	}
 

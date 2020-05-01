@@ -22,5 +22,7 @@ public interface IComercialClienteService {
 	List<ComercialClienteFactura> ListaFactura(Long id);
 	void saveFactura(ComercialClienteFactura factura);
 	ComercialClienteFactura findOneFactura(Long id);
+	
+	public Integer ContadorFacturas (Long id);
 
 }

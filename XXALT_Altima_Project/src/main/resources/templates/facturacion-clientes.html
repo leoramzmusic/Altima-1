@@ -101,11 +101,11 @@
 					                    
                                         <div  th:if="*{direccion.NumeroExt == 'S/N'}" class="form-group col-sm-1">
                                             <label for="direccionExt">No. Ext.</label>
-                                            <input type="number" min="0" disabled id="extNum" class="form-control" th:field="*{direccion.NumeroExt}" placeholder="63" required>
+                                            <input type="number" min="1" disabled id="extNum" class="form-control" th:field="*{direccion.NumeroExt}" placeholder="63" required>
                                         </div>
                                         <div  th:if="*{direccion.NumeroExt == 'S/N'}" class="form-group col-sm-2">
                                             <label for="direccionInt">No. Int. (opcional)</label>
-                                            <input type="number" min="0" disabled id="intNum" class="form-control" th:field="*{direccion.NumeroInt}"  placeholder="12">
+                                            <input type="number" min="1" disabled id="intNum" class="form-control" th:field="*{direccion.NumeroInt}"  placeholder="12">
                                         </div>
                                         
                                         
@@ -294,7 +294,7 @@
           var mayuscula = palabra.substring(0,1).toUpperCase();
           //si la palabra tiene más de una letra almacenamos las minúsculas
           if (palabra.length > 0) {
-            var minuscula = palabra.substring(1).toLowerCase();
+            var minuscula = palabra.substring(1);
           }
           //escribimos la palabra con la primera letra mayuscula
           e.value = mayuscula.concat(minuscula);

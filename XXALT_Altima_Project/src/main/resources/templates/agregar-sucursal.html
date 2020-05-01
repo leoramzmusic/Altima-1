@@ -196,7 +196,7 @@
                                         <input  type="hidden" th:field="*{sucursal.SActualizadoPor}">
                                         <input  type="hidden" th:field="*{sucursal.SFechaCreacion}">
                                         <input  type="hidden" th:field="*{sucursal.SUltimaFechaModificacion}">
-                                        <input  type="hidden" th:field="*{sucursal.estatus}">
+                                        <input  type="hidden" th:field="*{sucursal.Sestatus}">
                                         <input  type="hidden" name="IdCliente" th:value="*{cliente.IdCliente}">
                                         
                                         <input  type="hidden" th:field="*{direccion.idDireccion}">
@@ -275,7 +275,7 @@
           var mayuscula = palabra.substring(0,1).toUpperCase();
           //si la palabra tiene más de una letra almacenamos las minúsculas
           if (palabra.length > 0) {
-            var minuscula = palabra.substring(1).toLowerCase();
+            var minuscula = palabra.substring(1);
           }
           //escribimos la palabra con la primera letra mayuscula
           e.value = mayuscula.concat(minuscula);

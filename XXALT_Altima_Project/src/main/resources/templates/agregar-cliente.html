@@ -368,7 +368,7 @@
                                         </div>
                                         <div class="form-group col-sm-4">
                                             <label for="telefonoEmpresa">Tel&eacute;fono</label>
-                                            <input  id="phone1" type="text" th:field="*{cliente.Telefono}" class="form-control"  placeholder="(___) ___-____" required  data-inputmask='"mask": "(999) 999-9999"' data-mask >
+                                            <input  id="phone2" type="text" th:field="*{cliente.Telefono}" class="form-control"  placeholder="(___) ___-____" required  data-inputmask='"mask": "(999) 999-9999"' data-mask >
                                         </div>
                                         <div class="form-group col-sm-4">
                                             <label for="correoEmpresa">Correo</label>
@@ -501,7 +501,7 @@
           var mayuscula = palabra.substring(0,1).toUpperCase();
           //si la palabra tiene más de una letra almacenamos las minúsculas
           if (palabra.length > 0) {
-            var minuscula = palabra.substring(1).toLowerCase();
+            var minuscula = palabra.substring(1);
           }
           //escribimos la palabra con la primera letra mayuscula
           e.value = mayuscula.concat(minuscula);
