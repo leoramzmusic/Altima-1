@@ -240,7 +240,7 @@ public class CalidadController {
 				}
 				
 				if (u.getTipoPrueba().equalsIgnoreCase("Prueba de Lavado")) {
-					 model.addAttribute("readLavado", "false");
+					 //model.addAttribute("readLavado", "false");
 					model.addAttribute("operarioLavado", u.getCreadoPor());
 					model.addAttribute("fechaRealizacionLavado", u.getFechaRealizacion().replace(" ", "T"));
 					model.addAttribute("medidaHiloPruebaLavado", u.getMedidaInicialHilo());

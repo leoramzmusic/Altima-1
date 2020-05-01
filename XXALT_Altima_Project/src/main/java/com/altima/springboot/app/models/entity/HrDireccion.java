@@ -64,14 +64,10 @@ public class HrDireccion implements Serializable{
 	private String actualizadoPor;
 	
 	@Column(name="fecha_creacion")
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern="yyyy-mm-dd")
-	private Date fechaCreacion;
+	private String fechaCreacion;
 	
 	@Column(name="ultima_fecha_modificacion")
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern="yyyy-mm-dd")
-	private Date ultimaFechaModificacion;
+	private String ultimaFechaModificacion;
 	
 	@Column(name="estatus")
 
@@ -257,7 +253,7 @@ public class HrDireccion implements Serializable{
 
 
 
-	public Date getFechaCreacion() {
+	public String getFechaCreacion() {
 		return fechaCreacion;
 	}
 
@@ -265,7 +261,7 @@ public class HrDireccion implements Serializable{
 
 
 
-	public void setFechaCreacion(Date fechaCreacion) {
+	public void setFechaCreacion(String fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
 
@@ -273,7 +269,7 @@ public class HrDireccion implements Serializable{
 
 
 
-	public Date getUltimaFechaModificacion() {
+	public String getUltimaFechaModificacion() {
 		return ultimaFechaModificacion;
 	}
 
@@ -281,7 +277,7 @@ public class HrDireccion implements Serializable{
 
 
 
-	public void setUltimaFechaModificacion(Date ultimaFechaModificacion) {
+	public void setUltimaFechaModificacion(String ultimaFechaModificacion) {
 		this.ultimaFechaModificacion = ultimaFechaModificacion;
 	}
 
@@ -338,99 +334,5 @@ public class HrDireccion implements Serializable{
 	}
 
 
-
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		HrDireccion other = (HrDireccion) obj;
-		if (NumeroExt == null) {
-			if (other.NumeroExt != null)
-				return false;
-		} else if (!NumeroExt.equals(other.NumeroExt))
-			return false;
-		if (NumeroInt == null) {
-			if (other.NumeroInt != null)
-				return false;
-		} else if (!NumeroInt.equals(other.NumeroInt))
-			return false;
-		if (actualizadoPor == null) {
-			if (other.actualizadoPor != null)
-				return false;
-		} else if (!actualizadoPor.equals(other.actualizadoPor))
-			return false;
-		if (calle == null) {
-			if (other.calle != null)
-				return false;
-		} else if (!calle.equals(other.calle))
-			return false;
-		if (codigoPostal == null) {
-			if (other.codigoPostal != null)
-				return false;
-		} else if (!codigoPostal.equals(other.codigoPostal))
-			return false;
-		if (colonia == null) {
-			if (other.colonia != null)
-				return false;
-		} else if (!colonia.equals(other.colonia))
-			return false;
-		if (creadoPor == null) {
-			if (other.creadoPor != null)
-				return false;
-		} else if (!creadoPor.equals(other.creadoPor))
-			return false;
-		if (estado == null) {
-			if (other.estado != null)
-				return false;
-		} else if (!estado.equals(other.estado))
-			return false;
-		if (estatus == null) {
-			if (other.estatus != null)
-				return false;
-		} else if (!estatus.equals(other.estatus))
-			return false;
-		if (fechaCreacion == null) {
-			if (other.fechaCreacion != null)
-				return false;
-		} else if (!fechaCreacion.equals(other.fechaCreacion))
-			return false;
-		if (idDireccion == null) {
-			if (other.idDireccion != null)
-				return false;
-		} else if (!idDireccion.equals(other.idDireccion))
-			return false;
-		if (idText == null) {
-			if (other.idText != null)
-				return false;
-		} else if (!idText.equals(other.idText))
-			return false;
-		if (municipio == null) {
-			if (other.municipio != null)
-				return false;
-		} else if (!municipio.equals(other.municipio))
-			return false;
-		if (ultimaFechaModificacion == null) {
-			if (other.ultimaFechaModificacion != null)
-				return false;
-		} else if (!ultimaFechaModificacion.equals(other.ultimaFechaModificacion))
-			return false;
-		return true;
-	}
-
-
-
-
-
-	@PrePersist
-	public void prePersist() {
-		fechaCreacion=new Date();
-	}
-	
 	
 }

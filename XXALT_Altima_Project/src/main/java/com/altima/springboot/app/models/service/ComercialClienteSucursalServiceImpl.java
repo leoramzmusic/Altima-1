@@ -32,7 +32,7 @@ public class ComercialClienteSucursalServiceImpl implements IComercialClienteSuc
 	@Override
 	@Transactional
 	public List<ComercialClienteSucursal> ClienteSucursales(Long id) {
-		return em.createQuery("from ComercialClienteSucursal where id_cliente=" + id +" and estatus='1' ORDER BY nombre_sucursal").getResultList();
+		return em.createQuery("from ComercialClienteSucursal where id_cliente=" + id +"  ORDER BY id_text, nombre_sucursal").getResultList();
 	}
 	
 	@Override
