@@ -28,7 +28,6 @@
 <link rel="stylesheet" href="/dist/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="/dist/css/fixedHeader.bootstrap.min.css">
 <link rel="stylesheet" href="/dist/css/responsive.bootstrap.min.css">
-
 <!-- Select2 -->
 <link rel="stylesheet" href="/plugins/select2/css/select2.min.css">
 <link rel="stylesheet"
@@ -167,10 +166,10 @@
 																<div class="modal-body">
 																	<div class="input-group">
 																		<div class="custom-file">
-																			<input type="file" class="custom-file-input"
+																			<input type="file" class="custom-file-input" th:id="inputGroupFile+''+${calidad.index}"
 																				name="file" accept=".xls,.xlsx,.pdf"> <label
-																				for="file" class="custom-file-label"
-																				th:utext="${calidades[7]}"></label>
+																				for="inputGroupFile+''+${calidad.index}" class="custom-file-label"
+																				th:utext="${calidades[7]}" >seleccione archivo</label>
 																		</div>
 																	</div>
 																</div>
@@ -241,6 +240,16 @@
 	<!-- select2 -->
 	<script src="dist/js/select2.min.js"></script>
 	<script src="dist/js/PruebasCalidad.js"></script>
+	<script>
+	var lengthid=$('input[id^=inputGroupFile]').length;
+	var id='#inputGroupFile';
+	for (i = 0; i < lengthid; i++) {
+		  $(id.concat(i)).on('change',function(){
+              var fileName = $(this).val().replace('C:\\fakepath\\', " ");
+              $(this).next('.custom-file-label').html(fileName);
+          })
+		}   
+    </script>
 	<script>
 		$(function() {
 			$('select').each(function() {
