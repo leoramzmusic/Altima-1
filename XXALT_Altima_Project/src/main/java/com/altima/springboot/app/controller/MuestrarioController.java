@@ -26,8 +26,5 @@ public class MuestrarioController {
 		return "inventario";
 	}
 	
-	@GetMapping("/catalogos-muestrario")
-	public String listCatalogo() {
-		return "catalogos-muestrario";
-	}
+	
 }
