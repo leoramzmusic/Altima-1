@@ -346,7 +346,7 @@ public class CatalogoController {
 			instruccioncuidado.setEstatus(1);
 			String uniqueFilename = null;
 			try {
-				uniqueFilename = uploadFileService.copyfile(iconocuidado);
+				uniqueFilename = uploadFileService.copyfile(iconocuidado,1);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
