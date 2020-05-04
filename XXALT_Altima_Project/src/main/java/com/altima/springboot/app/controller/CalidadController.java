@@ -37,7 +37,7 @@ import com.altima.springboot.app.models.service.IUploadService;
 
 @Controller
 public class CalidadController {
-
+	
 	@Autowired
 	IDisenioCalidadService disenioCalidad;
 	@Autowired
@@ -55,17 +55,18 @@ public class CalidadController {
 	@Autowired
 	private IUploadService uploadFileService;
 
-	private String tipo(String tipo) {
-		String tipoint = "tipo";
-		if (tipo.equals("tela")) {
-			tipoint = "1";
-		} else if (tipo.equals("forro")) {
-			tipoint = "3";
+	private String tipo(String tipo){
+		String tipoint="tipo";
+		if(tipo.equals("tela")){
+			tipoint="1";
+		}
+		else if(tipo.equals("forro")){
+			tipoint="3";
 		}
 		return tipoint;
 
 	}
-
+	
 	@GetMapping("/calidad")
 	public String listCalidad(Model model) {
 		model.addAttribute("listCalidades", disenioCalidad.findAllWithIdTextTela());
@@ -193,56 +194,59 @@ public class CalidadController {
 		disenioCalidad.save(dc1);
 		return "redirect:calidad";
 	}
-
+	
 	@GetMapping("detalle-calidad")
 	public String infoCalidad() {
 		return "detalle-calidad";
 	}
 
 	@GetMapping("calidad-nueva-prueba/{tipo}/{id}")
-	public String addCalidad(@PathVariable(name = "id") Long id, @PathVariable(name = "tipo") String tipo,
-			Model model) {
-		if (tipo(tipo).equals("tipo")) {
-			return "redirect:/calidad-nueva-prueba/" + tipo + "/" + id;
+	public String addCalidad(@PathVariable(name = "id") Long id,@PathVariable(name = "tipo") String tipo, Model model) {
+		if(tipo(tipo).equals("tipo")){
+			return "redirect:/calidad-nueva-prueba/"+tipo+"/"+id;
 		}
 		try {
-			addPruebaCalidad(disenioCalidad.findOneById(id, tipo(tipo)).getIdCalidad(), id, tipo(tipo), model);
+			addPruebaCalidad(disenioCalidad.findOneById(id, tipo(tipo)).getIdCalidad(),id,tipo(tipo),model);
 		} catch (Exception e) {
-			System.out.println("nuevo: " + e);
+			System.out.println("nuevo: "+e);
 		}
-		if (tipo.equals("forro")) {
+		if(tipo.equals("forro")) {
 			System.out.println("si esta entrando aqui");
 			model.addAttribute("forro", "true");
 			model.addAttribute("tela", disenioForro.findOne(id).getNombreForro());
-
-		} else {
+			
+		}
+		else {
 			model.addAttribute("forro", "false");
 			model.addAttribute("tela", disenioTela.findOne(id).getNombreTela());
 		}
-
+		
+		
 		model.addAttribute("tipoMaterial", tipo(tipo));
 		model.addAttribute("idMaterial", id);
 		return "calidad-nueva-prueba";
 	}
+	
 
-	public String addPruebaCalidad(Long id, Long idM, String tipo, Model model) {
+	public String addPruebaCalidad(Long id,Long idM,String tipo, Model model) {
 		List<DisenioPruebaEncogimientoLavado> pruebasEL = pruebaEncogiLavado.findAllByCalidad(id);
 		List<DisenioPruebaLavadoContaminacionCostura> pruebasLCC = pruebaContaCostura.findAllByCalidad(id);
 		DisenioCalidad Calidad = disenioCalidad.findOne(id);
-		// model.addAttribute("idTela", Calidad.getIdMaterial());
+		//model.addAttribute("idTela", Calidad.getIdMaterial());
 		model.addAttribute("idCalidad", id);
 		model.addAttribute("idMaterial", id);
 		model.addAttribute("tipoMaterial", tipo);
 		model.addAttribute("readtela", "true");
-
+		
+		
 		if (pruebaContaCostura.ifExist(id) == 1 || pruebaEncogiLavado.ifExist(id) == 1) {
-
+			
 			for (DisenioPruebaEncogimientoLavado u : pruebasEL) {
 				if (u.getTipoPrueba().equalsIgnoreCase("Prueba de Fusión")) {
 					// model.addAttribute("read", "true");
 					model.addAttribute("operarioEncogi", u.getCreadoPor());
 					model.addAttribute("fechaRealizacionEncogi", u.getFechaRealizacion().replace(" ", "T"));
-
+					
 					if (u.getAdherenciaPruebaVapor().equals("buena")) {
 						model.addAttribute("checkBFusion", "true");
 					}
@@ -252,7 +256,7 @@ public class CalidadController {
 					if (u.getAdherenciaPruebaVapor().equals("mala")) {
 						model.addAttribute("checkMFusion", "true");
 					}
-
+					
 					model.addAttribute("proveedorEncogi", u.getProveedorPruebaVapor());
 					model.addAttribute("temperaturaPruebaVapor", u.getTemperaturaPruebaVapor());
 					model.addAttribute("tiempoPruebaVapor", u.getTiempoPrueba());
@@ -268,7 +272,7 @@ public class CalidadController {
 					model.addAttribute("entretelas", u.getEntretelaPruebaVapor());
 					// model.addAttribute("displa", "true");
 				}
-
+				
 				if (u.getTipoPrueba().equalsIgnoreCase("Vapor")) {
 					model.addAttribute("fechaRealizacionEncogi", u.getFechaRealizacion().replace(" ", "T"));
 					model.addAttribute("medidaHiloPlanchaVapor", u.getMedidaInicialHilo());
@@ -279,9 +283,9 @@ public class CalidadController {
 					model.addAttribute("finalTramaMedPlanchaVapor", u.getDiferenciaMedidaTrama());
 					model.addAttribute("observacionesReultPlanchaVapor", u.getObservacionesResultados());
 				}
-
+				
 				if (u.getTipoPrueba().equalsIgnoreCase("Prueba de Lavado")) {
-					model.addAttribute("readLavado", "false");
+					 //model.addAttribute("readLavado", "false");
 					model.addAttribute("operarioLavado", u.getCreadoPor());
 					model.addAttribute("fechaRealizacionLavado", u.getFechaRealizacion().replace(" ", "T"));
 					model.addAttribute("medidaHiloPruebaLavado", u.getMedidaInicialHilo());
@@ -293,14 +297,14 @@ public class CalidadController {
 					model.addAttribute("observacionesReultPruebaLavado", u.getObservacionesResultados());
 					// model.addAttribute("displaLavado", "true");
 				}
-
+				
 				model.addAttribute("idoperar", u.getCreadoPor());
 			}
-
+			
 			for (DisenioPruebaLavadoContaminacionCostura cc : pruebasLCC) {
 				if (cc.getTipoPrueba().equalsIgnoreCase("Solidez/Color/Pilling")) {
 					model.addAttribute("observacionesReultPilling", cc.getObservacionesResultados());
-
+					
 					if (cc.getPruebaCalidad().equals("buena")) {
 						model.addAttribute("checkBLavado", "true");
 					}
@@ -317,6 +321,7 @@ public class CalidadController {
 						model.addAttribute("checkNLavado", "true");
 					}
 				}
+		
 
 				if (cc.getTipoPrueba().equalsIgnoreCase("Resultado costura")) {
 					model.addAttribute("operarioCostura", cc.getCreadoPor());
@@ -325,7 +330,7 @@ public class CalidadController {
 					model.addAttribute("observacionesRasgado", cc.getObservacionesResultados());
 					// model.addAttribute("displaCostura", "true");
 					model.addAttribute("aguja", cc.getTipoAguja());
-
+					
 					if (cc.getDeslizamientoTela().equals("si")) {
 						model.addAttribute("checkSDeslizamiento", "true");
 					}
@@ -340,14 +345,14 @@ public class CalidadController {
 						model.addAttribute("checkNCostura", "true");
 					}
 				}
-
+				
 				if (cc.getTipoPrueba().equalsIgnoreCase("Resultado de Contaminación")) {
 					model.addAttribute("operarioContaminacion", cc.getCreadoPor());
 					model.addAttribute("fechaRealizacionContaminacion", cc.getFechaRealizacion().replace(" ", "T"));
 					// model.addAttribute("readContamin", "true");
 					model.addAttribute("observacionesReultContaminacion", cc.getObservacionesResultados());
 					// model.addAttribute("displaConta", "true");
-
+					
 					if (cc.getPruebaCalidad().equals("buena")) {
 						model.addAttribute("checkBConta", "true");
 					}
@@ -357,42 +362,39 @@ public class CalidadController {
 					if (cc.getPruebaCalidad().equals("mala")) {
 						model.addAttribute("checkMConta", "true");
 					}
-
+					
 				}
-
+				
 				model.addAttribute("idoperar", cc.getCreadoPor());
-
+				
 			}
-
+			
 			return "/calidad-nueva-prueba";
 		} else {
 			return "calidad-nueva-prueba";
 		}
 	}
-
+	
 	@RequestMapping(value = "/detalle-calidad/{tipo}/{id}", method = RequestMethod.GET)
-	public String infoPruebasCalidad(@PathVariable(name = "id") Long id, @PathVariable(name = "tipo") String tipo,
-			Model model) {
-
+	public String infoPruebasCalidad(@PathVariable(name = "id") Long id,@PathVariable(name = "tipo") String tipo, Model model) {
+		
 		try {
-			List<DisenioPruebaEncogimientoLavado> pruebasEL = pruebaEncogiLavado
-					.findAllByCalidad(disenioCalidad.findOneById(id, tipo(tipo)).getIdCalidad());
-			List<DisenioPruebaLavadoContaminacionCostura> pruebasLCC = pruebaContaCostura
-					.findAllByCalidad(disenioCalidad.findOneById(id, tipo(tipo)).getIdCalidad());
+			List<DisenioPruebaEncogimientoLavado> pruebasEL = pruebaEncogiLavado.findAllByCalidad(disenioCalidad.findOneById(id, tipo(tipo)).getIdCalidad());
+			List<DisenioPruebaLavadoContaminacionCostura> pruebasLCC = pruebaContaCostura.findAllByCalidad(disenioCalidad.findOneById(id, tipo(tipo)).getIdCalidad());
 			if (pruebaContaCostura.ifExist(id) == 1 || pruebaEncogiLavado.ifExist(id) == 1) {
-
+			
 				for (DisenioPruebaEncogimientoLavado u : pruebasEL) {
 					if (u.getTipoPrueba().equalsIgnoreCase("Prueba de Fusión")) {
-
+						
 						model.addAttribute("adherenciaEnco", u.getAdherenciaPruebaVapor());
 						model.addAttribute("proveedorEncogi", u.getProveedorPruebaVapor());
 						try {
-							model.addAttribute("entretela", materialService
-									.findOne(Long.valueOf(u.getEntretelaPruebaVapor())).getNombreMaterial());
+							model.addAttribute("entretela",
+									materialService.findOne(Long.valueOf(u.getEntretelaPruebaVapor())).getNombreMaterial());
 						} catch (Exception e) {
 							model.addAttribute("entretela", " ");
 						}
-
+						
 						model.addAttribute("temperaturaVapor", u.getTemperaturaPruebaVapor());
 						model.addAttribute("tiempoVapor", u.getTiempoPrueba());
 						model.addAttribute("presionVapor", u.getPresionPrueba());
@@ -410,9 +412,9 @@ public class CalidadController {
 						model.addAttribute("diferenciaTramaPlanchaVapor", u.getDiferenciaMedidaTrama());
 						model.addAttribute("observacionesReultPlanchaVapor", u.getObservacionesResultados());
 					}
-
+					
 					if (u.getTipoPrueba().equalsIgnoreCase("Prueba de Lavado")) {
-
+						
 						model.addAttribute("finalHiloMedPruebaLavado", u.getMedidaFinalHilo());
 						model.addAttribute("diferenciaHiloPruebaLavado", u.getDiferenciaMedidaHilo());
 						model.addAttribute("finalTramaMedPruebaLavado", u.getMedidaFinalTrama());
@@ -420,38 +422,41 @@ public class CalidadController {
 						model.addAttribute("observacionesReultPruebaLavado", u.getObservacionesResultados());
 					}
 				}
-
+				
 				for (DisenioPruebaLavadoContaminacionCostura cc : pruebasLCC) {
-
+					
 					if (cc.getTipoPrueba().equalsIgnoreCase("Solidez/Color/Pilling")) {
 						model.addAttribute("solidezColor", cc.getPruebaCalidad());
 						model.addAttribute("resultadoPilling", cc.getPrueba_pilling());
 						model.addAttribute("observacionesReultPilling", cc.getObservacionesResultados());
 					}
-
+					
 					if (cc.getTipoPrueba().equalsIgnoreCase("Resultado costura")) {
 						model.addAttribute("observacionescostura", cc.getObservacionesResultados());
 						model.addAttribute("Deslizamiento", cc.getDeslizamientoTela());
 						model.addAttribute("Costura", cc.getRasgadoTela());
-
+						
 					}
 
+					
 					if (cc.getTipoPrueba().equalsIgnoreCase("Resultado de contaminación")
 							|| cc.getTipoPrueba().equalsIgnoreCase("Resultado de contaminacion")) {
 						model.addAttribute("observacionesReultContaminacion", cc.getObservacionesResultados());
 						model.addAttribute("calidadContaminacion", cc.getPruebaCalidad());
-
+						
 					}
-
+					
 				}
 				return "/detalle-calidad";
 			} else {
 				return "/detalle-calidad";
 			}
 		} catch (Exception e) {
-			System.out.println("nuevo: " + e);
+			System.out.println("nuevo: "+e);
 			return "redirect:/calidad";
 		}
+
+		
 
 	}
 }
