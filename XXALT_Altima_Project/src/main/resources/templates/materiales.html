@@ -129,6 +129,18 @@
                                                           <a th:if="${mt[3] == 'Forro'}" th:href="@{/delete-forro/}+${mt[0]}"  class="btn btn-danger btn-circle btn-sm btn-delete popoverxd"
                                                          data-container="body" data-toggle="popover" data-placement="top"
                                                           data-content="Dar de baja"><i class="fas fa-caret-down"></i></a>
+                                                          
+                                                          
+                                                          
+                                                        <a class="btn btn-success btn-circle btn-sm text-white popoverxd" th:unless="${mt[3] == 'Forro' || mt[3] == 'Tela'  }" th:href="@{/aceptado-material/}+${mt[0]}" data-container="body" data-toggle="popover" data-placement="top" data-content="Aceptar"><i class="fas fa-vote-yea"></i></a>
+                                                        <a class="btn btn-success btn-circle btn-sm text-white popoverxd" th:if="${mt[3] == 'Tela'}" th:href="@{/aceptado-tela/}+${mt[0]}" data-container="body" data-toggle="popover" data-placement="top" data-content="Aceptar"><i class="fas fa-vote-yea"></i></a>
+                                                        <a class="btn btn-success btn-circle btn-sm text-white popoverxd" th:if="${mt[3] == 'Forro'}" th:href="@{/aceptado-forro/}+${mt[0]}" data-container="body" data-toggle="popover" data-placement="top" data-content="Aceptar"><i class="fas fa-vote-yea"></i></a>
+                                                        
+                                                        
+                                                        
+                                                         <a class="btn btn-danger btn-circle btn-sm text-white popoverxd" th:unless="${mt[3] == 'Forro' || mt[3] == 'Tela'  }" th:href="@{/declinado-forro/}+${mt[0]}" data-container="body" data-toggle="popover" data-placement="top" data-content="Declinar"><i class="fas fa-arrow-alt-circle-down"></i></a>
+                                                        <a class="btn btn-danger btn-circle btn-sm text-white popoverxd" th:if="${mt[3] == 'Tela'}" th:href="@{/detalle-material/tela/}+${mt[0]}" data-container="body" data-toggle="popover" data-placement="top" data-content="Declinar"><i class="fas fa-arrow-alt-circle-down"></i></a>
+                                                        <a class="btn btn-danger btn-circle btn-sm text-white popoverxd" th:if="${mt[3] == 'Forro'}" th:href="@{/detalle-material/forro/}+${mt[0]}" data-container="body" data-toggle="popover" data-placement="top" data-content="Declinar"><i class="fas fa-arrow-alt-circle-down"></i></a>
                                                        
                                                     </td>
                                                     
