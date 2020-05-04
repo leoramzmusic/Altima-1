@@ -28,7 +28,6 @@ public class DisenioMaterial implements Serializable{
 	private Long idMaterial;
 	
 	@Column(name="id_proceso")
-	
 	private Long idProceso;
 
 	@Column(name="id_text")

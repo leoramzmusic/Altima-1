@@ -72,6 +72,7 @@ public class TelaController {
 			@RequestParam("colormat") String colormat,
 			@RequestParam("codcolor") String codcolor,
 			@RequestParam("tipomat") String tipomat,
+			@RequestParam("posicionm") String posicion,
 			@RequestParam(value="botones" , required=false) String botones,
 			@RequestParam( value="hilos" , required=false) String hilos,
 			@RequestParam( value="cierres" , required=false) String cierres,
@@ -83,7 +84,7 @@ public class TelaController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Date date = new Date();
 		DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		System.out.println("checalos here "+idmat+" "+colormat+" "+codcolor);
+		System.out.println("checalos here "+idmat+" "+colormat+" "+codcolor+" "+posicion);
 
 		if ( tela.getIdTela()== null || tela.getEstatusTela().equals("0") ) {
 			System.out.println("Entra if de id null y estatus tela 0 forro");
@@ -184,6 +185,7 @@ public class TelaController {
 				String [] colorMat = colormat.split(",");
 				String [] codColor = codcolor.split(",");
 				String [] tipoMat = tipomat.split(",");
+				String [] pos = posicion.split(",");
 				for(int i= 0 ; i<idMat.length;i++) {
 					DisenioMaterialTela tm = new DisenioMaterialTela();
 					tm.setIdTela(tela.getIdTela());
@@ -191,6 +193,7 @@ public class TelaController {
 					tm.setColor(colorMat[i]);
 					tm.setCodigocolor(codColor[i]);
 					tm.setTipo(tipoMat[i]);
+					tm.setPosicion(pos[i]);
 					MaterialService.save(tm);
 				}
 			}

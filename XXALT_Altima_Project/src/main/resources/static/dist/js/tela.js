@@ -64,9 +64,11 @@ $( "#selecttipom" ).change(function() {
     var _texttipo = $("#selecttipom" ).children("option:selected").html();
     var _idcol = $('#matcol').val();
     var _idcod = $('#matcod').val();
+    var pos = $('#clasi').val();
     var fila = "<tr><td style='display: none;'>" +_idmat + "</td>"+
         "<tr><td style='display: none;'>" +_texttipo + "</td>"+
-		"<td>" + _textmat + "</td>"+
+        "<td>" + _textmat + "</td>"+
+        "<td>" + pos + "</td>"+
 		"<td>" +_idcol+ "</td>"+
 		"<td><input disabled type='color' id='color"+_idmat+"' value='"+_idcod+"'></td>"+
 		"<td>" +'<button type="button" name="remove" id="' +_idmat + '"onclick="eliminarMaterial(this)" class="btn btn-danger btn_remove">Quitar</button></td>'+
