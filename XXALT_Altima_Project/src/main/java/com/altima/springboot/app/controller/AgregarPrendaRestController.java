@@ -1,6 +1,8 @@
 package com.altima.springboot.app.controller;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +31,9 @@ import com.altima.springboot.app.models.entity.DisenioMaterialPrenda;
 import com.altima.springboot.app.models.entity.DisenioPrenda;
 import com.altima.springboot.app.models.entity.DisenioPrendaMarcador;
 import com.altima.springboot.app.models.entity.DisenioPrendaPatronaje;
+import com.altima.springboot.app.models.entity.DiseñoPrendaImagen;
 import com.altima.springboot.app.models.service.DisenioMaterialPrendaServiceImpl;
+import com.altima.springboot.app.models.service.DisenioPrendaImagenServiceImpl;
 import com.altima.springboot.app.models.service.DisenioPrendaPatronajeServiceImpl;
 import com.altima.springboot.app.models.service.DisenioPrendaServiceImpl;
 import com.altima.springboot.app.models.service.IDisenioLookupService;
@@ -49,6 +53,8 @@ public class AgregarPrendaRestController {
 	private DisenioMaterialPrendaServiceImpl materialPrendaService;
 	@Autowired
 	private DisenioPrendaPatronajeServiceImpl prendaPatronajeService;
+	@Autowired
+	private DisenioPrendaImagenServiceImpl prendaImagenService;
 	@Autowired
 	private IDisenioLookupService disenioLookupService;
 	@Autowired
@@ -298,6 +304,102 @@ public class AgregarPrendaRestController {
 		//this.dp.setDibujoEspalda(uniqueFilename);
 
 		Thread.sleep(2000);
+		response.sendRedirect("/prendas");
+	}
+	
+	@RequestMapping(value = "/imagenes_prendas", method = RequestMethod.POST)
+	public void guardarImagenes(HttpServletResponse response, DisenioPrenda dp, BindingResult result, Model model, RedirectAttributes flash,
+	@RequestParam("file-input-1") MultipartFile foto1, @RequestParam("name-1") String nombre1,
+	@RequestParam("file-input-2") MultipartFile foto2, @RequestParam("name-2") String nombre2,
+	@RequestParam("file-input-3") MultipartFile foto3, @RequestParam("name-3") String nombre3,
+	@RequestParam("file-input-4") MultipartFile foto4, @RequestParam("name-4") String nombre4,
+	@RequestParam("file-input-5") MultipartFile foto5, @RequestParam("name-5") String nombre5,
+	@RequestParam("file-input-6") MultipartFile foto6, @RequestParam("name-6") String nombre6,
+	 @RequestParam("idPrenda") String idPrenda) throws InterruptedException, IOException 
+	{
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+		LocalDateTime now = LocalDateTime.now();  
+		
+		if(nombre1.length() > 0) {
+			DiseñoPrendaImagen dpi = new DiseñoPrendaImagen();
+			dpi.setIdPrenda(Long.parseLong(idPrenda));
+			dpi.setActualizadoPor(auth.getName());
+			dpi.setCreadoPor(auth.getName());
+			dpi.setEstatus("1");
+			dpi.setFechaCreacion(dtf.format(now));
+			dpi.setUltimaFechaModificacion(dtf.format(now));
+			dpi.setNombrePrenda(nombre1);
+			dpi.setRutaPrenda(uService.copy2(foto1));
+			prendaImagenService.save(dpi);
+		}
+		
+		if(nombre2.length() > 0) {
+			DiseñoPrendaImagen dpi = new DiseñoPrendaImagen();
+			dpi.setIdPrenda(Long.parseLong(idPrenda));
+			dpi.setActualizadoPor(auth.getName());
+			dpi.setCreadoPor(auth.getName());
+			dpi.setEstatus("1");
+			dpi.setFechaCreacion(dtf.format(now));
+			dpi.setUltimaFechaModificacion(dtf.format(now));
+			dpi.setNombrePrenda(nombre2);
+			dpi.setRutaPrenda(uService.copy2(foto2));
+			prendaImagenService.save(dpi);
+		}
+		
+		if(nombre3.length() > 0) {
+			DiseñoPrendaImagen dpi = new DiseñoPrendaImagen();
+			dpi.setIdPrenda(Long.parseLong(idPrenda));
+			dpi.setActualizadoPor(auth.getName());
+			dpi.setCreadoPor(auth.getName());
+			dpi.setEstatus("1");
+			dpi.setFechaCreacion(dtf.format(now));
+			dpi.setUltimaFechaModificacion(dtf.format(now));
+			dpi.setNombrePrenda(nombre3);
+			dpi.setRutaPrenda(uService.copy2(foto3));
+			prendaImagenService.save(dpi);
+		}
+		
+		if(nombre4.length() > 0) {
+			DiseñoPrendaImagen dpi = new DiseñoPrendaImagen();
+			dpi.setIdPrenda(Long.parseLong(idPrenda));
+			dpi.setActualizadoPor(auth.getName());
+			dpi.setCreadoPor(auth.getName());
+			dpi.setEstatus("1");
+			dpi.setFechaCreacion(dtf.format(now));
+			dpi.setUltimaFechaModificacion(dtf.format(now));
+			dpi.setNombrePrenda(nombre4);
+			dpi.setRutaPrenda(uService.copy2(foto4));
+			prendaImagenService.save(dpi);
+		}
+		
+		if(nombre5.length() > 0) {
+			DiseñoPrendaImagen dpi = new DiseñoPrendaImagen();
+			dpi.setIdPrenda(Long.parseLong(idPrenda));
+			dpi.setActualizadoPor(auth.getName());
+			dpi.setCreadoPor(auth.getName());
+			dpi.setEstatus("1");
+			dpi.setFechaCreacion(dtf.format(now));
+			dpi.setUltimaFechaModificacion(dtf.format(now));
+			dpi.setNombrePrenda(nombre5);
+			dpi.setRutaPrenda(uService.copy2(foto5));
+			prendaImagenService.save(dpi);
+		}
+		
+		if(nombre6.length() > 0) {
+			DiseñoPrendaImagen dpi = new DiseñoPrendaImagen();
+			dpi.setIdPrenda(Long.parseLong(idPrenda));
+			dpi.setActualizadoPor(auth.getName());
+			dpi.setCreadoPor(auth.getName());
+			dpi.setEstatus("1");
+			dpi.setFechaCreacion(dtf.format(now));
+			dpi.setUltimaFechaModificacion(dtf.format(now));
+			dpi.setNombrePrenda(nombre6);
+			dpi.setRutaPrenda(uService.copy2(foto6));
+			prendaImagenService.save(dpi);
+		}
+
+		
 		response.sendRedirect("/prendas");
 	}
 }

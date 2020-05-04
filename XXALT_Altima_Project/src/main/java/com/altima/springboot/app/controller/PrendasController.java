@@ -17,6 +17,7 @@ import com.altima.springboot.app.models.entity.DisenioPrenda;
 import com.altima.springboot.app.models.service.IDisenioFamiliaPrendaService;
 import com.altima.springboot.app.models.service.IDisenioLookupService;
 import com.altima.springboot.app.models.service.IDisenioMaterialService;
+import com.altima.springboot.app.models.service.IDisenioPrendaImagenService;
 import com.altima.springboot.app.models.service.IDisenioPrendaMarcadorService;
 import com.altima.springboot.app.models.service.IDisenioPrendaService;
 import com.altima.springboot.app.models.service.IDisenioRutaService;
@@ -34,6 +35,8 @@ public class PrendasController {
 	IDisenioRutaService disenioRutaService;
 	@Autowired
 	IUploadService uFileService;
+	@Autowired
+	IDisenioPrendaImagenService prendaImagenService;
 	@Autowired
 	IDisenioLookupService disenioLookupService;
 	@Autowired
@@ -93,6 +96,7 @@ public class PrendasController {
 		model.addAttribute("materialesPrenda", disenioMaterialService.findAllFromPrenda(id));
 		model.addAttribute("patronajes", disenioMaterialService.findLookUps());
 		model.addAttribute("patronajesPrenda", disenioMaterialService.findAllPatronajeFromPrenda(id));
+		model.addAttribute("imagenesPrenda", prendaImagenService.findByPrenda(id));
 		model.addAttribute("prenda", prenda);
 		m.put("accion", "editar");
 		m.put("disenio", disenio);

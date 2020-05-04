@@ -60,7 +60,11 @@
                                         </thead>
                                         <tbody>
                                             <tr th:each="prenda:${prendas}" th:unless="${prenda.prendaLocal == '0'}">
-                                                <td th:text="${prenda.idText}"></td>
+                                                
+                                                <td th:switch="${prenda.estatusRecepcionMuestra}">
+                                                	<span th:case="'Prospecto'" th:text="${prenda.idTextProspecto}"></span>
+                                                	<span th:case="'Definitivo'" th:text="${prenda.idText}"></span>
+                                                </td>
                                                 <td th:text="${prenda.descripcionPrenda}"></td>
                                                 <td>
                                                 	<p th:each="tipo: ${tipos}" th:if="${tipo[0] == prenda.idFamiliaPrenda}" th:text="${ tipo[1] }"></p>

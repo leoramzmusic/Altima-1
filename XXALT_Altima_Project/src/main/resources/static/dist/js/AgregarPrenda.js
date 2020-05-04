@@ -167,6 +167,7 @@ function CambiarCantidadMaterial(identidad) {
 
 
 function Guardar() {
+	$('#BotonBloquearGuardar').prop('disabled', true);
 	/*
 	if (CambiarImgFrente == true && CambiarImgEspalda == true) {
 		$('#FormImagenes').click();
@@ -217,7 +218,6 @@ function Guardar() {
 						"accion": accion
 					},
 					success: (data) => {
-						$('#BotonBloquearGuardar').prop('disabled', false);
 						window.location.href = '/prendas';
 					},
 					failure: function (errMsg) {
@@ -244,6 +244,7 @@ function Guardar() {
 			},
 			success: (data) => {
 				console.log(data);
+				$('#ContenedorBotonAgregarOtro').append("<input type='hidden' name='idPrenda' id='idPrenda' value='" + data.idPrenda + "'/>");
 				console.log(RecogerDatosTerceraParte());
 				$.ajax({
 					type: "POST",
@@ -256,8 +257,9 @@ function Guardar() {
 						"accion": $('#accionPag').val()
 					},
 					success: (data) => {
-						$('#BotonBloquearGuardar').prop('disabled', false);
-						window.location.href = '/prendas';
+						console.log(data);
+						//window.location.href = '/prendas';
+						$('#FormImagenes').click();
 					},
 					failure: function (errMsg) {
 						alert(errMsg);
@@ -457,6 +459,72 @@ function eliminarPatronaje(t) {
 *	Estas funciones son para las imagenes
 *
 ***/
+
+function AgregarImagen()
+{
+	if(idAux > 0)
+	{
+		$('#Contenedor-' + idAux).show();
+		idAux = 0;
+	}
+	else
+	{
+		if(contadorImagenes < 6)
+		{
+			contadorImagenes++;
+			
+			$('#Contenedor-' + contadorImagenes).show();
+			
+			if(contadorImagenes == 6)
+			{
+				$('#ContenedorBotonAgregarOtro').hide();
+			}
+		}
+		else
+		{
+			console.log("yas e lleno");
+		}	
+	}
+}
+
+function QuitarImagen(id)
+{
+	idAux = id;
+	
+	$('#Contenido-' + id).remove();
+	
+	$('#Contenedor-' + id).hide();
+	
+	$('#Contenedor-' + id).append("<div class='card' style='width: 18rem;' id='Contenido-" + id + "'>" +   																					
+										"<div class='image-upload-" + id + "'>" + 
+	  										"<label for='file-input-" + id + "'>" +  
+	  											"<img class='card-img-top' id='img-" + id + "' src='/dist/img/preview.png'>" +  
+	  										"</label>" +  
+	  										"<input id='file-input-" + id + "' name='file-input-" + id +"' onchange='PreviewImage(this, " + id + ");' type='file' style='display:none'/>" + 
+	  									"</div>" +
+										"<div class='card-body'>" +  
+											"<p class='card-text'><input type='text' id='name-" + id + "' name='name-" + id + "' class='form-control' placeholder='Nombre de Imagen'></p>" +  																							
+											"<button class='btn btn-danger' onclick='QuitarImagen(" + id + ")'>Quitar</button>" + 
+										"</div>" +  
+									"</div>");
+	
+	
+}
+
+function PreviewImage(input, id)
+{
+	 if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+		    
+		    reader.onload = function(e) {
+		      $('#img-' + id).attr('src', e.target.result);
+		    }
+		    
+		 reader.readAsDataURL(input.files[0]); 
+	 }
+}
+
+
 function readURL(input) {
 	if (input.files && input.files[0]) {
 		var reader = new FileReader();
