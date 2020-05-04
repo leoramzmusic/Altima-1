@@ -75,8 +75,8 @@
                                             <label for="documentoOtroMaterial">Resultados</label>
                                             <div class="input-group" bis_skin_checked="1">
                                                 <div class="custom-file" bis_skin_checked="1">
-                                                    <input type="file" class="custom-file-input"  th:name="file">
-                                                    <label for="file" class="custom-file-label" th:utext="${diseniocalidad.archivoRuta}">Foto</label>
+                                                    <input type="file" class="custom-file-input"  th:name="file" th:id="inputGroupFile">
+                                                    <label for="inputGroupFile" class="custom-file-label" th:utext="${diseniocalidad.archivoRuta}">Foto</label>
                                                      
                                                    <!--   <label class="custom-file-label" for="documentoOtroMaterial">Elije un archivo</label>--->
                                                 </div>
@@ -150,6 +150,12 @@
 	          timer: 1250
 	    });
 	</script>
+	<script>
+		  $('#inputGroupFile').on('change',function(){
+              var fileName = $(this).val().replace('C:\\fakepath\\', " ");
+              $(this).next('.custom-file-label').html(fileName);
+          })
+    </script>
     <!-- Popover-->
     <script>
         $(function() {
