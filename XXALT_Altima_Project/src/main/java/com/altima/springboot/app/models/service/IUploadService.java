@@ -31,7 +31,7 @@ public interface IUploadService {
 
 	public Resource loadfile(String filename) throws MalformedURLException;
 
-	public String copyfile(MultipartFile file) throws IOException;
+	public String copyfile(MultipartFile file,Integer caso) throws IOException;
 
 	public boolean deletefile(String filename);
 

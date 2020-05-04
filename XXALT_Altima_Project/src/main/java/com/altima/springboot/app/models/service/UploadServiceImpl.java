@@ -219,7 +219,7 @@ public class UploadServiceImpl implements IUploadService {
 	/* imagenes de lookup cuidados */
 	private final Logger log = LoggerFactory.getLogger(getClass());
 
-	private String UPLOADS_FOLDER = "uploads/cuidados";
+	private String UPLOADS_FOLDER = null;
 
 	@Override
 	public Resource loadfile(String filename) throws MalformedURLException {
@@ -235,11 +235,18 @@ public class UploadServiceImpl implements IUploadService {
 	}
 
 	@Override
-	public String copyfile(MultipartFile file) throws IOException {
-		String[] arrOfStr = file.getOriginalFilename().split("\\."); 
-		  System.out.println(arrOfStr[1]);
-        if(arrOfStr[1].equals("pdf")) {
-        	UPLOADS_FOLDER="uploads/calidadpdf";
+	public String copyfile(MultipartFile file,Integer caso) throws IOException {
+        Integer opcion = caso;
+        switch (opcion) {
+          case 1:
+        	  UPLOADS_FOLDER="uploads/cuidados";
+            break;
+          case 2:
+        	  UPLOADS_FOLDER="uploads/calidadarchivos";
+            break;
+          case 3:
+        	  UPLOADS_FOLDER="uploads/calidadconsentimiento";
+            break;
         }
        
 		String uniqueFilename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();

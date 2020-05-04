@@ -101,7 +101,7 @@
 											</tr>
 										</thead>
 										</tbody>
-											<tr th:each="calidades:${listCalidades}">
+											<tr th:each="calidades, calidad:${listCalidades}">
 												<td th:text="${calidades[1]}"></td>
 												
 												<td th:text="${calidades[3]}"></td>
@@ -120,9 +120,13 @@
 													<a  th:if="${calidades[4]=='Forro'}" th:href="@{detalle-calidad/forro/}+${calidades[0]}" class="btn btn-info text-white">
 														<i class="fas fa-info-circle"></i> Ver m&aacute;s detalles
 													</a>
-													<a  th:if="${calidades[4]=='Material'}" th:href="@{/uploads/calidadpdf/}+${calidades[6]}" class="btn btn-info text-white"  download data-container="body" data-placement="top" data-content="Descargar PDF">
+													<a  th:if="${calidades[4]=='Material'} and ${calidades[6]!='sin archivo'}" th:href="@{/uploads/calidadarchivos/}+${calidades[6]}" class="btn btn-info text-white popoverxd"  download data-container="body" data-placement="top" data-content="Descargar archivo">
 														<i class="fas fa-info-circle"></i> Ver m&aacute;s detalles
 													</a>
+													<a style='width:153.72px;' th:if="${calidades[4]=='Material'} and ${calidades[6]=='sin archivo'}" class="btn btn-info text-white popoverxd" data-container="body" data-placement="top" data-html="true" data-content="Ingrese un archivo mediante el botón editar para poder descargarlo">
+														<i class="fas fa-info-circle"></i>Sin archivo
+													</a>
+													
 												</td>						
 												<td class="tdcenter">
 													<a class="btn btn-warning popoverxd" th:href="@{/calidad-nueva-prueba/tela/}+${calidades[0]}"  th:if="${calidades[4]=='Tela'}" data-container="body" data-placement="top" data-content="Editar" style="border-radius: 35%;">
@@ -136,12 +140,61 @@
 													</a>
 													<a onclick="aceptarCalidad()" class="btn btn-success text-white btn-circle btn-sm popoverxd" data-container="body" data-placement="top" data-content="Aprobar"><i class="fas fa-check"></i></a>
 													<a onclick="rechazarCalidad()" class="btn btn-danger text-white btn-circle btn-sm popoverxd" data-container="body" data-placement="top" data-content="Rechazar"><i class="fas fa-times"></i></a>
-												</td>
+													<button th:if="${calidades[5]!=0}" type="button" class="btn btn-dark text-white btn-circle btn-sm popoverxd" data-toggle="modal" th:attr="data-target='#exampleModalCenter'+${calidad.index}" data-placement="top" data-content="Archivo de consentimiento">
+  														<i class="fas fa-file-signature"></i>
+													</button>
+												<form th:action="@{/calidad-consentimiento}" method="post"
+													enctype="multipart/form-data">
+													<input type="hidden" th:value="${calidades[5]}" name="id"
+														class="form-control">
+													<div class="modal fade"
+														th:id="exampleModalCenter+''+${calidad.index}"
+														tabindex="-1" role="dialog"
+														aria-labelledby="exampleModalCenterTitle"
+														aria-hidden="true">
+														<div class="modal-dialog modal-dialog-centered"
+															role="document">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<h5 class="modal-title" id="exampleModalLongTitle">
+																		<strong>Archivo de consentimiento</strong>
+																	</h5>
+																	<button type="button" class="close"
+																		data-dismiss="modal" aria-label="Close">
+																		<span aria-hidden="true">&times;</span>
+																	</button>
+																</div>
+																<div class="modal-body">
+																	<div class="input-group">
+																		<div class="custom-file">
+																			<input type="file" class="custom-file-input"
+																				name="file" accept=".xls,.xlsx,.pdf"> <label
+																				for="file" class="custom-file-label"
+																				th:utext="${calidades[7]}"></label>
+																		</div>
+																	</div>
+																</div>
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-secondary"
+																		data-dismiss="modal">Cerrar</button>
+																	<a th:if=" ${calidades[7]!='sin archivo'}"
+																		th:href="@{/uploads/calidadconsentimiento/}+${calidades[7]}"
+																		class="btn btn-info text-white popoverxd" download
+																		data-container="body" data-placement="top"
+																		data-content="Descargar archivo"> <i
+																		class="fas fa-cloud-download-alt"></i> Descargar
+																	</a>
+																	<button type="submit" class="btn btn-primary">Guardar</button>
+																</div>
+															</div>
+														</div>
+													</div>
+												</form> 
+											</td>
 											</tr>
-										
-										
 										<tbody>
 									</table>
+									
 								</div>
 								<!-- /.card-body -->
 							</div>
