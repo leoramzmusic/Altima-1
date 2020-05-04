@@ -198,4 +198,45 @@ public class DisenioMaterialServiceImpl implements IDisenioMaterialService {
 		
 	}
 	
+	
+
+	
+	
+	
+	
+	@Override
+	@Transactional
+	public int count(Long id) {
+		// TODO Auto-generated method stub
+		String auxs = em.createNativeQuery ("SELECT COUNT(*) FROM alt_disenio_material WHERE id_tipo_material =" + id).getSingleResult().toString();
+		int aux = Integer.parseInt(auxs);	
+		return aux + 1;
+	}
+	
+	
+	
+
+	@Override
+	@Transactional
+	public int count2(Long id) {
+		// TODO Auto-generated method stub
+		String auxs = em.createNativeQuery ("SELECT COUNT(*) FROM alt_disenio_material WHERE id_tipo_material =" + id+" and estatus_material=1 ").getSingleResult().toString();
+		int aux = Integer.parseInt(auxs);	
+		return aux + 1;
+	}
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public String findunique(Long id) {
+		
+		return em.createNativeQuery("SELECT DISTINCT nombre_lookup from alt_disenio_material dm INNER JOIN alt_disenio_lookup dl on dm.id_tipo_material = dl.id_lookup WHERE dm.id_tipo_material="+ id).getResultList().toString();
+		
+	}
+	
+	
+	
+	
+	
 }

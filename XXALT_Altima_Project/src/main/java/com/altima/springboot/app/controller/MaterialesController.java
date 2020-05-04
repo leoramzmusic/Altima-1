@@ -126,24 +126,12 @@ public class MaterialesController {
 	public String guardarMaterial(@ModelAttribute DisenioMaterial material, RedirectAttributes redirectAttrs,
 			@RequestParam(value="imagenMaterial", required=false) MultipartFile imagenMaterial) {
 		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		
-	
-		
-		 System.out.println("la calidad guardar1" + material.getCalidad());
+		    Authentication auth = SecurityContextHolder.getContext().getAuthentication();					
+		    System.out.println("la calidad guardar1" + material.getCalidad());
 			if (material.getCalidad()==null) {
 				material.setCalidad("0");
-				
-				
+							
 			}
-			
-		
-			
-		
-		
-		if (material.getIdMaterial() == null || material.getIdMaterial() <= 0) {
-			material.setCreadoPor(auth.getName());
-			material.setEstatusMaterial("0");
 			
 			if (!imagenMaterial.isEmpty()){
 				if ( material.getImagen() != null && material.getImagen().length() > 0) {
@@ -158,108 +146,66 @@ public class MaterialesController {
 				}
 				material.setImagen(uniqueFilename);
 			}
-			
+	
 			//aqui acaba lo de la imagen
 			
-			disenioMaterialService.save(material);
-			if (disenioMaterialService.findLastMaterial(material.getIdTipoMaterial()).size() > 1) {
-				Object[] vat = disenioMaterialService.findLastMaterial(material.getIdTipoMaterial()).get(1);
-				String var = (String) vat[2];
-				String var1 = (String) vat[5];
-				String prefijo = var1.substring(0, 3);
-				String[] part = var.split("(?<=\\D)(?=\\d)");
-				Integer cont = Integer.parseInt(part[1]);
-				material.setIdTextProspecto("PROSP" + prefijo.toUpperCase() + "00" + (cont + 1));
-			} else {
-				Object[] vat = disenioMaterialService.findLastMaterial(material.getIdTipoMaterial()).get(0);
-				String var = (String) vat[5];
-				String prefijo = var.substring(0, 3);
-				material.setIdTextProspecto("PROSP" + prefijo.toUpperCase() + "0010");
-			}
-			material.setEstatusMaterial("0");
-			if (disenioMaterialService.findLastMaterial(material.getIdTipoMaterial()).size() > 1) {
-				Object[] vat = disenioMaterialService.findLastMaterial(material.getIdTipoMaterial()).get(1);
-				String var = (String) vat[2];
-				String var1 = (String) vat[5];
-				String prefijo = var1.substring(0, 3);
-				String[] part = var.split("(?<=\\D)(?=\\d)");
-				Integer cont = Integer.parseInt(part[1]);
-				material.setIdText( prefijo.toUpperCase() + "00" + (cont + 1));
-			} else {
-				Object[] vat = disenioMaterialService.findLastMaterial(material.getIdTipoMaterial()).get(0);
-				String var = (String) vat[5];
-				String prefijo = var.substring(0, 3);
-				material.setIdText( prefijo.toUpperCase() + "0010");
-			}
 		
-			material.setEstatus("1");
 			
-			if (!imagenMaterial.isEmpty()){
-				if ( material.getImagen() != null && material.getImagen().length() > 0) {
-					UploadService.deleteMaterial(material.getImagen());
-				}
-				String uniqueFilename = null;
-				try {
-					uniqueFilename = UploadService.copyMaterial(imagenMaterial);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				material.setImagen(uniqueFilename);
-			}
-			//aqui acaba lo de la imagen
+			if (material.getIdMaterial() ==null || material.getIdMaterial() <=0) {// comienza if para insertar un registro nuevo
+				System.out.println(auth.getName() + "aqui esta el mero mero 1 ");
+				material.setCreadoPor(auth.getName());
+				material.setEstatusMaterial("0");
+				disenioMaterialService.save(material);	
 		
-			disenioMaterialService.save(material);
-			redirectAttrs.addFlashAttribute("title", "Material Insertado Correctamente").addFlashAttribute("icon",
-					"success");
-		} else {
+			
+				System.out.println("aqui esta el id"+ disenioMaterialService.findByIdMaterial(material.getIdMaterial()));
+				System.out.println("vamos que pedo"+ material.getIdTipoMaterial());
+				String unique = disenioMaterialService.findunique(material.getIdTipoMaterial());
+				System.out.println("aqui esta el result de la query pref " + unique);			
+				String prefijo = unique.substring(1,4);				 
+				System.out.println("aqui esta el prefijo" + prefijo);
+				int contador = disenioMaterialService.count(material.getIdTipoMaterial());				 
+				System.out.println("aqui esta el contador de la query" + contador);
+				material.setIdTextProspecto("PROSP" + prefijo.toUpperCase() + "00" + contador );	
+				material.setIdText( "00" );							
+				material.setEstatus("1");				
+				disenioMaterialService.save(material);																													
+				System.out.println("epale eaple si entro al method posts");
+	            redirectAttrs.addFlashAttribute("title", "Material Insertado Correctamente").addFlashAttribute("icon",
+			    "success");
+			} else { // comienza else para editar
+								
+				System.out.println(auth.getName() + "aqui esta el mero mero la editada");			
+				material.setActualizadoPor(auth.getName());
+				material.setEstatusMaterial("0");
+				if (material.getEstatusMaterial()=="0") {// como este valor se tiene que asignar cada que se edita o inserta el editar el posible que ya encuentre en 1
+					material.setEstatusMaterial("0");
+					
+				} else {
+					material.setEstatusMaterial("1");
+
+				}
+															
+				material.setEstatus("1");				
+				disenioMaterialService.save(material);																													
+				System.out.println("epale eaple si entro al method posts");														
+				disenioMaterialService.save(material);												
+				System.out.println("epale eaple si entro al method posts de editar");
+                redirectAttrs.addFlashAttribute("title", "Material Actualizado Correctamente").addFlashAttribute("icon",
+				"success");
+				
+				
+
+			}
 			
 			
-			//System.out.println("aqui esta el id"+ material.getIdMaterial());
-			//material= disenioMaterialService.findOne(material.getIdMaterial());
 		
-			material.setCreadoPor(material.getCreadoPor());
-
-			material.setEstatus("1");
-			
-			
-			if (disenioMaterialService.findLastMaterial(material.getIdTipoMaterial()).size() > 1) {
-				Object[] vat = disenioMaterialService.findLastMaterial(material.getIdTipoMaterial()).get(1);
-				String var = (String) vat[2];
-				String var1 = (String) vat[5];
-				String prefijo = var1.substring(0, 3);
-				String[] part = var.split("(?<=\\D)(?=\\d)");
-				Integer cont = Integer.parseInt(part[1]);
-				material.setIdText( prefijo.toUpperCase() + "00" + (cont + 1));
-			} else {
-				Object[] vat = disenioMaterialService.findLastMaterial(material.getIdTipoMaterial()).get(0);
-				String var = (String) vat[5];
-				String prefijo = var.substring(0, 3);
-				material.setIdText( prefijo.toUpperCase() + "0010");
-			}
-
-			material.setActualizadoPor(auth.getName());
-			
-			if (!imagenMaterial.isEmpty()){
-				if ( material.getImagen() != null && material.getImagen().length() > 0) {
-					UploadService.deleteMaterial(material.getImagen());
-				}
-				String uniqueFilename = null;
-				try {
-					uniqueFilename = UploadService.copyMaterial(imagenMaterial);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				material.setImagen(uniqueFilename);
-			}
-			disenioMaterialService.save(material);
-			redirectAttrs.addFlashAttribute("title", "Material Actualizado Correctamente").addFlashAttribute("icon",
-					"success");
-
-		}
 		return "redirect:materiales";
 	}
+		
+		
+		
+		
 
 	@GetMapping("/editar-material/{id}")
 	public String editarMaterial(@PathVariable("id") Long idMaterial, Model model) {
@@ -325,5 +271,45 @@ public class MaterialesController {
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
 				.body(recurso);
 	}
+	
+	
+	@GetMapping("/aceptado-material/{id}")
+	public String aceptadoMaterial(@PathVariable("id") Long idMaterial) {
+
+		DisenioMaterial material = disenioMaterialService.findOne(idMaterial);
+		
+		
+		
+        System.out.println("SI ENTRO A ACEPTAR");
+		System.out.println("aqui esta el id DE TIPO DE MATERIAL"+ disenioMaterialService.findByIdMaterial(material.getIdMaterial()));
+		System.out.println("vamos que pedo 2"+ material.getIdTipoMaterial());
+		String unique = disenioMaterialService.findunique(material.getIdTipoMaterial());
+		System.out.println("aqui esta el result de la query 2 pref " + unique);			
+		String prefijo = unique.substring(1,4);				 
+		System.out.println("aqui esta el prefijo" + prefijo);
+		 int contador2 = disenioMaterialService.count2(material.getIdTipoMaterial());		 
+		System.out.println("aqui esta el contador de la query" + contador2);
+		material.setIdText( prefijo.toUpperCase() + "00" + contador2 );	
+		material.setEstatusMaterial("1");
+		
+		 
+		 
+		disenioMaterialService.save(material);
+
+		return "redirect:/materiales";
+	}
+	
+	
+	
+	@GetMapping("/declinado-material/{id}")
+	public String declinadoMaterial(@PathVariable("id") Long idMaterial) {
+
+		DisenioMaterial material = disenioMaterialService.findOne(idMaterial);
+		material.setEstatus("0");
+		disenioMaterialService.save(material);
+
+		return "redirect:/materiales";
+	}
+	
 
 }

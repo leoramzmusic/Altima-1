@@ -49,5 +49,15 @@ public interface IDisenioMaterialService {
 	Object findByIdMaterial(Long id);
 
 	List<Object[]> findLastMaterial(Long tipo_material);
+	
+
+	public int count(Long id);
+	
+	public int count2(Long id);
+	
+
+	
+	public String findunique(Long id);
+
 }
 
