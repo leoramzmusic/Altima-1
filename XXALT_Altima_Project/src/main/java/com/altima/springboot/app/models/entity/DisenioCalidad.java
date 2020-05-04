@@ -61,7 +61,8 @@ public class DisenioCalidad implements Serializable{
 	@Column(name="archivo_ruta")
 	private String archivoRuta;
 	
-	
+	@Column(name="consentimiento")
+	private String archivoConsentimiento;
 	
 	
 
@@ -163,6 +164,16 @@ public class DisenioCalidad implements Serializable{
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	
+	
+
+	public String getArchivoConsentimiento() {
+		return archivoConsentimiento;
+	}
+
+	public void setArchivoConsentimiento(String archivoConsentimiento) {
+		this.archivoConsentimiento = archivoConsentimiento;
 	}
 
 	@Override
