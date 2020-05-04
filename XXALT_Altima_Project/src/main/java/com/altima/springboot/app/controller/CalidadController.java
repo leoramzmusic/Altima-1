@@ -69,12 +69,12 @@ public class CalidadController {
 	
 	@GetMapping("/calidad")
 	public String listCalidad(Model model) {
-		model.addAttribute("listCalidades",disenioCalidad.findAllWithIdTextTela());
+		model.addAttribute("listCalidades", disenioCalidad.findAllWithIdTextTela());
 		return "calidad";
 	}
-	
-	@GetMapping(value = "/uploads/calidadpdf/{filename:.+}")
-	public ResponseEntity<Resource> descargarpdf(@PathVariable String filename) {
+
+	@GetMapping(value = "/uploads/calidadarchivos/{filename:.+}")
+	public ResponseEntity<Resource> descargarcalidad(@PathVariable String filename) {
 
 		Resource recurso = null;
 
@@ -88,7 +88,23 @@ public class CalidadController {
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
 				.body(recurso);
 	}
-	
+
+	@GetMapping(value = "/uploads/calidadconsentimiento/{filename:.+}")
+	public ResponseEntity<Resource> descargarcalidadconsentimiento(@PathVariable String filename) {
+
+		Resource recurso = null;
+
+		try {
+			recurso = uploadFileService.loadfile(filename);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+
+		return ResponseEntity.ok()
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
+				.body(recurso);
+	}
+
 	@RequestMapping(value = "/calidad-nueva-prueba-otro")
 	public String crear(Model model) {
 		DisenioCalidad diseniocalidad = new DisenioCalidad();
@@ -97,7 +113,7 @@ public class CalidadController {
 	}
 
 	@RequestMapping(value = "calidad-nueva-prueba-otro/{id}")
-	public String addCalidadOtro(@PathVariable("id") Long id, Model model,RedirectAttributes redirectAttrs) {
+	public String addCalidadOtro(@PathVariable("id") Long id, Model model, RedirectAttributes redirectAttrs) {
 		DisenioCalidad diseniocalidad = null;
 		model.addAttribute("idMaterial", id);
 		try {
@@ -115,12 +131,11 @@ public class CalidadController {
 
 	@RequestMapping(value = "/calidad-nueva-prueba-otro", method = RequestMethod.POST)
 	public String addCalidadOtroPrueba(Model model, @RequestParam("file") MultipartFile archivoRuta,
-			@Valid DisenioCalidad diseniocalidad, SessionStatus status,RedirectAttributes redirectAttrs ) {
+			@Valid DisenioCalidad diseniocalidad, SessionStatus status, RedirectAttributes redirectAttrs) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		try {
 			DisenioCalidad dc1 = disenioCalidad.findOne(diseniocalidad.getIdCalidad());
 			diseniocalidad.setArchivoRuta(dc1.getArchivoRuta());
-
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -129,24 +144,54 @@ public class CalidadController {
 			if (diseniocalidad.getIdCalidad() != null && diseniocalidad.getArchivoRuta() != null
 					&& diseniocalidad.getArchivoRuta().length() > 0) {
 				uploadFileService.delete(diseniocalidad.getArchivoRuta());
+
 			}
 			String uniqueFilename = null;
 			try {
-				uniqueFilename = uploadFileService.copyfile(archivoRuta);
+				uniqueFilename = uploadFileService.copyfile(archivoRuta, 2);
+
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			diseniocalidad.setArchivoRuta(uniqueFilename);
+
 		}
-		
+
 		diseniocalidad.setCreadoPor(auth.getName());
 		diseniocalidad.setTipoMaterial("2");
 		diseniocalidad.setEstatus("1");
-		redirectAttrs.addFlashAttribute("title", "Prueba de calidad guardada correctamente").addFlashAttribute("icon", "success"); 
+		redirectAttrs.addFlashAttribute("title", "Prueba de calidad guardada correctamente").addFlashAttribute("icon",
+				"success");
 		disenioCalidad.save(diseniocalidad);
-		diseniocalidad.setIdText("CAL"+100000+diseniocalidad.getIdCalidad());
+		diseniocalidad.setIdText("CAL" + 100000 + diseniocalidad.getIdCalidad());
 		disenioCalidad.save(diseniocalidad);
+		return "redirect:calidad";
+	}
+
+	@RequestMapping(value = "/calidad-consentimiento", method = RequestMethod.POST)
+	public String guardaarchivoconsentimiento(@RequestParam("file") MultipartFile archivoConsentimiento, Long id) {
+
+		DisenioCalidad dc1 = disenioCalidad.findOne(id);
+		dc1.setArchivoConsentimiento(dc1.getArchivoConsentimiento());///
+
+		if (!archivoConsentimiento.isEmpty()) {
+
+			if (dc1.getIdCalidad() != null && dc1.getArchivoConsentimiento() != null
+					&& dc1.getArchivoConsentimiento().length() > 0) {
+				uploadFileService.delete(dc1.getArchivoConsentimiento());
+
+			}
+			String uniqueFilename = null;
+			try {
+				uniqueFilename = uploadFileService.copyfile(archivoConsentimiento, 3);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			dc1.setArchivoConsentimiento(uniqueFilename);
+
+		}
+		disenioCalidad.save(dc1);
 		return "redirect:calidad";
 	}
 	
