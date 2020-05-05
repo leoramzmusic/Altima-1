@@ -1,4 +1,4 @@
-<form class="row" style="display: none;" id="materialForm" th:object="${material}" th:action="@{/guardar}" enctype="multipart/form-data"
+<form class="row" id="materialForm" th:object="${material}" th:action="@{/guardar}" enctype="multipart/form-data"
     method="post">
 
 
@@ -9,16 +9,49 @@
         <input type="text" th:field="*{nombreMaterial}" class="form-control" id="nombreMaterial"
             placeholder="Nombre del material...">
     </div>
+    
+    
+    
+    
+      
 
-    <div class="form-group col-sm-6">
+    <div class="form-group col-sm-6"  >
         <label for="idTipoMaterial">Tipo de Material</label>
-        <select class="form-control selectCustom" th:field="*{idTipoMaterial}" id="idTipoMaterial"
+        
+        
+        
+           <div id="disponible2" display="none">
+        
+        
+              <select class="form-control selectCustom" disabled >
+           
+            <option>
+            Selecciona
+             </option>
+
+
+        </select>
+        
+        
+        
+        </div>
+        
+        
+        <div id="disponible">
+        
+        
+              <select class="form-control selectCustom" th:field="*{idTipoMaterial}" id="idTipoMaterial" 
             data-live-search="true">
             <option th:each="listLookupsMat:${listLookupsMat}" th:value="${listLookupsMat[0]}"
                 th:text="${listLookupsMat[1]}" />
 
 
         </select>
+        
+        
+        
+        </div>
+  
     </div>
 
 
@@ -181,7 +214,8 @@
     
       
         <input  type="hidden" th:field="*{imagen}">
- 
+        
+       <input type="hidden" class="form-control" id="idTipoMaterial" th:field="*{idTipoMaterial}">
      <input type="hidden" class="form-control" id="estatusMaterial" th:field="*{estatusMaterial}">
      <input type="hidden" class="form-control" id="creadoPor" th:field="*{creadoPor}">
      <input type="hidden" class="form-control" id="idText" th:field="*{idText}">

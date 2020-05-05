@@ -68,16 +68,16 @@
                                 <div class="card-body" >
                               		<div id="edit"  class="form-group" >
                                         <label  for="status">Tipo de material</label>
-                                        <select  class="form-control selectCustom" id="status" name="status" onChange="showMaterial(this.value);">
+                                        <select  class="form-control selectCustom" id="status" name="status"  >
                                         	<option value="selecciona">Selecciona uno...</option>
                                             <option value="tela">Tela</option>
                                             <option value="forro">Forro</option>
                                             <option value="material">Otro material</option>
                                         </select>
                                     </div>
-                                    <div th:insert="form-tela"></div>
-                                    <div th:insert="form-forro"></div>
-                                    <div th:insert="form-material"></div>
+                                    <div class="form-group" th:if="${form}=='tela'" th:insert="form-tela"></div>
+                                    <div class="form-group" th:if="${form}=='forro'" th:insert="form-forro"></div>
+                                    <div class="form-group" th:if="${form}=='material'" th:insert="form-material"></div>
                                 </div>
                                 <!-- /.card-body -->
                             </div>
@@ -136,11 +136,16 @@
 
 
         </script>
+        
+        
+        
 	
      <script th:inline="javascript">
 	/*<![CDATA[*/
 
 	var materialDelController = /*[[${material}]]*/ 'default';
+	
+	
 	
 	
 	/*]]>*/
@@ -193,7 +198,7 @@
  
 	
 	function cargar_pagina(){
-		
+		document.getElementById("disponible").style.display="none";
 	
 		document.getElementById("test2").style.display="none";
 		
@@ -225,7 +230,7 @@
 		 switch(true) {
                
                   case definitiva.idMaterial > 0:
-                	  $('#status').val("material").change();
+                	  //$('#status').val("material").change();
               		console.log("algunamamadaparaverqueentro");
               		 document.getElementById('edit').style.display = "none";
               		 
@@ -233,7 +238,7 @@
                    
                    
                   case definitiva.idTela   > 0:
-                	  $('#status').val("tela").change();
+                	 // $('#status').val("tela").change();
               		console.log("algunamamadaparaverqueentro");
               	  document.getElementById('edit').style.display = "none";
               		 
@@ -241,7 +246,7 @@
                    
                    
                   case definitiva.idForro > 0:
-                	  $('#status').val("forro").change();
+                	 // $('#status').val("forro").change();
               		console.log("algunamamadaparaverqueentro");
               		 document.getElementById('edit').style.display = "none";
               		 
@@ -250,7 +255,8 @@
                   default:
                         console.log("entro a la fubncion defautl");
 
-                        
+                        document.getElementById('disponible').style.display = "block";
+          		 document.getElementById('disponible2').style.display = "none";
                         
                         
             	  
@@ -273,10 +279,23 @@ $('#iDiseno').removeClass('text-primary');
 $('#menuDiseno').addClass('nav-item has-treeview menu-open');
 $('#navDiseno').addClass('nav-link active');
 $('#navDiseno2').addClass('nav-link active');
-
-
 </script>
+<script>
+    $( "#status" ).change(function() {
 
+        if($('#status').val()=="material"){
+            var url = "/agregar-material/material";  
+        }
+        else if($('#status').val()=="tela"){
+            var url = "/agregar-material/tela";   
+        }
+        else if($('#status').val()=="forro"){
+            var url = "/agregar-material/forro";  
+        }
+        $(location).attr('href',url);
+});
+</script>
+<script th:src="@{/dist/js/tela.js}"></script>
 </body>
 
 </html>

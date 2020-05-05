@@ -236,40 +236,12 @@ public class TelaController {
 	
 	@GetMapping("editar-tela/{id}")
 	public String editar(@PathVariable(value="id") Long id , Model model) {
+		model.addAttribute("form", "tela");
 		DisenioTela tela ;
 		tela= disenioTelaService.findOne(id);
-		DisenioMaterial material = new DisenioMaterial();
-		List<DisenioLookup> listLookupsMed = disenioMaterialService.findListaLookupMed();
-		List<DisenioLookup> listLookupsMar = disenioMaterialService.findListaMarcas();
-		List<DisenioLookup> listLookupsClasificacion = disenioMaterialService.findListaClasificacion();	
-		//List<DisenioProceso> listClaveProceso = disenioProcesoService.findListClaveProceso();
-		List<DisenioLookup> listLookupsMat = disenioMaterialService.findListaLookupMat();
-		List<DisenioLookup> listLookupsCol = disenioMaterialService.findListaColor();
-		model.addAttribute("material", material);
-		model.addAttribute("tablemat", MaterialService.findAllById(id));
-		model.addAttribute("listLookupsMed", listLookupsMed);
-		model.addAttribute("listLookupsMar", listLookupsMar);
-		model.addAttribute("listLookupsClasificacion", listLookupsClasificacion);
-		//model.addAttribute("listClaveProceso", listClaveProceso);
-		model.addAttribute("listLookupsMat", listLookupsMat);
-		model.addAttribute("listLookupsCol", listLookupsCol);
-		
 		// Comienza erik
-				DisenioForro forro = new DisenioForro();
-				model.addAttribute("forro", forro);
 				model.addAttribute("lisFam",disenioTelaService.findAllFamilaComposicion());
-				
-				
-				
 				model.addAttribute("listColor", disenioTelaService.findAllColores());
-				
-				
-				
-			
-		
-		
-		
-		
 		//Consulta de las composiciones
 		model.addAttribute("lisCom",disenioTelaService.findAllComposicion());//Composiciones disponibles
 		model.addAttribute("listTelaComposicon", disenioTelaService.ComposicionTelaMN(id));//Composiciones seleccionadas
@@ -291,12 +263,7 @@ public class TelaController {
 		model.addAttribute("listAdorno", disenioTelaService.materialesDisponibles(id, "adorno"));// cierre sin seleccionar
 		
 		// Consulta para telas auxiliares (telas autorizadas)
-		model.addAttribute("listTela", disenioTelaService.TelasAutorizadas());//telas autorizadas
-		
-		//Consulta de forro 
-		model.addAttribute("listForroSelec", disenioTelaService.ForrosSeleccionados(id));
-		model.addAttribute("listForro",forroService.ForrosSelect(id)); 
-		
+		model.addAttribute("listTela", disenioTelaService.TelasAutorizadas());//telas autorizadas		
 		// prendas
 		model.addAttribute("listPrendas", disenioTelaService.findAllPrenda());// prendas autorizadas
 		model.addAttribute("listVistaTelaPrenda", disenioTelaService.VistaTelaPrenda(id));// telas seleccionadas 
