@@ -1,11 +1,8 @@
 package com.altima.springboot.app.controller;
 
 import java.text.DateFormat;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -108,6 +105,8 @@ public class ComercialMovimientoRestController {
 			muestraDetalleEntity.setCodigoBarras(muestra.getString("codigoBarras").toString());
 			muestraDetalleEntity.setIdMovimiento(comercialEntity.getIdMovimiento());
 			muestraDetalleEntity.setNombreMuestra(muestra.getString("nombreMuestra").toString());
+			muestraDetalleEntity.setModeloPrenda(muestra.getString("modeloPrenda").toString());
+			muestraDetalleEntity.setCodigoTela(muestra.getString("codigoTela").toString());
 			muestraDetalleEntity.setFechaCreacion(formattedDate);
 			muestraDetalleEntity.setUltimaFechaModificacion(formattedDate);
 			muestraDetalleEntity.setCreadoPor(auth.getName());
@@ -170,6 +169,8 @@ public class ComercialMovimientoRestController {
 			muestraDetalleEntity.setCodigoBarras(muestra.getCodigoBarras());
 			muestraDetalleEntity.setIdMovimiento(muestra.getIdMovimiento());
 			muestraDetalleEntity.setNombreMuestra(muestra.getNombreMuestra());
+			muestraDetalleEntity.setModeloPrenda(muestra.getModeloPrenda());
+			muestraDetalleEntity.setCodigoTela(muestra.getCodigoTela());
 			muestraDetalleEntity.setFecha_salida(formattedDate);
 			muestraDetalleEntity.setFechaCreacion(formattedDate);
 			muestraDetalleEntity.setUltimaFechaModificacion(formattedDate);
@@ -271,6 +272,8 @@ public class ComercialMovimientoRestController {
 			muestraDetalleEntity.setCodigoBarras(muestra.getCodigoBarras());
 			muestraDetalleEntity.setIdMovimiento(muestra.getIdMovimiento());
 			muestraDetalleEntity.setNombreMuestra(muestra.getNombreMuestra());
+			muestraDetalleEntity.setModeloPrenda(muestra.getModeloPrenda());
+			muestraDetalleEntity.setCodigoTela(muestra.getCodigoTela());
 			muestraDetalleEntity.setActualizadoPor(auth.getName());
 			muestraDetalleEntity.setFecha_salida(muestra.getFecha_salida());
 			muestraDetalleEntity.setFecha_devolucion(formattedDate);
@@ -313,6 +316,8 @@ public class ComercialMovimientoRestController {
 			muestraDetalleEntity.setCodigoBarras(muestra.getCodigoBarras());
 			muestraDetalleEntity.setIdMovimiento(muestra.getIdMovimiento());
 			muestraDetalleEntity.setNombreMuestra(muestra.getNombreMuestra());
+			muestraDetalleEntity.setModeloPrenda(muestra.getModeloPrenda());
+			muestraDetalleEntity.setCodigoTela(muestra.getCodigoTela());
 			muestraDetalleEntity.setActualizadoPor(auth.getName());
 			muestraDetalleEntity.setFecha_salida(muestra.getFecha_salida());
 			muestraDetalleEntity.setFecha_devolucion(formattedDate);
@@ -365,6 +370,8 @@ public class ComercialMovimientoRestController {
 			muestraDetalleEntity.setCodigoBarras(muestra.getCodigoBarras());
 			muestraDetalleEntity.setIdMovimiento(muestra.getIdMovimiento());
 			muestraDetalleEntity.setNombreMuestra(muestra.getNombreMuestra());
+			muestraDetalleEntity.setModeloPrenda(muestra.getModeloPrenda());
+			muestraDetalleEntity.setCodigoTela(muestra.getCodigoTela());
 			muestraDetalleEntity.setActualizadoPor(auth.getName());
 			muestraDetalleEntity.setFecha_salida(formattedDate);
 			muestraDetalleEntity.setEntregadaPor(muestra.getRecibidaPor());
@@ -409,6 +416,8 @@ public class ComercialMovimientoRestController {
 			muestraDetalleEntity.setCodigoBarras(muestra.getCodigoBarras());
 			muestraDetalleEntity.setIdMovimiento(muestra.getIdMovimiento());
 			muestraDetalleEntity.setNombreMuestra(muestra.getNombreMuestra());
+			muestraDetalleEntity.setModeloPrenda(muestra.getModeloPrenda());
+			muestraDetalleEntity.setCodigoTela(muestra.getCodigoTela());
 			muestraDetalleEntity.setActualizadoPor(auth.getName());
 			muestraDetalleEntity.setFecha_salida(formattedDate);
 			muestraDetalleEntity.setEntregadaPor(muestra.getRecibidaPor());

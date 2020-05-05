@@ -37,7 +37,7 @@ public class ComercialMovimientoServiceImpl implements IComercialMovimientoServi
 	@Override
 	@Transactional
 	public List<Object> listarMuestras() {
-		return em.createNativeQuery("select prenda.descripcion_prenda, pedido.talla, telas.nombre_tela, pedido.id_detalle_pedido from alt_produccion_detalle_pedido pedido" + 
+		return em.createNativeQuery("select prenda.descripcion_prenda, pedido.talla, telas.nombre_tela, pedido.id_detalle_pedido, prenda.id_text AS text, telas.id_text from alt_produccion_detalle_pedido pedido" + 
 									"	INNER JOIN alt_disenio_prenda prenda ON pedido.id_prenda = prenda.id_prenda" + 
 									"	INNER JOIN alt_disenio_tela telas ON pedido.id_tela = telas.id_tela").getResultList();
 	}
@@ -45,7 +45,7 @@ public class ComercialMovimientoServiceImpl implements IComercialMovimientoServi
 	@Override
 	@Transactional
 	public Object EncontrarMuestra(Long id) {
-		return em.createNativeQuery("select prenda.descripcion_prenda, pedido.talla, telas.nombre_tela, pedido.id_detalle_pedido from alt_produccion_detalle_pedido pedido" + 
+		return em.createNativeQuery("select prenda.descripcion_prenda, pedido.talla, telas.nombre_tela, pedido.id_detalle_pedido, prenda.id_text AS text, telas.id_text from alt_produccion_detalle_pedido pedido" + 
 									"	INNER JOIN alt_disenio_prenda prenda ON pedido.id_prenda = prenda.id_prenda" + 
 									"	INNER JOIN alt_disenio_tela telas ON pedido.id_tela = telas.id_tela" +
 									"   WHERE pedido.id_detalle_pedido ="+id).getSingleResult();

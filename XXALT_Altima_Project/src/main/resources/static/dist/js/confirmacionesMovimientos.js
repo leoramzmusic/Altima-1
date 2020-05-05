@@ -1,5 +1,5 @@
 function listarEmpresas(){
-	
+
 	$.ajax({
 		 method: "GET",
 		    url: "/listarEmpresasMovimiento",
@@ -16,13 +16,15 @@ function listarEmpresas(){
 						$('#empresaMovi').append("<option value='"+data[i].idCliente+"'>"+ data[i].nombre + " " + data[i].apellidoPaterno + " " + data[i].apellidoMaterno +"</option>");
 					}
 				}
+
+				$('#empresaMovi').selectpicker('refresh');
 		    },
 		    error: (e) => {
 		        // location.reload();
+
 		    }
 		});
 }
-
 function listarMuestras(){
 	$.ajax({
 		method: "GET",
@@ -35,15 +37,18 @@ function listarMuestras(){
 														  data[i][1].substring(0,3).toUpperCase()  + 
 														  data[i][2].substring(0,3).toUpperCase()  + 
 														  ("00" + data[i][3]).slice(-3) +
-														  " " +
+														  "___" +
 														  data[i][0] + "</option>");
 			}
+
+			$('#prendaMovi').selectpicker('refresh');
 		},
 		error: (e) => {
 		}
 	});
 } 
 
+//Función para agregar una nueva muestra a la tabla en el modal de agregas un nuevo movimiento //
 function agregarMiniTabla(tablaMuestra){
 	//$('#BotonAgregarMuestra').prop('disabled', true);
 	result = $('#prendaMovi').val();
@@ -59,7 +64,8 @@ function agregarMiniTabla(tablaMuestra){
 	        timer: 3500
 		  })
 	}
-	
+
+//Valida que sólo exista un registro en la tabla, para evitar duplicados  //
 	else{
 		foreach(table, 'tr:not(:first-child)', function(row) {
 
@@ -75,10 +81,13 @@ function agregarMiniTabla(tablaMuestra){
 				  })
 			}
 			});
-		
+
+
+
+//AJAX para extraer todos los datos de la muestra y colocarlos en la tabla  //
 		if(validador==0){
 			$.ajax({
-				
+
 				method: "GET",
 				url: "/agregarMuestraTablita",
 				data: {idMuestra: result},
@@ -86,16 +95,23 @@ function agregarMiniTabla(tablaMuestra){
 					console.log(data);
 					var ceros = "00";
 					$('#tablaMuestra').append("<tr>" +
-		                                    "<td id='codigoBarras'>" +data[0].substring(0,3).toUpperCase()  + 
+		                                    "<td id='codigoBarras"+data[3]+"'>" +data[0].substring(0,3).toUpperCase()  + 
 													data[1].substring(0,3).toUpperCase()  + 
 													data[2].substring(0,3).toUpperCase()  + 
 													(ceros + data[3]).slice(-3)+"</td>" +
-		                                    "<td id='nombreMuestra'>" + data[0] + "</td>" +
+		                                    "<td id='nombreMuestra"+data[3]+"'>" + data[0] + "</td>" +
+		                                    "<td id='modeloPrenda"+data[3]+"'>" + data[4] + "</td>" +
+		                                    "<td id='codigoTela"+data[3]+"'>" + data[5] + "</td>" +
+		                                    
 		                                    "<td class='tdcenter'>" +
 		                                    	"<input type='hidden' id='idMuestras"+data[3]+"' class='idMuestras' value='"+data[3]+"'>" +
 		                                        "<a class='btn btn-danger btn-circle btn-sm text-white popoverxd' id='borrar' data-container='body' data-placement='top' data-content='Remover'><i class='fas fa-minus'></i></a>" +
 		                                    "</td>" +
 		                                "</tr>");
+					listamuestritas.push(data[3]);
+					console.log(listamuestritas);
+					
+					 
 				},
 				error: (e) => {
 				}
@@ -104,7 +120,6 @@ function agregarMiniTabla(tablaMuestra){
 		}
 	}
 }
-
 //  Borrar registro de la tabla de agregar una muestra  //
 //                                                      //
   $(document).on('click', '#borrar', function (event) { //
@@ -114,7 +129,12 @@ function agregarMiniTabla(tablaMuestra){
   });                                                   //
 //======================================================//
 
-  
+
+
+
+
+//Es una funcion que hace recorrido a la tabla de agregar una nueva muestra  //
+//para verificar si existe o no un registro                                  //
   function foreach(root, selector, callback) {
 	   if (typeof selector == 'string') {
 	      var all = root.querySelectorAll(selector);
@@ -127,15 +147,24 @@ function agregarMiniTabla(tablaMuestra){
 	      }
 	   }
 	}
-  
+
+
+
+
+//Funcion para guardar un nuevo movimiento con sus muestras  //  
 	function guardarNuevoMovimiento(tablaMuestra) {
 	   var table = document.getElementById(tablaMuestra);
+	   var filas = $("#tablaMuestra").find('tr:not(:first-child)');
 	   var datosJson = [];
 	   var vendedorMovi = $('#vendedorMovi').val();
 	   var empresaMovi = $('#empresaMovi').val();
 	   var prendaMovi = $('#prendaMovi').val();
 	   var validacion=true;
 	   var validador = 0;
+	   var i = 0;
+
+
+//hace uso de la funcion de foreach para validar que realmente estén llenados los campos en el modal  //
 	   foreach(table, 'tr:not(:first-child)', function(row) {validador=1});
 	   if(vendedorMovi=="error" || empresaMovi=="error" || validador==0){
 		   console.log("faltan datos");
@@ -146,23 +175,24 @@ function agregarMiniTabla(tablaMuestra){
 				showConfirmButton: false,
 		        timer: 3500
 			  })
-			  
 			validacion=false;
-
 	   }
-	   
+
+
+//La función de este ciclo es realizar un JSON con todas las muestras agregadas en la tabla  //
 	   if (table) {
-		   foreach(table, 'tr:not(:first-child)', function(row) {
-			   
-			if(validacion==true){
-	         var record = {codigoBarras: $('#codigoBarras').text(), nombreMuestra: $('#nombreMuestra').text(), idmuestra: $('.idMuestras').val()};
-	         datosJson.push(record);
-	  	   console.log("entro correctamente");
-			}
-	      });
-			
+		   if(validacion==true){
+			   for(i=0; i<filas.length; i++){
+				   var celdas = $(filas[i]).find("td");
+			       var record = {codigoBarras:  $(celdas[0]).text(), 
+								 nombreMuestra: $(celdas[1]).text(), 
+								 modeloPrenda:  $(celdas[2]).text(), 
+								 codigoTela:    $(celdas[3]).text(), 
+								 idmuestra:		$($(celdas[4]).children("input")[0]).val()};
+		         datosJson.push(record);
+			   }
+		   }
 	   }
-
 	   if(validacion==true){
 		   Swal.fire({
 				icon: 'success',
@@ -171,8 +201,10 @@ function agregarMiniTabla(tablaMuestra){
 				showConfirmButton: false,
 		        timer: 2000
 			  })
+
+//AJAX para mandar los datos del JSON y los datos del vendedor y la empresa(Cliente)  //
 		   $.ajax({
-			  
+
 			   method: "POST",
 			   url: "/guardarNuevoMovimiento",
 			   data:{
@@ -182,27 +214,29 @@ function agregarMiniTabla(tablaMuestra){
 				   prenda:prendaMovi,
 				   "object_muestras": JSON.stringify(datosJson)
 			   },
-			   
+
 			   success: (data) => {
-				   
-					  
+
+
+
 					  location.href = "/movimientos";
 			   },
 			   error: (e) =>{
 			   }
-			   
-			   
+
+
 		   });
-	   
-	   
+
+
 	   }
-	   
+
 	   return datosJson;
 
 	}
-  
-  
 
+
+
+//Función para mostrar todas las muestras de acuerdo a su respectivo movimiento  //
 function detalleMuestras(id){
 	$('#vendedorTraspasoCodigo').val((Math.floor(Math.random() * (10 - 1)) + 1)+""+
 									 (Math.floor(Math.random() * (10 - 1)) + 1)+""+
@@ -233,9 +267,11 @@ function detalleMuestras(id){
 									"</thead>" +
 								"</table>" +
 							"</div>");
-	
+
+
+//AJAX para hacer un correcto formato en la tabla del modal de las muestras  //	
 	$.ajax({
-		
+
 		method:"POST",
 		url: "/listDetalleMuestras",
 		data:{
@@ -295,13 +331,14 @@ function detalleMuestras(id){
 				if(data[i].estatus==8) {estatus="Prestado a empresa";}
 				if(data[i].estatus==9) {estatus="Prestado a empresa";}
 				if(data[i].estatus==10){estatus="Devuelto con recargos";}
-				
+
+//Mapeo de los datos que va a llevar la tabla  //				
 				a= ["<tr>"+
 			    		check,
 						"<td>"+data[i].codigoBarras+"</td>",
 						"<td>"+data[i].nombreMuestra+"</td>",
-						"<td>Por definir</td>", 
-						"<td>Por definir</td>", 
+						"<td>"+data[i].modeloPrenda+"</td>", 
+						"<td>"+data[i].codigoTela+"</td>", 
 						"<td>"+validador1+"</td>",
 						"<td>"+validador2+"</td>",
 						"<td>"+validador3+"</td>",
@@ -312,6 +349,8 @@ function detalleMuestras(id){
 				b.push(a);
 			}
 			//$('#tablaTraspasoinfo').append(a);
+
+//Estructura de la tabla //
 			$('#tablaTraspasoinfo').DataTable({
 				"data":	b,
 				"ordering": false,
@@ -370,6 +409,8 @@ function detalleMuestras(id){
 }
 
 
+
+//Función para cambiar el estatus de una solicitud de movimiento a cancelado, al igual que las muestras //
 function cancelarSolicitud(idMovimiento){
 	Swal.fire({
 		  title: '¿Deseas cancelar la solicitud?',
@@ -405,8 +446,11 @@ function cancelarSolicitud(idMovimiento){
 		    )
 		  }
 		});
-	
+
 }
+
+/*Función para cambiar el estatus de una solicitud de movimiento a 
+  entregado a vendedor, al igual que las muestras */
 function entregarSolicitud(idMovimiento){
 	console.log(idMovimiento);
 	Swal.fire({
@@ -436,7 +480,6 @@ function entregarSolicitud(idMovimiento){
 				}
 				
 			})
-
 		    Swal.fire(
 		      'Correcto',
 		      'Solicitud entregada correctamente',
@@ -445,6 +488,9 @@ function entregarSolicitud(idMovimiento){
 		  }
 		});
 }
+
+
+//Función para cambiar el estatus de una solicitud de movimiento a devuelto, al igual que las muestras //
 function devueltoSolicitud(idMovimiento){
 	Swal.fire({
 		  title: '¿Prestamo devuelto completo?',
@@ -483,6 +529,7 @@ function devueltoSolicitud(idMovimiento){
 }
 
 
+//Función para cambiar el estatus de una solicitud de muestra individual a devuelto//
 function devueltoIndividualSolicitud(tablaTraspasoinfo){
 	console.log(" entra a este sweet");
 	var equis;
@@ -503,14 +550,12 @@ function devueltoIndividualSolicitud(tablaTraspasoinfo){
 				listaMuestras[contador]=equis;
 			}
 		}
-
 		console.log("entra al foreach");
 	});
 	
 	filtered = listaMuestras.filter(function(el) { return el; });
 	console.log(filtered);
 	var dato = filtered.toString();
-
 	Swal.fire({
 		  title: '¿Muestras devueltas?',
 		  icon: 'warning',
@@ -555,6 +600,7 @@ function devueltoIndividualSolicitud(tablaTraspasoinfo){
 }
 
 
+//Función para cambiar el estatus de una solicitud de muestra individual a prestado a empresa//
 function prestamoSolicitud(tablaTraspasoinfo){
 	var equis;
 	var contador = 0;
@@ -574,57 +620,56 @@ function prestamoSolicitud(tablaTraspasoinfo){
 				listaMuestras[contador]=equis;
 			}
 		}
-
 		console.log("entra al foreach");
 	});
 	
-	filtered = listaMuestras.filter(function(el) { return el; });
-	console.log(filtered);
-	var dato = filtered.toString();
-
-	Swal.fire({
-		  title: '¿Muestras prestadas a empresa?',
-		  icon: 'warning',
-		  showCancelButton: true,
-		  confirmButtonColor: '#3085d6',
-		  cancelButtonColor: '#d33',
-		  confirmButtonText: 'Confirmar',
-		  cancelButtonText: 'Cancelar'
-		}).then((result) => {
-		  if (result.value) {
-			  if(dato.length==0){
-				  Swal.fire({
-						icon: 'error',
-						title: 'Error',
-						text: 'Debe seleccionar al menos un registro',
-						showConfirmButton: false,
-				        timer: 3500
-				  })
-			  }
-			  else{
-				  $.ajax({
+		filtered = listaMuestras.filter(function(el) { return el; });
+		console.log(filtered);
+		var dato = filtered.toString();
+		Swal.fire({
+			  title: '¿Seguro que desea Traspasar?',
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: 'Confirmar',
+			  cancelButtonText: 'Cancelar'
+			}).then((result) => {
+			  if (result.value) {
+				  if(dato.length==0){
+					  Swal.fire({
+							icon: 'error',
+							title: 'Error',
+							text: 'Debe seleccionar al menos un registro',
+							showConfirmButton: false,
+					        timer: 3500
+					  })
+				  }
+				  else{
+				  
+					$.ajax({
 						method:"POST",
 						url:"/prestamoEmpresa",
 						data:{
 							"_csrf": $('#token').val(),
-							idMuestras:	dato			
+							idMuestras:	dato
 						},
 						success:(data) => {
-							
 							location.href = "/movimientos";
 						}
 					});
-				    Swal.fire(
-				      'Correcto',
-				      'Actualizaci&oacute;n correcta',
-				      'success'
-				    )
+				    Swal.fire({
+				    		text: 'Correcto',
+				    		text:'Actualización correcta',
+				    		icon:'success',
+				    		timer: 3500
+				    })
 				  }
-		  		}
+			  }
 			});
-			  
-}
+	}
 
+//Función para cambiar el estatus de una solicitud de muestra individual a traspaso//
 function traspasoSolicitud(tablaTraspasoinfo){
 	var equis;
 	var contador = 0;
@@ -645,14 +690,12 @@ function traspasoSolicitud(tablaTraspasoinfo){
 				listaMuestras[contador]=equis;
 			}
 		}
-
 		console.log("entra al foreach");
 	});
 	
 	filtered = listaMuestras.filter(function(el) { return el; });
 	console.log(filtered);
 	var dato = filtered.toString();
-
 	Swal.fire({
 		  title: '¿Seguro que desea Traspasar?',
 		  icon: 'warning',
@@ -697,9 +740,10 @@ function traspasoSolicitud(tablaTraspasoinfo){
 		});
 }
 
+//Función para marcar todas las casillas de check y contemplarlas para algún cambio de estatus//
 function selectAllCheck(table){
 	var data = $('#tablaTraspasoinfo').DataTable();
-    
+
 	$("#selectAll").on("change", function(){
 		data.$("input[type='checkbox']").attr('checked', $(this.checked));  
     });
