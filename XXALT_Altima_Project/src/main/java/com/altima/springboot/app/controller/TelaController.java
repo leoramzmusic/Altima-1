@@ -239,11 +239,11 @@ public class TelaController {
 		model.addAttribute("form", "tela");
 		DisenioTela tela ;
 		tela= disenioTelaService.findOne(id);
-		DisenioForro forro = new DisenioForro();
-		
 		// Comienza erik
 				model.addAttribute("lisFam",disenioTelaService.findAllFamilaComposicion());
 				model.addAttribute("listColor", disenioTelaService.findAllColores());
+				List<DisenioLookup> listLookupsMed = disenioMaterialService.findListaLookupMed();
+				model.addAttribute("listLookupsMed", listLookupsMed);
 		//Consulta de las composiciones
 		model.addAttribute("lisCom",disenioTelaService.findAllComposicion());//Composiciones disponibles
 		model.addAttribute("listTelaComposicon", disenioTelaService.ComposicionTelaMN(id));//Composiciones seleccionadas

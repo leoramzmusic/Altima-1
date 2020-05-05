@@ -161,8 +161,10 @@ public class ForroController {
 		forro=forroService.findOne(id);
 		model.addAttribute("forro", forro);
 		model.addAttribute("listForroComposicon", disenioTelaService.ComposicionForroMN(id));
+		model.addAttribute("lisCom",disenioTelaService.findAllComposicion());
 		model.addAttribute("listForrosAutori", forroService.forrosAutorizados());
-		
+		List<DisenioLookup> listLookupsMed = disenioMaterialService.findListaLookupMed();
+		model.addAttribute("listLookupsMed", listLookupsMed);
 		System.out.println("Entra a la consulta de forro composicion");
 		model.addAttribute("form", "forro");
 		
