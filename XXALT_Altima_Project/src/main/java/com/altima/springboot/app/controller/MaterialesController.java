@@ -316,7 +316,7 @@ public class MaterialesController {
 	public String editarMaterial(@PathVariable("id") Long idMaterial, Model model) {
 		model.addAttribute("form", "material");
 		DisenioMaterial material = disenioMaterialService.findOne(idMaterial);
-
+		model.addAttribute("editar", "true");
 		List<DisenioLookup> listLookupsMed = disenioMaterialService.findListaLookupMed();
 		List<DisenioLookup> listLookupsMar = disenioMaterialService.findListaMarcas();
 		List<DisenioLookup> listLookupsClasificacion = disenioMaterialService.findListaClasificacion();

@@ -58,7 +58,29 @@ public class DisenioMaterialTela implements Serializable{
 	@Column(name="actualizado_por")
 	private String actualizadoPor;
 	
+	@Column(name="posicion")
+	private String posicion;
 	
+	
+	
+	
+	
+
+	public String getCodigoColor() {
+		return codigoColor;
+	}
+
+	public void setCodigoColor(String codigoColor) {
+		this.codigoColor = codigoColor;
+	}
+
+	public String getPosicion() {
+		return posicion;
+	}
+
+	public void setPosicion(String posicion) {
+		this.posicion = posicion;
+	}
 
 	public String getFechaCreacion() {
 		return fechaCreacion;

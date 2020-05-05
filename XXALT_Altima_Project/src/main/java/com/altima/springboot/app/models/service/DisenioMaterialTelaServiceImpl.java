@@ -49,7 +49,7 @@ public class DisenioMaterialTelaServiceImpl implements IDisenioMaterialTelaServi
 	@Override
 	public List<Object[]> findAllById(Long id) {
 		// TODO Auto-generated method stub
-		return em.createQuery("Select dm.idMaterial,dmt.tipo,dm.nombreMaterial,dmt.color,dmt.codigoColor from DisenioMaterialTela dmt inner join DisenioMaterial dm on dm.idMaterial=dmt.idMaterial where dmt.idTela="+id).getResultList();
+		return em.createQuery("Select dm.idMaterial,dmt.tipo,dm.nombreMaterial,dmt.color,dmt.codigoColor,dmt.posicion from DisenioMaterialTela dmt inner join DisenioMaterial dm on dm.idMaterial=dmt.idMaterial where dmt.idTela="+id).getResultList();
 	}
 	
 }

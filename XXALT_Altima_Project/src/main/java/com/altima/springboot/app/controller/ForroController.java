@@ -160,6 +160,7 @@ public class ForroController {
 		DisenioForro forro;
 		forro=forroService.findOne(id);
 		model.addAttribute("forro", forro);
+		model.addAttribute("editar", "true");
 		model.addAttribute("listForroComposicon", disenioTelaService.ComposicionForroMN(id));
 		model.addAttribute("lisCom",disenioTelaService.findAllComposicion());
 		model.addAttribute("listForrosAutori", forroService.forrosAutorizados());

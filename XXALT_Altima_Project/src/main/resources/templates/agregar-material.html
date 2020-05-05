@@ -66,7 +66,7 @@
                                     <h3 class="card-title">Nuevo material</h3>
                                 </div>
                                 <div class="card-body" >
-                              		<div id="edit"  class="form-group" >
+                              		<div id="edit"  class="form-group" th:unless="${editar}=='true'">
                                         <label  for="status">Tipo de material</label>
                                         <select  class="form-control selectCustom" id="status" name="status"  >
                                         	<option value="selecciona">Selecciona uno...</option>

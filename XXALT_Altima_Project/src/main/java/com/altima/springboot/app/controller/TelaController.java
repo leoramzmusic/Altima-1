@@ -72,6 +72,7 @@ public class TelaController {
 			@RequestParam("colormat") String colormat,
 			@RequestParam("codcolor") String codcolor,
 			@RequestParam("tipomat") String tipomat,
+			@RequestParam("posicionm") String posicion,
 			@RequestParam(value="botones" , required=false) String botones,
 			@RequestParam( value="hilos" , required=false) String hilos,
 			@RequestParam( value="cierres" , required=false) String cierres,
@@ -184,6 +185,7 @@ public class TelaController {
 				String [] colorMat = colormat.split(",");
 				String [] codColor = codcolor.split(",");
 				String [] tipoMat = tipomat.split(",");
+				String [] pos = posicion.split(",");
 				for(int i= 0 ; i<idMat.length;i++) {
 					DisenioMaterialTela tm = new DisenioMaterialTela();
 					tm.setIdTela(tela.getIdTela());
@@ -191,6 +193,7 @@ public class TelaController {
 					tm.setColor(colorMat[i]);
 					tm.setCodigocolor(codColor[i]);
 					tm.setTipo(tipoMat[i]);
+					tm.setPosicion(pos[i]);
 					MaterialService.save(tm);
 				}
 			}
@@ -238,12 +241,14 @@ public class TelaController {
 	public String editar(@PathVariable(value="id") Long id , Model model) {
 		model.addAttribute("form", "tela");
 		DisenioTela tela ;
+		model.addAttribute("editar", "true");
 		tela= disenioTelaService.findOne(id);
 		// Comienza erik
 				model.addAttribute("lisFam",disenioTelaService.findAllFamilaComposicion());
 				model.addAttribute("listColor", disenioTelaService.findAllColores());
 				List<DisenioLookup> listLookupsMed = disenioMaterialService.findListaLookupMed();
 				model.addAttribute("listLookupsMed", listLookupsMed);
+				model.addAttribute("tablemat", MaterialService.findAllById(id));
 		//Consulta de las composiciones
 		model.addAttribute("lisCom",disenioTelaService.findAllComposicion());//Composiciones disponibles
 		model.addAttribute("listTelaComposicon", disenioTelaService.ComposicionTelaMN(id));//Composiciones seleccionadas
@@ -300,6 +305,21 @@ public class TelaController {
         .addFlashAttribute("title", "Tela elimnada correctamente")
         .addFlashAttribute("icon", "success");
 		  return "redirect:/materiales";
+	}
+
+	@PostMapping("tela-sustituta")
+	public String tela_sustituta(DisenioTela tela,RedirectAttributes redirectAttrs) throws Exception {
+		System.out.println("jalale"+tela.getIdTela());
+		DisenioTela tela2 =new DisenioTela();
+		tela2=disenioTelaService.findOne(tela.getIdTela());
+		tela2.setAuxiliar1(tela.getAuxiliar1());
+		tela2.setAuxiliar2(tela.getAuxiliar2());
+		tela2.setAuxiliar3(tela.getAuxiliar3());
+		disenioTelaService.save(tela2);
+		redirectAttrs
+		.addFlashAttribute("title", "Tela editada correctamente")
+		.addFlashAttribute("icon", "success");
+		return("redirect:materiales");
 	}
 	
 	
