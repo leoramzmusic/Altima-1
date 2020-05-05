@@ -27,19 +27,19 @@ public class ComercialCalendario implements Serializable{
 	private Long idCalendario;
 	
 	@Column(name="inicio")
-	private String inicio;
+	private String start;
 	
 	@Column(name="fin")
-	private String fin;
+	private String end;
 	
 	@Column(name="color")
 	private String color;
 	
 	@Column(name="titulo")
-	private String titulo;
+	private String title;
 	
 	@Column(name="descripcion")
-	private String descripcion;	
+	private String description;	
 	
 	@Column(name="creado_por")
 	private String creadoPor;
@@ -53,6 +53,10 @@ public class ComercialCalendario implements Serializable{
 	@Column(name="ultima_fecha_modificacion")
 	private String ultimaFechaModificacion;
 
+	
+	@Column(name="estatus")
+	private String estatus;
+
 	public Long getIdCalendario() {
 		return idCalendario;
 	}
@@ -61,20 +65,22 @@ public class ComercialCalendario implements Serializable{
 		this.idCalendario = idCalendario;
 	}
 
-	public String getInicio() {
-		return inicio;
+
+
+	public String getStart() {
+		return start;
 	}
 
-	public void setInicio(String inicio) {
-		this.inicio = inicio;
+	public void setStart(String start) {
+		this.start = start;
 	}
 
-	public String getFin() {
-		return fin;
+	public String getEnd() {
+		return end;
 	}
 
-	public void setFin(String fin) {
-		this.fin = fin;
+	public void setEnd(String end) {
+		this.end = end;
 	}
 
 	public String getColor() {
@@ -85,20 +91,24 @@ public class ComercialCalendario implements Serializable{
 		this.color = color;
 	}
 
-	public String getTitulo() {
-		return titulo;
+	
+
+	public String getTitle() {
+		return title;
 	}
 
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public String getDescripcion() {
-		return descripcion;
+	
+
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getCreadoPor() {
@@ -136,6 +146,15 @@ public class ComercialCalendario implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	public String getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
+	}
+	
 	
 
 }
