@@ -172,17 +172,17 @@
 				</select>
 	    </div>
 	    
-		<div class="form-group col-sm-3">
+		<div class="form-group col-sm-3" th:if="*{tela.estatusTela =='1'}">
 			<label for="razonEmpresa">Tipo</label>
 			<select id="selecttipom" class="form-control selectCustom" data-live-search="true" ><option selected disabled >Selecciona uno...</option></select>
 		</div>
-		<div class="form-group col-md-2">
+		<div class="form-group col-md-2" th:if="*{tela.estatusTela =='1'}">
 			<label for="status">Material</label>
 			<select id="selectmat"class="form-control selectCustom" data-live-search="true">
 				<option selected disabled >Selecciona uno...</option>			
 			</select>
 		</div>
-		<div class="form-group col-sm-2">
+		<div class="form-group col-sm-2" th:if="*{tela.estatusTela =='1'}">
 			<label for="status">Clasificaci&oacute;n</label>
 			<select id="clasi"class="form-control selectCustom" data-live-search="true">
 				<option selected disabled >Selecciona uno...</option>		
@@ -190,18 +190,18 @@
 				<option value="secundario" >secundario</option>		
 			</select>
 		</div>
-		<div class="form-group col-sm-2">
+		<div class="form-group col-sm-2" th:if="*{tela.estatusTela =='1'}">
 			<label for="status">Color</label>
 			<input type="text" id="matcol" class="form-control" placeholder="Rojo">
 		</div>
 		
-		<div class="form-group col-sm-2">
+		<div class="form-group col-sm-2" th:if="*{tela.estatusTela =='1'}">
 			<label for="status">C&oacute;digo Color</label>
 			
 				
 				<input required  type="color" id="matcod"  class="form-control" placeholder="Codigo Color">
 			</div>
-		 <div class="form-group col-sm-1">
+		 <div class="form-group col-sm-1" th:if="*{tela.estatusTela =='1'}">
 		 <label for="status">Agregar</label>
 			<button id="addMat"  class="btn btn-info rounded-circle" type="button"><i class="fas fa-plus"></i></button>
 		</div>
