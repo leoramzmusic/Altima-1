@@ -89,35 +89,86 @@ public class MaterialesController {
 
 	@GetMapping("/agregar-material")
 	public String agregarMaterial(Model model) {
-		DisenioMaterial material = new DisenioMaterial();
-		List<DisenioLookup> listLookupsMed = disenioMaterialService.findListaLookupMed();
-		List<DisenioLookup> listLookupsMar = disenioMaterialService.findListaMarcas();
-		List<DisenioLookup> listLookupsClasificacion = disenioMaterialService.findListaClasificacion();
-		List<DisenioLookup> listClaveProceso = disenioMaterialService.findListaLookupPro();
-		List<DisenioLookup> listLookupsMat = disenioMaterialService.findListaLookupMat();
-		List<DisenioLookup> listLookupsCol = disenioMaterialService.findListaColor();
-		model.addAttribute("material", material);
-		model.addAttribute("listLookupsMed", listLookupsMed);
-		model.addAttribute("listLookupsMar", listLookupsMar);
-		model.addAttribute("listLookupsClasificacion", listLookupsClasificacion);
-		model.addAttribute("listClaveProceso", listClaveProceso);
-		model.addAttribute("listLookupsMat", listLookupsMat);
-		model.addAttribute("listLookupsCol", listLookupsCol);
+		model.addAttribute("form", "default");
+		// DisenioMaterial material = new DisenioMaterial();
+		// List<DisenioLookup> listLookupsMed = disenioMaterialService.findListaLookupMed();
+		// List<DisenioLookup> listLookupsMar = disenioMaterialService.findListaMarcas();
+		// List<DisenioLookup> listLookupsClasificacion = disenioMaterialService.findListaClasificacion();
+		// List<DisenioLookup> listClaveProceso = disenioMaterialService.findListaLookupPro();
+		// List<DisenioLookup> listLookupsMat = disenioMaterialService.findListaLookupMat();
+		// List<DisenioLookup> listLookupsCol = disenioMaterialService.findListaColor();
+		// model.addAttribute("material", material);
+		// model.addAttribute("listLookupsMed", listLookupsMed);
+		// model.addAttribute("listLookupsMar", listLookupsMar);
+		// model.addAttribute("listLookupsClasificacion", listLookupsClasificacion);
+		// model.addAttribute("listClaveProceso", listClaveProceso);
+		// model.addAttribute("listLookupsMat", listLookupsMat);
+		// model.addAttribute("listLookupsCol", listLookupsCol);
 
-		// Comienza erik
-		DisenioForro forro = new DisenioForro();
-		model.addAttribute("forro", forro);
-		model.addAttribute("lisFam", disenioTelaService.findAllFamilaComposicion());
+		// // Comienza erik
+		// DisenioForro forro = new DisenioForro();
+		// model.addAttribute("forro", forro);
+		// model.addAttribute("lisFam", disenioTelaService.findAllFamilaComposicion());
 
-		model.addAttribute("lisCom", disenioTelaService.findAllComposicion());
+		// model.addAttribute("lisCom", disenioTelaService.findAllComposicion());
 
-		// agregar tela
-		DisenioTela tela = new DisenioTela();
-		model.addAttribute("listForro", forroService.findAll());
-		model.addAttribute("listBoton", disenioTelaService.findAllBotones(tela.getIdTela()));
-		model.addAttribute("listColor", disenioTelaService.findAllColores());
-		model.addAttribute("listPrendas", disenioTelaService.findAllPrenda());
-		model.addAttribute("tela", tela);
+		// // agregar tela
+		// DisenioTela tela = new DisenioTela();
+		// model.addAttribute("listForro", forroService.findAll());
+		// model.addAttribute("listBoton", disenioTelaService.findAllBotones(tela.getIdTela()));
+		// model.addAttribute("listColor", disenioTelaService.findAllColores());
+		// model.addAttribute("listPrendas", disenioTelaService.findAllPrenda());
+		// model.addAttribute("tela", tela);
+		return "agregar-material";
+
+	}
+
+	@GetMapping("/agregar-material/{tipo}")
+	public String agregarMaterial(Model model,@PathVariable(name="tipo")String tipo) {
+		
+		if(tipo.equals("material")){
+			
+			DisenioMaterial material = new DisenioMaterial();
+			List<DisenioLookup> listLookupsMed = disenioMaterialService.findListaLookupMed();
+			List<DisenioLookup> listLookupsMar = disenioMaterialService.findListaMarcas();
+			List<DisenioLookup> listLookupsClasificacion = disenioMaterialService.findListaClasificacion();
+			List<DisenioLookup> listClaveProceso = disenioMaterialService.findListaLookupPro();
+			List<DisenioLookup> listLookupsMat = disenioMaterialService.findListaLookupMat();
+			List<DisenioLookup> listLookupsCol = disenioMaterialService.findListaColor();
+			model.addAttribute("material", material);
+			model.addAttribute("listLookupsMed", listLookupsMed);
+			model.addAttribute("listLookupsMar", listLookupsMar);
+			model.addAttribute("listLookupsClasificacion", listLookupsClasificacion);
+			model.addAttribute("listClaveProceso", listClaveProceso);
+			model.addAttribute("listLookupsMat", listLookupsMat);
+			model.addAttribute("listLookupsCol", listLookupsCol);
+			model.addAttribute("form", "material");
+		}
+		else if(tipo.equals("forro")){
+			
+			DisenioForro forro = new DisenioForro();
+			model.addAttribute("forro", forro);
+			model.addAttribute("lisFam", disenioTelaService.findAllFamilaComposicion());
+			model.addAttribute("lisCom", disenioTelaService.findAllComposicion());
+			model.addAttribute("form", "forro");
+		}
+		else if(tipo.equals("tela")){
+			
+			DisenioTela tela = new DisenioTela();
+			model.addAttribute("listForro", forroService.findAll());
+			model.addAttribute("listBoton", disenioTelaService.findAllBotones(tela.getIdTela()));
+			model.addAttribute("listColor", disenioTelaService.findAllColores());
+			model.addAttribute("listPrendas", disenioTelaService.findAllPrenda());
+			model.addAttribute("lisFam", disenioTelaService.findAllFamilaComposicion());
+			model.addAttribute("lisCom", disenioTelaService.findAllComposicion());
+			model.addAttribute("tela", tela);
+			model.addAttribute("form", "tela");
+		}
+		else{
+			return("redirect:materiales");
+		}
+
+
 		return "agregar-material";
 
 	}
@@ -263,7 +314,7 @@ public class MaterialesController {
 
 	@GetMapping("/editar-material/{id}")
 	public String editarMaterial(@PathVariable("id") Long idMaterial, Model model) {
-
+		model.addAttribute("form", "material");
 		DisenioMaterial material = disenioMaterialService.findOne(idMaterial);
 
 		List<DisenioLookup> listLookupsMed = disenioMaterialService.findListaLookupMed();
@@ -281,20 +332,6 @@ public class MaterialesController {
 		model.addAttribute("listClaveProceso", listClaveProceso);
 		model.addAttribute("listLookupsMat", listLookupsMat);
 		model.addAttribute("listLookupsCol", listLookupsCol);
-
-		// vuelvo incluir esto porque esnecesario para renderizar la vista
-		// Comienza erik
-		DisenioForro forro = new DisenioForro();
-		model.addAttribute("forro", forro);
-		model.addAttribute("lisFam", disenioTelaService.findAllFamilaComposicion());
-
-		// agregar tela
-		DisenioTela tela = new DisenioTela();
-		model.addAttribute("listForro", forroService.findAll());
-		model.addAttribute("listBoton", disenioTelaService.findAllBotones(tela.getIdTela()));
-		model.addAttribute("listColor", disenioTelaService.findAllColores());
-		model.addAttribute("listPrendas", disenioTelaService.findAllPrenda());
-		model.addAttribute("tela", tela);
 		return "agregar-material";
 
 	}

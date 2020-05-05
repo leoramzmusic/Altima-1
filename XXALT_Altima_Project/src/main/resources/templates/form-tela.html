@@ -1,4 +1,4 @@
-<form class="row" style="display: none;" id="telaForm" name="telaForm" th:method="post" th:action="@{/guardar-tela}" enctype="multipart/form-data">
+<form class="row" id="telaForm" name="telaForm" th:method="post" th:action="@{/guardar-tela}" enctype="multipart/form-data">
     
     <div class="form-group col-sm-5">
         <label for="razonEmpresa">Porcentaje</label>
@@ -172,28 +172,36 @@
 				</select>
 	    </div>
 	    
-		<div class="form-group col-sm-3">
+		<div class="form-group col-sm-3" th:if="*{tela.estatusTela =='1'}">
 			<label for="razonEmpresa">Tipo</label>
 			<select id="selecttipom" class="form-control selectCustom" data-live-search="true" ><option selected disabled >Selecciona uno...</option></select>
 		</div>
-		<div class="form-group col-md-3">
+		<div class="form-group col-md-2" th:if="*{tela.estatusTela =='1'}">
 			<label for="status">Material</label>
 			<select id="selectmat"class="form-control selectCustom" data-live-search="true">
 				<option selected disabled >Selecciona uno...</option>			
 			</select>
 		</div>
-		<div class="form-group col-sm-3">
+		<div class="form-group col-sm-2" th:if="*{tela.estatusTela =='1'}">
+			<label for="status">Clasificaci&oacute;n</label>
+			<select id="clasi"class="form-control selectCustom" data-live-search="true">
+				<option selected disabled >Selecciona uno...</option>		
+				<option value="default" >default</option>	
+				<option value="secundario" >secundario</option>		
+			</select>
+		</div>
+		<div class="form-group col-sm-2" th:if="*{tela.estatusTela =='1'}">
 			<label for="status">Color</label>
 			<input type="text" id="matcol" class="form-control" placeholder="Rojo">
 		</div>
 		
-		<div class="form-group col-sm-2">
-			<label for="status">Codigo Color</label>
+		<div class="form-group col-sm-2" th:if="*{tela.estatusTela =='1'}">
+			<label for="status">C&oacute;digo Color</label>
 			
 				
 				<input required  type="color" id="matcod"  class="form-control" placeholder="Codigo Color">
 			</div>
-		 <div class="form-group col-sm-1">
+		 <div class="form-group col-sm-1" th:if="*{tela.estatusTela =='1'}">
 		 <label for="status">Agregar</label>
 			<button id="addMat"  class="btn btn-info rounded-circle" type="button"><i class="fas fa-plus"></i></button>
 		</div>
@@ -204,8 +212,9 @@
 					<th style="display:none;">Id</th>
 					<th style="display:none;">Tipo</th>
 					<th>Material</th>
+					<th>Clasificaci&oacute;n</th>
 					<th>Color</th>
-					<th>Codigo color</th>
+					<th>C&oacute;digo color</th>
 					<th>Eliminar</th>
 	
 				  </tr>
@@ -215,6 +224,7 @@
 						<td style="display:none;" th:text="${table[0]}"></td>
 						<td style="display:none;" th:text="${table[1]}"></td>
 						<td th:text="${table[2]}"></td>
+						<td th:text="${table[5]}"></td>
 						<td th:text="${table[3]}"></td>
 						<td ><input type="color" th:id="'color'+${table[0]}" disabled th:value="${table[4]}"></td>
 						<td><button type="button" th:id="${table[0]}" name="remove"onclick="eliminarMaterial(this)" class="btn btn-danger btn_remove">Quitar</button></td>
@@ -222,34 +232,6 @@
 				 </tbody>
 			</table>
 		</div>
-    <div th:if="*{tela.estatusTela =='1'}"  class="form-group col-sm-4">
-        <label for="status">Tela Opcional 1</label>
-        <select required class="form-control"  data-live-search="true" th:field="*{tela.auxiliar1}">
-        	<option value="" selected>Selecciona una..</option>
-        	<option th:each="listTela: ${listTela}"
-			th:value="${listTela[0]}" th:text="${listTela[1]}"></option>
-		</select>
-    </div>
-    
-     
-    <div th:if="*{tela.estatusTela =='1'}"  class="form-group col-sm-4">
-        <label for="status">Tela Opcional 2</label>
-        <select required class="form-control" data-live-search="true" th:field="*{tela.auxiliar2}">
-        	<option value=""  selected>Selecciona una..</option>
-        	<option th:each="listTela: ${listTela}"
-			th:value="${listTela[0]}" th:text="${listTela[1]}"></option>
-		</select>
-    </div>
-    
-     
-    <div th:if="*{tela.estatusTela =='1'}"  class="form-group col-sm-4">
-        <label for="status">Tela Opcional 3</label>
-        <select required class="form-control" data-live-search="true" th:field="*{tela.auxiliar3}">
-        	<option value=""  selected>Selecciona una..</option>
-        	<option th:each="listTela: ${listTela}"
-			th:value="${listTela[0]}" th:text="${listTela[1]}"></option>
-		</select>
-    </div>
     
     
     <div  th:if="*{tela.estatusTela =='1'}" class="form-group col-sm-12">
@@ -284,11 +266,58 @@
         </div>
     </div>
    
-    <div class="form-group col-sm-12">
-    	<a th:href="@{/materiales}" class="btn btn-danger">Cancelar</a>
-       <button onclick="arreglo()"   class="btn btn-primary next-step float-right" type="submit">Guardar</button>
+    <div class="form-group col-sm-12 text-center">
+    	<a th:href="@{/materiales}" class="btn btn-danger float-left">Cancelar</a>
+    	<button class="btn btn-warning" data-toggle="modal" data-target="#telasSustitutas">Telas sustitutas</button>
+		<button onclick="arreglo()"   class="btn btn-primary next-step float-right" type="submit">Guardar</button>
     </div>
-    
+    <!-- Modal -->
+	<div class="modal fade" id="telasSustitutas" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLongTitle">Telas sustitutas</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+		    <div th:if="*{tela.estatusTela =='1'}"  class="form-group col-sm-12">
+		        <label for="status">Tela Opcional 1</label>
+		        <select required class="form-control"  data-live-search="true" th:field="*{tela.auxiliar1}">
+		        	<option value="" selected>Selecciona una..</option>
+		        	<option th:each="listTela: ${listTela}"
+					th:value="${listTela[0]}" th:text="${listTela[1]}"></option>
+				</select>
+		    </div>
+		    
+		     
+		    <div th:if="*{tela.estatusTela =='1'}"  class="form-group col-sm-12">
+		        <label for="status">Tela Opcional 2</label>
+		        <select required class="form-control" data-live-search="true" th:field="*{tela.auxiliar2}">
+		        	<option value=""  selected>Selecciona una..</option>
+		        	<option th:each="listTela: ${listTela}"
+					th:value="${listTela[0]}" th:text="${listTela[1]}"></option>
+				</select>
+		    </div>
+		    
+		     
+		    <div th:if="*{tela.estatusTela =='1'}"  class="form-group col-sm-12">
+		        <label for="status">Tela Opcional 3</label>
+		        <select required class="form-control" data-live-search="true" th:field="*{tela.auxiliar3}">
+		        	<option value=""  selected>Selecciona una..</option>
+		        	<option th:each="listTela: ${listTela}"
+					th:value="${listTela[0]}" th:text="${listTela[1]}"></option>
+				</select>
+		    </div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal">Cancelar</button>
+	        <button type="button" class="btn btn-primary">Guardar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
     <input name="txtTabla" type="hidden" id="txtTabla" value="">
     <input name="txtTabla2" type="hidden" id="txtTabla2" value="">
 	<input name="id_prendas" type="hidden" id="id_prendas" value="">
@@ -296,6 +325,7 @@
 	<input name="colormat" type="hidden" id="colormat" value="">
 	<input name="codcolor" type="hidden" id="codcolor" value="">
 	<input name="tipomat" type="hidden" id="tipomat" value="">
+	<input name="posicionm" type="hidden" id="posicionm" value="">
     
     <input  type="hidden" th:field="*{tela.idTela}">
     <input  type="hidden" th:field="*{tela.idText}">
@@ -394,31 +424,45 @@ function arreglo() {
 	var color="";
 	var codcolor="";
 	var tipomat="";
+	var posicion="";
 	 $('#tablita tr').each(function () {
 		if(idmat==""){
 				idmat=$(this).find('td').eq(0).html();
 				tipomat=$(this).find('td').eq(1).html();
-				color=$(this).find('td').eq(3).html();
+				posicion=$(this).find('td').eq(3).html();
+				color=$(this).find('td').eq(4).html();
 				codcolor=$('#color'+$(this).find('td').eq(0).html()).val();
 			}
 			else{
 				idmat=$(this).find('td').eq(0).html()+","+idmat;
 				tipomat=$(this).find('td').eq(1).html()+","+tipomat;
-				color= $(this).find('td').eq(3).html()+","+color;
+				posicion=$(this).find('td').eq(3).html()+","+posicion;
+				color= $(this).find('td').eq(4).html()+","+color;
 				codcolor= $('#color'+$(this).find('td').eq(0).html()).val()+","+codcolor;
 			}
 			document.getElementById("idmat").value = idmat;
 			document.getElementById("tipomat").value = tipomat;
 			document.getElementById("colormat").value = color;
 			document.getElementById("codcolor").value = codcolor;
+			document.getElementById("posicionm").value = posicion;
 	 });
-
-
 
 		var form = document.getElementById("telaForm");
 		form.onsubmit = function(e){
-			if(contador == 100){
-			}else{
+			if(contador == 100 && tipomat.includes("Adorno")&&tipomat.includes("Botón")&&tipomat.includes("Cierre")&&tipomat.includes("Hilo")){}
+			else if( !tipomat.includes("Adorno")||!tipomat.includes("Botón")||!tipomat.includes("Cierre")||!tipomat.includes("Hilo")){
+				document.telaForm.selecttipom.focus()
+				Swal.fire({
+			          position: 'center',
+			          icon: 'error',
+			          title: 'Error tienes que agregar al menos un material de cada tipo',
+			          showConfirmButton: false,
+			          timer: 1300
+			        });
+				
+				e.preventDefault();
+			}
+			else{
 				document.telaForm.telaComposicion.focus()
 				Swal.fire({
 			          position: 'center',

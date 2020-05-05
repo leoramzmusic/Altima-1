@@ -1,385 +1,273 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-
 <head>
-    <div th:replace="navegacion-head"></div>
-    <title>Cat&aacute;logo De Muestrario | Altima</title>
-    <link rel="stylesheet" href="/dist/css/bootstrap-select.min.css">
-
-    <link href="dist/css/jplist.demo-pages.min.css" rel="stylesheet" type="text/css" />
-    <!-- jPList core js and css  -->
-    <link href="dist/css/jplist.core.min.css" rel="stylesheet" type="text/css" />
-    <link href="dist/css/jplist.textbox-filter.min.css" rel="stylesheet" type="text/css" />
-
-    <link href="dist/css/jplist.pagination-bundle.min.css" rel="stylesheet" type="text/css" />
+<div th:replace="navegacion-head"></div>
+<title>Cat&aacute;logo De Muestrario | Altima</title>
+<link rel="stylesheet" href="/dist/css/bootstrap-select.min.css">
+<link href="dist/css/jplist.demo-pages.min.css" rel="stylesheet" type="text/css" />
+<!-- jPList core js and css  -->
+<link href="dist/css/jplist.core.min.css" rel="stylesheet" type="text/css" />
+<link href="dist/css/jplist.textbox-filter.min.css" rel="stylesheet" type="text/css" />
+<link href="dist/css/jplist.pagination-bundle.min.css" rel="stylesheet" type="text/css" />
 </head>
-
 <body class="hold-transition sidebar-mini layout-fixed sidebar-collapse">
-    <!-- Site wrapper -->
-    <div class="wrapper">
-        <!-- Navbar -->
-        <div th:insert="navegacion-nav"></div>
-        <!-- /.navbar -->
-        <!-- Modal -->
-        <div th:insert="navegacion-logout"></div>
-        <!-- Main Sidebar Container -->
-        <div th:insert="navegacion-aside"></div>
-
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1>
-								Cat&aacute;logos <a class="btn btn-primary btn-circle btn-sm popoverxd text-white" data-container="body" data-target="#cartCatalogo" data-toggle="modal" data-placement="right" data-content="Ir al pedido"><i class="fas fa-shopping-cart" style="margin-left:-2px;"></i></a>
+	<!-- Site wrapper -->
+	<div class="wrapper">
+		<!-- Navbar -->
+		<div th:insert="navegacion-nav"></div>
+		<!-- /.navbar -->
+		<!-- Modal -->
+		<div th:insert="navegacion-logout"></div>
+		<!-- Main Sidebar Container -->
+		<div th:insert="navegacion-aside"></div>
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<h1>
+								Cat&aacute;logos
+								<a class="btn btn-primary btn-circle btn-sm popoverxd text-white" data-container="body"
+									data-target="#cartCatalogo" data-toggle="modal" data-placement="right"
+									data-content="Ir al pedido">
+									<i class="fas fa-shopping-cart" style="margin-left: -2px;"></i>
+								</a>
 							</h1>
-                            <div th:insert="modal-catalogo-cart"></div>
-                        </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Muestrario</li>
-                                <li class="breadcrumb-item active">Cat&aacute;logos</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.container-fluid -->
-            </section>
-
-            <!-- Main content -->
-            <section class="content">
-
-                <!-- Default box -->
-                <div class="card card-solid">
-                    <div class="card-body pb-0">
-                        <div class="box">
-                            <!--<><><><><><><><><><><><><><><><><><><><><><><><><><> DEMO START <><><><><><><><><><><><><><><><><><><><><><><><><><>-->
-
-                            <div id="demo" class="jplist" style="margin: 20px 0 50px 0">
-
-                                <!-- ios button: show/hide panel -->
-                                <div class="jplist-ios-button">
-                                    <i class="fa fa-sort"></i> jPList Actions
-                                </div>
-
-                                <!-- panel -->
-                                <div class="jplist-panel panel-top">
-
-                                    <!-- items per page dropdown -->
-                                    <div class="jplist-drop-down" data-control-type="items-per-page-drop-down" data-control-name="paging" data-control-action="paging">
-
-                                        <ul>
-                                            <li><span data-number="6" data-default="true"> Mostrar 6 </span></li>
-                                            <li><span data-number="12"> Mostrar 12 </span></li>
-                                            <li><span data-number="24"> Mostrar 24 </span></li>
-                                            <li><span data-number="48"> Mostrar 48 </span></li>
-                                            <li><span data-number="all"> Mostrar todo </span></li>
-                                        </ul>
-                                    </div>
-
-                                    <!-- sort dropdown -->
-                                    <div class="jplist-drop-down" data-control-type="sort-drop-down" data-control-name="sort" data-control-action="sort" data-datetime-format="{month}/{day}/{year}">
-                                        <!-- {year}, {month}, {day}, {hour}, {min}, {sec} -->
-
-                                        <ul>
-                                            <li><span data-path="default">Ordenar por</span></li>
-                                            <li><span data-path=".prenda" data-order="asc" data-type="text">A-Z</span></li>
-                                            <li><span data-path=".prenda" data-order="desc" data-type="text">Z-A</span></li>
-                                        </ul>
-                                    </div>
-                                    
-                                    <div class="jplist-drop-down" data-control-type="filter-drop-down" data-control-name="category-filter" data-control-action="filter">
-									   <ul>
-										  <li><span data-path="default">Todas las prendas</span></li>
-										  <li><span data-path=".camisa">Camisa</span></li>
-										  <li><span data-path=".abrigo">Abrigo</span></li>
-										  <li><span data-path=".pantalon">Pantal&oacute;n</span></li>
-										  <li><span data-path=".saco">Saco</span></li>
-										  <li><span data-path=".blusa">Blusa</span></li>
-									   </ul>
-									</div>	
-
-                                    <!-- filter by title -->
-                                    <div class="text-filter-box">
-
-                                        <i class="fas fa-search  jplist-icon"></i>
-
-                                        <!--[if lt IE 10]>
+							<div th:insert="modal-catalogo-cart"></div>
+						</div>
+						<div class="col-sm-6">
+							<ol class="breadcrumb float-sm-right">
+								<li class="breadcrumb-item">
+									<a href="#">Dashboard</a>
+								</li>
+								<li class="breadcrumb-item active">Muestrario</li>
+								<li class="breadcrumb-item active">Cat&aacute;logos</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+				<!-- /.container-fluid -->
+			</section>
+			<!-- Main content -->
+			<section class="content">
+				<!-- Default box -->
+				<div class="card card-solid">
+					<div class="card-body pb-0">
+						<div class="box">
+							<!--<><><><><><><><><><><><><><><><><><><><><><><><><><> DEMO START <><><><><><><><><><><><><><><><><><><><><><><><><><>-->
+							<div id="demo" class="jplist" style="margin: 20px 0 50px 0">
+								<!-- ios button: show/hide panel -->
+								<div class="jplist-ios-button">
+									<i class="fa fa-sort"></i> jPList Actions
+								</div>
+								<!-- panel -->
+								<div class="jplist-panel panel-top">
+									<!-- items per page dropdown -->
+									<div class="jplist-drop-down" data-control-type="items-per-page-drop-down"
+										data-control-name="paging" data-control-action="paging">
+										<ul>
+											<li>
+												<span data-number="6" data-default="true"> Mostrar 6 </span>
+											</li>
+											<li>
+												<span data-number="12"> Mostrar 12 </span>
+											</li>
+											<li>
+												<span data-number="24"> Mostrar 24 </span>
+											</li>
+											<li>
+												<span data-number="48"> Mostrar 48 </span>
+											</li>
+											<li>
+												<span data-number="all"> Mostrar todo </span>
+											</li>
+										</ul>
+									</div>
+									<!-- sort dropdown -->
+									<div class="jplist-drop-down" data-control-type="sort-drop-down" data-control-name="sort"
+										data-control-action="sort" data-datetime-format="{month}/{day}/{year}">
+										<!-- {year}, {month}, {day}, {hour}, {min}, {sec} -->
+										<ul>
+											<li>
+												<span data-path="default">Ordenar por</span>
+											</li>
+											<li>
+												<span data-path=".prenda" data-order="asc" data-type="text">A-Z</span>
+											</li>
+											<li>
+												<span data-path=".prenda" data-order="desc" data-type="text">Z-A</span>
+											</li>
+										</ul>
+									</div>
+									<div class="jplist-drop-down" data-control-type="filter-drop-down"
+										data-control-name="category-filter" data-control-action="filter">
+										<ul>
+											<li>
+												<span data-path="default">Todas las prendas</span>
+											</li>
+											<li>
+												<span data-path=".camisa">Camisa</span>
+											</li>
+											<li>
+												<span data-path=".abrigo">Abrigo</span>
+											</li>
+											<li>
+												<span data-path=".pantalon">Pantal&oacute;n</span>
+											</li>
+											<li>
+												<span data-path=".saco">Saco</span>
+											</li>
+											<li>
+												<span data-path=".blusa">Blusa</span>
+											</li>
+										</ul>
+									</div>
+									<!-- filter by title -->
+									<div class="text-filter-box">
+										<i class="fas fa-search  jplist-icon"></i>
+										<!--[if lt IE 10]>
                     <div class="jplist-label">Filter by Title:</div>
                     <![endif]-->
+										<input class="form-control" data-path=".prenda" type="text" value=""
+											placeholder="Buscar por prenda" data-control-type="textbox"
+											data-control-name="title-filter" data-control-action="filter" />
+									</div>
+									<!-- pagination results -->
+									<div class="jplist-label" data-type="{start} - {end} de {all}"
+										data-control-type="pagination-info" data-control-name="paging"
+										data-control-action="paging"></div>
+									<!-- pagination control -->
+									<div class="jplist-pagination col-md-12" style="justify-content: center;"
+										data-control-type="pagination" data-control-name="paging" data-control-action="paging"></div>
+								</div>
+								<!-- data -->
+								<div class="list box text-shadow">
+									<!-- item 1 -->
+									<div th:each="muestra : ${muestrario}" class="list-item box col-md-4">
+										<!-- data -->
+										<div class="block text-justify">
+											<img class="thumb1 centerImg"
+												src="https://i.ebayimg.com/images/g/4PAAAOSwXgFc9wh~/s-l300.jpg" alt="" title="" />
+											<p class="stock">
+												<strong>Stock:</strong>
+												<a th:text=${muestra[0]}></a>
+											</p>
+											<p class="prenda">
+												<strong>Prenda:</strong>
+												<a th:text=${muestra[2]}></a>
+											</p>
+											<p class="desc">
+												<strong>Modelo:</strong>
+												<a th:text=${muestra[3]}></a>
+											</p>
+											<p class="tela">
+												<strong>Tela:</strong>
+												<a th:text=${muestra[4]}></a>
+											</p>
+											<p class="talla">
+												<strong>Talla:</strong>
+												<a th:text=${muestra[5]}></a>
+											</p>
+											<p class="theme" style="display: none">
+												<span class="abrigo"></span>
+											</p>
+										</div>
+									</div>
 
-                                        <input class="form-control" data-path=".prenda" type="text" value="" placeholder="Buscar por prenda" data-control-type="textbox" data-control-name="title-filter" data-control-action="filter" />
-                                    </div> 
-
-                                    <!-- pagination results -->
-                                    <div class="jplist-label" data-type="{start} - {end} de {all}" data-control-type="pagination-info" data-control-name="paging" data-control-action="paging">
-                                    </div>
-
-                                    <!-- pagination control -->
-                                    <div class="jplist-pagination col-md-12" style="justify-content: center;" data-control-type="pagination" data-control-name="paging" data-control-action="paging">
-                                    </div>
-
-                                </div>
-
-                                <!-- data -->
-                                <div class="list box text-shadow">
-
-                                    <!-- item 1 -->
-                                    <div class="list-item box col-md-4">
-
-
-                                        <!-- data -->
-                                        <div class="block text-justify">
-                                        	<img class="thumb1 centerImg" src="https://i.ebayimg.com/images/g/4PAAAOSwXgFc9wh~/s-l300.jpg" alt="" title="" />
-                                            <p class="stock"><strong>Stock:</strong> <a>9</a></p>
-                                            <p class="prenda"><strong>Prenda:</strong> <a>Abrigo Gris 02</a></p>
-                                            <p class="desc"><strong>Modelo:</strong> <a>Modelo 001</a></p>
-                                            <p class="tela"><strong>Tela:</strong> <a>Tela 001</a></p>
-                                            <p class="talla"><strong>Talla:</strong> <a>Talla 001</a></p>
-                                            <p class="theme" style="display:none">
-                                                <span class="abrigo"></span>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <!-- item 2 -->
-                                    <div class="list-item box col-md-4">
-                                        <!-- data -->
-                                        <div class="block text-justify">
-                                        	<img class="thumb1 centerImg" src="https://resources.claroshop.com/medios-plazavip/fotos/productos_sears1/original/2911839.jpg" alt="" title="" />
-                                            <p class="stock"><strong>Stock:</strong> <a>9</a></p>
-                                            <p class="prenda"><strong>Prenda:</strong> <a>Camisa Azul 02</a></p>
-                                            <p class="desc"><strong>Modelo:</strong> <a>Modelo 001</a></p>
-                                            <p class="tela"><strong>Tela:</strong> <a>Tela 001</a></p>
-                                            <p class="talla"><strong>Talla:</strong> <a>Talla 001</a></p>
-                                            <p class="theme" style="display:none">
-                                                <span class="camisa"></span>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <!-- item 3 -->
-                                    <div class="list-item box col-md-4">
-                                        <!-- data -->
-                                        <div class="block text-justify">
-                                        	<img class="thumb1 centerImg" src="https://resources.sears.com.mx/medios-plazavip/fotos/productos_sears1/original/2934344.jpg" alt="" title="" />
-                                            <p class="stock"><strong>Stock:</strong> <a>9</a></p>
-                                            <p class="prenda"><strong>Prenda:</strong> <a>Pantalon Azul 02</a></p>
-                                            <p class="desc"><strong>Modelo:</strong> <a>Modelo 001</a></p>
-                                            <p class="tela"><strong>Tela:</strong> <a>Tela 001</a></p>
-                                            <p class="talla"><strong>Talla:</strong> <a>Talla 001</a></p>
-                                            <p class="theme" style="display:none">
-                                                <span class="pantalon"></span>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <!-- item 4 -->
-                                    <div class="list-item box col-md-4">
-
-                                        <!-- data -->
-                                        <div class="block text-justify">
-                                        	<img class="thumb1 centerImg" src="https://ae01.alicdn.com/kf/H7b376560ebe642f69bfdbbcaf18a1963Y.jpg_q50.jpg" alt="" title="" />
-                                            <p class="stock"><strong>Stock:</strong> <a>9</a></p>
-                                            <p class="prenda"><strong>Prenda:</strong> <a>Camisa azul oscura 02</a></p>
-                                            <p class="desc"><strong>Modelo:</strong> <a>Modelo 001</a></p>
-                                            <p class="tela"><strong>Tela:</strong> <a>Tela 001</a></p>
-                                            <p class="talla"><strong>Talla:</strong> <a>Talla 001</a></p>
-                                            <p class="theme" style="display:none">
-                                                <span class="camisa"></span>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <!-- item 5 -->
-                                    <div class="list-item box col-md-4">
-                                        <!-- data -->
-                                        <div class="block text-justify">
-                                            <img class="thumb1 centerImg" src="https://static.grainger.com/rp/s/is/image/Grainger/2KVN3_AS01?$glgmain$" alt="" title="" />
-                                            <p class="stock"><strong>Stock:</strong> <a>9</a></p>
-                                            <p class="prenda"><strong>Prenda:</strong> <a>Camisa mezclilla 02</a></p>
-                                            <p class="desc"><strong>Modelo:</strong> <a>Modelo 001</a></p>
-                                            <p class="tela"><strong>Tela:</strong> <a>Tela 001</a></p>
-                                            <p class="talla"><strong>Talla:</strong> <a>Talla 001</a></p>
-                                            <p class="theme" style="display:none">
-                                                <span class="camisa">Camisa</span>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <!-- item 6 -->
-                                    <div class="list-item box col-md-4">
-                                        <!-- data -->
-                                        <div class="block text-justify">
-                                            <img class="thumb1 centerImg" src="https://cdn.shopify.com/s/files/1/2808/3316/products/50103302_1_1024x1024.jpg?v=1571186750" alt="" title="" />
-                                            <p class="stock"><strong>Stock:</strong> <a>9</a></p>
-                                            <p class="prenda"><strong>Prenda:</strong> <a>Abrigo Rojo con puntos blancos 02</a></p>
-                                            <p class="desc"><strong>Modelo:</strong> <a>Modelo 001</a></p>
-                                            <p class="tela"><strong>Tela:</strong> <a>Tela 001</a></p>
-                                            <p class="talla"><strong>Talla:</strong> <a>Talla 001</a></p>
-                                            <p class="theme" style="display:none">
-                                                <span class="abrigo"></span>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <!-- item 7 -->
-                                    <div class="list-item box col-md-4">
-                                        <!-- data -->
-                                        <div class="block text-justify">
-                                        	<img class="thumb1 centerImg" src="https://resources.claroshop.com/medios-plazavip/fotos/productos_sears1/original/2943845.jpg" alt="" title="" />
-                                            <p class="stock"><strong>Stock:</strong> <a>9</a></p>
-                                            <p class="prenda"><strong>Prenda:</strong> <a>Saco azulado 02</a></p>
-                                            <p class="desc"><strong>Modelo:</strong> <a>Modelo 001</a></p>
-                                            <p class="tela"><strong>Tela:</strong> <a>Tela 001</a></p>
-                                            <p class="talla"><strong>Talla:</strong> <a>Talla 001</a></p>
-                                            <p class="theme" style="display:none">
-                                                <span class="saco"></span>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <!-- item 8 -->
-                                    <div class="list-item box col-md-4">
-                                        <!-- data -->
-                                        <div class="block text-justify">
-                                            <img class="thumb1 centerImg" src="https://www.playerasmark.com/wp-content/uploads/2017/10/2.png" alt="" title="" />
-                                            <p class="stock"><strong>Stock:</strong> <a>9</a></p>
-                                            <p class="prenda"><strong>Prenda:</strong> <a>Blusa rosa 02</a></p>
-                                            <p class="desc"><strong>Modelo:</strong> <a>Modelo 001</a></p>
-                                            <p class="tela"><strong>Tela:</strong> <a>Tela 001</a></p>
-                                            <p class="talla"><strong>Talla:</strong> <a>Talla 001</a></p>
-                                            <p class="theme" style="display:none">
-                                                <span class="blusa"></span>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <!-- item 9 -->
-                                    <div class="list-item box col-md-4">
-                                        <!-- data -->
-                                        <div class="block text-justify">
-                                            <img class="thumb1 centerImg" src="https://www.dhresource.com/0x0/f2/albu/g5/M01/91/00/rBVaJFjcZ5CAU8HnAADC0YffTgo681.jpg" alt="" title="" />
-                                            <p class="stock"><strong>Stock:</strong> <a>9</a></p>
-                                            <p class="prenda"><strong>Prenda:</strong> <a>Blusa verde 02</a></p>
-                                            <p class="desc"><strong>Modelo:</strong> <a>Modelo 001</a></p>
-                                            <p class="tela"><strong>Tela:</strong> <a>Tela 001</a></p>
-                                            <p class="talla"><strong>Talla:</strong> <a>Talla 001</a></p>
-                                            <p class="theme" style="display:none">
-                                                <span class="blusa"></span>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <!-- item 10 -->
-                                    <div class="list-item box col-md-4">
-                                        <!-- data -->
-                                        <div class="block text-justify">
-                                            <img class="thumb1 centerImg" src="https://static.grainger.com/rp/s/is/image/Grainger/6XXM5_AS01?$zmmain$" alt="" title="" />
-                                            <p class="stock"><strong>Stock:</strong> <a>9</a></p>
-                                            <p class="prenda"><strong>Prenda:</strong> <a>Pantalon cafe 02</a></p>
-                                            <p class="desc"><strong>Modelo:</strong> <a>Modelo 001</a></p>
-                                            <p class="tela"><strong>Tela:</strong> <a>Tela 001</a></p>
-                                            <p class="talla"><strong>Talla:</strong> <a>Talla 001</a></p>
-                                            <p class="theme" style="display:none">
-                                                <span class="pantalon"></span>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    
-                                </div>
-
-                                <div class="box jplist-hidden text-shadow align-center">
-                                    <p>No results found</p>
-                                </div>
-
-                            </div>
-
-                            <!--<><><><><><><><><><><><><><><><><><><><><><><><><><> DEMO END <><><><><><><><><><><><><><><><><><><><><><><><><><>-->
-
-                        </div>
-                    </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                        <nav aria-label="Contacts Page Navigation">
-                            <ul class="pagination justify-content-center m-0">
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                <li class="page-item"><a class="page-link" href="#">6</a></li>
-                                <li class="page-item"><a class="page-link" href="#">7</a></li>
-                                <li class="page-item"><a class="page-link" href="#">8</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <!-- /.card-footer -->
-                </div>
-                <!-- /.card -->
-
-            </section>
-            <!-- /.content -->
-        </div>
-        <!-- /.content-wrapper -->
-
-        <div th:insert="navegacion-footer"></div>
-    </div>
-    <!-- ./wrapper -->
-
-    <div th:replace="navegacion-scripts"></div>
-    <script src="/dist/js/bootstrap-select.min.js"></script>
-
-    <script src="dist/js/jplist.core.min.js"></script>
-
-    <!-- jPList sort bundle -->
-    <script src="dist/js/jplist.sort-bundle.min.js"></script>
-
-    <!-- jPList textbox filter control -->
-    <script src="dist/js/jplist.textbox-filter.min.js"></script>
-
-    <!-- jPList pagination bundle -->
-    <script src="dist/js/jplist.pagination-bundle.min.js"></script>
-    <!-- filter dropdown bundle -->
+								</div>
+								<div class="box jplist-hidden text-shadow align-center">
+									<p>No results found</p>
+								</div>
+							</div>
+							<!--<><><><><><><><><><><><><><><><><><><><><><><><><><> DEMO END <><><><><><><><><><><><><><><><><><><><><><><><><><>-->
+						</div>
+					</div>
+					<!-- /.card-body -->
+					<div class="card-footer">
+						<nav aria-label="Contacts Page Navigation">
+							<ul class="pagination justify-content-center m-0">
+								<li class="page-item active">
+									<a class="page-link" href="#">1</a>
+								</li>
+								<li class="page-item">
+									<a class="page-link" href="#">2</a>
+								</li>
+								<li class="page-item">
+									<a class="page-link" href="#">3</a>
+								</li>
+								<li class="page-item">
+									<a class="page-link" href="#">4</a>
+								</li>
+								<li class="page-item">
+									<a class="page-link" href="#">5</a>
+								</li>
+								<li class="page-item">
+									<a class="page-link" href="#">6</a>
+								</li>
+								<li class="page-item">
+									<a class="page-link" href="#">7</a>
+								</li>
+								<li class="page-item">
+									<a class="page-link" href="#">8</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+					<!-- /.card-footer -->
+				</div>
+				<!-- /.card -->
+			</section>
+			<!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+		<div th:insert="navegacion-footer"></div>
+	</div>
+	<!-- ./wrapper -->
+	<div th:replace="navegacion-scripts"></div>
+	<script src="/dist/js/bootstrap-select.min.js"></script>
+	<script src="dist/js/jplist.core.min.js"></script>
+	<!-- jPList sort bundle -->
+	<script src="dist/js/jplist.sort-bundle.min.js"></script>
+	<!-- jPList textbox filter control -->
+	<script src="dist/js/jplist.textbox-filter.min.js"></script>
+	<!-- jPList pagination bundle -->
+	<script src="dist/js/jplist.pagination-bundle.min.js"></script>
+	<!-- filter dropdown bundle -->
 	<script src="dist/js/jplist.filter-dropdown-bundle.min.js"></script>
-    <script>
-        $('document').ready(function() {
+	<script>
+		$('document').ready(function() {
 
-            //start jplist
-            $('#demo').jplist({
-                itemsBox: '.list',
-                itemPath: '.list-item',
-                panelPath: '.jplist-panel'
-            });
+			//start jplist
+			$('#demo').jplist({
+				itemsBox : '.list',
+				itemPath : '.list-item',
+				panelPath : '.jplist-panel'
+			});
 
-            //add item to jPList collection in the given index
-            $('#demo').jplist({
-                command: 'add',
-                commandData: {
-                    $item: $(html),
-                    index: 0
-                }
-            });
-        });
-    </script>
-    <script>
-        $('.selectCustom').selectpicker({
-            style: 'border border-bootstrap'
-        });
-    </script>
-    <script>
-        $('#iComercial').removeClass('text-primary');
-        $('#menuComercial').addClass('menu-open');
-        $('#navComercial').addClass('active');
-        $('#menuMuestrario').addClass('menu-open');
-        $('#navMuestrario').addClass('active');
-        $('#navMuestrario3').addClass('active');
-    </script>
-
+			//add item to jPList collection in the given index
+			$('#demo').jplist({
+				command : 'add',
+				commandData : {
+					$item : $(html),
+					index : 0
+				}
+			});
+		});
+	</script>
+	<script>
+		$('.selectCustom').selectpicker({
+			style : 'border border-bootstrap'
+		});
+	</script>
+	<script>
+		$('#iComercial').removeClass('text-primary');
+		$('#menuComercial').addClass('menu-open');
+		$('#navComercial').addClass('active');
+		$('#menuMuestrario').addClass('menu-open');
+		$('#navMuestrario').addClass('active');
+		$('#navMuestrario3').addClass('active');
+	</script>
 </body>
-
 </html>

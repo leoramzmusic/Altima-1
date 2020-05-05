@@ -25,6 +25,7 @@ $( document ).ready(function() {
        });
 });
 
+
 $( "#selecttipom" ).change(function() {
     for(i in lookup){
         console.log("veri"+lookup[i].nombreLookup+" "+$("#selecttipom" ).children("option:selected").html());

@@ -154,41 +154,19 @@ public class ForroController {
 	
 	@GetMapping("/editar-forro/{id}")
 	public String editar(@PathVariable(value="id") Long id , Model model) {
-		DisenioTela tela = new DisenioTela() ;
-		DisenioMaterial material = new DisenioMaterial();
-		List<DisenioLookup> listLookupsMed = disenioMaterialService.findListaLookupMed();
-		List<DisenioLookup> listLookupsMar = disenioMaterialService.findListaMarcas();
-		List<DisenioLookup> listLookupsClasificacion = disenioMaterialService.findListaClasificacion();	
-	//	List<DisenioProceso> listClaveProceso = disenioProcesoService.findListClaveProceso();
-		List<DisenioLookup> listLookupsMat = disenioMaterialService.findListaLookupMat();
-		List<DisenioLookup> listLookupsCol = disenioMaterialService.findListaColor();
-		model.addAttribute("material", material);
-		model.addAttribute("tela", tela);
-		model.addAttribute("listLookupsMed", listLookupsMed);
-		model.addAttribute("listLookupsMar", listLookupsMar);
-		model.addAttribute("listLookupsClasificacion", listLookupsClasificacion);
-		//model.addAttribute("listClaveProceso", listClaveProceso);
-		model.addAttribute("listLookupsMat", listLookupsMat);
-		model.addAttribute("listLookupsCol", listLookupsCol);
 		
+
 		// Comienza erik
-				
-		model.addAttribute("lisFam",disenioTelaService.findAllFamilaComposicion());
-		model.addAttribute("lisCom",disenioTelaService.findAllComposicion());
-		model.addAttribute("listForro",forroService.findAll()); 
-		model.addAttribute("listBoton", disenioTelaService.findAllBotones(null));
-		model.addAttribute("listColor", disenioTelaService.findAllColores());
-		model.addAttribute("listPrendas", disenioTelaService.findAllPrenda());
-				
-				
 		DisenioForro forro;
 		forro=forroService.findOne(id);
 		model.addAttribute("forro", forro);
 		model.addAttribute("listForroComposicon", disenioTelaService.ComposicionForroMN(id));
+		model.addAttribute("lisCom",disenioTelaService.findAllComposicion());
 		model.addAttribute("listForrosAutori", forroService.forrosAutorizados());
-		
+		List<DisenioLookup> listLookupsMed = disenioMaterialService.findListaLookupMed();
+		model.addAttribute("listLookupsMed", listLookupsMed);
 		System.out.println("Entra a la consulta de forro composicion");
-		
+		model.addAttribute("form", "forro");
 		
 		
 		return"agregar-material";   
