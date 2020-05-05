@@ -210,7 +210,7 @@ public class CatalogoController {
 			}
 
 			if (ultimoid == null) {
-				color.setIdText("COL0010");
+				color.setIdText("COL001");
 			} else {
 
 				String str = ultimoid.getIdText();
@@ -240,7 +240,7 @@ public class CatalogoController {
 			}
 
 			if (ultimoid == null) {
-				piezatrazo.setIdText("PZTR0010");
+				piezatrazo.setIdText("PZTR001");
 			} else {
 
 				String str = ultimoid.getIdText();
@@ -269,7 +269,7 @@ public class CatalogoController {
 			}
 
 			if (ultimoid == null) {
-				familiaprenda.setIdText("FAMPR0010");
+				familiaprenda.setIdText("FAMPR001");
 			} else {
 
 				String str = ultimoid.getIdText();
@@ -299,7 +299,7 @@ public class CatalogoController {
 			}
 
 			if (ultimoid == null) {
-				familiagenero.setIdText("FAMGE0010");
+				familiagenero.setIdText("FAMGE001");
 			} else {
 
 				String str = ultimoid.getIdText();
@@ -330,7 +330,7 @@ public class CatalogoController {
 			}
 
 			if (ultimoid == null) {
-				instruccioncuidado.setIdText("INSTRCU0010");
+				instruccioncuidado.setIdText("INSTRCU001");
 			} else {
 
 				String str = ultimoid.getIdText();
@@ -368,7 +368,7 @@ public class CatalogoController {
 			}
 
 			if (ultimoid == null) {
-				unidadmedida.setIdText("UMED0010");
+				unidadmedida.setIdText("UMED001");
 			} else {
 
 				String str = ultimoid.getIdText();
@@ -399,7 +399,7 @@ public class CatalogoController {
 			}
 
 			if (ultimoid == null) {
-				material.setIdText("MAT0010");
+				material.setIdText("MAT001");
 			} else {
 
 				String str = ultimoid.getIdText();
@@ -429,7 +429,7 @@ public class CatalogoController {
 			}
 
 			if (ultimoid == null) {
-				marcador.setIdText("MARC0010");
+				marcador.setIdText("MARC001");
 			} else {
 
 				String str = ultimoid.getIdText();
@@ -458,7 +458,7 @@ public class CatalogoController {
 			}
 
 			if (ultimoid == null) {
-				composicion.setIdText("COMP0010");
+				composicion.setIdText("COMP001");
 			} else {
 
 				String str = ultimoid.getIdText();
