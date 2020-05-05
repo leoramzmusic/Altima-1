@@ -239,6 +239,8 @@ public class TelaController {
 		model.addAttribute("form", "tela");
 		DisenioTela tela ;
 		tela= disenioTelaService.findOne(id);
+		DisenioForro forro = new DisenioForro();
+		
 		// Comienza erik
 				model.addAttribute("lisFam",disenioTelaService.findAllFamilaComposicion());
 				model.addAttribute("listColor", disenioTelaService.findAllColores());
@@ -261,7 +263,8 @@ public class TelaController {
 		// Consulta de adornos
 		model.addAttribute("listAdornoSelec", disenioTelaService.materialesSeleccionados(id,"adorno"));// cierre ya seleccionados
 		model.addAttribute("listAdorno", disenioTelaService.materialesDisponibles(id, "adorno"));// cierre sin seleccionar
-		
+		model.addAttribute("listForroSelec", disenioTelaService.ForrosSeleccionados(id));
+		model.addAttribute("listForro",forroService.ForrosSelect(id)); 
 		// Consulta para telas auxiliares (telas autorizadas)
 		model.addAttribute("listTela", disenioTelaService.TelasAutorizadas());//telas autorizadas		
 		// prendas

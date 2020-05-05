@@ -159,6 +159,8 @@ public class MaterialesController {
 			model.addAttribute("listBoton", disenioTelaService.findAllBotones(tela.getIdTela()));
 			model.addAttribute("listColor", disenioTelaService.findAllColores());
 			model.addAttribute("listPrendas", disenioTelaService.findAllPrenda());
+			model.addAttribute("lisFam", disenioTelaService.findAllFamilaComposicion());
+			model.addAttribute("lisCom", disenioTelaService.findAllComposicion());
 			model.addAttribute("tela", tela);
 			model.addAttribute("form", "tela");
 		}
