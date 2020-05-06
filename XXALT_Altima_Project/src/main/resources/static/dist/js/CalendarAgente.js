@@ -342,10 +342,8 @@
 		defaultDate: moment().format("YYYY-MM-DD"),
 		editable: true,
 		slotLabelInterval : '01:00:00',
-		slotDuration : '01:00:00',
+		slotDuration : '00:30:00',
 		viewSubSlotLabel : true,
-		minTime:'08:00:00',
-		maxTime:'20:00:00',
 		contentHeight: 'auto',
 		eventDrop: function(info) {
 			console.log(info.event.start,info.event.end);
