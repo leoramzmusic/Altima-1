@@ -134,6 +134,8 @@ public class AgregarPrendaRestController {
 		dp.setCategoria(prenda.get("categoria").toString());
 		dp.setEstatus(1L);
 		dp.setPrendaLocal("1");
+		dp.setIdGenero(prenda.get("generoPrenda").toString());
+		dp.setPrendaCliente(prenda.get("clientePrenda").toString());
 
 		prendaService.save(dp);
 		
@@ -154,6 +156,7 @@ public class AgregarPrendaRestController {
 	{
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		JSONObject prenda = new JSONObject(disenioprenda.toString());
+		System.out.println(prenda);
 		dp = prendaService.findOne(Long.valueOf(prenda.get("idPrenda").toString()));
 		dp.setIdFamiliaPrenda(Long.valueOf((String) prenda.get("idFamiliaPrenda")));
 		dp.setActualizadoPor(auth.getName());
@@ -177,6 +180,8 @@ public class AgregarPrendaRestController {
 		dp.setPrecioMprod(prenda.get("precioMprod").toString());
 		dp.setPrecioMmuestra(prenda.get("precioMmuestra").toString());
 		dp.setCategoria(prenda.get("categoria").toString());
+		dp.setIdGenero(prenda.get("generoPrenda").toString());
+		dp.setPrendaCliente(prenda.get("clientePrenda").toString());
 		prendaService.save(dp);
 		return dp;
 	}

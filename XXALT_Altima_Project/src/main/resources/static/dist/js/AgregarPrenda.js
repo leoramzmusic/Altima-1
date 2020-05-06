@@ -18,7 +18,8 @@ function RecogerDatosPrimeraParte() {
 	objeto_prenda['actualizadoPor'] = "Adan";
 	objeto_prenda['numeroPrenda'] = "1";
 	objeto_prenda['descripcionPrenda'] = $('#DescripcionPrenda').val();
-	objeto_prenda['tipoPrenda'] = $('#TipoPrenda').val();
+	objeto_prenda['generoPrenda'] = $('#GeneroPrenda').val();
+	objeto_prenda['clientePrenda'] = $('#ClientePrenda').val();
 	objeto_prenda['detallePrenda'] = $('#DetallePrenda').val();
 	objeto_prenda['notaEspecial'] = $('#NotaEspecial').val();
 	objeto_prenda['consumoTela'] = 0.0;
@@ -165,7 +166,7 @@ function Guardar() {
 	RecogerDatosSegundaParte();
 	var token = $('#token').val();
 	var header = $('#token').val();
-	
+
 	if(accion == "editar")
 	{
 		console.log(objeto_prenda);
@@ -249,7 +250,7 @@ function Guardar() {
 //Esta valida que los campos esten llenos dentro de la primer pestaña
 function ValidarPrimerPestana() {
 	if ($('#DescripcionPrenda').val() != "" && $('#NotaEspecial').val() != ""
-		&& $('#DetallePrenda').val() != "" && $('#TipoPrenda').val() != "") 
+		&& $('#DetallePrenda').val() != "" && $('#GeneroPrenda').val() != "") 
 	{
 		$('#AlertaPrimerPestana').css('display', 'none');
 		$('#SiguientePrimeraPestana').click();

@@ -88,7 +88,7 @@
 															<div class="col-sm-4">
 																<div class="form-group">
 																	<label>Tipo de prenda</label> 
-																	<select placeholder="Elige un tipo de prenda" id="TipoPrenda" class="form-control">
+																	<select id="TipoPrenda" class="form-control">
 																		<option value=""></option>
 																		<option th:each="familia: ${familias}" th:value="${familia[0]}" 
 																		th:text="${familia[1]}" th:selected="${familia[0] == prenda.idFamiliaPrenda}"></option>
@@ -109,30 +109,35 @@
 																</div>
 															</div>
 															
-															<div class="col-sm-10">
+															<div class="col-sm-6">
+																<div class="form-group">
+																	<label>Genero de prenda</label> 
+																	<select id="GeneroPrenda" class="form-control">
+																		<option value=""></option>
+																		<option th:each="genero: ${generos}" th:value="${genero.idLookup}" 
+																		th:text="${genero.nombreLookup}" th:selected="${genero.idLookup == prenda.idGenero}"></option>
+																	</select>
+																</div>
+															</div>
+															
+															<div class="col-sm-6">
+																<div class="form-group">
+																	<label>Cliente de prenda</label> 
+																	<select id="ClientePrenda" class="form-control">
+																		<option value=""></option>
+																		<option th:each="cliente: ${clientes}" th:value="${cliente.idCliente}" 
+																		th:text="${cliente.nombre}" th:selected="${cliente.idCliente == prenda.prendaCliente}"></option>
+																	</select>
+																</div>
+															</div>
+															
+															<div class="col-sm-12">
 																<div class="form-group">
 																	<label>Detalle de la prenda</label>
 																	<textarea class="form-control" rows="3"
 																		placeholder="Escribir el detalle de la prenda..." id="DetallePrenda" 
 																		th:field="*{detallePrenda}"></textarea>
 																</div>
-															</div>
-															<div class="col-sm-2" style="font-size: 15px;">
-																<div class="form-group">
-																<label>&nbsp;</label>
-																	<div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-																		<input type="checkbox" class="custom-control-input"
-																			id="ticket" th:checked="${prenda.imprimirEtiquetas == '1'}"> <label
-																			class="custom-control-label" for="ticket">Imprimir
-																			ticket</label>
-																	</div>
-																</div>
-																<div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-																		<input type="checkbox" class="custom-control-input" id="combi"> <label
-																			class="custom-control-label" for="combi">Lleva
-																			combinaci&oacute;n</label>
-																	</div>
-																	<!--  th:checked="${prenda.combinacion == '1'}" -->
 															</div>
 														</div>
 														
@@ -666,9 +671,12 @@
 		var familias = /*[[${familias}]]*/ 'default';
 		var accion = /*[[${accion}]]*/ 'default';
 		var imagenes = /*[[${imagenesPrenda}]]*/ 'default';
+		var generos = /*[[${generos}]]*/ 'default';
+		var clientes = /*[[${clientes}]]*/ 'default';
 		/*]]>*/
 		
-		console.log(imagenes);
+		console.log(generos);
+		console.log(clientes);
 		//Contador que dice cuantas imagenes existen
 		var contadorImagenes = 0;
 		

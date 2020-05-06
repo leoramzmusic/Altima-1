@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.altima.springboot.app.models.entity.DisenioPrenda;
+import com.altima.springboot.app.models.service.IComercialClienteService;
 import com.altima.springboot.app.models.service.IDisenioFamiliaPrendaService;
 import com.altima.springboot.app.models.service.IDisenioImagenPrendaService;
 import com.altima.springboot.app.models.service.IDisenioLookupService;
@@ -40,6 +41,8 @@ public class PrendasController {
 	@Autowired
 	IDisenioLookupService disenioLookupService;
 	@Autowired
+	IComercialClienteService clienteService;
+	@Autowired
 	private IDisenioPrendaMarcadorService disenioPrendaMarcadorService;
 	
 	@GetMapping("prendas")
@@ -64,6 +67,8 @@ public class PrendasController {
 		model.addAttribute("materiales", disenioMaterialService.findAllForCreate());
 		model.addAttribute("patronajes", disenioMaterialService.findLookUps());
 		model.addAttribute("rutas", disenioRutaService.findAll());
+		model.addAttribute("clientes", clienteService.findAll());
+		model.addAttribute("generos", disenioLookupService.findByTipoLookup("Familia Genero"));
 		model.addAttribute("marcadores", disenioLookupService.findByTipoLookup("Marcador"));
 		model.addAttribute("imagenesPrenda", disenioImagenPrendaService.findByPrenda(0L));
 		m.put("prenda", prenda);
@@ -98,6 +103,8 @@ public class PrendasController {
 		model.addAttribute("patronajes", disenioMaterialService.findLookUps());
 		model.addAttribute("patronajesPrenda", disenioMaterialService.findAllPatronajeFromPrenda(id));
 		model.addAttribute("imagenesPrenda", disenioImagenPrendaService.findByPrenda(id));
+		model.addAttribute("clientes", clienteService.findAll());
+		model.addAttribute("generos", disenioLookupService.findByTipoLookup("Familia Genero"));
 		model.addAttribute("prenda", prenda);
 		m.put("accion", "editar");
 		m.put("disenio", disenio);
