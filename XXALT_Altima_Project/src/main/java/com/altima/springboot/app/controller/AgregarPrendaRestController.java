@@ -114,7 +114,6 @@ public class AgregarPrendaRestController {
 		dp.setActualizadoPor(auth.getName());
 		dp.setNumeroPrenda(prenda.get("numeroPrenda").toString());
 		dp.setDescripcionPrenda(prenda.get("descripcionPrenda").toString());
-		dp.setTipoPrenda(prenda.get("tipoPrenda").toString());
 		dp.setDetallePrenda(prenda.get("detallePrenda").toString());
 		dp.setNotaEspecial(prenda.get("notaEspecial").toString());
 		dp.setPrecioLocalActual(prenda.get("precioLocalActual").toString());
@@ -161,7 +160,6 @@ public class AgregarPrendaRestController {
 		dp.setActualizadoPor(auth.getName());
 		dp.setNumeroPrenda(prenda.get("numeroPrenda").toString());
 		dp.setDescripcionPrenda(prenda.get("descripcionPrenda").toString());
-		dp.setTipoPrenda(prenda.get("tipoPrenda").toString());
 		dp.setDetallePrenda(prenda.get("detallePrenda").toString());
 		dp.setNotaEspecial(prenda.get("notaEspecial").toString());
 		dp.setPrecioLocalActual(prenda.get("precioLocalActual").toString());
