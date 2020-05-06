@@ -127,7 +127,6 @@ public class AgregarPrendaRestController {
 		dp.setPrecio(prenda.get("precio").toString());
 		dp.setCveRuta("1"); // Ruta predefinida siempre
 		dp.setTipoLargo(prenda.get("tipoLargo").toString());
-		dp.setImprimirEtiquetas(prenda.get("imprimirEtiquetas").toString());
 		dp.setEstatusRecepcionMuestra("Definitivo");
 		dp.setDevolucion(prenda.get("devolucion").toString());
 		dp.setPrecioMprod(prenda.get("precioMprod").toString());
@@ -173,7 +172,6 @@ public class AgregarPrendaRestController {
 		dp.setPrecio(prenda.get("precio").toString());
 		dp.setCveRuta("1"); // Ruta predefinida siempre
 		dp.setTipoLargo(prenda.get("tipoLargo").toString());
-		dp.setImprimirEtiquetas(prenda.get("imprimirEtiquetas").toString());
 		dp.setEstatusRecepcionMuestra("Definitivo");
 		dp.setDevolucion(prenda.get("devolucion").toString());
 		dp.setPrecioMprod(prenda.get("precioMprod").toString());
