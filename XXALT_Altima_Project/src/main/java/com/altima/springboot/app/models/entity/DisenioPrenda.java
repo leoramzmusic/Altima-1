@@ -99,9 +99,6 @@ public class DisenioPrenda implements Serializable {
 	@Column(name = "tipo_largo")
 	private String tipoLargo;
 
-	@Column(name = "imprimir_etiquetas")
-	private String imprimirEtiquetas;
-
 	@Column(name = "estatus_recepcion_muestra")
 	private String estatusRecepcionMuestra;
 
@@ -126,7 +123,33 @@ public class DisenioPrenda implements Serializable {
 	@Column(name = "prenda_local")
 	private String prendaLocal;
 	
+	@Column(name = "id_genero")
+	private String idGenero;
 	
+	@Column(name = "prenda_cliente")
+	private String prendaCliente;
+	
+	
+	
+	
+	
+	
+
+	public String getIdGenero() {
+		return idGenero;
+	}
+
+	public void setIdGenero(String idGenero) {
+		this.idGenero = idGenero;
+	}
+
+	public String getPrendaCliente() {
+		return prendaCliente;
+	}
+
+	public void setPrendaCliente(String prendaCliente) {
+		this.prendaCliente = prendaCliente;
+	}
 
 	public String getPrendaLocal() {
 		return prendaLocal;
@@ -330,14 +353,6 @@ public class DisenioPrenda implements Serializable {
 
 	public void setTipoLargo(String tipoLargo) {
 		this.tipoLargo = tipoLargo;
-	}
-
-	public String getImprimirEtiquetas() {
-		return imprimirEtiquetas;
-	}
-
-	public void setImprimirEtiquetas(String imprimirEtiquetas) {
-		this.imprimirEtiquetas = imprimirEtiquetas;
 	}
 
 	public String getEstatusRecepcionMuestra() {
