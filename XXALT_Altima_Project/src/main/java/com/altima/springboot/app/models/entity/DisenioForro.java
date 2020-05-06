@@ -73,42 +73,11 @@ public class DisenioForro implements Serializable{
 	
 	@Column(name="estatus_forro")
 	private String estatusForro;
-
-	@Column(name="auxiliar_1")
-	private String auxiliar1;
-	
-	@Column(name="auxiliar_2")
-	private String auxiliar2;
-	
-	@Column(name="auxiliar_3")
-	private String auxiliar3;
 	
 	
+
 	
-	public String getAuxiliar1() {
-		return auxiliar1;
-	}
-
-	public void setAuxiliar1(String auxiliar1) {
-		this.auxiliar1 = auxiliar1;
-	}
-
-	public String getAuxiliar2() {
-		return auxiliar2;
-	}
-
-	public void setAuxiliar2(String auxiliar2) {
-		this.auxiliar2 = auxiliar2;
-	}
-
-	public String getAuxiliar3() {
-		return auxiliar3;
-	}
-
-	public void setAuxiliar3(String auxiliar3) {
-		this.auxiliar3 = auxiliar3;
-	}
-
+	
 	public String getColor() {
 		return color;
 	}

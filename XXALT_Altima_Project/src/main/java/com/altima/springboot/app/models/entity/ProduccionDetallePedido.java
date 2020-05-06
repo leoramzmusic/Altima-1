@@ -77,9 +77,22 @@ public class ProduccionDetallePedido implements Serializable {
 	@Column(name="cantidad")
 	private String cantidad;
 	
+	@Column(name="id_familia_prenda")
+	private Long idFamiliaPrenda;
 	
 	
 	
+	
+	
+	
+	public Long getIdFamiliaPrenda() {
+		return idFamiliaPrenda;
+	}
+
+	public void setIdFamiliaPrenda(Long idFamiliaPrenda) {
+		this.idFamiliaPrenda = idFamiliaPrenda;
+	}
+
 	public String getCantidad() {
 		return cantidad;
 	}
