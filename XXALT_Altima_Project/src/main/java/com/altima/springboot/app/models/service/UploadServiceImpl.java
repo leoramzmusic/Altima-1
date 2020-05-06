@@ -219,13 +219,14 @@ public class UploadServiceImpl implements IUploadService {
 	/* imagenes de lookup cuidados */
 	private final Logger log = LoggerFactory.getLogger(getClass());
 
-	private String UPLOADS_FOLDER = null;
+	private String UPLOADS_FOLDER;
 
 	@Override
-	public Resource loadfile(String filename) throws MalformedURLException {
+	public Resource loadfile(String filename,Integer caso) throws MalformedURLException {
+		ruta(caso);
 		Path pathFoto = getPathfile(filename);
 		log.info("pathFoto: " + pathFoto);
-
+		
 		Resource recurso = new UrlResource(pathFoto.toUri());
 
 		if (!recurso.exists() || !recurso.isReadable()) {
@@ -233,10 +234,10 @@ public class UploadServiceImpl implements IUploadService {
 		}
 		return recurso;
 	}
-
+	
 	@Override
-	public String copyfile(MultipartFile file,Integer caso) throws IOException {
-        Integer opcion = caso;
+	public String ruta(Integer caso) {
+		Integer opcion = caso;
         switch (opcion) {
           case 1:
         	  UPLOADS_FOLDER="uploads/cuidados";
@@ -248,7 +249,14 @@ public class UploadServiceImpl implements IUploadService {
         	  UPLOADS_FOLDER="uploads/calidadconsentimiento";
             break;
         }
-       
+		
+		return UPLOADS_FOLDER;
+	}
+	
+
+	@Override
+	public String copyfile(MultipartFile file,Integer caso) throws IOException {
+        ruta(caso);
 		String uniqueFilename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
 		Path rootPath = getPathfile(uniqueFilename);
 
@@ -278,11 +286,7 @@ public class UploadServiceImpl implements IUploadService {
 		return Paths.get(UPLOADS_FOLDER).resolve(filename).toAbsolutePath();
 	}
 
-	@Override
-	public void initfile() throws IOException {
-		// TODO Auto-generated method stub
-		Files.createDirectory(Paths.get(UPLOADS_FOLDER));
-	}
+	
 	
 	
 /* CLIENTES */

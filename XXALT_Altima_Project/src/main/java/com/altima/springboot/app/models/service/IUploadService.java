@@ -29,14 +29,13 @@ public interface IUploadService {
 	
 	public boolean deleteForro(String filename);
 
-	public Resource loadfile(String filename) throws MalformedURLException;
+	public Resource loadfile(String filename,Integer caso) throws MalformedURLException;
 
 	public String copyfile(MultipartFile file,Integer caso) throws IOException;
 
 	public boolean deletefile(String filename);
 
-	public void initfile() throws IOException;
-	
+	public String ruta(Integer caso);
 	
 	
 	public Resource loadMaterial(String filename) throws MalformedURLException;
@@ -53,6 +52,8 @@ public interface IUploadService {
 	public String copyCliente(MultipartFile file1) throws IOException;
 	
 	public boolean deleteCliente(String filename);
+
+	
 	
 	
 	

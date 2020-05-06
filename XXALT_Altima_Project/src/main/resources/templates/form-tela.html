@@ -281,7 +281,7 @@
 
 	<div class="form-group col-sm-12 text-center">
 		<a th:href="@{/materiales}" class="btn btn-danger float-left">Cancelar</a>
-		<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#telasSustitutas">Telas
+		<button type="button" class="btn btn-warning" th:if="*{tela.estatusTela =='1'}" data-toggle="modal" data-target="#telasSustitutas">Telas
 			sustitutas</button>
 		<button onclick="arreglo()" class="btn btn-primary next-step float-right" type="submit">Guardar</button>
 	</div>
@@ -294,7 +294,9 @@
 	<input name="codcolor" type="hidden" id="codcolor" value="">
 	<input name="tipomat" type="hidden" id="tipomat" value="">
 	<input name="posicionm" type="hidden" id="posicionm" value="">
-
+	<input type="hidden" th:field="*{tela.auxiliar1}">
+	<input type="hidden" th:field="*{tela.auxiliar2}">
+	<input type="hidden" th:field="*{tela.auxiliar3}">
 	<input type="hidden" th:field="*{tela.idTela}">
 	<input type="hidden" th:field="*{tela.idText}">
 	<input type="hidden" th:field="*{tela.idTextProspecto}">
@@ -309,7 +311,7 @@
 
 </form>
 	<!-- Modal -->
-	<div class="modal fade" id="telasSustitutas" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+	<div th:if="*{tela.estatusTela =='1'}" class="modal fade" id="telasSustitutas" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
 		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">

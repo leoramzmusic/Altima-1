@@ -79,7 +79,7 @@ public class CalidadController {
 		Resource recurso = null;
 
 		try {
-			recurso = uploadFileService.loadfile(filename);
+			recurso = uploadFileService.loadfile(filename,2);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
@@ -95,7 +95,7 @@ public class CalidadController {
 		Resource recurso = null;
 
 		try {
-			recurso = uploadFileService.loadfile(filename);
+			recurso = uploadFileService.loadfile(filename,3);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}

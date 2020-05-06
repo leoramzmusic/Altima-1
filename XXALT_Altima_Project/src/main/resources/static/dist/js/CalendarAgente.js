@@ -344,7 +344,7 @@
 		defaultDate: moment().format("YYYY-MM-DD"),
 		editable: true,
 		slotLabelInterval : '01:00:00',
-		slotDuration : '00:30:00',
+		slotDuration : '00:15:00',
 		viewSubSlotLabel : true,
 		contentHeight: 'auto',
 		eventDrop: function(info) {
