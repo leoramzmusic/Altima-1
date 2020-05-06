@@ -57,7 +57,7 @@ public class CatalogoController {
 		Resource recurso = null;
 
 		try {
-			recurso = uploadFileService.loadfile(filename);
+			recurso = uploadFileService.loadfile(filename,1);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
