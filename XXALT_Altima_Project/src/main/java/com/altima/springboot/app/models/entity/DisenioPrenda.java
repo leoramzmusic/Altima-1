@@ -60,9 +60,6 @@ public class DisenioPrenda implements Serializable {
 	@Column(name = "descripcion_prenda")
 	private String descripcionPrenda;
 
-	@Column(name = "tipo_prenda")
-	private String tipoPrenda;
-
 	@Column(name = "detalle_prenda")
 	private String detallePrenda;
 
@@ -233,14 +230,6 @@ public class DisenioPrenda implements Serializable {
 
 	public void setDescripcionPrenda(String descripcionPrenda) {
 		this.descripcionPrenda = descripcionPrenda;
-	}
-
-	public String getTipoPrenda() {
-		return tipoPrenda;
-	}
-
-	public void setTipoPrenda(String tipoPrenda) {
-		this.tipoPrenda = tipoPrenda;
 	}
 
 	public String getDetallePrenda() {
