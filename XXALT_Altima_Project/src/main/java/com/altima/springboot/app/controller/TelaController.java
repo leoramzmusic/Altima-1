@@ -245,29 +245,13 @@ public class TelaController {
 		tela= disenioTelaService.findOne(id);
 		// Comienza erik
 				model.addAttribute("lisFam",disenioTelaService.findAllFamilaComposicion());
-				model.addAttribute("listColor", disenioTelaService.findAllColores());
 				List<DisenioLookup> listLookupsMed = disenioMaterialService.findListaLookupMed();
 				model.addAttribute("listLookupsMed", listLookupsMed);
 				model.addAttribute("tablemat", MaterialService.findAllById(id));
 		//Consulta de las composiciones
 		model.addAttribute("lisCom",disenioTelaService.findAllComposicion());//Composiciones disponibles
 		model.addAttribute("listTelaComposicon", disenioTelaService.ComposicionTelaMN(id));//Composiciones seleccionadas
-		
-		// Consulta de botones 
-		model.addAttribute("listBtnSelec", disenioTelaService.materialesSeleccionados(id,"boton"));// botones ya seleccionados
-		model.addAttribute("listBoton", disenioTelaService.materialesDisponibles(id, "boton"));// botones sin seleccionar
-		
-		// Consulta de hilos
-		model.addAttribute("listHiloSelec", disenioTelaService.materialesSeleccionados(id,"hilo"));// hilo ya seleccionados
-		model.addAttribute("listHilo", disenioTelaService.materialesDisponibles(id, "hilo"));// hilo sin seleccionar
-		
-		// Consulta de cierre
-		model.addAttribute("listCierreSelec", disenioTelaService.materialesSeleccionados(id,"cierre"));// cierre ya seleccionados
-		model.addAttribute("listCierre", disenioTelaService.materialesDisponibles(id, "cierre"));// cierre sin seleccionar
-		
-		// Consulta de adornos
-		model.addAttribute("listAdornoSelec", disenioTelaService.materialesSeleccionados(id,"adorno"));// cierre ya seleccionados
-		model.addAttribute("listAdorno", disenioTelaService.materialesDisponibles(id, "adorno"));// cierre sin seleccionar
+
 		model.addAttribute("listForroSelec", disenioTelaService.ForrosSeleccionados(id));
 		model.addAttribute("listForro",forroService.ForrosSelect(id)); 
 		// Consulta para telas auxiliares (telas autorizadas)

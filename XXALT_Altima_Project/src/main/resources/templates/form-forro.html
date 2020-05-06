@@ -84,7 +84,7 @@
         <input th:field="*{existenciaForro}"  type="number" min="0"  class="form-control"  placeholder="10" required>
     </div>
     
-    <div th:if="*{estatusForro  == '1'}"  class="form-group col-sm-4">
+    <!-- <div th:if="*{estatusForro  == '1'}"  class="form-group col-sm-4">
         <label for="status">Forro Opcional 1</label>
         <select required class="form-control" data-live-search="true" th:field="*{auxiliar1}">
         	<option value=""  selected>Selecciona una..</option>
@@ -110,7 +110,7 @@
          	<option th:each="listForrosAutori: ${listForrosAutori}"
 			th:value="${listForrosAutori.idForro}" th:text="${listForrosAutori.nombreForro}"></option>
 		</select>
-    </div>
+    </div> -->
     
     <div  th:if="*{estatusForro == '1'}" class="col-sm-12">
         <div class="form-group p-3 border p-2 rounded m-3">
@@ -122,7 +122,7 @@
                 <div class="col">
                     <label for="mainImageForro">Forro</label>
                     <div class="input-group mb-3">
-                        <input type="file" name="imagenForro" class="form-control border p-1" id="mainImageForro"  />
+                        <input type="file" name="imagenForro" th:value="*{foto}" class="form-control border p-1" id="mainImageForro"  />
                         <div class="input-group-append">
                             <span class="input-group-text bg-danger text-danger pointer" id="clearUploadForro"><i class="fas fa-times"></i></span>
                         </div>
@@ -144,6 +144,7 @@
     <input  type="hidden" th:field="*{idText}">
     <input  type="hidden" th:field="*{idTextProspecto}">
     <input  type="hidden" th:field="*{creadoPor}">
+    <input  type="hidden" th:field="*{foto}">
     <input  type="hidden" th:field="*{actualizadoPor}">
     <input  type="hidden" th:field="*{fechaCreacion}">
     <input  type="hidden" th:field="*{ultimaFechaModificacion}">

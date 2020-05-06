@@ -19,7 +19,7 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 
-		request.getSession(false).setMaxInactiveInterval(600);
+		request.getSession(false).setMaxInactiveInterval(60*30);
 		super.onAuthenticationSuccess(request, response, authentication);
 	}
 
