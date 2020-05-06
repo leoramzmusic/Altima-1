@@ -1,6 +1,8 @@
 package com.altima.springboot.app.controller;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +31,8 @@ import com.altima.springboot.app.models.entity.DisenioMaterialPrenda;
 import com.altima.springboot.app.models.entity.DisenioPrenda;
 import com.altima.springboot.app.models.entity.DisenioPrendaMarcador;
 import com.altima.springboot.app.models.entity.DisenioPrendaPatronaje;
+import com.altima.springboot.app.models.entity.DiseñoPrendaImagen;
+import com.altima.springboot.app.models.service.DisenioImagenPrendaServiceImpl;
 import com.altima.springboot.app.models.service.DisenioMaterialPrendaServiceImpl;
 import com.altima.springboot.app.models.service.DisenioPrendaPatronajeServiceImpl;
 import com.altima.springboot.app.models.service.DisenioPrendaServiceImpl;
@@ -50,6 +54,8 @@ public class AgregarPrendaRestController {
 	@Autowired
 	private DisenioPrendaPatronajeServiceImpl prendaPatronajeService;
 	@Autowired
+	private DisenioImagenPrendaServiceImpl prendaImagenService;
+	@Autowired
 	private IDisenioLookupService disenioLookupService;
 	@Autowired
 	private IDisenioPrendaMarcadorService disenioPrendaMarcadorService;
@@ -69,7 +75,6 @@ public class AgregarPrendaRestController {
 	@RequestMapping(value = "/detalle_patronaje", method = RequestMethod.GET)
 	public Object detallePatronaje(@RequestParam Long id) {
 		Object dl = disenioMaterialService.findLookUp(id);
-		System.out.println("pos aqui si entra");
 		return dl;
 	}
 	
@@ -186,21 +191,16 @@ public class AgregarPrendaRestController {
 			@RequestParam(name = "objeto_patronajes") String objeto_patronaje,
 			@RequestParam(name = "accion") String accion) throws NoSuchFieldException, SecurityException {
 		
-		System.out.println(accion);
 		if (accion.equalsIgnoreCase("editar")) 
 		{
-			System.out.println("eliminare losdemas porque voy a editar ");
 			disenioPrendaMarcadorService.deleteByIdPrenda(dp.getIdPrenda());
 			prendaPatronajeService.deleteAllPatronajeFromPrenda(dp.getIdPrenda());
 			materialPrendaService.deleteAllMaterialFromPrenda(dp.getIdPrenda());
-			
-			System.out.println(objeto_marcadores);
 		}
 
 		if(!objeto_marcadores.equals(null)||objeto_marcadores.equals("")){
 			for (String marcador_split : objeto_marcadores.split(",")) {
 				DisenioPrendaMarcador dpm = new DisenioPrendaMarcador();
-				System.out.println(marcador_split);
 				int num1 = Integer.parseInt(marcador_split.replaceAll("^\"|\"$", ""));
 				Long num = new Long(num1);
 				dpm.setIdMarcador(num);
@@ -235,7 +235,6 @@ public class AgregarPrendaRestController {
 			dpp.setCantidadTela(patronaje.get("cantidadTela").toString());
 			dpp.setCantidadForro(patronaje.get("cantidadForro").toString());
 			dpp.setCantidadEntretela(patronaje.get("cantidadEntretela").toString());
-			System.out.println("id= "+patronaje.get("id").toString()+" tela= "+patronaje.get("cantidadTela").toString()+" cantidadForro= "+patronaje.get("cantidadForro").toString()+" entretela= "+patronaje.get("cantidadEntretela").toString());
 
 			prendaPatronajeService.save(dpp);
 		}
@@ -298,6 +297,297 @@ public class AgregarPrendaRestController {
 		//this.dp.setDibujoEspalda(uniqueFilename);
 
 		Thread.sleep(2000);
+		response.sendRedirect("/prendas");
+	}
+	
+	//Este es cuando se agrega
+	@RequestMapping(value = "/imagenes_prendas", method = RequestMethod.POST)
+	public void guardarImagenes(HttpServletResponse response, DisenioPrenda dp, BindingResult result, Model model, RedirectAttributes flash,
+	@RequestParam("file-input-1") MultipartFile foto1, @RequestParam("name-1") String nombre1,
+	@RequestParam("file-input-2") MultipartFile foto2, @RequestParam("name-2") String nombre2,
+	@RequestParam("file-input-3") MultipartFile foto3, @RequestParam("name-3") String nombre3,
+	@RequestParam("file-input-4") MultipartFile foto4, @RequestParam("name-4") String nombre4,
+	@RequestParam("file-input-5") MultipartFile foto5, @RequestParam("name-5") String nombre5,
+	@RequestParam("file-input-6") MultipartFile foto6, @RequestParam("name-6") String nombre6,
+	 @RequestParam("idPrenda") String idPrenda) throws InterruptedException, IOException 
+	{
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+		LocalDateTime now = LocalDateTime.now();  
+		
+		if(nombre1.length() > 0) {
+			DiseñoPrendaImagen dpi = new DiseñoPrendaImagen();
+			dpi.setIdPrenda(Long.parseLong(idPrenda));
+			dpi.setActualizadoPor(auth.getName());
+			dpi.setCreadoPor(auth.getName());
+			dpi.setEstatus("1");
+			dpi.setFechaCreacion(dtf.format(now));
+			dpi.setUltimaFechaModificacion(dtf.format(now));
+			dpi.setNombrePrenda(nombre1);
+			dpi.setRutaPrenda(uService.copy2(foto1));
+			prendaImagenService.save(dpi);
+		}
+		
+		if(nombre2.length() > 0) {
+			DiseñoPrendaImagen dpi = new DiseñoPrendaImagen();
+			dpi.setIdPrenda(Long.parseLong(idPrenda));
+			dpi.setActualizadoPor(auth.getName());
+			dpi.setCreadoPor(auth.getName());
+			dpi.setEstatus("1");
+			dpi.setFechaCreacion(dtf.format(now));
+			dpi.setUltimaFechaModificacion(dtf.format(now));
+			dpi.setNombrePrenda(nombre2);
+			dpi.setRutaPrenda(uService.copy2(foto2));
+			prendaImagenService.save(dpi);
+		}
+		
+		if(nombre3.length() > 0) {
+			DiseñoPrendaImagen dpi = new DiseñoPrendaImagen();
+			dpi.setIdPrenda(Long.parseLong(idPrenda));
+			dpi.setActualizadoPor(auth.getName());
+			dpi.setCreadoPor(auth.getName());
+			dpi.setEstatus("1");
+			dpi.setFechaCreacion(dtf.format(now));
+			dpi.setUltimaFechaModificacion(dtf.format(now));
+			dpi.setNombrePrenda(nombre3);
+			dpi.setRutaPrenda(uService.copy2(foto3));
+			prendaImagenService.save(dpi);
+		}
+		
+		if(nombre4.length() > 0) {
+			DiseñoPrendaImagen dpi = new DiseñoPrendaImagen();
+			dpi.setIdPrenda(Long.parseLong(idPrenda));
+			dpi.setActualizadoPor(auth.getName());
+			dpi.setCreadoPor(auth.getName());
+			dpi.setEstatus("1");
+			dpi.setFechaCreacion(dtf.format(now));
+			dpi.setUltimaFechaModificacion(dtf.format(now));
+			dpi.setNombrePrenda(nombre4);
+			dpi.setRutaPrenda(uService.copy2(foto4));
+			prendaImagenService.save(dpi);
+		}
+		
+		if(nombre5.length() > 0) {
+			DiseñoPrendaImagen dpi = new DiseñoPrendaImagen();
+			dpi.setIdPrenda(Long.parseLong(idPrenda));
+			dpi.setActualizadoPor(auth.getName());
+			dpi.setCreadoPor(auth.getName());
+			dpi.setEstatus("1");
+			dpi.setFechaCreacion(dtf.format(now));
+			dpi.setUltimaFechaModificacion(dtf.format(now));
+			dpi.setNombrePrenda(nombre5);
+			dpi.setRutaPrenda(uService.copy2(foto5));
+			prendaImagenService.save(dpi);
+		}
+		
+		if(nombre6.length() > 0) {
+			DiseñoPrendaImagen dpi = new DiseñoPrendaImagen();
+			dpi.setIdPrenda(Long.parseLong(idPrenda));
+			dpi.setActualizadoPor(auth.getName());
+			dpi.setCreadoPor(auth.getName());
+			dpi.setEstatus("1");
+			dpi.setFechaCreacion(dtf.format(now));
+			dpi.setUltimaFechaModificacion(dtf.format(now));
+			dpi.setNombrePrenda(nombre6);
+			dpi.setRutaPrenda(uService.copy2(foto6));
+			prendaImagenService.save(dpi);
+		}
+
+		
+		response.sendRedirect("/prendas");
+	}
+	
+	//Este cuando se edita
+	@RequestMapping(value = "/imagenes_prendas_editar", method = RequestMethod.POST)
+	public void editarImagenes(HttpServletResponse response, DisenioPrenda dp, BindingResult result, Model model, RedirectAttributes flash,
+	@RequestParam("file-input-edit-1") MultipartFile foto1, @RequestParam("name-edit-1") String nombre1, @RequestParam("id-input-edit-1") String id1, @RequestParam("status-input-edit-1") String status1,
+	@RequestParam("file-input-edit-2") MultipartFile foto2, @RequestParam("name-edit-2") String nombre2, @RequestParam("id-input-edit-2") String id2, @RequestParam("status-input-edit-2") String status2,
+	@RequestParam("file-input-edit-3") MultipartFile foto3, @RequestParam("name-edit-3") String nombre3, @RequestParam("id-input-edit-3") String id3, @RequestParam("status-input-edit-3") String status3,
+	@RequestParam("file-input-edit-4") MultipartFile foto4, @RequestParam("name-edit-4") String nombre4, @RequestParam("id-input-edit-4") String id4, @RequestParam("status-input-edit-4") String status4,
+	@RequestParam("file-input-edit-5") MultipartFile foto5, @RequestParam("name-edit-5") String nombre5, @RequestParam("id-input-edit-5") String id5, @RequestParam("status-input-edit-5") String status5,
+	@RequestParam("file-input-edit-6") MultipartFile foto6, @RequestParam("name-edit-6") String nombre6, @RequestParam("id-input-edit-6") String id6, @RequestParam("status-input-edit-6") String status6,
+	 @RequestParam("idPrenda") String idPrenda) throws InterruptedException, IOException 
+	{
+		System.out.println("si llegue al editar jsjs");
+		System.out.println("el id de la prenda es: " + idPrenda);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+		LocalDateTime now = LocalDateTime.now();  
+		
+		if(!id1.isEmpty()){
+			//Si existe la imagen ya.
+			DiseñoPrendaImagen dpi = prendaImagenService.findOne(Long.parseLong(id1));
+			if(!dpi.getNombrePrenda().equalsIgnoreCase(nombre1)){
+				//Se va a cambiar el nombre de la prenda
+				dpi.setNombrePrenda(nombre1);
+				prendaImagenService.save(dpi);}
+			if(status1.equalsIgnoreCase("Alter")){
+				//Se va a cambiar la imagen
+				dpi.setRutaPrenda(uService.copy2(foto1));
+				prendaImagenService.save(dpi);}
+			if(status1.equalsIgnoreCase("delete")){
+				//Se va a borrar el registro
+				prendaImagenService.delete(Long.parseLong(id1));}}
+		else{
+				if(!nombre1.isEmpty() && !foto1.isEmpty())
+				{
+					DiseñoPrendaImagen dpi = new DiseñoPrendaImagen();
+					dpi.setIdPrenda(Long.parseLong(idPrenda));
+					dpi.setActualizadoPor(auth.getName());
+					dpi.setCreadoPor(auth.getName());
+					dpi.setEstatus("1");
+					dpi.setFechaCreacion(dtf.format(now));
+					dpi.setUltimaFechaModificacion(dtf.format(now));
+					dpi.setNombrePrenda(nombre1);
+					dpi.setRutaPrenda(uService.copy2(foto1));
+					prendaImagenService.save(dpi);	
+				}}
+		
+		if(!id2.isEmpty()){
+			//Si existe la imagen ya.
+			DiseñoPrendaImagen dpi = prendaImagenService.findOne(Long.parseLong(id2));
+			if(!dpi.getNombrePrenda().equalsIgnoreCase(nombre2)){
+				//Se va a cambiar el nombre de la prenda
+				dpi.setNombrePrenda(nombre2);
+				prendaImagenService.save(dpi);}
+			if(status2.equalsIgnoreCase("Alter")){
+				//Se va a cambiar la imagen
+				dpi.setRutaPrenda(uService.copy2(foto2));
+				prendaImagenService.save(dpi);}
+			if(status2.equalsIgnoreCase("delete")){
+				//Se va a borrar el registro
+				prendaImagenService.delete(Long.parseLong(id2));}}
+		else{ 	
+			if(!nombre2.isEmpty() && !foto2.isEmpty())
+			{
+				DiseñoPrendaImagen dpi = new DiseñoPrendaImagen();
+				dpi.setIdPrenda(Long.parseLong(idPrenda));
+				dpi.setActualizadoPor(auth.getName());
+				dpi.setCreadoPor(auth.getName());
+				dpi.setEstatus("1");
+				dpi.setFechaCreacion(dtf.format(now));
+				dpi.setUltimaFechaModificacion(dtf.format(now));
+				dpi.setNombrePrenda(nombre2);
+				dpi.setRutaPrenda(uService.copy2(foto2));
+				prendaImagenService.save(dpi);	
+			}}
+		
+		if(!id3.isEmpty()){
+			//Si existe la imagen ya.
+			DiseñoPrendaImagen dpi = prendaImagenService.findOne(Long.parseLong(id3));
+			if(!dpi.getNombrePrenda().equalsIgnoreCase(nombre3)){
+				//Se va a cambiar el nombre de la prenda
+				dpi.setNombrePrenda(nombre3);
+				prendaImagenService.save(dpi);}
+			if(status3.equalsIgnoreCase("Alter")){
+				//Se va a cambiar la imagen
+				dpi.setRutaPrenda(uService.copy2(foto3));
+				prendaImagenService.save(dpi);}
+			if(status3.equalsIgnoreCase("delete")){
+				//Se va a borrar el registro
+				prendaImagenService.delete(Long.parseLong(id3));}}
+		else{ 	
+			if(!nombre3.isEmpty() && !foto3.isEmpty())
+			{
+				DiseñoPrendaImagen dpi = new DiseñoPrendaImagen();
+				dpi.setIdPrenda(Long.parseLong(idPrenda));
+				dpi.setActualizadoPor(auth.getName());
+				dpi.setCreadoPor(auth.getName());
+				dpi.setEstatus("1");
+				dpi.setFechaCreacion(dtf.format(now));
+				dpi.setUltimaFechaModificacion(dtf.format(now));
+				dpi.setNombrePrenda(nombre3);
+				dpi.setRutaPrenda(uService.copy2(foto3));
+				prendaImagenService.save(dpi);
+			}}
+		
+		if(!id4.isEmpty()){
+			//Si existe la imagen ya.
+			DiseñoPrendaImagen dpi = prendaImagenService.findOne(Long.parseLong(id4));
+			if(!dpi.getNombrePrenda().equalsIgnoreCase(nombre4)){
+				//Se va a cambiar el nombre de la prenda
+				dpi.setNombrePrenda(nombre4);
+				prendaImagenService.save(dpi);}
+			if(status4.equalsIgnoreCase("Alter")){
+				//Se va a cambiar la imagen
+				dpi.setRutaPrenda(uService.copy2(foto4));
+				prendaImagenService.save(dpi);}
+			if(status4.equalsIgnoreCase("delete")){
+				//Se va a borrar el registro
+				prendaImagenService.delete(Long.parseLong(id4));}}
+		else{ 	
+			if(!nombre4.isEmpty() && !foto4.isEmpty())
+			{
+				DiseñoPrendaImagen dpi = new DiseñoPrendaImagen();
+				dpi.setIdPrenda(Long.parseLong(idPrenda));
+				dpi.setActualizadoPor(auth.getName());
+				dpi.setCreadoPor(auth.getName());
+				dpi.setEstatus("1");
+				dpi.setFechaCreacion(dtf.format(now));
+				dpi.setUltimaFechaModificacion(dtf.format(now));
+				dpi.setNombrePrenda(nombre4);
+				dpi.setRutaPrenda(uService.copy2(foto4));
+				prendaImagenService.save(dpi);
+			}}
+		
+		if(!id5.isEmpty()){
+			//Si existe la imagen ya.
+			DiseñoPrendaImagen dpi = prendaImagenService.findOne(Long.parseLong(id5));
+			if(!dpi.getNombrePrenda().equalsIgnoreCase(nombre5)){
+				//Se va a cambiar el nombre de la prenda
+				dpi.setNombrePrenda(nombre5);
+				prendaImagenService.save(dpi);}
+			if(status5.equalsIgnoreCase("Alter")){
+				//Se va a cambiar la imagen
+				dpi.setRutaPrenda(uService.copy2(foto5));
+				prendaImagenService.save(dpi);}
+			if(status5.equalsIgnoreCase("delete")){
+				//Se va a borrar el registro
+				prendaImagenService.delete(Long.parseLong(id5));}}
+		else{ 	
+			if(!nombre5.isEmpty() && !foto5.isEmpty())
+				{
+					DiseñoPrendaImagen dpi = new DiseñoPrendaImagen();
+					dpi.setIdPrenda(Long.parseLong(idPrenda));
+					dpi.setActualizadoPor(auth.getName());
+					dpi.setCreadoPor(auth.getName());
+					dpi.setEstatus("1");
+					dpi.setFechaCreacion(dtf.format(now));
+					dpi.setUltimaFechaModificacion(dtf.format(now));
+					dpi.setNombrePrenda(nombre5);
+					dpi.setRutaPrenda(uService.copy2(foto5));
+					prendaImagenService.save(dpi);	
+				}}
+		
+		if(!id6.isEmpty()){
+			//Si existe la imagen ya.
+			DiseñoPrendaImagen dpi = prendaImagenService.findOne(Long.parseLong(id6));
+			if(!dpi.getNombrePrenda().equalsIgnoreCase(nombre6)){
+				//Se va a cambiar el nombre de la prenda
+				dpi.setNombrePrenda(nombre6);
+				prendaImagenService.save(dpi);}
+			if(status6.equalsIgnoreCase("Alter")){
+				//Se va a cambiar la imagen
+				dpi.setRutaPrenda(uService.copy2(foto6));
+				prendaImagenService.save(dpi);}
+			if(status6.equalsIgnoreCase("delete")){
+				//Se va a borrar el registro
+				prendaImagenService.delete(Long.parseLong(id6));}}
+		else{ 	
+				if(!nombre6.isEmpty() && !foto6.isEmpty())
+				{
+					DiseñoPrendaImagen dpi = new DiseñoPrendaImagen();
+					dpi.setIdPrenda(Long.parseLong(idPrenda));
+					dpi.setActualizadoPor(auth.getName());
+					dpi.setCreadoPor(auth.getName());
+					dpi.setEstatus("1");
+					dpi.setFechaCreacion(dtf.format(now));
+					dpi.setUltimaFechaModificacion(dtf.format(now));
+					dpi.setNombrePrenda(nombre6);
+					dpi.setRutaPrenda(uService.copy2(foto6));
+					prendaImagenService.save(dpi);	
+				}}
+		
 		response.sendRedirect("/prendas");
 	}
 }

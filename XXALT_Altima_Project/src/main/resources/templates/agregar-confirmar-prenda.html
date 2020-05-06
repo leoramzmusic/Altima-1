@@ -48,7 +48,8 @@
 							<!-- Default box -->
 							<div class="card">
 								<div class="card-header bg-dark">
-									<h3 class="card-title">Agregar prenda</h3>
+									<h3 th:if="${accion == 'agregar'}"class="card-title">Agregar prenda</h3>
+									<h3 th:if="${accion == 'editar'}" class="card-title">Editar prenda: <text th:text="${prenda.idText}"></text></h3>
 								</div>
 								<div class="card-body">
 									<div class="row">
@@ -135,87 +136,188 @@
 															</div>
 														</div>
 														
-														<!-- Form de Imagen Doble -->
-														<form th:action="@{/prendas}" method="POST" enctype="multipart/form-data" th:object="${disenio}" ><!-- Abre form de la imagen -->
-														<input type="hidden" name="_csrf" id="token"  th:value="${_csrf.token}"/><div class="row">
+																											
+														<div class="row">
+															<!-- Form de Imagenes -->
+															
 															<div class="col-sm-12">
-																<div class="form-group p-3 border p-2 rounded m-3">
+															<form th:action="${accion} == 'agregar' ? @{/imagenes_prendas} : @{/imagenes_prendas_editar}" method="POST" enctype="multipart/form-data">
+															<input type="hidden" name="_csrf" id="token"  th:value="${_csrf.token}"/>
+															
+																																										
+															
+															
+															<!-- Input de nombre, imagen y boton -->
+															<label for="mainImage1">Imagenes de  la Prenda</label>	
+															<div class="form-group p-3 border p-2 rounded m-3">
+															
+															<div class="col-sm-12" id="ContenedorBotonAgregarOtro" th:if="${imagenesPrenda.size() <= 6}">
+																<div class="col">
+																	<center><button th:if="${accion == 'agregar'}" type="button" onclick="AgregarImagen()" class="btn btn-success">Agregar una imagen</button></center>
+																	<center><button th:if="${accion == 'editar'}" type="button" onclick="AgregarImagenEditar()" class="btn btn-success">Agregar una imagen</button></center>
+																</div>
+															</div><br>
+															
+															<!-- Previsualizaciones de imagenes -->
+															<div class="col-sm-12" th:if="${accion == 'agregar'}">
 																	<div class="row">
-																		<div class="col-sm-3 text-center pt-2 border-right">
-																			<label for="mainImage1">
-																				<img th:src="@{'/uploads/prendas/' + ${prenda.dibujoEspalda}}" alt="Placeholder" id="blah1" class="placeholder img-thumbnail"
-																				aria-describedby="imagePreviewHelp1" th:onerror="this.src='/dist/img/preview.png'"/></label> 
-																				<small id="imagePreviewHelp1" class="form-text text-muted">Previsualizaci&oacute;n
-																				de la imagen</small>
-																		</div>
 																		<div class="col">
-																			<label for="mainImage1">Imagen frontal</label>
-																			<div class="input-group mb-3">
-																				<input type="file" class="form-control border p-1" id="file" name="file"/>
-																				<div class="input-group-append">
-																					<span class="input-group-text bg-danger text-danger pointer" onclick="LimpiarInput1()">
-																						<i class="fas fa-times"></i>
-																					</span>
-																				</div>
+																			<div class="row" id="ContenedorMainImagenes">
+																			
+																			<div class="col-sm-4" id="Contenedor-1" style="display: none">
+																				<div class="card" style="width: 18rem;" id="Contenido-1">  																					
+																					<div class="image-upload-1">
+	  																					<label for="file-input-1"> 
+	  																						<img class="card-img-top" id="img-1" src="/dist/img/preview.png"> 
+	  																					</label> 
+	  																					<input id="file-input-1" name="file-input-1" onchange="PreviewImage(this, 1);" type="file" style="display:none"/>
+																					</div> 
+																					<div class="card-body"> 
+																						<p class="card-text"><input type="text" id="name-1" name="name-1" class="form-control" placeholder="Nombre de Imagen"></p> 																							
+																						<button class="btn btn-danger" onclick="QuitarImagen(1)">Quitar</button>
+																					</div> 
+																				</div> 																				
 																			</div>
-																			<small id="imageHelp1" class="form-text text-muted">Selecciona la foto que desea subir.</small>
+																			
+																			<div class="col-sm-4" id="Contenedor-2" style="display: none">
+																				<div class="card" style="width: 18rem;" id="Contenido-2">  																					
+																					<div class="image-upload-2">
+	  																					<label for="file-input-2"> 
+	  																						<img class="card-img-top" id="img-2" src="/dist/img/preview.png"> 
+	  																					</label> 
+	  																					<input id="file-input-2" name="file-input-2" onchange="PreviewImage(this, 2);" type="file" style="display:none"/>
+																					</div> 
+																					<div class="card-body"> 
+																						<p class="card-text"><input type="text" id="name-2" name="name-2" class="form-control" placeholder="Nombre de Imagen"></p> 																							
+																						<button class="btn btn-danger" onclick="QuitarImagen(2)">Quitar</button>
+																					</div> 
+																				</div> 																				
+																			</div>
+																			
+																			<div class="col-sm-4" id="Contenedor-3" style="display: none">
+																				<div class="card" style="width: 18rem;" id="Contenido-3">  																					
+																					<div class="image-upload-3">
+	  																					<label for="file-input-3"> 
+	  																						<img class="card-img-top" id="img-3" src="/dist/img/preview.png"> 
+	  																					</label> 
+	  																					<input id="file-input-3" name="file-input-3" onchange="PreviewImage(this, 3);" type="file" style="display:none"/>
+																					</div> 
+																					<div class="card-body"> 
+																						<p class="card-text"><input type="text" id="name-3" name="name-3" class="form-control" placeholder="Nombre de Imagen"></p> 																							
+																						<button class="btn btn-danger" onclick="QuitarImagen(3)">Quitar</button>
+																					</div> 
+																				</div> 																				
+																			</div>
+																			
+																			<div class="col-sm-4" id="Contenedor-4" style="display: none">
+																				<div class="card" style="width: 18rem;" id="Contenido-4">  																					
+																					<div class="image-upload-4">
+	  																					<label for="file-input-4"> 
+	  																						<img class="card-img-top" id="img-4" src="/dist/img/preview.png"> 
+	  																					</label> 
+	  																					<input id="file-input-4" name="file-input-4" onchange="PreviewImage(this, 4);" type="file" style="display:none"/>
+																					</div> 
+																					<div class="card-body"> 
+																						<p class="card-text"><input type="text" id="name-4" name="name-4" class="form-control" placeholder="Nombre de Imagen"></p> 																							
+																						<button class="btn btn-danger" onclick="QuitarImagen(4)">Quitar</button>
+																					</div> 
+																				</div> 																				
+																			</div>
+																			
+																			<div class="col-sm-4" id="Contenedor-5" style="display: none">
+																				<div class="card" style="width: 18rem;" id="Contenido-5">  																					
+																					<div class="image-upload-5">
+	  																					<label for="file-input-5"> 
+	  																						<img class="card-img-top" id="img-5" src="/dist/img/preview.png"> 
+	  																					</label> 
+	  																					<input id="file-input-5" name="file-input-5" onchange="PreviewImage(this, 5);" type="file" style="display:none"/>
+																					</div> 
+																					<div class="card-body"> 
+																						<p class="card-text"><input type="text" id="name-5" name="name-5" class="form-control" placeholder="Nombre de Imagen"></p> 																							
+																						<button class="btn btn-danger" onclick="QuitarImagen(5)">Quitar</button>
+																					</div> 
+																				</div> 																				
+																			</div>
+																			
+																			<div class="col-sm-4" id="Contenedor-6" style="display: none">
+																				<div class="card" style="width: 18rem;" id="Contenido-6">  																					
+																					<div class="image-upload-6">
+	  																					<label for="file-input-6"> 
+	  																						<img class="card-img-top" id="img-6" src="/dist/img/preview.png"> 
+	  																					</label> 
+	  																					<input id="file-input-6" name="file-input-6" onchange="PreviewImage(this, 6);" type="file" style="display:none"/>
+																					</div> 
+																					<div class="card-body"> 
+																						<p class="card-text"><input type="text" id="name-6" name="name-6" class="form-control" placeholder="Nombre de Imagen"></p> 																							
+																						<button class="btn btn-danger" onclick="QuitarImagen(6)">Quitar</button>
+																					</div> 
+																				</div> 																				
+																			</div>
+																			
+																			
+																			</div>
 																		</div>
 																	</div>
-																</div>
 															</div>
-															<div class="col-sm-12">
-																<div class="form-group p-3 border p-2 rounded m-3">
-																	<div class="row">
-																		<div class="col-sm-3 text-center pt-2 border-right">
-																			<label for="mainImage"><img th:src="@{'/uploads/prendas/' + ${prenda.dibujoFrente}}" alt="Placeholder" id="blah2" class="placeholder img-thumbnail"
-																				aria-describedby="imagePreviewHelp" th:onerror="this.src='/dist/img/preview.png'"/></label> 
-																				<small id="imagePreviewHelp" class="form-text text-muted">Previsualizaci&oacute;n
-																				de la imagen</small>
-																		</div>
-																		<div class="col">
-																			<label for="mainImage">Imagen espalda/trasero</label>
-																			<div class="input-group mb-3">
-																				<input type="file" class="form-control border p-1" id="file2" name="file2"/>
-																				<div class="input-group-append">
-																					<span class="input-group-text bg-danger text-danger pointer" onclick="LimpiarInput2()">
-																						<i class="fas fa-times"></i>
-																					</span>
-																				</div>
-																			</div>
-																			<small id="imageHelp" class="form-text text-muted">Selecciona la foto que desea subir.</small>
-																		</div>
-																	</div>
+															<!-- Previsualizaciones de imagenes -->	
+															
+															
+															<!-- Previsualizaciones de Imagenes al editar -->
+															<div class="row" th:if="${accion == 'editar'}" id="ContenedorImagenesEditar">
+															<input type="hidden" name="idPrenda" id="idPrenda"  th:value="${prenda.idPrenda}"/>
+																<!-- Uno -->
+																<div class="col-sm-4" th:each="img: ${imagenesPrenda}" th:id="${'Contenedor-' + img.estatus}" th:style="${img.idPrenda != null} ? 'display: block' : 'display: none' ">
+																	<div class="card" style="width: 18rem;">  																					
+																		<div th:class="${'image-upload-edit-' + img.estatus}">
+	  																		<label th:for="${'file-input-edit-' + img.estatus}">
+	  																			<img class="card-img-top" th:id="${'img-edit-' + img.estatus}" th:src="@{'/uploads/prendas/' + ${img.rutaPrenda}}" th:onerror="this.src='/dist/img/preview.png'"> 
+	  																		</label> 
+	  																		<input th:id="${'file-input-edit-' + img.estatus}" th:name="${'file-input-edit-' + img.estatus}" th:attr="onchange=|PreviewImageEdit(this, '${img.estatus}')|" type="file" style="display:none"/>
+	  																		<input type="hidden" th:id="${'id-input-edit-' + img.estatus}" th:name="${'id-input-edit-' + img.estatus}" th:value="${img.idPrendaImagen}"/>
+	  																		<input type="hidden" th:id="${'status-input-edit-' + img.estatus}" th:name="${'status-input-edit-' + img.estatus}" value="Same"/>
+																		</div> 
+																		<div class="card-body"> 
+																			<p class="card-text">
+																				<input type="text" th:id="${'name-edit-' + img.estatus}" th:name="${'name-edit-' + img.estatus}" class="form-control" th:value="${img.nombrePrenda}" placeholder="Nombre de Imagen">
+																			</p> 																							
+																			<button class="btn btn-danger" type="button" th:attr="onclick=|QuitarImagenEdit('${img.estatus}')|">Quitar</button>
+																		</div> 
+																	</div> 																				
 																</div>
+																<!-- Uno -->
+																
+																
+																
 															</div>
+															<!-- Previsualizaciones de Imagenes al editar -->
+															
+																																
+															</div>
+															<!-- Input de nombre, imagen y boton -->
+															
+															<!-- Boton de form -->
+																<button type="submit" id="FormImagenes" style="border: none"></button>
+																
+															<!-- Boton de form -->
+															</form>
+															</div>
+															<!-- Form de Imagenes -->															
+															
+
 															<div class="form-group col-sm-12">
 																<a th:href="${'/prendas'}" class="btn btn-danger">Cancelar</a>
 																<button type="button" class="btn btn-primary float-right" onclick="ValidarPrimerPestana()">Siguiente</button>	
 																<button type="button" class="btn btn-primary next-step float-right" id="SiguientePrimeraPestana" style="display: none">Siguiente</button><br>
-																<button type="submit" id="FormImagenes" style="border: none"></button>
 															</div>
 															<div class="form-group col-sm-12" id="AlertaPrimerPestana" style="display: none; color: red;">
 																<div class="float-right">
 																	<label>Debes llenar todos los campos correctamente.</label>
 																</div>
 															</div>
-														</div>
-														</form>
-														<!-- Form de imagen doble -->
-													</div>
+														</div>															
+													</div><!-- Cierra lo de step 1 -->
 													
-														<!-- Form de imagen Frente -->
-														<form th:action="@{/prendas1}" method="POST" enctype="multipart/form-data" th:object="${disenio}" style="display: none">
-															<div id="ContenedorFrente"></div>
-															<button type="submit" id="FormImagenFrente" style="border: none"></button>
-														</form>
-														<!-- Form de imagen Frente -->
-														
-														<!-- Form de imagen Espalda -->
-														<form th:action="@{/prendas2}" method="POST" enctype="multipart/form-data" th:object="${disenio}" style="display: none">
-															<div id="ContenedorEspalda"></div>
-															<button type="submit" id="FormImagenEspalda" style="border: none"></button>
-														</form>
-														<!-- Form de imagen Espalda -->
+
 													
 													
 													
@@ -319,6 +421,22 @@
 																		</tr>
 																	</thead>
 																	<tbody id="CuerpoTablaMateriales">
+																		<tr th:each="mat: ${materialesPrenda}" th:id="'RemoverElemento-' + ${mat[10]}">
+                                                                            <td th:text="${mat[1]}"></td>
+                                                                            <td scope='row' th:text="${mat[2]}"></td>
+                                                                            <td th:text="${mat[3]}"></td>
+                                                                            <td th:text="${mat[4] + ' ' +mat[5]}"></td>
+                                                                            <td th:text="${mat[6]}"></td>
+                                                                            <td th:text="${mat[7]}"></td>
+                                                                            <td>
+                                                                                <input type="number" th:id="'CantidadMaterial-' + ${mat[10]}" class="form-control" th:value="${mat[9]}" th:attr="onclick=|CambiarCantidadMaterial('${mat[10]}')|" />
+                                                                            </td>
+                                                                            <td class="tdcenter">
+                                                                                <button class="btn btn-danger btn_remove" th:attr="onclick=|QuitarMaterial('${mat[10]}')|">Quitar
+                                                                                    
+                                                                                </button>
+                                                                            </td>
+                                                                        </tr>
 																	</tbody>
 																</table>
 															</div>
@@ -401,7 +519,13 @@
 
                                                         <div class="row float-right">
                                                             <ul class="float-right">
-                                                                <li class="list-inline-item">
+                                                            	<li class="list-inline-item" id="Guardando" style="display: none">
+	                                                            	<button class="btn btn-primary" type="button" disabled>Guardando...
+	  																	<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+	  																	<span class="sr-only">Loading...</span>
+																	</button>
+                                                            	</li>
+                                                                <li class="list-inline-item" id="ElDeGuardar">
                                                                     <button type="button" class="btn btn-primary" onclick="ValidarCuartaPestana()">Guardar</button>
                                                                     <button type="button" class="btn btn-primary" style="display: none" id="SiguienteCuartaPestana" onclick="Guardar()">Guardar</button>
                                                                 </li>
@@ -536,12 +660,20 @@
 	<script src="/dist/js/AgregarPrenda.js"></script>
 	<script src="/dist/js/AgregarPrendaAsignar.js"></script>
 	<script src="/dist/js/AgregarPrendaObjetos.js"></script>
-	<script th:inline="javascript">
+<script th:inline="javascript">
 		/*<![CDATA[*/
 		var message = /*[[${prenda}]]*/ 'default';
 		var familias = /*[[${familias}]]*/ 'default';
 		var accion = /*[[${accion}]]*/ 'default';
+		var imagenes = /*[[${imagenesPrenda}]]*/ 'default';
 		/*]]>*/
+		
+		console.log(imagenes);
+		//Contador que dice cuantas imagenes existen
+		var contadorImagenes = 0;
+		
+		//Variable que auxilia cuando se elimina una imagen, se guarde el id que tenia
+		var idAux = 0;
 		
 		if(accion == "editar")
 		{
@@ -549,6 +681,8 @@
 			var prendasmarcadores = /*[[${prendasmarcadores}]]*/ 'default';
 			var materiales = /*[[${materialesPrenda}]]*/ 'default';
 			var patronajesPrenda = /*[[${patronajesPrenda}]]*/ 'default';
+			var imagenes = /*[[${imagenesPrenda}]]*/ 'default';
+			console.log(materiales);
 			
 			objeto_prenda = prenda;
 			
@@ -576,7 +710,10 @@
 			
 			
 			prendasmarcadores = temporalParaMarcadores.substring(1);
-
+			
+			//Se agrega el modelo en el cabezero para dar seguimiento
+			$('#accionTitulo').remove();
+			$('#accionTituloContenedor').append("<div id='accionTitulo'><h3 class='card-title'>Editar Prenda: " + prenda.idText + "</h3></div>");
 		}
 		
 	</script>

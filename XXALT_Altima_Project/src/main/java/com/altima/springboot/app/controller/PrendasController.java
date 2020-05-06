@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.altima.springboot.app.models.entity.DisenioPrenda;
 import com.altima.springboot.app.models.service.IDisenioFamiliaPrendaService;
+import com.altima.springboot.app.models.service.IDisenioImagenPrendaService;
 import com.altima.springboot.app.models.service.IDisenioLookupService;
 import com.altima.springboot.app.models.service.IDisenioMaterialService;
 import com.altima.springboot.app.models.service.IDisenioPrendaMarcadorService;
@@ -32,6 +33,8 @@ public class PrendasController {
 	IDisenioMaterialService disenioMaterialService;
 	@Autowired
 	IDisenioRutaService disenioRutaService;
+	@Autowired
+	IDisenioImagenPrendaService disenioImagenPrendaService;
 	@Autowired
 	IUploadService uFileService;
 	@Autowired
@@ -62,6 +65,7 @@ public class PrendasController {
 		model.addAttribute("patronajes", disenioMaterialService.findLookUps());
 		model.addAttribute("rutas", disenioRutaService.findAll());
 		model.addAttribute("marcadores", disenioLookupService.findByTipoLookup("Marcador"));
+		model.addAttribute("imagenesPrenda", disenioImagenPrendaService.findByPrenda(0L));
 		m.put("prenda", prenda);
 		m.put("accion", "agregar");
 		return "agregar-confirmar-prenda";
@@ -93,6 +97,7 @@ public class PrendasController {
 		model.addAttribute("materialesPrenda", disenioMaterialService.findAllFromPrenda(id));
 		model.addAttribute("patronajes", disenioMaterialService.findLookUps());
 		model.addAttribute("patronajesPrenda", disenioMaterialService.findAllPatronajeFromPrenda(id));
+		model.addAttribute("imagenesPrenda", disenioImagenPrendaService.findByPrenda(id));
 		model.addAttribute("prenda", prenda);
 		m.put("accion", "editar");
 		m.put("disenio", disenio);

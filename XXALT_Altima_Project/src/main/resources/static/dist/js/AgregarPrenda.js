@@ -1,19 +1,15 @@
 $(document).ready(function () {
-
 	$("#file").change(function () {
 		var $this = $(this), $clone = $this.clone();
 		$this.after($clone).appendTo($('#ContenedorFrente'));
 		CambiarImgFrente = true;
 	});
-
 	$("#file2").change(function () {
 		var $this = $(this), $clone = $this.clone();
 		$this.after($clone).appendTo($('#ContenedorEspalda'));
 		CambiarImgEspalda = true;
 	});
-
 });
-
 function RecogerDatosPrimeraParte() {
 	//var today = new Date();
 	//var actual = today.getFullYear() + '-' + today.getMonth() + '-' + today.getDate() + ' ' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
@@ -46,7 +42,6 @@ function RecogerDatosPrimeraParte() {
 	objeto_prenda['idLookup'] = 0;
 	objeto_prenda['idLookup2'] = 0;
 	objeto_prenda['idLookup3'] = 0;
-
 	if ($('#combi').is(':checked')) {
 		objeto_prenda['combinacion'] = "1";
 	}
@@ -60,8 +55,6 @@ function RecogerDatosPrimeraParte() {
 		objeto_prenda['imprimirEtiquetas'] = "0";
 	}
 }
-
-
 function RecogerDatosSegundaParte() {
 	objeto_prenda['detalleConfeccion'] = $('#DetalleConfeccion').val();
 	//Campo en duro de lo de los marcadores, cambiarlo posteriormente.
@@ -79,14 +72,11 @@ function RecogerDatosTerceraParte() {
 	});
 	return id;
 }
-
-
 //Funcion para agregar un nuevo Material desde la vista agregar-confirmar prenda y editar-prenda
 function AgregarElementoListaMateriales() {
 	var id = $('#ListaDeMateriales').val();
 	$('#AgregarElementoMaterial').prop('disabled', true);
 	$('#SiguienteTerceraPestana').prop('disabled', true);
-
 	//Este es un boolean para saber si ya se encontro un registro parecido
 	var EncontreUnMaterialIgual = false;
 	//Si ya existe un registro asi en el objeto que tenemos, se le suma uno a la cantidad.
@@ -102,12 +92,8 @@ function AgregarElementoListaMateriales() {
 			console.log("si coincidio");
 		}
 	}
-
-
 	//Solicitud Ajax para obtener los demas campos.
 	if (!EncontreUnMaterialIgual) {
-
-
 		$.ajax({
 			type: "GET",
 			url: "/detalle_material",
@@ -116,15 +102,11 @@ function AgregarElementoListaMateriales() {
 				console.log(data);
 				$('#AgregarElementoMaterial').prop('disabled', false);
 				$('#SiguienteTerceraPestana').prop('disabled', false);
-
-
 				var identidad = id + '_' + data[0][1];
 				var temp = {
 					identidad: identidad, id: data[0][0], NoMaterial: data[0][1], Nombre: data[0][8], Clasificacion: data[0][3], Tamanio: data[0][5] + ' ' + data[0][4],
 					Modelo: data[0][6], Proceso: data[0][7], cantidad: 1
 				};
-
-
 				objeto_materiales.push(temp);
 				console.log(temp);
 				$('#CuerpoTablaMateriales').append("<tr id='RemoverElemento-" + identidad + "'>" +
@@ -140,14 +122,11 @@ function AgregarElementoListaMateriales() {
 					"<i class='fas fa-minus fa-sm'></i></button>" +
 					"</td>" +
 					"</tr>");
-
 			},
 			error: (e) => {
 				console.log(e);
 			}
 		});
-
-
 	}//Cierra el if
 }
 function QuitarMaterial(identidad) {
@@ -161,37 +140,32 @@ function CambiarCantidadMaterial(identidad) {
 	objeto_materiales[CambiarCantidad].cantidad = 0;
 	objeto_materiales[CambiarCantidad].cantidad = cantidad;
 	console.log(objeto_materiales[CambiarCantidad]);
-
 }
 
 
-
 function Guardar() {
+	
+	$('#ElDeGuardar').remove();
+	$('#Guardando').css('display', 'block');
 	/*
 	if (CambiarImgFrente == true && CambiarImgEspalda == true) {
 		$('#FormImagenes').click();
 	}
-
 	if (CambiarImgFrente != true && CambiarImgEspalda != true) {
 		console.log("ninguna imagen cambio");
 	}
-
 	if (CambiarImgFrente == true && CambiarImgEspalda != true) {
 		$('#FormImagenFrente').click();
 	}
-
 	if (CambiarImgFrente != true && CambiarImgEspalda == true) {
 		$('#FormImagenEspalda').click();
 	}*/
 	
 	RecogerDatosPrimeraParte();
 	RecogerDatosSegundaParte();
-
-
 	var token = $('#token').val();
 	var header = $('#token').val();
 	
-
 	if(accion == "editar")
 	{
 		console.log(objeto_prenda);
@@ -218,13 +192,12 @@ function Guardar() {
 					},
 					success: (data) => {
 						$('#BotonBloquearGuardar').prop('disabled', false);
-						window.location.href = '/prendas';
+						$('#FormImagenes').click();
 					},
 					failure: function (errMsg) {
 						alert(errMsg);
 					}
 				});
-
 			},
 			failure: function (errMsg) {
 				alert(errMsg);
@@ -244,6 +217,7 @@ function Guardar() {
 			},
 			success: (data) => {
 				console.log(data);
+				$('#ContenedorBotonAgregarOtro').append("<input type='hidden' name='idPrenda' id='idPrenda' value='" + data.idPrenda + "'/>");
 				console.log(RecogerDatosTerceraParte());
 				$.ajax({
 					type: "POST",
@@ -257,24 +231,21 @@ function Guardar() {
 					},
 					success: (data) => {
 						$('#BotonBloquearGuardar').prop('disabled', false);
-						window.location.href = '/prendas';
+						console.log(data);
+						//window.location.href = '/prendas';
+						$('#FormImagenes').click();
 					},
 					failure: function (errMsg) {
 						alert(errMsg);
 					}
 				});
-
 			},
 			failure: function (errMsg) {
 				alert(errMsg);
 			}
 		});	
 	}
-
 }
-
-
-
 //Esta valida que los campos esten llenos dentro de la primer pestaña
 function ValidarPrimerPestana() {
 	if ($('#DescripcionPrenda').val() != "" && $('#NotaEspecial').val() != ""
@@ -287,11 +258,8 @@ function ValidarPrimerPestana() {
 		$('#AlertaPrimerPestana').css('display', 'block');
 	}
 }
-
-
 //Esto solo valida que los campos esten llenos dentro de la segunda pestaña
 function ValidarSegundaPestana() {
-
 	if ($('#DetalleConfeccion').val() != "") {
 		$('#AlertaSegundaPestana').css('display', 'none');
 		$('#SiguienteSegundaPestana').click();
@@ -300,7 +268,6 @@ function ValidarSegundaPestana() {
 		$('#AlertaSegundaPestana').css('display', 'block');
 	}
 }
-
 //Esto valida que la tercer pestana, de materiales, tenga al menos un material
 function ValidarTerceraPestana() {
 	if (objeto_materiales.length === 0) {
@@ -312,7 +279,6 @@ function ValidarTerceraPestana() {
 		//AsignarID(id);
 	}
 }
-
 function ValidarCuartaPestana() {
 	var j=0;
 	var validacion=true;
@@ -350,10 +316,8 @@ function ValidarCuartaPestana() {
 			$('#SiguienteCuartaPestana').click();
 			$('#BotonBloquearGuardar').prop('disabled', true);	
 		}
-
 	}
 }
-
 //Este valida que las cantidades del patronaje no esten nulas cuando se confirma una prenda
 function ValidarCantidadesPatronaje() {
 	if ($('#CantidadTela').val() != "" && $('#CantidadForro').val() != "" && $('#CantidadEntretela').val() != "") {
@@ -365,11 +329,8 @@ function ValidarCantidadesPatronaje() {
 		$('#AlertaCantidadesPatronaje').css('display', 'block');
 	}
 }
-
-
 //Cambios Uriel ***********************Marcadores
 function guardarMarcador() {
-
 	var _id = document.getElementById("marcador_").value;
 	var _text = document.getElementById("marcador_").options[document.getElementById("marcador_").selectedIndex].text;
 	var fila = "<tr><td style='display: none;'>" + _id + "</td><td>" + _text + "</td><td>" + '<button type="button" name="remove" id="' + _id + '"onclick="eliminarMarcador(this)" class="btn btn-danger btn_remove">Quitar</button></td></tr>';
@@ -388,7 +349,6 @@ function guardarMarcador() {
 	if(campo_id!=null){
 		console.log("entra2 "+campo_id);
 		for(var j=0;j<=campo_id.split(",").length;j++){
-
 			if(_id==campo_id.split(",")[j]){
 				console.log("entra3 "+_id);
 				return false;
@@ -405,9 +365,7 @@ function eliminarMarcador(t) {
 	var table = tr.parentNode;
 	table.removeChild(tr);
 }
-
 function guardarPatronaje() {
-
 	var _id = document.getElementById("ListaPatronaje").value;
 	var _text = document.getElementById("ListaPatronaje").options[document.getElementById("ListaPatronaje").selectedIndex].text;
 	var fila = "<tr><td style='display: none;'>" +_id + "</td>"+
@@ -416,7 +374,6 @@ function guardarPatronaje() {
 		"<td>" + '<input type="number" class="form-control" placeholder="10" id="CantidadForro'+_id+'">' + "</td>"+
 		"<td>" + '<input type="number" class="form-control" placeholder="10" id="CantidadEntretela'+_id+'">' + "</td>"+
 		"<td class='tdcenter'>" +'<button type="button" name="remove" id="' +_id + '"onclick="eliminarPatronaje(this)" class="btn btn-danger btn_remove">Quitar</button></td>'+
-
 		'</tr>';
 	var campo_id;
 	$('#CuerpoPatronaje tr').each(function () {
@@ -433,7 +390,6 @@ function guardarPatronaje() {
 	if(campo_id!=null){
 		console.log("entra2 "+campo_id);
 		for(var j=0;j<=campo_id.split(",").length;j++){
-
 			if(_id==campo_id.split(",")[j]){
 				console.log("entra3 "+_id);
 				return false;
@@ -450,55 +406,146 @@ function eliminarPatronaje(t) {
 	var table = tr.parentNode;
 	table.removeChild(tr);
 }
-
-
 /***
 *
 *	Estas funciones son para las imagenes
 *
 ***/
+
+function AgregarImagen()
+{
+	if(idAux > 0)
+	{
+		$('#Contenedor-' + idAux).show();
+		idAux = 0;
+	}
+	else
+	{
+		if(contadorImagenes < 6)
+		{
+			contadorImagenes++;
+
+			$('#Contenedor-' + contadorImagenes).show();
+
+			if(contadorImagenes == 6)
+			{
+				$('#ContenedorBotonAgregarOtro').hide();
+			}
+		}
+		else
+		{
+			console.log("yas e lleno");
+		}	
+	}
+}
+
+function AgregarImagenEditar()
+{
+	for(var i = 1; i < 7; i++)
+	{
+		if( $('#Contenedor-' + i).css('display') == 'none' )
+		{
+			$('#Contenedor-' + i).css('display', 'block');
+			break;
+		}
+		else
+		{
+			console.log("ya esta visible");
+		}
+	}
+}
+
+function QuitarImagenEdit(id)
+{
+	$('#Contenedor-' + id).hide();
+	$('#status-input-edit-' + id).val("delete");
+}
+
+function QuitarImagen(id)
+{
+	idAux = id;
+
+	$('#Contenido-' + id).remove();
+
+	$('#Contenedor-' + id).hide();
+
+	$('#Contenedor-' + id).append("<div class='card' style='width: 18rem;' id='Contenido-" + id + "'>" +   																					
+										"<div class='image-upload-" + id + "'>" + 
+	  										"<label for='file-input-" + id + "'>" +  
+	  											"<img class='card-img-top' id='img-" + id + "' src='/dist/img/preview.png'>" +  
+	  										"</label>" +  
+	  										"<input id='file-input-" + id + "' name='file-input-" + id +"' onchange='PreviewImage(this, " + id + ");' type='file' style='display:none'/>" + 
+	  									"</div>" +
+										"<div class='card-body'>" +  
+											"<p class='card-text'><input type='text' id='name-" + id + "' name='name-" + id + "' class='form-control' placeholder='Nombre de Imagen'></p>" +  																							
+											"<button class='btn btn-danger' onclick='QuitarImagen(" + id + ")'>Quitar</button>" + 
+										"</div>" +  
+									"</div>");
+
+
+}
+
+function PreviewImage(input, id)
+{
+	 if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+
+		    reader.onload = function(e) {
+		      $('#img-' + id).attr('src', e.target.result);
+		    }
+
+		 reader.readAsDataURL(input.files[0]); 
+	 }
+}
+
+function PreviewImageEdit(input, id)
+{
+	$('#status-input-edit-' + id).val("Alter");
+	
+	 if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+
+		    reader.onload = function(e) {
+		      $('#img-edit-' + id).attr('src', e.target.result);
+		    }
+
+		 reader.readAsDataURL(input.files[0]); 
+	 }
+}
+
+
 function readURL(input) {
 	if (input.files && input.files[0]) {
 		var reader = new FileReader();
-
 		reader.onload = function (e) {
 			$('#blah1').attr('src', e.target.result);
 		}
-
 		reader.readAsDataURL(input.files[0]); // convert to base64 string
 	}
 }
-
 function readURL2(input) {
 	if (input.files && input.files[0]) {
 		var reader = new FileReader();
-
 		reader.onload = function (e) {
 			$('#blah2').attr('src', e.target.result);
 		}
-
 		reader.readAsDataURL(input.files[0]); // convert to base64 string
 	}
 }
-
 $("#file").change(function () {
 	readURL(this);
 	console.log("cambio");
 });
-
 $("#file2").change(function () {
 	readURL2(this);
 	console.log("cambio");
 });
-
 //Funciones para limpiar inputs
 function LimpiarInput1() {
 	$('#file').val(null);
 	$('#blah1').attr("src", "/dist/img/preview.png");
 }
-
 function LimpiarInput2() {
 	$('#file2').val(null);
 	$('#blah2').attr("src", "/dist/img/preview.png");
 }
-
