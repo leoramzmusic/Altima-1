@@ -115,7 +115,7 @@
 																	<select id="GeneroPrenda" class="form-control">
 																		<option value=""></option>
 																		<option th:each="genero: ${generos}" th:value="${genero.idLookup}" 
-																		th:text="${genero.nombreLookup}" th:selected="${genero.idLookup == prenda.idGenero}"></option>
+																		th:text="${genero.nombreLookup}" th:selected="(${genero.idLookup} == ${prenda.idGenero})"></option>
 																	</select>
 																</div>
 															</div>
@@ -126,7 +126,7 @@
 																	<select id="ClientePrenda" class="form-control">
 																		<option value=""></option>
 																		<option th:each="cliente: ${clientes}" th:value="${cliente.idCliente}" 
-																		th:text="${cliente.nombre}" th:selected="${cliente.idCliente == prenda.prendaCliente}"></option>
+																		th:text="${cliente.nombre}" th:selected="(${cliente.idCliente} == ${prenda.prendaCliente})" ></option>
 																	</select>
 																</div>
 															</div>
@@ -275,7 +275,7 @@
 																	<div class="card" style="width: 18rem;">  																					
 																		<div th:class="${'image-upload-edit-' + img.estatus}">
 	  																		<label th:for="${'file-input-edit-' + img.estatus}">
-	  																			<img class="card-img-top" th:id="${'img-edit-' + img.estatus}" th:src="@{'/uploads/prendas/' + ${img.rutaPrenda}}" th:onerror="this.src='/dist/img/preview.png'"> 
+	  																			<img class="card-img-top" th:id="${'img-edit-' + img.estatus}" th:src="@{'/uploads/prendas/' + ${img.rutaPrenda}}" th:onerror="this.src='/dist/img/preview.png'" style="width: 289px !important; height: 289px !important;"> 
 	  																		</label> 
 	  																		<input th:id="${'file-input-edit-' + img.estatus}" th:name="${'file-input-edit-' + img.estatus}" th:attr="onchange=|PreviewImageEdit(this, '${img.estatus}')|" type="file" style="display:none"/>
 	  																		<input type="hidden" th:id="${'id-input-edit-' + img.estatus}" th:name="${'id-input-edit-' + img.estatus}" th:value="${img.idPrendaImagen}"/>
