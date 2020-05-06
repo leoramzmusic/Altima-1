@@ -26,6 +26,9 @@ public class ComercialCalendario implements Serializable{
 	@GenericGenerator(name="native",strategy="native")
 	private Long idCalendario;
 	
+	@Column(name="id_cliente")
+	private Long idCliente;
+	
 	@Column(name="inicio")
 	private String start;
 	
@@ -53,10 +56,14 @@ public class ComercialCalendario implements Serializable{
 	@Column(name="ultima_fecha_modificacion")
 	private String ultimaFechaModificacion;
 
-	
 	@Column(name="estatus")
 	private String estatus;
 
+	
+	
+	
+	
+	
 	public Long getIdCalendario() {
 		return idCalendario;
 	}
@@ -64,8 +71,6 @@ public class ComercialCalendario implements Serializable{
 	public void setIdCalendario(Long idCalendario) {
 		this.idCalendario = idCalendario;
 	}
-
-
 
 	public String getStart() {
 		return start;
@@ -91,8 +96,6 @@ public class ComercialCalendario implements Serializable{
 		this.color = color;
 	}
 
-	
-
 	public String getTitle() {
 		return title;
 	}
@@ -101,7 +104,13 @@ public class ComercialCalendario implements Serializable{
 		this.title = title;
 	}
 
-	
+	public Long getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(Long idCliente) {
+		this.idCliente = idCliente;
+	}
 
 	public String getDescription() {
 		return description;
