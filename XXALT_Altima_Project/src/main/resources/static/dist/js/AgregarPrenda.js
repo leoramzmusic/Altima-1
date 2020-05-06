@@ -14,6 +14,7 @@ function RecogerDatosPrimeraParte() {
 	//var today = new Date();
 	//var actual = today.getFullYear() + '-' + today.getMonth() + '-' + today.getDate() + ' ' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
 	objeto_prenda['idFamiliaPrenda'] = $('#TipoPrenda').val();
+	objeto_prenda['tipoPrenda'] = $('#TipoPrenda').val();
 	objeto_prenda['creadoPor'] = "Adan";
 	objeto_prenda['actualizadoPor'] = "Adan";
 	objeto_prenda['numeroPrenda'] = "1";
