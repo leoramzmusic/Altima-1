@@ -192,4 +192,12 @@ public class ControlProduccionMuestraServiceImpl implements IControlProduccionMu
 		
 		return re;
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<DisenioLookup> generos() {
+		// TODO Auto-generated method stub
+		return em.createQuery("from DisenioLookup where tipo_lookup='Familia Genero'").getResultList();
+	}
 }
