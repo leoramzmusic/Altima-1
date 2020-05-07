@@ -358,7 +358,7 @@ function listarPrendas() {
 				"<tr>" +
 				"<th>Clave</th>" +
 				"<th>Nombre</th>" +
-				"<th>Posici&oacute;n</th>" +
+				"<th>Ubicaci&oacute;n de la prenda</th>" +
 				"<th>Acciones</th>" +
 				"</tr>" +
 				"</thead>" +
@@ -1591,7 +1591,7 @@ function agregarPrenda() {
 			'<div class="form-group col-sm-12">' +
 			'<label for="pedidonom">Nombre de la familia prendas</label>' +
 			'<input type="text" class="swal2-input" id="familia" placeholder="Pantalón">' +
-			'<label for="posicion">Posici&oacute;n</label>' +
+			'<label for="posicion">Ubicaci&oacute;n de la prenda</label>' +
 			"<select class='form-control' id='posicion'>" +
 			"<option value='superior'>Superior</option>" +
 			"<option value='inferior'>Inferior</option>" +

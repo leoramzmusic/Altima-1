@@ -210,13 +210,13 @@ public class CatalogoController {
 			}
 
 			if (ultimoid == null) {
-				color.setIdText("COL" + 1001);
+				color.setIdText("COL" + "1001");
 			} else {
 
 				String str = ultimoid.getIdText();
 				String[] part = str.split("(?<=\\D)(?=\\d)");
 				Integer cont = Integer.parseInt(part[1]);
-				color.setIdText("COL" + (cont + 1001));
+				color.setIdText("COL" + (cont + 1));
 			}
 
 			color.setNombreLookup(StringUtils.capitalize(Color));
@@ -246,7 +246,7 @@ public class CatalogoController {
 				String str = ultimoid.getIdText();
 				String[] part = str.split("(?<=\\D)(?=\\d)");
 				Integer cont = Integer.parseInt(part[1]);
-				piezatrazo.setIdText("PZTR" + (cont + 1001));
+				piezatrazo.setIdText("PZTR" + (cont + 1));
 			}
 
 			piezatrazo.setNombreLookup(StringUtils.capitalize(PiezaTrazo));
@@ -275,7 +275,7 @@ public class CatalogoController {
 				String str = ultimoid.getIdText();
 				String[] part = str.split("(?<=\\D)(?=\\d)");
 				Integer cont = Integer.parseInt(part[1]);
-				familiaprenda.setIdText("FAMPR" + (cont + 1001));
+				familiaprenda.setIdText("FAMPR" + (cont + 1));
 			}
 
 			familiaprenda.setNombreLookup(StringUtils.capitalize(FamiliaPrenda));
@@ -306,7 +306,7 @@ public class CatalogoController {
 				String str = ultimoid.getIdText();
 				String[] part = str.split("(?<=\\D)(?=\\d)");
 				Integer cont = Integer.parseInt(part[1]);
-				familiagenero.setIdText("FAMGE" + (cont + 1001));
+				familiagenero.setIdText("FAMGE" + (cont + 1));
 			}
 
 			familiagenero.setNombreLookup(StringUtils.capitalize(FamiliaGenero));
@@ -337,7 +337,7 @@ public class CatalogoController {
 				String str = ultimoid.getIdText();
 				String[] part = str.split("(?<=\\D)(?=\\d)");
 				Integer cont = Integer.parseInt(part[1]);
-				instruccioncuidado.setIdText("INSTRCU" + (cont + 1001));
+				instruccioncuidado.setIdText("INSTRCU" + (cont + 1));
 			}
 
 			instruccioncuidado.setNombreLookup(StringUtils.capitalize(InstruccionCuidado));
@@ -375,7 +375,7 @@ public class CatalogoController {
 				String str = ultimoid.getIdText();
 				String[] part = str.split("(?<=\\D)(?=\\d)");
 				Integer cont = Integer.parseInt(part[1]);
-				unidadmedida.setIdText("UMED" + (cont + 1001));
+				unidadmedida.setIdText("UMED" + (cont + 1));
 			}
 
 			unidadmedida.setNombreLookup(StringUtils.capitalize(UnidadMedida));
@@ -406,7 +406,7 @@ public class CatalogoController {
 				String str = ultimoid.getIdText();
 				String[] part = str.split("(?<=\\D)(?=\\d)");
 				Integer cont = Integer.parseInt(part[1]);
-				material.setIdText("MAT" + (cont + 1001));
+				material.setIdText("MAT" + (cont + 1));
 			}
 
 			material.setNombreLookup(StringUtils.capitalize(Material));
@@ -436,7 +436,7 @@ public class CatalogoController {
 				String str = ultimoid.getIdText();
 				String[] part = str.split("(?<=\\D)(?=\\d)");
 				Integer cont = Integer.parseInt(part[1]);
-				marcador.setIdText("MARC" + (cont + 1001));
+				marcador.setIdText("MARC" + (cont + 1));
 			}
 
 			marcador.setNombreLookup(StringUtils.capitalize(Marcador));
@@ -465,7 +465,7 @@ public class CatalogoController {
 				String str = ultimoid.getIdText();
 				String[] part = str.split("(?<=\\D)(?=\\d)");
 				Integer cont = Integer.parseInt(part[1]);
-				composicion.setIdText("COMP" + (cont + 1001));
+				composicion.setIdText("COMP" + (cont + 1));
 			}
 
 			composicion.setNombreLookup(StringUtils.capitalize(Composicion));
