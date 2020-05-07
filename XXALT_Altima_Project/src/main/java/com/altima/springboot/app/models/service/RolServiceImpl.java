@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.altima.springboot.app.models.entity.Rol;
 import com.altima.springboot.app.models.entity.Usuario;
@@ -59,5 +60,28 @@ public class RolServiceImpl implements IRolService {
 		secciones.add(seccionId);
 		return secciones;
 	}
-
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<Rol> FindByDepartamento (){
+		return em.createQuery("SELECT DISTINCT departamentoRol FROM Rol \r\n" + 
+				"WHERE nombreRol!='ADMINISTRADOR'").getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<Rol> FindBySeccion (){
+		return em.createQuery("SELECT DISTINCT departamentoRol, seccionRol FROM Rol \r\n" + 
+				"WHERE nombreRol!='ADMINISTRADOR'").getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<Rol> FindByPermiso(){
+		return em.createQuery("SELECT DISTINCT permisoRol FROM Rol \r\n" + 
+				"WHERE nombreRol!='ADMINISTRADOR'").getResultList();
+	}
 }
