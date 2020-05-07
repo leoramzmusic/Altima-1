@@ -1,11 +1,14 @@
-//Agregar procreso
+//Agregar procreso opcion un
  function agregar() {
       if (document.getElementById("id_familia_prenda").value &&
     		  document.getElementById("nombre_prenda").value &&
     		  document.getElementById("precio").value &&
     		  document.getElementById("cantidad").value &&
     		  document.getElementById("talla").value &&
-    		  document.getElementById("largo").value ) {
+    		  document.getElementById("largo").value &&
+    		  document.getElementById("genero").value) {
+    	  
+    	  
 		      var familia=document.getElementById("id_familia_prenda").value;
 		      var nombre=document.getElementById("nombre_prenda").value;
 		      var precio=document.getElementById("precio").value;
@@ -13,9 +16,13 @@
 		      var talla=document.getElementById("talla").value;
 		      var largo=document.getElementById("largo").value;
 		      var idPedido=document.getElementById("idPedido").value;
+		      var genero=document.getElementById("genero").value;
+		      
+		      var resultado = "";
 		      
     	 $.ajax({
     	method: "POST",
+    	
         url: "/guardar-prenda-foranea",
         data: { 
         	 "_csrf": $('#token').val(),
@@ -24,25 +31,43 @@
         	'precio': precio,
         	'cantidad': cantidad, 
         	'talla': talla,
-        	"largo":largo,
-        	'idPedido':idPedido
+        	'largo':largo,
+        	'idPedido':idPedido,
+        	'genero':genero
+        },
+        
+        beforeSend: function () {
+        	 Swal.fire({
+                 title: 'Guardando ',
+                 html: 'Por favor espere',// add html attribute if you want or remove
+                 allowOutsideClick: false,
+                 timerProgressBar: true,
+                 onBeforeOpen: () => {
+                     Swal.showLoading()
+                 },
+             });
+        	
         },
         success: (data) => {
+        	
 			document.getElementById("idPedido").value =data;
 			
 			listarMarcas(data);
-		} 
+		},
+		
+		complete: function() {
+			Swal.fire({
+ 				position: 'center',
+ 				icon: 'success',
+ 				title: 'Agregado correctamente',
+ 				showConfirmButton: false,
+ 				timer: 1250
+ 			})
+	    },
+		 
     })
-    .done(function( data ) { 	
-    	});
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Insertado correctamente',
-          showConfirmButton: false,
-          timer: 1250
-        })
-        
+  
+    	   	 
         document.getElementById("id_familia_prenda").value = '';
   		$('#id_familia_prenda').change();
 	    document.getElementById("nombre_prenda").value ='';
@@ -50,7 +75,8 @@
 	    document.getElementById("cantidad").value='';
 	    document.getElementById("talla").value='';
 	    document.getElementById("largo").value='';
-    	
+	    document.getElementById("genero").value = '';
+  		$('#genero').change();
         
       }else{
     	  Swal.fire({
@@ -62,9 +88,87 @@
             })
       }
 }
- 
+
+
+/*function agregar() {
+      if (document.getElementById("id_familia_prenda").value &&
+    		  document.getElementById("nombre_prenda").value &&
+    		  document.getElementById("precio").value &&
+    		  document.getElementById("cantidad").value &&
+    		  document.getElementById("talla").value &&
+    		  document.getElementById("largo").value &&
+    		  document.getElementById("genero").value) {
+    	  
+    	  
+		      var familia=document.getElementById("id_familia_prenda").value;
+		      var nombre=document.getElementById("nombre_prenda").value;
+		      var precio=document.getElementById("precio").value;
+		      var cantidad=document.getElementById("cantidad").value;
+		      var talla=document.getElementById("talla").value;
+		      var largo=document.getElementById("largo").value;
+		      var idPedido=document.getElementById("idPedido").value;
+		      var genero=document.getElementById("genero").value;
+		      
+		      var resultado = "";
+		      
+		      fetch('/guardar-prenda-foranea', {
+		    	   method: 'POST',
+		    	    data: { 
+		          	 "_csrf": $('#token').val(),
+		         	'familia': familia,
+		         	'nombre': nombre,
+		         	'precio': precio,
+		         	'cantidad': cantidad, 
+		         	'talla': talla,
+		         	'largo':largo,
+		         	'idPedido':idPedido,
+		         	'genero':genero
+		         }
+		    	})
+		    	.then(function(response) {
+		    	   if(response.ok) {
+		    	       return response.text()
+		    	   } else {
+		    	       throw "Error en la llamada Ajax";
+		    	   }
+
+		    	})
+		    	.then(function(texto) {
+		    	   console.log(texto);
+		    	})
+		    	.catch(function(err) {
+		    	   console.log(err);
+		    	});
+
+
+		      
+		  
+  
+    	   	 
+        document.getElementById("id_familia_prenda").value = '';
+  		$('#id_familia_prenda').change();
+	    document.getElementById("nombre_prenda").value ='';
+	    document.getElementById("precio").value='';
+	    document.getElementById("cantidad").value='';
+	    document.getElementById("talla").value='';
+	    document.getElementById("largo").value='';
+	    document.getElementById("genero").value = '';
+  		$('#genero').change();
+        
+      }else{
+    	  Swal.fire({
+    		  position: 'center',
+	          icon: 'error',
+	          title: 'Debe completar todo el formulario',
+	          showConfirmButton: false,
+	          timer: 1250
+            })
+      }
+}*/
+
+
+
 //Dar de orden
- 
  ////necesito en este orde String idPrenda,String idPedido,String talla,String largo,String costo
  function bajarOrden(idPrenda, idPedido,talla,largo,costo,cantidad) {
 	 

@@ -26,6 +26,7 @@ import com.altima.springboot.app.models.entity.DisenioLookup;
 import com.altima.springboot.app.models.entity.DisenioPrenda;
 import com.altima.springboot.app.models.entity.ProduccionDetallePedido;
 import com.altima.springboot.app.models.entity.ProduccionPedido;
+import com.altima.springboot.app.models.service.DisenioPrendaServiceImpl;
 import com.altima.springboot.app.models.service.IControlProduccionMuestraService;
 import com.altima.springboot.app.models.service.IDisenioPrendaService;
 import com.altima.springboot.app.models.service.IProduccionDetalleService;
@@ -41,18 +42,14 @@ public class ControlController {
 	private  IProduccionDetalleService Orden;
 	
 	@Autowired
-	private IDisenioPrendaService Prenda;
+	private DisenioPrendaServiceImpl Prenda;
 	
 	@Autowired
 	private IProduccionPedidoService Pedido;
 	
 	protected final Log logger = LogFactory.getLog(this.getClass());
 	@GetMapping("/control-de-produccion")
-	//@RequestMapping(value = "/control-de-produccion", method = RequestMethod.GET)
-	//@ResponseBody
 	public String listControlProduccion(Model model) {		
-		
-	
 		model.addAttribute("pedidos", DCPM.ListarPedidos());
 		return "control-de-produccion";
 	}
@@ -435,12 +432,16 @@ System.out.println("Los id son :"+id);
 	@GetMapping("/agregar-control-muestra")
 	public String agregarMuestra(Model model) {
 		model.addAttribute("listPrendas", DCPM.findAllPrenda());
+		model.addAttribute("listGenero", DCPM.generos());
 		return "agregar-control-muestra";
 	}
 
-	@PostMapping("/guardar-prenda-foranea")
+	
+	
+	@RequestMapping(value = "/guardar-prenda-foranea", method = RequestMethod.POST)
+	@ResponseBody
 	public String guardar_prenda_foranea(String familia,String nombre ,String precio,
-			String cantidad,String talla,String largo,String idPedido,HttpServletRequest request) {
+			String cantidad,String talla,String largo,String idPedido,HttpServletRequest request , String genero) {
 		
 		
 		System.out.println("La id pedido es "+idPedido);
@@ -451,6 +452,8 @@ System.out.println("Los id son :"+id);
 		
 		DisenioPrenda prenda = new DisenioPrenda();
 		prenda.setIdFamiliaPrenda(Long.valueOf(familia));
+		prenda.setIdGenero(genero);
+		prenda.setPrendaCliente("1");
 		prenda.setDescripcionPrenda(nombre);
 		prenda.setPrecio(precio);
 		prenda.setTipoLargo(largo);
@@ -459,8 +462,14 @@ System.out.println("Los id son :"+id);
 		prenda.setPrendaLocal("0");
 		prenda.setCreadoPor(auth.getName());
 		prenda.setFechaCreacion(hourdateFormat.format(date));
+		prenda.setIdGenero(genero);
 		Prenda.save(prenda);
-		prenda.setIdText("PRE"+(prenda.getIdPrenda()+1000));
+		
+		Long envio = Long.valueOf(prenda.getIdFamiliaPrenda());
+		String[] res = Prenda.getExistencias(envio);
+		prenda.setIdText(res[1].toUpperCase().substring(0, 3) + (10000 + (Long.valueOf(res[0]))));
+		prenda.setIdTextProspecto(res[1].toUpperCase().substring(0, 3) + (10000 + (Long.valueOf(res[0]))));
+		prenda.setEstatusRecepcionMuestra("Prospecto");
 		Prenda.save(prenda);
 		
 		if (idPedido.equals("0")) {
@@ -486,10 +495,11 @@ System.out.println("Los id son :"+id);
 			Pedido.save(pedido);
 		}
 		
+		
 		for (int i =1 ; i <= Integer.parseInt(cantidad) ;i++) {
-			System.out.println("El valor del indicador es: -->"+i+"<--");
-			
 			ProduccionDetallePedido orden = new ProduccionDetallePedido();
+			orden.setIdFamiliaGenero(Long.valueOf(prenda.getIdGenero()));
+			orden.setIdFamiliaPrenda(Long.valueOf(prenda.getIdFamiliaPrenda()));
 			orden.setIdPedido(Long.valueOf(idPedido));
 			orden.setIdTela(Long.valueOf(1));
 			orden.setTalla(talla);
@@ -504,24 +514,15 @@ System.out.println("Los id son :"+id);
 			orden.setEstatus_confeccion("Corrrecto");
 			orden.setEstatus("1");
 			orden.setIdPrenda(prenda.getIdPrenda());
-			orden.setIdFamiliaGenero(Long.valueOf(familia));
 			orden.setCosto(precio);
 			orden.setCantidad( Integer.toString(1));
 			Orden.save(orden);
-			
 			ProduccionPedido pedido = Pedido.findOne(Long.valueOf(idPedido));
-			
-			
 			orden.setIdText("SUB"+(pedido.getIdPedido()+1000)+"-"+orden.getIdDetallePedido());
 			Orden.save(orden);
 			// LISTAR
 		}
-		
-		
-		
-	
-		return "redirect:aux/"+idPedido;
-		 
+		return idPedido;
 	}
 	
 	
@@ -532,35 +533,6 @@ System.out.println("Los id son :"+id);
 		return  Orden.PrendaOrdenes(id);
 	}
 	
-	@RequestMapping(value = "/aux/{id}", method = RequestMethod.GET)
-	@ResponseBody
-	public String aux (@PathVariable(value="id") String id ) {		
-		return  id;
-	}
-	
-	
-	/*@PostMapping("/bajaorden")
-	public String bajacatalogo(Long id ) {
-		System.out.println("Soy baja orden el id es: "+id);
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		Date date = new Date();
-		DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		String idPedido;
-		ProduccionDetallePedido orden;
-		orden=Orden.findOne(id);
-		orden.setEstatus("0");
-		orden.setActualizadoPor(auth.getName());
-		orden.setUltimaFechaModificacion(hourdateFormat.format(date));
-		Orden.save(orden);
-		ProduccionPedido pedido = Pedido.findOne(Long.valueOf(orden.getIdPedido()));
-		
-		pedido.setCantidad(Integer.toString( ( Integer.parseInt(pedido.getCantidad())-Integer.parseInt(orden.getCantidad()))));
-		Pedido.save(pedido);
-		
-		idPedido= Long.toString(orden.getIdPedido());
-		return "redirect:aux/"+idPedido;
-
-	}*/
 	
 	
 	

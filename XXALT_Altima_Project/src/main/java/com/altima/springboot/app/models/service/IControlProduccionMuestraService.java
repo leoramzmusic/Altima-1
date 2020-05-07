@@ -24,8 +24,7 @@ public interface IControlProduccionMuestraService {
 	
 	// para las prendas
 	List<DisenioLookup> findAllPrenda();
-	
-	
 	ControlProduccionMuestra findOne2(String id);
+	List<DisenioLookup> generos();
 	
 }
