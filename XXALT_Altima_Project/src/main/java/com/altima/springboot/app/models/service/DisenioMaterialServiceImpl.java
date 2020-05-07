@@ -169,7 +169,7 @@ public class DisenioMaterialServiceImpl implements IDisenioMaterialService {
 	public List<DisenioLookup> findAllFamiliaPrenda() {
 		// TODO Auto-generated method stub
 		return em.createQuery(
-				"SELECT idLookup, nombreLookup, tipoLookup FROM DisenioLookup WHERE tipoLookup= 'Familia Prenda' and   estatus=1 order by nombreLookup")
+				"SELECT idLookup, nombreLookup, tipoLookup, atributo1 FROM DisenioLookup WHERE tipoLookup= 'Familia Prenda' and   estatus=1 order by nombreLookup")
 				.getResultList();
 	}
 	

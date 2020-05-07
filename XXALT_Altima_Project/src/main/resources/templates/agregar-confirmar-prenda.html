@@ -89,7 +89,6 @@
 																<div class="form-group">
 																	<label>Tipo de prenda</label> 
 																	<select id="TipoPrenda" class="form-control">
-																		<option value=""></option>
 																		<option th:each="familia: ${familias}" th:value="${familia[0]}" 
 																		th:text="${familia[1]}" th:selected="${familia[0] == prenda.idFamiliaPrenda}"></option>
 																	</select>
@@ -113,7 +112,6 @@
 																<div class="form-group">
 																	<label>Genero de prenda</label> 
 																	<select id="GeneroPrenda" class="form-control">
-																		<option value=""></option>
 																		<option th:each="genero: ${generos}" th:value="${genero.idLookup}" 
 																		th:text="${genero.nombreLookup}" th:selected="(${genero.idLookup} == ${prenda.idGenero})"></option>
 																	</select>
@@ -136,7 +134,8 @@
 																	<label>Detalle de la prenda</label>
 																	<textarea class="form-control" rows="3"
 																		placeholder="Escribir el detalle de la prenda..." id="DetallePrenda" 
-																		th:field="*{detallePrenda}"></textarea>
+																		th:field="*{detallePrenda}">
+																		</textarea>
 																</div>
 															</div>
 														</div>
@@ -169,32 +168,36 @@
 																		<div class="col">
 																			<div class="row" id="ContenedorMainImagenes">
 																			
-																			<div class="col-sm-4" id="Contenedor-1" style="display: none">
+																			<div class="col-sm-4" id="Contenedor-1">
 																				<div class="card" style="width: 18rem;" id="Contenido-1">  																					
 																					<div class="image-upload-1">
 	  																					<label for="file-input-1"> 
-	  																						<img class="card-img-top" id="img-1" src="/dist/img/preview.png"> 
+	  																						<img class="card-img-top" id="img-1" src="/dist/img/preview.png" style="max-width: 289px !important; max-height: 289px !important; width: auto !important; height: auto !important;"> 
 	  																					</label> 
 	  																					<input id="file-input-1" name="file-input-1" onchange="PreviewImage(this, 1);" type="file" style="display:none"/>
 																					</div> 
 																					<div class="card-body"> 
-																						<p class="card-text"><input type="text" id="name-1" name="name-1" class="form-control" placeholder="Nombre de Imagen"></p> 																							
-																						<button class="btn btn-danger" onclick="QuitarImagen(1)">Quitar</button>
+																						<p class="card-text">
+																							<input type="text" id="name-1" name="name-1" class="form-control" value="Frente" readonly="readonly">
+																						</p> 																							
+																						<br>
 																					</div> 
 																				</div> 																				
 																			</div>
 																			
-																			<div class="col-sm-4" id="Contenedor-2" style="display: none">
+																			<div class="col-sm-4" id="Contenedor-2">
 																				<div class="card" style="width: 18rem;" id="Contenido-2">  																					
 																					<div class="image-upload-2">
 	  																					<label for="file-input-2"> 
-	  																						<img class="card-img-top" id="img-2" src="/dist/img/preview.png"> 
+	  																						<img class="card-img-top" id="img-2" src="/dist/img/preview.png" style="max-width: 289px !important; max-height: 289px !important; width: auto !important; height: auto !important;"> 
 	  																					</label> 
 	  																					<input id="file-input-2" name="file-input-2" onchange="PreviewImage(this, 2);" type="file" style="display:none"/>
 																					</div> 
 																					<div class="card-body"> 
-																						<p class="card-text"><input type="text" id="name-2" name="name-2" class="form-control" placeholder="Nombre de Imagen"></p> 																							
-																						<button class="btn btn-danger" onclick="QuitarImagen(2)">Quitar</button>
+																						<p class="card-text">
+																							<input type="text" id="name-2" name="name-2" class="form-control" value="Espalda" readonly="readonly">
+																						</p> 																							
+																						<br>
 																					</div> 
 																				</div> 																				
 																			</div>
@@ -203,13 +206,13 @@
 																				<div class="card" style="width: 18rem;" id="Contenido-3">  																					
 																					<div class="image-upload-3">
 	  																					<label for="file-input-3"> 
-	  																						<img class="card-img-top" id="img-3" src="/dist/img/preview.png"> 
+	  																						<img class="card-img-top" id="img-3" src="/dist/img/preview.png" style="max-width: 289px !important; max-height: 289px !important; width: auto !important; height: auto !important;"> 
 	  																					</label> 
 	  																					<input id="file-input-3" name="file-input-3" onchange="PreviewImage(this, 3);" type="file" style="display:none"/>
 																					</div> 
 																					<div class="card-body"> 
 																						<p class="card-text"><input type="text" id="name-3" name="name-3" class="form-control" placeholder="Nombre de Imagen"></p> 																							
-																						<button class="btn btn-danger" onclick="QuitarImagen(3)">Quitar</button>
+																						<button class="btn btn-danger" onclick="QuitarImagen(3)">Eliminar</button>
 																					</div> 
 																				</div> 																				
 																			</div>
@@ -218,13 +221,13 @@
 																				<div class="card" style="width: 18rem;" id="Contenido-4">  																					
 																					<div class="image-upload-4">
 	  																					<label for="file-input-4"> 
-	  																						<img class="card-img-top" id="img-4" src="/dist/img/preview.png"> 
+	  																						<img class="card-img-top" id="img-4" src="/dist/img/preview.png" style="max-width: 289px !important; max-height: 289px !important; width: auto !important; height: auto !important;"> 
 	  																					</label> 
 	  																					<input id="file-input-4" name="file-input-4" onchange="PreviewImage(this, 4);" type="file" style="display:none"/>
 																					</div> 
 																					<div class="card-body"> 
 																						<p class="card-text"><input type="text" id="name-4" name="name-4" class="form-control" placeholder="Nombre de Imagen"></p> 																							
-																						<button class="btn btn-danger" onclick="QuitarImagen(4)">Quitar</button>
+																						<button class="btn btn-danger" onclick="QuitarImagen(4)">Eliminar</button>
 																					</div> 
 																				</div> 																				
 																			</div>
@@ -233,13 +236,13 @@
 																				<div class="card" style="width: 18rem;" id="Contenido-5">  																					
 																					<div class="image-upload-5">
 	  																					<label for="file-input-5"> 
-	  																						<img class="card-img-top" id="img-5" src="/dist/img/preview.png"> 
+	  																						<img class="card-img-top" id="img-5" src="/dist/img/preview.png" style="max-width: 289px !important; max-height: 289px !important; width: auto !important; height: auto !important;"> 
 	  																					</label> 
 	  																					<input id="file-input-5" name="file-input-5" onchange="PreviewImage(this, 5);" type="file" style="display:none"/>
 																					</div> 
 																					<div class="card-body"> 
 																						<p class="card-text"><input type="text" id="name-5" name="name-5" class="form-control" placeholder="Nombre de Imagen"></p> 																							
-																						<button class="btn btn-danger" onclick="QuitarImagen(5)">Quitar</button>
+																						<button class="btn btn-danger" onclick="QuitarImagen(5)">Eliminar</button>
 																					</div> 
 																				</div> 																				
 																			</div>
@@ -248,13 +251,13 @@
 																				<div class="card" style="width: 18rem;" id="Contenido-6">  																					
 																					<div class="image-upload-6">
 	  																					<label for="file-input-6"> 
-	  																						<img class="card-img-top" id="img-6" src="/dist/img/preview.png"> 
+	  																						<img class="card-img-top" id="img-6" src="/dist/img/preview.png" style="max-width: 289px !important; max-height: 289px !important; width: auto !important; height: auto !important;"> 
 	  																					</label> 
 	  																					<input id="file-input-6" name="file-input-6" onchange="PreviewImage(this, 6);" type="file" style="display:none"/>
 																					</div> 
 																					<div class="card-body"> 
 																						<p class="card-text"><input type="text" id="name-6" name="name-6" class="form-control" placeholder="Nombre de Imagen"></p> 																							
-																						<button class="btn btn-danger" onclick="QuitarImagen(6)">Quitar</button>
+																						<button class="btn btn-danger" onclick="QuitarImagen(6)">Eliminar</button>
 																					</div> 
 																				</div> 																				
 																			</div>
@@ -271,11 +274,11 @@
 															<div class="row" th:if="${accion == 'editar'}" id="ContenedorImagenesEditar">
 															<input type="hidden" name="idPrenda" id="idPrenda"  th:value="${prenda.idPrenda}"/>
 																<!-- Uno -->
-																<div class="col-sm-4" th:each="img: ${imagenesPrenda}" th:id="${'Contenedor-' + img.estatus}" th:style="${img.idPrenda != null} ? 'display: block' : 'display: none' ">
+																<div class="col-sm-4" th:each="img: ${imagenesPrenda}" th:id="${'Contenedor-' + img.estatus}" th:style="${img.idPrenda != null || img.estatus == '1' || img.estatus == '2'} ? 'display: block' : 'display: none' ">
 																	<div class="card" style="width: 18rem;">  																					
 																		<div th:class="${'image-upload-edit-' + img.estatus}">
-	  																		<label th:for="${'file-input-edit-' + img.estatus}">
-	  																			<img class="card-img-top" th:id="${'img-edit-' + img.estatus}" th:src="@{'/uploads/prendas/' + ${img.rutaPrenda}}" th:onerror="this.src='/dist/img/preview.png'" style="max-width: 289px !important; max-height: 289px !important; width: auto !important; height: auto !important; margin-left: auto !important; margin-right: auto !important;"> 
+	  																		<label th:for="${'file-input-edit-' + img.estatus}" th:id="${'contenedor-imagen-' + img.estatus}">
+	  																			<img class="card-img-top" th:id="${'img-edit-' + img.estatus}" th:src="@{'/uploads/prendas/' + ${img.rutaPrenda}}" th:onerror="this.src='/dist/img/preview.png'" style="max-width: 289px !important; max-height: 289px !important; width: auto !important; height: auto !important;"> 
 	  																		</label> 
 	  																		<input th:id="${'file-input-edit-' + img.estatus}" th:name="${'file-input-edit-' + img.estatus}" th:attr="onchange=|PreviewImageEdit(this, '${img.estatus}')|" type="file" style="display:none"/>
 	  																		<input type="hidden" th:id="${'id-input-edit-' + img.estatus}" th:name="${'id-input-edit-' + img.estatus}" th:value="${img.idPrendaImagen}"/>
@@ -283,9 +286,11 @@
 																		</div> 
 																		<div class="card-body"> 
 																			<p class="card-text">
-																				<input type="text" th:id="${'name-edit-' + img.estatus}" th:name="${'name-edit-' + img.estatus}" class="form-control" th:value="${img.nombrePrenda}" placeholder="Nombre de Imagen">
-																			</p> 																							
+																				<input type="text" th:id="${'name-edit-' + img.estatus}" th:name="${'name-edit-' + img.estatus}" class="form-control" th:value="${img.nombrePrenda}" placeholder="Nombre de Imagen" th:readonly="${img.estatus == '1' || img.estatus == '2'}">
+																			</p> 	
+																			<div th:if="${img.estatus == '3' || img.estatus == '4' || img.estatus == '5' || img.estatus == '6'}">																						
 																			<button class="btn btn-danger" type="button" th:attr="onclick=|QuitarImagenEdit('${img.estatus}')|">Quitar</button>
+																			</div>
 																		</div> 
 																	</div> 																				
 																</div>
@@ -331,11 +336,12 @@
 															<div class="col-sm-12">
 																<div class="form-group">
 																	<label>Detalle de la confecci&oacute;n</label>
-																	<textarea class="form-control" rows="6" th:field="*{detalleConfeccion}"
-																		placeholder="Especificar" id="DetalleConfeccion"></textarea>
+																	<textarea class="form-control" rows="6" th:field="*{detalleConfeccion}" id="DetalleConfeccion">
+																	
+																	</textarea>
 																</div>
 															</div>
-															<label for="adicionar" style="margin-left: 7px;">Marcadores&nbsp;&nbsp;</label>
+															<label for="adicionar" style="margin-left: 7px;"> Tipos de Marcadores&nbsp;&nbsp;</label>
                                                             <div class="input-group col-sm-12">
 											
                                                                 <select class="form-control" name="marcador_" id="marcador_">
@@ -355,7 +361,7 @@
                                                                     <thead>
                                                                         <tr>
                                                                             <th style="display: none;">Id</th>
-                                                                            <th>Lista</th>
+                                                                            <th>Lista de Marcadores</th>
                                                                             <th>Eliminar</th>
                                                                         </tr>
                                                                     </thead>
@@ -675,10 +681,9 @@
 		var clientes = /*[[${clientes}]]*/ 'default';
 		/*]]>*/
 		
-		console.log(generos);
-		console.log(clientes);
 		//Contador que dice cuantas imagenes existen
 		var contadorImagenes = 0;
+		console.log(familias);
 		
 		//Variable que auxilia cuando se elimina una imagen, se guarde el id que tenia
 		var idAux = 0;
@@ -690,7 +695,6 @@
 			var materiales = /*[[${materialesPrenda}]]*/ 'default';
 			var patronajesPrenda = /*[[${patronajesPrenda}]]*/ 'default';
 			var imagenes = /*[[${imagenesPrenda}]]*/ 'default';
-			console.log(materiales);
 			
 			objeto_prenda = prenda;
 			
@@ -724,6 +728,24 @@
 			$('#accionTituloContenedor').append("<div id='accionTitulo'><h3 class='card-title'>Editar Prenda: " + prenda.idText + "</h3></div>");
 		}
 		
+		//Funcion que cambia el nombre de las imagenes respecto a la familia de prenda elegida
+		$( "#TipoPrenda" ).change(function() {
+			for(var i = 0; i < familias.length; i++){
+				if(familias[i][0] == $('#TipoPrenda').val()){
+					$('#name-1').val("Frente");
+					$('#name-edit-1').val("Frente");
+					
+					if(familias[i][3] == "superior"){
+						$('#name-2').val("Espalda");
+						$('#name-edit-2').val("Espalda");	
+					}else{
+						$('#name-2').val("Trasero");
+						$('#name-edit-2').val("Trasero");
+					}
+					
+				}
+			}
+		});
 	</script>
 	<script src="/dist/js/FormSteps.js"></script>
 	<script>

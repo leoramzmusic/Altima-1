@@ -251,7 +251,8 @@ function Guardar() {
 //Esta valida que los campos esten llenos dentro de la primer pestaña
 function ValidarPrimerPestana() {
 	if ($('#DescripcionPrenda').val() != "" && $('#NotaEspecial').val() != ""
-		&& $('#DetallePrenda').val() != "" && $('#GeneroPrenda').val() != "") 
+		&& $('#DetallePrenda').val() != "" && $('#GeneroPrenda').val() != "" 
+		&& $('#file-input-1').val() != "" && $('#file-input-2').val() != "") 
 	{
 		$('#AlertaPrimerPestana').css('display', 'none');
 		$('#SiguientePrimeraPestana').click();
@@ -335,7 +336,7 @@ function ValidarCantidadesPatronaje() {
 function guardarMarcador() {
 	var _id = document.getElementById("marcador_").value;
 	var _text = document.getElementById("marcador_").options[document.getElementById("marcador_").selectedIndex].text;
-	var fila = "<tr><td style='display: none;'>" + _id + "</td><td>" + _text + "</td><td>" + '<button type="button" name="remove" id="' + _id + '"onclick="eliminarMarcador(this)" class="btn btn-danger btn_remove">Quitar</button></td></tr>';
+	var fila = "<tr><td style='display: none;'>" + _id + "</td><td>" + _text + "</td><td>" + '<button type="button" name="remove" id="' + _id + '"onclick="eliminarMarcador(this)" class="btn btn-danger btn_remove">Eliminar</button></td></tr>';
 	var campo_id;
 	$('#tablita tr').each(function () {
 		if($(this).find('td').eq(0).html()!=null){
@@ -375,7 +376,7 @@ function guardarPatronaje() {
 		"<td>" + '<input type="number" class="form-control" placeholder="10" id="CantidadTela'+_id+'">' + "</td>"+
 		"<td>" + '<input type="number" class="form-control" placeholder="10" id="CantidadForro'+_id+'">' + "</td>"+
 		"<td>" + '<input type="number" class="form-control" placeholder="10" id="CantidadEntretela'+_id+'">' + "</td>"+
-		"<td class='tdcenter'>" +'<button type="button" name="remove" id="' +_id + '"onclick="eliminarPatronaje(this)" class="btn btn-danger btn_remove">Quitar</button></td>'+
+		"<td class='tdcenter'>" +'<button type="button" name="remove" id="' +_id + '"onclick="eliminarPatronaje(this)" class="btn btn-danger btn_remove">Eliminar</button></td>'+
 		'</tr>';
 	var campo_id;
 	$('#CuerpoPatronaje tr').each(function () {
@@ -416,28 +417,23 @@ function eliminarPatronaje(t) {
 
 function AgregarImagen()
 {
-	if(idAux > 0)
+	for(var i = 1; i < 7; i++)
 	{
-		$('#Contenedor-' + idAux).show();
-		idAux = 0;
-	}
-	else
-	{
-		if(contadorImagenes < 6)
+		if( $('#Contenedor-' + i).css('display') == 'none' )
 		{
-			contadorImagenes++;
-
-			$('#Contenedor-' + contadorImagenes).show();
-
-			if(contadorImagenes == 6)
-			{
-				$('#ContenedorBotonAgregarOtro').hide();
-			}
+			$('#Contenedor-' + i).css('display', 'block');
+			break;
 		}
 		else
 		{
-			console.log("yas e lleno");
-		}	
+			console.log("ya esta visible");
+		}
+	}
+	
+	if($('#Contenedor-1').css('display') == 'block' && $('#Contenedor-2').css('display') == 'block' && $('#Contenedor-3').css('display') == 'block'
+		&& $('#Contenedor-4').css('display') == 'block' && $('#Contenedor-5').css('display') == 'block' && $('#Contenedor-6').css('display') == 'block')
+	{
+		$('#ContenedorBotonAgregarOtro').hide();
 	}
 }
 
@@ -455,18 +451,38 @@ function AgregarImagenEditar()
 			console.log("ya esta visible");
 		}
 	}
+	
+	if($('#Contenedor-1').css('display') == 'block' && $('#Contenedor-2').css('display') == 'block' && $('#Contenedor-3').css('display') == 'block'
+		&& $('#Contenedor-4').css('display') == 'block' && $('#Contenedor-5').css('display') == 'block' && $('#Contenedor-6').css('display') == 'block')
+	{
+		$('#ContenedorBotonAgregarOtro').hide();
+	}
 }
 
 function QuitarImagenEdit(id)
 {
 	$('#Contenedor-' + id).hide();
 	$('#status-input-edit-' + id).val("delete");
+	$('#name-edit-' + id).val('');
+	$('#file-input-edit-' + id).val('');
+	
+	//Se quita la previsualizacion de la imagen
+	$('#img-edit-' + id).remove();
+	$('#contenedor-imagen-' + id).append("<img class='card-img-top' id='img-edit-" + id + "'  src='/dist/img/preview.png' style='max-width: 289px !important; max-height: 289px !important; width: auto !important; height: auto !important;'>");
+	
+	if($('#Contenedor-1').css('display') == 'block' && $('#Contenedor-2').css('display') == 'block' && $('#Contenedor-3').css('display') == 'block'
+		&& $('#Contenedor-4').css('display') == 'block' && $('#Contenedor-5').css('display') == 'block' && $('#Contenedor-6').css('display') == 'block')
+	{
+		$('#ContenedorBotonAgregarOtro').hide();
+	}
+	else
+	{
+		$('#ContenedorBotonAgregarOtro').show();
+	}
 }
 
 function QuitarImagen(id)
 {
-	idAux = id;
-
 	$('#Contenido-' + id).remove();
 
 	$('#Contenedor-' + id).hide();
@@ -480,10 +496,19 @@ function QuitarImagen(id)
 	  									"</div>" +
 										"<div class='card-body'>" +  
 											"<p class='card-text'><input type='text' id='name-" + id + "' name='name-" + id + "' class='form-control' placeholder='Nombre de Imagen'></p>" +  																							
-											"<button class='btn btn-danger' onclick='QuitarImagen(" + id + ")'>Quitar</button>" + 
+											"<button class='btn btn-danger' onclick='QuitarImagen(" + id + ")'>Eliminar</button>" + 
 										"</div>" +  
 									"</div>");
-
+	
+	if($('#Contenedor-1').css('display') == 'block' && $('#Contenedor-2').css('display') == 'block' && $('#Contenedor-3').css('display') == 'block'
+		&& $('#Contenedor-4').css('display') == 'block' && $('#Contenedor-5').css('display') == 'block' && $('#Contenedor-6').css('display') == 'block')
+	{
+		$('#ContenedorBotonAgregarOtro').hide();
+	}
+	else
+	{
+		$('#ContenedorBotonAgregarOtro').show();
+	}
 
 }
 
