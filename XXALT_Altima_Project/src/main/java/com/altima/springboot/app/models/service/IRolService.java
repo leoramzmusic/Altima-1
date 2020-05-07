@@ -18,4 +18,10 @@ public interface IRolService {
 	@SuppressWarnings("rawtypes")
 	public ArrayList findBySeccionRol(String seccion);
 
+	List<Rol> FindByDepartamento();
+
+	List<Rol> FindBySeccion();
+
+	List<Rol> FindByPermiso();
+
 }

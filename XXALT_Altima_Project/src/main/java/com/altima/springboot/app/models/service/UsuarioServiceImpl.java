@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.altima.springboot.app.dto.ChangePasswordForm;
+import com.altima.springboot.app.models.entity.Rol;
 import com.altima.springboot.app.models.entity.Usuario;
 import com.altima.springboot.app.repository.UsuarioRepository;
 
@@ -122,6 +123,14 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	@Override
 	public String getMensajeError() {
 		return mensajeError;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public Object SaveUserRol (String departamento, String seccion, String permisos){
+		return (Rol) em.createQuery("SELECT  departamentoRol, seccionRol FROM Rol \r\n" + 
+				"WHERE nombreRol!='ADMINISTRADOR'").getSingleResult();
 	}
 
 }
