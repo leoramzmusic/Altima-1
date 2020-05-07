@@ -27,19 +27,19 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" th:unless="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')} ">
                     <a th:href="${'/mensajeria'}" class="nav-link" id="navMensajeria">
                         <i class="nav-icon fas fa-mail-bulk text-primary" id="iMensajeria"></i>
                         <p>Mensajer&iacute;a</p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" th:unless="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')} ">
                     <a th:href="${'/reporte-catalogo'}" class="nav-link" id="navReportes">
                         <i class="nav-icon fas fa-clipboard text-primary" id="iReportes"></i>
                         <p>Reportes</p>
                     </a>
                 </li>
-                <li class="nav-item has-treeview" id="menuDiseno" th:if="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')} or (${#authorization.expression('hasRole(''ROLE_DISENIO'')')})">
+                <li class="nav-item has-treeview" id="menuDiseno" th:if="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')} ">
                     <a class="nav-link" id="navDiseno">
                         <i class="nav-icon flaticon-005-dress text-primary" style="margin-right: -3px;margin-left: 6px;" id="iDiseno"></i>
                         <p>
@@ -72,7 +72,7 @@
                                 <p>Cat&aacute;logos</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" th:unless="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')} ">
                             <a th:href="${'/control-de-produccion'}" class="nav-link " id="navDiseno5">
                                 <i class="nav-icon flaticon-010-wardrobe"></i>
                                 <p>Producci&oacute;n de muestras</p>
@@ -80,7 +80,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item has-treeview" th:if="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')}" id="menuComercial">
+                <li class="nav-item has-treeview" th:unless="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')}" id="menuComercial">
                     <a href="#" class="nav-link" id="navComercial">
                         <i class="nav-icon fas fa-clipboard text-primary" id="iComercial"></i>
                         <p>
@@ -305,13 +305,13 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item has-treeview" th:if="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')}">
+                <li class="nav-item has-treeview" th:unless="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')}">
                     <a th:href="${'/rutas'}" class="nav-link" id="navRutas">
                         <i class="nav-icon fas fa-truck text-primary"></i>
                         <p>Log&iacute;stica</p>
                     </a>
                 </li>
-                <li class="nav-item has-treeview" id="menuProduccion" th:if="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')}">
+                <li class="nav-item has-treeview" id="menuProduccion" th:unless="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')}">
                     <a class="nav-link" id="navProduccion">
                         <i class="nav-icon flaticon-026-sewing-machine text-primary"></i>
                         <p>
@@ -418,7 +418,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item has-treeview" id="menuMuestrario" th:if="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')}">
+                <li class="nav-item has-treeview" id="menuMuestrario" th:unless="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')}">
                     <a class="nav-link" id="navMuestrario">
                         <i class="nav-icon far fa-comment-dots text-primary"></i>
                         <p>
@@ -435,7 +435,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item has-treeview" th:if="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')}">
+                <li class="nav-item has-treeview" th:unless="${#authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')')}">
                     <a th:href="${'/administracion_usuarios'}" class="nav-link" id="navUsuario">
                         <i class="nav-icon fas fa-users text-primary"></i>
                         <p>Usuarios</p>
