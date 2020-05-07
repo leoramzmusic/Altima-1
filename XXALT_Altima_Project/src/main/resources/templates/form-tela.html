@@ -294,9 +294,9 @@
 	<input name="codcolor" type="hidden" id="codcolor" value="">
 	<input name="tipomat" type="hidden" id="tipomat" value="">
 	<input name="posicionm" type="hidden" id="posicionm" value="">
-	<input type="hidden" th:field="*{tela.auxiliar1}">
-	<input type="hidden" th:field="*{tela.auxiliar2}">
-	<input type="hidden" th:field="*{tela.auxiliar3}">
+	<input th:unless="${tela.auxiliar1}==null" type="hidden" th:field="*{tela.auxiliar1}">
+	<input th:unless="${tela.auxiliar2}==null" type="hidden" th:field="*{tela.auxiliar2}">
+	<input th:unless="${tela.auxiliar3}==null" type="hidden" th:field="*{tela.auxiliar3}">
 	<input type="hidden" th:field="*{tela.idTela}">
 	<input type="hidden" th:field="*{tela.idText}">
 	<input type="hidden" th:field="*{tela.idTextProspecto}">
