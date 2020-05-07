@@ -25,14 +25,6 @@
     <link rel="stylesheet" href="dist/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
-    
-    <!-- Select2 -->
-    <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
-    <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-    <!-- select2 -->
-  	<link href="dist/css/select2.min.css" rel="stylesheet" />
-	<!-- select2-bootstrap4-theme -->
-	<link href="dist/css/select2-bootstrap4.css" rel="stylesheet">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -79,7 +71,7 @@
                                     <h3 class="card-title">Listado de seguimientos</h3>
                                 </div>
                                 <div class="card-body">
-                                    <table class="table tablexd table-striped table-bordered">
+                                    <table class="table tablexd table-striped table-bordered tablaSeguimientos">
                                         <thead>
                                             <tr>
                                                 <th>Cliente</th>
@@ -125,14 +117,10 @@
     <script src="dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
-    <!-- Select2 -->
-    <script src="plugins/select2/js/select2.full.min.js"></script>
     <!-- SweetAlert -->
     <script src="dist/js/sweetalert.js"></script>
     <!-- Datatables Plugin-->
     <script src="dist/js/jquery.dataTables.min.js"></script>
-    <script src="dist/js/dataTables.buttons.min.js"></script>
-    <script src="dist/js/buttons.colVis.min.js"></script>
     <!-- Bootstrap Datatables Plugin-->
     <script src="dist/js/dataTables.bootstrap4.min.js"></script>
     <!-- TABLA RESPONSIVA -->
@@ -140,20 +128,8 @@
 	<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 	<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
     <!-- select2 -->
-	<script src="dist/js/select2.min.js"></script>
 	<script src="dist/js/Llamadas.js"></script>
-	<script>
-	$(function () {
-		  $('select').each(function () {
-		    $(this).select2({
-		      theme: 'bootstrap4',
-		      width: 'style',
-		      placeholder: $(this).attr('placeholder'),
-		      allowClear: Boolean($(this).data('allow-clear')),
-		    });
-		  });
-		});
-	</script>
+	<script src="dist/js/tablaSeguimientos.js"></script>
     <!-- Popover-->
     <script>
         $(function() {
@@ -162,50 +138,6 @@
                 trigger: 'hover'
             })
         })
-    </script>
-    <!-- Script de la tabla -->
-    <script>
-        $(document).ready(function() {
-           var table = $('.tablexd').DataTable({
-                "ordering": false,
-                "pageLength": 5,
-                "responsive": true,
-                "lengthMenu": [
-                    [5, 10, 25, 50, 100],
-                    [5, 10, 25, 50, 100]
-                ],
-                "language": {
-                    "sProcessing": "Procesando...",
-                    "sLengthMenu": "Mostrar _MENU_ registros",
-                    "sZeroRecords": "No se encontraron resultados",
-                    "sEmptyTable": "Ningún dato disponible en esta tabla =(",
-                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                    "sInfoPostFix": "",
-                    "sSearch": "Buscar:",
-                    "sUrl": "",
-                    "sInfoThousands": ",",
-                    "sLoadingRecords": "Cargando...",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                    },
-                    "buttons": {
-                        "copy": "Copiar",
-                        "colvis": "Visibilidad"
-                    }
-                }
-            });
-            new $.fn.dataTable.FixedHeader( table );
-
-        });
     </script>
     <script>
 		function changeClassById() {
