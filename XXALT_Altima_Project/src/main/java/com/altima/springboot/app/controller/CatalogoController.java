@@ -152,9 +152,9 @@ public class CatalogoController {
 	}
 
 	@RequestMapping(value = { "/catalogos" }, method = RequestMethod.GET)
-	public String catalogo(Model model, RedirectAttributes flash) {
+	public String catalogo() {
 
-		return "/catalogos";
+		return "catalogos";
 	}
 
 	@PostMapping("/bajacatalogo")
@@ -180,7 +180,7 @@ public class CatalogoController {
 	@PostMapping("/guardarcatalogo")
 	public String guardacatalogo(String Marca, String Descripcion, String Color, String PiezaTrazo,
 			String FamiliaPrenda, String FamiliaGenero, String FamiliaComposicion, String InstruccionCuidado,
-			String UnidadMedida, String Material, HttpServletRequest request, String Marcador, String CodigoColor,
+			String UnidadMedida, String Material, HttpServletRequest request, String Marcador, String CodigoColor,String Posicion,
 			@RequestParam(required = false) MultipartFile iconocuidado, Long Idcuidado, String Simbolo,
 			String Composicion) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -281,6 +281,7 @@ public class CatalogoController {
 			familiaprenda.setNombreLookup(StringUtils.capitalize(FamiliaPrenda));
 			familiaprenda.setTipoLookup("Familia Prenda");
 			familiaprenda.setCreadoPor(auth.getName());
+			familiaprenda.setAtributo1(Posicion);
 			familiaprenda.setFechaCreacion(date);
 			familiaprenda.setEstatus(1);
 			catalogo.save(familiaprenda);
@@ -526,7 +527,7 @@ public class CatalogoController {
 	@PostMapping("/editarcatalogo")
 	public String editacatalogo(Model model, final Long idLookup, String Marca, String Color, String PiezaTrazo,
 			String FamiliaPrenda, String Descripcion, String FamiliaGenero, String FamiliaComposicion,
-			String InstruccionCuidado, String UnidadMedida, String Material, String Marcador, String CodigoColor,
+			String InstruccionCuidado, String UnidadMedida, String Material, String Marcador, String CodigoColor,String Posicion,
 			String Simbolo, String Composicion) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		DisenioLookup marca = null;
@@ -569,6 +570,7 @@ public class CatalogoController {
 			familiaprenda = catalogo.findOne(idLookup);
 			familiaprenda.setNombreLookup(FamiliaPrenda);
 			familiaprenda.setUltimaFechaModificacion(date);
+			familiaprenda.setAtributo1(Posicion);
 			familiaprenda.setActualizadoPor(auth.getName());
 			catalogo.save(familiaprenda);
 			return "redirect:catalogos";

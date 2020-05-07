@@ -358,6 +358,7 @@ function listarPrendas() {
 				"<tr>" +
 				"<th>Clave</th>" +
 				"<th>Nombre</th>" +
+				"<th>Posici&oacute;n</th>" +
 				"<th>Acciones</th>" +
 				"</tr>" +
 				"</thead>" +
@@ -370,9 +371,10 @@ function listarPrendas() {
 					"<tr>" +
 					"<td>" + data[i].idText + "</td>",
 					"<td>" + data[i].nombreLookup + "</td>",
+					"<td>" + data[i].atributo1 + "</td>",
 					"<td style='text-align: center;'>" +
 					"<button class='btn btn-info btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por: </strong>"+data[i].creadoPor+" <br /><strong>Fecha de creación:</strong> "+data[i].fechaCreacion+"<br><strong>Modificado por:</strong>"+creacion+"<br><strong>Fecha de modicación:</strong>"+data[i].ultimaFechaModificacion+"'><i class='fas fa-info'></i></button> " +
-					"<button onclick='editarPrenda(this);' idlookup='" + data[i].idLookup + "' nombre='" + data[i].nombreLookup + "' descripcion='" + data[i].descripcion + "' class='btn btn-warning btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar'><i class='fas fa-pen'></i></button> " +
+					"<button onclick='editarPrenda(this);' idlookup='" + data[i].idLookup + "' nombre='" + data[i].nombreLookup + "' posicion='" + data[i].atributo1 + "' descripcion='" + data[i].descripcion + "' class='btn btn-warning btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar'><i class='fas fa-pen'></i></button> " +
 					"<button onclick='bajarPrenda(" + data[i].idLookup + ")' class='btn btn-danger btn-circle btn-sm popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja'><i class='fas fa-caret-down'></i></button> " +
 					"</td>" +
 
@@ -1589,6 +1591,11 @@ function agregarPrenda() {
 			'<div class="form-group col-sm-12">' +
 			'<label for="pedidonom">Nombre de la familia prendas</label>' +
 			'<input type="text" class="swal2-input" id="familia" placeholder="Pantalón">' +
+			'<label for="posicion">Posici&oacute;n</label>' +
+			"<select class='form-control' id='posicion'>" +
+			"<option value='superior'>Superior</option>" +
+			"<option value='inferior'>Inferior</option>" +
+			"</select>" +
 			'</div>' +
 			'</div>',
 		showCancelButton: true,
@@ -1599,6 +1606,7 @@ function agregarPrenda() {
 	}).then((result) => {
 		if (result.value && document.getElementById("familia").value) {
 			var FamiliaPrenda = document.getElementById("familia").value;
+			var Posicion = document.getElementById("posicion").value;
             /////////////////
 			
 			$.ajax({
@@ -1606,6 +1614,7 @@ function agregarPrenda() {
 				url: "/verifduplicado",
 				data: {
 					'Lookup': FamiliaPrenda
+					
 				
 					// ,'Descripcion':Descripcion
 				}
@@ -1618,7 +1627,8 @@ function agregarPrenda() {
 				url: "/guardarcatalogo",
 				data: {
 					"_csrf": $('#token').val(),
-					'FamiliaPrenda': FamiliaPrenda
+					'FamiliaPrenda': FamiliaPrenda,
+					'Posicion':Posicion
 
 
 					// ,'Descripcion':Descripcion
@@ -1656,13 +1666,17 @@ function agregarPrenda() {
 
 function editarPrenda(e) {
 	var descr = e.getAttribute("descripcion");
-
+	var pos=e.getAttribute("posicion")=="inferior"?"selected":"";
 	Swal.fire({
 		title: 'Editar prenda',
 		html: '<div class="row">' +
 			'<div class="form-group col-sm-12">' +
 			'<label for="pedidonom">Nombre de la familia prendas</label>' +
 			'<input type="text" value="' + e.getAttribute("nombre") + '" class="swal2-input" id="nombre" placeholder="Pantalón">' +
+			"<select class='form-control' id='posicion' value='" + e.getAttribute("posicion") + "'>" +
+			"<option value='superior' >Superior</option>" +
+			"<option value='inferior' "+pos+">Inferior</option>" +
+			"</select>" +
 			'</div>' +
 			'<div class="form-group col-sm-12">' +
 			'<input type="hidden" value=" ' + e.getAttribute("idlookup") + ' " class="swal2-input" id="idlookup" placeholder="Pantalón">' +
@@ -1677,12 +1691,14 @@ function editarPrenda(e) {
 		if (result.value && document.getElementById("nombre").value && document.getElementById("idlookup").value) {
 			var FamiliaPrenda = document.getElementById("nombre").value;
 			var idLookup = document.getElementById("idlookup").value;
+			var Posicion = document.getElementById("posicion").value;
 			$.ajax({
 				type: "POST",
 				url: "/editarcatalogo",
 				data: {
 					"_csrf": $('#token').val(),
 					'FamiliaPrenda': FamiliaPrenda,
+					'Posicion': Posicion,
 					'idLookup': idLookup
 					// ,'Descripcion':Descripcion
 				}
