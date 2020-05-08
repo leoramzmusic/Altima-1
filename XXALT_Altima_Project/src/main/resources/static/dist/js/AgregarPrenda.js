@@ -149,6 +149,7 @@ function Guardar() {
 	
 	$('#ElDeGuardar').remove();
 	$('#Guardando').css('display', 'block');
+	console.log(objeto_patronajes);
 	/*
 	if (CambiarImgFrente == true && CambiarImgEspalda == true) {
 		$('#FormImagenes').click();
@@ -310,7 +311,7 @@ function ValidarCuartaPestana() {
 			if(validacion===true)
 			{
 				_id=$(this).find('td').eq(0).html();
-				var temp = {id: $(this).find('td').eq(0).html(), cantidadTela: $('#CantidadTela'+$(this).find('td').eq(0).html()).val(), cantidadForro: $('#CantidadForro'+$(this).find('td').eq(0).html()).val(), cantidadEntretela: $('#CantidadEntretela'+$(this).find('td').eq(0).html()).val() };
+				var temp = {id: $(this).find('td').eq(0).html(), cantidadTela: $('#CantidadTela'+$(this).find('td').eq(0).html()).val(), cantidadForro: $('#CantidadForro'+$(this).find('td').eq(0).html()).val(), cantidadEntretela: $('#CantidadEntretela'+$(this).find('td').eq(0).html()).val(), cantidadTelaSecundaria: $('#CantidadTelaSecundaria'+$(this).find('td').eq(0).html()).val(), cantidadForroSecundario: $('#CantidadForroSecundario'+$(this).find('td').eq(0).html()).val()  };
 				objeto_patronajes.push(temp);
 			}
 		});
@@ -323,7 +324,7 @@ function ValidarCuartaPestana() {
 }
 //Este valida que las cantidades del patronaje no esten nulas cuando se confirma una prenda
 function ValidarCantidadesPatronaje() {
-	if ($('#CantidadTela').val() != "" && $('#CantidadForro').val() != "" && $('#CantidadEntretela').val() != "") {
+	if ($('#CantidadTela').val() != "" && $('#CantidadTelaSecundaria').val() != "" && $('#CantidadForro').val() != "" && $('#CantidadForroSecundario').val() != "" && $('#CantidadEntretela').val() != "") {
 		$('#AlertaCantidadesPatronaje').css('display', 'none');
 		console.log("si hace la entrasion");
 		AgregarElementoListaPatronaje();
@@ -374,7 +375,9 @@ function guardarPatronaje() {
 	var fila = "<tr><td style='display: none;'>" +_id + "</td>"+
 		"<td>" + _text + "</td>"+
 		"<td>" + '<input type="number" class="form-control" placeholder="10" id="CantidadTela'+_id+'">' + "</td>"+
+		"<td>" + '<input type="number" class="form-control" placeholder="10" id="CantidadTelaSecundaria'+_id+'">' + "</td>"+
 		"<td>" + '<input type="number" class="form-control" placeholder="10" id="CantidadForro'+_id+'">' + "</td>"+
+		"<td>" + '<input type="number" class="form-control" placeholder="10" id="CantidadForroSecundario'+_id+'">' + "</td>"+
 		"<td>" + '<input type="number" class="form-control" placeholder="10" id="CantidadEntretela'+_id+'">' + "</td>"+
 		"<td class='tdcenter'>" +'<button type="button" name="remove" id="' +_id + '"onclick="eliminarPatronaje(this)" class="btn btn-danger btn_remove">Eliminar</button></td>'+
 		'</tr>';

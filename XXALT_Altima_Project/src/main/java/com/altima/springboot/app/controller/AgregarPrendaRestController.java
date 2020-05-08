@@ -234,7 +234,9 @@ public class AgregarPrendaRestController {
 			dpp.setIdPrenda(Long.valueOf(dp.getIdPrenda()));
 			dpp.setIdPatronaje(patronaje.get("id").toString());
 			dpp.setCantidadTela(patronaje.get("cantidadTela").toString());
+			dpp.setCantidadTelaSecundaria(patronaje.get("cantidadTelaSecundaria").toString());
 			dpp.setCantidadForro(patronaje.get("cantidadForro").toString());
+			dpp.setCantidadForroSecundaria(patronaje.get("cantidadForroSecundario").toString());
 			dpp.setCantidadEntretela(patronaje.get("cantidadEntretela").toString());
 
 			prendaPatronajeService.save(dpp);
