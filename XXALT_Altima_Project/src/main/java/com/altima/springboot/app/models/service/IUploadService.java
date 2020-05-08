@@ -55,6 +55,14 @@ public interface IUploadService {
 
 	
 	
+	//Inventario
+			public Resource loadInventario(String filename) throws MalformedURLException;
+			
+			public String copyInventario(MultipartFile file1) throws IOException;
+			
+			public boolean deleteInventario(String filename);
+	
+	
 	
 	
 	

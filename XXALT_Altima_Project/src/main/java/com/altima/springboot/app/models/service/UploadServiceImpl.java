@@ -328,4 +328,51 @@ public class UploadServiceImpl implements IUploadService {
 		}
 		return true;
 	}
+	
+	
+	
+	
+/* Inventario */
+	
+	public Path getPathInventario(String filename) {
+		return Paths.get(folderPrendas).resolve(filename).toAbsolutePath();
+
+	}
+	
+	
+	
+	
+	@Override
+	public Resource loadInventario(String filename) throws MalformedURLException {
+		Path pathFoto = getPathInventario(filename);
+		Resource recurso = null;
+
+		recurso = new UrlResource(pathFoto.toUri());
+		if (!recurso.exists() && !recurso.isReadable()) {
+			throw new RuntimeException("Error: No se puede cargar la imagen " + pathFoto.toString());
+		}
+
+		return recurso;
+	}
+
+	@Override
+	public String copyInventario(MultipartFile file) throws IOException {
+		String uniqueFilename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+		Path rootPath = getPathInventario(uniqueFilename);
+		Files.copy(file.getInputStream(), rootPath);
+		return uniqueFilename;
+	}
+
+	@Override
+	public boolean deleteInventario(String filename) {
+		Path rootPath = getPathInventario(filename);
+		File archivo = rootPath.toFile();
+
+		if (archivo.exists() && archivo.canRead()) {
+			if (archivo.delete()) {
+			}
+		}
+		return true;
+	}
+	
 }

@@ -1,12 +1,23 @@
-<div id="infoInventario" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+
+
+<form class="row"  id="materialForm" th:object="${material}" th:action="@{/guardar}" enctype="multipart/form-data"
+    method="post">
+    
+    <div id="infoInventario" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
+        <div class="modal-content" id="identificar">
           
 <div class="modal-body" th:each="mt:${listInventario}" >
-                <img class="img-fluid" th:src="@{'/uploads/telas/' + ${mt[8]}}" alt=" no jalo">
+                <img class="img-fluid" th:src="@{'/uploads/prendas/' + ${mt[8]}}" alt=" no jalo">
             </div>
           
           
         </div>
     </div>
 </div>
+    
+    
+    
+
+</form>

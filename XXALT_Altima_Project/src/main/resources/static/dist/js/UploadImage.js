@@ -339,6 +339,80 @@ $('#clearUploadExtMaterial').on('click', function() {
 	}
 });
 
+
+
+//MuestrarioInventario
+
+function uploadPreviewInventario(input) {
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+
+		reader.onload = function(e) {
+			if (e.target.result.trim().length == 0) {
+				$('#serviceImageInventario')
+						.attr('src',
+								'http://catawbabrewing.com/wp-content/themes/catawba/images/placeholder.png');
+			} else {
+				$('#serviceImageInventario').attr('src', e.target.result);
+			}
+		}
+
+		reader.readAsDataURL(input.files[0]);
+	}
+}
+
+function uploadPreviewExtInventario(input) {
+	if (input.trim().length == 0) {
+		var previewSrc = '{{CSS_URL}}/images/placeholder.jpg';
+	} else {
+		var previewSrc = input;
+	}
+
+	$('#serviceImageInventario').attr('src', previewSrc);
+}
+
+function resetUploadPreviewInventario() {
+	if (!$('#previousImageInventario').val()) {
+		$('#serviceImageInventario')
+				.attr('src',
+						'http://catawbabrewing.com/wp-content/themes/catawba/images/placeholder.png');
+	} else {
+		$('#serviceImageInventario').attr('src',
+				'{{PROD_IMG}}/'.$('#previousImageInventario').val());
+	}
+}
+
+$("#mainImageInventario").change(function() {
+	uploadPreviewInventario(this);
+});
+
+$('[name="mainImgExtInventario"]').on('change', function() {
+	uploadPreviewExtInventario(this.value);
+});
+
+$('#clearUploadInventario').on('click', function() {
+	$('#mainImageInventario').val('');
+
+	if ($('#imgExtInventario').val().trim().length == 0) {
+		resetUploadPreviewInventario();
+	} else {
+		uploadPreviewExtInventario($('#imgExt').val());
+	}
+});
+
+$('#clearUploadExtInventario').on('click', function() {
+	$('#imgExtInventario').val('');
+
+	if (!$('#mainImageInventario').val()) {
+		resetUploadPreviewInventario();
+	} else {
+		uploadPreviewInventario($('#mainImageInventario'));
+	}
+});
+
+
+
+
 // ClienteMoral
 function uploadPreviewClienteMoral(input) {
 	if (input.files && input.files[0]) {
