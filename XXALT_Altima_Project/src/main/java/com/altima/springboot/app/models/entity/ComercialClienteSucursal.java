@@ -60,20 +60,16 @@ public class ComercialClienteSucursal implements Serializable{
 	private String SActualizadoPor;
 	
 	@Column(name="fecha_creacion")
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern="yyyy-mm-dd")
-	private Date SFechaCreacion;
+	private String SFechaCreacion;
 	
 	@Column(name="ultima_fecha_modificacion")
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern="yyyy-mm-dd")
-	private Date SUltimaFechaModificacion;
+	private String SUltimaFechaModificacion;
 	
 	@Column(name="observacion")
 	private String SObservacion;
 	
 	@Column(name="estatus")
-	private String estatus;
+	private String Sestatus;
 	
 	
 	
@@ -92,14 +88,15 @@ public class ComercialClienteSucursal implements Serializable{
 
 
 
-	public String getEstatus() {
-		return estatus;
+
+	public String getSestatus() {
+		return Sestatus;
 	}
 
 
 
-	public void setEstatus(String estatus) {
-		this.estatus = estatus;
+	public void setSestatus(String sestatus) {
+		Sestatus = sestatus;
 	}
 
 
@@ -224,25 +221,25 @@ public class ComercialClienteSucursal implements Serializable{
 
 
 
-	public Date getSFechaCreacion() {
+	public String getSFechaCreacion() {
 		return SFechaCreacion;
 	}
 
 
 
-	public void setSFechaCreacion(Date sFechaCreacion) {
+	public void setSFechaCreacion(String sFechaCreacion) {
 		SFechaCreacion = sFechaCreacion;
 	}
 
 
 
-	public Date getSUltimaFechaModificacion() {
+	public String getSUltimaFechaModificacion() {
 		return SUltimaFechaModificacion;
 	}
 
 
 
-	public void setSUltimaFechaModificacion(Date sUltimaFechaModificacion) {
+	public void setSUltimaFechaModificacion(String sUltimaFechaModificacion) {
 		SUltimaFechaModificacion = sUltimaFechaModificacion;
 	}
 
@@ -278,9 +275,5 @@ public class ComercialClienteSucursal implements Serializable{
 
 
 
-	@PrePersist
-	public void prePersist() {
-		SFechaCreacion=new Date();  
-	}
 	
 }
