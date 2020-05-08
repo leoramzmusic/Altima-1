@@ -1,5 +1,7 @@
 package com.altima.springboot.app.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 import org.apache.commons.logging.Log;
@@ -56,19 +58,27 @@ public class ClienteSucursalController {
 	public String guardarCliente(ComercialClienteSucursal sucursal, HrDireccion direccion,
 			RedirectAttributes redirectAttrs) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Date date = new Date();
+		DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		
 		if (sucursal.getIdClienteSucursal() == null && direccion.getIdDireccion() == null) {
 			if ( direccion.getNumeroExt()== null || direccion.getNumeroExt().isEmpty()) {
 				direccion.setNumeroExt("S/N");
 			}
 			direccion.setEstatus(1);
-			DireccionService.save(direccion);
-			direccion.setIdText("DIR" + direccion.getIdDireccion());
+			direccion.setUltimaFechaModificacion(hourdateFormat.format(date));
+			direccion.setFechaCreacion(hourdateFormat.format(date));
 			direccion.setCreadoPor(auth.getName());
 			DireccionService.save(direccion);
+			direccion.setIdText("DIR" + direccion.getIdDireccion());
+			DireccionService.save(direccion);
 			// Guardamos los datos de la sucursal.
+			
 			sucursal.setIdDireccion(direccion.getIdDireccion());
-			sucursal.setEstatus("1");
+			sucursal.setSestatus("1");
+			sucursal.setSCreadoPor(auth.getName());
+			sucursal.setSFechaCreacion(hourdateFormat.format(date));
+			sucursal.setSUltimaFechaModificacion(hourdateFormat.format(date));
 			SucursalService.save(sucursal);
 			sucursal.setSIdText("SUC" + sucursal.getNoSucursal());
 			sucursal.setSCreadoPor(auth.getName());
@@ -80,11 +90,10 @@ public class ClienteSucursalController {
 				direccion.setNumeroExt("S/N");
 			}
 			direccion.setActualizadoPor(auth.getName());
-			direccion.setUltimaFechaModificacion(new Date());
-			sucursal.setEstatus("1");
+			direccion.setUltimaFechaModificacion(hourdateFormat.format(date));
+			sucursal.setSIdText("SUC" + sucursal.getNoSucursal());
 			sucursal.setSActualizadoPor(auth.getName());
-			sucursal.setSUltimaFechaModificacion(new Date());
-			sucursal.setEstatus("1");
+			sucursal.setSUltimaFechaModificacion(hourdateFormat.format(date));;
 			redirectAttrs.addFlashAttribute("title", "Sucursal editada correctamente").addFlashAttribute("icon", "success");
 			DireccionService.save(direccion);
 			SucursalService.save(sucursal);
@@ -112,14 +121,38 @@ public class ClienteSucursalController {
 	
 	@GetMapping("delete-sucursal/{id}") 
 	public String delete_sucursal(@PathVariable("id") Long id, RedirectAttributes redirectAttrs) throws Exception {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Date date = new Date();
+		DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		
 		ComercialClienteSucursal sucursal = null;
 		sucursal = SucursalService.findOne(id);
-		sucursal.setEstatus("0");
+		sucursal.setSestatus("0");
+		sucursal.setSActualizadoPor(auth.getName());
+		sucursal.setSUltimaFechaModificacion(hourdateFormat.format(date));
 		SucursalService.save(sucursal);
 	
 		redirectAttrs
-        .addFlashAttribute("title", "Sucursal elimnada correctamente")
+        .addFlashAttribute("title", "Sucursal dada de baja  correctamente")
+        .addFlashAttribute("icon", "success");
+		return "redirect:/sucursales/" + sucursal.getIdCliente();
+	}
+	
+	@GetMapping("alta-sucursal/{id}") 
+	public String alta_sucursal(@PathVariable("id") Long id, RedirectAttributes redirectAttrs) throws Exception {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Date date = new Date();
+		DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		
+		ComercialClienteSucursal sucursal = null;
+		sucursal = SucursalService.findOne(id);
+		sucursal.setSestatus("1");
+		sucursal.setSActualizadoPor(auth.getName());
+		sucursal.setSUltimaFechaModificacion(hourdateFormat.format(date));
+		SucursalService.save(sucursal);
+	
+		redirectAttrs
+        .addFlashAttribute("title", "Sucursal dada de alta correctamente")
         .addFlashAttribute("icon", "success");
 		return "redirect:/sucursales/" + sucursal.getIdCliente();
 	}

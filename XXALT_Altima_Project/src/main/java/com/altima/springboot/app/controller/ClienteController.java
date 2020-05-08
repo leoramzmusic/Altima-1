@@ -62,12 +62,16 @@ public class ClienteController {
 	public String guardarCliente(ComercialCliente cliente, HrDireccion direccion, RedirectAttributes redirectAttrs,
 			@RequestParam(value="imagenCliente", required=false) MultipartFile imagenCliente) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Date date = new Date();
+		DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		
 		if (cliente.getIdCliente() == null && direccion.getIdDireccion() == null) {
 			direccion.setEstatus(1);
 			if ( direccion.getNumeroExt()== null || direccion.getNumeroExt().isEmpty()) {
 				direccion.setNumeroExt("S/N");
 			}
+			direccion.setUltimaFechaModificacion(hourdateFormat.format(date));
+			direccion.setFechaCreacion(hourdateFormat.format(date));
 			DireccionService.save(direccion);
 			direccion.setIdText("DIR" + direccion.getIdDireccion());
 			direccion.setCreadoPor(auth.getName());
@@ -76,8 +80,21 @@ public class ClienteController {
 			// Guardamos los datos de cliente.
 			cliente.setEstatusCliente(0);
 			cliente.setEstatusC(1);
+			cliente.setCfechaCreacion(hourdateFormat.format(date));
+			cliente.setCultimaFechaModificacion(hourdateFormat.format(date));
 			ClienteService.save(cliente);
-			cliente.setCidText("CLTE" + cliente.getIdCliente());
+			
+			/*Integer contador = ClienteService.Contador(cliente.getTipoCliente());
+			
+			if ( cliente.getTipoCliente().equals("1")) {
+				cliente.setCidText("CLTEM" +(contador+100));
+			}
+			if ( cliente.getTipoCliente().equals("2")) {
+				cliente.setCidText("CLTEF" +(contador+100));
+			}*/
+			
+			cliente.setCidText("CLTE" +(cliente.getIdCliente()));
+			
 			cliente.setCcreadoPor(auth.getName());
 			cliente.setIdDireccion(direccion.getIdDireccion());
 			
@@ -103,9 +120,9 @@ public class ClienteController {
 				direccion.setNumeroExt("S/N");
 			}
 			direccion.setActualizadoPor(auth.getName());
-			direccion.setUltimaFechaModificacion(new Date());
+			direccion.setUltimaFechaModificacion(hourdateFormat.format(date));
 			cliente.setCactualizadoPor(auth.getName());
-			cliente.setCultimaFechaModificacion(new Date());
+			cliente.setCultimaFechaModificacion(hourdateFormat.format(date));
 			
 			if (!imagenCliente.isEmpty()){
 				if ( cliente.getImagen() != null && cliente.getImagen().length() > 0) {
@@ -120,10 +137,9 @@ public class ClienteController {
 				}
 				cliente.setImagen(uniqueFilename);
 			}
-			redirectAttrs.addFlashAttribute("title", "Cliente editado correctamente").addFlashAttribute("icon", "success");
-			
 			DireccionService.save(direccion);
 			ClienteService.save(cliente);
+			redirectAttrs.addFlashAttribute("title", "Cliente editado correctamente").addFlashAttribute("icon", "success");
 		}
 		
 		return "redirect:clientes";
@@ -144,11 +160,33 @@ public class ClienteController {
 	
 	@GetMapping("delete-cliente/{id}") 
 	public String deleteMaterial(@PathVariable("id") Long id, RedirectAttributes redirectAttrs) throws Exception {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Date date = new Date();
+		DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		
 		ComercialCliente cliente = ClienteService.findOne(id);
 		cliente.setEstatusC(0);
+		cliente.setCactualizadoPor(auth.getName());
+		cliente.setCultimaFechaModificacion(hourdateFormat.format(date));
 		ClienteService.save(cliente);
 		redirectAttrs
         .addFlashAttribute("title", "Cliente elimnado correctamente")
+        .addFlashAttribute("icon", "success");
+		  return "redirect:/clientes";
+	}
+	
+	@GetMapping("alta-cliente/{id}") 
+	public String altaMaterial(@PathVariable("id") Long id, RedirectAttributes redirectAttrs) throws Exception {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Date date = new Date();
+		DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		ComercialCliente cliente = ClienteService.findOne(id);
+		cliente.setEstatusC(1);
+		cliente.setCactualizadoPor(auth.getName());
+		cliente.setCultimaFechaModificacion(hourdateFormat.format(date));
+		ClienteService.save(cliente);
+		redirectAttrs
+        .addFlashAttribute("title", "Cliente dado de alta correctamente")
         .addFlashAttribute("icon", "success");
 		  return "redirect:/clientes";
 	}
@@ -210,10 +248,12 @@ public class ClienteController {
 			if ( direccion.getNumeroExt()== null || direccion.getNumeroExt().isEmpty()) {
 				direccion.setNumeroExt("S/N");
 			}
+			direccion.setFechaCreacion(hourdateFormat.format(date));
+			direccion.setUltimaFechaModificacion(hourdateFormat.format(date));
+			direccion.setCreadoPor(auth.getName());
 			direccion.setEstatus(1);
 			DireccionService.save(direccion);
 			direccion.setIdText("DIR" + direccion.getIdDireccion());
-			direccion.setCreadoPor(auth.getName());
 			DireccionService.save(direccion);
 			// Guardamos los datos de la facturacion   ClienteService.save(cliente);
 			
@@ -223,7 +263,8 @@ public class ClienteController {
 			factura.setIdDireccionF(direccion.getIdDireccion());
 			factura.setEstatusF("1");
 			ClienteService.saveFactura(factura);
-			factura.setIdTextF("FAC" + factura.getIdClienteFacturaF() );
+			Integer contador = ClienteService.ContadorFacturas(factura.getIdClienteF());
+			factura.setIdTextF("FAC" +contador);
 			ClienteService.saveFactura(factura);
 			redirectAttrs.addFlashAttribute("title", "Facturacion guardada correctamente").addFlashAttribute("icon", "success");
 			
@@ -232,15 +273,13 @@ public class ClienteController {
 				direccion.setNumeroExt("S/N");
 			}
 			direccion.setActualizadoPor(auth.getName());
-			direccion.setUltimaFechaModificacion(new Date());
-			factura.setEstatusF("1");
+			direccion.setUltimaFechaModificacion(hourdateFormat.format(date));
+			factura.setIdDireccionF(direccion.getIdDireccion());
 			factura.setActualizadoPorF(auth.getName());
 			factura.setUltimaFechaModificacionF(hourdateFormat.format(date));
-			factura.setEstatusF("1");
-			factura.setIdDireccionF(direccion.getIdDireccion());
-			redirectAttrs.addFlashAttribute("title", "Facturacion editada correctamente").addFlashAttribute("icon", "success");
 			DireccionService.save(direccion);
 			ClienteService.saveFactura(factura);
+			redirectAttrs.addFlashAttribute("title", "Facturacion editada correctamente").addFlashAttribute("icon", "success");
 		}
 		
 		return "redirect:facturacion-clientes/" + factura.getIdClienteF();
@@ -265,14 +304,37 @@ public class ClienteController {
 	
 	@GetMapping("delete-facturacion/{id}") 
 	public String delete_facturacion(@PathVariable("id") Long id, RedirectAttributes redirectAttrs) throws Exception {
-		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Date date = new Date();
+		DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		ComercialClienteFactura factura = null;
 		factura = ClienteService.findOneFactura(id);
 		factura.setEstatusF("0");
+		factura.setUltimaFechaModificacionF(hourdateFormat.format(date));
+		factura.setActualizadoPorF(auth.getName());
 		ClienteService.saveFactura(factura);
 	
 		redirectAttrs
         .addFlashAttribute("title", "Facturacion elimnada correctamente")
+        .addFlashAttribute("icon", "success");
+		return "redirect:/facturacion-clientes/"+factura.getIdClienteF();
+	}
+	
+	
+	@GetMapping("alta-facturacion/{id}") 
+	public String alta_facturacion(@PathVariable("id") Long id, RedirectAttributes redirectAttrs) throws Exception {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Date date = new Date();
+		DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		ComercialClienteFactura factura = null;
+		factura = ClienteService.findOneFactura(id);
+		factura.setEstatusF("1");
+		factura.setUltimaFechaModificacionF(hourdateFormat.format(date));
+		factura.setActualizadoPorF(auth.getName());
+		ClienteService.saveFactura(factura);
+	
+		redirectAttrs
+        .addFlashAttribute("title", "Facturacion se dio alta correctamente")
         .addFlashAttribute("icon", "success");
 		return "redirect:/facturacion-clientes/"+factura.getIdClienteF();
 	}
