@@ -153,13 +153,15 @@ public class ProduccionDetalleServiceImpl implements IProduccionDetalleService {
 	public List<Object[]> muestrariosCatalogo() {
 		List<Object[]> quer = em.createNativeQuery("SELECT\r\n"
 				+ "	SUM( pedido.cantidad ) AS stock,\r\n"
-				+ "	prenda.id_prenda,\r\n" + "	prenda.descripcion_prenda,\r\n"
+				+ "	prenda.id_prenda,\r\n" + "	look.nombre_lookup,\r\n"
+				+ "	prenda.descripcion_prenda,\r\n"
 				+ "	prenda.id_text AS modelo,\r\n" + "	nombre_tela,\r\n"
 				+ "	talla,\r\n" + "	ruta_prenda \r\n" + "FROM\r\n"
 				+ "	alt_produccion_detalle_pedido pedido\r\n"
 				+ "	INNER JOIN alt_disenio_prenda prenda ON pedido.id_prenda = prenda.id_prenda\r\n"
 				+ "	INNER JOIN alt_disenio_tela tela ON tela.id_tela = pedido.id_tela\r\n"
-				+ "	LEFT JOIN alt_disenio_prenda_imagen imagen ON imagen.id_prenda = prenda.id_prenda \r\n"
+				+ "	LEFT JOIN alt_disenio_prenda_imagen imagen ON imagen.id_prenda = prenda.id_prenda\r\n"
+				+ "	INNER JOIN alt_disenio_lookup look ON look.id_lookup = pedido.id_familia_prenda\r\n"
 				+ "GROUP BY\r\n" + "	id_prenda,\r\n" + "	modelo,\r\n"
 				+ "	nombre_tela,\r\n" + "	talla,\r\n" + "	largo")
 				.getResultList();

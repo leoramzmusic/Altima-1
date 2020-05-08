@@ -108,19 +108,19 @@
 												<span data-path="default">Todas las prendas</span>
 											</li>
 											<li>
-												<span data-path=".camisa">Camisa</span>
+												<span data-path=".Camisa">Camisa</span>
 											</li>
 											<li>
-												<span data-path=".abrigo">Abrigo</span>
+												<span data-path=".Abrigo">Abrigo</span>
 											</li>
 											<li>
-												<span data-path=".pantalon">Pantal&oacute;n</span>
+												<span data-path=".Jeans">Pantal&oacute;n</span>
 											</li>
 											<li>
-												<span data-path=".saco">Saco</span>
+												<span data-path=".Saco">Saco</span>
 											</li>
 											<li>
-												<span data-path=".blusa">Blusa</span>
+												<span data-path=".Blusa">Blusa</span>
 											</li>
 										</ul>
 									</div>
@@ -149,29 +149,29 @@
 										<!-- data -->
 										<div class="block text-justify">
 											<img class="thumb1 centerImg"
-												th:src="@{'/uploads/prendas/' + ${muestra[6]}}" alt="" title="" />
+												th:src="@{'/uploads/prendas/' + ${muestra[7]}}" alt="" title="" />
 											<p class="stock">
 												<strong>Stock:</strong>
 												<a th:text=${muestra[0]}></a>
 											</p>
 											<p class="prenda">
 												<strong>Prenda:</strong>
-												<a th:text=${muestra[2]}></a>
+												<a th:text=${muestra[3]}></a>
 											</p>
 											<p class="desc">
 												<strong>Modelo:</strong>
-												<a th:text=${muestra[3]}></a>
+												<a th:text=${muestra[4]}></a>
 											</p>
 											<p class="tela">
 												<strong>Tela:</strong>
-												<a th:text=${muestra[4]}></a>
+												<a th:text=${muestra[5]}></a>
 											</p>
 											<p class="talla">
 												<strong>Talla:</strong>
-												<a th:text=${muestra[5]}></a>
+												<a th:text=${muestra[6]}></a>
 											</p>
 											<p class="theme" style="display: none">
-												<span class="abrigo"></span>
+												<span th:class="${muestra[2]}"></span>
 											</p>
 										</div>
 									</div>
