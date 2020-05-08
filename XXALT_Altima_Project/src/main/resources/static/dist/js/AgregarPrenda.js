@@ -297,8 +297,6 @@ function ValidarPrimerPestana() {
 		if(accion == "editar"){
 			for(k = 1; k < idContenedores.length; k++){
 				if($('#file-input-edit-' + k).val() == "" && k != 1 && k != 2){
-					console.log("aqui paso");
-					console.log($('#file-input-edit-' + k).val());
 					banderaImagenes = false;
 				}
 			}	
@@ -315,15 +313,13 @@ function ValidarPrimerPestana() {
 		if(accion == "editar"){
 			for(k = 1; k < idContenedores.length; k++){
 				if($('#name-edit-' + k).val() == "" && k != 1 && k != 2){
-					console.log("aqui paso");
-					console.log($('#file-input-edit-' + k).val());
 					banderaImagenes = false;
 				}
 			}	
 		}
 		else{
 			for(k = 1; k < idContenedores.length; k++){
-				if($('#name-input-' + k).val() == "" && k != 1 && k != 2){
+				if($('#name-' + k).val() == "" && k != 1 && k != 2){
 					banderaImagenes = false;
 				}
 			}
@@ -333,6 +329,7 @@ function ValidarPrimerPestana() {
 			if(banderaImagenes){
 				$('#AlertaPrimerPestana').css('display', 'none');
 				$('#SiguientePrimeraPestana').click();	
+				$('#AlertaPrimerPestanaNombresRepetidos').css('display', 'none');
 			}
 			else{
 				$('#AlertaPrimerPestana').css('display', 'block');

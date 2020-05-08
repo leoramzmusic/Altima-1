@@ -340,9 +340,14 @@
 															<div class="col-sm-12">
 																<div class="form-group">
 																	<label>Detalle de la confecci&oacute;n</label>
-																	<textarea class="form-control" rows="6" id="DetalleConfeccion" th:text="*{detalleConfeccion}">
-																	
-																	</textarea>
+																	<div id="holder">
+  <textarea class="title-text" placeholder="do something I'm really good at" rows="6" id="contenido">
+  </textarea>
+    <span class="before-title-1">Instruccion 1:</span>
+    <span id="testscrol-1"></span>
+     <span class="before-title-2">Instruccion 2:</span>
+     <span id="testscrol-2"></span>
+</div>
 																</div>
 															</div>
 															<label for="adicionar" style="margin-left: 7px;"> Tipos de Marcadores&nbsp;&nbsp;</label>
@@ -687,7 +692,60 @@
 		   });
 		});
 	</script>
+	<style>
+	.before-title-1, .before-title-2, .title-text {
+  font-family: monospace;
+  font-size: 20px;
+}
+
+.before-title-1 {
+  position: absolute;
+  top: 7px;
+  left: 8px;
+  color: #dddddd;
+  font-size: 20px;
+  z-index: 1 ; 
+}
+.before-title-2 {
+  position: absolute;
+  top: 130px;
+  left: 8px;
+  color: #dddddd;
+  font-size: 20px;
+  z-index: 1 ; 
+}
+#holder {
+    position: relative; 
+    overflow: hidden;
+}
+.title-text {
+  text-indent: 135px; /* change this value */
+  font-size: 20px;
+  line-height: 40px;
+  letter-spacing: 2px;
+  width: 100%;
+  display: block;
+  overflow: auto;
+  z-index : 99999 ; 
+}
+	</style>
 <script th:inline="javascript">
+function h(e) {
+    var height =  e.scrollTop; 
+    $("#testscrol-1").html(e.scrollTop) ; 
+    $("#testscrol-2").html(e.scrollTop) ; 
+    $(".before-title").css({'top' : 9 - height });
+    
+}
+$('textarea').each(function () {
+  h(this);
+}).on('scroll' , function(){
+    h(this) ; 
+}); 
+function help(){
+alert($('#contenido').val());
+}
+
 		/*<![CDATA[*/
 		var message = /*[[${prenda}]]*/ 'default';
 		var familias = /*[[${familias}]]*/ 'default';
