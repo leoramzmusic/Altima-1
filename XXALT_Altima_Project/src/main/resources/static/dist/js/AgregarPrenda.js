@@ -288,6 +288,7 @@ function ValidarPrimerPestana() {
 			for(h = 1; h < ((nombres.length) + 1); h++){
 				if(nombres[j] == nombres[h] && j != h){
 					bandera = false;
+					console.log("aqui");
 				}
 			}
 		}
@@ -305,6 +306,24 @@ function ValidarPrimerPestana() {
 		else{
 			for(k = 1; k < idContenedores.length; k++){
 				if($('#file-input-' + k).val() == "" && k != 1 && k != 2){
+					banderaImagenes = false;
+				}
+			}
+		}
+		
+		//Se recorren los contenedores visibles, si no tienen nombre las imagenes se ponen falso
+		if(accion == "editar"){
+			for(k = 1; k < idContenedores.length; k++){
+				if($('#name-edit-' + k).val() == "" && k != 1 && k != 2){
+					console.log("aqui paso");
+					console.log($('#file-input-edit-' + k).val());
+					banderaImagenes = false;
+				}
+			}	
+		}
+		else{
+			for(k = 1; k < idContenedores.length; k++){
+				if($('#name-input-' + k).val() == "" && k != 1 && k != 2){
 					banderaImagenes = false;
 				}
 			}
