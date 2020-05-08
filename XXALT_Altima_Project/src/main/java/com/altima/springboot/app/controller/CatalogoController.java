@@ -487,14 +487,29 @@ public class CatalogoController {
 		String[] result = new String[2];
 		if (FamiliaComposicion != null && FamiliaComposicion.length() > 0) {
 			DisenioLookup familiacomposicion = new DisenioLookup();
-			familiacomposicion.setIdText("Fam004");
+			DisenioLookup ultimoid = null;
+			try {
+				ultimoid = catalogo.findLastFamComposicion();
+
+			} catch (Exception e) {
+
+				System.out.println(e);
+			}
+
+			if (ultimoid == null) {
+				familiacomposicion.setIdText("FAMCOMP1001");
+			} else {
+
+				String str = ultimoid.getIdText();
+				String[] part = str.split("(?<=\\D)(?=\\d)");
+				Integer cont = Integer.parseInt(part[1]);
+				familiacomposicion.setIdText("FAMCOMP" + (cont + 1));
+			}
 			familiacomposicion.setNombreLookup(FamiliaComposicion);
 			familiacomposicion.setTipoLookup("Familia Composicion");
 			familiacomposicion.setCreadoPor(auth.getName());
 			familiacomposicion.setFechaCreacion(date);
 			familiacomposicion.setEstatus(1);
-			catalogo.save(familiacomposicion);
-			familiacomposicion.setIdText("FAMCOMP" + (familiacomposicion.getIdLookup() + 1001));
 			catalogo.save(familiacomposicion);
 			DisenioComposicionIcuidado diseniocomposicioncuidado = new DisenioComposicionIcuidado();
 			diseniocomposicioncuidado.setIdComposicion(familiacomposicion.getIdLookup());
