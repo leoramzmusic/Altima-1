@@ -24,4 +24,6 @@ public interface IRolService {
 
 	List<Rol> FindByPermiso();
 
+	Rol FindOneByDates(String departamento, String seccion, String permiso);
+
 }

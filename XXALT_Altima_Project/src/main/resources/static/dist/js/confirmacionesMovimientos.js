@@ -59,7 +59,7 @@ function agregarMiniTabla(tablaMuestra){
 		Swal.fire({
 			icon: 'error',
 			title: 'Error',
-			text: 'Debe agregar un campo válido!',
+			text: '¡Debe agregar un campo válido!',
 			showConfirmButton: false,
 	        timer: 3500
 		  })
@@ -125,7 +125,6 @@ function agregarMiniTabla(tablaMuestra){
   $(document).on('click', '#borrar', function (event) { //
       event.preventDefault();                           //
       $(this).closest('tr').remove();                   //
-      $('#BotonAgregarMuestra').prop('disabled', false);//
   });                                                   //
 //======================================================//
 
@@ -171,7 +170,7 @@ function agregarMiniTabla(tablaMuestra){
 		   Swal.fire({
 				icon: 'error',
 				title: 'Error',
-				text: 'Todos los campos deben de estar llenos!',
+				text: '¡Todos los campos deben de estar llenos!',
 				showConfirmButton: false,
 		        timer: 3500
 			  })

@@ -84,4 +84,15 @@ public class RolServiceImpl implements IRolService {
 		return em.createQuery("SELECT DISTINCT permisoRol FROM Rol \r\n" + 
 				"WHERE nombreRol!='ADMINISTRADOR'").getResultList();
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public Rol FindOneByDates(String departamento, String seccion, String permiso){
+		return (Rol) em.createQuery("FROM Rol \r\n" + 
+				"WHERE departamentoRol='"+departamento+"'"
+				+ "AND seccionRol='"+seccion+"'"
+				+ "AND permisoRol='"+permiso+"'").getSingleResult();
+	}
+	
 }

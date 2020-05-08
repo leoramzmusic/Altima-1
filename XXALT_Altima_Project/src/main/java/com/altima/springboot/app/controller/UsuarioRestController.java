@@ -1,20 +1,37 @@
 package com.altima.springboot.app.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.altima.springboot.app.dto.ChangePasswordForm;
 import com.altima.springboot.app.models.entity.Rol;
+import com.altima.springboot.app.models.entity.Usuario;
 import com.altima.springboot.app.models.service.IRolService;
+import com.altima.springboot.app.models.service.IUsuarioService;
 
 @RestController
 public class UsuarioRestController {
 	
 	@Autowired
 	IRolService rolService;
-	
+	@Autowired
+	private IUsuarioService usuarioService;
 	
 
 	
@@ -35,4 +52,72 @@ public class UsuarioRestController {
 		
 		return rolService.FindByPermiso();
 	}
+	
+	@RequestMapping(value="/guardarUser", method= RequestMethod.POST)
+	private void guardarUser(@RequestParam(name = "DatosJson", required = false) String rol_value,
+							 @RequestParam(name = "Empleado", required = false) String empleado,
+							 @RequestParam(name = "NombreUser", required = false) String nombreUser,
+							 @RequestParam(name = "Password", required = false) String password,
+							 @RequestParam(name = "ConfirmPass", required = false) String confirmPass,
+							 @RequestParam(name = "StatusUser", required = false) String statusUser,
+							 @RequestParam(name = "Permisos", required = false)String permisos,
+							 Usuario usuario, ChangePasswordForm passwordForm,
+							 RedirectAttributes redirectAttrs) {
+		Calendar cal = Calendar.getInstance();
+		Date date = cal.getTime();
+		LocalDate localDate = LocalDate.now();
+		DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+		String formattedDate = localDate + " " + dateFormat.format(date);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		JSONArray muestras = new JSONArray(rol_value);
+		Rol rol = new Rol();
+		String[] datosPermiso;
+		JSONArray muest = new JSONArray(permisos);
+		passwordForm.setNewPassword(password);
+		passwordForm.setConfirmPassword(confirmPass);
+		
+		if (rol_value.equals("")) {
+
+			
+			if (usuario.getIdUsuario() == null) {
+				redirectAttrs.addFlashAttribute("title", "Agrega al menos un permiso").addFlashAttribute("icon", "error");
+				
+			} else {
+				redirectAttrs.addFlashAttribute("title", "Agrega al menos un permiso").addFlashAttribute("icon", "error");
+			}
+		}
+		
+		for (int i = 0; i < muestras.length(); i++) {
+			JSONObject muestra = muestras.getJSONObject(i);
+				
+				datosPermiso = muest.get(i).toString().replace("[", "").replace("]", "").replace("\"", "").split(",");
+				
+				for (int p = 0; p < datosPermiso.length; p++) {
+					rol = rolService.FindOneByDates(muestra.getString("departamento").toString(), muestra.getString("seccion").toString(), datosPermiso[p]);
+					System.out.println(datosPermiso[p]);
+					System.out.println(rol.getIdRol());
+					usuario.getRoles().add(rolService.findOne(rol.getIdRol()));
+				}
+		}
+		usuario.setCreadoPor(auth.getName());
+		usuario.setActualizadoPor(auth.getName());
+		usuario.setFechaCreacion(formattedDate);
+		usuario.setUltimaFechaModificacion(formattedDate);
+		usuario.setNombreUsuario(nombreUser);
+		usuario.setIdEmpleado(Long.parseLong(empleado));
+		usuario.setEstatus(statusUser);
+		usuario.setIdText("Id");
+		usuario.setCreadoPor(auth.getName());
+		
+		try {
+			usuarioService.save(usuario, passwordForm);
+			usuario.setIdText("user_" + (1000 + usuario.getIdUsuario()));
+			usuarioService.save(usuario, passwordForm);
+		} catch (Exception e) {
+			
+			redirectAttrs.addFlashAttribute("title", usuarioService.getMensajeError()).addFlashAttribute("icon", "error");
+			e.printStackTrace();
+		}
+	}
+	
 }

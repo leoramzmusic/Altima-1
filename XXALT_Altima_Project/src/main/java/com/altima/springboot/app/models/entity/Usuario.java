@@ -60,7 +60,7 @@ public class Usuario  implements Serializable{
 	private String ultimaFechaModificacion;
 	
 	@Column(name="contraseña")
-	private String contraseña;
+	private String contrasena;
 	
 	@Column(name="estatus")
 	private String estatus;
@@ -124,10 +124,10 @@ public class Usuario  implements Serializable{
 		this.ultimaFechaModificacion = ultimaFechaModificacion;
 	}
 	public String getContraseña() {
-		return contraseña;
+		return contrasena;
 	}
 	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+		this.contrasena = contraseña;
 	}
 	public String getEstatus() {
 		return estatus;

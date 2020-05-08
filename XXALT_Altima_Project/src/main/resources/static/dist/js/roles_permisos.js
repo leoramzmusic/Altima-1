@@ -31,7 +31,6 @@ function addOptions(domElement, array) {
 }
 
 
-
 function cargarSeccion() {
 	
 	$.ajax({
@@ -102,7 +101,6 @@ function cargarSeccion() {
 
 
 function cargarPermiso() {
-	
 	$.ajax({
 		method: "GET",
 		url: "/listPermisos",
@@ -113,47 +111,168 @@ function cargarPermiso() {
 			}
 			
 			permisos = opciones;
-			console.log(permisos);
 		},
 		error: (e) => {
 		}
-		
 	});
   }
 
 function guardarRol(){
+	var filas = $("#tablita").find('tr');
 	
+	var resultD = $('#departamento').val();
+	var resultS = $('#rol_select').val();
+	var validador = true;
+	
+	if(resultD=="" || resultS==""){
+		validador = false;
+		Swal.fire({
+			icon: 'error',
+			title: 'Error',
+			text: '¡Debe agregar un campo válido!',
+			showConfirmButton: false,
+	        timer: 3500
+		  })
+	}
+	
+	else{
+		for(i=0; i<filas.length; i++){
+			var celdas = $(filas[i]).find("td");
+			if($(celdas[0]).text()==resultD && $(celdas[1]).text()==resultS){
+				validador = false;
+				Swal.fire({
+					icon: 'error',
+					title: 'Error',
+					text: 'Ya se agregó esa muestra',
+					showConfirmButton: false,
+			        timer: 3500
+				  })
+			}
+		}
+	}
+	
+	if(validador==true){
 	    var _nom = document.getElementById("departamento").value;
 	    var _ape = document.getElementById("rol_select").value;
-	    var i = 1;
+	    var fila="<tr><td>"+_nom+"</td><td>"+_ape +"</td><td><select multiple class='form-control selectpicker'>"+permisos+"</select></td><td>"+'<button type="button" name="remove" class="btn btn-danger btn_remove borrar">Quitar</button></td></tr>';
 
-	    var fila="<tr><td>"+_nom+"</td><td>"+_ape +"</td><td><select multiple class='form-control'>"+permisos+"</select></td><td>"+'<button type="button" name="remove" id="' + i + '"onclick="eliminar(this)" class="btn btn-danger btn_remove">Quitar</button></td></tr>';
-	    var btn=document.createElement("TR");
-	   	btn.innerHTML=fila;
-	    document.getElementById("tablita").appendChild(btn);
-
+	    $("#tablita").append(fila);
+	    $('.selectpicker').selectpicker(["refresh"]);
 	}
+	
+}
+
+//   Borrar registro de la tabla de agregar un rol    //
+//                                                    //
+$(document).on('click', '.borrar', function (event) { //
+event.preventDefault();                               //
+$(this).closest('tr').remove();                       //
+});                                                   //
+//====================================================//
+
+ // Iniciar la carga de provincias solo para comprobar que funciona
+cargarDepartamento();
 
 
-
-function eliminar(t) {
-  var campo_id;
-  var state=false;
-  var td = t.parentNode;
-  var tr = td.parentNode;
-  var table = tr.parentNode;
-  table.removeChild(tr);
-	$('#tablita tr').each(function () {
-		console.log("este si "+document.getElementById("rol_value").value);
-	  campo_id=$(this).find('td').eq(0).html()+","+campo_id;
-	  document.getElementById("rol_value").value = campo_id;
-	  state=true;
-	 });
-	if(state==false){
-		document.getElementById("rol_value").value=null;
+function guardarUsuario(){
+	var filas = $("#tablita").find('tr');
+	
+	var empleado = $('#empleado').val();
+	var nombreUsuario = $('#username').val();
+	var password = $('#pass').val();
+	var confirmPass = $('#confirmPass').val();
+	var statusUser = $('#statusUser').val();
+	var datosJson = [];
+	var permisos=[];
+	var i;
+	var validador = true;
+	
+	
+	if(filas.length==0 || empleado=="" || nombreUsuario=="" || statusUser=="" || password=="" || confirmPass==""){
+	console.log(filas);
+	Swal.fire({
+		icon: 'error',
+		title: 'Error',
+		text: '¡Todos los campos deben de estar llenos!',
+		showConfirmButton: false,
+        timer: 3500
+	  })
+	validador = false;
+	}
+	
+	if(password!=confirmPass){
+		validador = false;
+		Swal.fire({
+			icon: 'error',
+			title: 'Error',
+			text: '¡Las contraseñas deben coincidir!',
+			showConfirmButton: false,
+	        timer: 3500
+		  })
+	}
+	
+	else{
+		for(i=0; i<filas.length; i++){
+			var celdas = $(filas[i]).find("td");
+			if($($(celdas[2]).find("select")).val()==""){
+				validador = false;
+				Swal.fire({
+					icon: 'error',
+					title: 'Error',
+					text: '¡Debe haber al menos un permiso!',
+					showConfirmButton: false,
+			        timer: 3500
+				  })
+			}
+		}
+	}
+	
+	if (validador==true){
+		for(i=0; i<filas.length; i++){
+			var celdas = $(filas[i]).find("td");
+			var record = {departamento:  $(celdas[0]).text(), 
+						  seccion: 		 $(celdas[1]).text()};
+			permisos.push($($(celdas[2]).find("select")).val());
+			datosJson.push(record);
+			Swal.fire({
+				icon: 'success',
+				title: 'Correcto',
+				text: '¡Se han insertado los datos!',
+				showConfirmButton: false,
+		        timer: 3500
+			  })
+		}
+		console.log(empleado);
+		console.log(nombreUsuario);
+		console.log(password);
+		console.log(confirmPass);
+		console.log(statusUser);
+		console.log(datosJson);
+		console.log(permisos);
+		$.ajax({
+	    	method: "POST",
+			url: "/guardarUser",
+			data:{
+				"_csrf": $('#token').val(),
+				Empleado: empleado,
+				NombreUser: nombreUsuario,
+				Password: password,
+				ConfirmPass: confirmPass,
+				StatusUser: statusUser,
+				"DatosJson": JSON.stringify(datosJson),
+				"Permisos": JSON.stringify(permisos)
+			},
+			success: (data) => {
+				
+				
+			},
+			error: (e) => {
+			}	
+		});
 	}
 }
 
 
- // Iniciar la carga de provincias solo para comprobar que funciona
-cargarDepartamento();
+
+
+

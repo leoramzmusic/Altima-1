@@ -21,6 +21,4 @@ public interface IUsuarioService {
 	
 	Usuario changePassword(ChangePasswordForm form) throws Exception;
 
-	Object SaveUserRol(String departamento, String seccion, String permisos);
-
 }

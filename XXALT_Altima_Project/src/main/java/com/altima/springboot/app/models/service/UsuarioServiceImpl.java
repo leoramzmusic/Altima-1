@@ -124,13 +124,5 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	public String getMensajeError() {
 		return mensajeError;
 	}
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	@Transactional
-	public Object SaveUserRol (String departamento, String seccion, String permisos){
-		return (Rol) em.createQuery("SELECT  departamentoRol, seccionRol FROM Rol \r\n" + 
-				"WHERE nombreRol!='ADMINISTRADOR'").getSingleResult();
-	}
 
 }
