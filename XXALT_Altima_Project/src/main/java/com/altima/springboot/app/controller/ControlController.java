@@ -449,11 +449,8 @@ System.out.println("Los id son :"+id);
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Date date = new Date();
 		DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		
 		DisenioPrenda prenda = new DisenioPrenda();
 		prenda.setIdFamiliaPrenda(Long.valueOf(familia));
-		prenda.setIdGenero(genero);
-		prenda.setPrendaCliente("1");
 		prenda.setDescripcionPrenda(nombre);
 		prenda.setPrecio(precio);
 		prenda.setTipoLargo(largo);
@@ -463,8 +460,9 @@ System.out.println("Los id son :"+id);
 		prenda.setCreadoPor(auth.getName());
 		prenda.setFechaCreacion(hourdateFormat.format(date));
 		prenda.setIdGenero(genero);
+		prenda.setPrendaCliente(null);
+		prenda.setTipoLargo(largo);
 		Prenda.save(prenda);
-		
 		Long envio = Long.valueOf(prenda.getIdFamiliaPrenda());
 		String[] res = Prenda.getExistencias(envio);
 		prenda.setIdText(res[1].toUpperCase().substring(0, 3) + (10000 + (Long.valueOf(res[0]))));
@@ -474,7 +472,7 @@ System.out.println("Los id son :"+id);
 		
 		if (idPedido.equals("0")) {
 			ProduccionPedido pedido = new ProduccionPedido();
-			pedido.setIdCliente(Long.valueOf(1));
+			pedido.setIdCliente(null);
 			pedido.setEstatus("1");
 			pedido.setCantidad(cantidad);
 			pedido.setDescripcion("Foráneo");
@@ -501,17 +499,17 @@ System.out.println("Los id son :"+id);
 			orden.setIdFamiliaGenero(Long.valueOf(prenda.getIdGenero()));
 			orden.setIdFamiliaPrenda(Long.valueOf(prenda.getIdFamiliaPrenda()));
 			orden.setIdPedido(Long.valueOf(idPedido));
-			orden.setIdTela(Long.valueOf(1));
+			orden.setIdTela(null);
 			orden.setTalla(talla);
 			orden.setLargo(largo);
-			orden.setDescripcion("probando ando...");
+			orden.setDescripcion("Foráneo");
 			orden.setIdText("ORDEN");
 			orden.setCreadoPor(auth.getName());
 			orden.setActualizadoPor(null);
 			orden.setUltimaFechaModificacion(hourdateFormat.format(date));
 			//orden.setUltimaFechaModificacion(hourdateFormat.format(date));
 			orden.setIdInventario(null);
-			orden.setEstatus_confeccion("Corrrecto");
+			orden.setEstatus_confeccion("Aprobado");
 			orden.setEstatus("1");
 			orden.setIdPrenda(prenda.getIdPrenda());
 			orden.setCosto(precio);
@@ -536,8 +534,8 @@ System.out.println("Los id son :"+id);
 	
 	
 	
-	
-	@PostMapping("/bajaorden")
+	@RequestMapping(value = "/bajaorden", method = RequestMethod.POST)
+	@ResponseBody
 	public String bajacatalogo(String idPrenda, String idPedido,String talla,String largo, String costo, String cantidad) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Date date = new Date();
@@ -552,7 +550,7 @@ System.out.println("Los id son :"+id);
 		pedido.setUltimaFechaModificacion(hourdateFormat.format(date));
 		Pedido.save(pedido);
 	
-		return "redirect:aux/"+idPedido;
+		return idPedido;
 
 	}
 	

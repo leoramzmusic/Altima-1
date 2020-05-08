@@ -90,83 +90,6 @@
 }
 
 
-/*function agregar() {
-      if (document.getElementById("id_familia_prenda").value &&
-    		  document.getElementById("nombre_prenda").value &&
-    		  document.getElementById("precio").value &&
-    		  document.getElementById("cantidad").value &&
-    		  document.getElementById("talla").value &&
-    		  document.getElementById("largo").value &&
-    		  document.getElementById("genero").value) {
-    	  
-    	  
-		      var familia=document.getElementById("id_familia_prenda").value;
-		      var nombre=document.getElementById("nombre_prenda").value;
-		      var precio=document.getElementById("precio").value;
-		      var cantidad=document.getElementById("cantidad").value;
-		      var talla=document.getElementById("talla").value;
-		      var largo=document.getElementById("largo").value;
-		      var idPedido=document.getElementById("idPedido").value;
-		      var genero=document.getElementById("genero").value;
-		      
-		      var resultado = "";
-		      
-		      fetch('/guardar-prenda-foranea', {
-		    	   method: 'POST',
-		    	    data: { 
-		          	 "_csrf": $('#token').val(),
-		         	'familia': familia,
-		         	'nombre': nombre,
-		         	'precio': precio,
-		         	'cantidad': cantidad, 
-		         	'talla': talla,
-		         	'largo':largo,
-		         	'idPedido':idPedido,
-		         	'genero':genero
-		         }
-		    	})
-		    	.then(function(response) {
-		    	   if(response.ok) {
-		    	       return response.text()
-		    	   } else {
-		    	       throw "Error en la llamada Ajax";
-		    	   }
-
-		    	})
-		    	.then(function(texto) {
-		    	   console.log(texto);
-		    	})
-		    	.catch(function(err) {
-		    	   console.log(err);
-		    	});
-
-
-		      
-		  
-  
-    	   	 
-        document.getElementById("id_familia_prenda").value = '';
-  		$('#id_familia_prenda').change();
-	    document.getElementById("nombre_prenda").value ='';
-	    document.getElementById("precio").value='';
-	    document.getElementById("cantidad").value='';
-	    document.getElementById("talla").value='';
-	    document.getElementById("largo").value='';
-	    document.getElementById("genero").value = '';
-  		$('#genero').change();
-        
-      }else{
-    	  Swal.fire({
-    		  position: 'center',
-	          icon: 'error',
-	          title: 'Debe completar todo el formulario',
-	          showConfirmButton: false,
-	          timer: 1250
-            })
-      }
-}*/
-
-
 
 //Dar de orden
  ////necesito en este orde String idPrenda,String idPedido,String talla,String largo,String costo
@@ -178,47 +101,48 @@
 	 console.log("El largo es-->"+largo);
 	 console.log("El costo es-->"+costo);
 	 console.log("La cantiad es-->"+cantidad);
- 	
- 	Swal.fire({
- 		title: '¿Deseas dar de baja orden?',
- 		icon: 'warning',
- 		showCancelButton: true,
- 		cancelButtonColor: '#6C757D',
- 		cancelButtonText: 'Cancelar',
- 		confirmButtonText: 'Dar de baja',
- 		confirmButtonColor: '#17a2b8',
- 	}).then((result) => {
- 		if (1==1) {
- 			$.ajax({
- 				type: "POST",
- 				url: "/bajaorden",
- 				data: {
- 					"_csrf": $('#token').val(),
- 					'idPrenda':idPrenda, 
- 					'idPedido':idPedido,
- 					'talla':talla,
- 					'largo':largo,
- 					'costo':costo,
- 					'cantidad':cantidad
 
- 					// ,'Descripcion':Descripcion
- 				}
+		Swal.fire({
+			title: '¿Deseas dar de baja la orden?',
+			icon: 'warning',
+			showCancelButton: true,
+			cancelButtonColor: '#6C757D',
+			cancelButtonText: 'Cancelar',
+			confirmButtonText: 'Dar de baja',
+			confirmButtonColor: '#dc3545',
+		}).then((result) => {
+			if (result.value) {
 
- 			}).done(function (data) {
+				$.ajax({
+					type: "POST",
+					url: "/bajaorden",
+					data: {
+	  					"_csrf": $('#token').val(),
+	  					'idPrenda':idPrenda, 
+	  					'idPedido':idPedido,
+	  					'talla':talla,
+	  					'largo':largo,
+	  					'costo':costo,
+	  					'cantidad':cantidad
 
- 				document.getElementById("idPedido").value =data;
- 				
- 				listarMarcas(data);
- 			});
- 			Swal.fire({
- 				position: 'center',
- 				icon: 'success',
- 				title: 'dado de baja correctamente',
- 				showConfirmButton: false,
- 				timer: 1250
- 			})
- 		} //////////////termina result value
- 	})
+	  					// ,'Descripcion':Descripcion
+	  				}
+
+				}).done(function (data) {
+
+					document.getElementById("idPedido").value =data;
+	  				listarMarcas(data);
+				});
+				Swal.fire({
+					position: 'center',
+					icon: 'success',
+					title: 'dado de baja correctamente',
+					showConfirmButton: false,
+					timer: 1250
+				})
+			} //////////////termina result value
+		})
+	
  }
  // LISTAR
  function listarMarcas(id) {
