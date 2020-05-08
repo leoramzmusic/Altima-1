@@ -254,9 +254,74 @@ function ValidarPrimerPestana() {
 	if ($('#DescripcionPrenda').val() != "" && $('#NotaEspecial').val() != ""
 		&& $('#DetallePrenda').val() != "" && $('#GeneroPrenda').val() != "" 
 		&& $('#file-input-1').val() != "" && $('#file-input-2').val() != "") 
-	{
-		$('#AlertaPrimerPestana').css('display', 'none');
-		$('#SiguientePrimeraPestana').click();
+	{	
+		var nombres = [];
+		var idContenedores = [];
+		var bandera = true;
+		var banderaImagenes = true;
+		
+		//Validacion de los nombres de imagen
+		if(accion == "editar"){
+			//Se obtienen los divs visibles
+			for(var i = 1; i < 7; i++){
+				if( $('#Contenedor-' + i).css('display') == 'block' ){
+					nombres[i] = $('#name-edit-' + i).val();
+					idContenedores[i] = i;
+				}
+			}	
+		}
+		else{
+			//Se obtienen los divs visibles
+			for(var i = 1; i < 7; i++){
+				if( $('#Contenedor-' + i).css('display') == 'block' ){
+					nombres[i] = $('#name-' + i).val();
+					idContenedores[i] = i;
+				}
+			}	
+		}
+		
+		//Se ordena el array
+		nombres = nombres.filter(item => item);
+		
+		//Se recorren los que estan visibles y si coincide alguno, se pone falso
+		for(j = 1; j < ((nombres.length) + 1); j++){
+			for(h = 1; h < ((nombres.length) + 1); h++){
+				if(nombres[j] == nombres[h] && j != h){
+					bandera = false;
+				}
+			}
+		}
+		
+		//Se recorren los contenedores visibles, si no tienen imganes se ponen falso
+		if(accion == "editar"){
+			for(k = 1; k < idContenedores.length; k++){
+				if($('#file-input-edit-' + k).val() == "" && k != 1 && k != 2){
+					console.log("aqui paso");
+					console.log($('#file-input-edit-' + k).val());
+					banderaImagenes = false;
+				}
+			}	
+		}
+		else{
+			for(k = 1; k < idContenedores.length; k++){
+				if($('#file-input-' + k).val() == "" && k != 1 && k != 2){
+					banderaImagenes = false;
+				}
+			}
+		}
+		
+		if(bandera){
+			if(banderaImagenes){
+				$('#AlertaPrimerPestana').css('display', 'none');
+				$('#SiguientePrimeraPestana').click();	
+			}
+			else{
+				$('#AlertaPrimerPestana').css('display', 'block');
+			}
+		}
+		else{
+			$('#AlertaPrimerPestanaNombresRepetidos').css('display', 'block');
+		}
 	}
 	else {
 		$('#AlertaPrimerPestana').css('display', 'block');
