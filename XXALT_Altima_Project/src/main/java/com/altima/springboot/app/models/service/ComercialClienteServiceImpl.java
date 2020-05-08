@@ -29,7 +29,7 @@ public class ComercialClienteServiceImpl implements IComercialClienteService {
 	@Transactional
 	public List<ComercialCliente> findAll() {
 		// TODO Auto-generated method stub
-		return em.createQuery("from ComercialCliente where estatus='1' ORDER BY nombre ").getResultList();
+		return em.createQuery("from ComercialCliente   ORDER BY id_text, nombre,estatus").getResultList();
 	}
 	
 	@Override
@@ -49,6 +49,15 @@ public class ComercialClienteServiceImpl implements IComercialClienteService {
 		// TODO Auto-generated method stub
 		return repository.findById(id).orElse(null);
 	}
+	
+	@Transactional(readOnly = true)
+	@Override
+	public Integer Contador(String tipo) {
+		
+		String re = em.createNativeQuery("SELECT COUNT(*) FROM alt_comercial_cliente where alt_comercial_cliente.tipo_cliente="+tipo).getSingleResult().toString();
+		return Integer.parseInt(re);
+		
+	}
 
 	
 	
@@ -58,7 +67,7 @@ public class ComercialClienteServiceImpl implements IComercialClienteService {
 	@Transactional
 	public List<ComercialClienteFactura> ListaFactura(Long id ) {
 		// TODO Auto-generated method stub
-		return em.createQuery("from ComercialClienteFactura where id_cliente ="+id+" and  estatus='1' ORDER BY razon_social ").getResultList();
+		return em.createQuery("from ComercialClienteFactura where id_cliente ="+id+"  ORDER BY id_text,razon_social ").getResultList();
 	}
 
 	@Override
@@ -71,5 +80,13 @@ public class ComercialClienteServiceImpl implements IComercialClienteService {
 	public ComercialClienteFactura findOneFactura(Long id) {
 		// TODO Auto-generated method stub
 		return repositoryFactura.findById(id).orElse(null);
+	}
+	
+	@Transactional(readOnly = true)
+	@Override
+	public Integer ContadorFacturas(Long id) {
+		String re = em.createNativeQuery("SELECT COUNT(*) FROM alt_comercial_cliente_factura where  alt_comercial_cliente_factura.id_cliente="+id).getSingleResult().toString();
+		return Integer.parseInt(re);
+		
 	}
 }

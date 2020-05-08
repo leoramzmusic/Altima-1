@@ -14,6 +14,7 @@ public interface IComercialClienteService {
 	void delete(Long id);
 
 	ComercialCliente findOne(Long id);
+	public Integer Contador (String tipo);
 	
 	
 	
@@ -21,5 +22,7 @@ public interface IComercialClienteService {
 	List<ComercialClienteFactura> ListaFactura(Long id);
 	void saveFactura(ComercialClienteFactura factura);
 	ComercialClienteFactura findOneFactura(Long id);
+	
+	public Integer ContadorFacturas (Long id);
 
 }
