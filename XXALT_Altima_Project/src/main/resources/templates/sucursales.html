@@ -100,9 +100,13 @@
                                                           
                                                  	
                                                  		
-                                               		<a  th:href="@{/delete-sucursal/}+ ${sucursal.IdClienteSucursal}" class="btn btn-danger btn-circle btn-sm btn-delete popoverxd"
+                                               		<a th:if="${sucursal.Sestatus  == '1'}"   th:href="@{/delete-sucursal/}+ ${sucursal.IdClienteSucursal}" class="btn btn-danger btn-circle btn-sm btn-delete popoverxd"
                                                          data-container="body" data-toggle="popover" data-placement="top"
-                                                          data-content="Dar de baja"><i class="fas fa-caret-down"></i></a>
+                                                          data-content="Dar de baja">  <i class="fas fa-caret-down"></i> </a>
+                                                          
+                                                    <a th:if="${sucursal.Sestatus == '0'}"   th:href="@{/alta-sucursal/}+ ${sucursal.IdClienteSucursal}"  class="btn btn-success text-white btn-circle btn-sm btn-alta popoverxd" 
+                                                         data-container="body" data-toggle="popover" data-placement="top"
+                                                          data-content="Dar de alta"> <i class="fas fa-sort-up"></i> </a>
                                                 </td>
                                             </tr>     
                                         </tbody>
@@ -220,6 +224,16 @@
 		    $('#bajaSucursalModal').modal();
 		});
 		</script>
+		
+		
+		<script>
+		$('.btn-alta').on('click', function (e) {
+		    e.preventDefault();
+		    var href =$(this).attr('href');
+		    $('#altaSucursalModa #btnDelteYes').attr('href',href);
+		    $('#altaSucursalModa').modal();
+		});
+		</script>
 	
 	<div class="modal fade" id="bajaSucursalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -229,6 +243,23 @@
           <span aria-hidden="true">&times;</span>
         </button>
         ¿Deseas dar de baja la sucursal?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal">Cancelar</button>
+        <a id="btnDelteYes" class="btn btn-primary">Confirmar</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="altaSucursalModa" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        ¿Deseas dar de alta la sucursal?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal">Cancelar</button>
