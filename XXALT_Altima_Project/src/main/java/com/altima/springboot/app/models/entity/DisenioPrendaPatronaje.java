@@ -41,6 +41,12 @@ public class DisenioPrendaPatronaje implements Serializable{
 	@Column(name="cantidad_entretela")
 	private String cantidadEntretela;
 	
+	@Column(name="cantidad_tela_secundaria")
+	private String cantidadTelaSecundaria;
+	
+	@Column(name="cantidad_forro_secundario")
+	private String cantidadForroSecundaria;
+	
 	@Column(name="fecha_creacion")
 	private String fechaCreacion;
 	
@@ -54,6 +60,24 @@ public class DisenioPrendaPatronaje implements Serializable{
 	private String actualizadoPor;
 	
 
+	public String getCantidadTelaSecundaria() {
+		return cantidadTelaSecundaria;
+	}
+
+	public void setCantidadTelaSecundaria(String cantidadTelaSecundaria) {
+		this.cantidadTelaSecundaria = cantidadTelaSecundaria;
+	}
+
+	public String getCantidadForroSecundaria() {
+		return cantidadForroSecundaria;
+	}
+
+	public void setCantidadForroSecundaria(String cantidadForroSecundaria) {
+		this.cantidadForroSecundaria = cantidadForroSecundaria;
+	}
+	
+	
+	
 	public String getFechaCreacion() {
 		return fechaCreacion;
 	}

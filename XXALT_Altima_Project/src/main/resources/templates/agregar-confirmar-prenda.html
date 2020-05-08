@@ -336,7 +336,7 @@
 															<div class="col-sm-12">
 																<div class="form-group">
 																	<label>Detalle de la confecci&oacute;n</label>
-																	<textarea class="form-control" rows="6" th:field="*{detalleConfeccion}" id="DetalleConfeccion">
+																	<textarea class="form-control" rows="6" id="DetalleConfeccion" th:text="*{detalleConfeccion}">
 																	
 																	</textarea>
 																</div>
@@ -482,7 +482,7 @@
                                                             <div class="col-sm-10">
                                                                 <div class="form-group">
                                                                     <label>Lista de piezas de patronaje</label>
-                                                                    <select placeholder="Elige una prenda" id="ListaPatronaje" class="form-control">
+                                                                    <select id="ListaPatronaje" class="form-control">
                                                                         <option th:each="patronajes : ${patronajes}" th:value="${patronajes[0]}" th:text="${patronajes[2]}"></option>
                                                                     </select>
                                                                 </div>
@@ -504,7 +504,9 @@
                                                                             <th scope="col" style='display: none;'>Id</th>
                                                                             <th scope="col">Nombre</th>
                                                                             <th scope="col" class="text-center">Tela<br>N&uacute;mero de piezas</th>
+                                                                            <th scope="col" class="text-center">Tela Secundaria<br>N&uacute;mero de piezas</th>
                                                                             <th scope="col" class="text-center">Forro<br>N&uacute;mero de piezas</th>
+                                                                            <th scope="col" class="text-center">Forro Secundario<br>N&uacute;mero de piezas</th>
                                                                             <th scope="col" class="text-center">Entretela<br>N&uacute;mero de piezas</th>
                                                                             <th scope="col">Quitar</th>
                                                                         </tr>
@@ -515,7 +517,9 @@
                                                                             <td style='display: none;' th:text="${pat[6]}"></td>
                                                                             <td th:text="${pat[2]}"></td>
                                                                             <td><input type="number" class="form-control" th:value="${pat[3]}" placeholder="10" th:id="${'CantidadTela'+pat[6]}"></td>
+                                                                            <td><input type="number" class="form-control" th:value="${pat[7]}" placeholder="10" th:id="${'CantidadTelaSecundaria'+pat[6]}"></td>
                                                                             <td><input type="number" class="form-control" th:value="${pat[4]}" placeholder="10" th:id="${'CantidadForro'+pat[6]}"></td>
+                                                                            <td><input type="number" class="form-control" th:value="${pat[8]}" placeholder="10" th:id="${'CantidadForroSecundario'+pat[6]}"></td>
                                                                             <td><input type="number" class="form-control" th:value="${pat[5]}" placeholder="10" th:id="${'CantidadEntretela'+pat[6]}"></td>
                                                                             <td class="tdcenter">
                                                                                 <button class="btn btn-danger btn_remove" onclick="eliminarPatronaje(this)">Quitar
