@@ -60,7 +60,21 @@ public class DisenioPrendaPatronaje implements Serializable{
 	private String actualizadoPor;
 	
 
-	
+	public String getCantidadTelaSecundaria() {
+		return cantidadTelaSecundaria;
+	}
+
+	public void setCantidadTelaSecundaria(String cantidadTelaSecundaria) {
+		this.cantidadTelaSecundaria = cantidadTelaSecundaria;
+	}
+
+	public String getCantidadForroSecundaria() {
+		return cantidadForroSecundaria;
+	}
+
+	public void setCantidadForroSecundaria(String cantidadForroSecundaria) {
+		this.cantidadForroSecundaria = cantidadForroSecundaria;
+	}
 	
 	
 	
