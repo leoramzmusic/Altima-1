@@ -39,6 +39,7 @@ import com.altima.springboot.app.models.service.DisenioPrendaServiceImpl;
 import com.altima.springboot.app.models.service.IDisenioLookupService;
 import com.altima.springboot.app.models.service.IDisenioMaterialService;
 import com.altima.springboot.app.models.service.IDisenioPrendaMarcadorService;
+import com.altima.springboot.app.models.service.IInventarioService;
 import com.altima.springboot.app.models.service.UploadServiceImpl;
 
 @RestController
@@ -56,7 +57,7 @@ public class AgregarPrendaRestController {
 	@Autowired
 	private DisenioImagenPrendaServiceImpl prendaImagenService;
 	@Autowired
-	private IDisenioLookupService disenioLookupService;
+	private IInventarioService inventario;
 	@Autowired
 	private IDisenioPrendaMarcadorService disenioPrendaMarcadorService;
 	public String file1;
@@ -592,5 +593,19 @@ public class AgregarPrendaRestController {
 				}}
 		
 		response.sendRedirect("/prendas");
+	}
+	
+	@RequestMapping(value = "/ima_prenda", method = RequestMethod.POST)
+	public Object guardarImagenes(@RequestParam("id") Long id) {
+		
+		
+		Object dpi = inventario.findOnePreImg(id);
+		
+		System.out.println("sI ENTRO AL REST");
+		
+		System.out.println("OBJETO" + dpi);
+		
+		return dpi;
+		
 	}
 }
