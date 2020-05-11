@@ -33,6 +33,8 @@ public class MuestrarioController {
 	private IUploadService UploadService;
 	
 	
+	
+	
 
 	
 	
@@ -52,33 +54,33 @@ public class MuestrarioController {
 	
 	@PostMapping("/find-edit/img")
 	public String findEdit( Model model, @RequestParam(name = "idPrenda", required = false) Long idPrenda,
+			@RequestParam(name = "idPrendaReal", required = false) Long idPrendaReal,
 			@RequestParam(value="imagen", required=false) MultipartFile imagenInventario) {
 		
 		
 		System.out.println("si entro al controller editar img");
-		System.out.println("asi llego el id desde el controller"+ idPrenda );
-	    DiseñoPrendaImagen prenda =  inventario.findOne(idPrenda);
-	    
-	  
-	    
-	    System.out.println("aqui esta el obejto" + prenda.getRutaPrenda());
-	    
-	    
-		if (!imagenInventario.isEmpty()){
-			if ( prenda.getRutaPrenda() != null && prenda.getRutaPrenda().length() > 0) {
-				UploadService.deleteInventario(prenda.getRutaPrenda());
+		System.out.println("asi llego el id desde el controller"+ idPrenda );	   	    	 	    		    	    	 	    	    	  
+	    	System.out.println("si entro al ifffffffff");	    		    	    		  	    	
+	    	 DiseñoPrendaImagen prenda =  inventario.findOne(idPrenda);
+	    	   
+			if (!imagenInventario.isEmpty()){
+				if ( prenda.getRutaPrenda() != null && prenda.getRutaPrenda().length() > 0) {
+					UploadService.deleteInventario(prenda.getRutaPrenda());
+				}
+				String uniqueFilename = null;
+				try {
+					uniqueFilename = UploadService.copyInventario(imagenInventario);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				prenda.setRutaPrenda(uniqueFilename); 
 			}
-			String uniqueFilename = null;
-			try {
-				uniqueFilename = UploadService.copyInventario(imagenInventario);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			prenda.setRutaPrenda(uniqueFilename); 
-		}
+			
+		   inventario.save(prenda);
 		
-	   inventario.save(prenda);
+	    	    
+	 
 	
 	
 	

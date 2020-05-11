@@ -1,18 +1,22 @@
 
 
 
-<form class="row"  id="materialForm" th:object="${material}" th:action="@{/guardar}" enctype="multipart/form-data"
+<form class="row"  enctype="multipart/form-data"
     method="post">
     
     <div id="infoInventario" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content" id="identificar">
           
-<div class="modal-body" th:each="mt:${listInventario}" >
-                <img class="img-fluid" th:src="@{'/uploads/prendas/' + ${mt[8]}}" alt=" no jalo">
+             <div class="modal-body" id="padre" >
+             
+           
+             
+           
+               
             </div>
           
-          
+             <input type="hidden" name="_csrf" id="token"  th:value="${_csrf.token}"/>
         </div>
     </div>
 </div>

@@ -22,7 +22,7 @@ public interface IInventarioService {
 	DiseñoPrendaImagen findOne(Long Id);
 	
 	
-	
+	public String Exist ( Long id);
 	
 	
 	

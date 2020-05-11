@@ -81,7 +81,7 @@
 											    <td th:text="${mt[6]}"></td>
 											    <td th:text="${mt[7]}"></td>
 												<td class="tdcenter">
-													<button data-toggle="modal" data-target="#infoInventario" class="btn btn-info btn-circle btn-sm"><i class="fas fa-image"></i></button>
+														<button data-toggle="modal"  th:attr="onclick=|mostrarImgModal('${mt[10]}')|" data-target="#infoInventario" class="btn btn-info btn-circle btn-sm"><i class="fas fa-image"></i></button>
 												</td>
 												<td th:text="${mt[9]}"></td>
 											
@@ -162,8 +162,36 @@
                   
                   console.log(data[0][1]);
                   $('#ident').val(data[0][0]);
+                 
                   $('#imagenBorrar').remove();
                   $('#contenedorDeImagen').append("<div id='imagenBorrar'><img src='/uploads/prendas/"+data[0][3]+"' alt='Placeholder' id='serviceImageInventario' class='placeholder img-thumbnail' aria-describedby='imagePreviewHelpInventario'/></div>" );
+            
+				},
+				failure: function (errMsg) {
+					alert(errMsg);
+				}
+			});
+		   
+	   }
+	   
+	   
+   function mostrarImgModal(id){
+		   
+		   $.ajax({
+				type: "POST",
+				url: "/ima_prenda",
+				data: {
+					"_csrf": $('#token').val(),
+					"id":id
+				},
+				success: (data) => {
+                  console.log(data);
+                  
+                  console.log(data[0][1]);
+                 
+                  $('#Borrar').remove();
+                  $('#padre').append("<div id='Borrar'><img class='img-fluid' src='/uploads/prendas/"+data[0][3]+"' alt='No hay imagen disponible' /></div>" );
+                
             
 				},
 				failure: function (errMsg) {
