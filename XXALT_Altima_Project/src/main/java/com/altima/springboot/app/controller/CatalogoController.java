@@ -32,7 +32,7 @@ import com.altima.springboot.app.models.entity.DisenioLookup;
 import com.altima.springboot.app.models.service.ICatalogoService;
 import com.altima.springboot.app.models.service.IDisenioComposicionCuidadoService;
 import com.altima.springboot.app.models.service.IUploadService;
-//import com.google.gson.Gson;
+
 
 @CrossOrigin(origins = { "*" })
 @Controller
@@ -226,7 +226,7 @@ public class CatalogoController {
 			color.setEstatus(1);
 			color.setAtributo1(CodigoColor);
 			catalogo.save(color);
-			return "/catalogos";
+			return "catalogos";
 		}
 		if (PiezaTrazo != null) {
 			DisenioLookup piezatrazo = new DisenioLookup();
@@ -255,7 +255,7 @@ public class CatalogoController {
 			piezatrazo.setFechaCreacion(date);
 			piezatrazo.setEstatus(1);
 			catalogo.save(piezatrazo);
-			return "/catalogos";
+			return "catalogos";
 		}
 		if (FamiliaPrenda != null) {
 			DisenioLookup familiaprenda = new DisenioLookup();
@@ -285,7 +285,7 @@ public class CatalogoController {
 			familiaprenda.setFechaCreacion(date);
 			familiaprenda.setEstatus(1);
 			catalogo.save(familiaprenda);
-			return "/catalogos";
+			return "catalogos";
 		}
 		if (FamiliaGenero != null) {
 			DisenioLookup familiagenero = new DisenioLookup();
@@ -315,7 +315,7 @@ public class CatalogoController {
 			familiagenero.setFechaCreacion(date);
 			familiagenero.setEstatus(1);
 			catalogo.save(familiagenero);
-			return "/catalogos";
+			return "catalogos";
 		}
 
 		if (InstruccionCuidado != null) {
@@ -354,7 +354,7 @@ public class CatalogoController {
 
 			instruccioncuidado.setAtributo1(uniqueFilename);
 			catalogo.save(instruccioncuidado);
-			return "/catalogos";
+			return "catalogos";
 		}
 		if (UnidadMedida != null) {
 			DisenioLookup unidadmedida = new DisenioLookup();
@@ -385,7 +385,7 @@ public class CatalogoController {
 			unidadmedida.setFechaCreacion(date);
 			unidadmedida.setEstatus(1);
 			catalogo.save(unidadmedida);
-			return "/catalogos";
+			return "catalogos";
 		}
 		if (Material != null) {
 			DisenioLookup material = new DisenioLookup();
@@ -415,7 +415,7 @@ public class CatalogoController {
 			material.setFechaCreacion(date);
 			material.setEstatus(1);
 			catalogo.save(material);
-			return "/catalogos";
+			return "catalogos";
 		}
 		if (Marcador != null) {
 			DisenioLookup marcador = new DisenioLookup();
@@ -445,7 +445,7 @@ public class CatalogoController {
 			marcador.setFechaCreacion(date);
 			marcador.setEstatus(1);
 			catalogo.save(marcador);
-			return "/catalogos";
+			return "catalogos";
 		}
 		if (Composicion != null) {
 			DisenioLookup composicion = new DisenioLookup();
@@ -474,7 +474,7 @@ public class CatalogoController {
 			composicion.setFechaCreacion(date);
 			composicion.setEstatus(1);
 			catalogo.save(composicion);
-			return "/catalogos";
+			return "catalogos";
 		}
 		return "redirect:catalogos";
 
