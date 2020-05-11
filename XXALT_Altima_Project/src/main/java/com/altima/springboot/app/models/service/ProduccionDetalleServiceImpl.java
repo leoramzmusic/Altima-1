@@ -167,5 +167,13 @@ public class ProduccionDetalleServiceImpl implements IProduccionDetalleService {
 				.getResultList();
 		return quer;
 	}
-
+	
+	@Transactional(readOnly = true)
+	@Override
+	public Integer Contador() {
+		
+		String re = em.createNativeQuery("SELECT IFNULL(MAX(alt_produccion_detalle_pedido.id_detalle_pedido), 0) FROM alt_produccion_detalle_pedido" ).getSingleResult().toString();
+		return Integer.parseInt(re);
+		
+	}
 }

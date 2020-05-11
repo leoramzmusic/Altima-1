@@ -27,4 +27,8 @@ public interface IProduccionDetalleService {
 			String idPedido, String talla, String largo, String costo);
 
 	List<Object[]> muestrariosCatalogo();
+	
+
+	public Integer Contador ();
+
 }

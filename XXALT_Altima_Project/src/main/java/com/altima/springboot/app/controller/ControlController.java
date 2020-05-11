@@ -493,7 +493,7 @@ System.out.println("Los id son :"+id);
 			Pedido.save(pedido);
 		}
 		
-		
+		Integer idText=Orden.Contador();
 		for (int i =1 ; i <= Integer.parseInt(cantidad) ;i++) {
 			ProduccionDetallePedido orden = new ProduccionDetallePedido();
 			orden.setIdFamiliaGenero(Long.valueOf(prenda.getIdGenero()));
@@ -502,8 +502,8 @@ System.out.println("Los id son :"+id);
 			orden.setIdTela(null);
 			orden.setTalla(talla);
 			orden.setLargo(largo);
-			orden.setDescripcion("Foráneo");
-			orden.setIdText("ORDEN");
+			orden.setIdText("SUB"+(Integer.parseInt(idPedido)+1000)+"-"+(idText+1));
+			orden.setDescripcion("Foraneo");
 			orden.setCreadoPor(auth.getName());
 			orden.setActualizadoPor(null);
 			orden.setUltimaFechaModificacion(hourdateFormat.format(date));
@@ -515,9 +515,11 @@ System.out.println("Los id son :"+id);
 			orden.setCosto(precio);
 			orden.setCantidad( Integer.toString(1));
 			Orden.save(orden);
-			ProduccionPedido pedido = Pedido.findOne(Long.valueOf(idPedido));
-			orden.setIdText("SUB"+(pedido.getIdPedido()+1000)+"-"+orden.getIdDetallePedido());
-			Orden.save(orden);
+			idText++;
+			
+			//ProduccionPedido pedido = Pedido.findOne(Long.valueOf(idPedido));
+			//orden.setIdText("SUB"+(pedido.getIdPedido()+1000)+"-"+orden.getIdDetallePedido());
+			//Orden.save(orden);
 			// LISTAR
 		}
 		return idPedido;
