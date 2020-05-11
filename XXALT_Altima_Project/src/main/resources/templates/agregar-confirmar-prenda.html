@@ -88,6 +88,7 @@
 																<div class="form-group">
 																	<label>Tipo de prenda</label> 
 																	<select id="TipoPrenda" class="form-control selectpicker" data-live-search="true">
+																		<option></option>
 																		<option th:each="familia: ${familias}" th:value="${familia[0]}" 
 																		th:text="${familia[1]}" th:selected="${familia[0] == prenda.idFamiliaPrenda}"></option>
 																	</select>

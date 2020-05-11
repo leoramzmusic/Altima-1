@@ -106,14 +106,14 @@ function AgregarElementoListaMateriales() {
 				$('#SiguienteTerceraPestana').prop('disabled', false);
 				var identidad = id + '_' + data[0][1];
 				var temp = {
-					identidad: identidad, id: data[0][0], NoMaterial: data[0][1], Nombre: data[0][8], Clasificacion: data[0][3], Tamanio: data[0][5] + ' ' + data[0][4],
+					identidad: identidad, id: data[0][0], NoMaterial: data[0][1], Nombre: data[0][2], Clasificacion: data[0][3], Tamanio: data[0][5] + ' ' + data[0][4],
 					Modelo: data[0][6], Proceso: data[0][7], cantidad: 1
 				};
 				objeto_materiales.push(temp);
 				console.log(temp);
 				$('#CuerpoTablaMateriales').append("<tr id='RemoverElemento-" + identidad + "'>" +
 					"<td>" + data[0][1] + "</td>" +
-					"<th scope='row'>" + data[0][8] + "</th>" +
+					"<td>" + data[0][2] + "</td>" +
 					"<td>" + data[0][3] + "</td>" +
 					"<td>" + data[0][5] + ' ' + data[0][4] + "</td>" +
 					"<td>" + data[0][6] + "</td>" +
@@ -121,7 +121,7 @@ function AgregarElementoListaMateriales() {
 					"<td><input class='form-control' type='number' id='CantidadMaterial-" + identidad + "' value='1' onclick=\"CambiarCantidadMaterial(\'" + identidad + "\');\"/></td>" +
 					"<td class='tdcenter'>" +
 					"<button href='' class='btn btn-danger rounded-circle' onclick=\"QuitarMaterial(\'" + identidad + "\');\" >" +
-					"<i class='fas fa-minus fa-sm'></i></button>" +
+					"<i class='fas fa-times fa-sm'></i></button>" +
 					"</td>" +
 					"</tr>");
 			},
@@ -359,9 +359,26 @@ function ValidarTerceraPestana() {
 		$('#AlertaTerceraPestana').css('display', 'block');
 	}
 	else {
-		$('#AlertaTerceraPestana').css('display', 'none');
-		$('#SiguienteTerceraPestana').click();
-		//AsignarID(id);
+//		console.log(objeto_materiales);
+//		for(i = 0; i < objeto_materiales.length; i++){
+//			if(objeto_materiales[i].Nombre == "Tela principal"){
+//				Swal.fire({
+//					icon: 'success',
+//					title: 'Ahueso',
+//					text: 'simon simon'
+//				  })
+//			}
+//			else{
+//				Swal.fire({
+//					icon: 'error',
+//					title: 'Error',
+//					text: 'Debes agregar una tela y un forro principal!'
+//				  })
+//			}
+//		}
+			$('#AlertaTerceraPestana').css('display', 'none');
+			$('#SiguienteTerceraPestana').click();
+			//AsignarID(id);	
 	}
 }
 function ValidarCuartaPestana() {

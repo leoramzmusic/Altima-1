@@ -396,6 +396,17 @@ public class AgregarPrendaRestController {
 			dpi.setRutaPrenda(uService.copy2(foto6));
 			prendaImagenService.save(dpi);
 		}
+		
+		DiseñoPrendaImagen dpiInventario = new DiseñoPrendaImagen();
+		dpiInventario.setIdPrenda(Long.parseLong(idPrenda));
+		dpiInventario.setActualizadoPor(auth.getName());
+		dpiInventario.setCreadoPor(auth.getName());
+		dpiInventario.setEstatus("1");
+		dpiInventario.setFechaCreacion(dtf.format(now));
+		dpiInventario.setUltimaFechaModificacion(dtf.format(now));
+		dpiInventario.setNombrePrenda("Inventario");
+		dpiInventario.setRutaPrenda("Prenda de Inventario");
+		prendaImagenService.save(dpiInventario);
 
 		
 		response.sendRedirect("/prendas");
@@ -440,7 +451,6 @@ public class AgregarPrendaRestController {
 					dpi.setActualizadoPor(auth.getName());
 					dpi.setCreadoPor(auth.getName());
 					dpi.setEstatus("1");
-					dpi.setFechaCreacion(dtf.format(now));
 					dpi.setUltimaFechaModificacion(dtf.format(now));
 					dpi.setNombrePrenda(nombre1);
 					dpi.setRutaPrenda(uService.copy2(foto1));
@@ -469,7 +479,6 @@ public class AgregarPrendaRestController {
 				dpi.setActualizadoPor(auth.getName());
 				dpi.setCreadoPor(auth.getName());
 				dpi.setEstatus("1");
-				dpi.setFechaCreacion(dtf.format(now));
 				dpi.setUltimaFechaModificacion(dtf.format(now));
 				dpi.setNombrePrenda(nombre2);
 				dpi.setRutaPrenda(uService.copy2(foto2));
@@ -498,7 +507,6 @@ public class AgregarPrendaRestController {
 				dpi.setActualizadoPor(auth.getName());
 				dpi.setCreadoPor(auth.getName());
 				dpi.setEstatus("1");
-				dpi.setFechaCreacion(dtf.format(now));
 				dpi.setUltimaFechaModificacion(dtf.format(now));
 				dpi.setNombrePrenda(nombre3);
 				dpi.setRutaPrenda(uService.copy2(foto3));
@@ -527,7 +535,6 @@ public class AgregarPrendaRestController {
 				dpi.setActualizadoPor(auth.getName());
 				dpi.setCreadoPor(auth.getName());
 				dpi.setEstatus("1");
-				dpi.setFechaCreacion(dtf.format(now));
 				dpi.setUltimaFechaModificacion(dtf.format(now));
 				dpi.setNombrePrenda(nombre4);
 				dpi.setRutaPrenda(uService.copy2(foto4));
@@ -556,7 +563,6 @@ public class AgregarPrendaRestController {
 					dpi.setActualizadoPor(auth.getName());
 					dpi.setCreadoPor(auth.getName());
 					dpi.setEstatus("1");
-					dpi.setFechaCreacion(dtf.format(now));
 					dpi.setUltimaFechaModificacion(dtf.format(now));
 					dpi.setNombrePrenda(nombre5);
 					dpi.setRutaPrenda(uService.copy2(foto5));
@@ -585,7 +591,6 @@ public class AgregarPrendaRestController {
 					dpi.setActualizadoPor(auth.getName());
 					dpi.setCreadoPor(auth.getName());
 					dpi.setEstatus("1");
-					dpi.setFechaCreacion(dtf.format(now));
 					dpi.setUltimaFechaModificacion(dtf.format(now));
 					dpi.setNombrePrenda(nombre6);
 					dpi.setRutaPrenda(uService.copy2(foto6));
