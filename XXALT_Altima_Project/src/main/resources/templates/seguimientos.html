@@ -71,6 +71,7 @@
                                     <h3 class="card-title">Listado de seguimientos</h3>
                                 </div>
                                 <div class="card-body">
+                                 <input type="hidden" name="_csrf" id="token"  th:value="${_csrf.token}"/>
                                     <table class="table tablexd table-striped table-bordered tablaSeguimientos">
                                         <thead>
                                             <tr>
@@ -80,14 +81,15 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Altima</td>
+                                        
+                                             <tr th:each="clientes, cliente:${Listclientes}">
+                                               <td th:text="${#strings.concat(clientes.Nombre , ' ' , clientes.ApellidoPaterno , ' ' , clientes.ApellidoMaterno , ' ' , clientes.RazonSocial )}">Static content</td>
                                                 <td class="tdcenter">
                                                     <a data-toggle="modal" data-target="#accionesClienteAgente" class="btn btn-info btn-circle btn-sm popoverxd text-white" data-container="body" data-placement="top" data-content="Detalle de seguimiento"><i class="fas fa-info"></i></a>
                                             		<div th:insert="modal-seguimiento"></div>
                                             	</td>
                                             	<td class="tdcenter">
-                                                    <a data-toggle="modal" data-target="#llamadasAgente" class="btn btn-info btn-circle btn-sm popoverxd text-white" data-container="body" data-placement="top" data-content="Listado de llamadas"><i class="fas fa-info"></i></a>
+                                                    <a data-toggle="modal"  th:attr="data-target='#llamadasAgente'+${cliente.index}" class="btn btn-info btn-circle btn-sm popoverxd text-white" data-container="body" data-placement="top" data-content="Listado de llamadas"><i class="fas fa-info"></i></a>
                                             		<div th:insert="modal-llamadas"></div>
                                             	</td>
                                             </tr>

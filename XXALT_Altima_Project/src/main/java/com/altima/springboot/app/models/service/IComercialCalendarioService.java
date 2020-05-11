@@ -9,6 +9,7 @@ public interface IComercialCalendarioService {
 	void save (ComercialCalendario comercialCalendario);
 	void delete (Long id);
 	ComercialCalendario findOne(Long id);
+	List<ComercialCalendario> findByClient(Long id);
 	
 	
 

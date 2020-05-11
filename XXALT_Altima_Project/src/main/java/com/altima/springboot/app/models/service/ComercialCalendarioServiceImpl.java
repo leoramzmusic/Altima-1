@@ -44,5 +44,10 @@ public class ComercialCalendarioServiceImpl implements IComercialCalendarioServi
 		// TODO Auto-generated method stub
 		return repository.findById(id).orElse(null);
 	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ComercialCalendario> findByClient(Long id){
+		return em.createQuery("from ComercialCalendario where idCliente='"+id+"'").getResultList();
+	}
 
 }
