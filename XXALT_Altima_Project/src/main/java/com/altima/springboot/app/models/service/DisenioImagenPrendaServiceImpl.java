@@ -50,7 +50,7 @@ public class DisenioImagenPrendaServiceImpl implements IDisenioImagenPrendaServi
 	@Override
 	public List<DiseñoPrendaImagen> findByPrenda(Long id) {
 		// TODO Auto-generated method stub
-		List<DiseñoPrendaImagen> existentes = em.createQuery("FROM DiseñoPrendaImagen WHERE idPrenda =" + id).getResultList();
+		List<DiseñoPrendaImagen> existentes = em.createQuery("FROM DiseñoPrendaImagen WHERE idPrenda =" + id  + " AND nombrePrenda != 'Inventario'").getResultList();
 		List<DiseñoPrendaImagen> listaNueva = new ArrayList<>();
 		
 		for(int i = 0; i < 6; i++)

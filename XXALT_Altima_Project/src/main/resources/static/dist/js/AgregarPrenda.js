@@ -327,58 +327,91 @@ function ValidarPrimerPestana() {
 		
 		if(bandera){
 			if(banderaImagenes){
-				$('#AlertaPrimerPestana').css('display', 'none');
+				//$('#AlertaPrimerPestana').css('display', 'none');
 				$('#SiguientePrimeraPestana').click();	
-				$('#AlertaPrimerPestanaNombresRepetidos').css('display', 'none');
+				//$('#AlertaPrimerPestanaNombresRepetidos').css('display', 'none');
 			}
 			else{
-				$('#AlertaPrimerPestana').css('display', 'block');
+				//$('#AlertaPrimerPestana').css('display', 'block');
+				Swal.fire({
+					icon: 'error',
+					title: 'Error',
+					text: 'Debes llenar todos los campos correctamente.!'
+				  })
 			}
 		}
 		else{
-			$('#AlertaPrimerPestanaNombresRepetidos').css('display', 'block');
+			//$('#AlertaPrimerPestanaNombresRepetidos').css('display', 'block');
+			Swal.fire({
+				icon: 'error',
+				title: 'Error',
+				text: 'Los nombres de las imagenes no se deben repetir.!'
+			  })
 		}
 	}
 	else {
-		$('#AlertaPrimerPestana').css('display', 'block');
+		//$('#AlertaPrimerPestana').css('display', 'block');
+		Swal.fire({
+			icon: 'error',
+			title: 'Error',
+			text: 'Debes llenar todos los campos correctamente.!'
+		  })
 	}
 }
 //Esto solo valida que los campos esten llenos dentro de la segunda pestaña
 function ValidarSegundaPestana() {
 	if ($('#DetalleConfeccion').val() != "") {
-		$('#AlertaSegundaPestana').css('display', 'none');
+		//$('#AlertaSegundaPestana').css('display', 'none');
 		$('#SiguienteSegundaPestana').click();
 	}
 	else {
-		$('#AlertaSegundaPestana').css('display', 'block');
+		//$('#AlertaSegundaPestana').css('display', 'block');
+		Swal.fire({
+			icon: 'error',
+			title: 'Error',
+			text: 'Debes llenar todos los campos correctamente.'
+		  })
 	}
 }
 //Esto valida que la tercer pestana, de materiales, tenga al menos un material
 function ValidarTerceraPestana() {
 	if (objeto_materiales.length === 0) {
-		$('#AlertaTerceraPestana').css('display', 'block');
+		//$('#AlertaTerceraPestana').css('display', 'block');
+		Swal.fire({
+			icon: 'error',
+			title: 'Error',
+			text: 'Debes agregar un material.'
+		  })
 	}
 	else {
-//		console.log(objeto_materiales);
-//		for(i = 0; i < objeto_materiales.length; i++){
-//			if(objeto_materiales[i].Nombre == "Tela principal"){
-//				Swal.fire({
-//					icon: 'success',
-//					title: 'Ahueso',
-//					text: 'simon simon'
-//				  })
-//			}
-//			else{
-//				Swal.fire({
-//					icon: 'error',
-//					title: 'Error',
-//					text: 'Debes agregar una tela y un forro principal!'
-//				  })
-//			}
-//		}
+		
+		var HayTelaPrincipal = false;
+		var HayForroPrincipal = false;
+		
+		for(i = 0; i < objeto_materiales.length; i++){
+			if(objeto_materiales[i].Nombre == "Tela principal"){
+				HayTelaPrincipal = true;
+			}
+		}
+		
+		for(j = 0; j < objeto_materiales.length; j++){
+			if(objeto_materiales[j].Nombre == "Forro principal"){
+				HayForroPrincipal = true;
+			}
+		}
+		
+		if(HayForroPrincipal && HayTelaPrincipal){
 			$('#AlertaTerceraPestana').css('display', 'none');
 			$('#SiguienteTerceraPestana').click();
 			//AsignarID(id);	
+		}
+		else{
+			Swal.fire({
+				icon: 'error',
+				title: 'Error',
+				text: 'Debes agregar una tela y un forro principal!'
+			  })
+		}
 	}
 }
 function ValidarCuartaPestana() {
@@ -388,11 +421,16 @@ function ValidarCuartaPestana() {
 		j++;
 	});
 	if (j== 0) {
-		$('#AlertaCuartaPestana').css('display', 'block');
+		//$('#AlertaCuartaPestana').css('display', 'block');
+		Swal.fire({
+			icon: 'error',
+			title: 'Error',
+			text: 'Debes agregar un elemento.'
+		  })
 	}
 	else {
 		//Se deshabilita el boton
-		$('#AlertaCuartaPestana').css('display', 'none');
+		//$('#AlertaCuartaPestana').css('display', 'none');
 		$('#CuerpoPatronaje tr').each(function () {
 			if($('#CantidadTela'+$(this).find('td').eq(0).html()).val()=="" || $('#CantidadForro'+$(this).find('td').eq(0).html()).val()==""||$('#CantidadEntretela'+$(this).find('td').eq(0).html()).val()==""){
 				Swal.fire({
@@ -423,12 +461,17 @@ function ValidarCuartaPestana() {
 //Este valida que las cantidades del patronaje no esten nulas cuando se confirma una prenda
 function ValidarCantidadesPatronaje() {
 	if ($('#CantidadTela').val() != "" && $('#CantidadTelaSecundaria').val() != "" && $('#CantidadForro').val() != "" && $('#CantidadForroSecundario').val() != "" && $('#CantidadEntretela').val() != "") {
-		$('#AlertaCantidadesPatronaje').css('display', 'none');
+		//$('#AlertaCantidadesPatronaje').css('display', 'none');
 		console.log("si hace la entrasion");
 		AgregarElementoListaPatronaje();
 	}
 	else {
-		$('#AlertaCantidadesPatronaje').css('display', 'block');
+		//$('#AlertaCantidadesPatronaje').css('display', 'block');
+		Swal.fire({
+			icon: 'error',
+			title: 'Error',
+			text: 'Debes agregar las cantidades.'
+		  })
 	}
 }
 //Cambios Uriel ***********************Marcadores
@@ -450,6 +493,11 @@ function guardarMarcador() {
 	});
 	if(campo_id!=null){
 		console.log("entra2 "+campo_id);
+		Swal.fire({
+			icon: 'error',
+			title: 'Error',
+			text: 'Ya has agregado ese marcador.'
+		  })
 		for(var j=0;j<=campo_id.split(",").length;j++){
 			if(_id==campo_id.split(",")[j]){
 				console.log("entra3 "+_id);
@@ -477,7 +525,7 @@ function guardarPatronaje() {
 		"<td>" + '<input type="number" class="form-control" placeholder="10" id="CantidadForro'+_id+'">' + "</td>"+
 		"<td>" + '<input type="number" class="form-control" placeholder="10" id="CantidadForroSecundario'+_id+'">' + "</td>"+
 		"<td>" + '<input type="number" class="form-control" placeholder="10" id="CantidadEntretela'+_id+'">' + "</td>"+
-		"<td class='tdcenter'>" +'<button type="button" name="remove" id="' +_id + '"onclick="eliminarPatronaje(this)" class="btn btn-danger btn_remove">Eliminar</button></td>'+
+		"<td class='tdcenter'>" +'<button type="button" name="remove" id="' +_id + '"onclick="eliminarPatronaje(this)" class="btn btn-danger btn_remove btn-circle btn-sm popoverxd"><i class="fas fa-times"></i></button></td>'+
 		'</tr>';
 	var campo_id;
 	$('#CuerpoPatronaje tr').each(function () {
@@ -496,6 +544,11 @@ function guardarPatronaje() {
 		for(var j=0;j<=campo_id.split(",").length;j++){
 			if(_id==campo_id.split(",")[j]){
 				console.log("entra3 "+_id);
+				Swal.fire({
+					icon: 'error',
+					title: 'Error',
+					text: 'Ya has agregado ese elemento.'
+				  })
 				return false;
 			}
 		}

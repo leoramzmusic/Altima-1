@@ -405,7 +405,7 @@ public class AgregarPrendaRestController {
 		dpiInventario.setFechaCreacion(dtf.format(now));
 		dpiInventario.setUltimaFechaModificacion(dtf.format(now));
 		dpiInventario.setNombrePrenda("Inventario");
-		dpiInventario.setRutaPrenda("Prenda de Inventario");
+		dpiInventario.setRutaPrenda("Prenda.jpg");
 		prendaImagenService.save(dpiInventario);
 
 		

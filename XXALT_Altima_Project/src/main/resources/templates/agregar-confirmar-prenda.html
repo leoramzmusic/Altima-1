@@ -47,7 +47,7 @@
 							<!-- Default box -->
 							<div class="card">
 								<div class="card-header bg-dark">
-									<h3 th:if="${accion == 'agregar'}"class="card-title">Agregar prenda</h3>
+									<h3 th:if="${accion == 'agregar'}" class="card-title">Agregar prenda</h3>
 									<h3 th:if="${accion == 'editar'}" class="card-title">Editar prenda: <text th:text="${prenda.idText}"></text></h3>
 								</div>
 								<div class="card-body">
@@ -87,8 +87,7 @@
 															<div class="col-sm-4">
 																<div class="form-group">
 																	<label>Tipo de prenda</label> 
-																	<select id="TipoPrenda" class="form-control selectpicker" data-live-search="true">
-																		<option></option>
+																	<select id="TipoPrenda" class="form-control selectpicker" data-live-search="true" th:disabled="${accion == 'editar'}">
 																		<option th:each="familia: ${familias}" th:value="${familia[0]}" 
 																		th:text="${familia[1]}" th:selected="${familia[0] == prenda.idFamiliaPrenda}"></option>
 																	</select>
@@ -809,14 +808,15 @@ alert($('#contenido').val());
 		//Funcion que cambia el nombre de las imagenes respecto a la familia de prenda elegida
 		$( "#TipoPrenda" ).change(function() {
 			for(var i = 0; i < familias.length; i++){
-				if(familias[i][0] == $('#TipoPrenda').val()){
-					$('#name-1').val("Frente");
-					$('#name-edit-1').val("Frente");
-					
+				if(familias[i][0] == $('#TipoPrenda').val()){		
 					if(familias[i][3] == "superior"){
+						$('#name-1').val("Delantero");
+						$('#name-edit-1').val("Delantero");
 						$('#name-2').val("Espalda");
 						$('#name-edit-2').val("Espalda");	
 					}else{
+						$('#name-1').val("Frente");
+						$('#name-edit-1').val("Frente");
 						$('#name-2').val("Trasero");
 						$('#name-edit-2').val("Trasero");
 					}
