@@ -49,10 +49,10 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	@Transactional
 	public void save(Usuario usuarioxd,ChangePasswordForm form) throws Exception{
 		// TODO Auto-generated method stub
-		if(checkUsernameAvailable(usuarioxd)==false) {
-			throw new Exception("Nombre de Usuario no disponible.");
-			
-		}
+//		if(checkUsernameAvailable(usuarioxd)==false) {
+//			throw new Exception("Nombre de Usuario no disponible.");
+//			
+//		}
 		if( !form.getNewPassword().equals(form.getConfirmPassword())) {
 			mensajeError=("Nueva Contraseña y Confirmar Contraseña no coinciden.");
 			throw new Exception("Nueva Contraseña y Confirmar Contraseña no coinciden.");
@@ -123,6 +123,24 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	@Override
 	public String getMensajeError() {
 		return mensajeError;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<Object[]> FindRolesByUserId(Long id){
+		return em.createNativeQuery("SELECT DISTINCT roles.departamento_rol, roles.seccion_rol FROM alt_hr_usuario_rol AS roluser \r\n" + 
+									"INNER JOIN alt_hr_rol roles ON roluser.id_rol = roles.id_rol\r\n" + 
+									"WHERE roluser.id_usuario ="+id).getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<Object[]> FindPermisosByUserId(Long id){
+		return em.createNativeQuery("SELECT roles.id_rol, roles.seccion_rol, roles.permiso_rol  FROM alt_hr_usuario_rol AS roluser \r\n" + 
+				"INNER JOIN alt_hr_rol roles ON roluser.id_rol = roles.id_rol\r\n" + 
+				"WHERE roluser.id_usuario ="+id).getResultList();
 	}
 
 }

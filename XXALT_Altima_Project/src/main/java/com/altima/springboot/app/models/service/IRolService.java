@@ -22,8 +22,8 @@ public interface IRolService {
 
 	List<Rol> FindBySeccion();
 
-	List<Rol> FindByPermiso();
+	List<Rol> FindByPermiso(String Departamento, String seccion);
 
-	Rol FindOneByDates(String departamento, String seccion, String permiso);
+	List<Object[]> FindOneByDates(Long id);
 
 }

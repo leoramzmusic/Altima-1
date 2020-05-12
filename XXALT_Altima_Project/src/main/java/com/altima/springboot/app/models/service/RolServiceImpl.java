@@ -10,9 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.altima.springboot.app.models.entity.Rol;
-import com.altima.springboot.app.models.entity.Usuario;
 import com.altima.springboot.app.repository.RolRepository;
-import com.altima.springboot.app.repository.UsuarioRepository;
 @Service
 public class RolServiceImpl implements IRolService {
 
@@ -80,19 +78,20 @@ public class RolServiceImpl implements IRolService {
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
-	public List<Rol> FindByPermiso(){
-		return em.createQuery("SELECT DISTINCT permisoRol FROM Rol \r\n" + 
-				"WHERE nombreRol!='ADMINISTRADOR'").getResultList();
+	public List<Rol> FindByPermiso(String Departamento, String seccion){
+		return em.createQuery("SELECT DISTINCT idRol, permisoRol FROM Rol \r\n" + 
+				"WHERE departamentoRol='"+Departamento+"' AND seccionRol='"+seccion+"'").getResultList(); 
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
-	public Rol FindOneByDates(String departamento, String seccion, String permiso){
-		return (Rol) em.createQuery("FROM Rol \r\n" + 
-				"WHERE departamentoRol='"+departamento+"'"
-				+ "AND seccionRol='"+seccion+"'"
-				+ "AND permisoRol='"+permiso+"'").getSingleResult();
+	public List<Object[]> FindOneByDates(Long id){
+		return  em.createNativeQuery("SELECT DISTINCT rol.id_rol, rol.seccion_rol, rol.permiso_rol from alt_hr_rol rol,\r\n" + 
+									"(SELECT DISTINCT roles.departamento_rol, roles.seccion_rol  FROM alt_hr_usuario_rol AS roluser\r\n" + 
+									"				INNER JOIN alt_hr_rol roles ON roluser.id_rol = roles.id_rol\r\n" + 
+									"				WHERE roluser.id_usuario ="+id+") AS secciones\r\n" + 
+									"	WHERE rol.departamento_rol = secciones.departamento_rol\r\n" + 
+									"	AND rol.seccion_rol = secciones.seccion_rol").getResultList();
 	}
-	
 }

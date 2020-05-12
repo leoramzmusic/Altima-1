@@ -32,7 +32,7 @@
 <!-- select2-bootstrap4-theme -->
 <link th:href="@{/dist/css/select2-bootstrap4.css}" rel="stylesheet">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed sidebar-collapse">
+<body class="hold-transition sidebar-mini layout-fixed sidebar-collapse" onload="mapearPermisos()">
 	<!-- Site wrapper -->
 	<div class="wrapper">
 		<!-- Navbar -->
@@ -77,23 +77,25 @@
 										method="post">
 										<div class="form-row mb-0">
 											<div class="form-group col-md-4">
-												<label class="col-form-label-sm mb-0">Empleado</label> <select
-													class="form-control" required id="empleado">
+												<label class="col-form-label-sm mb-0">Empleado</label> 
+												<select
+													
+													class="form-control" required id="empleado" >
 													<option value="">Seleccione Empleado...</option>
-													<option th:each="empleado:${empleados}" th:value="${empleado[0]}"th:text="${empleado[1]}"></option>
+													<option th:each="empleado:${empleados}" th:selected="${empleado[0]==empleadoSelected}?'selected':'false'" th:value="${empleado[0]}"th:text="${empleado[1]}"></option>
 												</select>
 											</div>
 											<div class="form-group col-md-4">
 												<label class="col-form-label-sm mb-0">Nombre de
 													Usuario</label> <input type="text" required
-													class="form-control" id="username" />
+													class="form-control" id="username" th:value="${usuario}"/>
 											</div>
-											<div class="form-group col-md-4">
+											<div class="form-group col-md-4" th:if="${idUser == null}">
 												<label class="col-form-label-sm mb-0">Contraseña</label> <input
 													type="password" required
-													id="pass" class="form-control" />
+													id="pass" class="form-control" th:value="${passwordForm}"/>
 											</div>
-											<div class="form-group col-md-4">
+											<div class="form-group col-md-4" th:if="${idUser == null}">
 												<label class="col-form-label-sm mb-0">Confirmar
 													Contraseña</label> <input type="password" required
 													id="confirmPass" class="form-control" />
@@ -103,8 +105,8 @@
 												<select class="form-control" size="1"
 													id="statusUser">
 													<option value="">Seleccione...</option>
-													<option value="1">Activo</option>
-													<option value="0">Baja</option>
+													<option th:selected="${statusUser}==1?'selected':'false'" value="1">Activo</option>
+													<option th:selected="${statusUser}==0?'selected':'false'" value="0">Baja</option>
 												</select>
 											</div>
 											<div class="form-group col-md-5">
@@ -117,7 +119,7 @@
 											<div class="form-group col-md-5">
 												<label class="col-form-label-sm mb-0">Sección</label> <select
 													class="form-control"
-													name="rol_select" id="rol_select" onchange="cargarPermiso()"> 
+													name="rol_select" id="rol_select" onchange="cargarPermiso($('#departamento').val(),$('#rol_select').val())"> 
 													<option value="">Seleccione...</option>
 												</select>
 											</div>
@@ -139,14 +141,23 @@
 													</tr>
 												</thead>
 												<tbody id="tablita" >
-													
+													<div th:unless="${roles == null}">
+														<tr th:each="rol:${roles}">
+															<td th:text="${rol[0]}" ></td>
+															<td th:text="${rol[1]}"></td>
+															<td><select multiple class='form-control selectpicker'></select></td>
+															<td>
+																<button type="button" name="remove" class="btn btn-danger btn_remove borrar">Eliminar</button>
+															</td>
+														</tr>
+													</div>
 												</tbody>
 											</table>
 										</div>
 										<div class="form-group row">
 											<div class="col-lg-12 text-center text-white">
 												<a class="btn btn-danger" href="javascript:history.back(-1);">Cancelar</a>
-												<button type="button" class="btn btn-warning" th:unless="${usuarios == null}"
+												<button type="button" class="btn btn-warning" th:unless="${idUser == null}"
 													data-toggle="modal" data-target="#passwordModal">Cambiar
 													Contraseña</button>
 												<a class="btn btn-primary" onclick="guardarUsuario()">Guardar</a>
@@ -158,11 +169,11 @@
 									</form>
 									<div th:insert="modal-password"></div>
 								</div>
-									<!--  <input type="hidden" th:field="*{usuario.idUsuario}">
 									<input type="hidden" th:field="${passwordForm.currentPassword}" class="form-control" placeholder="********" />
                     				<input type="hidden" th:field="${passwordForm.Id}" class="form-control" placeholder="********" />
-									<input type="hidden" name="rol_value" id="rol_value" value="">-->
+									<input type="hidden" th:value="${idUser}" id="idUser">
 									<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" id="token"/>
+									
 								<!-- /.card-body -->
 							</div>
 							<!-- /.card -->
@@ -187,6 +198,7 @@
 	<script th:src="@{/dist/js/demo.js}"></script>
 	<!-- sweet alert-->
 
+
 	<script th:src="@{/dist/js/sweetalert.js}"></script>
 		<script>
 
@@ -207,13 +219,14 @@
 	<script th:inline="javascript">
 		/*<![CDATA[*/
 
+		
 		var material_calidad = /*[[${permiso_material}]]*/'default';
 		var material_calidad_id = /*[[${permiso_material_id}]]*/'default';
-		var permisos="";
-
+		var permisos = /*[[${dataRol}]]*/'default';
+		var roles = /*[[${permisos}]]*/'default';
+		var permiso="";
 		/*]]>*/
 	</script>
-
 	<script th:src="@{/dist/js/roles_permisos.js}" th:inline="javascript"></script>
 </body>
 

@@ -52,32 +52,35 @@ public class UsuarioController {
 		Usuario usuario = new Usuario();
 		usuario = usuarioService.findOne(id);
 		
-		m.put("usuario", usuario);
+		m.put("usuario", usuario.getNombreUsuario());
 		m.put("passwordForm", new ChangePasswordForm(usuario.getIdUsuario()));
 		
 		for (Rol r : rolService.findAll()) {
 			roles.add(r.getDescripcionRol());
 		}
+		
+		model.addAttribute("dataRol",usuarioService.FindPermisosByUserId(id));
 		model.addAttribute("empleados", empleadoService.findEmpleadoPersona());
-		model.addAttribute("roles", roles);
-		model.addAttribute("usuarios", usuario);
-		model.addAttribute("permiso_material", rolService.findBySeccionRol("MATERIALES").get(0));
-		model.addAttribute("permiso_material_id", rolService.findBySeccionRol("MATERIALES").get(1));
-		model.addAttribute("departamento", roles);
+		model.addAttribute("empleadoSelected", usuario.getIdEmpleado());
+		model.addAttribute("statusUser", usuario.getEstatus());
+		model.addAttribute("idUser", id);
+		model.addAttribute("roles", usuarioService.FindRolesByUserId(id));
+		model.addAttribute("permisos", rolService.FindOneByDates(id));
+		
 		return "agregar_usuario";
 	}
 	
-//	@PostMapping("/editar_contra")
-//	public String patchContraseña(Model model, ChangePasswordForm passwordForm, Errors errors,
-//			RedirectAttributes redirectAttrs) {
-//		
-//		try {
-//			usuarioService.changePassword(passwordForm);
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			redirectAttrs.addFlashAttribute("title", usuarioService.getMensajeError()).addFlashAttribute("icon", "error");
-//			return "redirect:/editar_usuario/" + passwordForm.getId();
-//		}
-//		return "redirect:/administracion_usuarios";
-//	}
+	@PostMapping("/editar_contra")
+	public String patchContraseña(Model model, ChangePasswordForm passwordForm, Errors errors,
+			RedirectAttributes redirectAttrs) {
+		
+		try {
+			usuarioService.changePassword(passwordForm);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			redirectAttrs.addFlashAttribute("title", usuarioService.getMensajeError()).addFlashAttribute("icon", "error");
+			return "redirect:/editar_usuario/" + passwordForm.getId();
+		}
+		return "redirect:/administracion_usuarios";
+	}
 }
