@@ -1,11 +1,16 @@
 package com.altima.springboot.app.controller;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,7 +24,7 @@ import com.altima.springboot.app.models.entity.ComercialCalendario;
 import com.altima.springboot.app.models.entity.ComercialCliente;
 import com.altima.springboot.app.models.service.IComercialCalendarioService;
 import com.altima.springboot.app.models.service.IComercialClienteService;
-
+import java.time.format.*;
 @Controller
 public class AgenteVentaController {
 	@Autowired
@@ -68,10 +73,18 @@ public class AgenteVentaController {
 
 	@PostMapping("/guardar-seguimientos")
 	@ResponseBody
-	public String guardarseguimiento(String fecha, String observacion, Long idcliente) {
+	public String guardarseguimiento(String fecha, String observacion, Long idcliente,Integer duracion) throws ParseException {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+		Date date2 = (Date)formatter.parse(fecha); 
+		ZoneId zone = ZoneId.of("America/Mexico_City"); 
+		ZonedDateTime fechafinform=date2.toInstant().plusSeconds(duracion*60).atZone(zone);
+		date2=(Date)formatter.parse(fechafinform.toString());
+		DateTime datetime = new DateTime(date2);
+		org.joda.time.format.DateTimeFormatter formatterNoMillis = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm");
+		String end=datetime.toString(formatterNoMillis);
 		ComercialCalendario llamadas = new ComercialCalendario();
 		llamadas.setDescription(observacion);
 		llamadas.setTitle("Llamada");
@@ -81,7 +94,7 @@ public class AgenteVentaController {
 		llamadas.setFechaCreacion(dateFormat.format(date));
 		llamadas.setUltimaFechaModificacion(dateFormat.format(date));
 		llamadas.setColor("green");
-		llamadas.setEnd(fecha);
+		llamadas.setEnd(end);
 		llamadas.setEstatus("1");
 		calendarioservice.save(llamadas);
 		return "seguimientos";

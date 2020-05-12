@@ -130,6 +130,15 @@ function agendarLlamadaAgente(idcliente){
 		'<label>Fecha de la llamada</label>'+
 		'<input type="datetime-local" value="'+dateTime +'" class="form-control" id="fechaLlamada">'+
 		'</div>'+
+		'<div class="form-group col-sm-12">'+
+		'<label>Duración</label>'+
+		 '<select class="form-control" id="duracion">'+
+	      '<option value="15">15 minutos</option>'+
+	      '<option value="30">30 minutos</option>'+
+	      '<option value="45">45 minutos</option>'+
+	      '<option value="60">60 minutos</option>'+
+	    '</select>'+
+		'</div>'+
 		'<input type="hidden" id="estatusLlamada" value="Pendiente">'+
 		'<div class="form-group col-sm-12">'+
 		'<label>Observaciones</label>'+
@@ -142,10 +151,12 @@ function agendarLlamadaAgente(idcliente){
 		confirmButtonText: 'Agendar',
 		confirmButtonColor:'#343a40',
 	}).then((result) => {
-		if (result.value && document.getElementById("fechaLlamada").value && document.getElementById("observacionLlamada").value) {
+		if (result.value && document.getElementById("fechaLlamada").value && document.getElementById("observacionLlamada").value && document.getElementById("duracion").value) {
 			var Fecha = document.getElementById("fechaLlamada").value;
 			var Observacion= document.getElementById("observacionLlamada").value;
 			var Idcliente=idcliente;
+			var duracion=document.getElementById("duracion").value;
+			console.log(duracion);
 			$.ajax({
 				type: "POST",
 				url: "/guardar-seguimientos",
@@ -153,7 +164,8 @@ function agendarLlamadaAgente(idcliente){
 					"_csrf": $('#token').val(),
 					'fecha': Fecha,
 					'observacion':Observacion,
-					'idcliente':Idcliente
+					'idcliente':Idcliente,
+					'duracion':duracion
 				}
 
 			}).done(function (data) {
