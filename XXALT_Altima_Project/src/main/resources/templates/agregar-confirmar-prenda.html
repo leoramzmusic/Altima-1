@@ -121,7 +121,7 @@
 																<div class="form-group">
 																	<label>Cliente de prenda</label> 
 																	<select id="ClientePrenda" class="form-control selectpicker" data-live-search="true">
-																		<option value=""></option>
+																		<option value="">Cliente General</option>
 																		<option th:each="cliente: ${clientes}" th:value="${cliente.idCliente}" 
 																		th:text="${cliente.nombre}" th:selected="(${cliente.idCliente} == ${prenda.prendaCliente})" ></option>
 																	</select>
@@ -381,8 +381,8 @@ Instrucción 3:
                                                                         <tr th:each="pm:${prendasmarcadores}">
                                                                             <td style="display: none;" th:text="${pm[0]}"></td>
                                                                             <td th:text="${pm[1]}"></td>
-                                                                            <td>
-                                                                                <button type="button" name="remove" onclick="eliminarMarcador(this)" class="btn btn-danger btn-circle btn-sm btn_remove popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Eliminar"><i class="fas fa-times"></i></button>
+                                                                            <td class="text-center">
+                                                                                <button type="button" name="remove" onclick="eliminarMarcador(this)" class="btn btn-danger btn_remove popoverxd">Eliminar</button>
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>
@@ -440,7 +440,7 @@ Instrucción 3:
 																			<th scope="col">Modelo</th>
 																			<th scope="col">Proceso</th>
 																			<th scope="col">Cantidad</th>
-																			<th scope="col"></th>
+																			<th scope="col">Eliminar</th>
 																		</tr>
 																	</thead>
 																	<tbody id="CuerpoTablaMateriales">
@@ -455,7 +455,7 @@ Instrucción 3:
                                                                                 <input type="number" th:id="'CantidadMaterial-' + ${mat[10]}" class="form-control" th:value="${mat[9]}" th:attr="onclick=|CambiarCantidadMaterial('${mat[10]}')|" />
                                                                             </td>
                                                                             <td class="tdcenter">
-                                                                                <button class="btn btn-danger btn-circle btn-sm btn_remove popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Eliminar" th:attr="onclick=|QuitarMaterial('${mat[10]}')|"><i class="fas fa-times"></i>
+                                                                                <button class="btn btn-danger btn_remove popoverxd" th:attr="onclick=|QuitarMaterial('${mat[10]}')|">Eliminar
                                                                                     
                                                                                 </button>
                                                                             </td>
@@ -520,7 +520,7 @@ Instrucción 3:
                                                                             <th scope="col" class="text-center">Forro<br>N&uacute;mero de piezas</th>
                                                                             <th scope="col" class="text-center">Forro Secundario<br>N&uacute;mero de piezas</th>
                                                                             <th scope="col" class="text-center">Entretela<br>N&uacute;mero de piezas</th>
-                                                                            <th scope="col">Quitar</th>
+                                                                            <th scope="col">Eliminar</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody id="CuerpoPatronaje">
@@ -534,7 +534,7 @@ Instrucción 3:
                                                                             <td><input type="number" class="form-control" th:value="${pat[8]}" placeholder="10" th:id="${'CantidadForroSecundario'+pat[6]}"></td>
                                                                             <td><input type="number" class="form-control" th:value="${pat[5]}" placeholder="10" th:id="${'CantidadEntretela'+pat[6]}"></td>
                                                                             <td class="tdcenter">
-                                                                                <button class="btn btn-danger btn_remove btn-circle btn-sm popoverxd" data-container="body" data-toggle="popover" data-placement="top" data-content="Eliminar" onclick="eliminarPatronaje(this)"><i class="fas fa-times"></i>
+                                                                                <button class="btn btn-danger btn_remove" data-container="body" data-toggle="popover" onclick="eliminarPatronaje(this)">Eliminar
                                                                                 </button>
                                                                             </td>
                                                                         </tr>
@@ -898,6 +898,19 @@ alert($('#contenido').val());
     }
     $(document).ready(function () {
       ordenarSelect('ListaPatronaje');
+    });
+  </script>
+  <script>
+    function ordenarSelect(id_componente)
+    {
+      var selectToSort = jQuery('#' + id_componente);
+      var optionActual = selectToSort.val();
+      selectToSort.html(selectToSort.children('option').sort(function (a, b) {
+        return a.text === b.text ? 0 : a.text < b.text ? -1 : 1;
+      })).val(optionActual);
+    }
+    $(document).ready(function () {
+      ordenarSelect('marcador_');
     });
   </script>
 </body>
