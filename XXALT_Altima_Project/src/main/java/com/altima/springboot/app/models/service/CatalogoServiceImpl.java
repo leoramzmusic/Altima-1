@@ -191,10 +191,10 @@ public class CatalogoServiceImpl implements ICatalogoService {
 	
 	@Override
 	@Transactional
-	public boolean findDuplicate(String Lookup){
+	public boolean findDuplicate(String Lookup,String Tipo){
 		boolean duplicate;
 		@SuppressWarnings("unchecked")
-		List<DisenioLookup> result = em.createQuery("from DisenioLookup where nombreLookup='"+Lookup+"'").getResultList();
+		List<DisenioLookup> result = em.createQuery("from DisenioLookup where nombreLookup='"+Lookup+"' and tipoLookup='"+Tipo+"'").getResultList();
 		if(result.isEmpty()) {
 			duplicate=false;
 		}

@@ -56,6 +56,6 @@ public interface ICatalogoService {
 
 	DisenioLookup findLastColor();
 
-	boolean findDuplicate(String Lookup);
+	boolean findDuplicate(String Lookup,String Tipo);
 
 }

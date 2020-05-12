@@ -69,8 +69,8 @@ public class CatalogoController {
 	
 	@RequestMapping(value = "/verifduplicado", method = RequestMethod.GET)
 	@ResponseBody
-	public boolean verificaduplicado(String Lookup) {
-        return catalogo.findDuplicate(Lookup);
+	public boolean verificaduplicado(String Lookup,String Tipo) {
+        return catalogo.findDuplicate(Lookup,Tipo);
 		
 	}
 

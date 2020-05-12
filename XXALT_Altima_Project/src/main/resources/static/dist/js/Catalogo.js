@@ -1237,7 +1237,8 @@ function agregarColor() {
 				type: "GET",
 				url: "/verifduplicado",
 				data: {
-					'Lookup': Color
+					'Lookup': Color,
+					'Tipo': Color
 				
 					
 				}
@@ -1426,8 +1427,8 @@ function agregarTrazo() {
 				type: "GET",
 				url: "/verifduplicado",
 				data: {
-					'Lookup': Trazo
-				
+					'Lookup': Trazo,
+					'Tipo': Pieza Trazo
 					// ,'Descripcion':Descripcion
 				}
 
@@ -1613,8 +1614,8 @@ function agregarPrenda() {
 				type: "GET",
 				url: "/verifduplicado",
 				data: {
-					'Lookup': FamiliaPrenda
-					
+					'Lookup': FamiliaPrenda,
+					'Tipo': Familia Prenda
 				
 					// ,'Descripcion':Descripcion
 				}
@@ -1803,8 +1804,8 @@ function agregarGenero() {
 				type: "GET",
 				url: "/verifduplicado",
 				data: {
-					'Lookup': Genero
-				
+					'Lookup': Genero,
+				    'Tipo': Familia Genero
 					// ,'Descripcion':Descripcion
 				}
 
@@ -2103,8 +2104,8 @@ function insertar() {
 			type: "GET",
 			url: "/verifduplicado",
 			data: {
-				'Lookup': Composicion
-			
+				'Lookup': Composicion,
+			    'Tipo': Familia Composicion
 				// ,'Descripcion':Descripcion
 			}
 
@@ -2434,8 +2435,8 @@ function agregarCuidado() {
 				type: "GET",
 				url: "/verifduplicado",
 				data: {
-					'Lookup': Cuidado
-				
+					'Lookup': Cuidado,
+				    'Tipo': Instruccion Cuidado
 					// ,'Descripcion':Descripcion
 				}
 
@@ -2634,8 +2635,8 @@ function agregarMedida() {
 				type: "GET",
 				url: "/verifduplicado",
 				data: {
-					'Lookup': Medida
-				
+					'Lookup': Medida,
+				    'Tipo': Unidad Medida
 					// ,'Descripcion':Descripcion
 				}
 
@@ -2839,8 +2840,8 @@ function agregarMaterial() {
 				type: "GET",
 				url: "/verifduplicado",
 				data: {
-					'Lookup': Material
-				
+					'Lookup': Material,
+				    'Tipo' : Material
 					// ,'Descripcion':Descripcion
 				}
 
@@ -3027,8 +3028,8 @@ function agregarMarcador() {
 				type: "GET",
 				url: "/verifduplicado",
 				data: {
-					'Lookup': Marcador
-				
+					'Lookup': Marcador,
+				    'Tipo': Marcador
 					// ,'Descripcion':Descripcion
 				}
 
@@ -3195,8 +3196,8 @@ function agregarComposicion1() {
 				type: "GET",
 				url: "/verifduplicado",
 				data: {
-					'Lookup': Composicion
-				
+					'Lookup': Composicion,
+				    'Tipo': Composicion
 					// ,'Descripcion':Descripcion
 				}
 
