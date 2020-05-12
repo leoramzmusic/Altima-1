@@ -52,7 +52,7 @@ public class InventarioServiceImpl implements IInventarioService {
 				"				                 INNER JOIN\r\n" + 
 				"				                \r\n" + 
 				"				                alt_disenio_prenda pre3 on pre3.id_prenda= po.id_prenda \r\n" + 
-				"                                 and estatus_confeccion='1'\r\n" + 
+				"                                 and estatus_confeccion='2'\r\n" + 
 				"							    LEFT JOIN \r\n" + 
 				"								alt_disenio_prenda_imagen pi on  pi.id_prenda= pre3.id_prenda and                                              pi.nombre_prenda='Inventario'\r\n" + 
 				"				              \r\n" + 
