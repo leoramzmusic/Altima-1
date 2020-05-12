@@ -92,9 +92,15 @@
 
     <div class="form-group col-sm-6">
         <label for="idMarca">Proveedores</label>
-        <select class="form-control selectCustom " id="idMarca" th:field="*{idMarca}" data-live-search="true">
-            <option th:each="listLookupsMar:${listLookupsMar}" th:value="${listLookupsMar[0]}"
-                th:text="${listLookupsMar[1]}" />
+        <select class="form-control selectCustom " id="idMarca"  data-live-search="true" required >
+           
+            <option value="">Selecciona uno...</option>
+			<option value="1">PRO1001 TELAS CONTNELTAL</option>
+			<option value="2">PRO1002 CORDUROY</option>
+			<option value="3">PRO1003 DYEXSA</option>
+			<option value="4">PRO1004 FABRICA DE SAN MARTIN</option>
+			<option value="5">PRO1005 FABRICA MARIA</option>
+			<option value="6">PRO1006 FABRICAS DE TELAS DE MORELIA</option>
 
         </select>
     </div>
