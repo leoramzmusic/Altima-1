@@ -69,25 +69,6 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr th:each="movimiento:${listMovimientos}">
-												<td th:text="${movimiento[1]}"></td>
-												<td th:text="${movimiento[3]==null || movimiento[4]==null}?${movimiento[2]}:${movimiento[2]}+' '+${movimiento[3]}+' '+${movimiento[4]}"></td>
-												<td th:text="${movimiento[5]}"></td>
-												<td th:text="${movimiento[6]==null}?'':${movimiento[6]}"></td>
-												<td th:text="${movimiento[7]==null}?'':${movimiento[7]}"></td>
-												<td class="tdcenter">
-													<button data-target="#infoTraspaso" class="btn btn-info btn-circle btn-sm text-white" th:onclick="'javascript:detalleMuestras('+${movimiento[0]}+')'"><i class="fas fa-info"></i></button>
-												</td>
-												<td th:text="${movimiento[8]}"></td>
-												<td class="tdcenter">
-													<a th:if="${movimiento[8]=='Pendiente de recoger'}" th:onclick="'javascript:entregarSolicitud('+${movimiento[0]}+')'" class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Entregar a vendedor"><i class="fas fa-user-check"></i></a>
-                                    				<a th:if="${movimiento[8]=='Pendiente de recoger'}" th:onclick="'javascript:cancelarSolicitud('+${movimiento[0]}+')'" class="btn btn-danger btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Cancelar"><i class="fas fa-times"></i></a>
-                                    				<a th:if="${movimiento[8]=='Entregado a vendedor'}" th:onclick="'javascript:devueltoSolicitud('+${movimiento[0]}+')'" class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Devolver"><i class="fas fa-check"></i></a>
-                                    				<a th:if="${movimiento[8]=='Devolución parcial'}" th:onclick="'javascript:devueltoSolicitud('+${movimiento[0]}+')'" class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Devolver"><i class="fas fa-check"></i></a>
-                                    				<a th:if="${movimiento[8]=='Prestamo empresa'}" th:onclick="'javascript:devueltoSolicitud('+${movimiento[0]}+')'" class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Devolver"><i class="fas fa-check"></i></a>
-                                    				<a th:if="${movimiento[8]=='Traspaso'}" th:onclick="'javascript:devueltoSolicitud('+${movimiento[0]}+')'" class="btn btn-success btn-circle btn-sm text-white popoverxd" data-container="body" data-placement="top" data-content="Devolver"><i class="fas fa-check"></i></a>
-                                    			</td>
-											</tr>
 										</tbody>
 									</table>
 								</div>

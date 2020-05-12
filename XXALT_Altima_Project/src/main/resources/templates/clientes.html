@@ -82,6 +82,7 @@
                                                 <th>Tipo</th>
                                                 <th>Sucursales</th>
                                                 <th>Datos de facturaci&oacute;n</th>
+                                                <th>Coordinados</th>
                                                 <th>Acciones</th>
                                             </tr>
                                         </thead>
@@ -103,6 +104,10 @@
                                                  		th:href="@{/facturacion-clientes/}+ ${cliente.idCliente}"  class="btn btn-primary btn-circle btn-sm text-white popoverxd" 
                                                  		data-container="body" data-placement="top" 
                                                  		data-content="Ver datos de facturaci&oacute;n"><i class="fas fa-file-alt"></i></a>
+                                                </td>
+                                                <td class="text-center">
+                                                	<a th:href="@{/coordinados}" class="btn btn-info btn-circle btn-sm popoverxd" data-container="body" data-placement="top" 
+                                                 		data-content="Ver coordinados"><i class="fas fa-info"></i></a>
                                                 </td>
                                                 <td class="tdcenter">                                        
                                                  	<a th:href="@{/editar-cliente/}+ ${cliente.idCliente}" class="btn btn-warning btn-circle btn-sm popoverxd" 
