@@ -251,8 +251,7 @@ function Guardar() {
 }
 //Esta valida que los campos esten llenos dentro de la primer pestaña
 function ValidarPrimerPestana() {
-	if ($('#DescripcionPrenda').val() != "" && $('#NotaEspecial').val() != ""
-		&& $('#DetallePrenda').val() != "" && $('#GeneroPrenda').val() != "" 
+	if ($('#DescripcionPrenda').val() != "" && $('#DetallePrenda').val() != "" && $('#GeneroPrenda').val() != "" 
 		&& $('#file-input-1').val() != "" && $('#file-input-2').val() != "") 
 	{	
 		var nombres = [];
@@ -360,12 +359,12 @@ function ValidarPrimerPestana() {
 }
 //Esto solo valida que los campos esten llenos dentro de la segunda pestaña
 function ValidarSegundaPestana() {
-	if ($('#DetalleConfeccion').val() != "") {
-		//$('#AlertaSegundaPestana').css('display', 'none');
+	
+	var rowCount = $('#tablita tr').length;	
+	if ($('#DetalleConfeccion').val() != "" && rowCount > 0) {
 		$('#SiguienteSegundaPestana').click();
 	}
 	else {
-		//$('#AlertaSegundaPestana').css('display', 'block');
 		Swal.fire({
 			icon: 'error',
 			title: 'Error',
@@ -386,7 +385,6 @@ function ValidarTerceraPestana() {
 	else {
 		
 		var HayTelaPrincipal = false;
-		var HayForroPrincipal = false;
 		
 		for(i = 0; i < objeto_materiales.length; i++){
 			if(objeto_materiales[i].Nombre == "Tela principal"){
@@ -394,13 +392,7 @@ function ValidarTerceraPestana() {
 			}
 		}
 		
-		for(j = 0; j < objeto_materiales.length; j++){
-			if(objeto_materiales[j].Nombre == "Forro principal"){
-				HayForroPrincipal = true;
-			}
-		}
-		
-		if(HayForroPrincipal && HayTelaPrincipal){
+		if(HayTelaPrincipal){
 			$('#AlertaTerceraPestana').css('display', 'none');
 			$('#SiguienteTerceraPestana').click();
 			//AsignarID(id);	
@@ -409,7 +401,7 @@ function ValidarTerceraPestana() {
 			Swal.fire({
 				icon: 'error',
 				title: 'Error',
-				text: 'Debes agregar una tela y un forro principal!'
+				text: 'Debes agregar una tela principal!'
 			  })
 		}
 	}
