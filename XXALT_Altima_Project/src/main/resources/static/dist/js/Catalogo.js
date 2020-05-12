@@ -1428,7 +1428,7 @@ function agregarTrazo() {
 				url: "/verifduplicado",
 				data: {
 					'Lookup': Trazo,
-					'Tipo': Pieza Trazo
+					'Tipo': 'Pieza Trazo'
 					// ,'Descripcion':Descripcion
 				}
 
@@ -1615,7 +1615,7 @@ function agregarPrenda() {
 				url: "/verifduplicado",
 				data: {
 					'Lookup': FamiliaPrenda,
-					'Tipo': Familia Prenda
+					'Tipo': 'Familia Prenda'
 				
 					// ,'Descripcion':Descripcion
 				}
@@ -1805,7 +1805,7 @@ function agregarGenero() {
 				url: "/verifduplicado",
 				data: {
 					'Lookup': Genero,
-				    'Tipo': Familia Genero
+				    'Tipo': 'Familia Genero'
 					// ,'Descripcion':Descripcion
 				}
 
@@ -2105,7 +2105,7 @@ function insertar() {
 			url: "/verifduplicado",
 			data: {
 				'Lookup': Composicion,
-			    'Tipo': Familia Composicion
+			    'Tipo': 'Familia Composicion'
 				// ,'Descripcion':Descripcion
 			}
 
@@ -2436,7 +2436,7 @@ function agregarCuidado() {
 				url: "/verifduplicado",
 				data: {
 					'Lookup': Cuidado,
-				    'Tipo': Instruccion Cuidado
+				    'Tipo': 'Instruccion Cuidado'
 					// ,'Descripcion':Descripcion
 				}
 
@@ -2636,7 +2636,7 @@ function agregarMedida() {
 				url: "/verifduplicado",
 				data: {
 					'Lookup': Medida,
-				    'Tipo': Unidad Medida
+				    'Tipo': 'Unidad Medida'
 					// ,'Descripcion':Descripcion
 				}
 
