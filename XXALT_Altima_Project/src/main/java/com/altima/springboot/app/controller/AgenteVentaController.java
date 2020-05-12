@@ -136,7 +136,7 @@ public class AgenteVentaController {
 		return "catalogos-prendas-agentes";
 	}
 	@GetMapping("/movimientos-agentes")
-	public String listMov() {
+	public String listMovi() {
 		return "movimientos-agentes";
 	}
 	
