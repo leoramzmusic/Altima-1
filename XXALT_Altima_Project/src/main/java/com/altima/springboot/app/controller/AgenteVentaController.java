@@ -105,4 +105,39 @@ public class AgenteVentaController {
 		return "carga-de-pedidos";
 	}
 	
+	@GetMapping("/coordinados")
+	public String listCoordinados() {
+		return "coordinados";
+	}
+	
+	@GetMapping("/agregar-coordinado")
+	public String addCoordinados() {
+		return "agregar-coordinado";
+	}
+	@GetMapping("/agregar-empleado-empresa")
+	public String addEmpleado() {
+		return "agregar-empleado-empresa";
+	}
+	
+	@GetMapping("/agregar-carga")
+	public String addCarga() {
+		return "agregar-carga";
+	}
+	@GetMapping("/informacion-general")
+	public String listGeneral() {
+		return "informacion-general";
+	}
+	@GetMapping("/catalogos-materiales-agentes")
+	public String listMat() {
+		return "catalogos-materiales-agentes";
+	}
+	@GetMapping("/catalogos-prendas-agentes")
+	public String listPre() {
+		return "catalogos-prendas-agentes";
+	}
+	@GetMapping("/movimientos-agentes")
+	public String listMov() {
+		return "movimientos-agentes";
+	}
+	
 }

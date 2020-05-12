@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<div th:replace="navegacion-head :: header"></div>
+    <title>Carga de Pedidos | Altima</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed sidebar-collapse">
+    <!-- Site wrapper -->
+    <div class="wrapper">
+        <!-- Navbar -->
+        <div th:insert="navegacion-nav"></div>
+        <!-- /.navbar -->
+        <!-- Modal -->
+        <div th:insert="navegacion-logout"></div>
+        <!-- Main Sidebar Container -->
+        <div th:insert="navegacion-aside"></div>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Coordinados&nbsp;<a th:href="@{/coordinados}"><button class="bt btn-danger btn-circle btn-sm popoverxd" data-container="body" data-toggle="popover" data-placement="right" data-content="Regresar"><i class="fas fa-arrow-left"></i></button></a></h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a th:href="@{'/'}">Dashboard</a></li>
+                                <li class="breadcrumb-item active">Agentes de Venta</li>
+                                <li class="breadcrumb-item active">Carga de Pedidos</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- Default box -->
+                            <div class="card">
+                                <div class="card-header bg-dark">
+                                    <h3 class="card-title">Agregar coordinados</h3>
+                                </div>
+                                <div class="card-body">
+                                 <form class="row" >
+										<div class="form-group col-sm-6">
+                                            <label for="coorNumero">N&uacute;mero de coordinado</label> 
+                                            <input type="number" class="form-control" id="coorNumero" placeholder="1" required>
+                                        </div>
+										<div class="form-group col-md-6">
+										   <label for="coorPrenda">Prenda</label>
+										   <select class="form-control selectpicker" data-live-search="true" id="coorPrenda">
+										      <option>Abrigo</option>
+										      <option>Saco</option>
+										      <option>Camisa</option>
+										      <option>Blusa</option>
+										    </select>
+										</div>
+										<div class="form-group col-md-4">
+										   <label for="coorModelo">Modelo</label>
+										   <select class="form-control selectpicker" data-live-search="true" id="coorModelo">
+										      <option>Modelo 001</option>
+										      <option>Modelo 002</option>
+										      <option>Modelo 003</option>
+										      <option>Modelo 004</option>
+										    </select>
+										</div>
+										<div class="form-group col-md-4">
+										   <label for="coorTela">Tela</label>
+										   <select class="form-control selectpicker" data-live-search="true" id="coorTela">
+										      <option>Tela 001</option>
+										      <option>Tela 002</option>
+										      <option>Tela 003</option>
+										      <option>Tela 004</option>
+										    </select>
+										</div>
+										<div class="form-group col-md-4">
+										   <label for="coorBoton">Bot&oacute;n</label>
+										   <select class="form-control selectpicker" data-live-search="true" id="coorBoton">
+										      <option>Boton 001</option>
+										      <option>Boton 002</option>
+										      <option>Boton 003</option>
+										      <option>Boton 004</option>
+										    </select>
+										</div>
+										<div class="form-group col-md-4">
+										   <label for="coorCierre">Cierre</label>
+										   <select class="form-control selectpicker" data-live-search="true" id="coorCierre">
+										      <option>Cierre 001</option>
+										      <option>Cierre 002</option>
+										      <option>Cierre 003</option>
+										      <option>Cierre 004</option>
+										    </select>
+										</div>
+										<div class="form-group col-md-4">
+										   <label for="coorHilo">Hilo</label>
+										   <select class="form-control selectpicker" data-live-search="true" id="coorHilo">
+										      <option>Hilo 001</option>
+										      <option>Hilo 002</option>
+										      <option>Hilo 003</option>
+										      <option>Hilo 004</option>
+										    </select>
+										</div>
+										<div class="form-group col-md-4">
+										   <label for="coorAdorno">Adorno</label>
+										   <select class="form-control selectpicker" data-live-search="true" id="coorAdorno">
+										      <option>Adorno 001</option>
+										      <option>Adorno 002</option>
+										      <option>Adorno 003</option>
+										      <option>Adorno 004</option>
+										    </select>
+										</div>
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+										   <button class="btn btn-block btn-primary">Agregar</button>
+										</div>
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-12">
+											<table class="table tablaPrenda table-striped table-bordered">
+		                                        <thead>
+		                                            <tr>
+		                                                <th>Prenda</th>
+		                                                <th>Modelo</th>
+		                                                <th>Tela</th>
+		                                                <th>Bot&oacute;n</th>
+		                                                <th>Cierre</th>
+		                                                <th>Hilo</th>
+		                                                <th>Adorno</th>
+		                                                <th>Eliminar</th>
+		                                            </tr>
+		                                        </thead>
+		                                        <tbody>
+		                                            <tr>
+		                                                <td>Prenda 001</td>
+		                                                <td>Modelo 001</td>
+		                                                <td>Tela 001</td>
+		                                                <td>Boton 001</td>
+		                                                <td>Cierre 001</td>
+		                                                <td>Hilo 001</td>
+		                                                <td>Adorno 001</td>
+		                                                <td class="text-center"><a class="btn btn-danger text-white">Eliminar</a></td>
+		                                            </tr>
+		                                        </tbody>
+		                                    </table>
+										</div>
+                                        <div class="form-group col-sm-12">
+                                        <a th:href="@{/coordinados}" class="btn btn-danger">Cancelar</a>
+                                            <input type="submit" class="btn btn-primary next-step float-right" value="Guardar">
+                                        </div>
+                                        </form>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+        <div th:insert="navegacion-footer"></div>
+    </div>
+    <!-- ./wrapper -->
+
+    <div th:replace="navegacion-scripts"></div>
+    <script src="/dist/js/bootstrap-select.min.js"></script>
+    <script src="dist/js/tablaPrenda.js"></script>
+    <script>
+	$(document).ready(function() {
+		   $('.selectpicker').selectpicker({
+			   style: 'border border-bootstrap'
+		   });
+		});
+	</script>
+   	<script>
+		$('#iComercial').removeClass('text-primary');
+		$('#menuComercial').addClass('menu-open');
+		$('#navComercial').addClass('active');
+		$('#menuVenta').addClass('menu-open');
+		$('#navVenta').addClass('active');
+		$('#navVenta4').addClass('active');
+		$('#menuCarga').addClass('menu-open');
+		$('#navsubVenta2').addClass('active');
+	</script>
+</body>
+
+</html>

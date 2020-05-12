@@ -19,6 +19,10 @@ public class MovimientosController {
 		model.addAttribute("listMovimientos", movimientoService.findAllWithNames());
 		return "movimientos";
 	}
+	@GetMapping("/detalle-movimientos")
+	public String listaMovimientos() {
+		return "detalle-movimientos";
+	}
 	
 	@GetMapping("/historico-de-muestras")
 	public String listHistorial() {

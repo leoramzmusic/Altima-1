@@ -1,0 +1,56 @@
+<div class="modal fade" id="nuevaCarga" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Nueva carga de pedido</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+			</div>
+			<div class="modal-body col-md">
+				<form class="row">
+					<div class="form-group col-md-6">
+						<label for="cargaEmpresa">Empresa</label>
+						<select class="form-control selectpicker" data-live-search="true" id="cargaEmpresa">
+							<option>Altima</option>
+							<option>Bimbo</option>
+							<option>DTI</option>
+							<option>Cruz Azul</option>
+						</select>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="cargaEmpresa">Tipo de pedido</label>
+						<select class="form-control selectpicker" data-live-search="true" id="cargaTipopedido">
+							<option>Pedido General</option>
+							<option>Pedido Especial</option>
+							<option>Stock</option>
+							<option>Resurtido</option>
+							<option>Reajustes</option>
+						</select>
+					</div>
+					<div class="form-group col-sm-4">
+						<label for="generalToma">Fecha de toma de tallas</label>
+						<input type="date" class="form-control" id="generalToma" required> </div>
+					<div class="form-group col-sm-4">
+						<label for="generalAnticipo">Fecha anticipo</label>
+						<input type="date" class="form-control" id="generalAnticipo" required> </div>
+					<div class="form-group col-sm-4">
+						<label for="generalEntrega">Fecha de entrega</label>
+						<input type="date" class="form-control" id="generalEntrega" required> </div>
+					<div class="form-group col-sm-3">
+						<label for="generalPagoAnticipo">Anticipo <a>0%</a></label>
+						<input type="number" class="form-control" id="generalPagoAnticipo" placeholder="26000"> </div>
+					<div class="form-group col-sm-3">
+						<label for="generalPagoEntrega">Entrega <a>0%</a></label>
+						<input type="number" class="form-control" id="generalSagoEntrega" placeholder="26000"> </div>
+					<div class="form-group col-sm-3">
+						<label for="generalSaldo">Saldo</label>
+						<input type="number" class="form-control" id="generalSaldo" placeholder="26000"> </div>
+					<div class="form-group col-sm-3">
+						<label for="generalTotal">Total pedido</label>
+						<input type="number" class="form-control" id="generalTotal" placeholder="26000"> </div>
+					<div class="form-group col-sm-12"> <a th:href="@{/coordinados}" class="btn btn-danger">Cancelar</a>
+						<input type="submit" class="btn btn-primary next-step float-right" value="Guardar"> </div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

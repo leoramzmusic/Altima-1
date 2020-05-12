@@ -15,7 +15,9 @@
 	color:#FFFFFF;
 	background-color:#AF232A;
 }
-
+ .modal-catalogo-agentes {
+     max-width: 96% !important;
+}
  .modal-catalogo-info {
      max-width: 96% !important;
 }
@@ -176,11 +178,37 @@ div.dataTables_wrapper {
 }
 .thumb1 { 
   background: 50% 50% no-repeat; /* 50% 50% centers image in div */
-  width: 250px;
-  height: 250px;
+  width: 200px;
+  height: 200px;
 }
 .centerImg {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+.thumb2 { 
+  background: 50% 50% no-repeat; /* 50% 50% centers image in div */
+  width: 464px;
+  height: 464px;
+}
+.centerImg2 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.item {
+    position:relative;
+    padding-top:20px;
+    display:inline-block;
+}
+.notify-badge{
+    position: absolute;
+    right:-13px;
+    top:-12px;
+    background:red;
+    text-align: center;
+    border-radius: 30px 30px 30px 30px;
+    color:white;
+    padding:1px 10px;
+    font-size:12px;
 }

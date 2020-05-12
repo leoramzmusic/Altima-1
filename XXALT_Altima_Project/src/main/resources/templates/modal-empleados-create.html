@@ -1,0 +1,72 @@
+<div class="modal fade" id="addEmpleados" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Cambiar datos del empleado</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+			</div>
+			<div class="modal-body col-md">
+				<div class="row col-md-12">
+					<label for="coorSelectForm">Seleccione uno...</label>
+					<select class="form-control selectpicker" id="coorSelectForm">
+						<option value="listaSelect">Listado de empleados</option>
+						<option value="stockSelect">Stock pendiente por fabricar</option>
+					</select>
+				</div>
+				<br>
+				<div id="listaEmpleadosForm">
+					<form class="row" id="listaEmpleados">
+						<div class="form-group col-md-4">
+							<label for="exampleInputFile">Lista de empleados</label>
+							<div class="input-group">
+								<div class="custom-file">
+									<input type="file" class="custom-file-input" id="archivoEmpleados">
+									<label class="custom-file-label" for="archivoEmpleados">Selecciona un archivo.</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group col-md-4">
+							<label for="coorSurcusalModal">Surcusal</label>
+							<select class="form-control selectpicker" data-live-search="true" id="coorSucursalModal">
+								<option>Surcusal Norte</option>
+							</select>
+						</div>
+						<div class="form-group col-md-4">
+							<label for="coorPrendaModal">Raz&oacute;n social</label>
+							<select class="form-control selectpicker" data-live-search="true" id="coorPrendaModal">
+								<option>S.A. de C.V.</option>
+							</select>
+						</div>
+						<div class="form-group col-md-4"></div>
+						<div class="form-group col-sm-12"> <a data-dismiss="modal" class="btn btn-danger text-white">Cancelar</a>
+							<input type="submit" class="btn btn-primary next-step float-right" value="Guardar"> </div>
+						<div class="form-group col-md-4"></div>
+					</form>
+				</div>
+				<div id="SPF" style="display:none">
+					<form class="row">
+						<div class="form-group col-md-4">
+							<label for="coorSPFStock">Stock pendiente por fabricar</label>
+							<input type="number" class="form-control" id="coorSPFStock" placeholder="2000"> </div>
+						<div class="form-group col-md-4">
+							<label for="coorPrendaStock">Surcusal</label>
+							<select class="form-control selectpicker" data-live-search="true" id="coorSucursalStock">
+								<option>Surcusal Norte</option>
+							</select>
+						</div>
+						<div class="form-group col-md-4">
+							<label for="coorPrendaStock">Raz&oacute;n social</label>
+							<select class="form-control selectpicker" data-live-search="true" id="coorPrendaStock">
+								<option>S.A. de C.V.</option>
+							</select>
+						</div>
+						<div class="form-group col-md-4"></div>
+						<div class="form-group col-sm-12"> <a data-dismiss="modal" class="btn btn-danger text-white">Cancelar</a>
+							<input type="submit" class="btn btn-primary next-step float-right" value="Guardar"> </div>
+						<div class="form-group col-md-4"></div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
