@@ -32,7 +32,7 @@ public class AgenteVentaController {
 
 	@Autowired
 	private IComercialClienteService clienteservice;
-
+//hola
 	@GetMapping("/obtener-clientes")
 	@ResponseBody
 	public List<Integer> clientes() {
