@@ -87,27 +87,28 @@ public class ControlController {
 	}
 	
 	@PostMapping("/guardar-proceso")
-	public String guardacatalogo(String operador,String f1 ,String f2,String id,String tipo ,HttpServletRequest request) throws ParseException {
+	public String guardacatalogo(String operador, String f1, String f2, String id, String tipo,
+			HttpServletRequest request)  {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Date date = new Date();
 		DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		System.out.println(tipo);
-		if ( tipo.equals("trazo")) {
-			System.out.println("Los id son :"+id);
-			
-			if ( (id != null) && (!id.equals("")) ){
-				String [] array = id.split(",");
-				for(int i= 0 ; i<array.length;i++) {
-				
-					System.out.println(""+array[i]);
-					
+		if (tipo.equals("trazo")) {
+			System.out.println("Los id son :" + id);
+
+			if ((id != null) && (!id.equals(""))) {
+				String[] array = id.split(",");
+				for (int i = 0; i < array.length; i++) {
+
+					System.out.println("" + array[i]);
+
 					System.out.println("Soy un trazo");
 					ControlProduccionMuestra muestra = new ControlProduccionMuestra();
 					Integer contador = DCPM.Contador("1");
-					muestra.setIdText("TRAZ"+(100+contador+1));
+					muestra.setIdText("TRAZ" + (100 + contador + 1));
 					muestra.setIdPedido(Long.parseLong(array[i]));
-					muestra.setFechaRecepcion(f1+":00");
-					muestra.setFechaEntrega(f2+":00");
+					muestra.setFechaRecepcion(f1 + ":00");
+					muestra.setFechaEntrega(f2 + ":00");
 					muestra.setIdOperario(operador);
 					muestra.setTipo("1");
 					muestra.setCreadoPor(auth.getName());
@@ -119,23 +120,22 @@ public class ControlController {
 
 				}
 			}
-			
-			
+
 		}
-		
-		if ( tipo.equals("corte")) {
-			System.out.println("Los id son :"+id);
-			if ( (id != null) && (!id.equals("")) ){
-				String [] array = id.split(",");
-				for(int i= 0 ; i<array.length;i++) {
-				
-					System.out.println(""+array[i]);
+
+		if (tipo.equals("corte")) {
+			System.out.println("Los id son :" + id);
+			if ((id != null) && (!id.equals(""))) {
+				String[] array = id.split(",");
+				for (int i = 0; i < array.length; i++) {
+
+					System.out.println("" + array[i]);
 					ControlProduccionMuestra muestra = new ControlProduccionMuestra();
 					Integer contador = DCPM.Contador("2");
-					muestra.setIdText("CORT"+(100+contador+1));
+					muestra.setIdText("CORT" + (100 + contador + 1));
 					muestra.setIdPedido(Long.parseLong(array[i]));
-					muestra.setFechaRecepcion(f1+":00");
-					muestra.setFechaEntrega(f2+":00");
+					muestra.setFechaRecepcion(f1 + ":00");
+					muestra.setFechaEntrega(f2 + ":00");
 					muestra.setIdOperario(operador);
 					muestra.setTipo("2");
 					muestra.setCreadoPor(auth.getName());
@@ -149,22 +149,22 @@ public class ControlController {
 			}
 			System.out.println("Soy un corte");
 		}
-		
-		if ( tipo.equals("confeccion")) {
-			System.out.println("Los id son :"+id);
-			if ( (id != null) && (!id.equals("")) ){
-				String [] array = id.split(",");
-				for(int i= 0 ; i<array.length;i++) {
-				
-					System.out.println(""+array[i]);
-					
+
+		if (tipo.equals("confeccion")) {
+			System.out.println("Los id son :" + id);
+			if ((id != null) && (!id.equals(""))) {
+				String[] array = id.split(",");
+				for (int i = 0; i < array.length; i++) {
+
+					System.out.println("" + array[i]);
+
 					System.out.println("Soy un trazo");
 					ControlProduccionMuestra muestra = new ControlProduccionMuestra();
 					Integer contador = DCPM.Contador("3");
-					muestra.setIdText("CONFE"+(100+contador+1));
+					muestra.setIdText("CONFE" + (100 + contador + 1));
 					muestra.setIdPedido(Long.parseLong(array[i]));
-					muestra.setFechaRecepcion(f1+":00");
-					muestra.setFechaEntrega(f2+":00");
+					muestra.setFechaRecepcion(f1 + ":00");
+					muestra.setFechaEntrega(f2 + ":00");
 					muestra.setIdOperario(operador);
 					muestra.setTipo("3");
 					muestra.setCreadoPor(auth.getName());
@@ -176,28 +176,27 @@ public class ControlController {
 
 				}
 			}
-			
+
 			System.out.println("Soy una confeccion");
 		}
-		
-		if ( tipo.equals("planchado")) {
-			
-			
-System.out.println("Los id son :"+id);
-			
-			if ( (id != null) && (!id.equals("")) ){
-				String [] array = id.split(",");
-				for(int i= 0 ; i<array.length;i++) {
-				
-					System.out.println(""+array[i]);
-					
+
+		if (tipo.equals("planchado")) {
+
+			System.out.println("Los id son :" + id);
+
+			if ((id != null) && (!id.equals(""))) {
+				String[] array = id.split(",");
+				for (int i = 0; i < array.length; i++) {
+
+					System.out.println("" + array[i]);
+
 					System.out.println("Soy un trazo");
 					ControlProduccionMuestra muestra = new ControlProduccionMuestra();
 					Integer contador = DCPM.Contador("4");
-					muestra.setIdText("PLAN"+(100+contador+1));
+					muestra.setIdText("PLAN" + (100 + contador + 1));
 					muestra.setIdPedido(Long.parseLong(array[i]));
-					muestra.setFechaRecepcion(f1+":00");
-					muestra.setFechaEntrega(f2+":00");
+					muestra.setFechaRecepcion(f1 + ":00");
+					muestra.setFechaEntrega(f2 + ":00");
 					muestra.setIdOperario(operador);
 					muestra.setTipo("4");
 					muestra.setCreadoPor(auth.getName());
@@ -209,29 +208,27 @@ System.out.println("Los id son :"+id);
 
 				}
 			}
-			
-			
+
 			System.out.println("Soy un planchado");
 		}
-		
-		if ( tipo.equals("terminado")) {
-			
-			
-				System.out.println("Los id son :"+id);
-			
-			if ( (id != null) && (!id.equals("")) ){
-				String [] array = id.split(",");
-				for(int i= 0 ; i<array.length;i++) {
-				
-					System.out.println(""+array[i]);
-					
+
+		if (tipo.equals("terminado")) {
+
+			System.out.println("Los id son :" + id);
+
+			if ((id != null) && (!id.equals(""))) {
+				String[] array = id.split(",");
+				for (int i = 0; i < array.length; i++) {
+
+					System.out.println("" + array[i]);
+
 					System.out.println("Soy un trazo");
 					ControlProduccionMuestra muestra = new ControlProduccionMuestra();
 					Integer contador = DCPM.Contador("5");
-					muestra.setIdText("TERM"+(100+contador+1));
+					muestra.setIdText("TERM" + (100 + contador + 1));
 					muestra.setIdPedido(Long.parseLong(array[i]));
-					muestra.setFechaRecepcion(f1+":00");
-					muestra.setFechaEntrega(f2+":00");
+					muestra.setFechaRecepcion(f1 + ":00");
+					muestra.setFechaEntrega(f2 + ":00");
 					muestra.setIdOperario(operador);
 					muestra.setTipo("5");
 					muestra.setCreadoPor(auth.getName());
@@ -243,50 +240,43 @@ System.out.println("Los id son :"+id);
 
 				}
 			}
-			
-			
+
 			System.out.println("Soy un terminado");
 		}
-		
-		
-		
-		
-		if ( tipo.equals("terminadoF")) {
-			
-			
-			System.out.println("Los id son :"+id);
-		
-		if ( (id != null) && (!id.equals("")) ){
-			String [] array = id.split(",");
-			for(int i= 0 ; i<array.length;i++) {
-			
-				System.out.println(""+array[i]);
-				
-				System.out.println("Soy terminado de foraneo");
-				ControlProduccionMuestra muestra = new ControlProduccionMuestra();
-				Integer contador = DCPM.Contador("5");
-				muestra.setIdText("TERM"+(100+contador+1));
-				muestra.setIdPedido(Long.parseLong(array[i]));
-				muestra.setFechaRecepcion(f1+":00");
-				muestra.setFechaEntrega(f2+":00");
-				muestra.setIdOperario(operador);
-				muestra.setTipo("5");
-				muestra.setCreadoPor(auth.getName());
-				muestra.setActualizadoPor("Null");
-				muestra.setFechaCreacion(hourdateFormat.format(date));
-				muestra.setUltimaFechaModificacion(hourdateFormat.format(date));
-				muestra.setEstatusTiempo("Nuevo");
-				DCPM.save(muestra);
 
+		if (tipo.equals("terminadoF")) {
+
+			System.out.println("Los id son :" + id);
+
+			if ((id != null) && (!id.equals(""))) {
+				String[] array = id.split(",");
+				for (int i = 0; i < array.length; i++) {
+
+					System.out.println("" + array[i]);
+
+					System.out.println("Soy terminado de foraneo");
+					ControlProduccionMuestra muestra = new ControlProduccionMuestra();
+					Integer contador = DCPM.Contador("5");
+					muestra.setIdText("TERM" + (100 + contador + 1));
+					muestra.setIdPedido(Long.parseLong(array[i]));
+					muestra.setFechaRecepcion(f1 + ":00");
+					muestra.setFechaEntrega(f2 + ":00");
+					muestra.setIdOperario(operador);
+					muestra.setTipo("5");
+					muestra.setCreadoPor(auth.getName());
+					muestra.setActualizadoPor("Null");
+					muestra.setFechaCreacion(hourdateFormat.format(date));
+					muestra.setUltimaFechaModificacion(hourdateFormat.format(date));
+					muestra.setEstatusTiempo("Nuevo");
+					DCPM.save(muestra);
+
+				}
 			}
+
+			System.out.println("Soy un terminado");
 		}
-		
-		
-		System.out.println("Soy un terminado");
-	}
-		
-		
-		return "redirect:control-de-produccion";
+
+		return "control-de-produccion";
 
 	}
 	
@@ -425,6 +415,16 @@ System.out.println("Los id son :"+id);
 		hora.setUltimaFechaModificacion(hourdateFormat.format(date));
 		hora.setActualizadoPor(auth.getName());
 		DCPM.saveHora(hora);
+		
+		//cambiar el estatus de confeccion
+		ProduccionDetallePedido orden =Orden.findOne(muestra.getIdPedido());
+		orden.setEstatus_confeccion("1");
+		orden.setActualizadoPor(auth.getName());
+		orden.setUltimaFechaModificacion(hourdateFormat.format(date));
+		Orden.save(orden);
+		
+		
+		
 		return "redirect:control-de-produccion";
 
 	}
@@ -509,7 +509,7 @@ System.out.println("Los id son :"+id);
 			orden.setUltimaFechaModificacion(hourdateFormat.format(date));
 			//orden.setUltimaFechaModificacion(hourdateFormat.format(date));
 			orden.setIdInventario(null);
-			orden.setEstatus_confeccion("Aprobado");
+			orden.setEstatus_confeccion("0");
 			orden.setEstatus("1");
 			orden.setIdPrenda(prenda.getIdPrenda());
 			orden.setCosto(precio);

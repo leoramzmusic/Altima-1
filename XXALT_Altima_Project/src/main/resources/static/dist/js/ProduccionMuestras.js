@@ -28,6 +28,18 @@
 		$.ajax({
 		    method: "GET",
 		    url: "/listar-procesos/"+id+"/1",
+		    beforeSend: function () {
+	        	 Swal.fire({
+	                 title: 'Cargando ',
+	                 html: 'Por favor espere',// add html attribute if you want or remove
+	                 allowOutsideClick: false,
+	                 timerProgressBar: true,
+	                 onBeforeOpen: () => {
+	                     Swal.showLoading()
+	                 },
+	             });
+	        	
+	        },
 		    success: (data) => {
 		    	$('#quitar').remove();
 		    	$('#quitar2').remove();
@@ -156,6 +168,14 @@
 	                }
 	            });
 		    },
+		    
+		    complete: function() {
+				Swal.fire({
+	 				title: 'Agregado correctamente',
+	 				showConfirmButton: false,
+	 				timer: 1
+	 			})
+		    },
 		    error: (e) => {
 		        // location.reload();
 		    }
@@ -192,6 +212,18 @@
 		$.ajax({
 		    method: "GET",
 		    url: "/listar-procesos/"+id+"/2",
+	        beforeSend: function () {
+	        	 Swal.fire({
+	                 title: 'Cargando ',
+	                 html: 'Por favor espere',// add html attribute if you want or remove
+	                 allowOutsideClick: false,
+	                 timerProgressBar: true,
+	                 onBeforeOpen: () => {
+	                     Swal.showLoading()
+	                 },
+	             });
+	        	
+	        },
 		    success: (data) => {
 		    	$('#quitar').remove();
 		    	$('#quitar2').remove();
@@ -320,6 +352,14 @@
 	                }
 	            });
 		    },
+		    
+		    complete: function() {
+				Swal.fire({
+	 				title: 'Agregado correctamente',
+	 				showConfirmButton: false,
+	 				timer: 1
+	 			})
+		    },
 		    error: (e) => {
 		        // location.reload();
 		    }
@@ -356,6 +396,19 @@
 		$.ajax({
 		    method: "GET",
 		    url: "/listar-procesos/"+id+"/3",
+		    
+	        beforeSend: function () {
+	        	 Swal.fire({
+	                 title: 'Cargando ',
+	                 html: 'Por favor espere',// add html attribute if you want or remove
+	                 allowOutsideClick: false,
+	                 timerProgressBar: true,
+	                 onBeforeOpen: () => {
+	                     Swal.showLoading()
+	                 },
+	             });
+	        	
+	        },
 		    success: (data) => {
 		    	$('#quitar').remove();
 		    	$('#quitar2').remove();
@@ -486,6 +539,14 @@
 	                }
 	            });
 		    },
+		    
+		    complete: function() {
+				Swal.fire({
+	 				title: 'Agregado correctamente',
+	 				showConfirmButton: false,
+	 				timer: 1
+	 			})
+		    },
 		    error: (e) => {
 		        // location.reload();
 		    }
@@ -522,6 +583,18 @@
 		$.ajax({
 		    method: "GET",
 		    url: "/listar-procesos/"+id+"/4",
+		    beforeSend: function () {
+	        	 Swal.fire({
+	                 title: 'Cargando ',
+	                 html: 'Por favor espere',// add html attribute if you want or remove
+	                 allowOutsideClick: false,
+	                 timerProgressBar: true,
+	                 onBeforeOpen: () => {
+	                     Swal.showLoading()
+	                 },
+	             });
+	        	
+	        },
 		    success: (data) => {
 		    	$('#quitar').remove();
 		    	$('#quitar2').remove();
@@ -652,6 +725,14 @@
 	                }
 	            });
 		    },
+		    
+		    complete: function() {
+				Swal.fire({
+	 				title: 'Agregado correctamente',
+	 				showConfirmButton: false,
+	 				timer: 1
+	 			})
+		    },
 		    error: (e) => {
 		        // location.reload();
 		    }
@@ -688,6 +769,18 @@
 		$.ajax({
 		    method: "GET",
 		    url: "/listar-procesos/"+id+"/5",
+		    beforeSend: function () {
+	        	 Swal.fire({
+	                 title: 'Cargando ',
+	                 html: 'Por favor espere',// add html attribute if you want or remove
+	                 allowOutsideClick: false,
+	                 timerProgressBar: true,
+	                 onBeforeOpen: () => {
+	                     Swal.showLoading()
+	                 },
+	             });
+	        	
+	        },
 		    success: (data) => {
 		    	$('#quitar').remove();
 		    	$('#quitar2').remove();
@@ -818,32 +911,40 @@
 	                }
 	            });
 		    },
+		    
+		    complete: function() {
+				Swal.fire({
+	 				title: 'Agregado correctamente',
+	 				showConfirmButton: false,
+	 				timer: 1
+	 			})
+		    },
 		    error: (e) => {
 		        // location.reload();
 		    }
 	}
 	)}
-///7
  
  
-//Agregar procreso
+ 
+// Agregar procreso
  function agregar() {
-      if (document.getElementById("operador").value &&
-    		  document.getElementById("f1").value &&
-    		  document.getElementById("f2").value &&
-    		  document.getElementById("muestra").value &&
-    		  $('#f2').val() > $('#f1').val()  ) {
+      if (document.getElementById("operador").value && document.getElementById("f1").value &&
+    		  document.getElementById("f2").value && document.getElementById("muestra").value &&
+    		  $('#f2').val() > $('#f1').val()) {
+    	  
     	  var selectValue = $("#muestra").val() || [];
     	  selectValue.join(", ");
-		      var operador=document.getElementById("operador").value;
-		      var f1=document.getElementById("f1").value;
-		      var f2=document.getElementById("f2").value;
-		      var id=document.getElementById("id_muestra").value;
-		      var tipo=document.getElementById("tipo").value;
-		      var muestra= new String (selectValue);
+		  var operador=document.getElementById("operador").value;
+		  var f1=document.getElementById("f1").value;
+		  var f2=document.getElementById("f2").value;
+		  var id=document.getElementById("id_muestra").value;
+		  var tipo=document.getElementById("tipo").value;
+		  var muestra= new String (selectValue);
 		      
-    	 console.log("La muestra es "+muestra);
-		   $.ajax({
+    	console.log("La muestra es "+muestra);
+    	
+		$.ajax({
         type: "POST",
         url: "/guardar-proceso",
         data: { 
@@ -853,6 +954,20 @@
         	'f2': f2,
         	'id': muestra, 
         	'tipo': tipo
+        },
+
+        beforeSend: function () {
+        	 Swal.fire({
+                 title: 'Guardando ',
+                 html: 'Por favor espere',// add html attribute if you want or
+											// remove
+                 allowOutsideClick: false,
+                 timerProgressBar: true,
+                 onBeforeOpen: () => {
+                     Swal.showLoading()
+                 },
+             });
+        	
         }
     })
     .done(function( data ) { 	
@@ -872,10 +987,10 @@
           showConfirmButton: false,
           timer: 1250
         })
-        $("#aux").modal('hide');//ocultamos el modal
+        $("#aux").modal('hide');// ocultamos el modal
         
-        document.getElementById('operador').options.selectedIndex = 0;
-       document.getElementById("f1").value ="";
+      document.getElementById('operador').options.selectedIndex = 0;
+      document.getElementById("f1").value ="";
       document.getElementById("f2").value ="";
       }else {
     	 
@@ -1242,6 +1357,19 @@
 		$.ajax({
 		    method: "GET",
 		    url: "/listar-procesos/"+id+"/5",
+        
+        beforeSend: function () {
+        	 Swal.fire({
+                 title: 'Cargando ',
+                 html: 'Por favor espere',// add html attribute if you want or remove
+                 allowOutsideClick: false,
+                 timerProgressBar: true,
+                 onBeforeOpen: () => {
+                     Swal.showLoading()
+                 },
+             });
+        	
+        },
 		    success: (data) => {
 		    	$('#quitar').remove();
 		    	$('#quitar2').remove();
@@ -1369,6 +1497,14 @@
 	                    }
 	                }
 	            });
+		    },
+		    
+		    complete: function() {
+				Swal.fire({
+	 				title: 'Agregado correctamente',
+	 				showConfirmButton: false,
+	 				timer: 1
+	 			})
 		    },
 		    error: (e) => {
 		        // location.reload();
