@@ -107,8 +107,72 @@
 		   $('.selectpicker').selectpicker({
 			   style: 'border border-bootstrap'
 		   });
+		   
+		    $("#id-pedido").prop('disabled', true);
+		   
+		    $("#cargaTipopedido").change(function(){
+		        // Guardamos el select de cursos
+		        var pedido = $("#id-pedido");
+
+		        var tipoPedido = $(this);
+		        var id = document.getElementById("cargaEmpresa").value;
+		        
+		        console.log("El select seleccionado es: "+$(this).val());
+
+		        if($(this).val() != 'Pedido General')
+		        {
+		        	
+		       
+		            $.ajax({
+		                data: { id : id },
+		                url:   '/mostrar-pedidos',
+		                type:  'GET',
+		                
+		                beforeSend: function () 
+		                {
+		                	tipoPedido.prop('disabled', true);
+		                },
+		                success:  function (r) 
+		                {
+		                	$("#div-ocultar").show();
+		                	tipoPedido.prop('disabled', false);
+
+		                    // Limpiamos el select
+		                    pedido.find('option').remove();
+
+		                    $(r).each(function(i, v){ // indice, valor
+		                    	console.log("hola"+ v[1] );
+		                    	pedido.append('<option value="">Seleccione</option>');
+		                    	pedido.append('<option value="' + v[0] + '">' + v[1] + '</option>');
+		                    	
+		                    	
+		                    	$('.idPedido').selectpicker('refresh');
+		                    	
+		                    })
+
+		                    $('.idPedido').prop('disabled', false);
+		                    $('.idPedido').selectpicker('refresh');
+		                },
+		                error: function()
+		                {
+		                    alert('Ocurrio un error en el servidor ..');
+		                    tipoPedido.prop('disabled', false);
+		                }
+		            });
+		        }
+		        else
+		        {
+		        	$("#div-ocultar").hide();
+		        	$('.idPedido').find('option').remove();
+		        	$('.idPedido').prop('disabled', true);
+	                $('.idPedido').selectpicker('refresh');
+		        }
+		    })
 		});
 	</script>
+	
+	
+	
    	<script>
 		$('#iComercial').removeClass('text-primary');
 		$('#menuComercial').addClass('menu-open');

@@ -101,7 +101,8 @@ public class AgenteVentaController {
 	}
 	
 	@GetMapping("/carga-de-pedidos")
-	public String listPedidos() {
+	public String listPedidos(Model model) {
+		model.addAttribute("clientes", clienteservice.findAll());
 		return "carga-de-pedidos";
 	}
 	
