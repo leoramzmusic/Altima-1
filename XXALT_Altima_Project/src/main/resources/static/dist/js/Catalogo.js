@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-	listarMarcas();
 	listarColores();
 	listarTrazos();
 	listarPrendas();
@@ -19,7 +18,10 @@ $(document).ready(function () {
 function listarcuidadosjson() {
 	$.ajax({
 		method: "GET",
-		url: "/cuidados",
+		url: "/listar",
+		data:{
+			"Tipo":"Instruccion Cuidado"
+		} ,
 		success: (data2) => {
 			$('#selectcuidados').append("<div >" +
 				"<select class='form-control' id='selectcuidado'>" +
@@ -84,96 +86,16 @@ function listarcuidadosjson2(idcomposicion) {
 
 }
 ///////////////////////////
-function listarMarcas() {
 
-	$.ajax({
-		method: "GET",
-		url: "/marcas",
-		success: (data) => {
-			$('#quitar').remove();
-			$('#contenedorTabla').append("<div class='modal-body' id='quitar'>" +
-				"<table class='table table-striped table-bordered' id='idtable' style='width:100%'>" +
-				"<thead>" +
-				"<tr>" +
-				"<th>Clave</th>" +
-				"<th>Nombre</th>" +
-
-				"<th>Cambios</th>" +
-				"<th></th>" +
-				"</tr>" +
-				"</thead>" +
-				"</table>" + "</div>");
-			var a;
-			var b = [];
-			for (i in data) {
-
-				a = [
-					"<tr>" +
-					"<td>" + data[i].idText + "</td>",
-					"<td>" + data[i].nombreLookup + "</td>",
-					"<td style='text-align: center;'>" +
-					"<button class='btn btn-info popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-html='true' data-content='<strong>Creado por:"+data[i].creadoPor+"</strong> <br /><strong>Fecha de creación:</strong> 01/02/2020<br><strong>Modificado por:</strong> Carlos Gabriel Hernandez Mendez<br><strong>Fecha de modicación:</strong> 02/09/2020' style='border-radius: 35%;'><i class='fas fa-info-circle'></i></button> " +
-					"</td>",
-					" <td style='text-align: center;''>" +
-					" <button id='" + data[i].idLookup + "' value='" + data[i].nombreLookup + "' class='btn btn-warning popoverxd edit_data' data-container='body' data-toggle='popover' data-placement='top' data-content='Editar' style='border-radius: 35%;'><i class='fas fa-pen fa-sm'></i></button> " +
-					"<button onclick='bajarMarca(" + data[i].idLookup + ")' class='btn btn-danger popoverxd' data-container='body' data-toggle='popover' data-placement='top' data-content='Dar de baja' style='border-radius: 35%;'><i class='fas fa-ban fa-sm'></i></button> " +
-					"</td>" +
-
-					"<tr>"
-				];
-				b.push(a);
-			}
-			var tablaMarcas = $('#idtable').DataTable({
-				"data": b,
-				"ordering": true,
-				"pageLength": 5,
-				"responsive": true,
-				"lengthMenu": [
-					[5, 10, 25, 50, 100],
-					[5, 10, 25, 50, 100]
-				],
-				"language": {
-					"sProcessing": "Procesando...",
-					"sLengthMenu": "Mostrar _MENU_ registros",
-					"sZeroRecords": "No se encontraron resultados",
-					"sEmptyTable": "Ningún dato disponible en esta tabla =(",
-					"sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-					"sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-					"sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-					"sInfoPostFix": "",
-					"sSearch": "Buscar:",
-					"sUrl": "",
-					"sInfoThousands": ",",
-					"sLoadingRecords": "Cargando...",
-					"oPaginate": {
-						"sFirst": "Primero",
-						"sLast": "Último",
-						"sNext": "Siguiente",
-						"sPrevious": "Anterior"
-					},
-					"oAria": {
-						"sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-						"sSortDescending": ": Activar para ordenar la columna de manera descendente"
-					},
-					"buttons": {
-						"copy": "Copiar",
-						"colvis": "Visibilidad"
-					}
-				}
-			});
-			new $.fn.dataTable.FixedHeader(tablaMarcas);
-		},
-		error: (e) => {
-	
-		}
-	})
-}
 ///////////////////////////////
 function listarColores() {
 
 	$.ajax({
 		method: "GET",
-		url: "/colores",
+		url: "/listar",
+		data:{
+			"Tipo":"Color"
+		} ,
 		success: (data) => {
 			$('#quitar2').remove();
 			$('#contenedorTabla2').append("<div class='modal-body' id='quitar2'>" +
@@ -262,7 +184,10 @@ function listarTrazos() {
 
 	$.ajax({
 		method: "GET",
-		url: "/trazos",
+		url: "/listar",
+		data:{
+			"Tipo":"Pieza Trazo"
+		} ,
 		success: (data) => {
 			$('#quitar3').remove();
 			$('#contenedorTabla3').append("<div class='modal-body' id='quitar3'>" +
@@ -349,7 +274,10 @@ function listarPrendas() {
 
 	$.ajax({
 		method: "GET",
-		url: "/prendaslook",
+		url: "/listar",
+		data:{
+			"Tipo":"Familia Prenda"
+		} ,
 		success: (data) => {
 			$('#quitar4').remove();
 			$('#contenedorTabla4').append("<div class='modal-body' id='quitar4'>" +
@@ -438,7 +366,10 @@ function listarGeneros() {
 
 	$.ajax({
 		method: "GET",
-		url: "/generos",
+		url: "/listar",
+		data:{
+			"Tipo":"Familia Genero"
+		} ,
 		success: (data) => {
 			$('#quitar5').remove();
 			$('#contenedorTabla5').append("<div class='modal-body' id='quitar5'>" +
@@ -525,7 +456,10 @@ function listarComposiciones() {
 
 	$.ajax({
 		method: "GET",
-		url: "/composiciones",
+		url: "/listar",
+		data:{
+			"Tipo":"Familia Composicion"
+		} ,
 		success: (data) => {
 			$('#quitar6').remove();
 			$('#contenedorTabla6').append("<div class='modal-body' id='quitar6'>" +
@@ -612,7 +546,10 @@ function listarCuidados() {
 
 	$.ajax({
 		method: "GET",
-		url: "/cuidados",
+		url: "/listar",
+		data:{
+			"Tipo":"Instruccion Cuidado"
+		} ,
 		success: (data) => {
 			$('#quitar7').remove();
 			$('#contenedorTabla7').append("<div class='modal-body' id='quitar7'>" +
@@ -701,7 +638,10 @@ function listarMedidas() {
 
 	$.ajax({
 		method: "GET",
-		url: "/medidaslook",
+		url: "/listar",
+		data:{
+			"Tipo":"Unidad Medida"
+		} ,
 		success: (data) => {
 			$('#quitar8').remove();
 			$('#contenedorTabla8').append("<div class='modal-body' id='quitar8'>" +
@@ -790,7 +730,10 @@ function listarMateriales() {
 
 	$.ajax({
 		method: "GET",
-		url: "/materialeslook",
+		url: "/listar",
+		data:{
+			"Tipo":"Material"
+		} ,
 		success: (data) => {
 			$('#quitar9').remove();
 			$('#contenedorTabla9').append("<div class='modal-body' id='quitar9'>" +
@@ -878,7 +821,10 @@ function listarMarcadores() {
 
 	$.ajax({
 		method: "GET",
-		url: "/marcadoreslook",
+		url: "/listar",
+		data:{
+			"Tipo":"Marcador"
+		} ,
 		success: (data) => {
 			$('#quitar10').remove();
 			$('#contenedorTabla10').append("<div class='modal-body' id='quitar10'>" +
@@ -965,7 +911,10 @@ function listarComposiciones1() {
 
 	$.ajax({
 		method: "GET",
-		url: "/composicioneslook",
+		url: "/listar",
+		data:{
+			"Tipo":"Composicion"
+		} ,
 		success: (data) => {
 			$('#quitar11').remove();
 			$('#contenedorTabla11').append("<div class='modal-body' id='quitar11'>" +
@@ -1238,7 +1187,7 @@ function agregarColor() {
 				url: "/verifduplicado",
 				data: {
 					'Lookup': Color,
-					'Tipo': Color
+					'Tipo': "Color"
 				
 					
 				}
@@ -1615,7 +1564,7 @@ function agregarPrenda() {
 				url: "/verifduplicado",
 				data: {
 					'Lookup': FamiliaPrenda,
-					'Tipo': 'Familia Prenda'
+					'Tipo': "Familia Prenda"
 				
 					// ,'Descripcion':Descripcion
 				}
@@ -2841,7 +2790,7 @@ function agregarMaterial() {
 				url: "/verifduplicado",
 				data: {
 					'Lookup': Material,
-				    'Tipo' : Material
+				    'Tipo' : "Material"
 					// ,'Descripcion':Descripcion
 				}
 
@@ -3029,7 +2978,7 @@ function agregarMarcador() {
 				url: "/verifduplicado",
 				data: {
 					'Lookup': Marcador,
-				    'Tipo': Marcador
+				    'Tipo': "Marcador"
 					// ,'Descripcion':Descripcion
 				}
 
@@ -3197,7 +3146,7 @@ function agregarComposicion1() {
 				url: "/verifduplicado",
 				data: {
 					'Lookup': Composicion,
-				    'Tipo': Composicion
+				    'Tipo': "Composicion"
 					// ,'Descripcion':Descripcion
 				}
 
