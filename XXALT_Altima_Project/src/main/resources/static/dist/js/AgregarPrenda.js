@@ -115,13 +115,14 @@ function AgregarElementoListaMateriales() {
 					"<td>" + data[0][1] + "</td>" +
 					"<td>" + data[0][2] + "</td>" +
 					"<td>" + data[0][3] + "</td>" +
-					"<td>" + data[0][5] + ' ' + data[0][4] + "</td>" +
+					"<td>" + data[0][5] + "</td>" +
+					"<td>" + data[0][4] + "</td>" +
 					"<td>" + data[0][6] + "</td>" +
 					"<td>" + data[0][7] + "</td>" +
 					"<td><input class='form-control' type='number' id='CantidadMaterial-" + identidad + "' value='1' onclick=\"CambiarCantidadMaterial(\'" + identidad + "\');\"/></td>" +
 					"<td class='tdcenter'>" +
-					"<button href='' class='btn btn-danger rounded-circle' onclick=\"QuitarMaterial(\'" + identidad + "\');\" >" +
-					"<i class='fas fa-times fa-sm'></i></button>" +
+					"<button href='' class='btn btn-danger' onclick=\"QuitarMaterial(\'" + identidad + "\');\" >" +
+					"Eliminar</button>" +
 					"</td>" +
 					"</tr>");
 			},
@@ -295,15 +296,17 @@ function ValidarPrimerPestana() {
 		//Se recorren los contenedores visibles, si no tienen imganes se ponen falso
 		if(accion == "editar"){
 			for(k = 1; k < idContenedores.length; k++){
-				if($('#file-input-edit-' + k).val() == "" && k != 1 && k != 2){
+				if($("#img-edit-" + k).attr('src') == "/dist/img/preview.png" && k != 1 && k != 2){
 					banderaImagenes = false;
+					console.log("esta vacia la: " + k);
 				}
 			}	
 		}
 		else{
 			for(k = 1; k < idContenedores.length; k++){
-				if($('#file-input-' + k).val() == "" && k != 1 && k != 2){
+				if($("#img-" + k).attr('src') == "/dist/img/preview.png" && k != 1 && k != 2){
 					banderaImagenes = false;
+					console.log("esta vacia la: " + k);
 				}
 			}
 		}
@@ -326,12 +329,9 @@ function ValidarPrimerPestana() {
 		
 		if(bandera){
 			if(banderaImagenes){
-				//$('#AlertaPrimerPestana').css('display', 'none');
-				$('#SiguientePrimeraPestana').click();	
-				//$('#AlertaPrimerPestanaNombresRepetidos').css('display', 'none');
+				$('#SiguientePrimeraPestana').click();
 			}
 			else{
-				//$('#AlertaPrimerPestana').css('display', 'block');
 				Swal.fire({
 					icon: 'error',
 					title: 'Error',
@@ -340,7 +340,6 @@ function ValidarPrimerPestana() {
 			}
 		}
 		else{
-			//$('#AlertaPrimerPestanaNombresRepetidos').css('display', 'block');
 			Swal.fire({
 				icon: 'error',
 				title: 'Error',
@@ -349,7 +348,6 @@ function ValidarPrimerPestana() {
 		}
 	}
 	else {
-		//$('#AlertaPrimerPestana').css('display', 'block');
 		Swal.fire({
 			icon: 'error',
 			title: 'Error',
@@ -470,7 +468,7 @@ function ValidarCantidadesPatronaje() {
 function guardarMarcador() {
 	var _id = document.getElementById("marcador_").value;
 	var _text = document.getElementById("marcador_").options[document.getElementById("marcador_").selectedIndex].text;
-	var fila = "<tr><td style='display: none;'>" + _id + "</td><td>" + _text + "</td><td>" + '<button type="button" name="remove" id="' + _id + '"onclick="eliminarMarcador(this)" class="btn btn-danger btn_remove">Eliminar</button></td></tr>';
+	var fila = "<tr><td style='display: none;'>" + _id + "</td><td>" + _text + "</td><td class='text-center'>" + '<button type="button" name="remove" id="' + _id + '"onclick="eliminarMarcador(this)" class="btn btn-danger btn_remove popoverxd">Eliminar</button></td></tr>';
 	var campo_id;
 	$('#tablita tr').each(function () {
 		if($(this).find('td').eq(0).html()!=null){
@@ -485,14 +483,14 @@ function guardarMarcador() {
 	});
 	if(campo_id!=null){
 		console.log("entra2 "+campo_id);
-		Swal.fire({
-			icon: 'error',
-			title: 'Error',
-			text: 'Ya has agregado ese marcador.'
-		  })
 		for(var j=0;j<=campo_id.split(",").length;j++){
 			if(_id==campo_id.split(",")[j]){
 				console.log("entra3 "+_id);
+				Swal.fire({
+					icon: 'error',
+					title: 'Error',
+					text: 'Ya has agregado ese marcador.'
+				  })
 				return false;
 			}
 		}

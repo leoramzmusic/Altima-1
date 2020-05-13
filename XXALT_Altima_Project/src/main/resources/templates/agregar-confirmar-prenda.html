@@ -119,7 +119,7 @@
 															
 															<div class="col-sm-6">
 																<div class="form-group">
-																	<label>Cliente de prenda</label> 
+																	<label>Diseño exclusivo para:</label> 
 																	<select id="ClientePrenda" class="form-control selectpicker" data-live-search="true">
 																		<option value="">Cliente General</option>
 																		<option th:each="cliente: ${clientes}" th:value="${cliente.idCliente}" 
@@ -437,6 +437,7 @@ Instrucción 3:
 																			<th scope="col">Nombre</th>
 																			<th scope="col">Clasificaci&oacute;n</th>
 																			<th scope="col">Tama&ntilde;o</th>
+																			<th scope="col">Unidad de Medida</th>
 																			<th scope="col">Modelo</th>
 																			<th scope="col">Proceso</th>
 																			<th scope="col">Cantidad</th>
@@ -448,7 +449,8 @@ Instrucción 3:
                                                                             <td th:text="${mat[1]}"></td>
                                                                             <td scope='row' th:text="${mat[2]}"></td>
                                                                             <td th:text="${mat[3]}"></td>
-                                                                            <td th:text="${mat[4] + ' ' +mat[5]}"></td>
+                                                                            <td th:text="${mat[4]}"></td>
+                                                                            <td th:text="${mat[5]}"></td>
                                                                             <td th:text="${mat[6]}"></td>
                                                                             <td th:text="${mat[7]}"></td>
                                                                             <td>
@@ -516,9 +518,9 @@ Instrucción 3:
                                                                             <th scope="col" style='display: none;'>Id</th>
                                                                             <th scope="col">Nombre</th>
                                                                             <th scope="col" class="text-center">Tela<br>N&uacute;mero de piezas</th>
-                                                                            <th scope="col" class="text-center">Tela Secundaria<br>N&uacute;mero de piezas</th>
+                                                                            <th scope="col" class="text-center">Tela Combinación<br>N&uacute;mero de piezas</th>
                                                                             <th scope="col" class="text-center">Forro<br>N&uacute;mero de piezas</th>
-                                                                            <th scope="col" class="text-center">Forro Secundario<br>N&uacute;mero de piezas</th>
+                                                                            <th scope="col" class="text-center">Forro Combinación<br>N&uacute;mero de piezas</th>
                                                                             <th scope="col" class="text-center">Entretela<br>N&uacute;mero de piezas</th>
                                                                             <th scope="col">Eliminar</th>
                                                                         </tr>
