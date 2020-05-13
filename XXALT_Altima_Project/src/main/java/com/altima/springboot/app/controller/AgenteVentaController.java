@@ -104,7 +104,7 @@ public class AgenteVentaController {
 	public String listPedidos(Model model) {
 		model.addAttribute("clientes", clienteservice.findAll());
 		return "carga-de-pedidos";
-	}
+	}// le movio erik
 	
 	@GetMapping("/coordinados")
 	public String listCoordinados() {
