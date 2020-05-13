@@ -35,6 +35,17 @@ public class ComercialPedidoInformación implements Serializable{
 	@Column(name="tipo_pedido")
 	private String tipoPedido;
 	
+	@Column(name="id_pedido")
+	private Long idPedido;
+	
+	public Long getIdPedido() {
+		return idPedido;
+	}
+
+	public void setIdPedido(Long idPedido) {
+		this.idPedido = idPedido;
+	}
+
 	@Column(name="fecha_toma_tallas")
 	private String fechaTomaTalla;
 	

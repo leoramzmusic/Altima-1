@@ -102,15 +102,13 @@
     <div th:replace="navegacion-scripts"></div>
     <script src="/dist/js/bootstrap-select.min.js"></script>
     <script src="dist/js/tablaPrenda.js"></script>
+    <!-- SweetAlert -->
+    <script src="dist/js/sweetalert.js"></script>
     <script>
 	$(document).ready(function() {
 		   $('.selectpicker').selectpicker({
 			   style: 'border border-bootstrap'
 		   });
-		   
-		   
-		   
-		   
 		   
 		    $("#id-pedido").prop('disabled', true);
 		   
@@ -146,7 +144,6 @@
 
 		                    $(r).each(function(i, v){ // indice, valor
 		                    	console.log("hola"+ v[1] );
-		                    	pedido.append('<option value="">Seleccione</option>');
 		                    	pedido.append('<option value="' + v[0] + '">' + v[1] + '</option>');
 		                    	
 		                    	
@@ -173,6 +170,57 @@
 		        }
 		    })
 		});
+	
+	
+	
+	// Agregar procreso
+	 function agregar() {
+	      if (document.getElementById("cargaTipopedido").value && 
+	    		  document.getElementById("cargaEmpresa").value  ) {
+	    	  
+	    	  
+			  var cargaTipopedido=document.getElementById("cargaTipopedido").value;
+			  var cargaEmpresa=document.getElementById("cargaEmpresa").value;
+			  var id_pedido=document.getElementById("id-pedido").value;
+			
+		
+	    	
+			$.ajax({
+	        type: "POST",
+	        url: "/guardar-carga-pedido",
+	        data: { 
+	        	 "_csrf": $('#token').val(),
+	        	'cargaTipopedido': cargaTipopedido,
+	        	'cargaEmpresa': cargaEmpresa,
+	        	'id_pedido': id_pedido
+	        }
+	    })
+	    
+	        Swal.fire({
+	          position: 'center',
+	          icon: 'success',
+	          title: 'Insertado correctamente',
+	          showConfirmButton: false,
+	          timer: 1250
+	        })
+	        location.reload();
+	       
+	     
+	      }else {
+	    	 
+	    	  Swal.fire({
+	              position: 'center',
+	              icon: 'warning',
+	              title: 'Datos Incorrectos',
+	              showConfirmButton: false,
+	              timer: 1250
+	            })
+	            
+	              
+	      }
+	      
+	    
+	}
 	</script>
 	
 	
