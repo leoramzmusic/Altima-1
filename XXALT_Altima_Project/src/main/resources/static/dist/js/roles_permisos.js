@@ -1,4 +1,4 @@
-
+//Ajax para traer los departamentos
 function cargarDepartamento() {
     var array = [];
     $.ajax({
@@ -19,7 +19,7 @@ function cargarDepartamento() {
 }
 
 
-//Función para agregar opciones a un <select>.
+//Función para agregar departamentos a un <select>.
 function addOptions(domElement, array) {
     var selector = document.getElementsByName(domElement)[0];
     for (departamento in array) {
@@ -32,6 +32,7 @@ function addOptions(domElement, array) {
 }
 
 
+//Función para llenar las secciones de acuerdo al departamento
 function cargarSeccion() {
 	
 	$.ajax({
@@ -100,7 +101,7 @@ function cargarSeccion() {
 	});
   }
 
-
+//Función para cargar los permisos dentro de la tabla
 function cargarPermiso(departamento,rol_select) {
 console.log(departamento, rol_select);
 
@@ -123,6 +124,7 @@ console.log(departamento, rol_select);
 
   }
 
+//Función para agregar un rol a la tabla
 function guardarRol(){
 	var filas = $("#tablita").find('tr');
 	
@@ -157,8 +159,10 @@ function guardarRol(){
 		}
 	}
 	
+	//si cumple las validaciones de llenado, se agrega el rol a la tabla
 	if(validador==true){
 	    var _nom = document.getElementById("departamento").value;
+	    if(_nom=="Servicioalcliente"){_nom="Servicio al cliente";}
 	    var _ape = document.getElementById("rol_select").value;
 	    var fila="<tr><td>"+_nom+"</td><td>"+_ape +"</td><td><select multiple class='form-control selectpicker'>"+permiso+"</select></td><td>"+'<button type="button" name="remove" class="btn btn-danger btn_remove borrar">Eliminar</button></td></tr>';
 
@@ -180,6 +184,7 @@ $(this).closest('tr').remove();                       //
 cargarDepartamento();
 
 
+//Función para guardar el usuario con todos sus roles
 function guardarUsuario(){
 	var filas = $("#tablita").find('tr');
 	
@@ -194,7 +199,10 @@ function guardarUsuario(){
 	var i;
 	var validador = true;
 	
-	if($('#idUser').val()==""){
+// Condicion para validar que no existe un usuario
+	if($('#idUser').val()==""){                 //
+		
+		
 		if(filas.length==0 || empleado=="" || nombreUsuario=="" || statusUser=="" || password=="" || confirmPass==""){
 		console.log(filas);
 		Swal.fire({
@@ -233,7 +241,7 @@ function guardarUsuario(){
 				}
 			}
 		}
-			
+// Si las validaciones son correctas, manda los JSON al controller mediante Ajax			
 		if (validador==true){
 			for(i=0; i<filas.length; i++){
 				var celdas = $(filas[i]).find("td");
@@ -246,16 +254,10 @@ function guardarUsuario(){
 					title: 'Correcto',
 					text: '¡Se han insertado los datos!',
 					showConfirmButton: false,
-			        timer: 3500
+			        timer: 5000
 				  })
 			}
-			console.log(empleado);
-			console.log(nombreUsuario);
-			console.log(password);
-			console.log(confirmPass);
-			console.log(statusUser);
-			console.log(datosJson);
-			console.log(permisos);
+
 			$.ajax({
 		    	method: "POST",
 				url: "/guardarUser",
@@ -279,7 +281,11 @@ function guardarUsuario(){
 			});
 		}
 	}
+	
+// Condicion para validar que ya existe un usuario
 	else{
+		
+		
 		if(filas.length==0 || empleado=="" || nombreUsuario=="" || statusUser==""){
 			console.log(filas);
 			Swal.fire({
@@ -309,6 +315,8 @@ function guardarUsuario(){
 					}
 				}
 			}
+		
+		
 		if (validador==true){
 			for(i=0; i<filas.length; i++){
 				var celdas = $(filas[i]).find("td");
@@ -321,16 +329,9 @@ function guardarUsuario(){
 					title: 'Correcto',
 					text: '¡Se han insertado los datos!',
 					showConfirmButton: false,
-			        timer: 3500
+			        timer: 5000
 				  })
 			}
-			console.log(empleado);
-			console.log(nombreUsuario);
-			console.log(password);
-			console.log(confirmPass);
-			console.log(statusUser);
-			console.log(datosJson);
-			console.log(permisos);
 			$.ajax({
 		    	method: "POST",
 				url: "/guardarUser",
@@ -356,6 +357,8 @@ function guardarUsuario(){
 	}
 }
 
+
+// Función para cargar los select de los permisos actuales de acuerdo a su rol
 function mapearPermisos(){
 	if($('#idUser').val()==""){
 			
@@ -379,6 +382,7 @@ function mapearPermisos(){
 	
 }
 
+//Función para marcar como seleccionados los permisos que tiene activos
 function checkSelect(){
 	var filas = $("#tablita").find('tr');
 	for(i=0; i<filas.length; i++){

@@ -85,7 +85,8 @@ public class UsuarioRestController {
 				redirectAttrs.addFlashAttribute("title", "Agrega al menos un permiso").addFlashAttribute("icon", "error");
 			}
 		}
-		
+
+// Condición para validar que no existe un usuario (agregar nuevo)
 		if(idUser==null) {
 			passwordForm.setNewPassword(password);
 			passwordForm.setConfirmPassword(confirmPass);
@@ -119,12 +120,13 @@ public class UsuarioRestController {
 			}
 		}
 		
+		
+// Condición para validar que ya existe un usuario (editar usuario)
 		else {
 			
 			System.out.println("Si esta entrando al de editar");
 			
 			usuario = usuarioService.findOne(idUser);	
-			System.out.println("que pex"+usuario.getRoles());
 			usuario.removeRol(usuario.getRoles());
 			passwordForm.setNewPassword(usuario.getContraseña());
 			passwordForm.setConfirmPassword(usuario.getContraseña());			
