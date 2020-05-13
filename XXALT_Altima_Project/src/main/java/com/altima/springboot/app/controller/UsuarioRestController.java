@@ -122,9 +122,10 @@ public class UsuarioRestController {
 		else {
 			
 			System.out.println("Si esta entrando al de editar");
-			usuario.getRoles().clear();
-			System.out.println(usuario.getRoles());
+			
 			usuario = usuarioService.findOne(idUser);	
+			System.out.println("que pex"+usuario.getRoles());
+			usuario.removeRol(usuario.getRoles());
 			passwordForm.setNewPassword(usuario.getContraseña());
 			passwordForm.setConfirmPassword(usuario.getContraseña());			
 			for (int i = 0; i < muestras.length(); i++) {	

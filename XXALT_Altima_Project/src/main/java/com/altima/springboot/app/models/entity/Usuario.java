@@ -153,5 +153,8 @@ public class Usuario  implements Serializable{
 	public void setIdEmpleado(Long idEmpleado) {
 		this.idEmpleado = idEmpleado;
 	}
+	public void removeRol(Set<Rol> roles){
+		roles.removeAll(this.roles);
+	}
 	
 }
