@@ -50,143 +50,18 @@ public class CatalogoServiceImpl implements ICatalogoService {
 		return repository.findById(id).orElse(null);
 	}
 	
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	@Transactional
-	public List<DisenioLookup> findAllMarca() {
-		return em.createQuery("from DisenioLookup where tipo_lookup='Marca' and Estatus=1 ORDER BY idLookup ASC").getResultList();
-	}
-	
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	@OrderBy("idLookup ASC")
-	public List<DisenioLookup> findAllColor() {
-		return em.createQuery("from DisenioLookup where tipo_lookup='Color' and Estatus=1").getResultList();
-	}
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	@Transactional
-	public List<DisenioLookup> findAllPzasTrazo() {
-		return em.createQuery("from DisenioLookup where tipo_lookup='Pieza Trazo' and Estatus=1").getResultList();
-	}
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	@Transactional
-	public List<DisenioLookup> findAllFamPrendas() {
-		return em.createQuery("from DisenioLookup where tipo_lookup='Familia Prenda' and Estatus=1").getResultList();
-	}
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	@Transactional
-	public List<DisenioLookup> findAllFamGenero() {
-		return em.createQuery("from DisenioLookup where tipo_lookup='Familia Genero' and Estatus=1").getResultList();
-	}
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	@Transactional
-	public List<DisenioLookup> findAllFamComposicion() {
-		return em.createQuery("from DisenioLookup where tipo_lookup='Familia Composicion' and Estatus=1").getResultList();
-	}
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	@Transactional
-	public List<DisenioLookup> findAllInstrCuidado(){
-		return em.createQuery("from DisenioLookup where tipo_lookup='Instruccion Cuidado' and Estatus=1").getResultList();
-	}
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	@Transactional
-	public List<DisenioLookup> findAllUnidadMedida(){
-		return em.createQuery("from DisenioLookup where tipo_lookup='Unidad Medida' and Estatus=1").getResultList();
-	}
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	@Transactional
-	public List<DisenioLookup> findAllMaterial(){
-		return em.createQuery("from DisenioLookup where tipo_lookup='Material' and Estatus=1").getResultList();
-	}
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	@Transactional
-	public List<DisenioLookup> findAllMarcador(){
-		return em.createQuery("from DisenioLookup where tipo_lookup='Marcador' and Estatus=1").getResultList();
-	}
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	@Transactional
-	public List<DisenioLookup> findAllComposicion(){
-		return em.createQuery("from DisenioLookup where tipo_lookup='Composicion' and Estatus=1").getResultList();
+	public List<DisenioLookup> findAllLookup(String Tipo) {
+		return em.createQuery("from DisenioLookup where tipo_lookup='"+Tipo+"' and Estatus=1").getResultList();
 	}
 	
 	@Override
 	@Transactional
-	public DisenioLookup findLastComposicion(){
-		return (DisenioLookup) em.createQuery("from DisenioLookup where tipo_lookup='Composicion' ORDER BY idLookup DESC").setMaxResults(1).getSingleResult();
-	}
-	
-	@Override
-	@Transactional
-	public DisenioLookup findLastMarcador(){
-		return (DisenioLookup) em.createQuery("from DisenioLookup where tipo_lookup='Marcador' ORDER BY idLookup DESC").setMaxResults(1).getSingleResult();
-	}
-	
-	@Override
-	@Transactional
-	public DisenioLookup findLastMaterial(){
-		return (DisenioLookup) em.createQuery("from DisenioLookup where tipo_lookup='Material' ORDER BY idLookup DESC").setMaxResults(1).getSingleResult();
-	}
-	
-	@Override
-	@Transactional
-	public DisenioLookup findLastUnidadMedida(){
-		return (DisenioLookup) em.createQuery("from DisenioLookup where tipo_lookup='Unidad Medida' ORDER BY idLookup DESC").setMaxResults(1).getSingleResult();
-	}
-	
-	@Override
-	@Transactional
-	public DisenioLookup findLastInstrCuidado(){
-		return (DisenioLookup) em.createQuery("from DisenioLookup where tipo_lookup='Instruccion Cuidado' ORDER BY idLookup DESC").setMaxResults(1).getSingleResult();
-	}
-	
-	@Override
-	@Transactional
-	public DisenioLookup findLastFamComposicion(){
-		return (DisenioLookup) em.createQuery("from DisenioLookup where tipo_lookup='Familia Composicion' ORDER BY idLookup DESC").setMaxResults(1).getSingleResult();
-	}
-	
-	@Override
-	@Transactional
-	public DisenioLookup findLastFamGenero(){
-		return (DisenioLookup) em.createQuery("from DisenioLookup where tipo_lookup='Familia Genero' ORDER BY idLookup DESC").setMaxResults(1).getSingleResult();
-	}
-	
-	@Override
-	@Transactional
-	public DisenioLookup findLastFamPrendas(){
-		return (DisenioLookup) em.createQuery("from DisenioLookup where tipo_lookup='Familia Prenda' ORDER BY idLookup DESC").setMaxResults(1).getSingleResult();
-	}
-	
-	@Override
-	@Transactional
-	public DisenioLookup findLastPzasTrazo(){
-		return (DisenioLookup) em.createQuery("from DisenioLookup where tipo_lookup='Pieza Trazo' ORDER BY idLookup DESC").setMaxResults(1).getSingleResult();
-	}
-	
-	@Override
-	@Transactional
-	public DisenioLookup findLastColor(){
-		return (DisenioLookup) em.createQuery("from DisenioLookup where tipo_lookup='Color' ORDER BY idLookup DESC").setMaxResults(1).getSingleResult();
+	public DisenioLookup findLastLookupByType(String Tipo){
+		return (DisenioLookup) em.createQuery("from DisenioLookup where tipo_lookup='"+Tipo+"' ORDER BY idLookup DESC").setMaxResults(1).getSingleResult();
 	}
 	
 	@Override
@@ -195,6 +70,10 @@ public class CatalogoServiceImpl implements ICatalogoService {
 		boolean duplicate;
 		@SuppressWarnings("unchecked")
 		List<DisenioLookup> result = em.createQuery("from DisenioLookup where nombreLookup='"+Lookup+"' and tipoLookup='"+Tipo+"'").getResultList();
+		System.out.println(Tipo);
+		for (DisenioLookup disenioLookup : result) {
+			System.out.println(disenioLookup);
+		}
 		if(result.isEmpty()) {
 			duplicate=false;
 		}

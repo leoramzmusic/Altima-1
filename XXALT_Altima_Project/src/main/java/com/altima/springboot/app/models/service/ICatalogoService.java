@@ -14,48 +14,10 @@ public interface ICatalogoService {
 
 	DisenioLookup findOne(Long id);
 
-	List<DisenioLookup> findAllColor();
-
-	List<DisenioLookup> findAllMarca();
-
-	List<DisenioLookup> findAllPzasTrazo();
-
-	List<DisenioLookup> findAllFamPrendas();
-
-	List<DisenioLookup> findAllFamGenero();
-
-	List<DisenioLookup> findAllFamComposicion();
-
-	List<DisenioLookup> findAllInstrCuidado();
-
-	List<DisenioLookup> findAllUnidadMedida();
-
-	List<DisenioLookup> findAllMaterial();
-
-	List<DisenioLookup> findAllMarcador();
-
-	List<DisenioLookup> findAllComposicion();
-
-	DisenioLookup findLastComposicion();
-
-	DisenioLookup findLastMarcador();
-
-	DisenioLookup findLastMaterial();
-
-	DisenioLookup findLastUnidadMedida();
-
-	DisenioLookup findLastInstrCuidado();
-
-	DisenioLookup findLastFamComposicion();
-
-	DisenioLookup findLastFamGenero();
-
-	DisenioLookup findLastFamPrendas();
-
-	DisenioLookup findLastPzasTrazo();
-
-	DisenioLookup findLastColor();
-
 	boolean findDuplicate(String Lookup,String Tipo);
+
+	List<DisenioLookup> findAllLookup(String Tipo);
+
+	DisenioLookup findLastLookupByType(String Tipo);
 
 }

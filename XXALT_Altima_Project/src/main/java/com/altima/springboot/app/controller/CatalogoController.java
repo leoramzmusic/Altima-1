@@ -74,82 +74,14 @@ public class CatalogoController {
 		
 	}
 
-	@RequestMapping(value = "/marcas", method = RequestMethod.GET)
+	@RequestMapping(value = "/listar", method = RequestMethod.GET)
 	@ResponseBody
-	public List<DisenioLookup> marcas() {
+	public List<DisenioLookup> listarlookup(String Tipo) {
 
-		return catalogo.findAllMarca();
+		return catalogo.findAllLookup(Tipo);
 	}
 
-	@RequestMapping(value = "/colores", method = RequestMethod.GET)
-	@ResponseBody
-	public List<DisenioLookup> colores() {
-
-		return catalogo.findAllColor();
-	}
-
-	@RequestMapping(value = "/trazos", method = RequestMethod.GET)
-	@ResponseBody
-	public List<DisenioLookup> trazos() {
-
-		return catalogo.findAllPzasTrazo();
-	}
-
-	@RequestMapping(value = "/prendaslook", method = RequestMethod.GET)
-	@ResponseBody
-	public List<DisenioLookup> prendas() {
-
-		return catalogo.findAllFamPrendas();
-	}
-
-	@RequestMapping(value = "/generos", method = RequestMethod.GET)
-	@ResponseBody
-	public List<DisenioLookup> generos() {
-
-		return catalogo.findAllFamGenero();
-	}
-
-	@RequestMapping(value = "/composiciones", method = RequestMethod.GET)
-	@ResponseBody
-	public List<DisenioLookup> composiciones() {
-
-		return catalogo.findAllFamComposicion();
-	}
-
-	@RequestMapping(value = "/cuidados", method = RequestMethod.GET)
-	@ResponseBody
-	public List<DisenioLookup> cuidados() {
-
-		return catalogo.findAllInstrCuidado();
-	}
-
-	@RequestMapping(value = "/medidaslook", method = RequestMethod.GET)
-	@ResponseBody
-	public List<DisenioLookup> medidas() {
-
-		return catalogo.findAllUnidadMedida();
-	}
-
-	@RequestMapping(value = "/materialeslook", method = RequestMethod.GET)
-	@ResponseBody
-	public List<DisenioLookup> materiales() {
-
-		return catalogo.findAllMaterial();
-	}
-
-	@RequestMapping(value = "/marcadoreslook", method = RequestMethod.GET)
-	@ResponseBody
-	public List<DisenioLookup> marcadores() {
-
-		return catalogo.findAllMarcador();
-	}
-
-	@RequestMapping(value = "/composicioneslook", method = RequestMethod.GET)
-	@ResponseBody
-	public List<DisenioLookup> composicion() {
-
-		return catalogo.findAllComposicion();
-	}
+	
 
 	@RequestMapping(value = { "/catalogos" }, method = RequestMethod.GET)
 	public String catalogo() {
@@ -202,7 +134,7 @@ public class CatalogoController {
 			DisenioLookup color = new DisenioLookup();
 			DisenioLookup ultimoid = null;
 			try {
-				ultimoid = catalogo.findLastColor();
+				ultimoid = catalogo.findLastLookupByType("Color");
 
 			} catch (Exception e) {
 
@@ -232,7 +164,7 @@ public class CatalogoController {
 			DisenioLookup piezatrazo = new DisenioLookup();
 			DisenioLookup ultimoid = null;
 			try {
-				ultimoid = catalogo.findLastPzasTrazo();
+				ultimoid = catalogo.findLastLookupByType("Pieza Trazo");
 
 			} catch (Exception e) {
 
@@ -261,7 +193,7 @@ public class CatalogoController {
 			DisenioLookup familiaprenda = new DisenioLookup();
 			DisenioLookup ultimoid = null;
 			try {
-				ultimoid = catalogo.findLastFamPrendas();
+				ultimoid = catalogo.findLastLookupByType("Familia Prenda");
 
 			} catch (Exception e) {
 
@@ -291,7 +223,7 @@ public class CatalogoController {
 			DisenioLookup familiagenero = new DisenioLookup();
 			DisenioLookup ultimoid = null;
 			try {
-				ultimoid = catalogo.findLastFamGenero();
+				ultimoid = catalogo.findLastLookupByType("Familia Genero");
 
 			} catch (Exception e) {
 
@@ -322,7 +254,7 @@ public class CatalogoController {
 			DisenioLookup instruccioncuidado = new DisenioLookup();
 			DisenioLookup ultimoid = null;
 			try {
-				ultimoid = catalogo.findLastInstrCuidado();
+				ultimoid = catalogo.findLastLookupByType("Instruccion Cuidado");
 
 			} catch (Exception e) {
 
@@ -360,7 +292,7 @@ public class CatalogoController {
 			DisenioLookup unidadmedida = new DisenioLookup();
 			DisenioLookup ultimoid = null;
 			try {
-				ultimoid = catalogo.findLastUnidadMedida();
+				ultimoid = catalogo.findLastLookupByType("Unidad Medida");
 
 			} catch (Exception e) {
 
@@ -391,7 +323,7 @@ public class CatalogoController {
 			DisenioLookup material = new DisenioLookup();
 			DisenioLookup ultimoid = null;
 			try {
-				ultimoid = catalogo.findLastMaterial();
+				ultimoid = catalogo.findLastLookupByType("Material");
 
 			} catch (Exception e) {
 
@@ -421,7 +353,7 @@ public class CatalogoController {
 			DisenioLookup marcador = new DisenioLookup();
 			DisenioLookup ultimoid = null;
 			try {
-				ultimoid = catalogo.findLastMarcador();
+				ultimoid = catalogo.findLastLookupByType("Marcador");
 
 			} catch (Exception e) {
 
@@ -451,7 +383,7 @@ public class CatalogoController {
 			DisenioLookup composicion = new DisenioLookup();
 			DisenioLookup ultimoid = null;
 			try {
-				ultimoid = catalogo.findLastComposicion();
+				ultimoid = catalogo.findLastLookupByType("Composicion");
 
 			} catch (Exception e) {
 
@@ -489,7 +421,7 @@ public class CatalogoController {
 			DisenioLookup familiacomposicion = new DisenioLookup();
 			DisenioLookup ultimoid = null;
 			try {
-				ultimoid = catalogo.findLastFamComposicion();
+				ultimoid = catalogo.findLastLookupByType("Familia Composicion");
 
 			} catch (Exception e) {
 
@@ -650,14 +582,4 @@ public class CatalogoController {
 		return "redirect:catalogos";
 	}
 
-	@RequestMapping(value = { "/imprimir/{lookup}" }, method = RequestMethod.GET)
-	public String ver(@PathVariable(value = "lookup") String lookup, Model model) {
-
-		if (lookup.equals("marca")) {
-			List<DisenioLookup> lookup1 = catalogo.findAllColor();
-			model.addAttribute("lookup", lookup1);
-		}
-
-		return "/imprimir";
-	}
 }
