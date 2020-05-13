@@ -66,31 +66,24 @@ public class DisenioMaterial implements Serializable{
 	@Column(name="precio_unitario")
 
 	private String precioUnitario;
-	
 	@Column(name="incluir_en_patronaje")
 	
 	private String incluirEnPatronaje;
-	
 	@Column(name="tamanio")
 	
 	private String tamanio;
-
 	@Column(name="id_marca")
 	
 	private String idMarca;
-	
     @Column(name="id_clasificacion")
 	
 	private String  idClasificacion ;
-    
     @Column(name="nombre_material")
 	
    	private String  nombreMaterial ;
-    
 	@Column(name="modelo_proveedor")
 	
 	private String modeloProveedor;
-	
 	@Column(name="id_almacen")
 
 	private Long idAlmacen;
@@ -118,10 +111,20 @@ public class DisenioMaterial implements Serializable{
 	@Column(name="imagen")
 	private String imagen;
 	
-	
-	
+	@Column(name="proveedor")
+	private String proveedor;
 
 	
+	
+	
+	public String getProveedor() {
+		return proveedor;
+	}
+
+	public void setProveedor(String proveedor) {
+		this.proveedor = proveedor;
+	}
+
 	public String getImagen() {
 		return imagen;
 	}
