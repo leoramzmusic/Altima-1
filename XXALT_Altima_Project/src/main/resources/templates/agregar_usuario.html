@@ -89,6 +89,7 @@
 												<label class="col-form-label-sm mb-0">Nombre de
 													Usuario</label> <input type="text" required
 													class="form-control" id="username" th:value="${usuario}"/>
+													<input type="hidden" id="userCurrentName"  th:value="${usuario}"/>
 											</div>
 											<div class="form-group col-md-4" th:if="${idUser == null}">
 												<label class="col-form-label-sm mb-0">Contraseña</label> <input
@@ -130,7 +131,7 @@
 													<i class="fas fa-plus"></i>
 												</button>
 											</div>
-											<table class="table table-bordered table-hover">
+											<table class="table table-bordered table-hover" >
 												<thead>
 													<tr>
 														<th style="display:none;">Id</th>
@@ -141,13 +142,14 @@
 													</tr>
 												</thead>
 												<tbody id="tablita" >
-													<div th:unless="${roles == null}" onload="mapearPermisos()">
+													<div th:unless="${roles == null}">
 														<tr th:each="rol:${roles}">
-															<td th:text="${rol[0]}" ></td>
-															<td th:text="${rol[1]}"></td>
-															<td><select multiple class='form-control selectpicker'></select></td>
+															<td th:text="${rol[0]=='ADMINISTRADOR'}?'Todos':${rol[1]}" ></td>
+															<td th:text="${rol[0]=='ADMINISTRADOR'}?'Todos':${rol[2]}"></td>
+															<td><p th:if="${rol[0]=='ADMINISTRADOR'}">Todos</p>
+															<select th:unless="${rol[0]=='ADMINISTRADOR'}" multiple class='form-control selectpicker'></select></td>
 															<td>
-																<button type="button" name="remove" class="btn btn-danger btn_remove borrar">Eliminar</button>
+																<button type="button" th:unless="${rol[0]=='ADMINISTRADOR'}" name="remove" class="btn btn-danger btn_remove borrar">Eliminar</button>
 															</td>
 														</tr>
 													</div>
@@ -215,19 +217,22 @@
 			  showConfirmButton: false,
 			  timer: 4000		
 	    });
-	</script>	
+	</script>
+	<script th:src="@{/dist/js/roles_permisos.js}" th:inline="javascript"></script>	
 	<script th:inline="javascript">
 		/*<![CDATA[*/
 
 		
-		var material_calidad = /*[[${permiso_material}]]*/'default';
-		var material_calidad_id = /*[[${permiso_material_id}]]*/'default';
+		var userValid = /*[[${usuarios}]]*/'default';
 		var permisos = /*[[${dataRol}]]*/'default';
 		var roles = /*[[${permisos}]]*/'default';
 		var permiso="";
+		if ($('#idUser').val()!=""){
+			mapearPermisos();
+		}
 		/*]]>*/
 	</script>
-	<script th:src="@{/dist/js/roles_permisos.js}" th:inline="javascript"></script>
+	
 </body>
 
 </html>

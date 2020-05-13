@@ -42,7 +42,7 @@ public class UsuarioController {
 	@GetMapping("/agregar_usuario")
 	public String getUser(Model model, Map<String, Object> m) {
 		model.addAttribute("empleados", empleadoService.findEmpleadoPersona());
-
+		model.addAttribute("usuarios", usuarioService.findUserRol());
 		return "agregar_usuario";
 	}
 		

@@ -202,6 +202,20 @@ function guardarUsuario(){
 // Condicion para validar que no existe un usuario
 	if($('#idUser').val()==""){                 //
 		
+		for(i in userValid){
+			
+			if(nombreUsuario==userValid[i][1] || nombreUsuario.toLowerCase()=="admin"){
+				Swal.fire({
+					icon: 'error',
+					title: 'Error',
+					text: '¡Ya existe ese nombre de usuario, elija otro!',
+					showConfirmButton: false,
+			        timer: 3500
+				  })
+				validador = false;
+			}
+		}
+		
 		
 		if(filas.length==0 || empleado=="" || nombreUsuario=="" || statusUser=="" || password=="" || confirmPass==""){
 		console.log(filas);
@@ -284,7 +298,21 @@ function guardarUsuario(){
 	
 // Condicion para validar que ya existe un usuario
 	else{
-		
+		var userCurrentName = $('#userCurrentName').val();
+		if(nombreUsuario!=userCurrentName){	
+			for(i in userValid){
+				if(nombreUsuario==userValid[i][1] || nombreUsuario.toLowerCase()=="admin"){
+					Swal.fire({
+						icon: 'error',
+						title: 'Error',
+						text: '¡Ya existe ese nombre de usuario, elija otro!',
+						showConfirmButton: false,
+				        timer: 3500
+					  })
+					validador = false;
+				}
+			}
+		}
 		
 		if(filas.length==0 || empleado=="" || nombreUsuario=="" || statusUser==""){
 			console.log(filas);
@@ -360,25 +388,21 @@ function guardarUsuario(){
 
 // Función para cargar los select de los permisos actuales de acuerdo a su rol
 function mapearPermisos(){
-	if($('#idUser').val()==""){
-			
-	}
-	else{
-		var filas = $("#tablita").find('tr');
-		for(u=0; u<filas.length; u++){
-			var celdas = $(filas[u]).find("td");
-			var data = roles;
-			
-			for (i in data){
-				if($(celdas[1]).text()==data[i][1]){
-				$(celdas[2]).find("select").append("<option value="+ data[i][0] +">"+ data[i][2] +"</option>");
-				}
-				
+	console.log("Si esta entrando");
+	var filas = $("#tablita").find('tr');
+	for(u=0; u<filas.length; u++){
+		var celdas = $(filas[u]).find("td");
+		var data = roles;
+		
+		for (i in data){
+			if($(celdas[1]).text()==data[i][1]){
+			$(celdas[2]).find("select").append("<option value="+ data[i][0] +">"+ data[i][2] +"</option>");
 			}
+			
 		}
-
-		checkSelect();
 	}
+
+	checkSelect();
 	
 }
 
