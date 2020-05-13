@@ -49,6 +49,7 @@
 								<div class="card-header bg-dark">
 									<h3 th:if="${accion == 'agregar'}" class="card-title">Agregar prenda</h3>
 									<h3 th:if="${accion == 'editar'}" class="card-title">Editar prenda: <text th:text="${prenda.idText}"></text></h3>
+									<!--<button id="BotonRecargaListas" class="btn btn-info" onclick="ReloadList()">Reload weee</button> -->
 								</div>
 								<div class="card-body">
 									<div class="row">
@@ -121,7 +122,7 @@
 																<div class="form-group">
 																	<label>Diseño exclusivo para:</label> 
 																	<select id="ClientePrenda" class="form-control selectpicker" data-live-search="true">
-																		<option value="">Cliente General</option>
+																		<option value="0">Cliente General</option>
 																		<option th:each="cliente: ${clientes}" th:value="${cliente.idCliente}" 
 																		th:text="${cliente.nombre}" th:selected="(${cliente.idCliente} == ${prenda.prendaCliente})" ></option>
 																	</select>

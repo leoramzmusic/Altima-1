@@ -3,7 +3,10 @@ package com.altima.springboot.app.controller;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,6 +29,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.altima.springboot.app.models.entity.ComercialCliente;
+import com.altima.springboot.app.models.entity.DisenioLookup;
 import com.altima.springboot.app.models.entity.DisenioMaterial;
 import com.altima.springboot.app.models.entity.DisenioMaterialPrenda;
 import com.altima.springboot.app.models.entity.DisenioPrenda;
@@ -36,6 +41,7 @@ import com.altima.springboot.app.models.service.DisenioImagenPrendaServiceImpl;
 import com.altima.springboot.app.models.service.DisenioMaterialPrendaServiceImpl;
 import com.altima.springboot.app.models.service.DisenioPrendaPatronajeServiceImpl;
 import com.altima.springboot.app.models.service.DisenioPrendaServiceImpl;
+import com.altima.springboot.app.models.service.IComercialClienteService;
 import com.altima.springboot.app.models.service.IDisenioLookupService;
 import com.altima.springboot.app.models.service.IDisenioMaterialService;
 import com.altima.springboot.app.models.service.IDisenioPrendaMarcadorService;
@@ -60,6 +66,11 @@ public class AgregarPrendaRestController {
 	private IInventarioService inventario;
 	@Autowired
 	private IDisenioPrendaMarcadorService disenioPrendaMarcadorService;
+	@Autowired
+	IDisenioLookupService disenioLookupService;
+	@Autowired
+	IComercialClienteService clienteService;
+	
 	public String file1;
 
 	public String file2;
@@ -193,6 +204,12 @@ public class AgregarPrendaRestController {
 			@RequestParam(name = "objeto_patronajes") String objeto_patronaje,
 			@RequestParam(name = "accion") String accion) throws NoSuchFieldException, SecurityException {
 		
+		// Coso del auth
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+		LocalDateTime now = LocalDateTime.now(); 
+				
+		
 		if (accion.equalsIgnoreCase("editar")) 
 		{
 			disenioPrendaMarcadorService.deleteByIdPrenda(dp.getIdPrenda());
@@ -207,12 +224,14 @@ public class AgregarPrendaRestController {
 				Long num = new Long(num1);
 				dpm.setIdMarcador(num);
 				dpm.setIdPrenda(dp.getIdPrenda());
+				dpm.setActualizadoPor(auth.getName());
+				dpm.setCreadoPor(auth.getName());
+				dpm.setFechaCreacion(dtf.format(now));
+				dpm.setUltimaFechaModificacion(dtf.format(now));
 				disenioPrendaMarcadorService.save(dpm);
 			}
 		}
 
-		// Coso del auth
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
 		// Se guardan Muchos a Muchos de Materiales
 		JSONArray materiales = new JSONArray(objeto_materiales);
@@ -224,6 +243,8 @@ public class AgregarPrendaRestController {
 			mdp.setCreadoPor(auth.getName());
 			mdp.setActualizadoPor(auth.getName());
 			mdp.setCantidad(material.get("cantidad").toString());
+			mdp.setFechaCreacion(dtf.format(now));
+			mdp.setUltimaFechaModificacion(dtf.format(now));
 			materialPrendaService.save(mdp);
 		}
 
@@ -239,6 +260,10 @@ public class AgregarPrendaRestController {
 			dpp.setCantidadForro(patronaje.get("cantidadForro").toString());
 			dpp.setCantidadForroSecundaria(patronaje.get("cantidadForroSecundario").toString());
 			dpp.setCantidadEntretela(patronaje.get("cantidadEntretela").toString());
+			dpp.setActualizadoPor(auth.getName());
+			dpp.setCreadoPor(auth.getName());
+			dpp.setFechaCreacion(dtf.format(now));
+			dpp.setUltimaFechaModificacion(dtf.format(now));
 
 			prendaPatronajeService.save(dpp);
 		}
@@ -302,6 +327,28 @@ public class AgregarPrendaRestController {
 
 		Thread.sleep(2000);
 		response.sendRedirect("/prendas");
+	}
+	
+	@SuppressWarnings("rawtypes")
+	@RequestMapping(value = "/nuevas_listas", method = RequestMethod.GET)
+	public List<Object> nuevasListast(Model model, Map<String, Object> m) throws NoSuchFieldException, SecurityException {
+		List<Object> listaMaestra = new ArrayList<Object>();
+
+		List<DisenioLookup> familias = disenioMaterialService.findAllFamiliaPrenda();
+		List<DisenioMaterial> materiales = disenioMaterialService.findAllForCreate();
+		List<DisenioLookup> patronajes = disenioMaterialService.findLookUps();
+		List<ComercialCliente> clientes = clienteService.findAll();
+		List<DisenioLookup> generos = disenioLookupService.findByTipoLookup("Familia Genero");
+		List<DisenioLookup> marcadores = disenioLookupService.findByTipoLookup("Marcador");
+		
+		listaMaestra.add(familias);
+		listaMaestra.add(generos);
+		listaMaestra.add(clientes);
+		listaMaestra.add(marcadores);
+		listaMaestra.add(materiales);
+		listaMaestra.add(patronajes);
+		
+		return listaMaestra;
 	}
 	
 	//Este es cuando se agrega

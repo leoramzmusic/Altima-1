@@ -553,6 +553,105 @@ function eliminarPatronaje(t) {
 	var table = tr.parentNode;
 	table.removeChild(tr);
 }
+
+
+function ReloadList(){
+	
+	$('#BotonRecargaListas').html("cargando awanta...");
+	//Se rescatan valores de los selects actuales si es que los tienen
+	var TipoPrenda = $('#TipoPrenda').val();
+	var GeneroPrenda = $('#GeneroPrenda').val();
+	var ClientePrenda = $('#ClientePrenda').val();
+	var MarcadorPrenda = $('#marcador_').val();
+	var MaterialesPrenda = $('#ListaDeMateriales').val();
+	var PatronajePrenda = $('#ListaPatronaje').val();
+	
+	//Se limpian los select 
+	var SelectTipoPrenda = $('#TipoPrenda');
+	SelectTipoPrenda.selectpicker('val', '');
+	SelectTipoPrenda.find('option').remove();
+	var SelectGeneroPrenda = $('#GeneroPrenda');
+	SelectGeneroPrenda.selectpicker('val', '');
+	SelectGeneroPrenda.find('option').remove();
+	var SelectClientePrenda = $('#ClientePrenda');
+	SelectClientePrenda.selectpicker('val', '');
+	SelectClientePrenda.find('option').remove();
+	var Selectmarcador_ = $('#marcador_');
+	Selectmarcador_.selectpicker('val', '');
+	Selectmarcador_.find('option').remove();
+	var SelectListaDeMateriales = $('#ListaDeMateriales');
+	SelectListaDeMateriales.selectpicker('val', '');
+	SelectListaDeMateriales.find('option').remove();
+	var SelectListaPatronaje = $('#ListaPatronaje');
+	SelectListaPatronaje.selectpicker('val', '');
+	SelectListaPatronaje.find('option').remove();
+	
+	//Se obtienen las nuevas listas
+	$.ajax({
+		type: "GET",
+		url: "/nuevas_listas",
+		data: {
+			"_csrf": $('#token').val()
+		},
+		success: (res) => {			
+			
+			//Select de Prenda
+			for(i = 0; i < res[0].length; i++){
+				SelectTipoPrenda.append("<option value='" + res[0][i][0] + "'>" + res[0][i][1] + "</option>");
+			}
+			SelectTipoPrenda.val(TipoPrenda);
+			SelectTipoPrenda.selectpicker("refresh");
+			
+			//Select de Genero
+			for(i = 0; i < res[1].length; i++){
+				SelectGeneroPrenda.append("<option value='" + res[1][i].idLookup + "'>" + res[1][i].nombreLookup + "</option>");
+			}
+			SelectGeneroPrenda.val(GeneroPrenda);
+			SelectGeneroPrenda.selectpicker("refresh");
+			
+			//Select de Cliente
+			for(i = 0; i < res[2].length; i++){
+				SelectClientePrenda.append("<option value='" + res[2][i].idCliente + "'>" + res[2][i].nombre + "</option>");
+			}
+			SelectClientePrenda.append("<option value='0'>Cliente General</option>");
+			SelectClientePrenda.val(ClientePrenda);
+			SelectClientePrenda.selectpicker("refresh");
+			
+			//Select de Marcadores
+			for(i = 0; i < res[3].length; i++){
+				Selectmarcador_.append("<option value='" + res[3][i].idLookup + "'>" + res[3][i].nombreLookup + "</option>");
+			}
+			Selectmarcador_.val(MarcadorPrenda);
+			Selectmarcador_.selectpicker("refresh");
+			
+			//Select de Materiales
+			for(i = 0; i < res[4].length; i++){
+				SelectListaDeMateriales.append("<option value='" + res[4][i][0] + "'>" + res[4][i][1] + "</option>");
+			}
+			SelectListaDeMateriales.val(MaterialesPrenda);
+			SelectListaDeMateriales.selectpicker("refresh");
+			
+			//Select de Patronajes
+			for(i = 0; i < res[5].length; i++){
+				SelectListaPatronaje.append("<option value='" + res[5][i][0] + "'>" + res[5][i][2] + "</option>");
+			}
+			SelectListaPatronaje.val(PatronajePrenda);
+			SelectListaPatronaje.selectpicker("refresh");
+			
+			$('#BotonRecargaListas').html("Reload again");
+		},
+		failure: function (errMsg) {
+			alert(errMsg);
+		}
+	});
+	
+	//Se actualizan las listas con  refresh
+	$('#GeneroPrenda').selectpicker("refresh");
+	$('#ClientePrenda').selectpicker("refresh");
+	$('#marcador_').selectpicker("refresh");
+	$('#ListaDeMateriales').selectpicker("refresh");
+	$('#ListaPatronaje').selectpicker("refresh");
+}
 /***
 *
 *	Estas funciones son para las imagenes
