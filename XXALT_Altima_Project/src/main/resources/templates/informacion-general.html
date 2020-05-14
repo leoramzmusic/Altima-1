@@ -51,34 +51,56 @@
                                 </div>
                                 <div class="card-body">
                                  	<form class="row" >
-										<div class="form-group col-sm-4">
+										<div class="form-group col-sm-3">
                                             <label for="generalToma">Fecha de toma de tallas</label> 
                                             <input type="date" class="form-control" id="generalToma" required>
                                         </div>
-										<div class="form-group col-sm-4">
+										<div class="form-group col-sm-3">
                                             <label for="generalAnticipo">Fecha anticipo</label> 
                                             <input type="date" class="form-control" id="generalAnticipo" required>
                                         </div>
-                                        <div class="form-group col-sm-4">
+                                        <div class="form-group col-sm-3">
                                             <label for="generalEntrega">Fecha de entrega</label> 
                                             <input type="date" class="form-control" id="generalEntrega" required>
                                         </div>
                                         <div class="form-group col-sm-3">
-	                                        <label for="generalPagoAnticipo">Anticipo <a>0%</a></label>
-	                                        <input type="number" class="form-control" id="generalPagoAnticipo" placeholder="26000">
-	                                    </div>
+                                            <label for="generalEstimados">Dias estimados de entrega</label> 
+                                            <input type="number" disabled class="form-control" id="generalEstimados" required>
+                                        </div>
+	                                    <div class="form-group col-md-4">
+											<label for="cargaEmpresa">Precio a usar</label>
+											<select class="form-control selectpicker" data-live-search="true" name="cargaTipopedido" id="cargaTipopedido">
+												<option value='Pedido General'>Precio local nuevo</option>
+												<option value='Pedido Especial'>Precio local antiguo</option>
+												<option value='Stock'>Precio foraneo nuevo</option>
+												<option value='Resurtido'>Precio foraneo antiguo</option>
+											</select>
+										</div>
 	                                    <div class="form-group col-sm-3">
-	                                        <label for="generalPagoEntrega">Entrega <a>0%</a></label>
-	                                        <input type="number" class="form-control" id="generalSagoEntrega" placeholder="26000">
-	                                    </div>
-	                                    <div class="form-group col-sm-3">
-	                                        <label for="generalSaldo">Saldo</label>
-	                                        <input type="number" class="form-control" id="generalSaldo" placeholder="26000">
-	                                    </div>
-	                                    <div class="form-group col-sm-3">
-	                                        <label for="generalTotal">Total pedido</label>
-	                                        <input type="number" class="form-control" id="generalTotal" placeholder="26000">
-	                                    </div>
+                                            <label for="generalIVA">IVA %</label> 
+                                            <input type="number" class="form-control" id="generalIVA" required placeholder="16">
+                                        </div>
+										<div class="form-inline col-md-2">
+										 <div class="form-check mb-2 mr-sm-2" style="margin-top: 1rem!important;">
+										    <input class="form-check-input" type="checkbox" id="generalAnticipo">
+										    <label class="form-check-label" for="generalAnticipo">
+										      Pago de anticipo
+										    </label>
+										  </div>
+										</div>
+										<div class="form-inline col-md-2">
+										 <div class="form-check mb-2 mr-sm-2" style="margin-top: 1rem!important;">
+										    <input class="form-check-input" type="checkbox" id="generalIVACheck">
+										    <label class="form-check-label" for="generalIVACheck">
+										      Adicionales con IVA
+										    </label>
+										  </div>
+										</div>
+										
+										<div class="form-group col-sm-12">
+                                            <label for="generalObservaciones">Observaciones</label>
+    										<textarea class="form-control" id="generalObservaciones" rows="3"></textarea>
+                                        </div>
                                         <div class="form-group col-sm-12">
                                         <a th:href="@{/coordinados}" class="btn btn-danger">Cancelar</a>
                                             <input type="submit" class="btn btn-primary next-step float-right" value="Guardar">
