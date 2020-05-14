@@ -351,10 +351,10 @@ public class AgregarPrendaRestController {
 	}
 	
 	
-	@GetMapping(value = "/cargar-familias/{term}", produces = { "application/json" })
-	public @ResponseBody List<DisenioLookup> cargarProductos(@PathVariable String term) {
-		return disenioMaterialService.findAllFamiliaPrendaByName(term);
-	}
+//	@GetMapping(value = "/cargar-familias/{term}", produces = { "application/json" })
+//	public @ResponseBody List<DisenioLookup> cargarProductos(@PathVariable String term) {
+//		return disenioMaterialService.findAllFamiliaPrendaByName(term);
+//	}
 	
 	
 	//Este es cuando se agrega

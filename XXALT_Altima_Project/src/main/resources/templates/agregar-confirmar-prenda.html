@@ -121,9 +121,10 @@
 															<div class="col-sm-6">
 																<div class="form-group">
 																	<label>Diseño exclusivo para:</label> 
-																	<select class="form-control selectpicker" data-live-search="true">
-																		<option th:each="genero: ${generos}" th:value="${genero.idLookup}" 
-																		th:text="${genero.nombreLookup}" th:selected="(${genero.idLookup} == ${prenda.idGenero})"></option>
+																	<select id="ClientePrenda" class="form-control selectpicker" data-live-search="true">
+																		<option value="0">Cliente General</option>
+																		<option th:each="cliente: ${clientes}" th:value="${cliente.idCliente}" 
+																		th:text="${cliente.nombre}"></option>
 																	</select>
 																</div>
 															</div>
