@@ -460,7 +460,7 @@ public class ControlController {
 		prenda.setCreadoPor(auth.getName());
 		prenda.setFechaCreacion(hourdateFormat.format(date));
 		prenda.setIdGenero(genero);
-		prenda.setPrendaCliente(null);
+		//prenda.setPrendaCliente(null);
 		prenda.setTipoLargo(largo);
 		Prenda.save(prenda);
 		Long envio = Long.valueOf(prenda.getIdFamiliaPrenda());
