@@ -125,9 +125,7 @@ public class DisenioPrenda implements Serializable {
 	
 	@Column(name = "id_genero")
 	private String idGenero;
-	
-	@Column(name = "prenda_cliente")
-	private String prendaCliente;
+
 	
 	
 	
@@ -141,14 +139,6 @@ public class DisenioPrenda implements Serializable {
 
 	public void setIdGenero(String idGenero) {
 		this.idGenero = idGenero;
-	}
-
-	public String getPrendaCliente() {
-		return prendaCliente;
-	}
-
-	public void setPrendaCliente(String prendaCliente) {
-		this.prendaCliente = prendaCliente;
 	}
 
 	public String getPrendaLocal() {
