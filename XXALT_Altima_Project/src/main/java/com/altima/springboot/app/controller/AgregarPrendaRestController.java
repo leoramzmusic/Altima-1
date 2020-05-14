@@ -20,6 +20,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -147,7 +148,6 @@ public class AgregarPrendaRestController {
 		dp.setEstatus(1L);
 		dp.setPrendaLocal("1");
 		dp.setIdGenero(prenda.get("generoPrenda").toString());
-		dp.setPrendaCliente(prenda.get("clientePrenda").toString());
 
 		prendaService.save(dp);
 		
@@ -193,7 +193,6 @@ public class AgregarPrendaRestController {
 		dp.setPrecioMmuestra(prenda.get("precioMmuestra").toString());
 		dp.setCategoria(prenda.get("categoria").toString());
 		dp.setIdGenero(prenda.get("generoPrenda").toString());
-		dp.setPrendaCliente(prenda.get("clientePrenda").toString());
 		prendaService.save(dp);
 		return dp;
 	}
@@ -350,6 +349,13 @@ public class AgregarPrendaRestController {
 		
 		return listaMaestra;
 	}
+	
+	
+	@GetMapping(value = "/cargar-familias/{term}", produces = { "application/json" })
+	public @ResponseBody List<DisenioLookup> cargarProductos(@PathVariable String term) {
+		return disenioMaterialService.findAllFamiliaPrendaByName(term);
+	}
+	
 	
 	//Este es cuando se agrega
 	@RequestMapping(value = "/imagenes_prendas", method = RequestMethod.POST)
